@@ -2,11 +2,11 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import Home from "./components/Home/Home";
-import Demo from "./components/Demo"
-import Player from "./components/PlaylistPlayer/Player";
+import Home from "./Home/Home";
+import Demo from "./Demo"
+import Player from "./PlaylistPlayer/Player";
 import {Container} from "@material-ui/core";
-import basicStyle from "./components/Home/styles"
+import basicStyle from "./Home/styles"
 
 function Root({ store }) {
 
@@ -14,7 +14,8 @@ function Root({ store }) {
 
     return (
         <Provider store={store}>
-            <Router>
+            {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
+            <Router basename={process.env.PUBLIC_URL} >
                 <Route
                     path="/"
                     render={(props) => <Home {...props} classes={classes} />}

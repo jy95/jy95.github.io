@@ -1,18 +1,12 @@
 import React from 'react';
-
 import { render } from 'react-dom'
-import { createStore } from 'redux'
-import reducers  from './reducers/reducers'
-import Root from './routes'
+
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-/* eslint-disable no-underscore-dangle */
-const store = createStore(
-    reducers,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-/* eslint-enable */
+import store from "./components/Store"
+import Root from "./components/Root";
+
 render(<Root store={store} />, document.getElementById('root'));
 
 
