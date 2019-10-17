@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 
 import Home from "./components/Home/Home";
 import Demo from "./components/Demo"
+import Player from "./components/PlaylistPlayer/Player";
 import {Container} from "@material-ui/core";
 import basicStyle from "./components/Home/styles"
 
@@ -21,7 +22,8 @@ function Root({ store }) {
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
                     <Container>
-                        <Route path="/" component={Demo} />
+                        <Route path="/demo" component={Demo} />
+                        <Route path="/playlists/:playlistId" component={Player} />
                     </Container>
                 </main>
             </Router>
