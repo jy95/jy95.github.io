@@ -14,11 +14,8 @@ export const get_playlists = ()  => {
         // pour plus tard
         // const { playlists } = getState();
 
-        // on prévient que l'on commence
         dispatch(fetchingStarted());
 
-        // on charge toutes mes playlists
-        // https://alligator.io/redux/redux-thunk/
         youtube
             .getChannelPlaylists(CHANNEL_ID)
             .then( playlists => {
