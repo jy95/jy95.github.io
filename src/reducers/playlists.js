@@ -1,26 +1,36 @@
 import {
     FETCHING_FAILED,
-    FETCHING_OK
+    FETCHING_OK,
+    FETCHING_REQUESTED
 } from "../actions/playlists"
 
 const initialState = {
-    data: []
+    playlists: [],
+    error: null,
+    loading: false
 };
 
 export default function playlists(state = initialState, action) {
 
     switch (action.type) {
+        case FETCHING_REQUESTED:
+            return {
+              ...state,
+              loading: true
+            };
         case FETCHING_OK:
             return {
                 ...state,
-                data: action.payload,
-                got_errors: false
+                loading: false,
+                playlists: action.playlists,
+                error: null
             };
         case FETCHING_FAILED:
             return {
                 ...state,
-                data: [],
-                got_errors: true
+                loading: false,
+                playlists: [],
+                error: action.error
             };
         default:
             return state
