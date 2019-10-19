@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { get_playlists } from "../../actions/playlists";
 
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Snackbar from '@material-ui/core/Snackbar';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
+import Grid from "@material-ui/core/Grid";
+import SnackbarWrapper from "../CustomSnackbar";
 
 import CardsGrid from "./CardsGrid";
 
@@ -17,20 +17,23 @@ class Viewer extends React.Component {
     render() {
 
         if (this.props.loading){
-            return <CircularProgress />
+            return <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: '80vh' }}
+            >
+                <CircularProgress />
+            </Grid>
         }
 
         if (this.props.error) {
-            return <Snackbar>
-                <SnackbarContent
-                    aria-describedby="client-snackbar"
-                    message={
-                        <span id="client-snackbar">
-                            {this.props.error}
-                        </span>
-                    }
-                />
-            </Snackbar>
+            return <SnackbarWrapper
+                variant={"error"}
+                message={this.props.error}
+            />
         }
 
         return (
