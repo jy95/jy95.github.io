@@ -14,24 +14,39 @@ import {
 import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 
+function ListItemLink(props) {
+    const { icon, primary, to } = props;
+
+    const renderLink = React.useMemo(
+        () =>
+            React.forwardRef((linkProps, ref) => (
+                // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
+                // See https://github.com/ReactTraining/react-router/issues/6056
+                <Link to={to} {...linkProps} innerRef={ref} />
+            )),
+        [to],
+    );
+
+    return (
+        <ListItem button component={renderLink}>
+            <ListItemIcon>{icon}</ListItemIcon>
+            <ListItemText primary={primary} />
+        </ListItem>
+    )
+
+}
 
 export const ENTRIES = (
     <List>
-        <ListItem button>
-            <ListItemIcon>
-                <PlaylistPlayIcon />
-            </ListItemIcon>
-            <ListItemText
-                primary={
-                    <Link to="/games">Jeux</Link>
-                }
-            />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <ScheduleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Plannifié" />
-        </ListItem>
+        <ListItemLink
+            icon={<PlaylistPlayIcon />}
+            primary={"Jeux"}
+            to={"/games"}
+        />
+        <ListItemLink
+            icon={<ScheduleIcon />}
+            primary={"Plannifié"}
+            to={"/planning"}
+        />
     </List>
 );
