@@ -3,11 +3,11 @@ import {connect} from 'react-redux';
 import {get_playlists} from "../../actions/playlists";
 
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Grid from "@material-ui/core/Grid";
 import Fab from '@material-ui/core/Fab';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 
-import SnackbarWrapper from "../CustomSnackbar";
+import CenteredGrid from "../Others/CenteredGrid";
+import SnackbarWrapper from "../Others/CustomSnackbar";
 import CardsBox from "./CardsBox";
 
 class Viewer extends React.Component {
@@ -19,16 +19,9 @@ class Viewer extends React.Component {
     render() {
 
         if (this.props.loading) {
-            return <Grid
-                container
-                spacing={0}
-                direction="column"
-                alignItems="center"
-                justify="center"
-                style={{minHeight: '80vh'}}
-            >
+            return <CenteredGrid>
                 <CircularProgress/>
-            </Grid>
+            </CenteredGrid>
         }
 
         if (this.props.error) {
@@ -38,14 +31,7 @@ class Viewer extends React.Component {
                     variant={"error"}
                     message={this.props.error}
                 />
-                <Grid
-                    container
-                    spacing={0}
-                    direction="column"
-                    alignItems="center"
-                    justify="center"
-                    style={{minHeight: '80vh'}}
-                >
+                <CenteredGrid>
                     <Fab
                         variant="extended"
                         size="medium"
@@ -58,7 +44,7 @@ class Viewer extends React.Component {
                         <AutorenewIcon/>
                         Recharger
                     </Fab>
-                </Grid>
+                </CenteredGrid>
             </React.Fragment>;
         }
 
