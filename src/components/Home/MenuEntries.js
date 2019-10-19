@@ -6,6 +6,10 @@ import {
     List
 } from '@material-ui/core';
 
+import {
+    Link
+} from "react-router-dom"
+
 // icons
 import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
 import ScheduleIcon from '@material-ui/icons/Schedule';
@@ -17,7 +21,11 @@ export const ENTRIES = (
             <ListItemIcon>
                 <PlaylistPlayIcon />
             </ListItemIcon>
-            <ListItemText primary="Jeux" />
+            <ListItemText
+                primary={
+                    <Link to="/games">Jeux</Link>
+                }
+            />
         </ListItem>
         <ListItem button>
             <ListItemIcon>

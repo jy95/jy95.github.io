@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import Home from "./Home/Home";
-import Demo from "./Demo"
 import Player from "./PlaylistPlayer/Player";
+import PlaylistsViewer from "./PlaylistsViewer/Viewer"
+
 import {Container} from "@material-ui/core";
 import basicStyle from "./Home/styles"
 
@@ -23,7 +24,7 @@ function Root({ store }) {
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
                     <Container>
-                        <Route path="/demo" component={Demo} />
+                        <Route path="/games" component={PlaylistsViewer} />
                         <Route path="/playlists/:playlistId" component={Player} />
                     </Container>
                 </main>
