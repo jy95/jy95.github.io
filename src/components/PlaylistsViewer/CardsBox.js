@@ -1,25 +1,12 @@
 import React from "react";
 
 import Box from "@material-ui/core/Box";
-
-function CardEntry(props) {
-
-    const { playlist } = props;
-
-    // https://material-ui.com/components/cards/
-    // TODO
-    return (
-        <React.Fragment>
-
-        </React.Fragment>
-    );
-}
-
+import CardEntry from "./CardEntry";
 
 class CardsBox extends React.Component {
     render() {
 
-        const { data } = this.props;
+        const {data} = this.props;
 
         return (
             <Box
