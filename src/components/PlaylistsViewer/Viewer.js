@@ -8,7 +8,7 @@ import Fab from '@material-ui/core/Fab';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 
 import SnackbarWrapper from "../CustomSnackbar";
-import CardsGrid from "./CardsGrid";
+import CardsBox from "./CardsBox";
 
 class Viewer extends React.Component {
 
@@ -63,7 +63,7 @@ class Viewer extends React.Component {
         }
 
         return (
-            <CardsGrid data={this.props.data}/>
+            <CardsBox data={this.props.data}/>
         )
 
     }
