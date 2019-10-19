@@ -1,11 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { get_playlists } from "../../actions/playlists";
+import {connect} from 'react-redux';
+import {get_playlists} from "../../actions/playlists";
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from "@material-ui/core/Grid";
-import SnackbarWrapper from "../CustomSnackbar";
+import Fab from '@material-ui/core/Fab';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
 
+import SnackbarWrapper from "../CustomSnackbar";
 import CardsGrid from "./CardsGrid";
 
 class Viewer extends React.Component {
@@ -16,24 +18,48 @@ class Viewer extends React.Component {
 
     render() {
 
-        if (this.props.loading){
+        if (this.props.loading) {
             return <Grid
                 container
                 spacing={0}
                 direction="column"
                 alignItems="center"
                 justify="center"
-                style={{ minHeight: '80vh' }}
+                style={{minHeight: '80vh'}}
             >
-                <CircularProgress />
+                <CircularProgress/>
             </Grid>
         }
 
         if (this.props.error) {
-            return <SnackbarWrapper
-                variant={"error"}
-                message={this.props.error}
-            />
+
+            return <React.Fragment>
+                <SnackbarWrapper
+                    variant={"error"}
+                    message={this.props.error}
+                />
+                <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justify="center"
+                    style={{minHeight: '80vh'}}
+                >
+                    <Fab
+                        variant="extended"
+                        size="medium"
+                        color="primary"
+                        aria-label="reload"
+                        onClick={() => {
+                            this.props.get_playlists();
+                        }}
+                    >
+                        <AutorenewIcon/>
+                        Recharger
+                    </Fab>
+                </Grid>
+            </React.Fragment>;
         }
 
         return (
