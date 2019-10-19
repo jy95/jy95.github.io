@@ -12,7 +12,7 @@ import Typography from "@material-ui/core/Typography";
 
 import IconButton from "@material-ui/core/IconButton";
 import ShareIcon from '@material-ui/icons/Share';
-import PlayArrowIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 import MyExpandMore from "../Others/MyExpandMore";
 
@@ -21,7 +21,7 @@ import MyExpandMore from "../Others/MyExpandMore";
 const useStyles = (params) => makeStyles({
     media: {
         height: params.height,
-        width: params.width
+        minWidth: params.width,
     },
 });
 
@@ -34,11 +34,16 @@ function CardEntry(props) {
     const [expanded, setExpanded] = React.useState(false);
 
     // Text for Collapse
-    const collapse_texts = [
+    let collapse_texts = [
         "" + playlist.length + " video(s)",
-        playlist.description && playlist.description,
-        playlist.tags && "Mots clés :" + playlist.tags.join(" , ")
     ];
+    // optional properties
+    if (playlist.description) {
+        collapse_texts.push(playlist.description)
+    }
+    if (playlist.tags) {
+        collapse_texts.push("Mots clés :" + playlist.tags.join(" , "))
+    }
 
     return (
         <Card>
@@ -68,7 +73,7 @@ function CardEntry(props) {
                 <CardContent>
                     {collapse_texts.map(
                         text =>
-                            text && <Typography paragraph>
+                            <Typography paragraph>
                                 {text}
                             </Typography>
                     )}
