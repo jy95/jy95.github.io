@@ -1,5 +1,7 @@
 import React from "react";
 
+import {Link} from 'react-router-dom';
+
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -28,6 +30,7 @@ const useStyles = (params) => makeStyles({
 function CardEntry(props) {
 
     const {playlist} = props;
+    const date_options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 
     // Use the medium size
     const classes = useStyles(playlist.thumbnails.medium)();
@@ -49,7 +52,7 @@ function CardEntry(props) {
         <Card>
             <CardHeader
                 title={playlist.title}
-                subheader={playlist.dateCreated.toLocaleDateString()}
+                subheader={playlist.dateCreated.toLocaleDateString(undefined, date_options)}
             />
             <CardMedia
                 image={playlist.thumbnails.medium.url}
@@ -57,10 +60,26 @@ function CardEntry(props) {
                 title={playlist.title}
             />
             <CardActions disableSpacing>
-                <IconButton aria-label="play">
+                <IconButton
+                    aria-label="play"
+                    component={Link}
+                    to={"/playlists/" + playlist.id}
+                >
                     <PlayArrowIcon/>
                 </IconButton>
-                <IconButton aria-label="share">
+                {/* Ugly fix because react router cannot tell if it is a external url :(  */}
+                <IconButton
+                    aria-label="share"
+                    component={
+                        (props) =>
+                            // eslint-disable-next-line jsx-a11y/anchor-has-content
+                            <a
+                                href={props.to}
+                                {...props}
+                            />
+                    }
+                    to={playlist.url}
+                >
                     <ShareIcon/>
                 </IconButton>
                 <MyExpandMore
