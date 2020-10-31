@@ -13,7 +13,7 @@ import CardsBox from "./CardsBox";
 class Viewer extends React.Component {
 
     componentDidMount() {
-        this.props.get_playlists();
+        this.props.get_games();
     };
 
     render() {

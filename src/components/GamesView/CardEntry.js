@@ -27,13 +27,13 @@ function CardEntry(props) {
     const {game} = props;
 
     // Use the medium size
-    const classes = useStyles(game.thumbnails.medium)();
+    const classes = useStyles({height: "500px", minWidth: "250px"})();
 
     return (
         <Card>
             <Tooltip title={game.title} aria-label={game.title}>
                 <CardMedia
-                    image={game.imagePath}
+                    image={ "../" + game.imagePath}
                     className={classes.media}
                 />
             </Tooltip>

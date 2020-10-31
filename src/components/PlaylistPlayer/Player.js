@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player/youtube'
 import { useParams } from 'react-router-dom'
 
 export default function Player(props) {

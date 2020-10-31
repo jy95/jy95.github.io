@@ -16,7 +16,7 @@ export const get_games = () => {
         // Build the object for
         let games = gamesList
             .map(game => Object.assign({}, game, {
-                "imagePath": "covers/" + game.playlistId + "cover." // check extension
+                "imagePath": "covers/" + game.playlistId + "/cover.jpg" // check extension
             }))
 
         dispatch(fetchingFinished(games));
