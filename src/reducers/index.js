@@ -1,9 +1,9 @@
 import { combineReducers } from "redux"
 
-import playlists from "./playlists";
+import games from "./games";
 
 const rootReducer = combineReducers({
-    playlists
+    games
 });
 
 export default rootReducer;

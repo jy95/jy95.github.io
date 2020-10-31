@@ -12,9 +12,9 @@ class CardsBox extends React.Component {
         // en attendant de trouver un meilleur fix
         let sorted = data.sort(
             function(a, b){
-                // ASC  -> a.length - b.length
-                // DESC -> b.length - a.length
-                return a.title.length - b.title.length
+                let aa = a["releaseDate"].split('/').reverse().join();
+                let bb = a["releaseDate"].split('/').reverse().join();
+                return aa < bb ? -1 : (aa > bb ? 1 : 0);
             }
         );
 
@@ -25,8 +25,8 @@ class CardsBox extends React.Component {
             >
                 {
                     sorted.map(
-                        playlist => <Box>
-                            <CardEntry playlist={playlist}/>
+                        game => <Box>
+                            <CardEntry game={game}/>
                         </Box>
                     )
                 }

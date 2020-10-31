@@ -2,15 +2,15 @@ import {
     FETCHING_FAILED,
     FETCHING_OK,
     FETCHING_REQUESTED
-} from "../actions/playlists"
+} from "../actions/games"
 
 const initialState = {
-    playlists: [],
+    games: [],
     error: null,
     loading: false
 };
 
-export default function playlists(state = initialState, action) {
+export default function games(state = initialState, action) {
 
     switch (action.type) {
         case FETCHING_REQUESTED:
@@ -22,14 +22,14 @@ export default function playlists(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                playlists: action.playlists,
+                games: action.games,
                 error: null
             };
         case FETCHING_FAILED:
             return {
                 ...state,
                 loading: false,
-                playlists: [],
+                games: [],
                 error: action.error
             };
         default:

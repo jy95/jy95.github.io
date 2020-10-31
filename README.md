@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+If you want to use Youtube API, [popyt](https://www.npmjs.com/package/popyt) is a nice package to use.
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {get_playlists} from "../../actions/playlists";
+import {get_games} from "../../actions/games";
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Fab from '@material-ui/core/Fab';
@@ -38,7 +38,7 @@ class Viewer extends React.Component {
                         color="primary"
                         aria-label="reload"
                         onClick={() => {
-                            this.props.get_playlists();
+                            this.props.get_games();
                         }}
                     >
                         <AutorenewIcon/>
@@ -58,13 +58,13 @@ class Viewer extends React.Component {
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    data: state.playlists.playlists,
-    loading: state.playlists.loading,
-    error: state.playlists.error,
+    data: state.games.games,
+    loading: state.games.loading,
+    error: state.games.error,
 });
 
 const mapDispatchToProps = {
-    get_playlists
+    get_games
 };
 
 export default connect(
