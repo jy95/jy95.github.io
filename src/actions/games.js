@@ -1,4 +1,4 @@
-import gamesList from "../data/games.json";
+import gamesData from "../data/games.json";
 
 export const FETCHING_REQUESTED = "FETCHING_REQUESTED";
 export const FETCHING_OK = "FETCHING_OK";
@@ -14,9 +14,10 @@ export const get_games = () => {
         dispatch(fetchingStarted());
 
         // Build the object for
-        let games = gamesList
+        let games = gamesData
+            .games
             .map(game => Object.assign({}, game, {
-                "imagePath": "covers/" + game.playlistId + "/cover.jpg" // check extension
+                "imagePath": gamesData.coversRootPath + game.playlistId + "/" + (game.coverFile ?? gamesData.defaultCoverFile)
             }))
 
         dispatch(fetchingFinished(games));

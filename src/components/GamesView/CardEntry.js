@@ -33,7 +33,7 @@ function CardEntry(props) {
         <Card>
             <Tooltip title={game.title} aria-label={game.title}>
                 <CardMedia
-                    image={ "../" + game.imagePath}
+                    image={game.imagePath}
                     className={classes.media}
                 />
             </Tooltip>
