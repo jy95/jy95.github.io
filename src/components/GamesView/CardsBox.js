@@ -20,14 +20,13 @@ class CardsBox extends React.Component {
 
         return (
             <Box
-                flexWrap="wrap"
                 display="flex"
+                flexWrap="wrap"
+                flexDirection="row"
             >
                 {
                     sorted.map(
-                        game => <Box>
-                            <CardEntry game={game}/>
-                        </Box>
+                        game => <CardEntry game={game} key={game.playlistId}/>
                     )
                 }
             </Box>

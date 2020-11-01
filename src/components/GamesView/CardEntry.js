@@ -27,7 +27,7 @@ function CardEntry(props) {
     const {game} = props;
 
     // Use the medium size
-    const classes = useStyles({height: "500px", minWidth: "250px"})();
+    const classes = useStyles({height: "150px", minWidth: "150px"})();
 
     return (
         <Card>
