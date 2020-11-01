@@ -37,8 +37,8 @@ function makeMultiCriteriaSort(criteria) {
 const sortByNameASC = (a, b) => (a.title < b.title) ? -1 : (a.title > b.title ? 1 : 0) ;
 const sortByNameDESC = (a, b) => -sortByNameASC(a, b);
 const sortByReleaseDateASC = (a, b) => {
-    let aa = a["releaseDate"].split('/').reverse().join();
-    let bb = a["releaseDate"].split('/').reverse().join();
+    let aa = a["releaseDate"];
+    let bb = a["releaseDate"];
     return aa < bb ? -1 : (aa > bb ? 1 : 0);
 };
 const sortByReleaseDateDESC = (a, b) => -sortByReleaseDateASC(a, b);
@@ -102,7 +102,7 @@ class GamesGallery extends React.Component {
             ...this.state,
             sortersState: updatedSortersState,
             currentSorters: updatedCurrentSorters
-        })
+        });
     }
 
     render() {
@@ -150,7 +150,7 @@ class GamesGallery extends React.Component {
                     {
                         this.state.sortersKeys
                             .map(criteria => 
-                                <Button onClick={() => this.handleSortChange(criteria)}>
+                                <Button onClick={this.handleSortChange.bind(this, criteria)}>
                                     <ImportExportIcon />
                                     <Typography>
                                         { criteria === "name" &&

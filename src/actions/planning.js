@@ -1,7 +1,7 @@
 import gamesData from "../data/scheduledGames.json";
 
-export const FETCHING_REQUESTED = "FETCHING_REQUESTED";
-export const FETCHING_OK = "FETCHING_OK";
+export const FETCHING_REQUESTED = "PLANNING_REQUESTED";
+export const FETCHING_OK = "PLANNING_FETCHING_OK";
 
 export const get_scheduled_games = () => {
     return (dispatch, getState) => {
