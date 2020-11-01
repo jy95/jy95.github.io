@@ -39,13 +39,15 @@ function CardEntry(props) {
             </Tooltip>
 
             <CardActions disableSpacing>
-                <IconButton
-                    aria-label="play"
-                    component={Link}
-                    to={"/playlists/" + game.playlistId}
-                >
-                    <PlayArrowIcon/>
-                </IconButton>
+                <Tooltip title="Regarder" aria-label="Regarder">
+                    <IconButton
+                        aria-label="play"
+                        component={Link}
+                        to={"/playlists/" + game.playlistId}
+                    >
+                        <PlayArrowIcon/>
+                    </IconButton>
+                </Tooltip>
                 {/* Ugly fix because react router cannot tell if it is a external url :(  */}
                 <IconButton
                     aria-label="share"

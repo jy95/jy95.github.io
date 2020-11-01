@@ -106,7 +106,6 @@ class GamesGallery extends React.Component {
     }
 
     render() {
-
         const {loading, error, data} = this.props;
 
         if (loading) {
@@ -146,24 +145,31 @@ class GamesGallery extends React.Component {
 
         return (
             <div>
-                <ButtonGroup color="primary" aria-label="outlined primary button group">
-                    {
-                        this.state.sortersKeys
-                            .map(criteria => 
-                                <Button onClick={this.handleSortChange.bind(this, criteria)}>
-                                    <ImportExportIcon />
-                                    <Typography>
-                                        { criteria === "name" &&
-                                            "Trier par nom" 
-                                        }
-                                        { criteria === "releaseDate" &&
-                                            "Trier par date de sortie"
-                                        }
-                                    </Typography>
-                                </Button>
-                            )
-                    }
-                </ButtonGroup>
+                <Box
+                    display="flex"
+                    flexWrap="wrap"
+                    flexDirection="row"
+                    justifyContent="flex-end"
+                >
+                    <ButtonGroup color="primary" aria-label="outlined primary button group">
+                        {
+                            this.state.sortersKeys
+                                .map(criteria => 
+                                    <Button onClick={this.handleSortChange.bind(this, criteria)}>
+                                        <ImportExportIcon />
+                                        <Typography>
+                                            { criteria === "name" &&
+                                                "Trier par nom" 
+                                            }
+                                            { criteria === "releaseDate" &&
+                                                "Trier par date de sortie"
+                                            }
+                                        </Typography>
+                                    </Button>
+                                )
+                        }
+                    </ButtonGroup>
+                </Box>
                 <Box
                     display="flex"
                     flexWrap="wrap"
