@@ -10,6 +10,8 @@ import {
     Link
 } from "react-router-dom"
 
+import Tooltip from '@material-ui/core/Tooltip';
+
 // icons
 import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import ScheduleIcon from '@material-ui/icons/Schedule';
@@ -28,10 +30,12 @@ function ListItemLink(props) {
     );
 
     return (
-        <ListItem button component={renderLink}>
-            <ListItemIcon>{icon}</ListItemIcon>
-            <ListItemText primary={primary} />
-        </ListItem>
+        <Tooltip title={primary} aria-label={primary}>
+            <ListItem button component={renderLink}>
+                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemText primary={primary} />
+            </ListItem>
+        </Tooltip>
     )
 
 }
@@ -45,7 +49,7 @@ export const ENTRIES = (
         />
         <ListItemLink
             icon={<ScheduleIcon />}
-            primary={"Plannifié"}
+            primary={"Planning"}
             to={"/planning"}
         />
     </List>

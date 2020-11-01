@@ -1,0 +1,62 @@
+[
+    {
+        "title": "Ryse: Son of Rome",
+        "releaseDate": "20/11/2020",
+        "status": "RECORDED"
+    },
+    {
+        "title": "South Park : L'Annale du Destin",
+        "releaseDate": "09/12/2020",
+        "status": "RECORDED"     
+    },
+    {
+        "title": "Rayman 2 Revolution",
+        "releaseDate": "01/01/2021",
+        "status": "RECORDED"       
+    },
+    {
+        "title": "Sleeping Dogs",
+        "releaseDate": "25/01/2021",
+        "status": "RECORDED"        
+    },
+    {
+        "title": "Rayman contre les lapins crétins",
+        "releaseDate": "22/02/2021",
+        "status": "RECORDED"   
+    },
+    {
+        "title": "Need For Speed Carbon",
+        "releaseDate": "09/03/2021",
+        "status": "RECORDED"   
+    },
+    {
+        "title": "Quantum Break",
+        "releaseDate": "29/03/2021",
+        "status": "RECORDED"   
+    },
+    {
+        "title": "Splinter Cell Conviction",
+        "releaseDate": "12/04/2021",
+        "status": "RECORDED"
+    },
+    {
+        "title": "Crash Bandicoot 1",
+        "releaseDate": "26/04/2021",
+        "status": "RECORDED"
+    },
+    {
+        "title": "Crash Bandicoot 2",
+        "releaseDate": "03/05/2021",
+        "status": "RECORDED"
+    },
+    {
+        "title": "Crash Bandicoot 3",
+        "releaseDate": "12/05/2021",
+        "status": "RECORDED"
+    },
+    {
+        "title": "Max Payne 3",
+        "releaseDate": "21/05/2021",
+        "status": "PENDING"
+    }
+]
