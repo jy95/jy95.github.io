@@ -1,4 +1,8 @@
 import React from "react";
+import {connect} from 'react-redux';
+import {get_games} from "../../actions/games";
+
+// Style
 
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
@@ -6,6 +10,14 @@ import ImportExportIcon from '@material-ui/icons/ImportExport';
 import Typography from '@material-ui/core/Typography';
 import Box from "@material-ui/core/Box";
 
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Fab from '@material-ui/core/Fab';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
+
+// Custom
+
+import CenteredGrid from "../Others/CenteredGrid";
+import SnackbarWrapper from "../Others/CustomSnackbar";
 import CardEntry from "./CardEntry";
 
 // Inspired by https://stackoverflow.com/a/60068169/6149867
@@ -31,7 +43,9 @@ const sortByReleaseDateASC = (a, b) => {
 };
 const sortByReleaseDateDESC = (a, b) => -sortByReleaseDateASC(a, b);
 
-class CardsBox extends React.Component {
+// The gallery component
+class GamesGallery extends React.Component {
+
     constructor(props) {
         super(props);
         this.handleSortChange = this.handleSortChange.bind(this);
@@ -56,15 +70,20 @@ class CardsBox extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.props.get_games();
+    };
+
     handleSortChange(field) {
         // Invert previous state value for this field
         const oldValue = this.state.sortersState[field];
         const newValue = (oldValue === "ASC") ? "DESC" : "ASC";
 
         // keep track of the sorters state
-        const updatedSortersState = Object.assign({}, this.state.sortersState, {
+        const updatedSortersState = {
+            ...this.state.sortersState,
             [field]: newValue
-        })
+        }
 
         // Decide the sort algorithm now
         // Changed field should be the first criteria, other should be unchanged (following my simple order, from now)
@@ -88,7 +107,37 @@ class CardsBox extends React.Component {
 
     render() {
 
-        const {data} = this.props;
+        const {loading, error, data} = this.props;
+
+        if (loading) {
+            return <CenteredGrid>
+                <CircularProgress/>
+            </CenteredGrid>
+        }
+
+        if (error) {
+
+            return <React.Fragment>
+                <SnackbarWrapper
+                    variant={"error"}
+                    message={this.props.error}
+                />
+                <CenteredGrid>
+                    <Fab
+                        variant="extended"
+                        size="medium"
+                        color="primary"
+                        aria-label="reload"
+                        onClick={() => {
+                            this.props.get_games();
+                        }}
+                    >
+                        <AutorenewIcon/>
+                        Recharger
+                    </Fab>
+                </CenteredGrid>
+            </React.Fragment>;
+        }
 
         // Apply given sort choice
         let sorted = data.sort(
@@ -131,4 +180,18 @@ class CardsBox extends React.Component {
     }
 }
 
-export default CardsBox;
+// mapStateToProps(state, ownProps)
+const mapStateToProps = state => ({
+    data: state.games.games,
+    loading: state.games.loading,
+    error: state.games.error,
+});
+
+const mapDispatchToProps = {
+    get_games
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(GamesGallery);
