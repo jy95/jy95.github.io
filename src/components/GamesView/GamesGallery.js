@@ -38,7 +38,7 @@ const sortByNameASC = (a, b) => (a.title < b.title) ? -1 : (a.title > b.title ? 
 const sortByNameDESC = (a, b) => -sortByNameASC(a, b);
 const sortByReleaseDateASC = (a, b) => {
     let aa = a["releaseDate"];
-    let bb = a["releaseDate"];
+    let bb = b["releaseDate"];
     return aa < bb ? -1 : (aa > bb ? 1 : 0);
 };
 const sortByReleaseDateDESC = (a, b) => -sortByReleaseDateASC(a, b);
