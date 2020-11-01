@@ -11,7 +11,7 @@ import {
 } from "react-router-dom"
 
 // icons
-import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
+import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 
 function ListItemLink(props) {
@@ -39,7 +39,7 @@ function ListItemLink(props) {
 export const ENTRIES = (
     <List>
         <ListItemLink
-            icon={<PlaylistPlayIcon />}
+            icon={<SportsEsportsIcon />}
             primary={"Jeux"}
             to={"/games"}
         />
