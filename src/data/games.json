@@ -1,6 +1,6 @@
 {
     "coversRootPath": "../covers/",
-    "defaultCoverFile": "cover.jpg",
+    "defaultCoverFile": "cover.webp",
     "games": [
         {
             "title": "Mafia: Definitive Edition",
@@ -17,7 +17,7 @@
             "title": "Destroy All Humans! - Remake",
             "playlistId": "PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr",
             "releaseDate": "28/07/2020",
-            "coverFile": "cover.png"
+            "coverFile": "cover.webp"
         },
         {
             "title": "Batman: Arkham Origins",
@@ -240,7 +240,7 @@
             "title": "Pokémon Uranium",
             "playlistId": "PLRfhDHeBTBJ6nITizlIWkG5aiqeF8iJeh",
             "releaseDate": "06/08/2016",
-            "coverFile": "cover.png"
+            "coverFile": "cover.webp"
         },
         {
             "title": "Kirby: Cauchemar au pays des Rêves",
@@ -370,7 +370,7 @@
             "title": "South Park : L'Annale du Destin",
             "playlistId": "PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU",
             "releaseDate": "22/11/2013",
-            "coverFile": "cover.png",
+            "coverFile": "cover.webp",
             "visible": false
         },
         {
@@ -427,7 +427,7 @@
             "title": "Crash Bandicoot 2 : Cortex Strikes Back",
             "playlistId": "PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao",
             "releaseDate": "01/12/1997",
-            "coverFile": "cover.png",
+            "coverFile": "cover.webp",
             "visible": false
         },
         {
