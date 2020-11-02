@@ -1,0 +1,27 @@
+name: Convert all pictures to Webp
+on:
+  pull_request:
+#    paths:
+#      - '**.jpg'
+#      - '**.png'
+#      - '**.jpeg'
+#      - '**.webp'
+jobs:
+  unit_test:
+    runs-on: ubuntu-20.04
+    steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
+          with:
+            ref: ${{ github.head_ref }}
+        - name: Install WEBP converter
+          run: | 
+            sudo apt install webp
+            sudo chmod ugo+x .github/workflows/toWebp
+        - name: Convert every picture to webp (and replace references)
+          run: |
+            sudo ./.github/workflows/toWebp public
+            sudo ./.github/workflows/toWebp src
+        - name: Commit changes into PR
+          uses: stefanzweifel/git-auto-commit-action@v4
+          

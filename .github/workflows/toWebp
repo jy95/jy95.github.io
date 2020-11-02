@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# Convert all images to webp files in place and update HTML, CSS , SCSS , JS and JSON to suit
+# Usage: toWebp directory|imageFileName
+# Example: toWebp .  # convert images, html, scss & css in current directory tree
+# Example: toWebp images/blah.jpg   # just convert 1 specific image
+
+shopt -s extglob
+
+export CMD="cwebp alpha_q 10 -exact -lossless -m 6 -short -q 100 -z 9"
+
+function convertGifs {
+  for F in $( find "$1" -iname '*.gif' ); do
+    TOF="${F%.*}.webp"
+    gif2webp -loop_compatibility -m 6 -mixed "$F" -q 100 -o "$TOF"
+  done
+}
+
+function listImages {
+  # Does not return gifs because cwebp cannot handle them
+  ls -1 */**/*.@(jpg|jpeg|tif|tiff|png)
+}
+
+function convertMost {
+  # See "Extended pattern" extglob for Bash
+  # https://wiki.bash-hackers.org/syntax/pattern#extended_pattern_language
+  cd "$1"
+  for F in $( listImages ); do
+    TOF="${F%.*}.webp"
+    echo "Converting '$F' to '$TOF'"
+    # Warning messages might be emitted, but don't worry
+    $CMD "$F" -o "$TOF"
+    rm "$F"
+  done
+  cd -
+}
+
+function renameImage {
+  sed -i "s,\b$1\b,.webp,g" "$2"
+}
+
+function swapImages {
+  for F in $( find "$1" -iname '*.html' -o -iname '*.css' -o -iname '*.scss' -o -iname '*.js' -o -iname '*.json' ); do
+    for X in .gif .jpg .jpeg .tif .tiff .png; do
+      echo "Swapping $X images for .webp in '$F'"
+      renameImage "$X" "$F"
+    done
+  done
+}
+
+if [ -f "$1" ]; then   # just convert a single image to webp
+  F="$1"
+  $CMD "$F" -o "${F%.*}.webp"
+  rm "$F"
+elif [ -d "$1" ]; then # process all images, css and scss in directory
+  convertMost "$1"
+  convertGifs "$1"
+  swapImages "$1"
+else
+  >&2 echo "Error: you must either specify a valid file or a directory"
+fi
