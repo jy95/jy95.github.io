@@ -43,7 +43,9 @@ function CardEntry(props) {
                     <IconButton
                         aria-label="play"
                         component={Link}
-                        to={"/playlists/" + game.playlistId}
+                        to={
+                            game.url_type === "PLAYLIST" ? "/playlist/" + game.playlistId : "/video/" + game.videoId
+                        }
                     >
                         <PlayArrowIcon/>
                     </IconButton>
@@ -59,7 +61,7 @@ function CardEntry(props) {
                                 {...props}
                             />
                     }
-                    to={"https://www.youtube.com/playlist?list=" + game.playlistId }
+                    to={game.url}
                 >
                     <ShareIcon/>
                 </IconButton>

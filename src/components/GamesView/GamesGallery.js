@@ -177,7 +177,7 @@ class GamesGallery extends React.Component {
                 >
                     {
                         sorted.map(
-                            game => <CardEntry game={game} key={game.playlistId}/>
+                            game => <CardEntry game={game} key={game.playlistId ?? game.videoId}/>
                         )
                     }
                 </Box>

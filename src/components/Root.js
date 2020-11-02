@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import Home from "./Home/Home";
-import Player from "./PlaylistPlayer/Player";
+import Player from "./YTPlayer/Player";
 import GamesGallery from "./GamesView/GamesGallery";
 import Planning from "./Planning/Planning";
 
@@ -26,7 +26,8 @@ function Root({ store }) {
                     <div className={classes.toolbar} />
                     <Container>
                         <Route path="/games" component={GamesGallery} />
-                        <Route path="/playlists/:playlistId" component={Player} />
+                        <Route path="/playlist/:id" component={Player} />
+                        <Route path="/video/:id" component={Player} />
                         <Route path="/planning" component={Planning} />
                     </Container>
                 </main>

@@ -13,14 +13,23 @@ export const get_games = () => {
 
         dispatch(fetchingStarted());
 
-        // Build the object for
+        // Build the object for component
         let games = gamesData
             .games
             .map(game => {
                 const parts = game.releaseDate.split("/");
+                const id = game.playlistId ?? game.videoId;
+                const base_url = (
+                    (game.playlistId) 
+                        ? "https://www.youtube.com/playlist?list=" 
+                        :  "https://www.youtube.com/watch?v="
+                ) + id ;
+                const url_type = (game.playlistId) ? "PLAYLIST" : "VIDEO";
                 return Object.assign({}, game, {
-                    "imagePath": gamesData.coversRootPath + game.playlistId + "/" + (game.coverFile ?? gamesData.defaultCoverFile),
-                    "releaseDate": new Date(+parts[2], parts[1] -1, +parts[0])
+                    "imagePath": gamesData.coversRootPath + id + "/" + (game.coverFile ?? gamesData.defaultCoverFile),
+                    "releaseDate": new Date(+parts[2], parts[1] -1, +parts[0]),
+                    "url": base_url,
+                    "url_type": url_type
                 });
             });
 
