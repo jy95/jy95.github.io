@@ -359,6 +359,82 @@
             "title": "Astérix & Obélix XXL 2 : Mission Ouifix",
             "playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
             "releaseDate": "17/11/2006"
+        },
+        {
+            "title": "Ryse : Son of Rome",
+            "playlistId": "PLRfhDHeBTBJ6cs6uc2X0dzBvaNuF-n49i",
+            "releaseDate": "22/11/2013",
+            "visible": false
+        },
+        {
+            "title": "South Park : L'Annale du Destin",
+            "playlistId": "PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU",
+            "releaseDate": "22/11/2013",
+            "coverFile": "cover.png",
+            "visible": false
+        },
+        {
+            "title": "Rayman 2 : Revolution",
+            "playlistId": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
+            "releaseDate": "14/12/2000",
+            "visible": false
+        },
+        {
+            "title": "Sleeping Dogs",
+            "playlistId": "PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO",
+            "releaseDate": "17/08/2012",
+            "coverFile": "cover.webp",
+            "visible": false
+        },
+        {
+            "title": "Rayman contre les Lapins Crétins",
+            "playlistId": "PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
+            "releaseDate": "30/11/2006",
+            "visible": false
+        },
+        {
+            "title": "Need for Speed Carbon",
+            "playlistId": "PLRfhDHeBTBJ6MEuVUHAD2HZETNt5cBCZP",
+            "releaseDate": "03/11/2006",
+            "visible": false
+        },
+        {
+            "title": "Quantum Break",
+            "playlistId": "PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f",
+            "releaseDate": "05/04/2016",
+            "coverFile": "cover.webp",
+            "visible": false
+        },
+        {
+            "title": "Splinter Cell Conviction",
+            "playlistId": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
+            "releaseDate": "15/04/2010",
+            "visible": false
+        },
+        {
+            "title": "Crash Bandicoot 3 : Warped",
+            "playlistId": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
+            "releaseDate": "10/12/1998",
+            "visible": false
+        },
+        {
+            "title": "Crash Bandicoot",
+            "playlistId": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
+            "releaseDate": "09/11/1996",
+            "visible": false
+        },
+        {
+            "title": "Crash Bandicoot 2 : Cortex Strikes Back",
+            "playlistId": "PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao",
+            "releaseDate": "01/12/1997",
+            "coverFile": "cover.png",
+            "visible": false
+        },
+        {
+            "title": "Max Payne 3",
+            "playlistId": "PLRfhDHeBTBJ6qxm-Yidg-RNG6ICJuvll2",
+            "releaseDate": "18/05/2012",
+            "visible": false
         }
     ]
 }
