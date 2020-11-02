@@ -6,13 +6,14 @@ import {get_games} from "../../actions/games";
 
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
-import ImportExportIcon from '@material-ui/icons/ImportExport';
 import Typography from '@material-ui/core/Typography';
 import Box from "@material-ui/core/Box";
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Fab from '@material-ui/core/Fab';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 // Custom
 
@@ -156,7 +157,9 @@ class GamesGallery extends React.Component {
                             this.state.sortersKeys
                                 .map(criteria => 
                                     <Button onClick={this.handleSortChange.bind(this, criteria)}>
-                                        <ImportExportIcon />
+                                        {
+                                            this.state.sortersState[criteria] === "ASC" ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />
+                                        }
                                         <Typography>
                                             { criteria === "name" &&
                                                 "Trier par nom" 

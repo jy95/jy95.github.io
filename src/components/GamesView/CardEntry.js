@@ -8,7 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardActions from "@material-ui/core/CardActions";
 
 import IconButton from "@material-ui/core/IconButton";
-import ShareIcon from '@material-ui/icons/Share';
+import YouTubeIcon from '@material-ui/icons/YouTube';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 import Tooltip from '@material-ui/core/Tooltip';
@@ -39,7 +39,7 @@ function CardEntry(props) {
             </Tooltip>
 
             <CardActions disableSpacing>
-                <Tooltip title="Regarder" aria-label="Regarder">
+                <Tooltip title={"Regarder " + game.title} aria-label="Regarder">
                     <IconButton
                         aria-label="play"
                         component={Link}
@@ -63,7 +63,7 @@ function CardEntry(props) {
                     }
                     to={game.url}
                 >
-                    <ShareIcon/>
+                    <YouTubeIcon/>
                 </IconButton>
             </CardActions>
 

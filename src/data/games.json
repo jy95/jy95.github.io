@@ -102,8 +102,18 @@
         },
         {
             "title": "Sam Pyjam : Héros de la Nuit",
-            "playlistId": "PLRfhDHeBTBJ6zq_0z_tUJNk_yfqDHYtr-",
-            "releaseDate": "29/05/2009"
+            "videoId": "qaIADIQyr0A",
+            "releaseDate": "04/10/1996"
+        },
+        {
+            "title": "Pyjama Sam 2 : Héros Météo",
+            "videoId": "We7-JHU7D7I",
+            "releaseDate": "02/10/1998"
+        },
+        {
+            "title": "Pyjama Sam : Héros du Goûter",
+            "videoId": "Qsq_q65MwhU",
+            "releaseDate": "22/11/2000"
         },
         {
             "title": "Remember Me",
