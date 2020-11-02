@@ -1,11 +1,11 @@
 name: Convert all pictures to Webp
 on:
   pull_request:
-#    paths:
-#      - '**.jpg'
-#      - '**.png'
-#      - '**.jpeg'
-#      - '**.webp'
+    paths:
+      - '**.jpg'
+      - '**.png'
+      - '**.jpeg'
+      - '**.webp'
 jobs:
   convert_all_to_webp:
     runs-on: ubuntu-20.04
@@ -26,7 +26,7 @@ jobs:
           uses: calibreapp/image-actions@master
           with:
             githubToken: ${{ secrets.GITHUB_TOKEN }}
-            ignorePaths: 'node_modules/**,build' 
+            ignorePaths: 'node_modules/**,build'
+            compressOnly: true
         - name: Commit changes into PR
           uses: stefanzweifel/git-auto-commit-action@v4
-          
