@@ -7,7 +7,7 @@ on:
 #      - '**.jpeg'
 #      - '**.webp'
 jobs:
-  unit_test:
+  convert_all_to_webp:
     runs-on: ubuntu-20.04
     steps:
         - name: Checkout repository
@@ -22,6 +22,11 @@ jobs:
           run: |
             sudo ./.github/workflows/toWebp public
             sudo ./.github/workflows/toWebp src
+        - name: Compress pictures
+          uses: calibreapp/image-actions@master
+          with:
+            githubToken: ${{ secrets.GITHUB_TOKEN }}
+            ignorePaths: 'node_modules/**,build' 
         - name: Commit changes into PR
           uses: stefanzweifel/git-auto-commit-action@v4
           
