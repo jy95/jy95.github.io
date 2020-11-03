@@ -1,5 +1,5 @@
 {
-    "coversRootPath": "../covers/",
+    "coversRootPath": "/covers/",
     "defaultCoverFile": "cover.webp",
     "games": [
         {
