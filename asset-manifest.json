@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/yt_gaming_library/static/css/main.498d002a.chunk.css",
+    "main.js": "/yt_gaming_library/static/js/main.309c5ee1.chunk.js",
+    "main.js.map": "/yt_gaming_library/static/js/main.309c5ee1.chunk.js.map",
+    "runtime-main.js": "/yt_gaming_library/static/js/runtime-main.3b75c539.js",
+    "runtime-main.js.map": "/yt_gaming_library/static/js/runtime-main.3b75c539.js.map",
+    "static/js/2.b6bf81d2.chunk.js": "/yt_gaming_library/static/js/2.b6bf81d2.chunk.js",
+    "static/js/2.b6bf81d2.chunk.js.map": "/yt_gaming_library/static/js/2.b6bf81d2.chunk.js.map",
+    "index.html": "/yt_gaming_library/index.html",
+    "precache-manifest.504e0a156b33237e5ce4b2150547e51b.js": "/yt_gaming_library/precache-manifest.504e0a156b33237e5ce4b2150547e51b.js",
+    "service-worker.js": "/yt_gaming_library/service-worker.js",
+    "static/css/main.498d002a.chunk.css.map": "/yt_gaming_library/static/css/main.498d002a.chunk.css.map",
+    "static/js/2.b6bf81d2.chunk.js.LICENSE.txt": "/yt_gaming_library/static/js/2.b6bf81d2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3b75c539.js",
+    "static/js/2.b6bf81d2.chunk.js",
+    "static/css/main.498d002a.chunk.css",
+    "static/js/main.309c5ee1.chunk.js"
+  ]
+}
