@@ -50,18 +50,9 @@ function CardEntry(props) {
                         <PlayArrowIcon/>
                     </IconButton>
                 </Tooltip>
-                {/* Ugly fix because react router cannot tell if it is a external url :(  */}
                 <IconButton
                     aria-label="share"
-                    component={
-                        (props) =>
-                            // eslint-disable-next-line jsx-a11y/anchor-has-content
-                            <a
-                                href={props.to}
-                                {...props}
-                            />
-                    }
-                    to={game.url}
+                    href={game.url}
                 >
                     <YouTubeIcon/>
                 </IconButton>

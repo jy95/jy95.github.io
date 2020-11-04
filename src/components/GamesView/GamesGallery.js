@@ -145,7 +145,7 @@ class GamesGallery extends React.Component {
         );
 
         return (
-            <div>
+            <>
                 <Box
                     display="flex"
                     flexWrap="wrap"
@@ -156,7 +156,7 @@ class GamesGallery extends React.Component {
                         {
                             this.state.sortersKeys
                                 .map(criteria => 
-                                    <Button onClick={this.handleSortChange.bind(this, criteria)}>
+                                    <Button onClick={this.handleSortChange.bind(this, criteria)} key={"searchCriteria_"+criteria}>
                                         {
                                             this.state.sortersState[criteria] === "ASC" ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />
                                         }
@@ -184,7 +184,7 @@ class GamesGallery extends React.Component {
                         )
                     }
                 </Box>
-            </div>
+            </>
         )
     }
 }
