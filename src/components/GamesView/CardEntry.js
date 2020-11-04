@@ -50,12 +50,14 @@ function CardEntry(props) {
                         <PlayArrowIcon/>
                     </IconButton>
                 </Tooltip>
-                <IconButton
-                    aria-label="share"
-                    href={game.url}
-                >
-                    <YouTubeIcon/>
-                </IconButton>
+                <Tooltip title={"Regarder " + game.title + " sur Youtube"} aria-label="Regarder sur Youtube">
+                    <IconButton
+                        aria-label="share"
+                        href={game.url}
+                    >
+                        <YouTubeIcon/>
+                    </IconButton>
+                </Tooltip>
             </CardActions>
 
         </Card>
