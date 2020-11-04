@@ -15,24 +15,23 @@ function Root({ store }) {
     const classes = basicStyle();
 
     return (
-        <Provider store={store}>
-            {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
-            <Router basename={process.env.PUBLIC_URL} >
-                <Route
-                    path="/"
-                    render={(props) => <Home {...props} classes={classes} />}
-                />
-                <main className={classes.content}>
-                    <div className={classes.toolbar} />
-                    <Container>
-                        <Route path="/games" component={GamesGallery} />
-                        <Route path="/playlist/:id" component={Player} />
-                        <Route path="/video/:id" component={Player} />
-                        <Route path="/planning" component={Planning} />
-                    </Container>
-                </main>
-            </Router>
-        </Provider>
+        <div className={classes.root}>
+            <Provider store={store}>
+                {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
+                <Router basename={process.env.PUBLIC_URL} >
+                    <Home classes={classes} />
+                    <main className={classes.content}>
+                        <div className={classes.toolbar} />
+                        <Container>
+                            <Route path="/games" component={GamesGallery} />
+                            <Route path="/playlist/:id" component={Player} />
+                            <Route path="/video/:id" component={Player} />
+                            <Route path="/planning" component={Planning} />
+                        </Container>
+                    </main>
+                </Router>
+            </Provider>
+        </div>
     )
 }
 
