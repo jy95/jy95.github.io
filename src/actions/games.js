@@ -47,6 +47,7 @@ const fetchingFinished = (games) => ({
     games
 });
 
+// eslint-disable-next-line
 const fetchingFailed = (error) => ({
     type: FETCHING_FAILED,
     error
