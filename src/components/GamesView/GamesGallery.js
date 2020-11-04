@@ -177,6 +177,7 @@ class GamesGallery extends React.Component {
                     display="flex"
                     flexWrap="wrap"
                     flexDirection="row"
+                    gridRowGap="20px"
                 >
                     {
                         sorted.map(
