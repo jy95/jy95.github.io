@@ -1,5 +1,8 @@
 import React from "react";
 
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 import {Link} from 'react-router-dom';
 
 import makeStyles from "@material-ui/core/styles/makeStyles";
@@ -28,6 +31,8 @@ function CardEntry(props) {
 
     // Use the medium size
     const classes = useStyles({height: "150px", minWidth: "150px"})();
+    const theme = useTheme();
+    const is_large_screen = useMediaQuery(theme.breakpoints.up('lg'));
 
     return (
         <Card>
@@ -39,17 +44,19 @@ function CardEntry(props) {
             </Tooltip>
 
             <CardActions disableSpacing>
-                <Tooltip title={"Regarder " + game.title} aria-label="Regarder">
-                    <IconButton
-                        aria-label="play"
-                        component={Link}
-                        to={
-                            game.url_type === "PLAYLIST" ? "/playlist/" + game.playlistId : "/video/" + game.videoId
-                        }
-                    >
-                        <PlayArrowIcon/>
-                    </IconButton>
-                </Tooltip>
+                { is_large_screen &&
+                    <Tooltip title={"Regarder " + game.title} aria-label="Regarder">
+                        <IconButton
+                            aria-label="play"
+                            component={Link}
+                            to={
+                                game.url_type === "PLAYLIST" ? "/playlist/" + game.playlistId : "/video/" + game.videoId
+                            }
+                        >
+                            <PlayArrowIcon/>
+                        </IconButton>
+                    </Tooltip>            
+                }
                 <Tooltip title={"Regarder " + game.title + " sur Youtube"} aria-label="Regarder sur Youtube">
                     <IconButton
                         aria-label="share"
