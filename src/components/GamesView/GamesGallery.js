@@ -8,6 +8,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Fab from '@material-ui/core/Fab';
@@ -173,18 +174,21 @@ class GamesGallery extends React.Component {
                         }
                     </ButtonGroup>
                 </Box>
-                <Box
-                    display="flex"
+                <Grid
+                    container
                     flexWrap="wrap"
                     flexDirection="row"
                     gridRowGap="20px"
                 >
                     {
                         sorted.map(
-                            game => <CardEntry game={game} key={game.playlistId ?? game.videoId}/>
+                            game => 
+                                <Grid key={game.playlistId ?? game.videoId} item xs>
+                                    <CardEntry game={game}/>
+                                </Grid>
                         )
                     }
-                </Box>
+                </Grid>
             </>
         )
     }

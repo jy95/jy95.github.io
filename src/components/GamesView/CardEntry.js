@@ -21,7 +21,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 const useStyles = (params) => makeStyles({
     media: {
         height: params.height,
-        minWidth: params.width,
     },
 });
 
@@ -30,7 +29,7 @@ function CardEntry(props) {
     const {game} = props;
 
     // Use the medium size
-    const classes = useStyles({height: "150px", minWidth: "150px"})();
+    const classes = useStyles({height: "150px"})();
     const theme = useTheme();
     const is_large_screen = useMediaQuery(theme.breakpoints.up('lg'));
 
