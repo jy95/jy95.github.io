@@ -22,7 +22,7 @@ function CardEntry(props) {
 
     // Use the medium size
     const theme = useTheme();
-    const is_large_screen = useMediaQuery(theme.breakpoints.up('lg'));
+    const is_large_screen = useMediaQuery(theme.breakpoints.up('md'));
 
     return (
         <Card>
@@ -35,7 +35,7 @@ function CardEntry(props) {
                 title={game.title}
             />
 
-            <CardActions disableSpacing justifyContent='center'>
+            <CardActions disableSpacing justify="center">
                 { is_large_screen &&
                     <Tooltip title={"Regarder " + game.title} aria-label="Regarder">
                         <IconButton
