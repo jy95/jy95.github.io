@@ -18,7 +18,7 @@ import CardEntry from "./CardEntry";
 import GamesSorters from "./GamesSorters";
 
 // The gallery component
-class GamesGallery extends React.Component {
+class GamesGallery extends React.PureComponent {
 
     componentDidMount() {
         this.props.get_games();

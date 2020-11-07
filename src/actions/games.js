@@ -18,6 +18,9 @@ function makeMultiCriteriaSort(criteria) {
     }
 }
 
+// For get_games
+const sortByNameASC = (a, b) => (a.title < b.title) ? -1 : (a.title > b.title ? 1 : 0);
+
 // param à la place du () du genre ({title, password})
 export const get_games = () => {
     return (dispatch, getState) => {
@@ -42,7 +45,8 @@ export const get_games = () => {
                     "url": base_url,
                     "url_type": url_type
                 });
-            });
+            })
+            .sort(sortByNameASC);
 
         dispatch(fetchingFinished(games));
 
@@ -84,7 +88,7 @@ export const sort_games = (field) => {
         );
 
         // Sort result
-        const sortedGames = games.sort(sortFunction);
+        const sortedGames = [...games].sort(sortFunction);
 
         // Update state
         dispatch(sortingGames(sortedGames, newStates));
