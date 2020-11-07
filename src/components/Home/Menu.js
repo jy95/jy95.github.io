@@ -15,30 +15,28 @@ export default function Menu(props) {
     };
 
     return (
-        <nav aria-label="menus folders" className={classes.drawer}>
-            <Drawer
-                container={container}
-                variant={"permanent"}
-                className={clsx(classes.drawer, {
+        <Drawer
+            container={container}
+            variant={"permanent"}
+            className={clsx(classes.drawer, {
+                [classes.drawerOpen]: open,
+                [classes.drawerClose]: !open,
+            })}
+            classes={{
+                paper: clsx({
                     [classes.drawerOpen]: open,
                     [classes.drawerClose]: !open,
-                })}
-                classes={{
-                    paper: clsx({
-                        [classes.drawerOpen]: open,
-                        [classes.drawerClose]: !open,
-                    }),
-                }}
-                open={open}
-            >
-                <div className={classes.toolbar}>
-                    <IconButton onClick={handleDrawerClose}>
-                        <ChevronLeftIcon />
-                    </IconButton>
-                </div>
-                <Divider />
-                {ENTRIES}
-            </Drawer>
-        </nav>
+                }),
+            }}
+            open={open}
+        >
+            <div className={classes.toolbar}>
+                <IconButton onClick={handleDrawerClose}>
+                    <ChevronLeftIcon />
+                </IconButton>
+            </div>
+            <Divider />
+            {ENTRIES}
+        </Drawer>
     )
 }
