@@ -5,7 +5,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import {Link} from 'react-router-dom';
 
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActions from "@material-ui/core/CardActions";
@@ -16,33 +15,27 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 import Tooltip from '@material-ui/core/Tooltip';
 
-// React Material UI needs that information to render the picture
-// source : https://material-ui.com/api/card-media/
-const useStyles = (params) => makeStyles({
-    media: {
-        height: params.height,
-    },
-});
 
 function CardEntry(props) {
 
     const {game} = props;
 
     // Use the medium size
-    const classes = useStyles({height: "150px"})();
     const theme = useTheme();
     const is_large_screen = useMediaQuery(theme.breakpoints.up('lg'));
 
     return (
         <Card>
-            <Tooltip title={game.title} aria-label={game.title}>
-                <CardMedia
-                    image={game.imagePath}
-                    className={classes.media}
-                />
-            </Tooltip>
 
-            <CardActions disableSpacing>
+            <CardMedia
+                component="img"
+                // https://material-ui.com/api/card-media/
+                height="150"
+                image={game.imagePath}
+                title={game.title}
+            />
+
+            <CardActions disableSpacing justifyContent='center'>
                 { is_large_screen &&
                     <Tooltip title={"Regarder " + game.title} aria-label="Regarder">
                         <IconButton
