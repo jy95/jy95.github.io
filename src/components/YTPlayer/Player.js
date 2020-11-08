@@ -11,15 +11,12 @@ export default function Player(props) {
     const url = (type === "PLAYLIST" ? YOUTUBE_BASE_PLAYLIST_LINK : YOUTUBE_BASE_VIDEO_LINK) + id;
 
     return (
-        <div className='player-wrapper'>
-            <ReactPlayer
-                controls={true}
-                url={url}
-                playing={true}
-                width='100%'
-                height='80vh'
-                className='react-player'
-            />
-        </div>
+        <ReactPlayer
+            controls={true}
+            url={url}
+            playing={true}
+            width='100%'
+            height='90vh'
+        />
     )
 }

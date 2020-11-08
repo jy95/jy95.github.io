@@ -4,111 +4,28 @@ import {get_games} from "../../actions/games";
 
 // Style
 
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Fab from '@material-ui/core/Fab';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 // Custom
 
 import CenteredGrid from "../Others/CenteredGrid";
 import SnackbarWrapper from "../Others/CustomSnackbar";
 import CardEntry from "./CardEntry";
-
-// Inspired by https://stackoverflow.com/a/60068169/6149867
-function makeMultiCriteriaSort(criteria) {
-    return (a, b) => {
-        for(let i = 0; i < criteria.length; i++) {
-            const comparatorResult = criteria[i](a, b);
-            if (comparatorResult !== 0) {
-                return comparatorResult;
-            }
-        }
-        return 0;
-    }
-}
-
-// search criterias
-const sortByNameASC = (a, b) => (a.title < b.title) ? -1 : (a.title > b.title ? 1 : 0) ;
-const sortByNameDESC = (a, b) => -sortByNameASC(a, b);
-const sortByReleaseDateASC = (a, b) => {
-    let aa = a["releaseDate"];
-    let bb = b["releaseDate"];
-    return aa < bb ? -1 : (aa > bb ? 1 : 0);
-};
-const sortByReleaseDateDESC = (a, b) => -sortByReleaseDateASC(a, b);
+import GamesSorters from "./GamesSorters";
 
 // The gallery component
-class GamesGallery extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.handleSortChange = this.handleSortChange.bind(this);
-        this.state = {
-            currentSorters: [sortByNameASC], // the current sort(s) applied
-            sortersState: {
-                "name": "ASC",
-                "releaseDate": "ASC"
-            },
-            sortersKeys: ["name", "releaseDate"], // useful to recreate currentSorters
-            // in order to prevent if / else chain in the code
-            sorters: {
-                "name": {
-                    "ASC": sortByNameASC,
-                    "DESC": sortByNameDESC
-                },
-                "releaseDate": {
-                    "ASC": sortByReleaseDateASC,
-                    "DESC": sortByReleaseDateDESC
-                }
-            }
-        }
-    }
+class GamesGallery extends React.PureComponent {
 
     componentDidMount() {
         this.props.get_games();
     };
 
-    handleSortChange(field) {
-        // Invert previous state value for this field
-        const oldValue = this.state.sortersState[field];
-        const newValue = (oldValue === "ASC") ? "DESC" : "ASC";
-
-        // keep track of the sorters state
-        const updatedSortersState = {
-            ...this.state.sortersState,
-            [field]: newValue
-        }
-
-        // Decide the sort algorithm now
-        // Changed field should be the first criteria, other should be unchanged (following my simple order, from now)
-        let updatedCurrentSorters = [field]
-            .concat(
-                this.state.sortersKeys.filter(s => s !== field)
-            )
-            .map(criteria => {
-                const sortFcts = this.state.sorters[criteria];
-                const state = updatedSortersState[criteria];
-                return sortFcts[state];
-            });
-        
-        // update state
-        this.setState({
-            ...this.state,
-            sortersState: updatedSortersState,
-            currentSorters: updatedCurrentSorters
-        });
-    }
-
     render() {
-        const {loading, error, data} = this.props;
+        const {loading, error, data, sortFunction} = this.props;
 
         if (loading) {
             return <CenteredGrid>
@@ -117,7 +34,6 @@ class GamesGallery extends React.Component {
         }
 
         if (error) {
-
             return <React.Fragment>
                 <SnackbarWrapper
                     variant={"error"}
@@ -140,53 +56,20 @@ class GamesGallery extends React.Component {
             </React.Fragment>;
         }
 
-        // Apply given sort choice
-        let sorted = data.sort(
-            makeMultiCriteriaSort(this.state.currentSorters)
-        );
-
         return (
             <>
-                <Box
-                    display="flex"
-                    flexWrap="wrap"
-                    flexDirection="row"
-                    justifyContent="flex-end"
-                >
-                    <ButtonGroup color="primary" aria-label="outlined primary button group">
-                        {
-                            this.state.sortersKeys
-                                .map(criteria => 
-                                    <Button onClick={this.handleSortChange.bind(this, criteria)} key={"searchCriteria_"+criteria}>
-                                        {
-                                            this.state.sortersState[criteria] === "ASC" ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />
-                                        }
-                                        <Typography>
-                                            { criteria === "name" &&
-                                                "Trier par nom" 
-                                            }
-                                            { criteria === "releaseDate" &&
-                                                "Trier par date de sortie"
-                                            }
-                                        </Typography>
-                                    </Button>
-                                )
-                        }
-                    </ButtonGroup>
-                </Box>
+                <GamesSorters />
                 <Grid
                     container
-                    flexWrap="wrap"
-                    flexDirection="row"
-                    gridRowGap="20px"
                 >
                     {
-                        sorted.map(
-                            game => 
-                                <Grid key={game.playlistId ?? game.videoId} item xs>
-                                    <CardEntry game={game}/>
-                                </Grid>
-                        )
+                        data
+                            .sort(sortFunction)
+                            .map(game => 
+                                    <Grid key={game.playlistId ?? game.videoId} item xs>
+                                        <CardEntry game={game}/>
+                                    </Grid>
+                            )
                     }
                 </Grid>
             </>
@@ -197,6 +80,7 @@ class GamesGallery extends React.Component {
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
     data: state.games.games,
+    sortFunction: state.games.sorters.currentSortFunction,
     loading: state.games.loading,
     error: state.games.error,
 });
