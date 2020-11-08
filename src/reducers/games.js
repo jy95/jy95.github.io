@@ -20,6 +20,7 @@ const initialState = {
     error: null,
     loading: false,
     sorters: {
+        currentSortFunction: sortByNameASC,
         state: {
             "name": "ASC",
             "releaseDate": "ASC"
@@ -63,9 +64,9 @@ export default function games(state = initialState, action) {
         case SORTING_GAMES:
             return {
                 ...state,
-                games: action.games,
                 sorters: {
                     ...state.sorters,
+                    currentSortFunction: action.sortFunction,
                     state: {
                         ...action.newSortersState
                     }

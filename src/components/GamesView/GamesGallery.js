@@ -25,7 +25,7 @@ class GamesGallery extends React.PureComponent {
     };
 
     render() {
-        const {loading, error, data} = this.props;
+        const {loading, error, data, sortFunction} = this.props;
 
         if (loading) {
             return <CenteredGrid>
@@ -63,12 +63,13 @@ class GamesGallery extends React.PureComponent {
                     container
                 >
                     {
-                        data.map(
-                            game => 
-                                <Grid key={game.playlistId ?? game.videoId} item xs>
-                                    <CardEntry game={game}/>
-                                </Grid>
-                        )
+                        data
+                            .sort(sortFunction)
+                            .map(game => 
+                                    <Grid key={game.playlistId ?? game.videoId} item xs>
+                                        <CardEntry game={game}/>
+                                    </Grid>
+                            )
                     }
                 </Grid>
             </>
@@ -79,6 +80,7 @@ class GamesGallery extends React.PureComponent {
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
     data: state.games.games,
+    sortFunction: state.games.sorters.currentSortFunction,
     loading: state.games.loading,
     error: state.games.error,
 });

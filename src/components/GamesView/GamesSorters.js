@@ -42,8 +42,8 @@ function GamesSorters(props) {
 
     // label
     const field_labels = {
-        "name": "Trier par nom",
-        "releaseDate": "Trier par date de sortie"
+        "name": "Par nom",
+        "releaseDate": "Par date de sortie"
     }
 
     return (
@@ -62,12 +62,12 @@ function GamesSorters(props) {
                 anchorEl={anchorEl}
                 onClose={handleClose}
                 anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
+                    vertical: 'bottom',
+                    horizontal: 'center',
                 }}
                 transformOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
+                    vertical: 'top',
+                    horizontal: 'center',
                 }}
             >
                 <FormControl component="fieldset">
