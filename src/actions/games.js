@@ -91,10 +91,8 @@ export const sort_games = (field) => {
         // Decide the sort algorithm now
         // Changed field should be the first criteria, other should be unchanged (following my simple order, from now)
         const sortFunction = makeMultiCriteriaSort(
-            [field]
-                .concat(
-                    previousState.keys.filter(s => s !== field)
-                )
+            previousState
+                .keys
                 .map(criteria => {
                     const sortFcts = previousState.functions[criteria];
                     const state = newStates[criteria];
