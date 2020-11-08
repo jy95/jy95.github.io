@@ -98,42 +98,39 @@ function GamesSorters(props) {
                             sorters
                                 .keys
                                 .map( (criteria, index) => 
-                                    <FormControlLabel
-                                        control={
-                                            <>
-                                                <Switch 
-                                                    checked={
-                                                        sorters.state[criteria] !== "ASC"
-                                                    } 
-                                                    onChange={handleSortChange} 
-                                                    name={criteria} 
-                                                />
-                                                {
-                                                    sorters.state[criteria] === "ASC" ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />
-                                                }
-                                            </>
-                                        }
+                                    <div
                                         key={"searchCriteria_"+criteria}
-                                        label={
-                                            (
+                                    >
+                                        <FormControlLabel
+                                            control={
                                                 <>
-                                                    {field_labels[criteria]}
+                                                    <Switch 
+                                                        checked={
+                                                            sorters.state[criteria] !== "ASC"
+                                                        } 
+                                                        onChange={handleSortChange} 
+                                                        name={criteria} 
+                                                    />
                                                     {
-                                                        index !== 0 && 
-                                                        <IconButton aria-label="upSorter" name={criteria} onClick={handleSortOrderChange}>
-                                                            <ArrowUpwardIcon />
-                                                        </IconButton>
-                                                    }
-                                                    {
-                                                        index !== sorters.keys.length -1 && 
-                                                        <IconButton aria-label="downSorter" name={criteria} onClick={handleSortOrderChange}>
-                                                            <ArrowDownwardIcon />
-                                                        </IconButton>
+                                                        sorters.state[criteria] === "ASC" ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />
                                                     }
                                                 </>
-                                            )
+                                            }
+                                            label={field_labels[criteria]}
+                                        />
+                                        {
+                                            index !== 0 && 
+                                            <IconButton aria-label="upSorter" name={criteria} onClick={handleSortOrderChange}>
+                                                <ArrowUpwardIcon />
+                                            </IconButton>
                                         }
-                                    />
+                                        {
+                                            index !== sorters.keys.length -1 && 
+                                            <IconButton aria-label="downSorter" name={criteria} onClick={handleSortOrderChange}>
+                                                <ArrowDownwardIcon />
+                                            </IconButton>
+                                        }
+                                    </div>
                                 )
                         }
                     </FormGroup>
