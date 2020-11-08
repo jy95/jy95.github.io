@@ -1,8 +1,12 @@
 import React from "react";
 
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import Popover from '@material-ui/core/Popover';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Box from "@material-ui/core/Box";
 
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
@@ -28,6 +32,26 @@ class GamesSorters extends React.Component {
 
         const { state: sorters } = this.props;
 
+        // For Popover
+        const [anchorEl, setAnchorEl] = React.useState(null);
+
+        const handleClick = (event) => {
+          setAnchorEl(event.currentTarget);
+        };
+      
+        const handleClose = () => {
+          setAnchorEl(null);
+        };
+      
+        const open = Boolean(anchorEl);
+        const id = open ? 'simple-popover' : undefined;
+
+        // label
+        const field_labels = {
+            "name": "Trier par nom",
+            "releaseDate": "Trier par date de sortie"
+        }
+
         return (
             <Box
                 display="flex"
@@ -35,27 +59,52 @@ class GamesSorters extends React.Component {
                 flexDirection="row"
                 justifyContent="flex-end"
             >
-                <ButtonGroup color="primary" aria-label="outlined primary button group">
-                    {
-                        sorters
-                            .keys
-                            .map(criteria => 
-                                <Button onClick={this.handleSortChange.bind(this, criteria)} key={"searchCriteria_"+criteria}>
-                                    {
-                                        sorters.state[criteria] === "ASC" ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />
-                                    }
-                                    <Typography>
-                                        { criteria === "name" &&
-                                            "Trier par nom" 
-                                        }
-                                        { criteria === "releaseDate" &&
-                                            "Trier par date de sortie"
-                                        }
-                                    </Typography>
-                                </Button>
-                            )
-                    }
-                </ButtonGroup>
+                <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
+                    Tris
+                </Button>
+                <Popover
+                    id={id}
+                    open={open}
+                    anchorEl={anchorEl}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                    }}
+                    transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                    }}
+                >
+                    <FormControl component="fieldset">
+                        <FormGroup>
+                            {
+                                sorters
+                                    .keys
+                                    .map(criteria => 
+                                        <FormControlLabel
+                                            control={
+                                                <>
+                                                    <Switch 
+                                                        checked={
+                                                            sorters.state[criteria] !== "ASC"
+                                                        } 
+                                                        onChange={this.handleSortChange.bind(this, criteria)} 
+                                                        field={criteria} 
+                                                    />
+                                                    {
+                                                        sorters.state[criteria] === "ASC" ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />
+                                                    }
+                                                </>
+                                            }
+                                            key={"searchCriteria_"+criteria}
+                                            label={field_labels[criteria]}
+                                        />
+                                    )
+                            }
+                        </FormGroup>
+                    </FormControl>
+                </Popover>
             </Box>
         )
     }
