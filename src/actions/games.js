@@ -4,6 +4,7 @@ export const FETCHING_REQUESTED = "GAMES_REQUESTED";
 export const FETCHING_OK = "GAMES_FETCHING_OK";
 export const FETCHING_FAILED = "GAMES_FETCHING_FAILED";
 export const SORTING_GAMES = "SORTING_GAMES";
+export const SORTING_ORDER_CHANGED = "SORTING_ORDER_CHANGED";
 
 // Inspired by https://stackoverflow.com/a/60068169/6149867
 function makeMultiCriteriaSort(criteria) {
@@ -17,6 +18,24 @@ function makeMultiCriteriaSort(criteria) {
         return 0;
     }
 }
+
+// Swap element position in array with its sibling (left or right)
+// Exception cases are handled in change_sorting_order
+function swapSiblingElements(arr, elementIndex , direction) {
+    // elements to swap
+    const firstElement = (direction === "up") ? arr[elementIndex]: arr[elementIndex + 1];
+    const secondElement = (direction === "up") ? arr[elementIndex - 1] : arr[elementIndex];
+    // indexes for slice call
+    const firstSliceIndex = (direction === "up") ? elementIndex - 1 : elementIndex;
+    const secondSliceIndex = elementIndex + ( (direction === "up") ? 1 : 2);
+    // return new array
+    return [ 
+        ...arr.slice(0, firstSliceIndex), 
+        firstElement, 
+        secondElement, 
+        ...arr.slice(secondSliceIndex) 
+    ];
+ }
 
 
 // param à la place du () du genre ({title, password})
@@ -89,6 +108,40 @@ export const sort_games = (field) => {
     };
 };
 
+export const change_sorting_order = (field, direction) => {
+    return (dispatch, getState) => {
+        const { 
+            games : {
+                sorters: previousState 
+            }
+        } = getState();
+
+        // Get current position
+        const currentIndex = previousState.keys.indexOf(field);
+
+        // Some case shoud not possible
+        const wrongCase = 
+            currentIndex === -1 ||
+            (currentIndex === 0 && direction === "up") ||
+            (currentIndex === previousState.keys.length -1 && direction === "down")
+        ;
+        // if nothing wrong, apply change
+        if (!wrongCase){
+            const newSortOrder = swapSiblingElements(previousState.keys, currentIndex, direction);
+            const sortFunction = makeMultiCriteriaSort(
+                newSortOrder
+                    .map(criteria => {
+                        const sortFcts = previousState.functions[criteria];
+                        const state = previousState.state[criteria];
+                        return sortFcts[state];
+                    })
+            );
+
+            dispatch(sortCriteriaOrderChanger(sortFunction, newSortOrder))
+        }
+    };
+};
+
 const fetchingStarted = () => ({
     type: FETCHING_REQUESTED
 });
@@ -108,4 +161,10 @@ const sortingGames = (newSortersState, sortFunction) => ({
     type: SORTING_GAMES,
     newSortersState,
     sortFunction
+});
+
+const sortCriteriaOrderChanger = (sortFunction, keys) => ({
+    type: SORTING_ORDER_CHANGED,
+    sortFunction,
+    keys
 });
