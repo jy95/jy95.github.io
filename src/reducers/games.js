@@ -2,7 +2,8 @@ import {
     FETCHING_FAILED,
     FETCHING_OK,
     FETCHING_REQUESTED,
-    SORTING_GAMES
+    SORTING_GAMES,
+    SORTING_ORDER_CHANGED
 } from "../actions/games"
 
 // search criterias
@@ -70,6 +71,15 @@ export default function games(state = initialState, action) {
                     state: {
                         ...action.newSortersState
                     }
+                }
+            };
+        case SORTING_ORDER_CHANGED:
+            return {
+                ...state,
+                sorters: {
+                    ...state.sorters,
+                    currentSortFunction: action.sortFunction,
+                    keys: action.keys
                 }
             }
         default:
