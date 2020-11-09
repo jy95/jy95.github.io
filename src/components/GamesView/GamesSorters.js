@@ -1,4 +1,5 @@
 import React from "react";
+import {useTranslation} from "react-i18next";
 
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -46,6 +47,7 @@ function GamesSorters(props) {
     }
 
     const { state: sorters } = props;
+    const { t } = useTranslation('common');
 
     // For Popover
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -63,14 +65,14 @@ function GamesSorters(props) {
 
     // label
     const field_labels = {
-        "name": "Par nom",
-        "releaseDate": "Par date de sortie"
+        "name": "gamesLibrary.sortLabels.byName",
+        "releaseDate": "gamesLibrary.sortLabels.byReleaseDate"
     }
 
     return (
         <>
             <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
-                Tris
+                {t("gamesLibrary.sortButtonLabel")}
             </Button>
             <Popover
                 id={id}
@@ -110,7 +112,7 @@ function GamesSorters(props) {
                                                     }
                                                 </>
                                             }
-                                            label={field_labels[criteria]}
+                                            label={t(field_labels[criteria])}
                                         />
                                         {
                                             index !== 0 && 

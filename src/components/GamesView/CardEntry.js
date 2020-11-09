@@ -1,4 +1,5 @@
 import React from "react";
+import {useTranslation} from "react-i18next";
 
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -19,6 +20,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 function CardEntry(props) {
 
     const {game} = props;
+    const { t } = useTranslation('common');
 
     // Use the medium size
     const theme = useTheme();
@@ -37,7 +39,7 @@ function CardEntry(props) {
 
             <CardActions disableSpacing justify="center">
                 { is_large_screen &&
-                    <Tooltip title={"Regarder " + game.title} aria-label="Regarder">
+                    <Tooltip title={t("gamesLibrary.actionsButton.watchHere", { "gameName": game.title})} aria-label="Watch">
                         <IconButton
                             aria-label="play"
                             component={Link}
@@ -49,7 +51,7 @@ function CardEntry(props) {
                         </IconButton>
                     </Tooltip>            
                 }
-                <Tooltip title={"Regarder " + game.title + " sur Youtube"} aria-label="Regarder sur Youtube">
+                <Tooltip title={t("gamesLibrary.actionsButton.watchOnYt", { "gameName": game.title})} aria-label="WatchOnYoutube">
                     <IconButton
                         aria-label="share"
                         href={game.url}

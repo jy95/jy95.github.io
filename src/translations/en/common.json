@@ -1,0 +1,25 @@
+{
+    "main": {
+        "menuEntries": {
+            "gamesKey": "Games",
+            "planningKey": "Calendar"
+        }
+    },
+    "gamesLibrary": {
+        "sortButtonLabel": "Sorts",
+        "sortLabels": {
+            "byName": "By name",
+            "byReleaseDate": "By release date"
+        },
+        "actionsButton": {
+            "watchHere": "Watch {{gameName}}",
+            "watchOnYt": "$t(gamesLibrary.actionsButton.watchHere) on Youtube"
+        }
+    },
+    "planning": {
+        "states": {
+            "RECORDED": "Recorded",
+            "PENDING": "Pending"
+        }
+    }
+}
