@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { withTranslation } from 'react-i18next';
 import {get_scheduled_games} from "../../actions/planning";
 
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -30,7 +31,7 @@ class Viewer extends React.Component {
 
     render() {
 
-        const {loading, data} = this.props;
+        const {loading, data, t} = this.props;
         const date_options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 
         if (loading) {
@@ -55,16 +56,20 @@ class Viewer extends React.Component {
                             </TimelineOppositeContent>
                             <TimelineSeparator>
                                 <TimelineDot>
-                                    { scheduledGame.status === "RECORDED" &&
-                                        <Tooltip title="Terminé" aria-label="Terminé">
-                                            <CheckCircleIcon />
-                                        </Tooltip>
-                                    }
-                                    { scheduledGame.status === "PENDING" &&
-                                        <Tooltip title="En cours" aria-label="En cours">
-                                            <HourglassEmptyIcon />
-                                        </Tooltip>
-                                    }
+                                    <Tooltip title={t("planning.states." + scheduledGame.status )} aria-label={scheduledGame.status}>
+                                        {
+                                            (() => {
+                                                switch(scheduledGame.status) {
+                                                    case "RECORDED":
+                                                        return <CheckCircleIcon />;
+                                                    case "PENDING":
+                                                        return <HourglassEmptyIcon />;
+                                                    default:
+                                                        return null;
+                                                }
+                                            })()
+                                        }
+                                    </Tooltip>
                                 </TimelineDot>
                                 <TimelineConnector />
                             </TimelineSeparator>
@@ -99,4 +104,6 @@ const mapDispatchToProps = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Viewer);
+)(
+    withTranslation("common")(Viewer)
+);
