@@ -8,7 +8,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import Box from "@material-ui/core/Box";
 
 // For sorting criteria reorder
 // Not used as it produces a bug
@@ -69,12 +68,7 @@ function GamesSorters(props) {
     }
 
     return (
-        <Box
-            display="flex"
-            flexWrap="wrap"
-            flexDirection="row"
-            justifyContent="flex-end"
-        >
+        <>
             <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
                 Tris
             </Button>
@@ -136,7 +130,7 @@ function GamesSorters(props) {
                     </FormGroup>
                 </FormControl>
             </Popover>
-        </Box>
+        </>
     )
 }
 

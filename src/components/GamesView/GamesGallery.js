@@ -58,7 +58,16 @@ class GamesGallery extends React.PureComponent {
 
         return (
             <>
-                <GamesSorters />
+                <Grid
+                    container
+                    display="flex"
+                    wrap="wrap"
+                    direction="row"
+                    justify="flex-end"
+                >
+                    <GamesSorters />
+                </Grid>
+        
                 <Grid
                     container
                 >
