@@ -21,7 +21,9 @@ import GamesSorters from "./GamesSorters";
 class GamesGallery extends React.PureComponent {
 
     componentDidMount() {
-        this.props.get_games();
+        if (this.props.data.length === 0) {
+            this.props.get_games();
+        }
     };
 
     render() {
