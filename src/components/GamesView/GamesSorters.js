@@ -63,11 +63,16 @@ function GamesSorters(props) {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
-    // label
+    // map field to labels in translation file(s)
     const field_labels = {
         "name": "gamesLibrary.sortLabels.byName",
         "releaseDate": "gamesLibrary.sortLabels.byReleaseDate",
         "duration": "gamesLibrary.sortLabels.byDuration"
+    }
+    // labels for sort buttons (with condition)
+    const sort_button_conditions = {
+        "upSorter": (index) => index !== 0,
+        "downSorter": (index) => index !== sorters.keys.length -1,
     }
 
     return (
@@ -116,16 +121,39 @@ function GamesSorters(props) {
                                             label={t(field_labels[criteria])}
                                         />
                                         {
-                                            index !== 0 && 
-                                            <IconButton aria-label="upSorter" name={criteria} onClick={handleSortOrderChange}>
-                                                <ArrowUpwardIcon />
-                                            </IconButton>
-                                        }
-                                        {
-                                            index !== sorters.keys.length -1 && 
-                                            <IconButton aria-label="downSorter" name={criteria} onClick={handleSortOrderChange}>
-                                                <ArrowDownwardIcon />
-                                            </IconButton>
+                                            // Object.keys as I need the following order : UP / DOWN
+                                            Object
+                                                .keys(sort_button_conditions)
+                                                .map(
+                                                    sort_key => {
+                                                        const condition_check = sort_button_conditions[sort_key];
+                                                        if (!condition_check(index)) {
+                                                            return null;
+                                                        } else {
+                                                            return (
+                                                                <IconButton 
+                                                                    aria-label={sort_key} 
+                                                                    name={criteria} 
+                                                                    onClick={handleSortOrderChange}
+                                                                    key={criteria + "_"+ sort_key}
+                                                                >
+                                                                    {
+                                                                        (() => {
+                                                                            switch(sort_key){
+                                                                                case "upSorter":
+                                                                                    return <ArrowUpwardIcon />
+                                                                                case "downSorter":
+                                                                                    return <ArrowDownwardIcon />
+                                                                                default:
+                                                                                    return null;
+                                                                            }
+                                                                        })()
+                                                                    } 
+                                                                </IconButton> 
+                                                            )
+                                                        }
+                                                    }
+                                                )
                                         }
                                     </div>
                                 )
