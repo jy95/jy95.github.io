@@ -1,18 +1,19 @@
 import React from "react";
+import {useTranslation} from "react-i18next";
 
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import Popover from '@material-ui/core/Popover';
-import Switch from '@material-ui/core/Switch';
+import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import Box from "@material-ui/core/Box";
 
 // For sorting criteria reorder
 // Not used as it produces a bug
 //import ButtonGroup from '@material-ui/core/ButtonGroup';
+//import Switch from '@material-ui/core/Switch';
 
 // To display ASC / DESC
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
@@ -47,6 +48,7 @@ function GamesSorters(props) {
     }
 
     const { state: sorters } = props;
+    const { t } = useTranslation('common');
 
     // For Popover
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -62,21 +64,22 @@ function GamesSorters(props) {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
-    // label
+    // map field to labels in translation file(s)
     const field_labels = {
-        "name": "Par nom",
-        "releaseDate": "Par date de sortie"
+        "name": "gamesLibrary.sortLabels.byName",
+        "releaseDate": "gamesLibrary.sortLabels.byReleaseDate",
+        "duration": "gamesLibrary.sortLabels.byDuration"
+    }
+    // labels for sort buttons (with condition)
+    const sort_button_conditions = {
+        "upSorter": (index) => index !== 0,
+        "downSorter": (index) => index !== sorters.keys.length -1,
     }
 
     return (
-        <Box
-            display="flex"
-            flexWrap="wrap"
-            flexDirection="row"
-            justifyContent="flex-end"
-        >
+        <>
             <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
-                Tris
+                {t("gamesLibrary.sortButtonLabel")}
             </Button>
             <Popover
                 id={id}
@@ -104,31 +107,52 @@ function GamesSorters(props) {
                                         <FormControlLabel
                                             control={
                                                 <>
-                                                    <Switch 
-                                                        checked={
-                                                            sorters.state[criteria] !== "ASC"
-                                                        } 
-                                                        onChange={handleSortChange} 
-                                                        name={criteria} 
+                                                    <Checkbox 
+                                                        checked={sorters.state[criteria] !== "ASC"}
+                                                        onChange={handleSortChange}
+                                                        name={criteria}
+                                                        checkedIcon={<ArrowDropUpIcon />}
+                                                        icon={<ArrowDropDownIcon />} 
                                                     />
-                                                    {
-                                                        sorters.state[criteria] === "ASC" ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />
-                                                    }
                                                 </>
                                             }
-                                            label={field_labels[criteria]}
+                                            label={t(field_labels[criteria])}
                                         />
                                         {
-                                            index !== 0 && 
-                                            <IconButton aria-label="upSorter" name={criteria} onClick={handleSortOrderChange}>
-                                                <ArrowUpwardIcon />
-                                            </IconButton>
-                                        }
-                                        {
-                                            index !== sorters.keys.length -1 && 
-                                            <IconButton aria-label="downSorter" name={criteria} onClick={handleSortOrderChange}>
-                                                <ArrowDownwardIcon />
-                                            </IconButton>
+                                            // Object.keys as I need the following order : UP / DOWN
+                                            Object
+                                                .keys(sort_button_conditions)
+                                                .map(
+                                                    sort_key => {
+                                                        const condition_check = sort_button_conditions[sort_key];
+                                                        if (!condition_check(index)) {
+                                                            return null;
+                                                        } else {
+                                                            return (
+                                                                <IconButton 
+                                                                    aria-label={sort_key} 
+                                                                    name={criteria} 
+                                                                    size="small" 
+                                                                    onClick={handleSortOrderChange}
+                                                                    key={criteria + "_"+ sort_key}
+                                                                >
+                                                                    {
+                                                                        (() => {
+                                                                            switch(sort_key){
+                                                                                case "upSorter":
+                                                                                    return <ArrowUpwardIcon fontSize="inherit" />
+                                                                                case "downSorter":
+                                                                                    return <ArrowDownwardIcon fontSize="inherit" />
+                                                                                default:
+                                                                                    return null;
+                                                                            }
+                                                                        })()
+                                                                    } 
+                                                                </IconButton> 
+                                                            )
+                                                        }
+                                                    }
+                                                )
                                         }
                                     </div>
                                 )
@@ -136,7 +160,7 @@ function GamesSorters(props) {
                     </FormGroup>
                 </FormControl>
             </Popover>
-        </Box>
+        </>
     )
 }
 

@@ -1,0 +1,30 @@
+{
+    "main": {
+        "menuEntries": {
+            "gamesKey": "Games",
+            "planningKey": "Calendar"
+        },
+        "sortOrders": {
+            "ASC": "Ascending sorting",
+            "DESC": "Descending sorting"
+        }
+    },
+    "gamesLibrary": {
+        "sortButtonLabel": "Sorts",
+        "sortLabels": {
+            "byName": "By name",
+            "byReleaseDate": "By release date",
+            "byDuration": "By duration"
+        },
+        "actionsButton": {
+            "watchHere": "Watch {{gameName}}",
+            "watchOnYt": "$t(gamesLibrary.actionsButton.watchHere) on Youtube"
+        }
+    },
+    "planning": {
+        "states": {
+            "RECORDED": "Recorded",
+            "PENDING": "Pending"
+        }
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "main": {
+        "menuEntries": {
+            "gamesKey": "Jeux",
+            "planningKey": "Planning"
+        },
+        "sortOrders": {
+            "ASC": "Tri ascendant",
+            "DESC": "Tri descendant"
+        }
+    },
+    "gamesLibrary": {
+        "sortButtonLabel": "Tris",
+        "sortLabels": {
+            "byName": "Par nom",
+            "byReleaseDate": "Par date de sortie",
+            "byDuration": "Par durée"
+        },
+        "actionsButton": {
+            "watchHere": "Regarder {{gameName}}",
+            "watchOnYt": "$t(gamesLibrary.actionsButton.watchHere) sur Youtube"
+        }
+    },
+    "planning": {
+        "states": {
+            "RECORDED": "Terminé",
+            "PENDING": "En cours"
+        }
+    }
+}

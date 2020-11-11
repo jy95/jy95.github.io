@@ -36,7 +36,8 @@ function swapSiblingElements(arr, elementIndex , direction) {
         ...arr.slice(secondSliceIndex) 
     ];
  }
-
+// Regex for duration
+const DURATION_REGEX = /(\d+):(\d+):(\d+)/; 
 
 // param à la place du () du genre ({title, password})
 export const get_games = () => {
@@ -60,7 +61,8 @@ export const get_games = () => {
                     "imagePath": process.env.PUBLIC_URL + gamesData.coversRootPath + id + "/" + (game.coverFile ?? gamesData.defaultCoverFile),
                     "releaseDate": new Date(+parts[2], parts[1] -1, +parts[0]),
                     "url": base_url,
-                    "url_type": url_type
+                    "url_type": url_type,
+                    "durationAsInt": parseInt((game.duration || "00:00:00").replace(DURATION_REGEX, "$1$2$3"))
                 });
             });
 
