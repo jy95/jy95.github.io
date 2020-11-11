@@ -3,6 +3,10 @@
         "menuEntries": {
             "gamesKey": "Jeux",
             "planningKey": "Planning"
+        },
+        "sortOrders": {
+            "ASC": "Tri ascendant",
+            "DESC": "Tri descendant"
         }
     },
     "gamesLibrary": {

@@ -3,6 +3,10 @@
         "menuEntries": {
             "gamesKey": "Games",
             "planningKey": "Calendar"
+        },
+        "sortOrders": {
+            "ASC": "Ascending sorting",
+            "DESC": "Descending sorting"
         }
     },
     "gamesLibrary": {

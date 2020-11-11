@@ -4,7 +4,7 @@ import {useTranslation} from "react-i18next";
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import Popover from '@material-ui/core/Popover';
-import Switch from '@material-ui/core/Switch';
+import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import Button from '@material-ui/core/Button';
@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 // For sorting criteria reorder
 // Not used as it produces a bug
 //import ButtonGroup from '@material-ui/core/ButtonGroup';
+//import Switch from '@material-ui/core/Switch';
 
 // To display ASC / DESC
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
@@ -105,15 +106,15 @@ function GamesSorters(props) {
                                     >
                                         <FormControlLabel
                                             control={
-                                                <IconButton 
-                                                    onClick={handleSortChange}
-                                                    name={criteria}
-                                                    aria-label={"sortOrder"}
-                                                >
-                                                    {
-                                                        sorters.state[criteria] === "ASC" ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />
-                                                    }
-                                                </IconButton>
+                                                <>
+                                                    <Checkbox 
+                                                        checked={sorters.state[criteria] !== "ASC"}
+                                                        onChange={handleSortChange}
+                                                        name={criteria}
+                                                        checkedIcon={<ArrowDropUpIcon />}
+                                                        icon={<ArrowDropDownIcon />} 
+                                                    />
+                                                </>
                                             }
                                             label={t(field_labels[criteria])}
                                         />
