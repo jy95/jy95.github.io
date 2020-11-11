@@ -66,7 +66,8 @@ function GamesSorters(props) {
     // label
     const field_labels = {
         "name": "gamesLibrary.sortLabels.byName",
-        "releaseDate": "gamesLibrary.sortLabels.byReleaseDate"
+        "releaseDate": "gamesLibrary.sortLabels.byReleaseDate",
+        "duration": "gamesLibrary.sortLabels.byDuration"
     }
 
     return (

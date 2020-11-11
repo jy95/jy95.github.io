@@ -8,13 +8,12 @@ import {
 
 // search criterias
 const sortByNameASC = (a, b) => (a.title < b.title) ? -1 : (a.title > b.title ? 1 : 0);
-const sortByNameDESC = (a, b) => -sortByNameASC(a, b);
 const sortByReleaseDateASC = (a, b) => {
     let aa = a["releaseDate"];
     let bb = b["releaseDate"];
     return aa < bb ? -1 : (aa > bb ? 1 : 0);
 };
-const sortByReleaseDateDESC = (a, b) => -sortByReleaseDateASC(a, b);
+const sortByDurationASC = (a, b) => (a.durationAsInt < b.durationAsInt) ? -1 : (a.durationAsInt > b.durationAsInt ? 1 : 0);
 
 const initialState = {
     games: [],
@@ -24,17 +23,22 @@ const initialState = {
         currentSortFunction: sortByNameASC,
         state: {
             "name": "ASC",
-            "releaseDate": "ASC"
+            "releaseDate": "ASC",
+            "duration": "ASC"
         },
-        keys: ["name", "releaseDate"],
+        keys: ["name", "releaseDate", "duration"],
         functions: {
             "name": {
                 "ASC": sortByNameASC,
-                "DESC": sortByNameDESC
+                "DESC": (a, b) => -sortByNameASC(a, b)
             },
             "releaseDate": {
                 "ASC": sortByReleaseDateASC,
-                "DESC": sortByReleaseDateDESC
+                "DESC": (a, b) => -sortByReleaseDateASC(a, b)
+            },
+            "duration": {
+                "ASC": sortByDurationASC,
+                "DESC": (a, b) => -sortByDurationASC(a, b)
             }
         }
     }

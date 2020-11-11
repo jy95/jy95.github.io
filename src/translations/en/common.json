@@ -9,7 +9,8 @@
         "sortButtonLabel": "Sorts",
         "sortLabels": {
             "byName": "By name",
-            "byReleaseDate": "By release date"
+            "byReleaseDate": "By release date",
+            "byDuration": "By duration"
         },
         "actionsButton": {
             "watchHere": "Watch {{gameName}}",

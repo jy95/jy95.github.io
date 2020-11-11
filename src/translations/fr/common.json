@@ -9,7 +9,8 @@
         "sortButtonLabel": "Tris",
         "sortLabels": {
             "byName": "Par nom",
-            "byReleaseDate": "Par date de sortie"
+            "byReleaseDate": "Par date de sortie",
+            "byDuration": "Par durée"
         },
         "actionsButton": {
             "watchHere": "Regarder {{gameName}}",
