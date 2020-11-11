@@ -41,6 +41,32 @@ const initialState = {
                 "DESC": (a, b) => -sortByDurationASC(a, b)
             }
         }
+    },
+    filters: {
+        // Each one is also a key for translation
+        genres: [
+            "Action",
+            "Adventure",
+            "Arcade",
+            "Board Games",
+            "Card",
+            "Casual",
+            "Educational",
+            "Family",
+            "Fighting",
+            "Indie",
+            "MMORPG",
+            "Platformer",
+            "Puzzle",
+            "RPG",
+            "Racing",
+            "Shooter",
+            "Simulation",
+            "Sports",
+            "Strategy",
+            "Misc"
+        ],
+        selected_genre: undefined,
     }
 };
 

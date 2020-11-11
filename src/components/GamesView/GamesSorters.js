@@ -62,7 +62,7 @@ function GamesSorters(props) {
     };
     
     const open = Boolean(anchorEl);
-    const id = open ? 'simple-popover' : undefined;
+    const id = open ? 'sort-popover' : undefined;
 
     // map field to labels in translation file(s)
     const field_labels = {

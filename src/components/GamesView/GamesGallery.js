@@ -16,6 +16,7 @@ import CenteredGrid from "../Others/CenteredGrid";
 import SnackbarWrapper from "../Others/CustomSnackbar";
 import CardEntry from "./CardEntry";
 import GamesSorters from "./GamesSorters";
+import GamesFilters from "./GamesFilters";
 
 // The gallery component
 class GamesGallery extends React.PureComponent {
@@ -67,6 +68,7 @@ class GamesGallery extends React.PureComponent {
                     direction="row"
                     justify="flex-end"
                 >
+                    <GamesFilters />
                     <GamesSorters />
                 </Grid>
         

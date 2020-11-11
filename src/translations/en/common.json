@@ -20,6 +20,7 @@
             "watchHere": "Watch {{gameName}}",
             "watchOnYt": "$t(gamesLibrary.actionsButton.watchHere) on Youtube"
         },
+        "filtersButtonLabel": "Filter",
         "gamesGenres": {
             "Action": "Action",
             "Adventure": "Adventure",
