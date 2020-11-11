@@ -105,18 +105,15 @@ function GamesSorters(props) {
                                     >
                                         <FormControlLabel
                                             control={
-                                                <>
-                                                    <Switch 
-                                                        checked={
-                                                            sorters.state[criteria] !== "ASC"
-                                                        } 
-                                                        onChange={handleSortChange} 
-                                                        name={criteria} 
-                                                    />
+                                                <IconButton 
+                                                    onClick={handleSortChange}
+                                                    name={criteria}
+                                                    aria-label={"sortOrder"}
+                                                >
                                                     {
                                                         sorters.state[criteria] === "ASC" ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />
                                                     }
-                                                </>
+                                                </IconButton>
                                             }
                                             label={t(field_labels[criteria])}
                                         />
