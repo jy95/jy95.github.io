@@ -19,6 +19,28 @@
         "actionsButton": {
             "watchHere": "Watch {{gameName}}",
             "watchOnYt": "$t(gamesLibrary.actionsButton.watchHere) on Youtube"
+        },
+        "gamesGenres": {
+            "Action": "Action",
+            "Adventure": "Adventure",
+            "Arcade": "Arcade",
+            "Board Games": "Board Games",
+            "Card": "Card",
+            "Casual": "Casual",
+            "Educational": "Educational",
+            "Family": "Family",
+            "Fighting": "Fighting",
+            "Indie": "Indie",
+            "MMORPG": "MMORPG",
+            "Platformer": "Platformer",
+            "Puzzle": "Puzzle",
+            "RPG": "RPG",
+            "Racing": "Racing",
+            "Shooter": "Shooter",
+            "Simulation": "Simulation",
+            "Sports": "Sports",
+            "Strategy": "Strategy",
+            "Misc": "Misc"
         }
     },
     "planning": {
