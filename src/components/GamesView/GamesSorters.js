@@ -134,6 +134,7 @@ function GamesSorters(props) {
                                                                 <IconButton 
                                                                     aria-label={sort_key} 
                                                                     name={criteria} 
+                                                                    size="small" 
                                                                     onClick={handleSortOrderChange}
                                                                     key={criteria + "_"+ sort_key}
                                                                 >
@@ -141,9 +142,9 @@ function GamesSorters(props) {
                                                                         (() => {
                                                                             switch(sort_key){
                                                                                 case "upSorter":
-                                                                                    return <ArrowUpwardIcon />
+                                                                                    return <ArrowUpwardIcon fontSize="inherit" />
                                                                                 case "downSorter":
-                                                                                    return <ArrowDownwardIcon />
+                                                                                    return <ArrowDownwardIcon fontSize="inherit" />
                                                                                 default:
                                                                                     return null;
                                                                             }

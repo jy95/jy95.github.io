@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from "react-i18next";
 import {
     ListItem,
     ListItemIcon,
@@ -18,6 +19,8 @@ import ScheduleIcon from '@material-ui/icons/Schedule';
 
 function ListItemLink(props) {
     const { icon, primary, to } = props;
+    const { t } = useTranslation('common');
+    const entry_label = t(primary);
 
     const renderLink = React.useMemo(
         () =>
@@ -30,10 +33,10 @@ function ListItemLink(props) {
     );
 
     return (
-        <Tooltip title={primary} aria-label={primary}>
+        <Tooltip title={entry_label} aria-label={primary}>
             <ListItem button component={renderLink}>
                 <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText primary={primary} />
+                <ListItemText primary={entry_label} />
             </ListItem>
         </Tooltip>
     )
@@ -44,12 +47,12 @@ export const ENTRIES = (
     <List>
         <ListItemLink
             icon={<SportsEsportsIcon />}
-            primary={"Jeux"}
+            primary={"main.menuEntries.gamesKey"}
             to={"/games"}
         />
         <ListItemLink
             icon={<ScheduleIcon />}
-            primary={"Planning"}
+            primary={"main.menuEntries.planningKey"}
             to={"/planning"}
         />
     </List>
