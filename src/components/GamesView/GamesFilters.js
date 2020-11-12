@@ -10,6 +10,11 @@ import FormGroup from '@material-ui/core/FormGroup';
 import Popover from '@material-ui/core/Popover';
 import FormControl from '@material-ui/core/FormControl';
 
+import {
+    filter_games_by_genre, 
+    filter_games_by_title
+} from "../../actions/games";
+
 // Filter buttons of GamesGallery
 function GamesFilters(props) {
 
@@ -69,9 +74,9 @@ function GamesFilters(props) {
                                 options={genre_options}
                                 getOptionLabel={(option) => option.label}
                                 renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+                                //fullWidth
                                 onChange={(_event, newValue) => {
-                                    // newValue could be null
-                                    console.log("NEW VALUE :" + newValue);
+                                    props.filterByGenre(newValue?.key);
                                 }}
                             />
                         </FormControl>
@@ -88,8 +93,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    //sort_games,
-    //change_sorting_order
+    filterByGenre: filter_games_by_genre, 
+    filterByTitle: filter_games_by_title
 };
 
 export default connect(

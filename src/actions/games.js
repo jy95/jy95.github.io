@@ -5,6 +5,8 @@ export const FETCHING_OK = "GAMES_FETCHING_OK";
 export const FETCHING_FAILED = "GAMES_FETCHING_FAILED";
 export const SORTING_GAMES = "SORTING_GAMES";
 export const SORTING_ORDER_CHANGED = "SORTING_ORDER_CHANGED";
+export const FILTERING_BY_GENRE = "FILTERING_BY_GENRE";
+export const FILTERING_BY_TITLE = "FILTERING_BY_TITLE";
 
 // Inspired by https://stackoverflow.com/a/60068169/6149867
 function makeMultiCriteriaSort(criteria) {
@@ -142,6 +144,19 @@ export const change_sorting_order = (field, direction) => {
     };
 };
 
+export const filter_games_by_genre = (genre) => {
+    return (dispatch, getState) => {
+        const genresArray = (genre) ? [genre] : []
+        dispatch(filterGamesByGenres(genresArray));
+    }
+}
+
+export const filter_games_by_title = (title) => {
+    return (dispatch, getState) => {
+        dispatch(filterGamesByTitle(title));
+    }
+}
+
 const fetchingStarted = () => ({
     type: FETCHING_REQUESTED
 });
@@ -168,3 +183,13 @@ const sortCriteriaOrderChanger = (sortFunction, keys) => ({
     sortFunction,
     keys
 });
+
+const filterGamesByGenres = (genres) => ({
+    type: FILTERING_BY_GENRE,
+    genres
+})
+
+const filterGamesByTitle = (title) => ({
+    type: FILTERING_BY_TITLE,
+    title
+})

@@ -18,6 +18,12 @@ import CardEntry from "./CardEntry";
 import GamesSorters from "./GamesSorters";
 import GamesFilters from "./GamesFilters";
 
+// To check if title match search criteria (insensitive search)
+const matches_title_search = (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i'));
+
+// To check if two arrays contains at least one element in common
+const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v) >= 0);
+
 // The gallery component
 class GamesGallery extends React.PureComponent {
 
@@ -28,7 +34,7 @@ class GamesGallery extends React.PureComponent {
     };
 
     render() {
-        const {loading, error, data, sortFunction} = this.props;
+        const {loading, error, data, filters, sortFunction} = this.props;
 
         if (loading) {
             return <CenteredGrid>
@@ -59,6 +65,19 @@ class GamesGallery extends React.PureComponent {
             </React.Fragment>;
         }
 
+        // prepare filter checks
+        let filter_conditions = [];
+        
+        // if provided title filter
+        if (filters.title.length !== 0) {
+            filter_conditions.push(matches_title_search(filters.title))
+        }
+
+        // if provided genre filter
+        if (filters.genres.length !== 0) {
+            filter_conditions.push(at_least_one_in_common(filters.genres))
+        }
+
         return (
             <>
                 <Grid
@@ -77,6 +96,7 @@ class GamesGallery extends React.PureComponent {
                 >
                     {
                         data
+                            .filter(game => filter_conditions.every(condition => condition(game)))
                             .sort(sortFunction)
                             .map(game => 
                                     <Grid key={game.playlistId ?? game.videoId} item xs>
@@ -93,6 +113,10 @@ class GamesGallery extends React.PureComponent {
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
     data: state.games.games,
+    filters: {
+        genres: state.games.filters.selected_genres,
+        title: state.games.filters.selected_title
+    },
     sortFunction: state.games.sorters.currentSortFunction,
     loading: state.games.loading,
     error: state.games.error,

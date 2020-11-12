@@ -3,7 +3,9 @@ import {
     FETCHING_OK,
     FETCHING_REQUESTED,
     SORTING_GAMES,
-    SORTING_ORDER_CHANGED
+    SORTING_ORDER_CHANGED,
+    FILTERING_BY_GENRE,
+    FILTERING_BY_TITLE
 } from "../actions/games"
 
 // search criterias
@@ -66,7 +68,8 @@ const initialState = {
             "Strategy",
             "Misc"
         ],
-        selected_genre: undefined,
+        selected_genres: [],
+        selected_title: "",
     }
 };
 
@@ -110,6 +113,22 @@ export default function games(state = initialState, action) {
                     ...state.sorters,
                     currentSortFunction: action.sortFunction,
                     keys: action.keys
+                }
+            }
+        case FILTERING_BY_GENRE:
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    selected_genres: action.genres
+                }
+            }
+        case FILTERING_BY_TITLE:
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    selected_title: action.title
                 }
             }
         default:
