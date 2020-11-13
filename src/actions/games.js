@@ -144,10 +144,9 @@ export const change_sorting_order = (field, direction) => {
     };
 };
 
-export const filter_games_by_genre = (genre) => {
+export const filter_games_by_genre = (genres) => {
     return (dispatch, getState) => {
-        const genresArray = (genre) ? [genre] : []
-        dispatch(filterGamesByGenres(genresArray));
+        dispatch(filterGamesByGenres(genres));
     }
 }
 

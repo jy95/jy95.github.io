@@ -69,14 +69,20 @@ function GamesFilters(props) {
                 <FormControl component="fieldset">
                     <FormGroup>
                         <FormControl>
-                            <Autocomplete 
+                            <Autocomplete
+                                multiple
+                                filterSelectedOptions 
                                 id="select-game-genre"
                                 options={genre_options}
                                 getOptionLabel={(option) => option.label}
+                                getOptionSelected={(option, value) => 
+                                    Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
+                                }
                                 renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
                                 //fullWidth
-                                onChange={(_event, newValue) => {
-                                    props.filterByGenre(newValue?.key);
+                                onChange={(_event, value) => {
+                                    const genres = (value) ? value.map(v => v.key) : [];
+                                    props.filterByGenre(genres);
                                 }}
                             />
                         </FormControl>
