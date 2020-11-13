@@ -22,7 +22,7 @@ import GamesFilters from "./GamesFilters";
 const matches_title_search = (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i'));
 
 // To check if two arrays contains at least one element in common
-const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v) >= 0);
+const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v.key) >= 0);
 
 // The gallery component
 class GamesGallery extends React.PureComponent {

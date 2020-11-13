@@ -73,15 +73,15 @@ function GamesFilters(props) {
                                 multiple
                                 filterSelectedOptions 
                                 id="select-game-genre"
+                                style={{ width: 300 }}
                                 options={genre_options}
                                 getOptionLabel={(option) => option.label}
                                 getOptionSelected={(option, value) => 
                                     Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
                                 }
-                                renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
-                                //fullWidth
+                                renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.genres")} variant="outlined" />}
                                 onChange={(_event, value) => {
-                                    const genres = (value) ? value.map(v => v.key) : [];
+                                    const genres = (value) ? value : [];
                                     props.filterByGenre(genres);
                                 }}
                             />
