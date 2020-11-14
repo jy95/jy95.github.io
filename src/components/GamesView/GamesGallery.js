@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import {get_games} from "../../actions/games";
 
 // Style
@@ -24,10 +25,30 @@ const matches_title_search = (searchTitle) => (game) => game.title.search(new Re
 // To check if two arrays contains at least one element in common
 const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v.key) >= 0);
 
+// To dynamically change the number of items depending of browser
+
+const useStyles = makeStyles((theme) => ({
+    gameEntry: {
+        [theme.breakpoints.only('xs')]: {
+            "flex-basis": "calc(100% / 2)"
+        },
+        [theme.breakpoints.only('sm')]: {
+            "flex-basis": "calc(100% / 4)"
+        },
+        [theme.breakpoints.up('md')]: {
+            "flex-basis": "calc(100% / 8)"
+        },
+        [theme.breakpoints.up('lg')]: {
+            "flex-basis": "calc(100% / 10)"
+        },
+    }
+}));    
+
 // The gallery component
 function GamesGallery(props) {
 
     const {loading, error, data, filters, sortFunction} = props;
+    const classes = useStyles(props);
 
     if (props.data.length === 0){
         props.get_games();
@@ -96,7 +117,11 @@ function GamesGallery(props) {
                         .filter(game => filter_conditions.every(condition => condition(game)))
                         .sort(sortFunction)
                         .map(game => 
-                                <Grid key={game.playlistId ?? game.videoId} item xs={6} sm={3} md={1}>
+                                <Grid 
+                                    key={game.playlistId ?? game.videoId} 
+                                    item 
+                                    className={classes.gameEntry}
+                                >
                                     <CardEntry game={game}/>
                                 </Grid>
                         )
