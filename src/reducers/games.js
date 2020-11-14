@@ -5,7 +5,8 @@ import {
     SORTING_GAMES,
     SORTING_ORDER_CHANGED,
     FILTERING_BY_GENRE,
-    FILTERING_BY_TITLE
+    FILTERING_BY_TITLE,
+    FILTERING_BY_PLATFORM
 } from "../actions/games"
 
 // search criterias
@@ -70,6 +71,7 @@ const initialState = {
         ],
         selected_genres: [],
         selected_title: "",
+        selected_platform: ""
     }
 };
 
@@ -129,6 +131,14 @@ export default function games(state = initialState, action) {
                 filters: {
                     ...state.filters,
                     selected_title: action.title
+                }
+            }
+        case FILTERING_BY_PLATFORM:
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    selected_platform: action.platform
                 }
             }
         default:

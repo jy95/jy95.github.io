@@ -19,6 +19,9 @@ import CardEntry from "./CardEntry";
 import GamesSorters from "./GamesSorters";
 import GamesFilters from "./GamesFilters";
 
+// To check if platform match search critiria
+const matches_platform_search = (platform) => (game) => game.platform === platform;
+
 // To check if title match search criteria (insensitive search)
 const matches_title_search = (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i'));
 
@@ -86,14 +89,19 @@ function GamesGallery(props) {
     // prepare filter checks
     let filter_conditions = [];
     
+    // if provided platform filter
+    if (filters.platform.length !== 0) {
+        filter_conditions.push(matches_platform_search(filters.platform));
+    }
+
     // if provided title filter
     if (filters.title.length !== 0) {
-        filter_conditions.push(matches_title_search(filters.title))
+        filter_conditions.push(matches_title_search(filters.title));
     }
 
     // if provided genre filter
     if (filters.genres.length !== 0) {
-        filter_conditions.push(at_least_one_in_common(filters.genres))
+        filter_conditions.push(at_least_one_in_common(filters.genres));
     }
 
     return (
@@ -143,7 +151,8 @@ const mapStateToProps = state => ({
     data: state.games.games,
     filters: {
         genres: state.games.filters.selected_genres,
-        title: state.games.filters.selected_title
+        title: state.games.filters.selected_title,
+        platform: state.games.filters.selected_platform,
     },
     sortFunction: state.games.sorters.currentSortFunction,
     loading: state.games.loading,
