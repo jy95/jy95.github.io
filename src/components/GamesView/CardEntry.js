@@ -1,8 +1,7 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
 
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {Link} from 'react-router-dom';
 
@@ -16,41 +15,52 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 import Tooltip from '@material-ui/core/Tooltip';
 
+const useStyles = makeStyles((theme) => ({
+    localVideoPlayerButton : {
+        [theme.breakpoints.down('sm')]: {
+            display: "none"
+        }
+    },
+    gameCover: {
+        [theme.breakpoints.between('xs', 'md')]: {
+            height: 200
+        },
+        [theme.breakpoints.up('md')]: {
+            height: 150
+        },
+    }
+}));
 
 function CardEntry(props) {
 
     const {game} = props;
     const { t } = useTranslation('common');
-
-    // Use the medium size
-    const theme = useTheme();
-    const is_large_screen = useMediaQuery(theme.breakpoints.up('md'));
+    const classes = useStyles(props);
 
     return (
         <Card>
 
             <CardMedia
                 component="img"
-                // https://material-ui.com/api/card-media/
-                height="150"
+                className={classes.gameCover}
                 image={game.imagePath}
                 title={game.title}
             />
 
             <CardActions disableSpacing justify="center">
-                { is_large_screen &&
-                    <Tooltip title={t("gamesLibrary.actionsButton.watchHere", { "gameName": game.title})} aria-label="Watch">
-                        <IconButton
-                            aria-label="play"
-                            component={Link}
-                            to={
-                                game.url_type === "PLAYLIST" ? "/playlist/" + game.playlistId : "/video/" + game.videoId
-                            }
-                        >
-                            <PlayArrowIcon/>
-                        </IconButton>
-                    </Tooltip>            
-                }
+
+                <Tooltip title={t("gamesLibrary.actionsButton.watchHere", { "gameName": game.title})} aria-label="Watch" className={classes.localVideoPlayerButton}>
+                    <IconButton
+                        aria-label="play"
+                        component={Link}
+                        to={
+                            game.url_type === "PLAYLIST" ? "/playlist/" + game.playlistId : "/video/" + game.videoId
+                        }
+                    >
+                        <PlayArrowIcon/>
+                    </IconButton>
+                </Tooltip>            
+
                 <Tooltip title={t("gamesLibrary.actionsButton.watchOnYt", { "gameName": game.title})} aria-label="WatchOnYoutube">
                     <IconButton
                         aria-label="share"

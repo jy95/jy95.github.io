@@ -25,89 +25,86 @@ const matches_title_search = (searchTitle) => (game) => game.title.search(new Re
 const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v.key) >= 0);
 
 // The gallery component
-class GamesGallery extends React.PureComponent {
+function GamesGallery(props) {
 
-    componentDidMount() {
-        if (this.props.data.length === 0) {
-            this.props.get_games();
-        }
-    };
+    const {loading, error, data, filters, sortFunction} = props;
 
-    render() {
-        const {loading, error, data, filters, sortFunction} = this.props;
-
-        if (loading) {
-            return <CenteredGrid>
-                <CircularProgress/>
-            </CenteredGrid>
-        }
-
-        if (error) {
-            return <React.Fragment>
-                <SnackbarWrapper
-                    variant={"error"}
-                    message={this.props.error}
-                />
-                <CenteredGrid>
-                    <Fab
-                        variant="extended"
-                        size="medium"
-                        color="primary"
-                        aria-label="reload"
-                        onClick={() => {
-                            this.props.get_games();
-                        }}
-                    >
-                        <AutorenewIcon/>
-                        Recharger
-                    </Fab>
-                </CenteredGrid>
-            </React.Fragment>;
-        }
-
-        // prepare filter checks
-        let filter_conditions = [];
-        
-        // if provided title filter
-        if (filters.title.length !== 0) {
-            filter_conditions.push(matches_title_search(filters.title))
-        }
-
-        // if provided genre filter
-        if (filters.genres.length !== 0) {
-            filter_conditions.push(at_least_one_in_common(filters.genres))
-        }
-
-        return (
-            <>
-                <Grid
-                    container
-                    display="flex"
-                    wrap="wrap"
-                    direction="row"
-                    justify="flex-end"
-                >
-                    <GamesFilters />
-                    <GamesSorters />
-                </Grid>
-        
-                <Grid
-                    container
-                >
-                    {
-                        data
-                            .filter(game => filter_conditions.every(condition => condition(game)))
-                            .sort(sortFunction)
-                            .map(game => 
-                                    <Grid key={game.playlistId ?? game.videoId} item xs>
-                                        <CardEntry game={game}/>
-                                    </Grid>
-                            )
-                    }
-                </Grid>
-            </>
-        )
+    if (props.data.length === 0){
+        props.get_games();
     }
+
+    if (loading) {
+        return <CenteredGrid>
+            <CircularProgress/>
+        </CenteredGrid>
+    }
+
+    if (error) {
+        return <>
+            <SnackbarWrapper
+                variant={"error"}
+                message={error}
+            />
+            <CenteredGrid>
+                <Fab
+                    variant="extended"
+                    size="medium"
+                    color="primary"
+                    aria-label="reload"
+                    onClick={() => {
+                        props.get_games();
+                    }}
+                >
+                    <AutorenewIcon/>
+                    Recharger
+                </Fab>
+            </CenteredGrid>
+        </>;
+    }
+
+    // prepare filter checks
+    let filter_conditions = [];
+    
+    // if provided title filter
+    if (filters.title.length !== 0) {
+        filter_conditions.push(matches_title_search(filters.title))
+    }
+
+    // if provided genre filter
+    if (filters.genres.length !== 0) {
+        filter_conditions.push(at_least_one_in_common(filters.genres))
+    }
+
+    return (
+        <>
+            <Grid
+                container
+                display="flex"
+                //wrap="wrap"
+                //direction="row"
+                //justify="flex-end"
+            >
+                <GamesFilters />
+                <GamesSorters />
+            </Grid>
+    
+            <Grid
+                container
+            >
+                {
+                    data
+                        .filter(game => filter_conditions.every(condition => condition(game)))
+                        .sort(sortFunction)
+                        .map(game => 
+                                <Grid key={game.playlistId ?? game.videoId} item xs={6} sm={3} md={1}>
+                                    <CardEntry game={game}/>
+                                </Grid>
+                        )
+                }
+            </Grid>
+        </>
+    )
+    
 }
 
 // mapStateToProps(state, ownProps)
