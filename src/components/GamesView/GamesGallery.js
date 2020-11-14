@@ -30,16 +30,16 @@ const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.so
 const useStyles = makeStyles((theme) => ({
     gameEntry: {
         [theme.breakpoints.only('xs')]: {
-            "flex-basis": "calc(100% / 2)"
+            "flex-basis": "calc((100% / 2) - 1%)"
         },
         [theme.breakpoints.only('sm')]: {
-            "flex-basis": "calc(100% / 4)"
+            "flex-basis": "calc((100% / 4) - 1%)"
         },
         [theme.breakpoints.only('md')]: {
-            "flex-basis": "calc(100% / 8)"
+            "flex-basis": "calc((100% / 8) - 1%)"
         },
         [theme.breakpoints.up('lg')]: {
-            "flex-basis": "calc(100% / 10)"
+            "flex-basis": "calc((100% / 10) - 1%)"
         },
     }
 }));    
@@ -111,6 +111,7 @@ function GamesGallery(props) {
     
             <Grid
                 container
+                spacing={1}
                 style={
                     {
                         rowGap: "15px"
