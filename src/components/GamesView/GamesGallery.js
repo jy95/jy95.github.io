@@ -111,6 +111,11 @@ function GamesGallery(props) {
     
             <Grid
                 container
+                style={
+                    {
+                        rowGap: "15px"
+                    }
+                }
             >
                 {
                     data
