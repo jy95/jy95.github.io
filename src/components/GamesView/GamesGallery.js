@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.only('sm')]: {
             "flex-basis": "calc(100% / 4)"
         },
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.only('md')]: {
             "flex-basis": "calc(100% / 8)"
         },
         [theme.breakpoints.up('lg')]: {

@@ -28,6 +28,12 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('md')]: {
             height: 150
         },
+    },
+    gameControls : {
+        display: 'flex',
+        justifyContent: 'center',
+        paddingLeft: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
     }
 }));
 
@@ -47,7 +53,7 @@ function CardEntry(props) {
                 title={game.title}
             />
 
-            <CardActions disableSpacing justify="center">
+            <CardActions className={classes.gameControls}>
 
                 <Tooltip title={t("gamesLibrary.actionsButton.watchHere", { "gameName": game.title})} aria-label="Watch" className={classes.localVideoPlayerButton}>
                     <IconButton
