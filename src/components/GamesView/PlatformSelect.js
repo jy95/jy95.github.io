@@ -59,6 +59,10 @@ function PlatformSelect(props) {
                         {option.label}
                     </>
                 )}
+                onChange={(_event, value) => {
+                    const platform = (value) ? value.key : "";
+                    props.filterByPlatform(platform);
+                }}
             />
         </>
     );
