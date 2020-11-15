@@ -3,7 +3,10 @@ import {
     FETCHING_OK,
     FETCHING_REQUESTED,
     SORTING_GAMES,
-    SORTING_ORDER_CHANGED
+    SORTING_ORDER_CHANGED,
+    FILTERING_BY_GENRE,
+    FILTERING_BY_TITLE,
+    FILTERING_BY_PLATFORM
 } from "../actions/games"
 
 // search criterias
@@ -41,6 +44,41 @@ const initialState = {
                 "DESC": (a, b) => -sortByDurationASC(a, b)
             }
         }
+    },
+    filters: {
+        // Each one is also a key for translation
+        genres: [
+            "Action",
+            "Adventure",
+            "Arcade",
+            "Board Games",
+            "Card",
+            "Casual",
+            "Educational",
+            "Family",
+            "Fighting",
+            "Indie",
+            "MMORPG",
+            "Platformer",
+            "Puzzle",
+            "RPG",
+            "Racing",
+            "Shooter",
+            "Simulation",
+            "Sports",
+            "Strategy",
+            "Misc"
+        ],
+        platforms: [
+            "PC",
+            "PS1",
+            "PS2",
+            "PS3",
+            "PSP"
+        ],
+        selected_genres: [],
+        selected_title: "",
+        selected_platform: ""
     }
 };
 
@@ -84,6 +122,30 @@ export default function games(state = initialState, action) {
                     ...state.sorters,
                     currentSortFunction: action.sortFunction,
                     keys: action.keys
+                }
+            }
+        case FILTERING_BY_GENRE:
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    selected_genres: action.genres
+                }
+            }
+        case FILTERING_BY_TITLE:
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    selected_title: action.title
+                }
+            }
+        case FILTERING_BY_PLATFORM:
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    selected_platform: action.platform
                 }
             }
         default:

@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import {get_games} from "../../actions/games";
 
 // Style
@@ -16,81 +17,159 @@ import CenteredGrid from "../Others/CenteredGrid";
 import SnackbarWrapper from "../Others/CustomSnackbar";
 import CardEntry from "./CardEntry";
 import GamesSorters from "./GamesSorters";
+import GenresSelect from "./GenresSelect";
+import PlatformSelect from "./PlatformSelect";
+
+// To check if platform match search critiria
+const matches_platform_search = (platform) => (game) => game.platform === platform;
+
+// To check if title match search criteria (insensitive search)
+const matches_title_search = (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i'));
+
+// To check if two arrays contains at least one element in common
+const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v.key) >= 0);
+
+// To dynamically change the number of items depending of browser
+
+const useStyles = makeStyles((theme) => ({
+    gameEntry: {
+        [theme.breakpoints.only('xs')]: {
+            "flex-basis": "calc((100% / 2) - 1%)"
+        },
+        [theme.breakpoints.only('sm')]: {
+            "flex-basis": "calc((100% / 4) - 1%)"
+        },
+        [theme.breakpoints.only('md')]: {
+            "flex-basis": "calc((100% / 8) - 1%)"
+        },
+        [theme.breakpoints.up('lg')]: {
+            "flex-basis": "calc((100% / 10) - 1%)"
+        },
+    },
+    gamesCriteria: {
+        display: "flex",
+        [theme.breakpoints.down('sm')]: {
+            "flex-direction": "column",
+            "align-items": "center"
+        },
+        [theme.breakpoints.up('md')]: {
+            "flex-direction": "row",
+            "justify-content": "flex-end"
+        }
+    }
+}));    
 
 // The gallery component
-class GamesGallery extends React.PureComponent {
+function GamesGallery(props) {
 
-    componentDidMount() {
-        if (this.props.data.length === 0) {
-            this.props.get_games();
-        }
-    };
+    const {loading, error, data, filters, sortFunction} = props;
+    const classes = useStyles(props);
 
-    render() {
-        const {loading, error, data, sortFunction} = this.props;
+    if (props.data.length === 0){
+        props.get_games();
+    }
 
-        if (loading) {
-            return <CenteredGrid>
-                <CircularProgress/>
-            </CenteredGrid>
-        }
+    if (loading) {
+        return <CenteredGrid>
+            <CircularProgress/>
+        </CenteredGrid>
+    }
 
-        if (error) {
-            return <React.Fragment>
-                <SnackbarWrapper
-                    variant={"error"}
-                    message={this.props.error}
-                />
-                <CenteredGrid>
-                    <Fab
-                        variant="extended"
-                        size="medium"
-                        color="primary"
-                        aria-label="reload"
-                        onClick={() => {
-                            this.props.get_games();
-                        }}
-                    >
-                        <AutorenewIcon/>
-                        Recharger
-                    </Fab>
-                </CenteredGrid>
-            </React.Fragment>;
-        }
-
-        return (
-            <>
-                <Grid
-                    container
-                    display="flex"
-                    wrap="wrap"
-                    direction="row"
-                    justify="flex-end"
+    if (error) {
+        return <>
+            <SnackbarWrapper
+                variant={"error"}
+                message={error}
+            />
+            <CenteredGrid>
+                <Fab
+                    variant="extended"
+                    size="medium"
+                    color="primary"
+                    aria-label="reload"
+                    onClick={() => {
+                        props.get_games();
+                    }}
                 >
+                    <AutorenewIcon/>
+                    Recharger
+                </Fab>
+            </CenteredGrid>
+        </>;
+    }
+
+    // prepare filter checks
+    let filter_conditions = [];
+    
+    // if provided platform filter
+    if (filters.platform.length !== 0) {
+        filter_conditions.push(matches_platform_search(filters.platform));
+    }
+
+    // if provided title filter
+    if (filters.title.length !== 0) {
+        filter_conditions.push(matches_title_search(filters.title));
+    }
+
+    // if provided genre filter
+    if (filters.genres.length !== 0) {
+        filter_conditions.push(at_least_one_in_common(filters.genres));
+    }
+
+    return (
+        <>
+            <Grid
+                container
+                className={classes.gamesCriteria}
+            >
+                <Grid item xs={12} md={2}>
+                    <PlatformSelect />
+                </Grid>
+                <Grid item xs={12} md={5}>
+                    <GenresSelect />
+                </Grid>
+                <Grid item xs={12} md={1}>
                     <GamesSorters />
                 </Grid>
-        
-                <Grid
-                    container
-                >
+            </Grid>
+    
+            <Grid
+                container
+                spacing={1}
+                style={
                     {
-                        data
-                            .sort(sortFunction)
-                            .map(game => 
-                                    <Grid key={game.playlistId ?? game.videoId} item xs>
-                                        <CardEntry game={game}/>
-                                    </Grid>
-                            )
+                        rowGap: "15px"
                     }
-                </Grid>
-            </>
-        )
-    }
+                }
+            >
+                {
+                    data
+                        .filter(game => filter_conditions.every(condition => condition(game)))
+                        .sort(sortFunction)
+                        .map(game => 
+                                <Grid 
+                                    key={game.playlistId ?? game.videoId} 
+                                    item 
+                                    className={classes.gameEntry}
+                                >
+                                    <CardEntry game={game}/>
+                                </Grid>
+                        )
+                }
+            </Grid>
+        </>
+    )
+    
 }
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
     data: state.games.games,
+    filters: {
+        genres: state.games.filters.selected_genres,
+        title: state.games.filters.selected_title,
+        platform: state.games.filters.selected_platform,
+    },
     sortFunction: state.games.sorters.currentSortFunction,
     loading: state.games.loading,
     error: state.games.error,

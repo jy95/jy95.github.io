@@ -45,7 +45,9 @@ class Viewer extends React.Component {
             <Timeline align="alternate">
                 {
                     data.map(scheduledGame => 
-                        <TimelineItem>
+                        <TimelineItem
+                            key={scheduledGame["title"]}
+                        >
                             <TimelineOppositeContent>
                                 <Typography variant="body2" color="textSecondary">
                                     {

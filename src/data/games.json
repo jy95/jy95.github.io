@@ -7,435 +7,836 @@
             "playlistId": "PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
             "releaseDate": "25/09/2020",
             "coverFile": "cover.webp",
-            "duration": "06:59:14"
+            "duration": "06:59:14",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Shooter"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Samurai Jack: Battle Through Time",
             "playlistId": "PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC",
             "releaseDate": "21/08/2020",
-            "duration": "03:51:35"
+            "duration": "03:51:35",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Fighting"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Destroy All Humans! - Remake",
             "playlistId": "PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr",
             "releaseDate": "28/07/2020",
             "coverFile": "cover.webp",
-            "duration": "04:25:44"
+            "duration": "04:25:44",
+            "genres": [
+                "Action",
+                "Shooter"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Batman: Arkham Origins",
             "playlistId": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz",
             "releaseDate": "25/10/2013",
-            "duration": "06:48:06"
+            "duration": "06:48:06",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Guns Gore & Cannoli",
             "playlistId": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
             "releaseDate": "30/04/2015",
-            "duration": "02:10:05"
+            "duration": "02:10:05",
+            "genres": [
+                "Action",
+                "Shooter",
+                "Arcade",
+                "Indie"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Batman: Arkham Asylum",
             "playlistId": "PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
             "releaseDate": "28/08/2009",
-            "duration": "05:59:51"
+            "duration": "05:59:51",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Batman: Arkham Knight",
             "playlistId": "PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg",
             "releaseDate": "23/06/2015",
-            "duration": "08:33:35"
+            "duration": "08:33:35",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Batman Arkham City",
             "playlistId": "PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
             "releaseDate": "20/10/2011",
-            "duration": "06:47:41"
+            "duration": "06:47:41",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Splinter Cell Blacklist",
             "playlistId": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
             "releaseDate": "22/08/2013",
-            "duration": "06:34:25"
+            "duration": "06:34:25",
+            "genres": [
+                "Action"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Prince of Persia : Les Sables du temps",
             "playlistId": "PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO",
             "releaseDate": "13/11/2003",
-            "duration": "05:01:34"
+            "duration": "05:01:34",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PS3"
         },
         {
             "title": "Prince of Persia : Les Deux Royaumes",
             "playlistId": "PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg",
             "releaseDate": "01/12/2005",
-            "duration": "04:39:35"
+            "duration": "04:39:35",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PS3"
         },
         {
             "title": "God Of War II HD",
             "playlistId": "PLRfhDHeBTBJ6zui2RaBzaZ5zjm768Jzum",
             "releaseDate": "03/11/2010",
-            "duration": "06:20:04"
+            "duration": "06:20:04",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PS3"
         },
         {
             "title": "Prince of Persia Epilogue",
             "playlistId": "PLRfhDHeBTBJ4hCgXVdIqLpBkTKS9q1JN6",
             "releaseDate": "05/03/2009",
-            "duration": "01:24:13"
+            "duration": "01:24:13",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PS3"
         },
         {
             "title": "Def Jam: Fight for NY",
             "playlistId": "PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
             "releaseDate": "30/09/2004",
-            "duration": "04:19:35"
+            "duration": "04:19:35",
+            "genres": [
+                "Fighting"
+            ],
+            "platform": "PS2"
         },
         {
             "title": "Destroy All Humans! 2",
             "playlistId": "PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy",
             "releaseDate": "27/10/2006",
-            "duration": "11:22:25"
+            "duration": "11:22:25",
+            "genres": [
+                "Adventure"
+            ],
+            "platform": "PS2"
         },
         {
             "title": "Da Vinci Code",
             "playlistId": "PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5",
             "releaseDate": "19/05/2006",
-            "duration": "05:49:40"
+            "duration": "05:49:40",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Puzzle"
+            ],
+            "platform": "PS2"
         },
         {
             "title": "Astérix & Obélix XXL",
             "playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
             "releaseDate": "21/11/2003",
             "coverFile": "cover.webp",
-            "duration": "06:21:55"
+            "duration": "06:21:55",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PS2"
         },
         {
             "title": "Astérix & Obélix XXL 2",
             "playlistId": "PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo",
             "releaseDate": "29/11/2018",
-            "duration": "04:53:56"
+            "duration": "04:53:56",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Shrek 2 Le Jeu",
             "playlistId": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
             "releaseDate": "18/06/2004",
-            "duration": "02:24:35"
+            "duration": "02:24:35",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Sam Pyjam : Héros de la Nuit",
             "videoId": "qaIADIQyr0A",
             "releaseDate": "04/10/1996",
-            "duration": "00:44:11"
+            "duration": "00:44:11",
+            "genres": [
+                "Adventure",
+                "Educational"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Pyjama Sam 2 : Héros Météo",
             "videoId": "We7-JHU7D7I",
             "releaseDate": "02/10/1998",
-            "duration": "00:53:45"
+            "duration": "00:53:45",
+            "genres": [
+                "Adventure",
+                "Educational"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Pyjama Sam : Héros du Goûter",
             "videoId": "Qsq_q65MwhU",
             "releaseDate": "22/11/2000",
-            "duration": "01:07:54"
+            "duration": "01:07:54",
+            "genres": [
+                "Adventure",
+                "Educational"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Remember Me",
             "playlistId": "PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO",
             "releaseDate": "07/06/2013",
-            "duration": "06:41:04"
+            "duration": "06:41:04",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Prince of Persia : L'Ame du guerrier",
             "playlistId": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
             "releaseDate": "02/12/2004",
-            "duration": "05:52:06"
+            "duration": "05:52:06",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PS3"
         },
         {
             "title": "Mafia II",
             "playlistId": "PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg",
             "releaseDate": "27/08/2010",
-            "duration": "07:56:28"
+            "duration": "07:56:28",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Shooter"
+            ],
+            "platform": "PS3"
         },
         {
             "title": "Le Parrain : Edition du Don",
             "playlistId": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
             "releaseDate": "23/03/2007",
-            "duration": "15:05:17"
+            "duration": "15:05:17",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Shooter"
+            ],
+            "platform": "PS3"
         },
         {
             "title": "Mafia 1",
             "playlistId": "PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP",
             "releaseDate": "13/02/2004",
-            "duration": "09:00:04"
+            "duration": "09:00:04",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Shooter"
+            ],
+            "platform": "PS2"
         },
         {
             "title": "TMNT 2007 (GBA)",
             "playlistId": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
             "releaseDate": "29/03/2007",
-            "duration": "01:10:46"
+            "duration": "01:10:46",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "GBA"
         },
         {
             "title": "Dishonored",
             "playlistId": "PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0",
             "releaseDate": "09/10/2012",
-            "duration": "05:25:12"
+            "duration": "05:25:12",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Shooter",
+                "RPG"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Les indestructibles Le Jeu",
             "playlistId": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
             "releaseDate": "12/11/2004",
-            "duration": "03:42:26"
+            "duration": "03:42:26",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Batman: Rise of Sin Tzu",
             "playlistId": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
             "releaseDate": "20/11/2003",
-            "duration": "04:34:20"
+            "duration": "04:34:20",
+            "genres": [
+                "Action"
+            ],
+            "platform": "PS2"
         },
         {
             "title": "Secret Agent Clank",
             "playlistId": "PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY",
             "releaseDate": "11/07/2008",
-            "duration": "06:22:48"
+            "duration": "06:22:48",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PSP"
         },
         {
             "title": "Ratchet & Clank : La Taille, Ca Compte",
             "playlistId": "PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s",
             "releaseDate": "16/05/2007",
-            "duration": "04:05:03"
+            "duration": "04:05:03",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer",
+                "Shooter"
+            ],
+            "platform": "PSP"
         },
         {
             "title": "Sonic Heroes",
             "playlistId": "PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx",
             "releaseDate": "06/02/2004",
-            "duration": "02:55:04"
+            "duration": "02:55:04",
+            "genres": [
+                "Arcade",
+                "Platformer",
+                "Racing"
+            ],
+            "platform": "PS2"
         },
         {
             "title": "Ratchet & Clank 3",
             "playlistId": "PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu",
             "releaseDate": "17/11/2004",
-            "duration": "06:55:09"
+            "duration": "06:55:09",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer",
+                "Shooter"
+            ],
+            "platform": "PS3"
         },
         {
             "title": "Les Indestructibles : La Terrible Attaque du Démolisseur",
             "playlistId": "PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
             "releaseDate": "18/11/2005",
-            "duration": "02:11:24"
+            "duration": "02:11:24",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Ratchet & Clank 2",
             "playlistId": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
             "releaseDate": "19/11/2003",
-            "duration": "07:48:33"
+            "duration": "07:48:33",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer",
+                "Shooter"
+            ],
+            "platform": "PS3"
         },
         {
             "title": "Ratchet & Clank",
             "playlistId": "PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo",
             "releaseDate": "08/11/2002",
-            "duration": "07:03:58"
+            "duration": "07:03:58",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer",
+                "Shooter"
+            ],
+            "platform": "PS3"
         },
         {
             "title": "Ratchet : Gladiator",
             "playlistId": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
             "releaseDate": "23/11/2005",
-            "duration": "06:07:43"
+            "duration": "06:07:43",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer",
+                "Shooter"
+            ],
+            "platform": "PS3"
         },
         {
             "title": "God of War Ascension",
             "playlistId": "PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
             "releaseDate": "13/03/2013",
-            "duration": "06:20:52"
+            "duration": "06:20:52",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PS3"
         },
         {
             "title": "God of War III",
             "playlistId": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
             "releaseDate": "17/03/2010",
-            "duration": "06:46:19"
+            "duration": "06:46:19",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PS3"
         },
         {
             "title": "Darksiders II",
             "playlistId": "PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X",
             "releaseDate": "21/08/2012",
-            "duration": "14:35:48"
+            "duration": "14:35:48",
+            "genres": [
+                "Action",
+                "Adventure",
+                "RPG"
+            ],
+            "platform": "PS3"
         },
         {
             "title": "Guns Gore and Cannoli 2",
             "playlistId": "PLRfhDHeBTBJ4ivg1J2leFzeuABXobVFNO",
             "releaseDate": "03/03/2018",
-            "duration": "02:31:53"
+            "duration": "02:31:53",
+            "genres": [
+                "Action",
+                "Shooter",
+                "Arcade",
+                "Indie"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Bully : Scholarship Edition",
             "playlistId": "PLRfhDHeBTBJ4l1G59ZVCUuTuZ-btLpPnm",
             "releaseDate": "07/03/2008",
             "coverFile": "cover.webp",
-            "duration": "11:38:17"
+            "duration": "11:38:17",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC"
         },
         {
-            "title": "Max Payne II - The Fall of Max Payne",
+            "title": "Max Payne 2 - The Fall of Max Payne",
             "playlistId": "PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf",
             "releaseDate": "24/10/2003",
-            "duration": "03:35:54"
+            "duration": "03:35:54",
+            "genres": [
+                "Action",
+                "Shooter"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Max Payne I",
             "playlistId": "PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
             "releaseDate": "01/08/2001",
-            "duration": "04:10:57"
+            "duration": "04:10:57",
+            "genres": [
+                "Action",
+                "Shooter"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Pokémon Uranium",
             "playlistId": "PLRfhDHeBTBJ6nITizlIWkG5aiqeF8iJeh",
             "releaseDate": "06/08/2016",
             "coverFile": "cover.webp",
-            "duration": "19:13:50"
+            "duration": "19:13:50",
+            "genres": [
+                "Adventure",
+                "RPG"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Kirby: Cauchemar au pays des Rêves",
             "playlistId": "PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
             "releaseDate": "26/09/2003",
-            "duration": "01:38:08"
+            "duration": "01:38:08",
+            "genres": [
+                "Platformer"
+            ],
+            "platform": "GBA"
         },
         {
             "title": "Splinter Cell",
             "playlistId": "PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN",
             "releaseDate": "28/11/2002",
             "coverFile": "cover.webp",
-            "duration": "04:34:58"
+            "duration": "04:34:58",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Darksiders I",
             "playlistId": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
             "releaseDate": "24/09/2010",
-            "duration": "11:59:57"
+            "duration": "11:59:57",
+            "genres": [
+                "Action",
+                "Adventure",
+                "RPG"
+            ],
+            "platform": "PC"
         },
         {
             "title": "God of War: Chains of Olympus",
             "playlistId": "PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf",
             "releaseDate": "28/03/2008",
             "coverFile": "cover.webp",
-            "duration": "03:34:18"
+            "duration": "03:34:18",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PSP"
         },
         {
             "title": "God of War: Ghost of Sparta",
             "playlistId": "PLRfhDHeBTBJ7VH9EyPcKvQSCo6FbMUE6g",
             "releaseDate": "03/11/2010",
-            "duration": "04:53:25"
+            "duration": "04:53:25",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PSP"
         },
         {
             "title": "God of War I",
             "playlistId": "PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj",
             "releaseDate": "22/06/2005",
-            "duration": "07:02:42"
+            "duration": "07:02:42",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PS2"
         },
         {
             "title": "Total Overdose",
             "playlistId": "PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
             "releaseDate": "16/09/2005",
-            "duration": "06:54:30"
+            "duration": "06:54:30",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Shooter"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Le parrain II",
             "playlistId": "PLRfhDHeBTBJ6ho33uahEjHiIyL5nSi_3O",
             "releaseDate": "09/04/2009",
-            "duration": "08:24:01"
+            "duration": "08:24:01",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Shooter"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Chicken Invaders 5 - Cluck of the dark side",
             "playlistId": "PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B",
             "releaseDate": "13/03/2015",
-            "duration": "02:13:36"
+            "duration": "02:13:36",
+            "genres": [
+                "Action",
+                "Casual",
+                "Indie"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Spy Fox : Operation Ozone",
             "playlistId": "PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A",
             "releaseDate": "30/03/2001",
-            "duration": "01:09:17"
+            "duration": "01:09:17",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Educational",
+                "Casual"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Spy Fox : Opération Robot Expo",
             "playlistId": "PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx",
             "releaseDate": "20/11/2000",
-            "duration": "01:12:15"
+            "duration": "01:12:15",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Educational",
+                "Casual"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Splinter Cell Double Agent",
             "playlistId": "PLRfhDHeBTBJ6KR3qS-DYwgEsMsP3hJmoU",
             "releaseDate": "19/10/2006",
-            "duration": "06:45:13"
+            "duration": "06:45:13",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Rayman 2: The Great Escape",
             "playlistId": "PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
             "releaseDate": "07/09/2000",
-            "duration": "04:18:06"
+            "duration": "04:18:06",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PS1"
         },
         {
             "title": "Prince of Persia : Les sables oubliés",
             "playlistId": "PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb",
             "releaseDate": "20/04/2010",
-            "duration": "05:16:11"
+            "duration": "05:16:11",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Saints Row IV",
             "playlistId": "PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
             "releaseDate": "23/08/2013",
-            "duration": "20:55:30"
+            "duration": "20:55:30",
+            "genres": [
+                "Action",
+                "Shooter"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Psychonauts",
             "playlistId": "PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
             "releaseDate": "03/02/2006",
-            "duration": "13:35:45"
+            "duration": "13:35:45",
+            "genres": [
+                "Action",
+                "Platformer"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Saints Row Gat out of Hell",
             "playlistId": "PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO",
             "releaseDate": "23/01/2015",
-            "duration": "05:45:04"
+            "duration": "05:45:04",
+            "genres": [
+                "Action",
+                "Shooter"
+            ],
+            "platform": "PC"
         },
         {
             "title": "XIII - le jeu",
             "playlistId": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
             "releaseDate": "20/11/2003",
-            "duration": "04:34:35"
+            "duration": "04:34:35",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Shooter"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Saints Row The Third",
             "playlistId": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
             "releaseDate": "15/11/2011",
-            "duration": "13:53:03"
+            "duration": "13:53:03",
+            "genres": [
+                "Action",
+                "Shooter"
+            ],
+            "platform": "PC"
         },
         {
             "title": "South Park - Le baton de la vérité",
             "playlistId": "PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
             "releaseDate": "06/03/2014",
-            "duration": "09:16:21"
+            "duration": "09:16:21",
+            "genres": [
+                "Adventure",
+                "RPG"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Prince of Persia 2008",
             "playlistId": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
             "releaseDate": "04/12/2008",
             "coverFile": "cover.webp",
-            "duration": "10:18:10"
+            "duration": "10:18:10",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Spy fox : Opération Milkshake",
             "playlistId": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
             "releaseDate": "02/09/1997",
-            "duration": "01:17:20"
+            "duration": "01:17:20",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Educational",
+                "Casual"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Astérix & Obélix XXL 2 : Mission Ouifix",
             "playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
             "releaseDate": "17/11/2006",
-            "duration": "04:08:28"
+            "duration": "04:08:28",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PSP"
         },
         {
             "title": "Ryse : Son of Rome",
             "playlistId": "PLRfhDHeBTBJ6cs6uc2X0dzBvaNuF-n49i",
             "releaseDate": "22/11/2013",
             "visible": false,
-            "duration": "04:52:11"
+            "duration": "04:52:11",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC"
         },
         {
             "title": "South Park : L'Annale du Destin",
@@ -443,14 +844,25 @@
             "releaseDate": "22/11/2013",
             "coverFile": "cover.webp",
             "visible": false,
-            "duration": "12:25:40"
+            "duration": "12:25:40",
+            "genres": [
+                "Adventure",
+                "RPG"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Rayman 2 : Revolution",
             "playlistId": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
             "releaseDate": "14/12/2000",
             "visible": false,
-            "duration": "04:59:15"
+            "duration": "04:59:15",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PS2"
         },
         {
             "title": "Sleeping Dogs",
@@ -458,21 +870,39 @@
             "releaseDate": "17/08/2012",
             "coverFile": "cover.webp",
             "visible": false,
-            "duration": "07:22:10"
+            "duration": "07:22:10",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Shooter"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Rayman contre les Lapins Crétins",
             "playlistId": "PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
             "releaseDate": "30/11/2006",
             "visible": false,
-            "duration": "03:05:12"
+            "duration": "03:05:12",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Family"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Need for Speed Carbon",
             "playlistId": "PLRfhDHeBTBJ6MEuVUHAD2HZETNt5cBCZP",
             "releaseDate": "03/11/2006",
             "visible": false,
-            "duration": "05:12:32"
+            "duration": "05:12:32",
+            "genres": [
+                "Action",
+                "Racing",
+                "Arcade"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Quantum Break",
@@ -480,28 +910,51 @@
             "releaseDate": "05/04/2016",
             "coverFile": "cover.webp",
             "visible": false,
-            "duration": "05:29:07"
+            "duration": "05:29:07",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Shooter"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Splinter Cell Conviction",
             "playlistId": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
             "releaseDate": "15/04/2010",
             "visible": false,
-            "duration": "04:02:12"
+            "duration": "04:02:12",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Crash Bandicoot 3 : Warped",
             "playlistId": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
             "releaseDate": "10/12/1998",
             "visible": false,
-            "duration": "01:57:55"
+            "duration": "01:57:55",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Crash Bandicoot",
             "playlistId": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
             "releaseDate": "09/11/1996",
             "visible": false,
-            "duration": "01:48:31"
+            "duration": "01:48:31",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Crash Bandicoot 2 : Cortex Strikes Back",
@@ -509,14 +962,25 @@
             "releaseDate": "01/12/1997",
             "coverFile": "cover.webp",
             "visible": false,
-            "duration": "02:13:19"
+            "duration": "02:13:19",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PC"
         },
         {
             "title": "Max Payne 3",
             "playlistId": "PLRfhDHeBTBJ6qxm-Yidg-RNG6ICJuvll2",
             "releaseDate": "18/05/2012",
             "visible": false,
-            "duration": "07:01:05"
+            "duration": "07:01:05",
+            "genres": [
+                "Action",
+                "Shooter"
+            ],
+            "platform": "PC"
         }
     ]
 }
