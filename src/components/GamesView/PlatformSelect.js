@@ -50,6 +50,9 @@ function PlatformSelect(props) {
                 openOnFocus
                 options={options}
                 getOptionLabel={(option) => option.label}
+                getOptionSelected={(option, value) => 
+                    Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
+                }
                 renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.platform")} variant="outlined" />}
                 renderOption={(option, _state) => (
                     <>
