@@ -17,8 +17,8 @@ import CenteredGrid from "../Others/CenteredGrid";
 import SnackbarWrapper from "../Others/CustomSnackbar";
 import CardEntry from "./CardEntry";
 import GamesSorters from "./GamesSorters";
-import GenresFilter from "./GenresFilter";
-import PlatformFilter from "./PlatformFilter";
+import GenresSelect from "./GenresSelect";
+import PlatformSelect from "./PlatformSelect";
 
 // To check if platform match search critiria
 const matches_platform_search = (platform) => (game) => game.platform === platform;
@@ -114,8 +114,8 @@ function GamesGallery(props) {
                 //direction="row"
                 //justify="flex-end"
             >
-                <PlatformFilter />
-                <GenresFilter />
+                <PlatformSelect />
+                <GenresSelect />
                 <GamesSorters />
             </Grid>
     

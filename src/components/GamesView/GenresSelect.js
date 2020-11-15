@@ -12,7 +12,7 @@ import {
 } from "../../actions/games";
 
 // Genres filter of GamesGallery
-function GenresFilter(props) {
+function GenresSelect(props) {
 
     const { filters } = props;
     const { t } = useTranslation('common');
@@ -32,6 +32,7 @@ function GenresFilter(props) {
         <>
             <Autocomplete
                 multiple
+                openOnFocus
                 filterSelectedOptions 
                 id="select-game-genre"
                 //style={{ width: 300 }}
@@ -64,4 +65,4 @@ const mapDispatchToProps = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(GenresFilter);
+)(GenresSelect);

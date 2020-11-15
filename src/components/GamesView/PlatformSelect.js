@@ -31,7 +31,7 @@ const iconsSVG = {
     `
 }
 
-function PlatformFilter(props) {
+function PlatformSelect(props) {
 
     const { filters } = props;
     const { t } = useTranslation('common');
@@ -46,14 +46,14 @@ function PlatformFilter(props) {
     return (
         <>
             <Autocomplete
-                filterSelectedOptions
                 id="select-game-platform"
+                openOnFocus
                 options={options}
                 getOptionLabel={(option) => option.label}
-                renderInput={(params) => <TextField {...params} label={"TEST"} variant="outlined" />}
+                renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.platform")} variant="outlined" />}
                 renderOption={(option, _state) => (
                     <>
-                        <SvgIcon>
+                        <SvgIcon titleAccess={option.label}>
                             <path d={iconsSVG[option.key]} />
                         </SvgIcon>
                         {option.label}
@@ -77,4 +77,4 @@ const mapDispatchToProps = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(PlatformFilter);
+)(PlatformSelect);
