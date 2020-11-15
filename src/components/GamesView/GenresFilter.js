@@ -11,8 +11,8 @@ import {
     filter_games_by_title
 } from "../../actions/games";
 
-// Filter buttons of GamesGallery
-function GamesFilters(props) {
+// Genres filter of GamesGallery
+function GenresFilter(props) {
 
     const { filters } = props;
     const { t } = useTranslation('common');
@@ -35,6 +35,7 @@ function GamesFilters(props) {
                 filterSelectedOptions 
                 id="select-game-genre"
                 //style={{ width: 300 }}
+                limitTags={3}
                 options={genre_options}
                 getOptionLabel={(option) => option.label}
                 getOptionSelected={(option, value) => 
@@ -63,4 +64,4 @@ const mapDispatchToProps = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(GamesFilters);
+)(GenresFilter);

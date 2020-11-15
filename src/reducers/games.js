@@ -69,6 +69,13 @@ const initialState = {
             "Strategy",
             "Misc"
         ],
+        platforms: [
+            "PC",
+            "PS1",
+            "PS2",
+            "PS3",
+            "PSP"
+        ],
         selected_genres: [],
         selected_title: "",
         selected_platform: ""
