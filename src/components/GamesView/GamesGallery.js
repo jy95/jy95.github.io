@@ -45,6 +45,17 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('lg')]: {
             "flex-basis": "calc((100% / 10) - 1%)"
         },
+    },
+    gamesCriteria: {
+        display: "flex",
+        [theme.breakpoints.down('sm')]: {
+            "flex-direction": "column",
+            "align-items": "center"
+        },
+        [theme.breakpoints.up('md')]: {
+            "flex-direction": "row",
+            "justify-content": "flex-end"
+        }
     }
 }));    
 
@@ -109,14 +120,17 @@ function GamesGallery(props) {
         <>
             <Grid
                 container
-                display="flex"
-                wrap="wrap"
-                direction="row"
-                justify="flex-end"
+                className={classes.gamesCriteria}
             >
-                <PlatformSelect />
-                <GenresSelect />
-                <GamesSorters />
+                <Grid item xs={12} md={2}>
+                    <PlatformSelect />
+                </Grid>
+                <Grid item xs={12} md={5}>
+                    <GenresSelect />
+                </Grid>
+                <Grid item xs={12} md={1}>
+                    <GamesSorters />
+                </Grid>
             </Grid>
     
             <Grid
