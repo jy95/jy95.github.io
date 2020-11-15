@@ -110,9 +110,9 @@ function GamesGallery(props) {
             <Grid
                 container
                 display="flex"
-                //wrap="wrap"
-                //direction="row"
-                //justify="flex-end"
+                wrap="wrap"
+                direction="row"
+                justify="flex-end"
             >
                 <PlatformSelect />
                 <GenresSelect />

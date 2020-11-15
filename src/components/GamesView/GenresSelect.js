@@ -47,6 +47,7 @@ function GenresSelect(props) {
                     const genres = (value) ? value : [];
                     props.filterByGenre(genres);
                 }}
+                //value={filters.selected_genres}
             />
         </>
     );

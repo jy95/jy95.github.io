@@ -63,6 +63,7 @@ function PlatformSelect(props) {
                     const platform = (value) ? value.key : "";
                     props.filterByPlatform(platform);
                 }}
+                //value={filters.selected_genres}
             />
         </>
     );
