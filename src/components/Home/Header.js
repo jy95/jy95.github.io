@@ -2,14 +2,24 @@ import React from 'react';
 import clsx from "clsx";
 import {AppBar, CssBaseline, IconButton, Toolbar} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
+import Switch from '@material-ui/core/Switch';
+
+// Icons for switch
+import Brightness5Icon from '@material-ui/icons/Brightness5'; // sun
+import Brightness4Icon from '@material-ui/icons/Brightness4'; // moon
+import { yellow } from '@material-ui/core/colors';
 
 export default function Header(props) {
 
-    const {open, setOpen, classes} = props;
+    const {drawerOpen, setdrawerOpen, darkMode, setDarkMode, classes} = props;
 
     const handleDrawerOpen = () => {
-        setOpen(true);
+        setdrawerOpen(true);
     };
+
+    const handleDarkMode = (event) => {
+        setDarkMode(event.target.checked);
+    }
 
     return (
         <React.Fragment>
@@ -17,7 +27,7 @@ export default function Header(props) {
             <AppBar
                 position="fixed"
                 className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
+                    [classes.appBarShift]: drawerOpen,
                 })}
             >
                 <Toolbar>
@@ -27,11 +37,18 @@ export default function Header(props) {
                         onClick={handleDrawerOpen}
                         edge="start"
                         className={clsx(classes.menuButton, {
-                            [classes.hide]: open,
+                            [classes.hide]: drawerOpen,
                         })}
                     >
                         <MenuIcon/>
                     </IconButton>
+                    <Switch 
+                        checked={darkMode}
+                        onChange={handleDarkMode}
+                        checkedIcon={<Brightness4Icon color="action" />}
+                        icon={<Brightness5Icon style={{ color: yellow[500] }}/>}
+                        color="default"
+                    />
                 </Toolbar>
             </AppBar>
         </React.Fragment>

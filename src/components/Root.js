@@ -20,18 +20,20 @@ function Root({ store }) {
     const classes = basicStyle();
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
-    // for drawser
+    // for drawer
     const [open, setOpen] = React.useState(false);
+    // for dark mode
+    const [dark, setDark] = React.useState(prefersDarkMode);
 
     // Prepare theme for possible darkmode
     const theme = React.useMemo(
         () =>
           createMuiTheme({
             palette: {
-              type: prefersDarkMode ? 'dark' : 'light',
+              type: dark ? 'dark' : 'light',
             },
           }),
-        [prefersDarkMode],
+        [dark],
       );
 
     return (
@@ -40,7 +42,7 @@ function Root({ store }) {
                 <Provider store={store}>
                     {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
                     <Router basename={process.env.PUBLIC_URL} >
-                        <Header open={open} setOpen={setOpen} classes={classes}/>
+                        <Header drawerOpen={open} drawerSetOpen={setOpen} darkMode={dark} setDarkMode={setDark} classes={classes}/>
                         <Menu open={open} setOpen={setOpen} classes={classes}/>
                         <main className={classes.content}>
                             <div className={classes.toolbar} />
