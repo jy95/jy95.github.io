@@ -1,11 +1,16 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import {connect} from 'react-redux';
 
 // Dark mode
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
+// Redux action
+import {setThemeColor} from "../actions/themeColor";
+
+// Components
 import Header from "./Home/Header";
 import Menu from "./Home/Menu"
 import Player from "./YTPlayer/Player";
@@ -15,25 +20,34 @@ import Planning from "./Planning/Planning";
 import Grid from '@material-ui/core/Grid';
 import basicStyle from "./Home/styles"
 
-function Root({ store }) {
+function Root(props) {
 
     const classes = basicStyle();
+    const { store, setThemeColor, themeSettings} = props;
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+    const systemColor = prefersDarkMode ? "dark" : "light";
 
     // for drawer
     const [open, setOpen] = React.useState(false);
-    // for dark mode
-    const [dark, setDark] = React.useState(prefersDarkMode);
+
+    // Two case handled here :
+    // 1) When user comes to the site and have different color that default
+    // 2) When user changes on the fly its preferred system color
+    React.useEffect(() => {
+        if (themeSettings.systemColor !== systemColor) {
+            setThemeColor({color: systemColor, mode: "auto"});
+        }
+    }, [themeSettings.systemColor, systemColor, setThemeColor]);
 
     // Prepare theme for possible darkmode
     const theme = React.useMemo(
         () =>
           createMuiTheme({
             palette: {
-              type: dark ? 'dark' : 'light',
+              type: themeSettings.currentColor,
             },
           }),
-        [dark],
+        [themeSettings.currentColor],
       );
 
     return (
@@ -42,7 +56,7 @@ function Root({ store }) {
                 <Provider store={store}>
                     {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
                     <Router basename={process.env.PUBLIC_URL} >
-                        <Header drawerOpen={open} drawerSetOpen={setOpen} darkMode={dark} setDarkMode={setDark} classes={classes}/>
+                        <Header drawerOpen={open} drawerSetOpen={setOpen} classes={classes}/>
                         <Menu open={open} setOpen={setOpen} classes={classes}/>
                         <main className={classes.content}>
                             <div className={classes.toolbar} />
@@ -60,4 +74,16 @@ function Root({ store }) {
     )
 }
 
-export default Root
+// mapStateToProps(state, ownProps)
+const mapStateToProps = state => ({
+    themeSettings: state.themeColor
+});
+
+const mapDispatchToProps = {
+    setThemeColor
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Root);
