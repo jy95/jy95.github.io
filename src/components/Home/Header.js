@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import clsx from "clsx";
 import {AppBar, CssBaseline, IconButton, Toolbar} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
@@ -9,16 +10,20 @@ import Brightness5Icon from '@material-ui/icons/Brightness5'; // sun
 import Brightness4Icon from '@material-ui/icons/Brightness4'; // moon
 import { yellow } from '@material-ui/core/colors';
 
-export default function Header(props) {
+// Redux action
+import {setThemeColor} from "../../actions/themeColor";
 
-    const {drawerOpen, setdrawerOpen, darkMode, setDarkMode, classes} = props;
+function Header(props) {
+
+    const {drawerOpen, setdrawerOpen, classes} = props;
 
     const handleDrawerOpen = () => {
         setdrawerOpen(true);
     };
 
     const handleDarkMode = (event) => {
-        setDarkMode(event.target.checked);
+        const color = (event.target.checked) ? "dark" : "light";
+        props.setThemeColor({color, mode: "manual"});
     }
 
     return (
@@ -43,7 +48,7 @@ export default function Header(props) {
                         <MenuIcon/>
                     </IconButton>
                     <Switch 
-                        checked={darkMode}
+                        checked={props.isDark}
                         onChange={handleDarkMode}
                         checkedIcon={<Brightness4Icon color="action" />}
                         icon={<Brightness5Icon style={{ color: yellow[500] }}/>}
@@ -54,3 +59,17 @@ export default function Header(props) {
         </React.Fragment>
     )
 }
+
+// mapStateToProps(state, ownProps)
+const mapStateToProps = state => ({
+    isDark: state.themeColor.currentColor === "dark",
+});
+
+const mapDispatchToProps = {
+    setThemeColor
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Header);
