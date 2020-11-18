@@ -23,7 +23,8 @@
         "filtersButtonLabel": "Filtres",
         "filtersLabels": {
             "genres": "Genres",
-            "platform": "Plateforme"
+            "platform": "Plateforme",
+            "title": "Titre"
         },
         "gamesGenres": {
             "Action": "Action",
