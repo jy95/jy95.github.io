@@ -51,6 +51,7 @@ export const get_games = () => {
         // Build the object for component
         let games = gamesData
             .games
+            .filter(game => game?.visible !== false) // not display not yet public games on channel
             .map(game => {
                 const parts = game.releaseDate.split("/");
                 const id = game.playlistId ?? game.videoId;

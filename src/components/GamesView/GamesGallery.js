@@ -19,12 +19,13 @@ import CardEntry from "./CardEntry";
 import GamesSorters from "./GamesSorters";
 import GenresSelect from "./GenresSelect";
 import PlatformSelect from "./PlatformSelect";
+import TitleFilter from "./TitleFilter";
 
 // To check if platform match search critiria
 const matches_platform_search = (platform) => (game) => game.platform === platform;
 
 // To check if title match search criteria (insensitive search)
-const matches_title_search = (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i'));
+const matches_title_search = (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i')) >= 0;
 
 // To check if two arrays contains at least one element in common
 const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v.key) >= 0);
@@ -116,12 +117,20 @@ function GamesGallery(props) {
         filter_conditions.push(at_least_one_in_common(filters.genres));
     }
 
+    // Apply filters
+    const currentGames = data
+        .filter(game => filter_conditions.every(condition => condition(game)))
+        .sort(sortFunction);
+
     return (
         <>
             <Grid
                 container
                 className={classes.gamesCriteria}
             >
+                <Grid item xs={12} md={4}>
+                    <TitleFilter games={currentGames} />
+                </Grid>
                 <Grid item xs={12} md={2}>
                     <PlatformSelect />
                 </Grid>
@@ -143,9 +152,7 @@ function GamesGallery(props) {
                 }
             >
                 {
-                    data
-                        .filter(game => filter_conditions.every(condition => condition(game)))
-                        .sort(sortFunction)
+                    currentGames
                         .map(game => 
                                 <Grid 
                                     key={game.playlistId ?? game.videoId} 
