@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         [theme.breakpoints.down('sm')]: {
             "flex-direction": "column",
-            "align-items": "center"
+            "row-gap": "8px"
         },
         [theme.breakpoints.up('md')]: {
             "flex-direction": "row",
