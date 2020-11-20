@@ -830,7 +830,6 @@
             "title": "Ryse : Son of Rome",
             "playlistId": "PLRfhDHeBTBJ6cs6uc2X0dzBvaNuF-n49i",
             "releaseDate": "22/11/2013",
-            "visible": false,
             "duration": "04:52:11",
             "genres": [
                 "Action",
@@ -981,6 +980,42 @@
                 "Shooter"
             ],
             "platform": "PC"
+        },
+        {
+            "title": "Sigi - Un Pet Pour Mélusina",
+            "videoId": "odnIJiLjqCY",
+            "releaseDate": "22/12/2017",
+            "duration": "00:26:00",
+            "genres": [
+                "Action",
+                "Platformer"
+            ],
+            "platform": "PC",
+            "coverFile": "cover.webp"
+        },
+        {
+            "title": "Hercule",
+            "videoId": "Z-hI2U2g_j0",
+            "releaseDate": "01/07/1997",
+            "duration": "01:08:37",
+            "genres": [
+                "Action",
+                "Platformer"
+            ],
+            "platform": "PS1",
+            "coverFile": "cover.webp"
+        },
+        {
+            "title": "Beyond Good & Evil",
+            "playlistId": "PLRfhDHeBTBJ7GRN3EnqBEvfki5uAKiw5Z",
+            "releaseDate": "14/11/2003",
+            "duration": "05:52:22",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PS3",
+            "coverFile": "cover.webp"
         }
     ]
 }

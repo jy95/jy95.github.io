@@ -70,6 +70,7 @@ const initialState = {
             "Misc"
         ],
         platforms: [
+            "GBA",
             "PC",
             "PS1",
             "PS2",
