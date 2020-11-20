@@ -991,7 +991,7 @@
                 "Platformer"
             ],
             "platform": "PC",
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         },
         {
             "title": "Hercule",
@@ -1003,7 +1003,7 @@
                 "Platformer"
             ],
             "platform": "PS1",
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         },
         {
             "title": "Beyond Good & Evil",
@@ -1015,7 +1015,7 @@
                 "Adventure"
             ],
             "platform": "PS3",
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         }
     ]
 }
