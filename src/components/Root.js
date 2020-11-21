@@ -56,7 +56,7 @@ function Root(props) {
                 <Provider store={store}>
                     {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
                     <Router basename={process.env.PUBLIC_URL} >
-                        <Header drawerOpen={open} drawerSetOpen={setOpen} classes={classes}/>
+                        <Header drawerOpen={open} setdrawerOpen={setOpen} classes={classes}/>
                         <Menu open={open} setOpen={setOpen} classes={classes}/>
                         <main className={classes.content}>
                             <div className={classes.toolbar} />
