@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import {connect} from 'react-redux';
 
@@ -61,6 +61,7 @@ function Root(props) {
                         <main className={classes.content}>
                             <div className={classes.toolbar} />
                             <Grid container>
+                                <Route exact path="/" render={() => <Redirect to="/games" />}/>
                                 <Route path="/games" component={GamesGallery} />
                                 <Route path="/playlist/:id" component={Player} />
                                 <Route path="/video/:id" component={Player} />
