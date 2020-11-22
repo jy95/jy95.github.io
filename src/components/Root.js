@@ -10,6 +10,9 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 // Redux action
 import {setThemeColor} from "../actions/themeColor";
 
+// languages
+import {frFR} from '@material-ui/core/locale';
+
 // Components
 import Header from "./Home/Header";
 import Menu from "./Home/Menu"
@@ -46,7 +49,7 @@ function Root(props) {
             palette: {
               type: themeSettings.currentColor,
             },
-          }),
+          }, frFR),
         [themeSettings.currentColor],
       );
 
