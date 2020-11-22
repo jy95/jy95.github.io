@@ -1016,6 +1016,19 @@
             ],
             "platform": "PS3",
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Dragon Ball : Advanced Adventure",
+            "videoId": "5ZHExfdq9F8",
+            "releaseDate": "17/06/2005",
+            "duration": "01:50:53",
+            "genres": [
+                "Action",
+                "Platformer"
+            ],
+            "platform": "GBA",
+            "coverFile": "cover.jpg",
+            "visible": false
         }
     ]
 }
