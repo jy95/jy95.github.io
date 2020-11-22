@@ -31,7 +31,7 @@ class Viewer extends React.Component {
         }
 
         const columns = [
-            {field: "title", headerName: "Titre", width: 250},
+            {field: "title", headerName: "Titre", width: 270},
             {
                 field: "releaseDate", 
                 headerName: "Date de sortie",
