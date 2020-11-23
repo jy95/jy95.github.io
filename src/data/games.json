@@ -1029,6 +1029,21 @@
             "platform": "GBA",
             "coverFile": "cover.jpg",
             "visible": false
+        },
+        {
+            "title": "Avatar : Le Dernier Maître de l'Air",
+            "videoId":  "L7R_LBBOPEk",
+            "releaseDate": "27/10/2006",
+            "duration": "02:13:24",
+            "genres": [
+                "Action",
+                "Adventure",
+                "RPG",
+                "Puzzle"
+            ],
+            "platform": "GBA",
+            "coverFile": "cover.jpg",
+            "visible": false
         }
     ]
 }
