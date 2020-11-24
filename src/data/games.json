@@ -1027,7 +1027,7 @@
                 "Platformer"
             ],
             "platform": "GBA",
-            "coverFile": "cover.jpg",
+            "coverFile": "cover.webp",
             "visible": false
         },
         {
@@ -1042,7 +1042,7 @@
                 "Puzzle"
             ],
             "platform": "GBA",
-            "coverFile": "cover.jpg",
+            "coverFile": "cover.webp",
             "visible": false
         }
     ]
