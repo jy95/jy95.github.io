@@ -3,25 +3,15 @@ import {connect} from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import {get_scheduled_games} from "../../actions/planning";
 
-import CircularProgress from '@material-ui/core/CircularProgress';
-
-import CenteredGrid from "../Others/CenteredGrid";
-
 // Timeline
-import Timeline from '@material-ui/lab/Timeline';
-import TimelineItem from '@material-ui/lab/TimelineItem';
-import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
-import TimelineConnector from '@material-ui/lab/TimelineConnector';
-import TimelineContent from '@material-ui/lab/TimelineContent';
-import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
-import TimelineDot from '@material-ui/lab/TimelineDot';
 
 // Style
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 import Tooltip from '@material-ui/core/Tooltip';
+import { DataGrid } from '@material-ui/data-grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import CenteredGrid from "../Others/CenteredGrid";
 
 class Viewer extends React.Component {
 
@@ -40,52 +30,49 @@ class Viewer extends React.Component {
             </CenteredGrid>
         }
 
+        const columns = [
+            {field: "title", headerName: t("planning.columns.title"), width: 270},
+            {
+                field: "releaseDate", 
+                headerName: t("planning.columns.releaseDate"),
+                renderCell: (params) => (
+                    <>
+                        {params.value.toLocaleDateString(undefined, date_options)}
+                    </>
+                ),
+                width: 200
+            },
+            {
+                field: "status",
+                headerName: t("planning.columns.status"),
+                renderCell: (params) => (
+                    <Tooltip title={t("planning.states." + params.value )} aria-label={params.value}>
+                        {
+                            (() => {
+                                switch(params.value) {
+                                    case "RECORDED":
+                                        return <CheckCircleIcon />;
+                                    case "PENDING":
+                                        return <HourglassEmptyIcon />;
+                                    default:
+                                        return null;
+                                }
+                            })()
+                        }   
+                    </Tooltip>
+                )
+            }
+        ]
+
+
         return (
-            //<CardsBox data={this.props.data}/>
-            <Timeline align="alternate">
-                {
-                    data.map(scheduledGame => 
-                        <TimelineItem
-                            key={scheduledGame["title"]}
-                        >
-                            <TimelineOppositeContent>
-                                <Typography variant="body2" color="textSecondary">
-                                    {
-                                        scheduledGame["releaseDate"]
-                                            .toLocaleDateString(undefined, date_options)
-                                    }
-                                </Typography>
-                            </TimelineOppositeContent>
-                            <TimelineSeparator>
-                                <TimelineDot>
-                                    <Tooltip title={t("planning.states." + scheduledGame.status )} aria-label={scheduledGame.status}>
-                                        {
-                                            (() => {
-                                                switch(scheduledGame.status) {
-                                                    case "RECORDED":
-                                                        return <CheckCircleIcon />;
-                                                    case "PENDING":
-                                                        return <HourglassEmptyIcon />;
-                                                    default:
-                                                        return null;
-                                                }
-                                            })()
-                                        }
-                                    </Tooltip>
-                                </TimelineDot>
-                                <TimelineConnector />
-                            </TimelineSeparator>
-                            <TimelineContent>
-                                <Paper elevation={3} >
-                                    <Typography variant="h6" component="h1">
-                                        {scheduledGame["title"]}
-                                    </Typography>
-                                </Paper>
-                            </TimelineContent>  
-                        </TimelineItem>
-                    )
-                }
-            </Timeline>
+            <div style={{ height: 450, width: '100%' }}>
+                <div style={{ display: 'flex', height: '100%' }}>
+                    <div style={{ flexGrow: 1 }}>
+                        <DataGrid rows={data} columns={columns} />
+                    </div>
+                </div>
+            </div>
         )
 
     }

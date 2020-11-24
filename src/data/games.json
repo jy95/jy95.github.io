@@ -1016,6 +1016,34 @@
             ],
             "platform": "PS3",
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Dragon Ball : Advanced Adventure",
+            "videoId": "5ZHExfdq9F8",
+            "releaseDate": "17/06/2005",
+            "duration": "01:50:53",
+            "genres": [
+                "Action",
+                "Platformer"
+            ],
+            "platform": "GBA",
+            "coverFile": "cover.webp",
+            "visible": false
+        },
+        {
+            "title": "Avatar : Le Dernier Maître de l'Air",
+            "videoId":  "L7R_LBBOPEk",
+            "releaseDate": "27/10/2006",
+            "duration": "02:13:24",
+            "genres": [
+                "Action",
+                "Adventure",
+                "RPG",
+                "Puzzle"
+            ],
+            "platform": "GBA",
+            "coverFile": "cover.webp",
+            "visible": false
         }
     ]
 }

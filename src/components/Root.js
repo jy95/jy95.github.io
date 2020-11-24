@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import {connect} from 'react-redux';
 
@@ -9,6 +9,9 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 // Redux action
 import {setThemeColor} from "../actions/themeColor";
+
+// languages
+import {frFR} from '@material-ui/core/locale';
 
 // Components
 import Header from "./Home/Header";
@@ -46,7 +49,7 @@ function Root(props) {
             palette: {
               type: themeSettings.currentColor,
             },
-          }),
+          }, frFR),
         [themeSettings.currentColor],
       );
 
@@ -61,6 +64,7 @@ function Root(props) {
                         <main className={classes.content}>
                             <div className={classes.toolbar} />
                             <Grid container>
+                                <Route exact path="/" render={() => <Redirect to="/games" />}/>
                                 <Route path="/games" component={GamesGallery} />
                                 <Route path="/playlist/:id" component={Player} />
                                 <Route path="/video/:id" component={Player} />

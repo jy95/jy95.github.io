@@ -4,9 +4,11 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@material-ui/data-grid": "^4.0.0-alpha.10",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "clsx": "^1.1.1",
     "i18next": "^19.8.3",
+    "i18next-browser-languagedetector": "^6.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.10.2",

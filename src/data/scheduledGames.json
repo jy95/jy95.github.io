@@ -2,61 +2,85 @@
     {
         "title": "Ryse: Son of Rome",
         "releaseDate": "20/11/2020",
-        "status": "RECORDED"
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ6cs6uc2X0dzBvaNuF-n49i"
     },
     {
         "title": "South Park : L'Annale du Destin",
         "releaseDate": "09/12/2020",
-        "status": "RECORDED"     
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU"
     },
     {
         "title": "Rayman 2 Revolution",
         "releaseDate": "01/01/2021",
-        "status": "RECORDED"       
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX"     
     },
     {
         "title": "Sleeping Dogs",
         "releaseDate": "25/01/2021",
-        "status": "RECORDED"        
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO"    
     },
     {
         "title": "Rayman contre les lapins crétins",
         "releaseDate": "22/02/2021",
-        "status": "RECORDED"   
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F"
     },
     {
         "title": "Need For Speed Carbon",
         "releaseDate": "09/03/2021",
-        "status": "RECORDED"   
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ6MEuVUHAD2HZETNt5cBCZP"
     },
     {
         "title": "Quantum Break",
         "releaseDate": "29/03/2021",
-        "status": "RECORDED"   
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f"
     },
     {
         "title": "Splinter Cell Conviction",
         "releaseDate": "12/04/2021",
-        "status": "RECORDED"
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3"
     },
     {
         "title": "Crash Bandicoot 1",
         "releaseDate": "26/04/2021",
-        "status": "RECORDED"
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe"
     },
     {
         "title": "Crash Bandicoot 2",
         "releaseDate": "03/05/2021",
-        "status": "RECORDED"
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao"
     },
     {
         "title": "Crash Bandicoot 3",
         "releaseDate": "12/05/2021",
-        "status": "RECORDED"
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE"
     },
     {
         "title": "Max Payne 3",
         "releaseDate": "21/05/2021",
-        "status": "PENDING"
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ6qxm-Yidg-RNG6ICJuvll2"
+    },
+    {
+        "title": "Dragon Ball : Advanced Adventure",
+        "releaseDate": "22/06/2021",
+        "status": "RECORDED",
+        "id": "5ZHExfdq9F8"
+    },
+    {
+        "title": "Avatar : Le Dernier Maître de l'Air",
+        "releaseDate": "23/06/2021",
+        "status": "RECORDED",
+        "id": "L7R_LBBOPEk"
     }
 ]
