@@ -53,6 +53,11 @@
         "states": {
             "RECORDED": "Terminé",
             "PENDING": "En cours"
+        },
+        "columns": {
+            "title": "Titre",
+            "releaseDate": "Date de sortie",
+            "status": "Statut"
         }
     }
 }

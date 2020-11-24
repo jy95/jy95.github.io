@@ -31,10 +31,10 @@ class Viewer extends React.Component {
         }
 
         const columns = [
-            {field: "title", headerName: "Titre", width: 270},
+            {field: "title", headerName: t("planning.columns.title"), width: 270},
             {
                 field: "releaseDate", 
-                headerName: "Date de sortie",
+                headerName: t("planning.columns.releaseDate"),
                 renderCell: (params) => (
                     <>
                         {params.value.toLocaleDateString(undefined, date_options)}
@@ -44,7 +44,7 @@ class Viewer extends React.Component {
             },
             {
                 field: "status",
-                headerName: "Statut",
+                headerName: t("planning.columns.status"),
                 renderCell: (params) => (
                     <Tooltip title={t("planning.states." + params.value )} aria-label={params.value}>
                         {

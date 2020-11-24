@@ -53,6 +53,11 @@
         "states": {
             "RECORDED": "Recorded",
             "PENDING": "Pending"
+        },
+        "columns": {
+            "title": "Title",
+            "releaseDate": "Release Date",
+            "status": "Status"
         }
     }
 }
