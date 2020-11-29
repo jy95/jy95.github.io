@@ -1044,6 +1044,28 @@
             "platform": "GBA",
             "coverFile": "cover.webp",
             "visible": false
+        },
+        {
+            "title": "Hot Pixel",
+            "videoId": "6UzzEQjYA9c",
+            "releaseDate": "22/06/2008",
+            "duration": "00:27:38",
+            "genres": [
+                "Puzzle"
+            ],
+            "platform": "PSP"
+        },
+        {
+            "title": "Prince of Persia : Les sables oubliés",
+            "videoId": "lYIH7XkENSw",
+            "releaseDate": "20/04/2010",
+            "duration": "03:23:14",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PSP"
         }
     ]
 }
