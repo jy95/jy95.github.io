@@ -19,6 +19,7 @@ import Menu from "./Home/Menu"
 import Player from "./YTPlayer/Player";
 import GamesGallery from "./GamesView/GamesGallery";
 import Planning from "./Planning/Planning";
+import TestsGallery from "./Tests/TestsGallery";
 
 import Grid from '@material-ui/core/Grid';
 import basicStyle from "./Home/styles"
@@ -40,7 +41,10 @@ function Root(props) {
         if (themeSettings.systemColor !== systemColor) {
             setThemeColor({color: systemColor, mode: "auto"});
         }
-    }, [themeSettings.systemColor, systemColor, setThemeColor]);
+    },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [themeSettings.systemColor, systemColor]
+    );
 
     // Prepare theme for possible darkmode
     const theme = React.useMemo(
@@ -69,6 +73,7 @@ function Root(props) {
                                 <Route path="/playlist/:id" component={Player} />
                                 <Route path="/video/:id" component={Player} />
                                 <Route path="/planning" component={Planning} />
+                                <Route path="/tests" component={TestsGallery} />
                             </Grid>
                         </main>
                     </Router>

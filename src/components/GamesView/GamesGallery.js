@@ -63,10 +63,10 @@ const useStyles = makeStyles((theme) => ({
 // The gallery component
 function GamesGallery(props) {
 
-    const {loading, error, data, filters, sortFunction} = props;
+    const {loading, error, fetchedRequested, data, filters, sortFunction} = props;
     const classes = useStyles(props);
 
-    if (props.data.length === 0){
+    if (!fetchedRequested){
         props.get_games();
     }
 
@@ -180,6 +180,7 @@ const mapStateToProps = state => ({
     sortFunction: state.games.sorters.currentSortFunction,
     loading: state.games.loading,
     error: state.games.error,
+    fetchedRequested: state.games.fetched
 });
 
 const mapDispatchToProps = {

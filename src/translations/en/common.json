@@ -2,7 +2,8 @@
     "main": {
         "menuEntries": {
             "gamesKey": "Games",
-            "planningKey": "Calendar"
+            "planningKey": "Calendar",
+            "testsKey": "Tests"
         },
         "sortOrders": {
             "ASC": "Ascending sorting",
