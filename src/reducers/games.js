@@ -22,7 +22,6 @@ const initialState = {
     games: [],
     error: null,
     loading: false,
-    fetched: false,
     sorters: {
         currentSortFunction: sortByNameASC,
         state: {
@@ -96,7 +95,6 @@ export default function games(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                fetched: true,
                 games: action.games,
                 error: null
             };

@@ -63,12 +63,16 @@ const useStyles = makeStyles((theme) => ({
 // The gallery component
 function GamesGallery(props) {
 
-    const {loading, error, fetchedRequested, data, filters, sortFunction} = props;
+    const {loading, error, data, filters, sortFunction} = props;
     const classes = useStyles(props);
 
-    if (!fetchedRequested){
+    // on mount, load data (only once)
+    React.useEffect(() => {
         props.get_games();
-    }
+    },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    )
 
     if (loading) {
         return <CenteredGrid>
@@ -179,8 +183,7 @@ const mapStateToProps = state => ({
     },
     sortFunction: state.games.sorters.currentSortFunction,
     loading: state.games.loading,
-    error: state.games.error,
-    fetchedRequested: state.games.fetched
+    error: state.games.error
 });
 
 const mapDispatchToProps = {
