@@ -2,8 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import {get_scheduled_games} from "../../actions/planning";
-
-// Timeline
+import iconsSVG from "../GamesView/PlatformIcons";
 
 // Style
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -11,6 +10,7 @@ import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 import Tooltip from '@material-ui/core/Tooltip';
 import { DataGrid } from '@material-ui/data-grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import SvgIcon from '@material-ui/core/SvgIcon';
 import CenteredGrid from "../Others/CenteredGrid";
 
 class Viewer extends React.Component {
@@ -32,6 +32,15 @@ class Viewer extends React.Component {
 
         const columns = [
             {field: "title", headerName: t("planning.columns.title"), width: 270},
+            {
+                field: "platform",
+                headerName: t("planning.columns.platform"),
+                renderCell: (params) => (
+                    <SvgIcon titleAccess={params.value}>
+                        <path d={iconsSVG[params.value]} />
+                    </SvgIcon>
+                )
+            },
             {
                 field: "releaseDate", 
                 headerName: t("planning.columns.releaseDate"),

@@ -57,7 +57,8 @@
         "columns": {
             "title": "Title",
             "releaseDate": "Release Date",
-            "status": "Status"
+            "status": "Status",
+            "platform": "Platform"
         }
     }
 }
