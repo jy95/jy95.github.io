@@ -2,7 +2,8 @@
     "main": {
         "menuEntries": {
             "gamesKey": "Jeux",
-            "planningKey": "Planning"
+            "planningKey": "Planning",
+            "testsKey": "Tests"
         },
         "sortOrders": {
             "ASC": "Tri ascendant",
@@ -57,7 +58,8 @@
         "columns": {
             "title": "Titre",
             "releaseDate": "Date de sortie",
-            "status": "Statut"
+            "status": "Statut",
+            "platform": "Plateforme"
         }
     }
 }

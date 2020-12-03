@@ -16,6 +16,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 // icons
 import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import ScheduleIcon from '@material-ui/icons/Schedule';
+import ExtensionIcon from '@material-ui/icons/Extension';
 
 function ListItemLink(props) {
     const { icon, primary, to } = props;
@@ -54,6 +55,11 @@ export const ENTRIES = (
             icon={<ScheduleIcon />}
             primary={"main.menuEntries.planningKey"}
             to={"/planning"}
+        />
+        <ListItemLink
+            icon={<ExtensionIcon />}
+            primary={"main.menuEntries.testsKey"}
+            to={"/tests"}
         />
     </List>
 );

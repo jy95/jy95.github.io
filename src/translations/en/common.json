@@ -2,7 +2,8 @@
     "main": {
         "menuEntries": {
             "gamesKey": "Games",
-            "planningKey": "Calendar"
+            "planningKey": "Calendar",
+            "testsKey": "Tests"
         },
         "sortOrders": {
             "ASC": "Ascending sorting",
@@ -57,7 +58,8 @@
         "columns": {
             "title": "Title",
             "releaseDate": "Release Date",
-            "status": "Status"
+            "status": "Status",
+            "platform": "Platform"
         }
     }
 }

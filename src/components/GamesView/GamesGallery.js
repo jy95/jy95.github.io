@@ -66,9 +66,13 @@ function GamesGallery(props) {
     const {loading, error, data, filters, sortFunction} = props;
     const classes = useStyles(props);
 
-    if (props.data.length === 0){
+    // on mount, load data (only once)
+    React.useEffect(() => {
         props.get_games();
-    }
+    },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    )
 
     if (loading) {
         return <CenteredGrid>
@@ -179,7 +183,7 @@ const mapStateToProps = state => ({
     },
     sortFunction: state.games.sorters.currentSortFunction,
     loading: state.games.loading,
-    error: state.games.error,
+    error: state.games.error
 });
 
 const mapDispatchToProps = {
