@@ -1065,6 +1065,7 @@
                 "Adventure",
                 "Platformer"
             ],
+            "visible": false,
             "platform": "PSP"
         },
         {
