@@ -15,19 +15,20 @@ import Fab from '@material-ui/core/Fab';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 
 // To dynamically change the number of items depending of browser
+// Here twice smaller than /games (as these games often are digital only)
 const useStyles = makeStyles((theme) => ({
     gameEntry: {
         [theme.breakpoints.only('xs')]: {
-            "flex-basis": "calc((100% / 2) - 1%)"
+            "flex-basis": "calc((100% / 1) - 1%)"
         },
         [theme.breakpoints.only('sm')]: {
-            "flex-basis": "calc((100% / 4) - 1%)"
+            "flex-basis": "calc((100% / 2) - 1%)"
         },
         [theme.breakpoints.only('md')]: {
-            "flex-basis": "calc((100% / 8) - 1%)"
+            "flex-basis": "calc((100% / 4) - 1%)"
         },
         [theme.breakpoints.up('lg')]: {
-            "flex-basis": "calc((100% / 10) - 1%)"
+            "flex-basis": "calc((100% / 5) - 1%)"
         },
     },
     gamesCriteria: {
