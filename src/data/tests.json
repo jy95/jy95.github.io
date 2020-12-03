@@ -47,7 +47,7 @@
         {
             "title": "Demon Pit",
             "videoId": "2aPqECXPA_E",
-            "coverFile": "cover.jpg",
+            "coverFile": "cover.webp",
             "releaseDate": "17/10/2019",
             "platform": "PC"
         },
@@ -74,7 +74,7 @@
             "releaseDate": "23/06/2020",
             "platform": "PC",
             "playlistId": "PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         }
     ]
 }
