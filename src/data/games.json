@@ -1066,6 +1066,17 @@
                 "Platformer"
             ],
             "platform": "PSP"
+        },
+        {
+            "title": "Shrek Super Slam",
+            "videoId": "AVwWGO0Zocs",
+            "releaseDate": "18/11/2005",
+            "duration": "00:31:13",
+            "genres": [
+                "Fighting"
+            ],
+            "platform": "PS2",
+            "coverFile": "cover.jpg"
         }
     ]
 }
