@@ -1078,6 +1078,20 @@
             ],
             "platform": "PS2",
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "The Legend of Zelda: The Minish Cap",
+            "playlistId": "PLRfhDHeBTBJ41LQiFCR00rhaLAyMNy7cR",
+            "releaseDate": "12/11/2004",
+            "duration": "06:10:03",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "GBA",
+            "visible": false,
+            "coverFile": "cover.jpg"
         }
     ]
 }
