@@ -842,7 +842,7 @@
             "playlistId": "PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU",
             "releaseDate": "22/11/2013",
             "coverFile": "cover.webp",
-            "visible": false,
+            "availableAt": 20201209,
             "duration": "12:25:40",
             "genres": [
                 "Adventure",
@@ -854,7 +854,7 @@
             "title": "Rayman 2 : Revolution",
             "playlistId": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
             "releaseDate": "14/12/2000",
-            "visible": false,
+            "availableAt": 20210101,
             "duration": "04:59:15",
             "genres": [
                 "Action",
@@ -868,7 +868,7 @@
             "playlistId": "PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO",
             "releaseDate": "17/08/2012",
             "coverFile": "cover.webp",
-            "visible": false,
+            "availableAt": 20210125,
             "duration": "07:22:10",
             "genres": [
                 "Action",
@@ -881,7 +881,7 @@
             "title": "Rayman contre les Lapins Crétins",
             "playlistId": "PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
             "releaseDate": "30/11/2006",
-            "visible": false,
+            "availableAt": 20210222,
             "duration": "03:05:12",
             "genres": [
                 "Action",
@@ -894,7 +894,7 @@
             "title": "Need for Speed Carbon",
             "playlistId": "PLRfhDHeBTBJ6MEuVUHAD2HZETNt5cBCZP",
             "releaseDate": "03/11/2006",
-            "visible": false,
+            "availableAt": 20210309,
             "duration": "05:12:32",
             "genres": [
                 "Action",
@@ -908,7 +908,7 @@
             "playlistId": "PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f",
             "releaseDate": "05/04/2016",
             "coverFile": "cover.webp",
-            "visible": false,
+            "availableAt": 20210329,
             "duration": "05:29:07",
             "genres": [
                 "Action",
@@ -921,7 +921,7 @@
             "title": "Splinter Cell Conviction",
             "playlistId": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
             "releaseDate": "15/04/2010",
-            "visible": false,
+            "availableAt": 20210412,
             "duration": "04:02:12",
             "genres": [
                 "Action",
@@ -933,7 +933,7 @@
             "title": "Crash Bandicoot 3 : Warped",
             "playlistId": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
             "releaseDate": "10/12/1998",
-            "visible": false,
+            "availableAt": 20210512,
             "duration": "01:57:55",
             "genres": [
                 "Action",
@@ -946,7 +946,7 @@
             "title": "Crash Bandicoot",
             "playlistId": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
             "releaseDate": "09/11/1996",
-            "visible": false,
+            "availableAt": 20210426,
             "duration": "01:48:31",
             "genres": [
                 "Action",
@@ -960,7 +960,7 @@
             "playlistId": "PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao",
             "releaseDate": "01/12/1997",
             "coverFile": "cover.webp",
-            "visible": false,
+            "availableAt": 20210503,
             "duration": "02:13:19",
             "genres": [
                 "Action",
@@ -973,7 +973,7 @@
             "title": "Max Payne 3",
             "playlistId": "PLRfhDHeBTBJ6qxm-Yidg-RNG6ICJuvll2",
             "releaseDate": "18/05/2012",
-            "visible": false,
+            "availableAt": 20210521,
             "duration": "07:01:05",
             "genres": [
                 "Action",
@@ -1028,7 +1028,7 @@
             ],
             "platform": "GBA",
             "coverFile": "cover.webp",
-            "visible": false
+            "availableAt": 20200622
         },
         {
             "title": "Avatar : Le Dernier Maître de l'Air",
@@ -1043,7 +1043,7 @@
             ],
             "platform": "GBA",
             "coverFile": "cover.webp",
-            "visible": false
+            "availableAt": 20200623
         },
         {
             "title": "Hot Pixel",
@@ -1065,7 +1065,7 @@
                 "Adventure",
                 "Platformer"
             ],
-            "visible": false,
+            "availableAt": 20200624,
             "platform": "PSP"
         },
         {
@@ -1090,7 +1090,7 @@
                 "Platformer"
             ],
             "platform": "GBA",
-            "visible": false,
+            "availableAt": 20200625,
             "coverFile": "cover.jpg"
         }
     ]
