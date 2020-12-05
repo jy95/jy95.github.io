@@ -15,11 +15,25 @@ export const get_scheduled_games = () => {
             
             dispatch(fetchingStarted());
 
-            const planning = gamesData.map(scheduledGame => {
-                let releaseDate = scheduledGame["releaseDate"];
-                const parts = releaseDate.split("/");
-                return Object.assign({}, scheduledGame, { "releaseDate": new Date(+parts[2], parts[1] -1, +parts[0]) })
-            });
+            // current date as integer (quicker comparaison)
+            const currentDate = new Date();
+            const integerDate = [
+                currentDate.getFullYear() * 1000,
+                (currentDate.getMonth() + 1) * 100,
+                currentDate.getDate()
+            ].reduce((acc, cur) => acc + cur, 0);
+
+            const planning = gamesData
+                .filter(game => game.availableAt <= integerDate <= game.endAt)
+                .map(scheduledGame => {
+                    let releaseDate = scheduledGame["releaseDate"];
+                    const parts = releaseDate.split("/");
+                    return Object.assign(
+                        {}, 
+                        scheduledGame, 
+                        { "releaseDate": new Date(+parts[2], parts[1] -1, +parts[0]) }
+                    );
+                });
     
             dispatch(fetchingFinished(planning));
         }

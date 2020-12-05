@@ -54,10 +54,19 @@ export const get_games = () => {
         if (previousFetchedGames.length === 0) {
             dispatch(fetchingStarted());
 
+            // current date as integer (quicker comparaison)
+            const currentDate = new Date();
+            const integerDate = [
+                currentDate.getFullYear() * 1000,
+                (currentDate.getMonth() + 1) * 100,
+                currentDate.getDate()
+            ].reduce((acc, cur) => acc + cur, 0);
+
             // Build the object for component
             let games = gamesData
                 .games
-                .filter(game => game?.visible !== false) // not display not yet public games on channel
+                // hide not yet public games on channel
+                .filter(game => !game.hasOwnProperty("availableAt") || game.availableAt <= integerDate)
                 .map(game => {
                     const parts = game.releaseDate.split("/");
                     const id = game.playlistId ?? game.videoId;

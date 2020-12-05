@@ -4,104 +4,143 @@
         "platform": "PC",
         "releaseDate": "20/11/2020",
         "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ6cs6uc2X0dzBvaNuF-n49i"
+        "id": "PLRfhDHeBTBJ6cs6uc2X0dzBvaNuF-n49i",
+        "availableAt": 20201120,
+        "endAt": 2020
     },
     {
         "title": "South Park : L'Annale du Destin",
         "platform": "PC",
         "releaseDate": "09/12/2020",
         "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU"
+        "id": "PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU",
+        "availableAt": 20201209,
+        "endAt": 20201231
     },
     {
         "title": "Rayman 2 Revolution",
         "platform": "PS2",
         "releaseDate": "01/01/2021",
         "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX"     
+        "id": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
+        "availableAt": 20210101,
+        "endAt": 20200124 
     },
     {
         "title": "Sleeping Dogs",
         "platform": "PC",
         "releaseDate": "25/01/2021",
         "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO"    
+        "id": "PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO",
+        "availableAt": 20210125,
+        "endAt": 20210221
     },
     {
         "title": "Rayman contre les lapins crétins",
         "platform": "PC",
         "releaseDate": "22/02/2021",
         "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F"
+        "id": "PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
+        "availableAt": 20210222,
+        "endAt": 20210308
     },
     {
         "title": "Need For Speed Carbon",
         "platform": "PC",
         "releaseDate": "09/03/2021",
         "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ6MEuVUHAD2HZETNt5cBCZP"
+        "id": "PLRfhDHeBTBJ6MEuVUHAD2HZETNt5cBCZP",
+        "availableAt": 20210309,
+        "endAt": 20210326
     },
     {
         "title": "Quantum Break",
         "platform": "PC",
         "releaseDate": "29/03/2021",
         "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f"
+        "id": "PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f",
+        "availableAt": 20210329,
+        "endAt": 20210411
     },
     {
         "title": "Splinter Cell Conviction",
         "platform": "PC",
         "releaseDate": "12/04/2021",
         "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3"
+        "id": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
+        "availableAt": 20210412,
+        "endAt": 20210422
     },
     {
         "title": "Crash Bandicoot 1",
         "platform": "PC",
         "releaseDate": "26/04/2021",
         "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe"
+        "id": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
+        "availableAt": 20210426,
+        "endAt": 20210503
     },
     {
         "title": "Crash Bandicoot 2",
         "platform": "PC",
         "releaseDate": "03/05/2021",
         "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao"
+        "id": "PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao",
+        "availableAt": 20210503,
+        "endAt": 20210510
     },
     {
         "title": "Crash Bandicoot 3",
         "platform": "PC",
         "releaseDate": "12/05/2021",
         "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE"
+        "id": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
+        "availableAt": 20210512,
+        "endAt": 20210519
     },
     {
         "title": "Max Payne 3",
         "releaseDate": "21/05/2021",
         "platform": "PC",
         "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ6qxm-Yidg-RNG6ICJuvll2"
+        "id": "PLRfhDHeBTBJ6qxm-Yidg-RNG6ICJuvll2",
+        "availableAt": 20210521,
+        "endAt": 20210621
     },
     {
         "title": "Dragon Ball : Advanced Adventure",
         "platform": "GBA",
         "releaseDate": "22/06/2021",
         "status": "RECORDED",
-        "id": "5ZHExfdq9F8"
+        "id": "5ZHExfdq9F8",
+        "availableAt": 20210622,
+        "endAt": 20210622
     },
     {
         "title": "Avatar : Le Dernier Maître de l'Air",
         "platform": "GBA",
         "releaseDate": "23/06/2021",
         "status": "RECORDED",
-        "id": "L7R_LBBOPEk"
+        "id": "L7R_LBBOPEk",
+        "availableAt": 20210623,
+        "endAt": 20210623
     },
     {
         "title": "Prince of Persia : Les sables oubliés",
         "platform": "PSP",
         "releaseDate": "24/06/2021",
         "status": "RECORDED",
-        "id": "lYIH7XkENSw"
+        "id": "lYIH7XkENSw",
+        "availableAt": 20210624,
+        "endAt": 20210624
+    },
+    {
+        "title": "The Legend of Zelda: The Minish Cap",
+        "platform": "GBA",
+        "releaseDate": "25/06/2021",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ41LQiFCR00rhaLAyMNy7cR",
+        "availableAt": 20210625,
+        "endAt": 20210715
     }
 ]
