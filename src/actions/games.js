@@ -57,7 +57,7 @@ export const get_games = () => {
             // current date as integer (quicker comparaison)
             const currentDate = new Date();
             const integerDate = [
-                currentDate.getFullYear() * 1000,
+                currentDate.getFullYear() * 10000,
                 (currentDate.getMonth() + 1) * 100,
                 currentDate.getDate()
             ].reduce((acc, cur) => acc + cur, 0);
