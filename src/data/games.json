@@ -1028,7 +1028,7 @@
             ],
             "platform": "GBA",
             "coverFile": "cover.webp",
-            "availableAt": 20200622
+            "availableAt": 20210622
         },
         {
             "title": "Avatar : Le Dernier Maître de l'Air",
@@ -1043,7 +1043,7 @@
             ],
             "platform": "GBA",
             "coverFile": "cover.webp",
-            "availableAt": 20200623
+            "availableAt": 20210623
         },
         {
             "title": "Hot Pixel",
@@ -1065,7 +1065,7 @@
                 "Adventure",
                 "Platformer"
             ],
-            "availableAt": 20200624,
+            "availableAt": 20210624,
             "platform": "PSP"
         },
         {
@@ -1090,7 +1090,7 @@
                 "Platformer"
             ],
             "platform": "GBA",
-            "availableAt": 20200625,
+            "availableAt": 20210625,
             "coverFile": "cover.webp"
         }
     ]

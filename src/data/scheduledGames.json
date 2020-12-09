@@ -6,7 +6,7 @@
         "status": "RECORDED",
         "id": "PLRfhDHeBTBJ6cs6uc2X0dzBvaNuF-n49i",
         "availableAt": 20201120,
-        "endAt": 2020
+        "endAt": 20201208
     },
     {
         "title": "South Park : L'Annale du Destin",
@@ -142,5 +142,14 @@
         "id": "PLRfhDHeBTBJ41LQiFCR00rhaLAyMNy7cR",
         "availableAt": 20210625,
         "endAt": 20210715
+    },
+    {
+        "title": "Rayman Origins",
+        "platform": "PC",
+        "releaseDate": "16/07/2021",
+        "status": "PENDING",
+        "id": "PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
+        "availableAt": 20210716,
+        "endAt": 20210729
     }
 ]

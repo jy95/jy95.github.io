@@ -24,7 +24,7 @@ export const get_scheduled_games = () => {
             ].reduce((acc, cur) => acc + cur, 0);
 
             const planning = gamesData
-                .filter(game => game.availableAt <= integerDate <= game.endAt)
+                .filter(game => (integerDate <= game.availableAt) && (integerDate < game.endAt) )
                 .map(scheduledGame => {
                     let releaseDate = scheduledGame["releaseDate"];
                     const parts = releaseDate.split("/");
