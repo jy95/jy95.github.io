@@ -23,8 +23,11 @@ export const get_scheduled_games = () => {
                 currentDate.getDate()
             ].reduce((acc, cur) => acc + cur, 0);
 
+            // a scheduled game should only be displayed with these specific conditions
+            const should_be_displayed = (elem, min, max) => elem <= max || elem <= min;
+
             const planning = gamesData
-                .filter(game => (integerDate <= game.availableAt) && (integerDate < game.endAt) )
+                .filter(game => should_be_displayed(integerDate, game.availableAt, game.endAt) )
                 .map(scheduledGame => {
                     let releaseDate = scheduledGame["releaseDate"];
                     const parts = releaseDate.split("/");
