@@ -147,9 +147,18 @@
         "title": "Rayman Origins",
         "platform": "PC",
         "releaseDate": "16/07/2021",
-        "status": "PENDING",
+        "status": "RECORDED",
         "id": "PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
         "availableAt": 20210716,
         "endAt": 20210729
+    },
+    {
+        "title": "Danny Fantôme : L'Ultime Ennemi",
+        "platform": "GBA",
+        "releaseDate": "02/08/2021",
+        "status": "RECORDED",
+        "id": "uDs_7iY6oqw",
+        "availableAt": 20210802,
+        "endAt": 20210802
     }
 ]

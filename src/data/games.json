@@ -1092,6 +1092,18 @@
             "platform": "GBA",
             "availableAt": 20210625,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Danny Fantôme : L'Ultime Ennemi",
+            "videoId": "uDs_7iY6oqw",
+            "releaseDate": "26/05/2006",
+            "duration": "00:52:53",
+            "genres": [
+                "Fighting"
+            ],
+            "platform": "GBA",
+            "availableAt": 20210802,
+            "coverFile": "cover.jpg"
         }
     ]
 }
