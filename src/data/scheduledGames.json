@@ -160,5 +160,14 @@
         "id": "uDs_7iY6oqw",
         "availableAt": 20210802,
         "endAt": 20210802
+    },
+    {
+        "title": "Ratchet & Clank : Opération Destruction",
+        "platform": "PS3",
+        "releaseDate": "03/08/2021",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
+        "availableAt": 20210803,
+        "endAt": 20210908
     }
 ]

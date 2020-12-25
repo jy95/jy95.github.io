@@ -1104,6 +1104,21 @@
             "platform": "GBA",
             "availableAt": 20210802,
             "coverFile": "cover.jpg"
+        },
+        {
+            "title": "Ratchet & Clank : Opération Destruction",
+            "playlistId": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
+            "releaseDate": "14/11/2007",
+            "duration": "06:49:19",
+            "genres": [
+                "Platformer",
+                "Shooter",
+                "Adventure",
+                "Action"
+            ],
+            "platform": "PS3",
+            "availableAt": 20210803,
+            "coverFile": "cover.jpg"
         }
     ]
 }
