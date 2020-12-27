@@ -1119,6 +1119,19 @@
             "platform": "PS3",
             "availableAt": 20210803,
             "coverFile": "cover.jpg"
+        },
+        {
+            "title": "Harry Potter et la Coupe de Feu",
+            "playlistId": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
+            "releaseDate": "10/11/2005",
+            "duration": "02:17:52",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC",
+            "availableAt": 20210910,
+            "coverFile": "cover.jpg"
         }
     ]
 }

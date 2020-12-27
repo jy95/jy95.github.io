@@ -169,5 +169,14 @@
         "id": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
         "availableAt": 20210803,
         "endAt": 20210908
+    },
+    {
+        "title": "Harry Potter et la Coupe de Feu",
+        "platform": "PC",
+        "releaseDate": "10/09/2021",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
+        "availableAt": 20210910,
+        "endAt": 20210920
     }
 ]
