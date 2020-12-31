@@ -1092,6 +1092,59 @@
             "platform": "GBA",
             "availableAt": 20210625,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Danny Fantôme : L'Ultime Ennemi",
+            "videoId": "uDs_7iY6oqw",
+            "releaseDate": "26/05/2006",
+            "duration": "00:52:53",
+            "genres": [
+                "Fighting"
+            ],
+            "platform": "GBA",
+            "availableAt": 20210802,
+            "coverFile": "cover.webp"
+        },
+        {
+            "title": "Ratchet & Clank : Opération Destruction",
+            "playlistId": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
+            "releaseDate": "14/11/2007",
+            "duration": "06:49:19",
+            "genres": [
+                "Platformer",
+                "Shooter",
+                "Adventure",
+                "Action"
+            ],
+            "platform": "PS3",
+            "availableAt": 20210803,
+            "coverFile": "cover.webp"
+        },
+        {
+            "title": "Harry Potter et la Coupe de Feu",
+            "playlistId": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
+            "releaseDate": "10/11/2005",
+            "duration": "02:17:52",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC",
+            "availableAt": 20210910,
+            "coverFile": "cover.webp"
+        },
+        {
+            "title": "Pumpkin Jack",
+            "playlistId": "PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
+            "releaseDate": "23/10/2020",
+            "duration": "05:00:00",
+            "genres": [
+                "Platformer",
+                "Puzzle"
+            ],
+            "platform": "PC",
+            "availableAt": 20210922,
+            "coverFile": "cover.webp"
         }
     ]
 }
