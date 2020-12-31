@@ -1103,7 +1103,7 @@
             ],
             "platform": "GBA",
             "availableAt": 20210802,
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         },
         {
             "title": "Ratchet & Clank : Opération Destruction",
@@ -1118,7 +1118,7 @@
             ],
             "platform": "PS3",
             "availableAt": 20210803,
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         },
         {
             "title": "Harry Potter et la Coupe de Feu",
@@ -1131,7 +1131,7 @@
             ],
             "platform": "PC",
             "availableAt": 20210910,
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         },
         {
             "title": "Pumpkin Jack",
@@ -1144,7 +1144,7 @@
             ],
             "platform": "PC",
             "availableAt": 20210922,
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         }
     ]
 }
