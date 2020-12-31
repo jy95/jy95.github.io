@@ -31,7 +31,18 @@ class Viewer extends React.Component {
         }
 
         const columns = [
-            {field: "title", headerName: t("planning.columns.title"), width: 270},
+            {
+                field: "title", 
+                headerName: t("planning.columns.title"),
+                renderCell: (params) => (
+                    <Tooltip title={params.value} aria-label={params.value}>
+                        <div>
+                            {params.value}
+                        </div>
+                    </Tooltip>
+                ),
+                width: 270
+            },
             {
                 field: "platform",
                 headerName: t("planning.columns.platform"),
@@ -78,7 +89,7 @@ class Viewer extends React.Component {
             <div style={{ height: 450, width: '100%' }}>
                 <div style={{ display: 'flex', height: '100%' }}>
                     <div style={{ flexGrow: 1 }}>
-                        <DataGrid rows={data} columns={columns} />
+                        <DataGrid rows={data} columns={columns} disableSelectionOnClick/>
                     </div>
                 </div>
             </div>
