@@ -178,5 +178,14 @@
         "id": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
         "availableAt": 20210910,
         "endAt": 20210920
+    },
+    {
+        "title": "Pumpkin Jack",
+        "platform": "PC",
+        "releaseDate": "22/09/2021",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
+        "availableAt": 20210922,
+        "endAt": 20211004
     }
 ]

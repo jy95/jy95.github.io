@@ -1132,6 +1132,19 @@
             "platform": "PC",
             "availableAt": 20210910,
             "coverFile": "cover.jpg"
+        },
+        {
+            "title": "Pumpkin Jack",
+            "playlistId": "PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
+            "releaseDate": "23/10/2020",
+            "duration": "05:00:00",
+            "genres": [
+                "Platformer",
+                "Puzzle"
+            ],
+            "platform": "PC",
+            "availableAt": 20210922,
+            "coverFile": "cover.jpg"
         }
     ]
 }
