@@ -1145,6 +1145,19 @@
             "platform": "PC",
             "availableAt": 20210922,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Dingo : Une Journée de Dingue !",
+            "videoId": "-LX3ae9m_uU",
+            "releaseDate": "13/12/2001",
+            "duration": "00:53:20",
+            "genres": [
+                "Puzzle",
+                "Educational"
+            ],
+            "platform": "PS1",
+            "availableAt": 20211006,
+            "coverFile": "cover.jpg"
         }
     ]
 }
