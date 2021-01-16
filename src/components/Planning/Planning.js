@@ -34,6 +34,7 @@ class Viewer extends React.Component {
             {
                 field: "title", 
                 headerName: t("planning.columns.title"),
+                headerAlign: 'center',
                 renderCell: (params) => (
                     <Tooltip title={params.value} aria-label={params.value}>
                         <div>
@@ -46,6 +47,8 @@ class Viewer extends React.Component {
             {
                 field: "platform",
                 headerName: t("planning.columns.platform"),
+                //headerAlign: 'center',
+                //align: 'center',
                 renderCell: (params) => (
                     <SvgIcon titleAccess={params.value}>
                         <path d={iconsSVG[params.value]} />
@@ -55,6 +58,7 @@ class Viewer extends React.Component {
             {
                 field: "releaseDate", 
                 headerName: t("planning.columns.releaseDate"),
+                headerAlign: 'center',
                 renderCell: (params) => (
                     <>
                         {params.value.toLocaleDateString(undefined, date_options)}
@@ -65,6 +69,7 @@ class Viewer extends React.Component {
             {
                 field: "status",
                 headerName: t("planning.columns.status"),
+                //headerAlign: 'center',
                 renderCell: (params) => (
                     <Tooltip title={t("planning.states." + params.value )} aria-label={params.value}>
                         {
