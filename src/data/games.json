@@ -1158,6 +1158,19 @@
             "platform": "PS1",
             "availableAt": 20211006,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Destroy All Humans! En route vers Paname !",
+            "playlistId": "PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
+            "releaseDate": "13/02/2009",
+            "duration": "06:44:54",
+            "genres": [
+                "Shooter",
+                "Adventure"
+            ],
+            "platform": "PS3",
+            "availableAt": 20211008,
+            "coverFile": "cover.jpg"
         }
     ]
 }
