@@ -205,5 +205,14 @@
         "id": "PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
         "availableAt": 20211007,
         "endAt": 20211110
+    },
+    {
+        "title": "Madagascar",
+        "platform": "PS2",
+        "releaseDate": "08/10/2021",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn",
+        "availableAt": 20211009,
+        "endAt": 20211126
     }
 ]

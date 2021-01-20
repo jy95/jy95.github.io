@@ -1171,6 +1171,19 @@
             "platform": "PS3",
             "availableAt": 20211008,
             "coverFile": "cover.jpg"
+        },
+        {
+            "title": "Madagascar",
+            "playlistId": "PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn",
+            "releaseDate": "17/06/2005",
+            "duration": "03:24:49",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PS2",
+            "availableAt": 20211009,
+            "coverFile": "cover.jpg"
         }
     ]
 }
