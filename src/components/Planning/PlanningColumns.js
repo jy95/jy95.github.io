@@ -35,7 +35,8 @@ export default (t, date_options) => [
             <SvgIcon titleAccess={params.value}>
                 <path d={iconsSVG[params.value]} />
             </SvgIcon>
-        )
+        ),
+        width: 130
     },
     {
         field: "releaseDate", 

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import i18n from 'i18next';
 import {useTranslation} from "react-i18next";
 
 import {get_scheduled_games} from "../../actions/planning";
@@ -11,6 +12,9 @@ import CenteredGrid from "../Others/CenteredGrid";
 
 // columns definitions
 import getTableColumns from "./PlanningColumns";
+
+// Custom French translation
+import customTranslation from "./PlanningFrenchLabels";
 
 function Viewer(props) {
 
@@ -27,6 +31,7 @@ function Viewer(props) {
 
     const date_options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
     const columns = getTableColumns(t, date_options);
+    const customLocaleText = (i18n.language.startsWith("fr")) ? customTranslation : {};
 
     if (loading) {
         return <CenteredGrid>
@@ -35,10 +40,19 @@ function Viewer(props) {
     }
     // In the past => height: 450
     return (
-        <div style={{ width: '100%' }}>
+        <div style={{ height: 450, width: '100%' }}>
             <div style={{ display: 'flex', height: '100%' }}>
                 <div style={{ flexGrow: 1 }}>
-                    <DataGrid rows={data} columns={columns} disableSelectionOnClick autoHeight showToolbar/>
+                    <DataGrid 
+                        rows={data} 
+                        columns={columns} 
+                        disableSelectionOnClick 
+                        //disableExtendRowFullWidth // No needed for now
+                        disableColumnFilter // or filterable: false in each column
+                        autoHeight 
+                        showToolbar 
+                        localeText={customLocaleText}
+                    />
                 </div>
             </div>
         </div>
