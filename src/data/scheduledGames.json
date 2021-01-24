@@ -214,5 +214,14 @@
         "id": "PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn",
         "availableAt": 20211009,
         "endAt": 20211126
+    },
+    {
+        "title": "Titeuf : Méga-Compet'",
+        "platform": "PS2",
+        "releaseDate": "11/10/2021",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
+        "availableAt": 20211111,
+        "endAt": 20211113
     }
 ]

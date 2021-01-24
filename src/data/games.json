@@ -1184,6 +1184,19 @@
             "platform": "PS2",
             "availableAt": 20211009,
             "coverFile": "cover.jpg"
+        },
+        {
+            "title": "Titeuf : Méga-Compet'",
+            "playlistId": "PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
+            "releaseDate": "24/09/2004",
+            "duration": "01:26:00",
+            "genres": [
+                "Casual",
+                "Puzzle"
+            ],
+            "platform": "PS2",
+            "availableAt": 20211111,
+            "coverFile": "cover.jpg"
         }
     ]
 }
