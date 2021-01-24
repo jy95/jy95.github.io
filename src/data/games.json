@@ -1170,7 +1170,7 @@
             ],
             "platform": "PS3",
             "availableAt": 20211008,
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         },
         {
             "title": "Madagascar",
@@ -1183,7 +1183,7 @@
             ],
             "platform": "PS2",
             "availableAt": 20211009,
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         },
         {
             "title": "Titeuf : Méga-Compet'",
@@ -1196,7 +1196,7 @@
             ],
             "platform": "PS2",
             "availableAt": 20211111,
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         }
     ]
 }
