@@ -1158,6 +1158,45 @@
             "platform": "PS1",
             "availableAt": 20211006,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Destroy All Humans! En route vers Paname !",
+            "playlistId": "PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
+            "releaseDate": "13/02/2009",
+            "duration": "06:44:54",
+            "genres": [
+                "Shooter",
+                "Adventure"
+            ],
+            "platform": "PS3",
+            "availableAt": 20211008,
+            "coverFile": "cover.webp"
+        },
+        {
+            "title": "Madagascar",
+            "playlistId": "PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn",
+            "releaseDate": "17/06/2005",
+            "duration": "03:24:49",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PS2",
+            "availableAt": 20211009,
+            "coverFile": "cover.webp"
+        },
+        {
+            "title": "Titeuf : Méga-Compet'",
+            "playlistId": "PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
+            "releaseDate": "24/09/2004",
+            "duration": "01:26:00",
+            "genres": [
+                "Casual",
+                "Puzzle"
+            ],
+            "platform": "PS2",
+            "availableAt": 20211111,
+            "coverFile": "cover.webp"
         }
     ]
 }
