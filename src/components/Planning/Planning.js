@@ -38,7 +38,7 @@ function Viewer(props) {
             <CircularProgress/>
         </CenteredGrid>
     }
-    // In the past => height: 450
+
     return (
         <div style={{ height: 450, width: '100%' }}>
             <div style={{ display: 'flex', height: '100%' }}>
