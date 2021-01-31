@@ -30,8 +30,9 @@ function Viewer(props) {
     )
 
     const date_options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
-    const columns = getTableColumns(t, date_options);
-    const customLocaleText = (i18n.language.startsWith("fr")) ? customTranslation : {};
+    const language = i18n.language;
+    const columns = getTableColumns(t, date_options, language);
+    const customLocaleText = (language.startsWith("fr")) ? customTranslation : {};
 
     if (loading) {
         return <CenteredGrid>

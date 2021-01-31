@@ -10,6 +10,12 @@
             "DESC": "Descending sorting"
         }
     },
+    "header": {
+        "languages": {
+            "en": "English version of the site",
+            "fr": "French version of the site"
+        }
+    },
     "gamesLibrary": {
         "sortButtonLabel": "Sorts",
         "sortLabels": {

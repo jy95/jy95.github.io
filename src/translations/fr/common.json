@@ -10,6 +10,12 @@
             "DESC": "Tri descendant"
         }
     },
+    "header": {
+        "languages": {
+            "en": "Version anglaise du site",
+            "fr": "Version française du site"
+        }
+    },
     "gamesLibrary": {
         "sortButtonLabel": "Tris",
         "sortLabels": {

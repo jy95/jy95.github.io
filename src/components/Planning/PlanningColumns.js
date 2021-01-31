@@ -12,7 +12,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import iconsSVG from "../GamesView/PlatformIcons";
 
 // columns definitions
-export default (t, date_options) => [
+export default (t, date_options, language) => [
     {
         field: "title", 
         headerName: t("planning.columns.title"),
@@ -44,7 +44,7 @@ export default (t, date_options) => [
         headerAlign: 'center',
         renderCell: (params) => (
             <>
-                {params.value.toLocaleDateString(undefined, date_options)}
+                {params.value.toLocaleDateString(language, date_options)}
             </>
         ),
         width: 200
