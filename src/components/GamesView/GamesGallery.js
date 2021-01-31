@@ -31,20 +31,20 @@ const matches_title_search = (searchTitle) => (game) => game.title.search(new Re
 const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v.key) >= 0);
 
 // To dynamically change the number of items depending of browser
-
 const useStyles = makeStyles((theme) => ({
+    // inspired by the settings https://www.youtube.com/gaming uses ;)
     gameEntry: {
+        // 2 items on [0, sm]
         [theme.breakpoints.only('xs')]: {
             "flex-basis": "calc((100% / 2) - 1%)"
         },
+        // 4 items on [sm, md[
         [theme.breakpoints.only('sm')]: {
             "flex-basis": "calc((100% / 4) - 1%)"
         },
-        [theme.breakpoints.only('md')]: {
+        // 8 items on [md, infinity]
+        [theme.breakpoints.up('md')]: {
             "flex-basis": "calc((100% / 8) - 1%)"
-        },
-        [theme.breakpoints.up('lg')]: {
-            "flex-basis": "calc((100% / 10) - 1%)"
         },
     },
     gamesCriteria: {

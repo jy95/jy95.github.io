@@ -1,101 +1,63 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { withTranslation } from 'react-i18next';
+import i18n from 'i18next';
+import {useTranslation} from "react-i18next";
+
 import {get_scheduled_games} from "../../actions/planning";
-import iconsSVG from "../GamesView/PlatformIcons";
 
 // Style
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
-import Tooltip from '@material-ui/core/Tooltip';
-import { DataGrid } from '@material-ui/data-grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import { DataGrid } from '@material-ui/data-grid';
 import CenteredGrid from "../Others/CenteredGrid";
 
-class Viewer extends React.Component {
+// columns definitions
+import getTableColumns from "./PlanningColumns";
 
-    componentDidMount() {
-        this.props.get_scheduled_games();
-    };
+// Custom French translation
+import customTranslation from "./PlanningFrenchLabels";
 
-    render() {
+function Viewer(props) {
 
-        const {loading, data, t} = this.props;
-        const date_options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+    const {loading, data} = props;
+    const { t } = useTranslation('common');
 
-        if (loading) {
-            return <CenteredGrid>
-                <CircularProgress/>
-            </CenteredGrid>
-        }
+    // on mount, load data (only once)
+    React.useEffect(() => {
+        props.get_scheduled_games();
+    },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    )
 
-        const columns = [
-            {
-                field: "title", 
-                headerName: t("planning.columns.title"),
-                renderCell: (params) => (
-                    <Tooltip title={params.value} aria-label={params.value}>
-                        <div>
-                            {params.value}
-                        </div>
-                    </Tooltip>
-                ),
-                width: 270
-            },
-            {
-                field: "platform",
-                headerName: t("planning.columns.platform"),
-                renderCell: (params) => (
-                    <SvgIcon titleAccess={params.value}>
-                        <path d={iconsSVG[params.value]} />
-                    </SvgIcon>
-                )
-            },
-            {
-                field: "releaseDate", 
-                headerName: t("planning.columns.releaseDate"),
-                renderCell: (params) => (
-                    <>
-                        {params.value.toLocaleDateString(undefined, date_options)}
-                    </>
-                ),
-                width: 200
-            },
-            {
-                field: "status",
-                headerName: t("planning.columns.status"),
-                renderCell: (params) => (
-                    <Tooltip title={t("planning.states." + params.value )} aria-label={params.value}>
-                        {
-                            (() => {
-                                switch(params.value) {
-                                    case "RECORDED":
-                                        return <CheckCircleIcon />;
-                                    case "PENDING":
-                                        return <HourglassEmptyIcon />;
-                                    default:
-                                        return null;
-                                }
-                            })()
-                        }   
-                    </Tooltip>
-                )
-            }
-        ]
+    const date_options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+    const language = i18n.language;
+    const columns = getTableColumns(t, date_options, language);
+    const customLocaleText = (language.startsWith("fr")) ? customTranslation : {};
 
+    if (loading) {
+        return <CenteredGrid>
+            <CircularProgress/>
+        </CenteredGrid>
+    }
 
-        return (
-            <div style={{ height: 450, width: '100%' }}>
-                <div style={{ display: 'flex', height: '100%' }}>
-                    <div style={{ flexGrow: 1 }}>
-                        <DataGrid rows={data} columns={columns} disableSelectionOnClick/>
-                    </div>
+    return (
+        <div style={{ height: 450, width: '100%' }}>
+            <div style={{ display: 'flex', height: '100%' }}>
+                <div style={{ flexGrow: 1 }}>
+                    <DataGrid 
+                        rows={data} 
+                        columns={columns} 
+                        disableSelectionOnClick 
+                        //disableExtendRowFullWidth // No needed for now
+                        disableColumnFilter // or filterable: false in each column
+                        autoHeight 
+                        showToolbar 
+                        localeText={customLocaleText}
+                    />
                 </div>
             </div>
-        )
-
-    }
+        </div>
+    )
 
 }
 
@@ -113,6 +75,4 @@ const mapDispatchToProps = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(
-    withTranslation("common")(Viewer)
-);
+)(Viewer);

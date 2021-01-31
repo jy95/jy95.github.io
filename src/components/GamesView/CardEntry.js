@@ -1,82 +1,74 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
+import { useHistory } from "react-router-dom";
+
+// To check what should happen when clicking on a game
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import {Link} from 'react-router-dom';
-
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
-import CardActions from "@material-ui/core/CardActions";
-
-import IconButton from "@material-ui/core/IconButton";
-import YouTubeIcon from '@material-ui/icons/YouTube';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import CardActionArea from '@material-ui/core/CardActionArea';
 
 import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme) => ({
-    localVideoPlayerButton : {
-        [theme.breakpoints.down('sm')]: {
-            display: "none"
-        }
+    gameRoot: {
+        position: "relative",
+        height: "100%"
     },
     gameCover: {
-        [theme.breakpoints.between('xs', 'md')]: {
-            height: 200
-        },
-        [theme.breakpoints.up('md')]: {
-            height: 150
-        },
+        zIndex: 1,
+        height: "inherit"
     },
-    gameControls : {
-        display: 'flex',
-        justifyContent: 'center',
-        paddingLeft: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
+    MuiCardActionArea:{
+        height: "inherit",
+        zIndex: 1
     }
 }));
 
 function CardEntry(props) {
 
-    const {game} = props;
+    // hooks
+    const theme = useTheme();
     const { t } = useTranslation('common');
+    const history = useHistory();
+
+    // rest
+    const {game} = props;
     const classes = useStyles(props);
+    const is_mobile_device = useMediaQuery(theme.breakpoints.down('sm'));
+    const label_for_game = (is_mobile_device) ? "gamesLibrary.actionsButton.watchOnYt" : "gamesLibrary.actionsButton.watchHere";
+
+    function watchGame() {
+        const local_path = game.url_type === "PLAYLIST" ? "/playlist/" + game.playlistId : "/video/" + game.videoId;
+        console.log(is_mobile_device)
+        if (is_mobile_device) {
+            window.location.href = game.url;
+        } else {
+            history.push(local_path);
+        }
+    }
 
     return (
-        <Card>
+        <Card className={classes.gameRoot}>
 
-            <CardMedia
-                component="img"
-                className={classes.gameCover}
-                image={game.imagePath}
-                title={game.title}
-            />
-
-            <CardActions className={classes.gameControls}>
-
-                <Tooltip title={t("gamesLibrary.actionsButton.watchHere", { "gameName": game.title})} aria-label="Watch" className={classes.localVideoPlayerButton}>
-                    <IconButton
-                        aria-label="play"
-                        component={Link}
-                        to={
-                            game.url_type === "PLAYLIST" ? "/playlist/" + game.playlistId : "/video/" + game.videoId
-                        }
-                    >
-                        <PlayArrowIcon/>
-                    </IconButton>
-                </Tooltip>            
-
-                <Tooltip title={t("gamesLibrary.actionsButton.watchOnYt", { "gameName": game.title})} aria-label="WatchOnYoutube">
-                    <IconButton
-                        aria-label="share"
-                        href={game.url}
-                    >
-                        <YouTubeIcon/>
-                    </IconButton>
-                </Tooltip>
-            </CardActions>
-
+            <Tooltip title={t(label_for_game, { "gameName": game.title})} aria-label="WatchGame">
+                <CardActionArea 
+                    onClick={watchGame}
+                    classes={{root: classes.MuiCardActionArea}}
+                >
+                    <CardMedia
+                        component="img"
+                        className={classes.gameCover}
+                        image={game.imagePath}
+                        title={game.title}
+                    />
+                </CardActionArea>
+            </Tooltip>
+            
         </Card>
     );
 }

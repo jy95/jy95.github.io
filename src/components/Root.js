@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import {connect} from 'react-redux';
+import { Provider, connect } from 'react-redux'
+import i18n from 'i18next';
 
 // Dark mode
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -11,7 +11,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import {setThemeColor} from "../actions/themeColor";
 
 // languages
-import {frFR} from '@material-ui/core/locale';
+import {frFR, enUS} from '@material-ui/core/locale';
 
 // Components
 import Header from "./Home/Header";
@@ -24,12 +24,19 @@ import TestsGallery from "./Tests/TestsGallery";
 import Grid from '@material-ui/core/Grid';
 import basicStyle from "./Home/styles"
 
+// Languages for Material UI
+const materialUI_languages = {
+    fr: frFR,
+    en: enUS
+}
+
 function Root(props) {
 
     const classes = basicStyle();
     const { store, setThemeColor, themeSettings} = props;
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
     const systemColor = prefersDarkMode ? "dark" : "light";
+    const currentLanguage = i18n.language;
 
     // for drawer
     const [open, setOpen] = React.useState(false);
@@ -53,8 +60,8 @@ function Root(props) {
             palette: {
               type: themeSettings.currentColor,
             },
-          }, frFR),
-        [themeSettings.currentColor],
+          }, materialUI_languages[currentLanguage]),
+        [currentLanguage, themeSettings.currentColor],
       );
 
     return (

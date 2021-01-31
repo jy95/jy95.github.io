@@ -31,8 +31,9 @@ i18next
     .use(initReactI18next) // passes i18n down to react-i18next
     .init({
         interpolation: { escapeValue: false },  // React already does escaping
-        lng: "fr", // the language to use by default
-        fallbackLng: 'en', // if detected lng is not available
+        //lng: "fr", // the language to use by default // <--- turn off for detection to work
+        fallbackLng: 'fr', // if detected lng is not available
+        supportedLngs: ['fr', 'en'],
         resources
     });
 
