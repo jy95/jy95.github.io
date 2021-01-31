@@ -39,7 +39,7 @@ function CardEntry(props) {
     // rest
     const {game} = props;
     const classes = useStyles(props);
-    const is_mobile_device = useMediaQuery(theme.breakpoints.down('md'));
+    const is_mobile_device = useMediaQuery(theme.breakpoints.down('sm'));
     const label_for_game = (is_mobile_device) ? "gamesLibrary.actionsButton.watchOnYt" : "gamesLibrary.actionsButton.watchHere";
 
     function watchGame() {
