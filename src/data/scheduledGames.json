@@ -223,5 +223,14 @@
         "id": "PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
         "availableAt": 20211111,
         "endAt": 20211113
+    },
+    {
+        "title": "Jak and Daxter: The Precursor Legacy",
+        "platform": "PS3",
+        "releaseDate": "15/11/2021",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
+        "availableAt": 20211115,
+        "endAt": 20211210
     }
 ]
