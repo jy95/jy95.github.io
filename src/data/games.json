@@ -1197,6 +1197,20 @@
             "platform": "PS2",
             "availableAt": 20211111,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Jak and Daxter: The Precursor Legacy",
+            "playlistId": "PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
+            "releaseDate": "14/12/2001",
+            "duration": "05:07:21",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PS3",
+            "availableAt": 20211115,
+            "coverFile": "cover.jpg"
         }
     ]
 }
