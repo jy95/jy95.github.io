@@ -232,5 +232,14 @@
         "id": "PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
         "availableAt": 20211115,
         "endAt": 20211210
+    },
+    {
+        "title": "Splinter Cell Chaos Theory HD",
+        "platform": "PS3",
+        "releaseDate": "13/12/2021",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+        "availableAt": 20211213,
+        "endAt": 20220103
     }
 ]

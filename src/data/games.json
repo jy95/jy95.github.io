@@ -1211,6 +1211,19 @@
             "platform": "PS3",
             "availableAt": 20211115,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Splinter Cell Chaos Theory HD",
+            "playlistId": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+            "releaseDate": "10/08/2011",
+            "duration": "05:22:51",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PS3",
+            "availableAt": 20211213,
+            "coverFile": "cover.webp"
         }
     ]
 }
