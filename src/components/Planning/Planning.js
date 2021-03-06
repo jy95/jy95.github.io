@@ -7,7 +7,7 @@ import {get_scheduled_games} from "../../actions/planning";
 
 // Style
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid, GridToolbar } from '@material-ui/data-grid';
 import CenteredGrid from "../Others/CenteredGrid";
 
 // columns definitions
@@ -50,9 +50,9 @@ function Viewer(props) {
                         disableSelectionOnClick 
                         //disableExtendRowFullWidth // No needed for now
                         disableColumnFilter // or filterable: false in each column
-                        autoHeight 
-                        showToolbar 
+                        autoHeight  
                         localeText={customLocaleText}
+                        components={{ Toolbar: GridToolbar }}
                     />
                 </div>
             </div>

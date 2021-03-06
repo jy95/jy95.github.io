@@ -52,8 +52,13 @@ export default {
     columnHeaderSortIconLabel: "Trier",
 
     // Total rows footer text
-    footerTotalRows: "Total de jeux planifiés:",
+    footerTotalRows: "Total de jeux planifiés :",
 
     // Pagination footer text
-    footerPaginationRowsPerPage: "Lignes par page:"  
+    footerPaginationRowsPerPage: "Lignes par page :",
+
+    // Export
+    toolbarExport: "Export",
+    toolbarExportLabel: "Export",
+    toolbarExportCSV: "Export en CSV"
 }
