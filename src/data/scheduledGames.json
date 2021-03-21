@@ -241,5 +241,14 @@
         "id": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
         "availableAt": 20211213,
         "endAt": 20220103
+    },
+    {
+        "title": "Jak II : Hors la Loi",
+        "platform": "PS3",
+        "releaseDate": "05/01/2022",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
+        "availableAt": 20220105,
+        "endAt": 20220128
     }
 ]

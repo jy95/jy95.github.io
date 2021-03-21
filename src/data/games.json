@@ -1224,6 +1224,21 @@
             "platform": "PS3",
             "availableAt": 20211213,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Jak II : Hors la Loi",
+            "playlistId": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
+            "releaseDate": "15/10/2003",
+            "duration": "06:25:22",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer",
+                "Shooter"                
+            ],
+            "platform": "PS3",
+            "availableAt": 20220105,
+            "coverFile": "cover.jpg"
         }
     ]
 }
