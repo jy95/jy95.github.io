@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fa3fda3edcfdbaba5d8821b1c1d610aa",
+    "revision": "d02f182b4a64528cc5c5351d75a53e53",
     "url": "/yt_gaming_library/index.html"
   },
   {
-    "revision": "d4f3ab5aa71abb7e454f",
+    "revision": "1ab3c091a01474532d68",
     "url": "/yt_gaming_library/static/css/main.34de6062.chunk.css"
   },
   {
-    "revision": "427be839ad128e4883dd",
-    "url": "/yt_gaming_library/static/js/2.6c8e228c.chunk.js"
+    "revision": "9931a297549b2ee4eea5",
+    "url": "/yt_gaming_library/static/js/2.e601ca1f.chunk.js"
   },
   {
     "revision": "5cf0b55f711b4765b7e42faa5df6636d",
-    "url": "/yt_gaming_library/static/js/2.6c8e228c.chunk.js.LICENSE.txt"
+    "url": "/yt_gaming_library/static/js/2.e601ca1f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d4f3ab5aa71abb7e454f",
-    "url": "/yt_gaming_library/static/js/main.c92e2568.chunk.js"
+    "revision": "1ab3c091a01474532d68",
+    "url": "/yt_gaming_library/static/js/main.46cd715c.chunk.js"
   },
   {
     "revision": "3f699ebdc7a0d9cdcc12",
