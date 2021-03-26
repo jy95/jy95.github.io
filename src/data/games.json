@@ -1239,6 +1239,19 @@
             "platform": "PS3",
             "availableAt": 20220105,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Splinter Cell: Pandora Tomorrow",
+            "playlistId": "PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH",
+            "releaseDate": "25/03/2004",
+            "duration": "03:11:52",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PS3",
+            "availableAt": 20220131,
+            "coverFile": "cover.jpg"
         }
     ]
 }
