@@ -250,5 +250,14 @@
         "id": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
         "availableAt": 20220105,
         "endAt": 20220128
+    },
+    {
+        "title": "Splinter Cell: Pandora Tomorrow",
+        "platform": "PS3",
+        "releaseDate": "31/01/2022",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH",
+        "availableAt": 20220131,
+        "endAt": 20220216
     }
 ]
