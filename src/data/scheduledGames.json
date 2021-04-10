@@ -259,5 +259,14 @@
         "id": "PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH",
         "availableAt": 20220131,
         "endAt": 20220216
+    },
+    {
+        "title": "Jak 3",
+        "platform": "PS3",
+        "releaseDate": "18/02/2022",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
+        "availableAt": 20220218,
+        "endAt": 20220318
     }
 ]

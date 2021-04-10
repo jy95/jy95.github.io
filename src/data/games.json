@@ -1252,6 +1252,21 @@
             "platform": "PS3",
             "availableAt": 20220131,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Jak 3",
+            "playlistId": "PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
+            "releaseDate": "01/12/2004",
+            "duration": "06:27:02",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer",
+                "Shooter"                
+            ],
+            "platform": "PS3",
+            "availableAt": 20220218,
+            "coverFile": "cover.webp"
         }
     ]
 }
