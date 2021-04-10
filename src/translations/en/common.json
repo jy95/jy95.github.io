@@ -25,7 +25,11 @@
         },
         "actionsButton": {
             "watchHere": "Watch {{gameName}}",
-            "watchOnYt": "$t(gamesLibrary.actionsButton.watchHere) on Youtube"
+            "watchOnYt": "$t(gamesLibrary.actionsButton.watchHere) on Youtube",
+            "copyLink": "Copy link",
+            "shareOnTwitter": "Share on Twitter",
+            "shareOnFacebook": "Share on Facebook",
+            "shareOnReddit": "Share on Reddit"
         },
         "filtersButtonLabel": "Filter",
         "filtersLabels": {

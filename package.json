@@ -9,6 +9,7 @@
     "clsx": "^1.1.1",
     "i18next": "^19.9.2",
     "i18next-browser-languagedetector": "^6.1.0",
+    "material-ui-popup-state": "^1.8.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.10.2",
