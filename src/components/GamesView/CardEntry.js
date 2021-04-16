@@ -14,12 +14,6 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 
 import Tooltip from '@material-ui/core/Tooltip';
 
-// Context Menu
-import {
-    usePopupState,
-    bindContextMenu
-} from 'material-ui-popup-state/hooks'
-
 import CardDialog from "./CardDialog";
 
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +42,9 @@ function CardEntry(props) {
     const {game} = props;
     const classes = useStyles(props);
     const is_mobile_device = useMediaQuery(theme.breakpoints.down('sm'));
+
+    // state of context menu
+    const [contextMenuOpen,setContextMenuOpen] = React.useState(false);
     
     // labels
     const LABEL_WATCH_ON_YT = "gamesLibrary.actionsButton.watchOnYt";
@@ -69,15 +66,13 @@ function CardEntry(props) {
         }
     }
 
-    const popupState = usePopupState({ variant: 'popover', popupId: 'contextMenu' });
-
     return (
         <Card className={classes.gameRoot}>
 
             <Tooltip title={t(label_for_game, { "gameName": gameTitle})} aria-label="WatchGame">
                 <CardActionArea 
                     onClick={watchGame}
-                    {...bindContextMenu(popupState)}
+                    onContextMenu={() => setContextMenuOpen(true)}
                     classes={{root: classes.MuiCardActionArea}}
                 >
                     <CardMedia
@@ -88,7 +83,7 @@ function CardEntry(props) {
                     />
                 </CardActionArea>
             </Tooltip>
-            <CardDialog game={game} popupState={popupState} />
+            <CardDialog game={game} contextMenuState={[contextMenuOpen,setContextMenuOpen]} />
             
         </Card>
     );
