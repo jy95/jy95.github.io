@@ -72,7 +72,10 @@ function CardEntry(props) {
             <Tooltip title={t(label_for_game, { "gameName": gameTitle})} aria-label="WatchGame">
                 <CardActionArea 
                     onClick={watchGame}
-                    onContextMenu={() => setContextMenuOpen(true)}
+                    onContextMenu={(event) => {
+                        event.preventDefault();
+                        setContextMenuOpen(true);
+                    }}
                     classes={{root: classes.MuiCardActionArea}}
                 >
                     <CardMedia

@@ -12,7 +12,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import iconsSVG from "../GamesView/PlatformIcons";
 
 // columns definitions
-export default (t, date_options, language) => [
+const planningColumns = (t, date_options, language) => [
     {
         field: "title", 
         headerName: t("planning.columns.title"),
@@ -71,3 +71,5 @@ export default (t, date_options, language) => [
         )
     }
 ];
+
+export default planningColumns;

@@ -1,4 +1,4 @@
-export default {
+const frenchLabels = {
     // Root
     rootGridLabel: "Planning",
     noRowsLabel: "Plus de jeux planifié",
@@ -61,4 +61,6 @@ export default {
     toolbarExport: "Export",
     toolbarExportLabel: "Export",
     toolbarExportCSV: "Export en CSV"
-}
+};
+
+export default frenchLabels;
