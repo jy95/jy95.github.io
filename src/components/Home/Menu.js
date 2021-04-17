@@ -1,10 +1,75 @@
-
-// the menues entries
-import {ENTRIES} from "./MenuEntries";
-import {Divider, Drawer, IconButton} from "@material-ui/core";
-import clsx from "clsx";
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import React from "react";
+import clsx from "clsx";
+import {useTranslation} from "react-i18next";
+
+// Material UI
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Tooltip from '@material-ui/core/Tooltip';
+
+// Router
+import {
+    Link,
+    useRouteMatch
+} from "react-router-dom"
+
+// icons
+import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import ExtensionIcon from '@material-ui/icons/Extension';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+
+// List Item
+function ListItemLink(props) {
+    const { icon, primary, to } = props;
+    const { t } = useTranslation('common');
+    const entry_label = t(primary);
+
+    const matchUrl = useRouteMatch(to) !== null;
+
+    const renderLink = React.useMemo(
+        () =>
+            React.forwardRef((linkProps, ref) => (
+                // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
+                // See https://github.com/ReactTraining/react-router/issues/6056
+                <Link to={to} {...linkProps} innerRef={ref} />
+            )),
+        [to],
+    );
+
+    return (
+        <Tooltip title={entry_label} aria-label={primary}>
+            <ListItem button component={renderLink} selected={matchUrl}>
+                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemText primary={entry_label} />
+            </ListItem>
+        </Tooltip>
+    )
+};
+
+// entries
+const ENTRIES = [
+    {
+        "icon": <SportsEsportsIcon />,
+        "primary": "main.menuEntries.gamesKey",
+        "to": "/games"
+    },
+    {
+        "icon": <ScheduleIcon />,
+        "primary": "main.menuEntries.planningKey",
+        "to": "/planning"
+    },
+    {
+        "icon": <ExtensionIcon />,
+        "primary": "main.menuEntries.testsKey",
+        "to": "/tests"  
+    }
+]
 
 export default function Menu(props) {
 
@@ -36,7 +101,11 @@ export default function Menu(props) {
                 </IconButton>
             </div>
             <Divider />
-            {ENTRIES}
+            <List>
+                {
+                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.to} />)
+                }
+            </List>
         </Drawer>
     )
 }
