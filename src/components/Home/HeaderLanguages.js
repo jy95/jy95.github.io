@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default {
+const headerLanguages = {
     'fr': (
         <>
             <defs>
@@ -25,4 +25,6 @@ export default {
             </g>
         </>
     )
-}
+};
+
+export default headerLanguages;

@@ -29,7 +29,8 @@
             "copyLink": "Copier le lien",
             "shareOnTwitter": "Partager sur Twitter",
             "shareOnFacebook": "Partager sur Facebook",
-            "shareOnReddit": "Partager sur Reddit"
+            "shareOnReddit": "Partager sur Reddit",
+            "closeContextMenu": "Fermer"
         },
         "filtersButtonLabel": "Filtres",
         "filtersLabels": {
