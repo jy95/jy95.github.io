@@ -22,6 +22,7 @@ import {
 import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import ExtensionIcon from '@material-ui/icons/Extension';
+import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 // List Item
@@ -68,6 +69,11 @@ const ENTRIES = [
         "icon": <ExtensionIcon />,
         "primary": "main.menuEntries.testsKey",
         "to": "/tests"  
+    },
+    {
+        "icon": <VideoLibraryIcon />,
+        "primary": "main.menuEntries.latestVideosKey",
+        "to": "/latest"
     }
 ]
 

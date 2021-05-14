@@ -20,6 +20,7 @@ import Player from "./YTPlayer/Player";
 import GamesGallery from "./GamesView/GamesGallery";
 import Planning from "./Planning/Planning";
 import TestsGallery from "./Tests/TestsGallery";
+import LatestVideosGallery from "./LatestVideos/LatestVideosGallery";
 
 import Grid from '@material-ui/core/Grid';
 import basicStyle from "./Home/styles"
@@ -81,6 +82,7 @@ function Root(props) {
                                 <Route path="/video/:id" component={Player} />
                                 <Route path="/planning" component={Planning} />
                                 <Route path="/tests" component={TestsGallery} />
+                                <Route path="/latest" component={LatestVideosGallery} />
                             </Grid>
                         </main>
                     </Router>
