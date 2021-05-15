@@ -268,5 +268,14 @@
         "id": "PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
         "availableAt": 20220218,
         "endAt": 20220318
+    },
+    {
+        "title": "Crash Bandicoot 4: It's About Time",
+        "platform": "PC",
+        "releaseDate": "21/03/2022",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ6AGIBxZa5zvykgQBKSHzd5",
+        "availableAt": 20220321,
+        "endAt": 20220413
     }
 ]

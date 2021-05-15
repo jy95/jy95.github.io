@@ -3,6 +3,12 @@
     "defaultCoverFile": "cover.webp",
     "games": [
         {
+            "title": "Nova Drift",
+            "videoId": "RMgDUMubFsM",
+            "releaseDate": "18/05/2021",
+            "platform": "PC"
+        },
+        {
             "title": "Metal Commando",
             "videoId": "ip-PjOmBOb4",
             "releaseDate": "18/11/2020",
