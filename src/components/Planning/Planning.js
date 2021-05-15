@@ -3,22 +3,22 @@ import {connect} from 'react-redux';
 import i18n from 'i18next';
 import {useTranslation} from "react-i18next";
 
-import {get_scheduled_games} from "../../actions/planning";
-
-// Style
-import CircularProgress from '@material-ui/core/CircularProgress';
+// Material UI
 import { DataGrid, GridToolbar } from '@material-ui/data-grid';
-import CenteredGrid from "../Others/CenteredGrid";
 
+// Realod Wrapper
+import ReloadWrapper from "../Others/ReloadWrapper";
 // columns definitions
 import getTableColumns from "./PlanningColumns";
-
 // Custom French translation
 import customTranslation from "./PlanningFrenchLabels";
 
+// Redux actions
+import {get_scheduled_games} from "../../actions/planning";
+
 function Viewer(props) {
 
-    const {loading, data} = props;
+    const {loading, error, data} = props;
     const { t } = useTranslation('common');
 
     // on mount, load data (only once)
@@ -34,31 +34,29 @@ function Viewer(props) {
     const columns = getTableColumns(t, date_options, language);
     const customLocaleText = (language.startsWith("fr")) ? customTranslation : {};
 
-    if (loading) {
-        return <CenteredGrid>
-            <CircularProgress/>
-        </CenteredGrid>
-    }
-
-    return (
-        <div style={{ height: 450, width: '100%' }}>
-            <div style={{ display: 'flex', height: '100%' }}>
-                <div style={{ flexGrow: 1 }}>
-                    <DataGrid 
-                        rows={data} 
-                        columns={columns} 
-                        disableSelectionOnClick 
-                        //disableExtendRowFullWidth // No needed for now
-                        disableColumnFilter // or filterable: false in each column
-                        autoHeight  
-                        localeText={customLocaleText}
-                        components={{ Toolbar: GridToolbar }}
-                    />
+    return <ReloadWrapper 
+        loading={loading}
+        error={error}
+        reloadFct={() => {props.get_scheduled_games();}}
+        component={
+            <div style={{ height: 450, width: '100%' }}>
+                <div style={{ display: 'flex', height: '100%' }}>
+                    <div style={{ flexGrow: 1 }}>
+                        <DataGrid 
+                            rows={data} 
+                            columns={columns} 
+                            disableSelectionOnClick 
+                            //disableExtendRowFullWidth // No needed for now
+                            disableColumnFilter // or filterable: false in each column
+                            autoHeight  
+                            localeText={customLocaleText}
+                            components={{ Toolbar: GridToolbar }}
+                        />
+                    </div>
                 </div>
-            </div>
-        </div>
-    )
-
+            </div>            
+        } 
+    />
 }
 
 // mapStateToProps(state, ownProps)

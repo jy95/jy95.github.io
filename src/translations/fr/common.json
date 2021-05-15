@@ -3,12 +3,16 @@
         "menuEntries": {
             "gamesKey": "Jeux",
             "planningKey": "Planning",
-            "testsKey": "Tests"
+            "testsKey": "Tests",
+            "latestVideosKey": "Dernières vidéos"
         },
         "sortOrders": {
             "ASC": "Tri ascendant",
             "DESC": "Tri descendant"
         }
+    },
+    "common": {
+        "reload": "Recharger"
     },
     "header": {
         "languages": {

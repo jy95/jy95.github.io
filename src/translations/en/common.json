@@ -3,12 +3,16 @@
         "menuEntries": {
             "gamesKey": "Games",
             "planningKey": "Calendar",
-            "testsKey": "Tests"
+            "testsKey": "Tests",
+            "latestVideosKey": "Latest Videos"
         },
         "sortOrders": {
             "ASC": "Ascending sorting",
             "DESC": "Descending sorting"
         }
+    },
+    "common": {
+        "reload": "Reload"
     },
     "header": {
         "languages": {

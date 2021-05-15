@@ -1,14 +1,14 @@
 import React from "react";
 import {connect} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import {get_tests} from "../../actions/tests";
+import {get_latest_videos} from "../../actions/latestVideos";
 
 // Custom
 import ReloadWrapper from "../Others/ReloadWrapper";
-import CardEntry from "../GamesView/CardEntry";
 
 // Style
 import Grid from "@material-ui/core/Grid";
+import CardEntry from "../GamesView/CardEntry";
 
 // To dynamically change the number of items depending of browser
 // Here twice smaller than /games (as these games often are digital only)
@@ -41,14 +41,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // The gallery component
-function TestsGallery(props) {
+function LatestVideosGallery(props) {
 
     const {loading, error, data} = props;
     const classes = useStyles(props);
 
     // on mount, load data (only once)
     React.useEffect(() => {
-        props.get_tests();
+        props.get_latest_videos();
     }, 
         // eslint-disable-next-line react-hooks/exhaustive-deps
         []
@@ -57,7 +57,7 @@ function TestsGallery(props) {
     return <ReloadWrapper 
         loading={loading}
         error={error}
-        reloadFct={() => {props.get_tests();}}
+        reloadFct={() => {props.get_latest_videos();}}
         component={
             <>    
                 <Grid
@@ -89,14 +89,14 @@ function TestsGallery(props) {
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    data: state.tests.games
+    data: state.latestVideos.items
 });
 
 const mapDispatchToProps = {
-    get_tests
+    get_latest_videos
 };
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(TestsGallery);
+)(LatestVideosGallery);
