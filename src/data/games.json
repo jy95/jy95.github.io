@@ -1267,6 +1267,20 @@
             "platform": "PS3",
             "availableAt": 20220218,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Crash Bandicoot 4: It's About Time",
+            "playlistId": "PLRfhDHeBTBJ6AGIBxZa5zvykgQBKSHzd5",
+            "releaseDate": "26/03/2021",
+            "duration": "05:34:31",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PC",
+            "availableAt": 20220321,
+            "coverFile": "cover.jpg"
         }
     ]
 }
