@@ -7,14 +7,9 @@ import {get_games} from "../../actions/games";
 
 import Grid from "@material-ui/core/Grid";
 
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Fab from '@material-ui/core/Fab';
-import AutorenewIcon from '@material-ui/icons/Autorenew';
-
 // Custom
+import ReloadWrapper from "../Others/ReloadWrapper";
 
-import CenteredGrid from "../Others/CenteredGrid";
-import SnackbarWrapper from "../Others/CustomSnackbar";
 import CardEntry from "./CardEntry";
 import GamesSorters from "./GamesSorters";
 import GenresSelect from "./GenresSelect";
@@ -72,36 +67,7 @@ function GamesGallery(props) {
     },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         []
-    )
-
-    if (loading) {
-        return <CenteredGrid>
-            <CircularProgress/>
-        </CenteredGrid>
-    }
-
-    if (error) {
-        return <>
-            <SnackbarWrapper
-                variant={"error"}
-                message={error}
-            />
-            <CenteredGrid>
-                <Fab
-                    variant="extended"
-                    size="medium"
-                    color="primary"
-                    aria-label="reload"
-                    onClick={() => {
-                        props.get_games();
-                    }}
-                >
-                    <AutorenewIcon/>
-                    Recharger
-                </Fab>
-            </CenteredGrid>
-        </>;
-    }
+    );
 
     // prepare filter checks
     let filter_conditions = [];
@@ -126,51 +92,55 @@ function GamesGallery(props) {
         .filter(game => filter_conditions.every(condition => condition(game)))
         .sort(sortFunction);
 
-    return (
-        <>
-            <Grid
-                container
-                className={classes.gamesCriteria}
-            >
-                <Grid item xs={12} md={4}>
-                    <TitleFilter games={currentGames} />
+    return <ReloadWrapper 
+        loading={loading}
+        error={error}
+        reloadFct={() => {props.get_games();}}
+        component={
+            <>
+                <Grid
+                    container
+                    className={classes.gamesCriteria}
+                >
+                    <Grid item xs={12} md={4}>
+                        <TitleFilter games={currentGames} />
+                    </Grid>
+                    <Grid item xs={12} md={2}>
+                        <PlatformSelect />
+                    </Grid>
+                    <Grid item xs={12} md={5}>
+                        <GenresSelect />
+                    </Grid>
+                    <Grid item xs={12} md={1}>
+                        <GamesSorters />
+                    </Grid>
                 </Grid>
-                <Grid item xs={12} md={2}>
-                    <PlatformSelect />
-                </Grid>
-                <Grid item xs={12} md={5}>
-                    <GenresSelect />
-                </Grid>
-                <Grid item xs={12} md={1}>
-                    <GamesSorters />
-                </Grid>
-            </Grid>
-    
-            <Grid
-                container
-                spacing={1}
-                style={
-                    {
-                        rowGap: "15px"
+        
+                <Grid
+                    container
+                    spacing={1}
+                    style={
+                        {
+                            rowGap: "15px"
+                        }
                     }
-                }
-            >
-                {
-                    currentGames
-                        .map(game => 
-                                <Grid 
-                                    key={game.playlistId ?? game.videoId} 
-                                    item 
-                                    className={classes.gameEntry}
-                                >
-                                    <CardEntry game={game}/>
-                                </Grid>
-                        )
-                }
-            </Grid>
-        </>
-    )
-    
+                >
+                    {
+                        currentGames
+                            .map(game => 
+                                    <Grid 
+                                        key={game.playlistId ?? game.videoId} 
+                                        item 
+                                        className={classes.gameEntry}
+                                    >
+                                        <CardEntry game={game}/>
+                                    </Grid>
+                            )
+                    }
+                </Grid>
+            </>
+        }
+    />
 }
 
 // mapStateToProps(state, ownProps)

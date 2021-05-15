@@ -11,6 +11,9 @@
             "DESC": "Tri descendant"
         }
     },
+    "common": {
+        "reload": "Recharger"
+    },
     "header": {
         "languages": {
             "en": "Version anglaise du site",

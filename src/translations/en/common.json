@@ -11,6 +11,9 @@
             "DESC": "Descending sorting"
         }
     },
+    "common": {
+        "reload": "Reload"
+    },
     "header": {
         "languages": {
             "en": "English version of the site",

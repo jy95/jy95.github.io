@@ -4,15 +4,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import {get_latest_videos} from "../../actions/latestVideos";
 
 // Custom
-import CenteredGrid from "../Others/CenteredGrid";
-import SnackbarWrapper from "../Others/CustomSnackbar";
-import CardEntry from "../GamesView/CardEntry";
+import ReloadWrapper from "../Others/ReloadWrapper";
 
 // Style
 import Grid from "@material-ui/core/Grid";
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Fab from '@material-ui/core/Fab';
-import AutorenewIcon from '@material-ui/icons/Autorenew';
+import CardEntry from "../GamesView/CardEntry";
 
 // To dynamically change the number of items depending of browser
 // Here twice smaller than /games (as these games often are digital only)
@@ -58,61 +54,37 @@ function LatestVideosGallery(props) {
         []
     );
 
-    if (loading) {
-        return <CenteredGrid>
-            <CircularProgress/>
-        </CenteredGrid>
-    }
-
-    if (error) {
-        return <>
-            <SnackbarWrapper
-                variant={"error"}
-                message={error}
-            />
-            <CenteredGrid>
-                <Fab
-                    variant="extended"
-                    size="medium"
-                    color="primary"
-                    aria-label="reload"
-                    onClick={() => {
-                        props.get_latest_videos();
-                    }}
-                >
-                    <AutorenewIcon/>
-                    Recharger
-                </Fab>
-            </CenteredGrid>
-        </>;
-    }
-
-    return (
-        <>    
-            <Grid
-                container
-                spacing={1}
-                style={
-                    {
-                        rowGap: "15px"
+    return <ReloadWrapper 
+        loading={loading}
+        error={error}
+        reloadFct={() => {props.get_latest_videos();}}
+        component={
+            <>    
+                <Grid
+                    container
+                    spacing={1}
+                    style={
+                        {
+                            rowGap: "15px"
+                        }
                     }
-                }
-            >
-                {
-                    data
-                        .map(game => 
-                                <Grid 
-                                    key={game.playlistId ?? game.videoId} 
-                                    item 
-                                    className={classes.gameEntry}
-                                >
-                                    <CardEntry game={game}/>
-                                </Grid>
-                        )
-                }
-            </Grid>
-        </>
-    )
+                >
+                    {
+                        data
+                            .map(game => 
+                                    <Grid 
+                                        key={game.playlistId ?? game.videoId} 
+                                        item 
+                                        className={classes.gameEntry}
+                                    >
+                                        <CardEntry game={game}/>
+                                    </Grid>
+                            )
+                    }
+                </Grid>
+            </>            
+        }
+    />
 }
 
 // mapStateToProps(state, ownProps)
