@@ -21,7 +21,7 @@ function mapRSSItemToGame(items) {
                 "title": item.title,
                 "url": item.link,
                 "url_type": "VIDEO",
-                "imagePath": "http://i.ytimg.com/vi_webp/" + videoId + "/0.webp",
+                "imagePath": "https://i.ytimg.com/vi_webp/" + videoId + "/0.webp",
             }
         });
 }
