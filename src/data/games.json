@@ -1281,6 +1281,20 @@
             "platform": "PC",
             "availableAt": 20220321,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Dragon Ball Z : L'Héritage de Goku 2",
+            "playlistId": "PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem",
+            "releaseDate": "01/08/2003",
+            "duration": "04:38:54",
+            "genres": [
+                "Action",
+                "Adventure",
+                "RPG"
+            ],
+            "platform": "GBA",
+            "availableAt": 20220415,
+            "coverFile": "cover.jpg"
         }
     ]
 }
