@@ -13,6 +13,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardActionArea from '@material-ui/core/CardActionArea';
 
 import Tooltip from '@material-ui/core/Tooltip';
+import Image from 'material-ui-image';
 
 import CardDialog from "./CardDialog";
 
@@ -79,11 +80,12 @@ function CardEntry(props) {
                     classes={{root: classes.MuiCardActionArea}}
                 >
                     <CardMedia
-                        component="img"
                         className={classes.gameCover}
-                        image={game.imagePath}
                         title={gameTitle}
-                    />
+                    >
+                        <Image src={game.imagePath} />
+                    </CardMedia>
+
                 </CardActionArea>
             </Tooltip>
             <CardDialog game={game} contextMenuState={[contextMenuOpen,setContextMenuOpen]} />
