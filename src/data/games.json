@@ -1295,6 +1295,20 @@
             "platform": "GBA",
             "availableAt": 20220415,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Zapper : Le Criquet Ravageur !",
+            "playlistId": "PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT",
+            "releaseDate": "07/03/2003",
+            "duration": "02:45:50",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"                
+            ],
+            "platform": "PS2",
+            "availableAt": 20220427,
+            "coverFile": "cover.webp"
         }
     ]
 }
