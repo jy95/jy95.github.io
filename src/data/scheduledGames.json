@@ -295,5 +295,14 @@
         "id": "PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT",
         "availableAt": 20220427,
         "endAt": 20220501
+    },
+    {
+        "title": "DmC: Devil May Cry",
+        "platform": "PC",
+        "releaseDate": "02/05/2022",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3",
+        "availableAt": 20220502,
+        "endAt": 20220524
     }
 ]
