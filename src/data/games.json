@@ -1309,6 +1309,19 @@
             "platform": "PS2",
             "availableAt": 20220427,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "DmC: Devil May Cry",
+            "playlistId": "PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3",
+            "releaseDate": "15/01/2013",
+            "duration": "06:08:09",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC",
+            "availableAt": 20220502,
+            "coverFile": "cover.webp"
         }
     ]
 }
