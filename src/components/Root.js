@@ -5,7 +5,7 @@ import i18n from 'i18next';
 
 // Dark mode
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 // Redux action
 import {setThemeColor} from "../actions/themeColor";
@@ -18,7 +18,8 @@ import Header from "./Home/Header";
 import Menu from "./Home/Menu"
 import Player from "./YTPlayer/Player";
 import GamesGallery from "./GamesView/GamesGallery";
-import Planning from "./Planning/Planning";
+// TODO temporary disabled
+//import Planning from "./Planning/Planning";
 import TestsGallery from "./Tests/TestsGallery";
 import LatestVideosGallery from "./LatestVideos/LatestVideosGallery";
 
@@ -57,7 +58,7 @@ function Root(props) {
     // Prepare theme for possible darkmode
     const theme = React.useMemo(
         () =>
-          createMuiTheme({
+          createTheme({
             palette: {
               type: themeSettings.currentColor,
             },
@@ -80,7 +81,7 @@ function Root(props) {
                                 <Route path="/games" component={GamesGallery} />
                                 <Route path="/playlist/:id" component={Player} />
                                 <Route path="/video/:id" component={Player} />
-                                <Route path="/planning" component={Planning} />
+                                { /* <Route path="/planning" component={Planning} /> */ }
                                 <Route path="/tests" component={TestsGallery} />
                                 <Route path="/latest" component={LatestVideosGallery} />
                             </Grid>

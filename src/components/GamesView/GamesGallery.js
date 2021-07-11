@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import {get_games} from "../../actions/games";
 
 // Style
@@ -92,55 +92,57 @@ function GamesGallery(props) {
         .filter(game => filter_conditions.every(condition => condition(game)))
         .sort(sortFunction);
 
-    return <ReloadWrapper 
-        loading={loading}
-        error={error}
-        reloadFct={() => {props.get_games();}}
-        component={
-            <>
-                <Grid
-                    container
-                    className={classes.gamesCriteria}
-                >
-                    <Grid item xs={12} md={4}>
-                        <TitleFilter games={currentGames} />
+    return (
+        <ReloadWrapper 
+            loading={loading}
+            error={error}
+            reloadFct={() => {props.get_games();}}
+            component={
+                <>
+                    <Grid
+                        container
+                        className={classes.gamesCriteria}
+                    >
+                        <Grid item xs={12} md={4}>
+                            <TitleFilter games={currentGames} />
+                        </Grid>
+                        <Grid item xs={12} md={2}>
+                            <PlatformSelect variant="standard" />
+                        </Grid>
+                        <Grid item xs={12} md={5}>
+                            <GenresSelect variant="standard" />
+                        </Grid>
+                        <Grid item xs={12} md={1}>
+                            <GamesSorters />
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} md={2}>
-                        <PlatformSelect />
-                    </Grid>
-                    <Grid item xs={12} md={5}>
-                        <GenresSelect />
-                    </Grid>
-                    <Grid item xs={12} md={1}>
-                        <GamesSorters />
-                    </Grid>
-                </Grid>
-        
-                <Grid
-                    container
-                    spacing={1}
-                    style={
-                        {
-                            rowGap: "15px"
+            
+                    <Grid
+                        container
+                        spacing={1}
+                        style={
+                            {
+                                rowGap: "15px"
+                            }
                         }
-                    }
-                >
-                    {
-                        currentGames
-                            .map(game => 
-                                    <Grid 
-                                        key={game.playlistId ?? game.videoId} 
-                                        item 
-                                        className={classes.gameEntry}
-                                    >
-                                        <CardEntry game={game}/>
-                                    </Grid>
-                            )
-                    }
-                </Grid>
-            </>
-        }
-    />
+                    >
+                        {
+                            currentGames
+                                .map(game => 
+                                        <Grid 
+                                            key={game.playlistId ?? game.videoId} 
+                                            item 
+                                            className={classes.gameEntry}
+                                        >
+                                            <CardEntry game={game}/>
+                                        </Grid>
+                                )
+                        }
+                    </Grid>
+                </>
+            }
+        />
+    );
 }
 
 // mapStateToProps(state, ownProps)

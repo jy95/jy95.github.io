@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import {get_tests} from "../../actions/tests";
 
 // Custom

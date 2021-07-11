@@ -150,10 +150,10 @@ function CardDialog(props) {
                 </List>
             </DialogContent>
             <DialogActions>
-                <Button autoFocus color="primary" onClick={() => {setContextMenuOpen(false)}}>{t(LABEL_CLOSE_BUTTON)}</Button>
+                <Button autoFocus onClick={() => {setContextMenuOpen(false)}}>{t(LABEL_CLOSE_BUTTON)}</Button>
             </DialogActions>
         </Dialog>
-    )
+    );
 }
 
 export default CardDialog;

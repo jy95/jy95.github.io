@@ -76,92 +76,90 @@ function GamesSorters(props) {
         "downSorter": (index) => index !== sorters.keys.length -1,
     }
 
-    return (
-        <>
-            <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
-                {t("gamesLibrary.sortButtonLabel")}
-            </Button>
-            <Popover
-                id={id}
-                open={open}
-                anchorEl={anchorEl}
-                onClose={handleClose}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center',
-                }}
-            >
-                <FormControl component="fieldset">
-                    <FormGroup>
-                        {
-                            sorters
-                                .keys
-                                .map( (criteria, index) => 
-                                    <div
-                                        key={"searchCriteria_"+criteria}
-                                    >
-                                        <FormControlLabel
-                                            control={
-                                                <>
-                                                    <Checkbox 
-                                                        checked={sorters.state[criteria] !== "ASC"}
-                                                        onChange={handleSortChange}
-                                                        name={criteria}
-                                                        checkedIcon={<ArrowDropUpIcon />}
-                                                        icon={<ArrowDropDownIcon />} 
-                                                    />
-                                                </>
-                                            }
-                                            label={t(field_labels[criteria])}
-                                        />
-                                        {
-                                            // Object.keys as I need the following order : UP / DOWN
-                                            Object
-                                                .keys(sort_button_conditions)
-                                                .map(
-                                                    sort_key => {
-                                                        const condition_check = sort_button_conditions[sort_key];
-                                                        if (!condition_check(index)) {
-                                                            return null;
-                                                        } else {
-                                                            return (
-                                                                <IconButton 
-                                                                    aria-label={sort_key} 
-                                                                    name={criteria} 
-                                                                    size="small" 
-                                                                    onClick={handleSortOrderChange}
-                                                                    key={criteria + "_"+ sort_key}
-                                                                >
-                                                                    {
-                                                                        (() => {
-                                                                            switch(sort_key){
-                                                                                case "upSorter":
-                                                                                    return <ArrowUpwardIcon fontSize="inherit" />
-                                                                                case "downSorter":
-                                                                                    return <ArrowDownwardIcon fontSize="inherit" />
-                                                                                default:
-                                                                                    return null;
-                                                                            }
-                                                                        })()
-                                                                    } 
-                                                                </IconButton> 
-                                                            )
-                                                        }
-                                                    }
-                                                )
+    return <>
+        <Button aria-describedby={id} variant="contained" onClick={handleClick}>
+            {t("gamesLibrary.sortButtonLabel")}
+        </Button>
+        <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+            }}
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+            }}
+        >
+            <FormControl component="fieldset" variant="standard">
+                <FormGroup>
+                    {
+                        sorters
+                            .keys
+                            .map( (criteria, index) => 
+                                <div
+                                    key={"searchCriteria_"+criteria}
+                                >
+                                    <FormControlLabel
+                                        control={
+                                            <>
+                                                <Checkbox 
+                                                    checked={sorters.state[criteria] !== "ASC"}
+                                                    onChange={handleSortChange}
+                                                    name={criteria}
+                                                    checkedIcon={<ArrowDropUpIcon />}
+                                                    icon={<ArrowDropDownIcon />} 
+                                                />
+                                            </>
                                         }
-                                    </div>
-                                )
-                        }
-                    </FormGroup>
-                </FormControl>
-            </Popover>
-        </>
-    )
+                                        label={t(field_labels[criteria])}
+                                        variant="standard" />
+                                    {
+                                        // Object.keys as I need the following order : UP / DOWN
+                                        Object
+                                            .keys(sort_button_conditions)
+                                            .map(
+                                                sort_key => {
+                                                    const condition_check = sort_button_conditions[sort_key];
+                                                    if (!condition_check(index)) {
+                                                        return null;
+                                                    } else {
+                                                        return (
+                                                            <IconButton 
+                                                                aria-label={sort_key} 
+                                                                name={criteria} 
+                                                                size="small" 
+                                                                onClick={handleSortOrderChange}
+                                                                key={criteria + "_"+ sort_key}
+                                                            >
+                                                                {
+                                                                    (() => {
+                                                                        switch(sort_key){
+                                                                            case "upSorter":
+                                                                                return <ArrowUpwardIcon fontSize="inherit" />
+                                                                            case "downSorter":
+                                                                                return <ArrowDownwardIcon fontSize="inherit" />
+                                                                            default:
+                                                                                return null;
+                                                                        }
+                                                                    })()
+                                                                } 
+                                                            </IconButton> 
+                                                        )
+                                                    }
+                                                }
+                                            )
+                                    }
+                                </div>
+                            )
+                    }
+                </FormGroup>
+            </FormControl>
+        </Popover>
+    </>;
 }
 
 // mapStateToProps(state, ownProps)

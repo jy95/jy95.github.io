@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next";
 import {connect} from 'react-redux';
 
 // React Material UI
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from "@material-ui/core/Autocomplete";
 import TextField from '@material-ui/core/TextField';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
@@ -26,33 +26,31 @@ function PlatformSelect(props) {
             key: platform
         }))
 
-    return (
-        <>
-            <Autocomplete
-                id="select-game-platform"
-                openOnFocus
-                options={options}
-                getOptionLabel={(option) => option.label}
-                getOptionSelected={(option, value) => 
-                    Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
-                }
-                renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.platform")} variant="outlined" />}
-                renderOption={(option, _state) => (
-                    <>
-                        <SvgIcon titleAccess={option.label}>
-                            <path d={iconsSVG[option.key]} />
-                        </SvgIcon>
-                        {option.label}
-                    </>
-                )}
-                onChange={(_event, value) => {
-                    const platform = (value) ? value.key : "";
-                    props.filterByPlatform(platform);
-                }}
-                //value={filters.selected_genres}
-            />
-        </>
-    );
+    return <>
+        <Autocomplete
+            id="select-game-platform"
+            openOnFocus
+            options={options}
+            getOptionLabel={(option) => option.label}
+            getOptionSelected={(option, value) => 
+                Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
+            }
+            renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.platform")} />}
+            renderOption={(option, _state) => (
+                <>
+                    <SvgIcon titleAccess={option.label}>
+                        <path d={iconsSVG[option.key]} />
+                    </SvgIcon>
+                    {option.label}
+                </>
+            )}
+            onChange={(_event, value) => {
+                const platform = (value) ? value.key : "";
+                props.filterByPlatform(platform);
+            }}
+            //value={filters.selected_genres}
+        />
+    </>;
 }
 
 
