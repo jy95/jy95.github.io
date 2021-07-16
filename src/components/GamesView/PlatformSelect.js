@@ -32,17 +32,17 @@ function PlatformSelect(props) {
             openOnFocus
             options={options}
             getOptionLabel={(option) => option.label}
-            getOptionSelected={(option, value) => 
+            isOptionEqualToValue={(option, value) => 
                 Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
             }
             renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.platform")} />}
             renderOption={(option, _state) => (
-                <>
+                <li key={option.key}>
                     <SvgIcon titleAccess={option.label}>
                         <path d={iconsSVG[option.key]} />
                     </SvgIcon>
                     {option.label}
-                </>
+                </li>
             )}
             onChange={(_event, value) => {
                 const platform = (value) ? value.key : "";

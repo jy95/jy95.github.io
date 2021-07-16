@@ -14,7 +14,8 @@ function TitleFilter(props) {
 
     const { title, filterByTitle, games } = props;
     const { t } = useTranslation('common');
-    const options = games.map(game => game.title);
+    // needed as this Autocomplete cannot have duplicate
+    const options = [...new Set(games.map(game => game.title))];
 
     return <>
         <Autocomplete

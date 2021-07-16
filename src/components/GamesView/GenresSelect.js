@@ -38,7 +38,7 @@ function GenresSelect(props) {
             limitTags={3}
             options={genre_options}
             getOptionLabel={(option) => option.label}
-            getOptionSelected={(option, value) => 
+            isOptionEqualToValue={(option, value) => 
                 Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
             }
             renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.genres")} />}

@@ -79,7 +79,7 @@ const ENTRIES = [
 
 export default function Menu(props) {
 
-    const {container, setOpen, open, classes} = props;
+    const {container, setDrawerOpen: setOpen, drawerOpen: open, classes} = props;
 
     const handleDrawerClose = () => {
         setOpen(false);
