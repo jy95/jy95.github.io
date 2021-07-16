@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from 'react-redux';
 import clsx from "clsx";
 import {useTranslation} from "react-i18next";
 
@@ -24,6 +25,9 @@ import ScheduleIcon from '@material-ui/icons/Schedule';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+
+// Redux action
+import {setDrawerOpen} from "../../actions/miscellaneous"
 
 // List Item
 function ListItemLink(props) {
@@ -77,12 +81,12 @@ const ENTRIES = [
     }
 ]
 
-export default function Menu(props) {
+function Menu(props) {
 
-    const {container, setDrawerOpen: setOpen, drawerOpen: open, classes} = props;
+    const {container, open, classes} = props;
 
     const handleDrawerClose = () => {
-        setOpen(false);
+        props.setDrawerOpen(false);
     };
 
     return (
@@ -115,3 +119,17 @@ export default function Menu(props) {
         </Drawer>
     )
 }
+
+// mapStateToProps(state, ownProps)
+const mapStateToProps = state => ({
+    open: state.miscellaneous.drawerOpen
+});
+
+const mapDispatchToProps = {
+    setDrawerOpen
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Menu);

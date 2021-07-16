@@ -17,8 +17,9 @@ import { yellow } from '@material-ui/core/colors';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import Tooltip from '@material-ui/core/Tooltip';
 
-// Redux action
+// Redux actions
 import {setThemeColor} from "../../actions/themeColor";
+import {setDrawerOpen} from "../../actions/miscellaneous"
 
 // Custom icons
 import languages_with_icons from "./HeaderLanguages";
@@ -26,10 +27,10 @@ import languages_with_icons from "./HeaderLanguages";
 function Header(props) {
 
     const [t, i18n] = useTranslation('common');
-    const {drawerOpen, setdrawerOpen, classes} = props;
+    const {drawerOpen, classes} = props;
 
     const handleDrawerOpen = () => {
-        setdrawerOpen(true);
+        props.setdrawerOpen(true);
     };
 
     const handleDarkMode = (event) => {
@@ -92,10 +93,12 @@ function Header(props) {
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
     isDark: state.themeColor.currentColor === "dark",
+    drawerOpen: state.miscellaneous.drawerOpen
 });
 
 const mapDispatchToProps = {
-    setThemeColor
+    setThemeColor,
+    setDrawerOpen
 };
 
 export default connect(

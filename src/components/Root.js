@@ -35,15 +35,15 @@ const materialUI_languages = {
 function Root(props) {
 
     const classes = basicStyle();
-    const { store, drawerState: [drawerOpen, setDrawerOpen] } = props;
+    const { store } = props;
 
     return (
         <div className={classes.root}>
             <Provider store={store}>
                 {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
                 <Router basename={process.env.PUBLIC_URL} >
-                    <Header drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} classes={classes}/>
-                    <Menu drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} classes={classes}/>
+                    <Header classes={classes}/>
+                    <Menu classes={classes}/>
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
                         <Grid container>
@@ -72,9 +72,6 @@ function withThemeProvider(Component) {
         // for language of the app
         const currentLanguage = i18n.language;
 
-        // for drawer
-        const drawerState = React.useState(false);
-
         // Two case handled here :
         // 1) When user comes to the site and have different color that default
         // 2) When user changes on the fly its preferred system color
@@ -99,7 +96,7 @@ function withThemeProvider(Component) {
         );
         return (
             <ThemeProvider theme={theme}>
-                <Component {...props} drawerState={drawerState} />
+                <Component {...props} />
             </ThemeProvider>
         )
     }
