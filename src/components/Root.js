@@ -89,7 +89,7 @@ function withThemeProvider(Component) {
             () =>
                 createTheme({
                     palette: {
-                        type: themeSettings.currentColor,
+                        mode: themeSettings.currentColor,
                     },
                 }, materialUI_languages[currentLanguage]),
             [currentLanguage, themeSettings.currentColor],
