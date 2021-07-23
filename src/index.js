@@ -8,6 +8,9 @@ import * as serviceWorker from './serviceWorker';
 import store from "./components/Store"
 import Root from "./components/Root";
 
+// For v4 to v5 migration 
+import { StyledEngineProvider } from '@material-ui/core/styles';
+
 // For translation
 import {I18nextProvider, initReactI18next} from "react-i18next";
 import detector from "i18next-browser-languagedetector";
@@ -38,9 +41,11 @@ i18next
     });
 
 render(
-    <I18nextProvider i18n={i18next}>
-        <Root store={store} />
-    </I18nextProvider>, 
+    <StyledEngineProvider injectFirst>
+        <I18nextProvider i18n={i18next}>
+            <Root store={store} />
+        </I18nextProvider>
+    </StyledEngineProvider>, 
     document.getElementById('root')
 );
 

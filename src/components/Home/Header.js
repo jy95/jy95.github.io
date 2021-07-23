@@ -30,7 +30,7 @@ function Header(props) {
     const {drawerOpen, classes} = props;
 
     const handleDrawerOpen = () => {
-        props.setdrawerOpen(true);
+        props.setDrawerOpen(true);
     };
 
     const handleDarkMode = (event) => {
