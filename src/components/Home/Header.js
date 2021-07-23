@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import clsx from "clsx";
 import {useTranslation} from "react-i18next";
 
 // React Material UI
-import {AppBar, CssBaseline, IconButton, Toolbar} from "@material-ui/core";
+import {CssBaseline, IconButton, Toolbar} from "@material-ui/core";
+import MuiAppBar from '@material-ui/core/AppBar';
 import MenuIcon from '@material-ui/icons/Menu';
 import Switch from '@material-ui/core/Switch';
+import { styled } from '@material-ui/styles';
 
 // Icons for switch
 import Brightness5Icon from '@material-ui/icons/Brightness5'; // sun
@@ -24,10 +25,31 @@ import {setDrawerOpen} from "../../actions/miscellaneous"
 // Custom icons
 import languages_with_icons from "./HeaderLanguages";
 
+// styled AppBar
+const drawerWidth = 240;
+const AppBar = styled(MuiAppBar, {
+    shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    ...(open && {
+      marginLeft: drawerWidth,
+      width: `calc(100% - ${drawerWidth}px)`,
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    }),
+}));
+
+// main component
 function Header(props) {
 
     const [t, i18n] = useTranslation('common');
-    const {drawerOpen, classes} = props;
+    const {drawerOpen} = props;
 
     const handleDrawerOpen = () => {
         props.setDrawerOpen(true);
@@ -43,9 +65,7 @@ function Header(props) {
             <CssBaseline />
             <AppBar
                 position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: drawerOpen,
-                })}
+                open={drawerOpen}
             >
                 <Toolbar>
                     <IconButton
@@ -53,9 +73,10 @@ function Header(props) {
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
                         edge="start"
-                        className={clsx(classes.menuButton, {
-                            [classes.hide]: drawerOpen,
-                        })}
+                        sx={{
+                            marginRight: '36px',
+                            ...(drawerOpen && { display: 'none' }),
+                        }}
                     >
                         <MenuIcon/>
                     </IconButton>
