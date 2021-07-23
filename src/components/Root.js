@@ -18,8 +18,7 @@ import Header from "./Home/Header";
 import Menu from "./Home/Menu"
 import Player from "./YTPlayer/Player";
 import GamesGallery from "./GamesView/GamesGallery";
-// TODO temporary disabled
-//import Planning from "./Planning/Planning";
+import Planning from "./Planning/Planning";
 import TestsGallery from "./Tests/TestsGallery";
 import LatestVideosGallery from "./LatestVideos/LatestVideosGallery";
 
@@ -51,7 +50,7 @@ function Root(props) {
                             <Route path="/games" component={GamesGallery} />
                             <Route path="/playlist/:id" component={Player} />
                             <Route path="/video/:id" component={Player} />
-                            { /* <Route path="/planning" component={Planning} /> */ }
+                            <Route path="/planning" component={Planning} />
                             <Route path="/tests" component={TestsGallery} />
                             <Route path="/latest" component={LatestVideosGallery} />
                         </Grid>
