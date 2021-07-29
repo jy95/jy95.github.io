@@ -1,6 +1,6 @@
 import React from "react";
+import { styled } from '@material-ui/core/styles';
 import {connect} from 'react-redux';
-import { makeStyles } from '@material-ui/styles';
 import {get_games} from "../../actions/games";
 
 // Style
@@ -16,19 +16,20 @@ import GenresSelect from "./GenresSelect";
 import PlatformSelect from "./PlatformSelect";
 import TitleFilter from "./TitleFilter";
 
-// To check if platform match search critiria
-const matches_platform_search = (platform) => (game) => game.platform === platform;
+const PREFIX = 'GamesGallery';
 
-// To check if title match search criteria (insensitive search)
-const matches_title_search = (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i')) >= 0;
+const classes = {
+    gameEntry: `${PREFIX}-gameEntry`,
+    gamesCriteria: `${PREFIX}-gamesCriteria`
+};
 
-// To check if two arrays contains at least one element in common
-const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v.key) >= 0);
-
-// To dynamically change the number of items depending of browser
-const useStyles = makeStyles((theme) => ({
+const StyledGamesGallery = styled('div')((
+    {
+        theme
+    }
+) => ({
     // inspired by the settings https://www.youtube.com/gaming uses ;)
-    gameEntry: {
+    [`& .${classes.gameEntry}`]: {
         // 2 items on [0, sm]
         [theme.breakpoints.only('xs')]: {
             "flex-basis": "calc((100% / 2) - 1%)"
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
             "flex-basis": "calc((100% / 8) - 1%)"
         },
     },
-    gamesCriteria: {
+    [`& .${classes.gamesCriteria}`]: {
         display: "flex",
         [theme.breakpoints.down('sm')]: {
             "flex-direction": "column",
@@ -53,13 +54,21 @@ const useStyles = makeStyles((theme) => ({
             "justify-content": "flex-end"
         }
     }
-}));    
+}));
+
+// To check if platform match search critiria
+const matches_platform_search = (platform) => (game) => game.platform === platform;
+
+// To check if title match search criteria (insensitive search)
+const matches_title_search = (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i')) >= 0;
+
+// To check if two arrays contains at least one element in common
+const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v.key) >= 0);
 
 // The gallery component
 function GamesGallery(props) {
 
     const {loading, error, data, filters, sortFunction} = props;
-    const classes = useStyles(props);
 
     // on mount, load data (only once)
     React.useEffect(() => {
@@ -98,7 +107,7 @@ function GamesGallery(props) {
             error={error}
             reloadFct={() => {props.get_games();}}
             component={
-                <>
+                <StyledGamesGallery>
                     <Grid
                         container
                         className={classes.gamesCriteria}
@@ -139,7 +148,7 @@ function GamesGallery(props) {
                                 )
                         }
                     </Grid>
-                </>
+                </StyledGamesGallery>
             }
         />
     );

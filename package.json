@@ -50,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@material-ui/codemod": "^5.0.0-beta.2",
     "gh-pages": "^3.2.3"
   },
   "homepage": "http://jy95.github.io/yt_gaming_library"

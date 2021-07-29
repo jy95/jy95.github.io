@@ -1,6 +1,6 @@
 import React from "react";
+import { styled } from '@material-ui/core/styles';
 import {connect} from 'react-redux';
-import { makeStyles } from '@material-ui/styles';
 import {get_tests} from "../../actions/tests";
 
 // Custom
@@ -10,10 +10,19 @@ import CardEntry from "../GamesView/CardEntry";
 // Style
 import Grid from "@material-ui/core/Grid";
 
-// To dynamically change the number of items depending of browser
-// Here twice smaller than /games (as these games often are digital only)
-const useStyles = makeStyles((theme) => ({
-    gameEntry: {
+const PREFIX = 'TestsGallery';
+
+const classes = {
+    gameEntry: `${PREFIX}-gameEntry`,
+    gamesCriteria: `${PREFIX}-gamesCriteria`
+};
+
+const StyledTestsGallery = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.gameEntry}`]: {
         [theme.breakpoints.only('xs')]: {
             "flex-basis": "calc((100% / 1) - 1%)"
         },
@@ -27,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
             "flex-basis": "calc((100% / 5) - 1%)"
         },
     },
-    gamesCriteria: {
+    [`& .${classes.gamesCriteria}`]: {
         display: "flex",
         [theme.breakpoints.down('sm')]: {
             "flex-direction": "column",
@@ -44,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
 function TestsGallery(props) {
 
     const {loading, error, data} = props;
-    const classes = useStyles(props);
 
     // on mount, load data (only once)
     React.useEffect(() => {
@@ -54,37 +62,39 @@ function TestsGallery(props) {
         []
     );
 
-    return <ReloadWrapper 
-        loading={loading}
-        error={error}
-        reloadFct={() => {props.get_tests();}}
-        component={
-            <>    
-                <Grid
-                    container
-                    spacing={1}
-                    style={
-                        {
-                            rowGap: "15px"
+    return (
+        <ReloadWrapper  
+            loading={loading}
+            error={error}
+            reloadFct={() => {props.get_tests();}}
+            component={
+                <StyledTestsGallery>    
+                    <Grid
+                        container
+                        spacing={1}
+                        style={
+                            {
+                                rowGap: "15px"
+                            }
                         }
-                    }
-                >
-                    {
-                        data
-                            .map(game => 
-                                    <Grid 
-                                        key={game.playlistId ?? game.videoId} 
-                                        item 
-                                        className={classes.gameEntry}
-                                    >
-                                        <CardEntry game={game}/>
-                                    </Grid>
-                            )
-                    }
-                </Grid>
-            </>            
-        }
-    />
+                    >
+                        {
+                            data
+                                .map(game => 
+                                        <Grid 
+                                            key={game.playlistId ?? game.videoId} 
+                                            item 
+                                            className={classes.gameEntry}
+                                        >
+                                            <CardEntry game={game}/>
+                                        </Grid>
+                                )
+                        }
+                    </Grid>
+                </StyledTestsGallery>            
+            }
+        />
+    );
 }
 
 // mapStateToProps(state, ownProps)

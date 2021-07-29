@@ -5,7 +5,7 @@ import i18n from 'i18next';
 
 // Dark mode
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider, styled } from '@material-ui/core/styles';
 
 // Redux action
 import {setThemeColor} from "../actions/themeColor";
@@ -23,7 +23,6 @@ import TestsGallery from "./Tests/TestsGallery";
 import LatestVideosGallery from "./LatestVideos/LatestVideosGallery";
 
 import Grid from '@material-ui/core/Grid';
-import basicStyle from "./Home/styles"
 
 // Languages for Material UI
 const materialUI_languages = {
@@ -31,13 +30,37 @@ const materialUI_languages = {
     en: enUS
 }
 
+// styles
+const PREFIX = 'Root';
+const classes = {
+    root: `${PREFIX}-root`,
+    content: `${PREFIX}-content`,
+    toolbar: `${PREFIX}-toolbar`
+}
+const StyledRoot = styled('div')((theme) => ({
+    [`&.${classes.root}`]: {
+        display: 'flex',
+    },
+    [`& .${classes.content}`]: {
+        flexGrow: 1,
+        padding: theme.spacing(3)
+    },
+    [`& .${classes.toolbar}`]: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+    }
+}));
+
 function Root(props) {
 
-    const classes = basicStyle();
     const { store } = props;
 
     return (
-        <div className={classes.root}>
+        <StyledRoot className={classes.root}>
             <Provider store={store}>
                 {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
                 <Router basename={process.env.PUBLIC_URL} >
@@ -57,7 +80,7 @@ function Root(props) {
                     </main>
                 </Router>
             </Provider>
-        </div>
+        </StyledRoot>
     )
 }
 
