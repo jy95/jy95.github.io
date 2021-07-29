@@ -5,10 +5,10 @@ import i18n from 'i18next';
 
 // Dark mode
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createTheme, ThemeProvider, styled } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
-// Redux action
-import {setThemeColor} from "../actions/themeColor";
+// MUI components
+import Box from '@material-ui/core/Box';
 
 // languages
 import {frFR, enUS} from '@material-ui/core/locale';
@@ -21,8 +21,10 @@ import GamesGallery from "./GamesView/GamesGallery";
 import Planning from "./Planning/Planning";
 import TestsGallery from "./Tests/TestsGallery";
 import LatestVideosGallery from "./LatestVideos/LatestVideosGallery";
+import { DrawerHeader, Main } from "./Home/Drawer";
 
-import Grid from '@material-ui/core/Grid';
+// Redux action
+import {setThemeColor} from "../actions/themeColor";
 
 // Languages for Material UI
 const materialUI_languages = {
@@ -30,45 +32,19 @@ const materialUI_languages = {
     en: enUS
 }
 
-// styles
-const PREFIX = 'Root';
-const classes = {
-    root: `${PREFIX}-root`,
-    content: `${PREFIX}-content`,
-    toolbar: `${PREFIX}-toolbar`
-}
-const StyledRoot = styled('div')((theme) => ({
-    [`&.${classes.root}`]: {
-        display: 'flex',
-    },
-    [`& .${classes.content}`]: {
-        flexGrow: 1,
-        padding: theme.spacing(3)
-    },
-    [`& .${classes.toolbar}`]: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
-        ...theme.mixins.toolbar,
-    }
-}));
-
 function Root(props) {
 
-    const { store } = props;
+    const { store, openMenu } = props;
 
     return (
-        <StyledRoot className={classes.root}>
+        <Box sx={{ display: 'flex' }}>
             <Provider store={store}>
                 {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
                 <Router basename={process.env.PUBLIC_URL} >
                     <Header />
                     <Menu />
-                    <main className={classes.content}>
-                        <div className={classes.toolbar} />
-                        <Grid container>
+                        <Main open={ openMenu } >
+                            <DrawerHeader />
                             <Route exact path="/" render={() => <Redirect to="/games" />}/>
                             <Route path="/games" component={GamesGallery} />
                             <Route path="/playlist/:id" component={Player} />
@@ -76,11 +52,10 @@ function Root(props) {
                             <Route path="/planning" component={Planning} />
                             <Route path="/tests" component={TestsGallery} />
                             <Route path="/latest" component={LatestVideosGallery} />
-                        </Grid>
-                    </main>
+                        </Main>
                 </Router>
             </Provider>
-        </StyledRoot>
+        </Box>
     )
 }
 
@@ -127,7 +102,8 @@ function withThemeProvider(Component) {
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    themeSettings: state.themeColor
+    themeSettings: state.themeColor,
+    openMenu: state.miscellaneous.drawerOpen
 });
 
 const mapDispatchToProps = {
