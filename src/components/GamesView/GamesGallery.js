@@ -32,26 +32,26 @@ const StyledGamesGallery = styled('div')((
     [`& .${classes.gameEntry}`]: {
         // 2 items on [0, sm]
         [theme.breakpoints.only('xs')]: {
-            "flex-basis": "calc((100% / 2) - 1%)"
+            flexBasis: "calc((100% / 2) - 1%)"
         },
         // 4 items on [sm, md[
         [theme.breakpoints.only('sm')]: {
-            "flex-basis": "calc((100% / 4) - 1%)"
+            flexBasis: "calc((100% / 4) - 1%)"
         },
         // 8 items on [md, infinity]
         [theme.breakpoints.up('md')]: {
-            "flex-basis": "calc((100% / 8) - 1%)"
+            flexBasis: "calc((100% / 8) - 1%)"
         },
     },
     [`& .${classes.gamesCriteria}`]: {
         display: "flex",
         [theme.breakpoints.down('sm')]: {
-            "flex-direction": "column",
-            "row-gap": "8px"
+            flexDirection: "column",
+            rowGap: "8px"
         },
         [theme.breakpoints.up('md')]: {
-            "flex-direction": "row",
-            "justify-content": "flex-end"
+            flexDirection: "row",
+            justifyContent: "flex-end"
         }
     }
 }));

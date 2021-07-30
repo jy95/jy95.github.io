@@ -24,27 +24,27 @@ const StyledTestsGallery = styled('div')((
 ) => ({
     [`& .${classes.gameEntry}`]: {
         [theme.breakpoints.only('xs')]: {
-            "flex-basis": "calc((100% / 1) - 1%)"
+            flexBasis: "calc((100% / 1) - 1%)"
         },
         [theme.breakpoints.only('sm')]: {
-            "flex-basis": "calc((100% / 2) - 1%)"
+            flexBasis: "calc((100% / 2) - 1%)"
         },
         [theme.breakpoints.only('md')]: {
-            "flex-basis": "calc((100% / 4) - 1%)"
+            flexBasis: "calc((100% / 4) - 1%)"
         },
         [theme.breakpoints.up('lg')]: {
-            "flex-basis": "calc((100% / 5) - 1%)"
+            flexBasis: "calc((100% / 5) - 1%)"
         },
     },
     [`& .${classes.gamesCriteria}`]: {
         display: "flex",
         [theme.breakpoints.down('sm')]: {
-            "flex-direction": "column",
-            "row-gap": "8px"
+            flexDirection: "column",
+            rowGap: "8px"
         },
         [theme.breakpoints.up('md')]: {
-            "flex-direction": "row",
-            "justify-content": "flex-end"
+            flexDirection: "row",
+            justifyContent: "flex-end"
         }
     }
 }));
