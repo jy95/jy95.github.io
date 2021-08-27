@@ -3,10 +3,8 @@ import {useTranslation} from "react-i18next";
 import { useHistory } from "react-router-dom";
 
 // To check what should happen when clicking on a game
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme, styled } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-
-import { makeStyles } from '@material-ui/core/styles';
 
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -17,16 +15,28 @@ import Image from 'material-ui-image';
 
 import CardDialog from "./CardDialog";
 
-const useStyles = makeStyles((theme) => ({
-    gameRoot: {
+const PREFIX = 'CardEntry';
+
+const classes = {
+    gameRoot: `${PREFIX}-gameRoot`,
+    gameCover: `${PREFIX}-gameCover`,
+    MuiCardActionArea: `${PREFIX}-MuiCardActionArea`
+};
+
+const StyledCard = styled(Card)((
+    {
+        theme
+    }
+) => ({
+    [`&.${classes.gameRoot}`]: {
         position: "relative",
         height: "100%"
     },
-    gameCover: {
+    [`& .${classes.gameCover}`]: {
         zIndex: 1,
         height: "inherit"
     },
-    MuiCardActionArea:{
+    [`& .${classes.MuiCardActionArea}`]: {
         height: "inherit",
         zIndex: 1
     }
@@ -41,7 +51,7 @@ function CardEntry(props) {
 
     // props
     const {game} = props;
-    const classes = useStyles(props);
+
     const is_mobile_device = useMediaQuery(theme.breakpoints.down('sm'));
 
     // state of context menu
@@ -68,7 +78,7 @@ function CardEntry(props) {
     }
 
     return (
-        <Card className={classes.gameRoot}>
+        <StyledCard className={classes.gameRoot}>
 
             <Tooltip title={t(label_for_game, { "gameName": gameTitle})} aria-label="WatchGame">
                 <CardActionArea 
@@ -90,7 +100,7 @@ function CardEntry(props) {
             </Tooltip>
             <CardDialog game={game} contextMenuState={[contextMenuOpen,setContextMenuOpen]} />
             
-        </Card>
+        </StyledCard>
     );
 }
 

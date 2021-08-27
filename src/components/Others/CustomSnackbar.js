@@ -1,4 +1,5 @@
 import React from 'react';
+import { styled } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -8,9 +9,74 @@ import CloseIcon from '@material-ui/icons/Close';
 import { amber, green } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
 import WarningIcon from '@material-ui/icons/Warning';
-import { makeStyles } from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
+
+
+const PREFIX = 'CustomizedSnackbar';
+
+const classes = {
+    success: `${PREFIX}-success`,
+    error: `${PREFIX}-error`,
+    info: `${PREFIX}-info`,
+    warning: `${PREFIX}-warning`,
+    icon: `${PREFIX}-icon`,
+    iconVariant: `${PREFIX}-iconVariant`,
+    message: `${PREFIX}-message`
+};
+
+const StyledSnackbar = styled(Snackbar)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.success}`]: {
+        backgroundColor: green[600],
+    },
+    [`& .${classes.error}`]: {
+        backgroundColor: theme.palette.error.dark,
+    },
+    [`& .${classes.info}`]: {
+        backgroundColor: theme.palette.primary.main,
+    },
+    [`& .${classes.warning}`]: {
+        backgroundColor: amber[700],
+    },
+    [`& .${classes.icon}`]: {
+        fontSize: 20,
+    },
+    [`& .${classes.iconVariant}`]: {
+        opacity: 0.9,
+        marginRight: theme.spacing(1),
+    },
+    [`& .${classes.message}`]: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+    [`& .${classes.success}`]: {
+        backgroundColor: green[600],
+    },
+    [`& .${classes.error}`]: {
+        backgroundColor: theme.palette.error.dark,
+    },
+    [`& .${classes.info}`]: {
+        backgroundColor: theme.palette.primary.main,
+    },
+    [`& .${classes.warning}`]: {
+        backgroundColor: amber[700],
+    },
+    [`& .${classes.icon}`]: {
+        fontSize: 20,
+    },
+    [`& .${classes.iconVariant}`]: {
+        opacity: 0.9,
+        marginRight: theme.spacing(1),
+    },
+    [`& .${classes.message}`]: {
+        display: 'flex',
+        alignItems: 'center',
+    }
+}));
 
 
 const variantIcon = {
@@ -20,34 +86,8 @@ const variantIcon = {
     info: InfoIcon,
 };
 
-const useStyles1 = makeStyles(theme => ({
-    success: {
-        backgroundColor: green[600],
-    },
-    error: {
-        backgroundColor: theme.palette.error.dark,
-    },
-    info: {
-        backgroundColor: theme.palette.primary.main,
-    },
-    warning: {
-        backgroundColor: amber[700],
-    },
-    icon: {
-        fontSize: 20,
-    },
-    iconVariant: {
-        opacity: 0.9,
-        marginRight: theme.spacing(1),
-    },
-    message: {
-        display: 'flex',
-        alignItems: 'center',
-    },
-}));
-
 function CustomSnackbar(props) {
-    const classes = useStyles1();
+
     const { className, message, onClose, variant, ...other } = props;
     const Icon = variantIcon[variant];
 
@@ -91,7 +131,7 @@ function CustomizedSnackbar(props) {
     };
 
     return (
-        <Snackbar
+        <StyledSnackbar
             open={open}
             autoHideDuration={5000}
             onClose={handleClose}
@@ -101,8 +141,8 @@ function CustomizedSnackbar(props) {
                 variant={variant}
                 message={message}
             />
-        </Snackbar>
-    )
+        </StyledSnackbar>
+    );
 }
 
 CustomizedSnackbar.propTypes = {

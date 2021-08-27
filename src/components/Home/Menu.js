@@ -1,10 +1,9 @@
 import React from "react";
-import clsx from "clsx";
+import {connect} from 'react-redux';
 import {useTranslation} from "react-i18next";
 
 // Material UI
 import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -24,6 +23,12 @@ import ScheduleIcon from '@material-ui/icons/Schedule';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+
+// Redux action
+import {setDrawerOpen} from "../../actions/miscellaneous"
+
+// Styled components
+import { Drawer, DrawerHeader } from "./Drawer";
 
 // List Item
 function ListItemLink(props) {
@@ -77,35 +82,26 @@ const ENTRIES = [
     }
 ]
 
-export default function Menu(props) {
+// Main component
+function Menu(props) {
 
-    const {container, setOpen, open, classes} = props;
+    const {container, open} = props;
 
     const handleDrawerClose = () => {
-        setOpen(false);
+        props.setDrawerOpen(false);
     };
 
     return (
         <Drawer
             container={container}
             variant={"permanent"}
-            className={clsx(classes.drawer, {
-                [classes.drawerOpen]: open,
-                [classes.drawerClose]: !open,
-            })}
-            classes={{
-                paper: clsx({
-                    [classes.drawerOpen]: open,
-                    [classes.drawerClose]: !open,
-                }),
-            }}
             open={open}
         >
-            <div className={classes.toolbar}>
+            <DrawerHeader>
                 <IconButton onClick={handleDrawerClose}>
                     <ChevronLeftIcon />
-                </IconButton>
-            </div>
+                </IconButton>                
+            </DrawerHeader>
             <Divider />
             <List>
                 {
@@ -115,3 +111,17 @@ export default function Menu(props) {
         </Drawer>
     )
 }
+
+// mapStateToProps(state, ownProps)
+const mapStateToProps = state => ({
+    open: state.miscellaneous.drawerOpen
+});
+
+const mapDispatchToProps = {
+    setDrawerOpen
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Menu);

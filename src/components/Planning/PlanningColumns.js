@@ -36,7 +36,7 @@ const planningColumns = (t, date_options, language) => [
                 <path d={iconsSVG[params.value]} />
             </SvgIcon>
         ),
-        width: 130
+        width: 160
     },
     {
         field: "releaseDate", 
@@ -47,7 +47,7 @@ const planningColumns = (t, date_options, language) => [
                 {params.value.toLocaleDateString(language, date_options)}
             </>
         ),
-        width: 200
+        width: 220
     },
     {
         field: "status",
@@ -68,7 +68,8 @@ const planningColumns = (t, date_options, language) => [
                     })()
                 }   
             </Tooltip>
-        )
+        ),
+        width: 130
     }
 ];
 

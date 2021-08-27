@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next";
 import {connect} from 'react-redux';
 
 // React Material UI
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from "@material-ui/core/Autocomplete";
 import TextField from '@material-ui/core/TextField';
 
 import {
@@ -28,29 +28,27 @@ function GenresSelect(props) {
             (a, b) => (a.label < b.label) ? -1 : (a.label > b.label ? 1 : 0) 
         );
 
-    return (
-        <>
-            <Autocomplete
-                multiple
-                openOnFocus
-                filterSelectedOptions 
-                id="select-game-genre"
-                //style={{ width: 300 }}
-                limitTags={3}
-                options={genre_options}
-                getOptionLabel={(option) => option.label}
-                getOptionSelected={(option, value) => 
-                    Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
-                }
-                renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.genres")} variant="outlined" />}
-                onChange={(_event, value) => {
-                    const genres = (value) ? value : [];
-                    props.filterByGenre(genres);
-                }}
-                //value={filters.selected_genres}
-            />
-        </>
-    );
+    return <>
+        <Autocomplete
+            multiple
+            openOnFocus
+            filterSelectedOptions 
+            id="select-game-genre"
+            //style={{ width: 300 }}
+            limitTags={3}
+            options={genre_options}
+            getOptionLabel={(option) => option.label}
+            isOptionEqualToValue={(option, value) => 
+                Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
+            }
+            renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.genres")} />}
+            onChange={(_event, value) => {
+                const genres = (value) ? value : [];
+                props.filterByGenre(genres);
+            }}
+            //value={filters.selected_genres}
+        />
+    </>;
 }
 
 // mapStateToProps(state, ownProps)

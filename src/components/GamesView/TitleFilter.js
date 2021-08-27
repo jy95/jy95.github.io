@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next";
 import {connect} from 'react-redux';
 
 // React Material UI
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from "@material-ui/core/Autocomplete";
 import TextField from '@material-ui/core/TextField';
 
 import {
@@ -14,22 +14,21 @@ function TitleFilter(props) {
 
     const { title, filterByTitle, games } = props;
     const { t } = useTranslation('common');
-    const options = games.map(game => game.title);
+    // needed as this Autocomplete cannot have duplicate
+    const options = [...new Set(games.map(game => game.title))];
 
-    return (
-        <>
-            <Autocomplete
-                id="search-game-title"
-                freeSolo
-                options={options}
-                value={title}
-                renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.title")} variant="outlined" />}
-                onInputChange={(_event, value) => {
-                    filterByTitle(value);
-                }}
-            />
-        </>
-    );
+    return <>
+        <Autocomplete
+            id="search-game-title"
+            freeSolo
+            options={options}
+            value={title}
+            renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.title")} />}
+            onInputChange={(_event, value) => {
+                filterByTitle(value);
+            }}
+        />
+    </>;
 
 }
 

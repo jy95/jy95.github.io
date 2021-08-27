@@ -5,10 +5,10 @@ import i18n from 'i18next';
 
 // Dark mode
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
-// Redux action
-import {setThemeColor} from "../actions/themeColor";
+// MUI components
+import Box from '@material-ui/core/Box';
 
 // languages
 import {frFR, enUS} from '@material-ui/core/locale';
@@ -21,9 +21,10 @@ import GamesGallery from "./GamesView/GamesGallery";
 import Planning from "./Planning/Planning";
 import TestsGallery from "./Tests/TestsGallery";
 import LatestVideosGallery from "./LatestVideos/LatestVideosGallery";
+import { DrawerHeader, Main } from "./Home/Drawer";
 
-import Grid from '@material-ui/core/Grid';
-import basicStyle from "./Home/styles"
+// Redux action
+import {setThemeColor} from "../actions/themeColor";
 
 // Languages for Material UI
 const materialUI_languages = {
@@ -33,68 +34,76 @@ const materialUI_languages = {
 
 function Root(props) {
 
-    const classes = basicStyle();
-    const { store, setThemeColor, themeSettings} = props;
-    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-    const systemColor = prefersDarkMode ? "dark" : "light";
-    const currentLanguage = i18n.language;
-
-    // for drawer
-    const [open, setOpen] = React.useState(false);
-
-    // Two case handled here :
-    // 1) When user comes to the site and have different color that default
-    // 2) When user changes on the fly its preferred system color
-    React.useEffect(() => {
-        if (themeSettings.systemColor !== systemColor) {
-            setThemeColor({color: systemColor, mode: "auto"});
-        }
-    },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [themeSettings.systemColor, systemColor]
-    );
-
-    // Prepare theme for possible darkmode
-    const theme = React.useMemo(
-        () =>
-          createMuiTheme({
-            palette: {
-              type: themeSettings.currentColor,
-            },
-          }, materialUI_languages[currentLanguage]),
-        [currentLanguage, themeSettings.currentColor],
-      );
+    const { store, openMenu } = props;
 
     return (
-        <ThemeProvider theme={theme}>
-            <div className={classes.root}>
-                <Provider store={store}>
-                    {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
-                    <Router basename={process.env.PUBLIC_URL} >
-                        <Header drawerOpen={open} setdrawerOpen={setOpen} classes={classes}/>
-                        <Menu open={open} setOpen={setOpen} classes={classes}/>
-                        <main className={classes.content}>
-                            <div className={classes.toolbar} />
-                            <Grid container>
-                                <Route exact path="/" render={() => <Redirect to="/games" />}/>
-                                <Route path="/games" component={GamesGallery} />
-                                <Route path="/playlist/:id" component={Player} />
-                                <Route path="/video/:id" component={Player} />
-                                <Route path="/planning" component={Planning} />
-                                <Route path="/tests" component={TestsGallery} />
-                                <Route path="/latest" component={LatestVideosGallery} />
-                            </Grid>
-                        </main>
-                    </Router>
-                </Provider>
-            </div>
-        </ThemeProvider>
+        <Box sx={{ display: 'flex' }}>
+            <Provider store={store}>
+                {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
+                <Router basename={process.env.PUBLIC_URL} >
+                    <Header />
+                    <Menu />
+                        <Main open={ openMenu } >
+                            <DrawerHeader />
+                            <Route exact path="/" render={() => <Redirect to="/games" />}/>
+                            <Route path="/games" component={GamesGallery} />
+                            <Route path="/playlist/:id" component={Player} />
+                            <Route path="/video/:id" component={Player} />
+                            <Route path="/planning" component={Planning} />
+                            <Route path="/tests" component={TestsGallery} />
+                            <Route path="/latest" component={LatestVideosGallery} />
+                        </Main>
+                </Router>
+            </Provider>
+        </Box>
     )
+}
+
+function withThemeProvider(Component) {
+    function WithThemeProvider(props) {
+        // for theme Color
+        const { setThemeColor, themeSettings} = props;
+        const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+        const systemColor = prefersDarkMode ? "dark" : "light";
+
+        // for language of the app
+        const currentLanguage = i18n.language;
+
+        // Two case handled here :
+        // 1) When user comes to the site and have different color that default
+        // 2) When user changes on the fly its preferred system color
+        React.useEffect(() => {
+            if (themeSettings.systemColor !== systemColor) {
+                setThemeColor({color: systemColor, mode: "auto"});
+            }
+        },
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            [themeSettings.systemColor, systemColor]
+        );
+
+        // Prepare theme for possible darkmode
+        const theme = React.useMemo(
+            () =>
+                createTheme({
+                    palette: {
+                        mode: themeSettings.currentColor,
+                    },
+                }, materialUI_languages[currentLanguage]),
+            [currentLanguage, themeSettings.currentColor],
+        );
+        return (
+            <ThemeProvider theme={theme}>
+                <Component {...props} />
+            </ThemeProvider>
+        )
+    }
+    return WithThemeProvider;
 }
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    themeSettings: state.themeColor
+    themeSettings: state.themeColor,
+    openMenu: state.miscellaneous.drawerOpen
 });
 
 const mapDispatchToProps = {
@@ -104,4 +113,4 @@ const mapDispatchToProps = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Root);
+)(withThemeProvider(Root));
