@@ -304,5 +304,23 @@
         "id": "PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3",
         "availableAt": 20220502,
         "endAt": 20220524
+    },
+    {
+        "title": "DmC Devil May Cry : La Chute de Vergil",
+        "platform": "PC",
+        "releaseDate": "25/05/2022",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ7U7XHzOSTBvaVkkd0dOAE8",
+        "availableAt": 20220525,
+        "endAt": 20220531
+    },
+    {
+        "title": "Marc Eckō's Getting Up: Contents Under Pressure",
+        "platform": "PC",
+        "releaseDate": "04/07/2022",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
+        "availableAt": 20220704,
+        "endAt": 20220805
     }
 ]

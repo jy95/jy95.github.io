@@ -1322,6 +1322,32 @@
             "platform": "PC",
             "availableAt": 20220502,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "DmC Devil May Cry : La Chute de Vergil",
+            "playlistId": "PLRfhDHeBTBJ7U7XHzOSTBvaVkkd0dOAE8",
+            "releaseDate": "05/03/2013",
+            "duration": "01:20:40",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC",
+            "availableAt": 20220525,
+            "coverFile": "cover.png"
+        },
+        {
+            "title": "Marc Eckō's Getting Up: Contents Under Pressure",
+            "playlistId": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
+            "releaseDate": "17/06/2006",
+            "duration": "07:26:19",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC",
+            "availableAt": 20220704,
+            "coverFile": "cover.jpg"
         }
     ]
 }
