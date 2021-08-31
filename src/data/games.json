@@ -1334,7 +1334,7 @@
             ],
             "platform": "PC",
             "availableAt": 20220525,
-            "coverFile": "cover.png"
+            "coverFile": "cover.webp"
         },
         {
             "title": "Marc Eckō's Getting Up: Contents Under Pressure",
@@ -1347,7 +1347,7 @@
             ],
             "platform": "PC",
             "availableAt": 20220704,
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         }
     ]
 }
