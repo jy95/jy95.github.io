@@ -1348,6 +1348,18 @@
             "platform": "PC",
             "availableAt": 20220704,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Psychonauts 2",
+            "playlistId": "PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ",
+            "releaseDate": "25/08/2021",
+            "duration": "10:59:44",
+            "genres": [
+                "Action",
+                "Platformer"
+            ],
+            "platform": "PC",
+            "coverFile": "cover.jpg"           
         }
     ]
 }
