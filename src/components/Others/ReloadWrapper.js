@@ -3,9 +3,9 @@ import {useTranslation} from "react-i18next";
 import {connect} from 'react-redux';
 
 // Icons
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Fab from '@material-ui/core/Fab';
-import AutorenewIcon from '@material-ui/icons/Autorenew';
+import CircularProgress from '@mui/material/CircularProgress';
+import Fab from '@mui/material/Fab';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 // Custom
 import CenteredGrid from "./CenteredGrid";

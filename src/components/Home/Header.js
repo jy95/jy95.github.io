@@ -3,20 +3,20 @@ import {connect} from 'react-redux';
 import {useTranslation} from "react-i18next";
 
 // React Material UI
-import {CssBaseline, IconButton, Toolbar} from "@material-ui/core";
-import MuiAppBar from '@material-ui/core/AppBar';
-import MenuIcon from '@material-ui/icons/Menu';
-import Switch from '@material-ui/core/Switch';
-import { styled } from '@material-ui/styles';
+import {CssBaseline, IconButton, Toolbar} from "@mui/material";
+import MuiAppBar from '@mui/material/AppBar';
+import MenuIcon from '@mui/icons-material/Menu';
+import Switch from '@mui/material/Switch';
+import { styled } from '@mui/styles';
 
 // Icons for switch
-import Brightness5Icon from '@material-ui/icons/Brightness5'; // sun
-import Brightness4Icon from '@material-ui/icons/Brightness4'; // moon
-import { yellow } from '@material-ui/core/colors';
+import Brightness5Icon from '@mui/icons-material/Brightness5'; // sun
+import Brightness4Icon from '@mui/icons-material/Brightness4'; // moon
+import { yellow } from '@mui/material/colors';
 
 // Icons for languages
-import SvgIcon from '@material-ui/core/SvgIcon';
-import Tooltip from '@material-ui/core/Tooltip';
+import SvgIcon from '@mui/material/SvgIcon';
+import Tooltip from '@mui/material/Tooltip';
 
 // Redux actions
 import {setThemeColor} from "../../actions/themeColor";
@@ -77,7 +77,7 @@ function Header(props) {
                             marginRight: '36px',
                             ...(drawerOpen && { display: 'none' }),
                         }}
-                    >
+                        size="large">
                         <MenuIcon/>
                     </IconButton>
                     <Switch 
@@ -94,9 +94,7 @@ function Header(props) {
                                 .keys(languages_with_icons)
                                 .map(language =>
                                     <Tooltip title={t("header.languages." + language)} key={language}>
-                                        <IconButton
-                                            onClick={() => i18n.changeLanguage(language)}
-                                        >
+                                        <IconButton onClick={() => i18n.changeLanguage(language)} size="large">
                                             <SvgIcon>
                                                 {languages_with_icons[language]}
                                             </SvgIcon>
@@ -108,7 +106,7 @@ function Header(props) {
                 </Toolbar>
             </AppBar>
         </React.Fragment>
-    )
+    );
 }
 
 // mapStateToProps(state, ownProps)

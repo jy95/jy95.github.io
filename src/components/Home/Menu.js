@@ -3,13 +3,13 @@ import {connect} from 'react-redux';
 import {useTranslation} from "react-i18next";
 
 // Material UI
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Tooltip from '@material-ui/core/Tooltip';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Tooltip from '@mui/material/Tooltip';
 
 // Router
 import {
@@ -18,11 +18,11 @@ import {
 } from "react-router-dom"
 
 // icons
-import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
-import ScheduleIcon from '@material-ui/icons/Schedule';
-import ExtensionIcon from '@material-ui/icons/Extension';
-import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import ScheduleIcon from '@mui/icons-material/Schedule';
+import ExtensionIcon from '@mui/icons-material/Extension';
+import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 // Redux action
 import {setDrawerOpen} from "../../actions/miscellaneous"
@@ -98,7 +98,7 @@ function Menu(props) {
             open={open}
         >
             <DrawerHeader>
-                <IconButton onClick={handleDrawerClose}>
+                <IconButton onClick={handleDrawerClose} size="large">
                     <ChevronLeftIcon />
                 </IconButton>                
             </DrawerHeader>
@@ -109,7 +109,7 @@ function Menu(props) {
                 }
             </List>
         </Drawer>
-    )
+    );
 }
 
 // mapStateToProps(state, ownProps)

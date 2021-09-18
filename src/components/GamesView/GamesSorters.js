@@ -1,27 +1,27 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
 
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import Popover from '@material-ui/core/Popover';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormGroup from '@mui/material/FormGroup';
+import Popover from '@mui/material/Popover';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 
 // For sorting criteria reorder
 // Not used as it produces a bug
-//import ButtonGroup from '@material-ui/core/ButtonGroup';
-//import Switch from '@material-ui/core/Switch';
+//import ButtonGroup from '@mui/material/ButtonGroup';
+//import Switch from '@mui/material/Switch';
 
 // To display ASC / DESC
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 // To move sort
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 import {connect} from 'react-redux';
 import {sort_games, change_sorting_order} from "../../actions/games";

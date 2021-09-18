@@ -1,11 +1,11 @@
 import React from "react";
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
 import {get_games} from "../../actions/games";
 
 // Style
 
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 
 // Custom
 import ReloadWrapper from "../Others/ReloadWrapper";
@@ -45,7 +45,7 @@ const StyledGamesGallery = styled('div')((
     },
     [`& .${classes.gamesCriteria}`]: {
         display: "flex",
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('md')]: {
             flexDirection: "column",
             rowGap: "8px"
         },

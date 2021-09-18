@@ -4,14 +4,14 @@ import { Provider, connect } from 'react-redux'
 import i18n from 'i18next';
 
 // Dark mode
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 
 // MUI components
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 
 // languages
-import {frFR, enUS} from '@material-ui/core/locale';
+import {frFR, enUS} from '@mui/material/locale';
 
 // Components
 import Header from "./Home/Header";
@@ -92,10 +92,12 @@ function withThemeProvider(Component) {
             [currentLanguage, themeSettings.currentColor],
         );
         return (
-            <ThemeProvider theme={theme}>
-                <Component {...props} />
-            </ThemeProvider>
-        )
+            <StyledEngineProvider injectFirst>
+                <ThemeProvider theme={theme}>
+                    <Component {...props} />
+                </ThemeProvider>
+            </StyledEngineProvider>
+        );
     }
     return WithThemeProvider;
 }

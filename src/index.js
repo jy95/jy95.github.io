@@ -9,7 +9,7 @@ import store from "./components/Store"
 import Root from "./components/Root";
 
 // For v4 to v5 migration 
-import { StyledEngineProvider } from '@material-ui/core/styles';
+import { StyledEngineProvider } from '@mui/material/styles';
 
 // For translation
 import {I18nextProvider, initReactI18next} from "react-i18next";

@@ -3,15 +3,15 @@ import {useTranslation} from "react-i18next";
 import { useHistory } from "react-router-dom";
 
 // To check what should happen when clicking on a game
-import { useTheme, styled } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme, styled } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardActionArea from '@material-ui/core/CardActionArea';
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardActionArea from '@mui/material/CardActionArea';
 
-import Tooltip from '@material-ui/core/Tooltip';
-import Image from 'material-ui-image';
+import Tooltip from '@mui/material/Tooltip';
+import Image from '@jy95/material-ui-image';
 
 import CardDialog from "./CardDialog";
 
@@ -52,7 +52,7 @@ function CardEntry(props) {
     // props
     const {game} = props;
 
-    const is_mobile_device = useMediaQuery(theme.breakpoints.down('sm'));
+    const is_mobile_device = useMediaQuery(theme.breakpoints.down('md'));
 
     // state of context menu
     const [contextMenuOpen,setContextMenuOpen] = React.useState(false);

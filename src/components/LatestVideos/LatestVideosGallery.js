@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
 import {get_latest_videos} from "../../actions/latestVideos";
 
@@ -7,7 +7,7 @@ import {get_latest_videos} from "../../actions/latestVideos";
 import ReloadWrapper from "../Others/ReloadWrapper";
 
 // Style
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import CardEntry from "../GamesView/CardEntry";
 
 const PREFIX = 'LatestVideosGallery';
@@ -38,7 +38,7 @@ const StyledLatestVideosGallery = styled('div')((
     },
     [`& .${classes.gamesCriteria}`]: {
         display: "flex",
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('md')]: {
             flexDirection: "column",
             rowGap: "8px"
         },

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 
 function CenteredBox(props) {
     const {children} = props;
@@ -10,12 +10,12 @@ function CenteredBox(props) {
             spacing={0}
             direction="column"
             alignItems="center"
-            justify="center"
+            justifyContent="center"
             style={{minHeight: '80vh'}}
         >
             {children}
         </Grid>
-    )
+    );
 }
 
 CenteredBox.propTypes = {

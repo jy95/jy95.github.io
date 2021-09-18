@@ -3,9 +3,9 @@ import {useTranslation} from "react-i18next";
 import {connect} from 'react-redux';
 
 // React Material UI
-import Autocomplete from "@material-ui/core/Autocomplete";
-import TextField from '@material-ui/core/TextField';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from '@mui/material/TextField';
+import SvgIcon from '@mui/material/SvgIcon';
 
 import {
     filter_games_by_platform

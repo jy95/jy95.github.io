@@ -1,5 +1,5 @@
-import { styled } from '@material-ui/styles';
-import MuiDrawer from '@material-ui/core/Drawer';
+import { styled } from '@mui/styles';
+import MuiDrawer from '@mui/material/Drawer';
 
 // drawerWidth
 export const drawerWidth = 240;

@@ -3,29 +3,29 @@ import {useTranslation} from "react-i18next";
 import { useHistory } from "react-router-dom";
 
 // For full screen Dialog 
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 // For Dialog
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
 
 // For a custom contextMenu (nice for UI)
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Button from '@material-ui/core/Button';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Button from '@mui/material/Button';
 
 // Icons for contextMenu
-import YouTubeIcon from '@material-ui/icons/YouTube';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-import RedditIcon from '@material-ui/icons/Reddit';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import FacebookIcon from '@material-ui/icons/Facebook';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
+import RedditIcon from '@mui/icons-material/Reddit';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import FacebookIcon from '@mui/icons-material/Facebook';
 
 // labels
 const LABEL_WATCH_ON_YT = "gamesLibrary.actionsButton.watchOnYt";
@@ -42,7 +42,7 @@ function CardDialog(props) {
     const { t } = useTranslation('common');
     const history = useHistory();
     const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     // props
     const {game, contextMenuState: [contextMenuOpen,setContextMenuOpen]} = props;

@@ -1,12 +1,12 @@
 import React from 'react';
 
 // icons
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+import SvgIcon from '@mui/material/SvgIcon';
 
 // Others
-import Tooltip from '@material-ui/core/Tooltip';
+import Tooltip from '@mui/material/Tooltip';
 
 // Platform icons
 import iconsSVG from "../GamesView/PlatformIcons";
