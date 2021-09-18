@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
 import {get_tests} from "../../actions/tests";
 
@@ -8,7 +8,7 @@ import ReloadWrapper from "../Others/ReloadWrapper";
 import CardEntry from "../GamesView/CardEntry";
 
 // Style
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 
 const PREFIX = 'TestsGallery';
 
@@ -38,7 +38,7 @@ const StyledTestsGallery = styled('div')((
     },
     [`& .${classes.gamesCriteria}`]: {
         display: "flex",
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('md')]: {
             flexDirection: "column",
             rowGap: "8px"
         },

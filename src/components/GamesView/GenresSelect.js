@@ -3,8 +3,8 @@ import {useTranslation} from "react-i18next";
 import {connect} from 'react-redux';
 
 // React Material UI
-import Autocomplete from "@material-ui/core/Autocomplete";
-import TextField from '@material-ui/core/TextField';
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from '@mui/material/TextField';
 
 import {
     filter_games_by_genre, 

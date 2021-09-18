@@ -1,16 +1,16 @@
 import React from 'react';
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
-import CloseIcon from '@material-ui/icons/Close';
-import { amber, green } from '@material-ui/core/colors';
-import IconButton from '@material-ui/core/IconButton';
-import WarningIcon from '@material-ui/icons/Warning';
-import Snackbar from '@material-ui/core/Snackbar';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ErrorIcon from '@mui/icons-material/Error';
+import InfoIcon from '@mui/icons-material/Info';
+import CloseIcon from '@mui/icons-material/Close';
+import { amber, green } from '@mui/material/colors';
+import IconButton from '@mui/material/IconButton';
+import WarningIcon from '@mui/icons-material/Warning';
+import Snackbar from '@mui/material/Snackbar';
+import SnackbarContent from '@mui/material/SnackbarContent';
 
 
 const PREFIX = 'CustomizedSnackbar';
@@ -102,7 +102,12 @@ function CustomSnackbar(props) {
         </span>
             }
             action={[
-                <IconButton key="close" aria-label="close" color="inherit" onClick={onClose}>
+                <IconButton
+                    key="close"
+                    aria-label="close"
+                    color="inherit"
+                    onClick={onClose}
+                    size="large">
                     <CloseIcon className={classes.icon} />
                 </IconButton>,
             ]}
