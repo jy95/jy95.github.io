@@ -5,7 +5,7 @@ import i18n from 'i18next';
 
 // Dark mode
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // MUI components
 import Box from '@mui/material/Box';
@@ -92,11 +92,9 @@ function withThemeProvider(Component) {
             [currentLanguage, themeSettings.currentColor],
         );
         return (
-            <StyledEngineProvider injectFirst>
-                <ThemeProvider theme={theme}>
-                    <Component {...props} />
-                </ThemeProvider>
-            </StyledEngineProvider>
+            <ThemeProvider theme={theme}>
+                <Component {...props} />
+            </ThemeProvider>
         );
     }
     return WithThemeProvider;
