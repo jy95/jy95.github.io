@@ -315,6 +315,14 @@
         "endAt": 20220531
     },
     {
+        "title": "Ratchet & Clank : A Crack in Time",
+        "platform": "PS3",
+        "releaseDate": "01/06/2022",
+        "status": "PENDING",
+        "id": "PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
+        "availableAt": 20220601
+    },
+    {
         "title": "Marc Eckō's Getting Up: Contents Under Pressure",
         "platform": "PC",
         "releaseDate": "04/07/2022",
@@ -322,5 +330,14 @@
         "id": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
         "availableAt": 20220704,
         "endAt": 20220805
+    },
+    {
+        "title": "The Simpsons Hit & Run",
+        "platform": "PC",
+        "releaseDate": "08/08/2022",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
+        "availableAt": 20220808,
+        "endAt": 20220822
     }
 ]

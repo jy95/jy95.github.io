@@ -1360,6 +1360,34 @@
             ],
             "platform": "PC",
             "coverFile": "cover.webp"           
+        },
+        {
+            "title": "The Simpsons Hit & Run",
+            "playlistId": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
+            "releaseDate": "16/09/2003",
+            "duration": "04:04:20",
+            "genres": [
+                "Action",
+                "Adventure"
+            ],
+            "platform": "PC",
+            "availableAt": 20220808,
+            "coverFile": "cover.webp"
+        },
+        {
+            "title": "Ratchet & Clank : A Crack in Time",
+            "playlistId": "PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
+            "releaseDate": "04/11/2009",
+            "duration": "05:45:00",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer",
+                "Shooter"
+            ],
+            "platform": "PS3",
+            "availableAt": 20220601,
+            "coverFile": "cover.webp"
         }
     ]
 }
