@@ -36,8 +36,8 @@ function PlatformSelect(props) {
                 Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
             }
             renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.platform")} />}
-            renderOption={(option, _state) => (
-                <li key={option.key}>
+            renderOption={(props, option, _state) => (
+                <li {...props} key={option.key}>
                     <SvgIcon titleAccess={option.label}>
                         <path d={iconsSVG[option.key]} />
                     </SvgIcon>
