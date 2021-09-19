@@ -1372,7 +1372,7 @@
             ],
             "platform": "PC",
             "availableAt": 20220808,
-            "coverFile": "cover.png"
+            "coverFile": "cover.webp"
         },
         {
             "title": "Ratchet & Clank : A Crack in Time",
@@ -1387,7 +1387,7 @@
             ],
             "platform": "PS3",
             "availableAt": 20220601,
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         }
     ]
 }
