@@ -1388,6 +1388,19 @@
             "platform": "PS3",
             "availableAt": 20220601,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "-KLAUS-",
+            "playlistId": "PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+            "releaseDate": "19/01/2016",
+            "duration": "04:32:14",
+            "genres": [
+                "Platformer",
+                "Puzzle"
+            ],
+            "platform": "PC",
+            "availableAt": 20220824,
+            "coverFile": "cover.webp"
         }
     ]
 }
