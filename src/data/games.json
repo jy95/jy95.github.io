@@ -1401,6 +1401,20 @@
             "platform": "PC",
             "availableAt": 20220824,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Rayman 3 : Hoodlum Havoc HD",
+            "playlistId": "PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ",
+            "releaseDate": "21/03/2012",
+            "duration": "05:27:54",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PS3",
+            "availableAt": 20220907,
+            "coverFile": "cover.jpg"
         }
     ]
 }
