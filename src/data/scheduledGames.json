@@ -357,5 +357,14 @@
         "id": "PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ",
         "availableAt": 20220907,
         "endAt": 20220926
+    },
+    {
+        "title": "Batman Vengeance",
+        "platform": "PS2",
+        "releaseDate": "28/09/2022",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
+        "availableAt": 20220928,
+        "endAt": 20221007
     }
 ]

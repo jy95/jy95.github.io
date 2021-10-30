@@ -19,6 +19,9 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
 
+// For snackbars
+import { useSnackbar } from 'notistack';
+
 // Icons for contextMenu
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
@@ -35,6 +38,7 @@ const LABEL_TWITTER = "gamesLibrary.actionsButton.shareOnTwitter";
 const LABEL_FACEBOOK = "gamesLibrary.actionsButton.shareOnFacebook";
 const LABEL_REDDIT = "gamesLibrary.actionsButton.shareOnReddit";
 const LABEL_CLOSE_BUTTON = "gamesLibrary.actionsButton.closeContextMenu";
+const LABEL_COPIED_LINK = "gamesLibrary.snackbarsMessages.copiedLink";
 
 function CardDialog(props) {
     
@@ -43,6 +47,7 @@ function CardDialog(props) {
     const history = useHistory();
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+    const { enqueueSnackbar } = useSnackbar();
 
     // props
     const {game, contextMenuState: [contextMenuOpen,setContextMenuOpen]} = props;
@@ -86,6 +91,13 @@ function CardDialog(props) {
                 } else if(window.clipboardData) { // Internet Explorer
                     window.clipboardData.setData("text/plain", gameURL);
                 }
+                enqueueSnackbar(
+                    t(LABEL_COPIED_LINK, { "gameName": gameTitle }),
+                    {
+                        "variant": "success",
+                        "autoHideDuration": 2500
+                    }
+                )
                 setContextMenuOpen(false);
             }
         },
