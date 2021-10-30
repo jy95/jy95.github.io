@@ -1415,6 +1415,20 @@
             "platform": "PS3",
             "availableAt": 20220907,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Batman Vengeance",
+            "playlistId": "PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
+            "releaseDate": "15/10/2001",
+            "duration": "02:32:02",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PS2",
+            "availableAt": 20220928,
+            "coverFile": "cover.jpg"
         }
     ]
 }
