@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { Provider, connect } from 'react-redux'
 import i18n from 'i18next';
 
+// snackbars
+import { SnackbarProvider } from 'notistack';
+
 // Dark mode
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -37,25 +40,33 @@ function Root(props) {
     const { store, openMenu } = props;
 
     return (
-        <Box sx={{ display: 'flex' }}>
-            <Provider store={store}>
-                {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
-                <Router basename={process.env.PUBLIC_URL} >
-                    <Header />
-                    <Menu />
-                        <Main open={ openMenu } >
-                            <DrawerHeader />
-                            <Route exact path="/" render={() => <Redirect to="/games" />}/>
-                            <Route path="/games" component={GamesGallery} />
-                            <Route path="/playlist/:id" component={Player} />
-                            <Route path="/video/:id" component={Player} />
-                            <Route path="/planning" component={Planning} />
-                            <Route path="/tests" component={TestsGallery} />
-                            <Route path="/latest" component={LatestVideosGallery} />
-                        </Main>
-                </Router>
-            </Provider>
-        </Box>
+        <SnackbarProvider 
+            maxSnack={3}
+            anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+            }}
+        >
+            <Box sx={{ display: 'flex' }}>
+                <Provider store={store}>
+                    {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
+                    <Router basename={process.env.PUBLIC_URL} >
+                        <Header />
+                        <Menu />
+                            <Main open={ openMenu } >
+                                <DrawerHeader />
+                                <Route exact path="/" render={() => <Redirect to="/games" />}/>
+                                <Route path="/games" component={GamesGallery} />
+                                <Route path="/playlist/:id" component={Player} />
+                                <Route path="/video/:id" component={Player} />
+                                <Route path="/planning" component={Planning} />
+                                <Route path="/tests" component={TestsGallery} />
+                                <Route path="/latest" component={LatestVideosGallery} />
+                            </Main>
+                    </Router>
+                </Provider>
+            </Box>
+        </SnackbarProvider>
     )
 }
 
