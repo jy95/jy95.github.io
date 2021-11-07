@@ -366,5 +366,14 @@
         "id": "PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
         "availableAt": 20220928,
         "endAt": 20221007
+    },
+    {
+        "title": "Sonic Adventure DX: Director's Cut",
+        "platform": "PC",
+        "releaseDate": "10/10/2022",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
+        "availableAt": 20221010,
+        "endAt": 20221102
     }
 ]
