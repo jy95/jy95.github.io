@@ -1429,6 +1429,21 @@
             "platform": "PS2",
             "availableAt": 20220928,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Sonic Adventure DX: Director's Cut",
+            "playlistId": "PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
+            "releaseDate": "06/02/2004",
+            "duration": "06:25:57",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer",
+                "RPG"
+            ],
+            "platform": "PC",
+            "availableAt": 20221010,
+            "coverFile": "cover.webp"
         }
     ]
 }
