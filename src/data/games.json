@@ -1444,6 +1444,20 @@
             "platform": "PC",
             "availableAt": 20221010,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Harry Potter à l'Ecole des Sorciers",
+            "playlistId": "PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7",
+            "releaseDate": "16/11/2001",
+            "duration": "03:36:33",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PC",
+            "availableAt": 20221103,
+            "coverFile": "cover.webp"
         }
     ]
 }

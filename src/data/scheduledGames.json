@@ -375,5 +375,14 @@
         "id": "PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
         "availableAt": 20221010,
         "endAt": 20221102
+    },
+    {
+        "title": "Harry Potter à l'Ecole des Sorciers",
+        "platform": "PC",
+        "releaseDate": "03/11/2022",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7",
+        "availableAt": 20221103,
+        "endAt": 20221111
     }
 ]
