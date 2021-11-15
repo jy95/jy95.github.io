@@ -1458,6 +1458,20 @@
             "platform": "PC",
             "availableAt": 20221103,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Harry Potter et la Chambre des Secrets",
+            "playlistId": "PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
+            "releaseDate": "14/11/2002",
+            "duration": "04:06:59",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PC",
+            "availableAt": 20221114,
+            "coverFile": "cover.jpg"
         }
     ]
 }
