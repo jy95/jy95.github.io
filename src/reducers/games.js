@@ -10,7 +10,7 @@ import {
 } from "../actions/games"
 
 // search criterias
-const sortByNameASC = (a, b) => (a.title < b.title) ? -1 : (a.title > b.title ? 1 : 0);
+const sortByNameASC = (a, b) => new Intl.Collator().compare(a.title, b.title);
 const sortByReleaseDateASC = (a, b) => {
     let aa = a["releaseDate"];
     let bb = b["releaseDate"];
