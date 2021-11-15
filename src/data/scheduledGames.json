@@ -384,5 +384,14 @@
         "id": "PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7",
         "availableAt": 20221103,
         "endAt": 20221111
+    },
+    {
+        "title": "Harry Potter et la Chambre des Secrets",
+        "platform": "PC",
+        "releaseDate": "03/11/2022",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
+        "availableAt": 20221114,
+        "endAt": 20221123
     }
 ]
