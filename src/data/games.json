@@ -1472,6 +1472,21 @@
             "platform": "PC",
             "availableAt": 20221114,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Sonic Adventure 2",
+            "videoId": "a0mr0A8VM9A",
+            "releaseDate": "19/11/2012",
+            "duration": "03:50:39",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer",
+                "RPG"
+            ],
+            "platform": "PC",
+            "availableAt": 20221125,
+            "coverFile": "cover.webp"
         }
     ]
 }
