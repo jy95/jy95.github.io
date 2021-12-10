@@ -393,5 +393,14 @@
         "id": "PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
         "availableAt": 20221114,
         "endAt": 20221123
+    },
+    {
+        "title": "Sonic Adventure 2",
+        "platform": "PC",
+        "releaseDate": "25/11/2022",
+        "status": "RECORDED",
+        "id": "a0mr0A8VM9A",
+        "availableAt": 20221125,
+        "endAt": 20221125
     }
 ]
