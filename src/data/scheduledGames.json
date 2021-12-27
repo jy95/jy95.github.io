@@ -402,5 +402,14 @@
         "id": "a0mr0A8VM9A",
         "availableAt": 20221125,
         "endAt": 20221125
+    },
+    {
+        "title": "Dead to Rights",
+        "platform": "PC",
+        "releaseDate": "01/12/2022",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
+        "availableAt": 20221201,
+        "endAt": 20221228
     }
 ]
