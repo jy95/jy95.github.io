@@ -1487,6 +1487,20 @@
             "platform": "PC",
             "availableAt": 20221125,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Dead to Rights",
+            "playlistId": "PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
+            "releaseDate": "03/06/2003",
+            "duration": "06:19:09",
+            "genres": [
+                "Action",
+                "Shooter",
+                "Adventure"
+            ],
+            "platform": "PC",
+            "availableAt": 20221201,
+            "coverFile": "cover.webp"
         }
     ]
 }
