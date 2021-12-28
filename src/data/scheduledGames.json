@@ -318,9 +318,10 @@
         "title": "Ratchet & Clank : A Crack in Time",
         "platform": "PS3",
         "releaseDate": "01/06/2022",
-        "status": "PENDING",
+        "status": "RECORDED",
         "id": "PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
-        "availableAt": 20220601
+        "availableAt": 20220601,
+        "endAt": 20220620
     },
     {
         "title": "Marc Eckō's Getting Up: Contents Under Pressure",
