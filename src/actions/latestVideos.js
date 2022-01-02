@@ -13,8 +13,7 @@ const FEED_URL = PROXY_URL + RSS_YOUTUBE_BASE_PATH + YOUTUBE_CHANNEL_ID;
 const YOUTUBE_REFRESH_TIME_IN_MINUTES = 15;
 
 // rss parser
-let Parser = require('rss-parser');
-let parser = new Parser();
+const { parse } = require('rss-to-json');
 
 // to compute delay in minutes between two dates (d1 : previous / d2 : current)
 const diff_minutes = (d1, d2) => Math.abs(
@@ -41,8 +40,7 @@ export const get_latest_videos = () => {
 
         if (shouldRequest){
             dispatch(fetchingStarted());
-            parser
-                .parseURL(FEED_URL)
+            parse(FEED_URL)
                 .then(feed => feed.items)
                 .then(items => dispatch(fetchingFinished(items,dateNow)) )
                 .catch(error => dispatch(fetchingFailed(error)) );
