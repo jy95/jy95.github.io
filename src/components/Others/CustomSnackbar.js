@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { cx } from '@emotion/css';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
 import InfoIcon from '@mui/icons-material/Info';
@@ -93,11 +93,11 @@ function CustomSnackbar(props) {
 
     return (
         <SnackbarContent
-            className={clsx(classes[variant], className)}
+            className={cx(classes[variant], className)}
             aria-describedby="client-snackbar"
             message={
                 <span id="client-snackbar" className={classes.message}>
-          <Icon className={clsx(classes.icon, classes.iconVariant)} />
+          <Icon className={cx(classes.icon, classes.iconVariant)} />
                     {message}
         </span>
             }
