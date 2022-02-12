@@ -1515,6 +1515,19 @@
             "platform": "PS3",
             "availableAt": 20230101,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "God of War (2018)",
+            "playlistId": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
+            "releaseDate": "14/02/2022",
+            "duration": "17:41:07",
+            "genres": [
+                "Action",
+                "Adventure",
+                "RPG"
+            ],
+            "platform": "PC",
+            "coverFile": "cover.jpg"
         }
     ]
 }
