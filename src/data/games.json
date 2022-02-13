@@ -1527,7 +1527,7 @@
                 "RPG"
             ],
             "platform": "PC",
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         },
         {
             "title": "50 Cent: Blood on the Sand",
@@ -1541,7 +1541,7 @@
             ],
             "platform": "PS3",
             "availableAt": 20230125,
-            "coverFile": "cover.jpg"
+            "coverFile": "cover.webp"
         }
     ]
 }
