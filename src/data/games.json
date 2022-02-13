@@ -1528,6 +1528,20 @@
             ],
             "platform": "PC",
             "coverFile": "cover.jpg"
+        },
+        {
+            "title": "50 Cent: Blood on the Sand",
+            "playlistId": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+            "releaseDate": "13/02/2009",
+            "duration": "03:52:13",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Shooter"
+            ],
+            "platform": "PS3",
+            "availableAt": 20230125,
+            "coverFile": "cover.jpg"
         }
     ]
 }
