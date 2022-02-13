@@ -1515,6 +1515,33 @@
             "platform": "PS3",
             "availableAt": 20230101,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "God of War (2018)",
+            "playlistId": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
+            "releaseDate": "14/02/2022",
+            "duration": "17:41:07",
+            "genres": [
+                "Action",
+                "Adventure",
+                "RPG"
+            ],
+            "platform": "PC",
+            "coverFile": "cover.webp"
+        },
+        {
+            "title": "50 Cent: Blood on the Sand",
+            "playlistId": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+            "releaseDate": "13/02/2009",
+            "duration": "03:52:13",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Shooter"
+            ],
+            "platform": "PS3",
+            "availableAt": 20230125,
+            "coverFile": "cover.webp"
         }
     ]
 }

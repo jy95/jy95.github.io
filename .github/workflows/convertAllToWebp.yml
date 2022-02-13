@@ -23,7 +23,7 @@ jobs:
             sudo ./.github/workflows/toWebp public
             sudo ./.github/workflows/toWebp src
         - name: Compress pictures
-          uses: calibreapp/image-actions@master
+          uses: calibreapp/image-actions@main
           with:
             githubToken: ${{ secrets.GITHUB_TOKEN }}
             ignorePaths: 'node_modules/**,build'

@@ -421,5 +421,14 @@
         "id": "PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
         "availableAt": 20230101,
         "endAt": 20230123
+    },
+    {
+        "title": "50 Cent: Blood on the Sand",
+        "platform": "PS3",
+        "releaseDate": "25/01/2023",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+        "availableAt": 20230125,
+        "endAt": 20230204
     }
 ]
