@@ -1542,6 +1542,20 @@
             "platform": "PS3",
             "availableAt": 20230125,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Aladdin : La Revanche de Nasira",
+            "playlistId": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+            "releaseDate": "13/12/2000",
+            "duration": "03:51:25",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PS1",
+            "availableAt": 20230206,
+            "coverFile": "cover.jpg"
         }
     ]
 }
