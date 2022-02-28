@@ -430,5 +430,14 @@
         "id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
         "availableAt": 20230125,
         "endAt": 20230204
+    },
+    {
+        "title": "Aladdin : La Revanche de Nasira",
+        "platform": "PS1",
+        "releaseDate": "06/02/2023",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+        "availableAt": 20230206,
+        "endAt": 20230216
     }
 ]
