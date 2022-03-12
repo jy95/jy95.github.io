@@ -439,5 +439,14 @@
         "id": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
         "availableAt": 20230206,
         "endAt": 20230216
+    },
+    {
+        "title": "Alan Wake Remastered",
+        "platform": "PC",
+        "releaseDate": "17/02/2023",
+        "status": "RECORDED",
+        "id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+        "availableAt": 20230217,
+        "endAt": 20230301
     }
 ]

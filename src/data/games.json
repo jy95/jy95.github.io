@@ -1556,6 +1556,20 @@
             "platform": "PS1",
             "availableAt": 20230206,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Alan Wake Remastered",
+            "playlistId": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+            "releaseDate": "04/10/2021",
+            "duration": "09:33:04",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Shooter"
+            ],
+            "platform": "PC",
+            "availableAt": 20230217,
+            "coverFile": "cover.jpg"
         }
     ]
 }
