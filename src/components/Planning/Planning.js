@@ -51,6 +51,7 @@ function Viewer(props) {
                             autoHeight  
                             localeText={customLocaleText}
                             components={{ Toolbar: GridToolbar }}
+                            sortingOrder={['asc', 'desc']}
                             initialState={{
                                 sorting: {
                                   sortModel: [{ field: 'releaseDate', sort: 'asc' }],
