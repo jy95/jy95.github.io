@@ -41,6 +41,7 @@ const planningColumns = (t, date_options, language) => [
     {
         field: "releaseDate", 
         headerName: t("planning.columns.releaseDate"),
+        sortingOrder: ['asc', 'desc'],
         headerAlign: 'center',
         renderCell: (params) => (
             <>
