@@ -1111,6 +1111,21 @@
             "coverFile": "cover.webp"
         },
         {
+            "title":"Rayman Origins",
+            "playlistId": "PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
+            "releaseDate": "24/11/2011",
+            "duration": "04:40:15",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"
+            ],
+            "platform": "PC",
+            "availableAt":20210716,
+            "endAt":20210729,
+            "coverFile": "cover.jpg"
+        },
+        {
             "title": "Danny Fantôme : L'Ultime Ennemi",
             "videoId": "uDs_7iY6oqw",
             "releaseDate": "26/05/2006",
