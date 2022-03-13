@@ -2,6 +2,7 @@ import gamesData from "../data/scheduledGames.json";
 
 export const FETCHING_REQUESTED = "PLANNING_REQUESTED";
 export const FETCHING_OK = "PLANNING_FETCHING_OK";
+const intergerDateRegex = /(?<year>\d{4,})(?<month>\d{2})(?<day>\d{2})/;
 
 export const get_scheduled_games = () => {
     return (dispatch, getState) => {
@@ -29,13 +30,18 @@ export const get_scheduled_games = () => {
             const planning = gamesData
                 .filter(game => should_be_displayed(integerDate, game.availableAt, game.endAt) )
                 .map(scheduledGame => {
-                    let releaseDate = scheduledGame["releaseDate"];
-                    const parts = releaseDate.split("/");
-                    return Object.assign(
-                        {}, 
-                        scheduledGame, 
-                        { "releaseDate": new Date(+parts[2], parts[1] -1, +parts[0]) }
-                    );
+
+                    const releaseDate = scheduledGame?.availableAt.toString();
+                    if ( releaseDate.match(intergerDateRegex)) {
+                        const { year, month, day } = intergerDateRegex.exec(releaseDate).groups;
+                        return {
+                            ...scheduledGame,
+                            "releaseDate": new Date(+year, month - 1, +day)
+                        }
+                    } else {
+                        return scheduledGame;
+                    }
+                    
                 });
     
             dispatch(fetchingFinished(planning));

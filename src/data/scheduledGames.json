@@ -1,452 +1,402 @@
 [
     {
-        "title": "Ryse: Son of Rome",
-        "platform": "PC",
-        "releaseDate": "20/11/2020",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ6cs6uc2X0dzBvaNuF-n49i",
-        "availableAt": 20201120,
-        "endAt": 20201208
+       "title":"Ryse: Son of Rome",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ6cs6uc2X0dzBvaNuF-n49i",
+       "availableAt":20201120,
+       "endAt":20201208
     },
     {
-        "title": "South Park : L'Annale du Destin",
-        "platform": "PC",
-        "releaseDate": "09/12/2020",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU",
-        "availableAt": 20201209,
-        "endAt": 20201231
+       "title":"South Park : L'Annale du Destin",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU",
+       "availableAt":20201209,
+       "endAt":20201231
     },
     {
-        "title": "Rayman 2 Revolution",
-        "platform": "PS2",
-        "releaseDate": "01/01/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
-        "availableAt": 20210101,
-        "endAt": 20210124 
+       "title":"Rayman 2 Revolution",
+       "platform":"PS2",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
+       "availableAt":20210101,
+       "endAt":20210124
     },
     {
-        "title": "Sleeping Dogs",
-        "platform": "PC",
-        "releaseDate": "25/01/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO",
-        "availableAt": 20210125,
-        "endAt": 20210221
+       "title":"Sleeping Dogs",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO",
+       "availableAt":20210125,
+       "endAt":20210221
     },
     {
-        "title": "Rayman contre les lapins crétins",
-        "platform": "PC",
-        "releaseDate": "22/02/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
-        "availableAt": 20210222,
-        "endAt": 20210308
+       "title":"Rayman contre les lapins crétins",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
+       "availableAt":20210222,
+       "endAt":20210308
     },
     {
-        "title": "Need For Speed Carbon",
-        "platform": "PC",
-        "releaseDate": "09/03/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ6MEuVUHAD2HZETNt5cBCZP",
-        "availableAt": 20210309,
-        "endAt": 20210326
+       "title":"Need For Speed Carbon",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ6MEuVUHAD2HZETNt5cBCZP",
+       "availableAt":20210309,
+       "endAt":20210326
     },
     {
-        "title": "Quantum Break",
-        "platform": "PC",
-        "releaseDate": "29/03/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f",
-        "availableAt": 20210329,
-        "endAt": 20210411
+       "title":"Quantum Break",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f",
+       "availableAt":20210329,
+       "endAt":20210411
     },
     {
-        "title": "Splinter Cell Conviction",
-        "platform": "PC",
-        "releaseDate": "12/04/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
-        "availableAt": 20210412,
-        "endAt": 20210422
+       "title":"Splinter Cell Conviction",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
+       "availableAt":20210412,
+       "endAt":20210422
     },
     {
-        "title": "Crash Bandicoot 1",
-        "platform": "PC",
-        "releaseDate": "26/04/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
-        "availableAt": 20210426,
-        "endAt": 20210503
+       "title":"Crash Bandicoot 1",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
+       "availableAt":20210426,
+       "endAt":20210503
     },
     {
-        "title": "Crash Bandicoot 2",
-        "platform": "PC",
-        "releaseDate": "03/05/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao",
-        "availableAt": 20210503,
-        "endAt": 20210510
+       "title":"Crash Bandicoot 2",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao",
+       "availableAt":20210503,
+       "endAt":20210510
     },
     {
-        "title": "Crash Bandicoot 3",
-        "platform": "PC",
-        "releaseDate": "12/05/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
-        "availableAt": 20210512,
-        "endAt": 20210519
+       "title":"Crash Bandicoot 3",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
+       "availableAt":20210512,
+       "endAt":20210519
     },
     {
-        "title": "Max Payne 3",
-        "releaseDate": "21/05/2021",
-        "platform": "PC",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ6qxm-Yidg-RNG6ICJuvll2",
-        "availableAt": 20210521,
-        "endAt": 20210621
+       "title":"Max Payne 3",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ6qxm-Yidg-RNG6ICJuvll2",
+       "availableAt":20210521,
+       "endAt":20210621
     },
     {
-        "title": "Dragon Ball : Advanced Adventure",
-        "platform": "GBA",
-        "releaseDate": "22/06/2021",
-        "status": "RECORDED",
-        "id": "5ZHExfdq9F8",
-        "availableAt": 20210622,
-        "endAt": 20210622
+       "title":"Dragon Ball : Advanced Adventure",
+       "platform":"GBA",
+       "status":"RECORDED",
+       "id":"5ZHExfdq9F8",
+       "availableAt":20210622,
+       "endAt":20210622
     },
     {
-        "title": "Avatar : Le Dernier Maître de l'Air",
-        "platform": "GBA",
-        "releaseDate": "23/06/2021",
-        "status": "RECORDED",
-        "id": "L7R_LBBOPEk",
-        "availableAt": 20210623,
-        "endAt": 20210623
+       "title":"Avatar : Le Dernier Maître de l'Air",
+       "platform":"GBA",
+       "status":"RECORDED",
+       "id":"L7R_LBBOPEk",
+       "availableAt":20210623,
+       "endAt":20210623
     },
     {
-        "title": "Prince of Persia : Les sables oubliés",
-        "platform": "PSP",
-        "releaseDate": "24/06/2021",
-        "status": "RECORDED",
-        "id": "lYIH7XkENSw",
-        "availableAt": 20210624,
-        "endAt": 20210624
+       "title":"Prince of Persia : Les sables oubliés",
+       "platform":"PSP",
+       "status":"RECORDED",
+       "id":"lYIH7XkENSw",
+       "availableAt":20210624,
+       "endAt":20210624
     },
     {
-        "title": "The Legend of Zelda: The Minish Cap",
-        "platform": "GBA",
-        "releaseDate": "25/06/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ41LQiFCR00rhaLAyMNy7cR",
-        "availableAt": 20210625,
-        "endAt": 20210715
+       "title":"The Legend of Zelda: The Minish Cap",
+       "platform":"GBA",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ41LQiFCR00rhaLAyMNy7cR",
+       "availableAt":20210625,
+       "endAt":20210715
     },
     {
-        "title": "Rayman Origins",
-        "platform": "PC",
-        "releaseDate": "16/07/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
-        "availableAt": 20210716,
-        "endAt": 20210729
+       "title":"Rayman Origins",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
+       "availableAt":20210716,
+       "endAt":20210729
     },
     {
-        "title": "Danny Fantôme : L'Ultime Ennemi",
-        "platform": "GBA",
-        "releaseDate": "02/08/2021",
-        "status": "RECORDED",
-        "id": "uDs_7iY6oqw",
-        "availableAt": 20210802,
-        "endAt": 20210802
+       "title":"Danny Fantôme : L'Ultime Ennemi",
+       "platform":"GBA",
+       "status":"RECORDED",
+       "id":"uDs_7iY6oqw",
+       "availableAt":20210802,
+       "endAt":20210802
     },
     {
-        "title": "Ratchet & Clank : Opération Destruction",
-        "platform": "PS3",
-        "releaseDate": "03/08/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
-        "availableAt": 20210803,
-        "endAt": 20210908
+       "title":"Ratchet & Clank : Opération Destruction",
+       "platform":"PS3",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
+       "availableAt":20210803,
+       "endAt":20210908
     },
     {
-        "title": "Harry Potter et la Coupe de Feu",
-        "platform": "PC",
-        "releaseDate": "10/09/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
-        "availableAt": 20210910,
-        "endAt": 20210920
+       "title":"Harry Potter et la Coupe de Feu",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
+       "availableAt":20210910,
+       "endAt":20210920
     },
     {
-        "title": "Pumpkin Jack",
-        "platform": "PC",
-        "releaseDate": "22/09/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
-        "availableAt": 20210922,
-        "endAt": 20211004
+       "title":"Pumpkin Jack",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
+       "availableAt":20210922,
+       "endAt":20211004
     },
     {
-        "title": "Dingo : Une Journée de Dingue !",
-        "platform": "PS1",
-        "releaseDate": "06/10/2021",
-        "status": "RECORDED",
-        "id": "-LX3ae9m_uU",
-        "availableAt": 20211006,
-        "endAt": 20211006
+       "title":"Dingo : Une Journée de Dingue !",
+       "platform":"PS1",
+       "status":"RECORDED",
+       "id":"-LX3ae9m_uU",
+       "availableAt":20211006,
+       "endAt":20211006
     },
     {
-        "title": "Destroy All Humans! En route vers Paname !",
-        "platform": "PS3",
-        "releaseDate": "08/10/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
-        "availableAt": 20211008,
-        "endAt": 20211110
+       "title":"Destroy All Humans! En route vers Paname !",
+       "platform":"PS3",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
+       "availableAt":20211008,
+       "endAt":20211110
     },
     {
-        "title": "Madagascar",
-        "platform": "PS2",
-        "releaseDate": "09/10/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn",
-        "availableAt": 20211009,
-        "endAt": 20211026
+       "title":"Madagascar",
+       "platform":"PS2",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn",
+       "availableAt":20211009,
+       "endAt":20211026
     },
     {
-        "title": "Titeuf : Méga-Compet'",
-        "platform": "PS2",
-        "releaseDate": "11/11/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
-        "availableAt": 20211111,
-        "endAt": 20211113
+       "title":"Titeuf : Méga-Compet'",
+       "platform":"PS2",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
+       "availableAt":20211111,
+       "endAt":20211113
     },
     {
-        "title": "Jak and Daxter: The Precursor Legacy",
-        "platform": "PS3",
-        "releaseDate": "15/11/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
-        "availableAt": 20211115,
-        "endAt": 20211210
+       "title":"Jak and Daxter: The Precursor Legacy",
+       "platform":"PS3",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
+       "availableAt":20211115,
+       "endAt":20211210
     },
     {
-        "title": "Splinter Cell Chaos Theory HD",
-        "platform": "PS3",
-        "releaseDate": "13/12/2021",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
-        "availableAt": 20211213,
-        "endAt": 20220103
+       "title":"Splinter Cell Chaos Theory HD",
+       "platform":"PS3",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+       "availableAt":20211213,
+       "endAt":20220103
     },
     {
-        "title": "Jak II : Hors la Loi",
-        "platform": "PS3",
-        "releaseDate": "05/01/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
-        "availableAt": 20220105,
-        "endAt": 20220128
+       "title":"Jak II : Hors la Loi",
+       "platform":"PS3",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
+       "availableAt":20220105,
+       "endAt":20220128
     },
     {
-        "title": "Splinter Cell: Pandora Tomorrow",
-        "platform": "PS3",
-        "releaseDate": "31/01/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH",
-        "availableAt": 20220131,
-        "endAt": 20220216
+       "title":"Splinter Cell: Pandora Tomorrow",
+       "platform":"PS3",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH",
+       "availableAt":20220131,
+       "endAt":20220216
     },
     {
-        "title": "Jak 3",
-        "platform": "PS3",
-        "releaseDate": "18/02/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
-        "availableAt": 20220218,
-        "endAt": 20220318
+       "title":"Jak 3",
+       "platform":"PS3",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
+       "availableAt":20220218,
+       "endAt":20220318
     },
     {
-        "title": "Crash Bandicoot 4: It's About Time",
-        "platform": "PC",
-        "releaseDate": "21/03/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ6AGIBxZa5zvykgQBKSHzd5",
-        "availableAt": 20220321,
-        "endAt": 20220413
+       "title":"Crash Bandicoot 4: It's About Time",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ6AGIBxZa5zvykgQBKSHzd5",
+       "availableAt":20220321,
+       "endAt":20220413
     },
     {
-        "title": "Dragon Ball Z : L'Héritage de Goku 2",
-        "platform": "GBA",
-        "releaseDate": "15/04/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem",
-        "availableAt": 20220415,
-        "endAt": 20220426
+       "title":"Dragon Ball Z : L'Héritage de Goku 2",
+       "platform":"GBA",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem",
+       "availableAt":20220415,
+       "endAt":20220426
     },
     {
-        "title": "Zapper : Le Criquet Ravageur !",
-        "platform": "PS2",
-        "releaseDate": "27/04/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT",
-        "availableAt": 20220427,
-        "endAt": 20220501
+       "title":"Zapper : Le Criquet Ravageur !",
+       "platform":"PS2",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT",
+       "availableAt":20220427,
+       "endAt":20220501
     },
     {
-        "title": "DmC: Devil May Cry",
-        "platform": "PC",
-        "releaseDate": "02/05/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3",
-        "availableAt": 20220502,
-        "endAt": 20220524
+       "title":"DmC: Devil May Cry",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3",
+       "availableAt":20220502,
+       "endAt":20220524
     },
     {
-        "title": "DmC Devil May Cry : La Chute de Vergil",
-        "platform": "PC",
-        "releaseDate": "25/05/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ7U7XHzOSTBvaVkkd0dOAE8",
-        "availableAt": 20220525,
-        "endAt": 20220531
+       "title":"DmC Devil May Cry : La Chute de Vergil",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ7U7XHzOSTBvaVkkd0dOAE8",
+       "availableAt":20220525,
+       "endAt":20220531
     },
     {
-        "title": "Ratchet & Clank : A Crack in Time",
-        "platform": "PS3",
-        "releaseDate": "01/06/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
-        "availableAt": 20220601,
-        "endAt": 20220620
+       "title":"Ratchet & Clank : A Crack in Time",
+       "platform":"PS3",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
+       "availableAt":20220601,
+       "endAt":20220620
     },
     {
-        "title": "Marc Eckō's Getting Up: Contents Under Pressure",
-        "platform": "PS2",
-        "releaseDate": "04/07/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
-        "availableAt": 20220704,
-        "endAt": 20220805
+       "title":"Marc Eckō's Getting Up: Contents Under Pressure",
+       "platform":"PS2",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
+       "availableAt":20220704,
+       "endAt":20220805
     },
     {
-        "title": "The Simpsons Hit & Run",
-        "platform": "PC",
-        "releaseDate": "08/08/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-        "availableAt": 20220808,
-        "endAt": 20220822
+       "title":"The Simpsons Hit & Run",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
+       "availableAt":20220808,
+       "endAt":20220822
     },
     {
-        "title": "-KLAUS-",
-        "platform": "PC",
-        "releaseDate": "24/08/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
-        "availableAt": 20220824,
-        "endAt": 20220905
+       "title":"-KLAUS-",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+       "availableAt":20220824,
+       "endAt":20220905
     },
     {
-        "title": "Rayman 3 : Hoodlum Havoc HD",
-        "platform": "PS3",
-        "releaseDate": "07/09/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ",
-        "availableAt": 20220907,
-        "endAt": 20220926
+       "title":"Rayman 3 : Hoodlum Havoc HD",
+       "platform":"PS3",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ",
+       "availableAt":20220907,
+       "endAt":20220926
     },
     {
-        "title": "Batman Vengeance",
-        "platform": "PS2",
-        "releaseDate": "28/09/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
-        "availableAt": 20220928,
-        "endAt": 20221007
+       "title":"Batman Vengeance",
+       "platform":"PS2",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
+       "availableAt":20220928,
+       "endAt":20221007
     },
     {
-        "title": "Sonic Adventure DX: Director's Cut",
-        "platform": "PC",
-        "releaseDate": "10/10/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
-        "availableAt": 20221010,
-        "endAt": 20221102
+       "title":"Sonic Adventure DX: Director's Cut",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
+       "availableAt":20221010,
+       "endAt":20221102
     },
     {
-        "title": "Harry Potter à l'Ecole des Sorciers",
-        "platform": "PC",
-        "releaseDate": "03/11/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7",
-        "availableAt": 20221103,
-        "endAt": 20221111
+       "title":"Harry Potter à l'Ecole des Sorciers",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7",
+       "availableAt":20221103,
+       "endAt":20221111
     },
     {
-        "title": "Harry Potter et la Chambre des Secrets",
-        "platform": "PC",
-        "releaseDate": "14/11/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
-        "availableAt": 20221114,
-        "endAt": 20221123
+       "title":"Harry Potter et la Chambre des Secrets",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
+       "availableAt":20221114,
+       "endAt":20221123
     },
     {
-        "title": "Sonic Adventure 2",
-        "platform": "PC",
-        "releaseDate": "25/11/2022",
-        "status": "RECORDED",
-        "id": "a0mr0A8VM9A",
-        "availableAt": 20221125,
-        "endAt": 20221125
+       "title":"Sonic Adventure 2",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"a0mr0A8VM9A",
+       "availableAt":20221125,
+       "endAt":20221125
     },
     {
-        "title": "Dead to Rights",
-        "platform": "PC",
-        "releaseDate": "01/12/2022",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
-        "availableAt": 20221201,
-        "endAt": 20221228
+       "title":"Dead to Rights",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
+       "availableAt":20221201,
+       "endAt":20221228
     },
     {
-        "title": "Dead to Rights : Retribution",
-        "platform": "PS3",
-        "releaseDate": "01/01/2023",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
-        "availableAt": 20230101,
-        "endAt": 20230123
+       "title":"Dead to Rights : Retribution",
+       "platform":"PS3",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
+       "availableAt":20230101,
+       "endAt":20230123
     },
     {
-        "title": "50 Cent: Blood on the Sand",
-        "platform": "PS3",
-        "releaseDate": "25/01/2023",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
-        "availableAt": 20230125,
-        "endAt": 20230204
+       "title":"50 Cent: Blood on the Sand",
+       "platform":"PS3",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+       "availableAt":20230125,
+       "endAt":20230204
     },
     {
-        "title": "Aladdin : La Revanche de Nasira",
-        "platform": "PS1",
-        "releaseDate": "06/02/2023",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
-        "availableAt": 20230206,
-        "endAt": 20230216
+       "title":"Aladdin : La Revanche de Nasira",
+       "platform":"PS1",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+       "availableAt":20230206,
+       "endAt":20230216
     },
     {
-        "title": "Alan Wake Remastered",
-        "platform": "PC",
-        "releaseDate": "17/02/2023",
-        "status": "RECORDED",
-        "id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
-        "availableAt": 20230217,
-        "endAt": 20230301
+       "title":"Alan Wake Remastered",
+       "platform":"PC",
+       "status":"RECORDED",
+       "id":"PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+       "availableAt":20230217,
+       "endAt":20230301
     }
-]
+ ]
