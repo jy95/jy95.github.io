@@ -1,4 +1,4 @@
-import gamesData from "../data/scheduledGames.json";
+import gamesData from "../data/games.json";
 
 export const FETCHING_REQUESTED = "PLANNING_REQUESTED";
 export const FETCHING_OK = "PLANNING_FETCHING_OK";
@@ -28,20 +28,30 @@ export const get_scheduled_games = () => {
             const should_be_displayed = (elem, min, max) => elem <= max || elem <= min;
 
             const planning = gamesData
-                .filter(game => should_be_displayed(integerDate, game.availableAt, game.endAt) )
+                .games
+                // only scheduled games - TODO add a property later for "on hold" entries
+                .filter(game => game.hasOwnProperty("availableAt"))
+                // only active entries
+                .filter(game => should_be_displayed(integerDate, game.availableAt, game.endAt))
                 .map(scheduledGame => {
+
+                    const common = {
+                        "id": scheduledGame.playlistId ?? scheduledGame.videoId,
+                        "title": scheduledGame.title,
+                        "platform": scheduledGame.platform,
+                        "status": scheduledGame.status || (scheduledGame.hasOwnProperty("endAt") ? "RECORDED" : "PENDING")
+                    };
 
                     const releaseDate = scheduledGame?.availableAt.toString();
                     if ( releaseDate.match(intergerDateRegex)) {
                         const { year, month, day } = intergerDateRegex.exec(releaseDate).groups;
                         return {
-                            ...scheduledGame,
+                            ...common,
                             "releaseDate": new Date(+year, month - 1, +day)
                         }
                     } else {
-                        return scheduledGame;
+                        return common;
                     }
-                    
                 });
     
             dispatch(fetchingFinished(planning));
