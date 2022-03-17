@@ -4,10 +4,10 @@ export const FETCHING_FAILED = "LATEST_VIDEOS_FETCHING_FAILED";
 export const CACHED_RESPONSE = "LATEST_VIDEOS_FETCHING_CACHED";
 
 // rss url
-const PROXY_URL = "https://cors.bridged.cc/"; // Because Youtube, I have to pass by a proxy
+// Because Youtube, I have to pass by a proxy
 const RSS_YOUTUBE_BASE_PATH = "https://www.youtube.com/feeds/videos.xml?channel_id=";
 const YOUTUBE_CHANNEL_ID = "UCG0N7IV-C43AM9psxslejCQ";
-const FEED_URL = PROXY_URL + RSS_YOUTUBE_BASE_PATH + YOUTUBE_CHANNEL_ID;
+const FEED_URL = `https://api.allorigins.win/get?url=${encodeURIComponent(RSS_YOUTUBE_BASE_PATH + YOUTUBE_CHANNEL_ID)}`;
 
 // Youtube updates by default rss feed each 15 minutes
 const YOUTUBE_REFRESH_TIME_IN_MINUTES = 15;
@@ -40,7 +40,12 @@ export const get_latest_videos = () => {
 
         if (shouldRequest){
             dispatch(fetchingStarted());
-            parse(FEED_URL)
+            parse(FEED_URL, {
+                transformResponse: function (data) {
+                    // needed for https://allorigins.win/ 
+                    return JSON.parse(data)?.contents || "";
+                }
+            })
                 .then(feed => feed.items)
                 .then(items => dispatch(fetchingFinished(items,dateNow)) )
                 .catch(error => dispatch(fetchingFailed(error)) );
