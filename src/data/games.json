@@ -1635,6 +1635,21 @@
             "availableAt":20230217,
             "endAt":20230301,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "The Punisher",
+            "playlistId": "PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT",
+            "releaseDate": "11/03/2005",
+            "duration": "05:36:21",
+            "genres": [
+                "Action",
+                "Shooter",
+                "Adventure"
+            ],
+            "platform": "PC",
+            "availableAt":20230303,
+            "endAt":20230403,
+            "coverFile": "cover.webp"
         }
     ]
 }
