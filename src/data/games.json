@@ -1650,6 +1650,19 @@
             "availableAt":20230303,
             "endAt":20230403,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Astérix & Obélix : Baffez-les Tous !",
+            "playlistId": "PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ",
+            "releaseDate": "07/12/2021",
+            "duration": "05:43:21",
+            "genres": [
+                "Fighting"
+            ],
+            "platform": "PC",
+            "availableAt":20230405,
+            "endAt":20230417,
+            "coverFile": "cover.webp"
         }
     ]
 }
