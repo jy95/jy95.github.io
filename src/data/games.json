@@ -1663,6 +1663,21 @@
             "availableAt":20230405,
             "endAt":20230417,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Dragon Ball Z : Buu's Fury",
+            "playlistId": "PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz",
+            "releaseDate": "14/09/2004",
+            "duration": "04:36:11",
+            "genres": [
+                "Action",
+                "Adventure",
+                "RPG"
+            ],
+            "platform": "GBA",
+            "availableAt":20230419,
+            "endAt":20230512,
+            "coverFile": "cover.png"
         }
     ]
 }
