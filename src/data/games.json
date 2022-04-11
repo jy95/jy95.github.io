@@ -1678,6 +1678,20 @@
             "availableAt":20230419,
             "endAt":20230512,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Space Invaders Extreme",
+            "videoId": "6wJFMcIHi8k",
+            "releaseDate": "03/07/2008",
+            "duration": "00:30:04",
+            "genres": [
+                "Action",
+                "Shooter"
+            ],
+            "platform": "PSP",
+            "availableAt":20230515,
+            "endAt":20230515,
+            "coverFile": "cover.webp"
         }
     ]
 }
