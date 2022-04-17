@@ -22,6 +22,10 @@
     },
     "gamesLibrary": {
         "sortButtonLabel": "Sorts",
+        "tabs": {
+            "grid": "Games",
+            "list": "Series"
+        },
         "sortLabels": {
             "byName": "By name",
             "byReleaseDate": "By release date",
