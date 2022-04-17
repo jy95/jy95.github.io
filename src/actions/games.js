@@ -77,6 +77,7 @@ export const get_games = () => {
                     ) + id ;
                     const url_type = (game.playlistId) ? "PLAYLIST" : "VIDEO";
                     return Object.assign({}, game, {
+                        "id": id,
                         "imagePath": process.env.PUBLIC_URL + gamesData.coversRootPath + id + "/" + (game.coverFile ?? gamesData.defaultCoverFile),
                         "releaseDate": new Date(+parts[2], parts[1] -1, +parts[0]),
                         "url": base_url,
