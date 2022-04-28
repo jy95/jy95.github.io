@@ -6,7 +6,8 @@ export const FETCHING_OK = "SERIES_FETCHING_OK";
 export const FETCHING_FAILED = "SERIES_FETCHING_FAILED";
 
 // Regex for duration
-const DURATION_REGEX = /(\d+):(\d+):(\d+)/; 
+const DURATION_REGEX = /(\d+):(\d+):(\d+)/;
+const sortByNameASC = (a, b) => new Intl.Collator().compare(a.name, b.name);
 
 // param à la place du () du genre ({title, password})
 export const get_series = () => {
@@ -70,6 +71,7 @@ export const get_series = () => {
                     }
                 })
                 .filter(serie => serie.items.length > 0)
+                .sort(sortByNameASC);
                 
             dispatch(fetchingFinished(series));
         }
