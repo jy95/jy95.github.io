@@ -1706,6 +1706,21 @@
             "availableAt":20230517,
             "endAt":20230602,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Les Simpson : Le Jeu",
+            "playlistId": "PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh",
+            "releaseDate": "15/11/2007",
+            "duration": "04:05:46",
+            "genres": [
+                "Action",
+                "Adventure",
+                "RPG"
+            ],
+            "platform": "PS3",
+            "availableAt":20230605,
+            "endAt":20230626,
+            "coverFile": "cover.webp"
         }
     ]
 }
