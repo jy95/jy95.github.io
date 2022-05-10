@@ -1735,6 +1735,21 @@
             "availableAt":20230628,
             "endAt":20230628,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Rayman Legends",
+            "playlistId": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
+            "releaseDate": "29/08/2013",
+            "duration": "04:41:01",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Platformer"                
+            ],
+            "platform": "PS3",
+            "availableAt":20230630,
+            "endAt":20230712,
+            "coverFile": "cover.webp"
         }
     ]
 }
