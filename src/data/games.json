@@ -1750,6 +1750,20 @@
             "availableAt":20230630,
             "endAt":20230712,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Yu-Gi-Oh! Les Cartes Sacrées",
+            "videoId": "NZiAc-mIJuQ",
+            "releaseDate": "30/01/2004",
+            "duration": "02:57:48",
+            "genres": [
+                "RPG",
+                "Card"
+            ],
+            "platform": "GBA",
+            "availableAt":20230714,
+            "endAt":20230714,
+            "coverFile": "cover.jpg"
         }
     ]
 }
