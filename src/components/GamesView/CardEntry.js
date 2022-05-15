@@ -93,7 +93,7 @@ function CardEntry(props) {
                         className={classes.gameCover}
                         title={gameTitle}
                     >
-                        <Image src={game.imagePath} />
+                        <Image src={game.imagePath} alt={gameTitle}/>
                     </CardMedia>
 
                 </CardActionArea>
