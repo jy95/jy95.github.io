@@ -74,10 +74,10 @@ function Header(props) {
                         onClick={handleDrawerOpen}
                         edge="start"
                         sx={{
-                            marginRight: '36px',
+                            marginRight: 5,
                             ...(drawerOpen && { display: 'none' }),
                         }}
-                        size="large">
+                    >
                         <MenuIcon/>
                     </IconButton>
                     <Switch 
