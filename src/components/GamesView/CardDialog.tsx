@@ -88,8 +88,8 @@ function CardDialog(props) {
             "onClick": async () => {
                 if (navigator.clipboard !== undefined) {//Chrome
                     await navigator.clipboard.writeText(gameURL);
-                } else if(window.clipboardData) { // Internet Explorer
-                    window.clipboardData.setData("text/plain", gameURL);
+                } else if((window as any).clipboardData) { // Internet Explorer
+                    (window as any).clipboardData.setData("text/plain", gameURL);
                 }
                 enqueueSnackbar(
                     t(LABEL_COPIED_LINK, { "gameName": gameTitle }),
