@@ -65,7 +65,7 @@ function Root(props) {
                     <Router basename={process.env.PUBLIC_URL} >
                         <Header />
                         <Menu />
-                            <Main /*open={ openMenu } TODO fix it*/ >
+                            <Main open={ openMenu } >
                                 <DrawerHeader />
                                 <Route exact path="/" render={() => <Redirect to="/games" />}/>
                                 <Route path="/games" component={GamesGallery} />

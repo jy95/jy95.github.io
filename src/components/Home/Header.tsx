@@ -7,7 +7,7 @@ import {CssBaseline, IconButton, Toolbar} from "@mui/material";
 import MuiAppBar from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
 import Switch from '@mui/material/Switch';
-import { styled } from '@mui/styles';
+import { styled } from '@mui/material/styles';
 
 // Icons for switch
 import Brightness5Icon from '@mui/icons-material/Brightness5'; // sun
