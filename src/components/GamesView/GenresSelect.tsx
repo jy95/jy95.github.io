@@ -37,7 +37,7 @@ function GenresSelect(props) {
             //style={{ width: 300 }}
             limitTags={3}
             options={genre_options}
-            getOptionLabel={(option) => option.label}
+            getOptionLabel={(option : any) => option.label}
             isOptionEqualToValue={(option, value) => 
                 Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
             }

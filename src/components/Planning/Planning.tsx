@@ -44,7 +44,7 @@ function Viewer(props) {
                     <div style={{ flexGrow: 1 }}>
                         <DataGrid 
                             rows={data} 
-                            columns={columns} 
+                            columns={columns as any} 
                             disableSelectionOnClick 
                             //disableExtendRowFullWidth // No needed for now
                             disableColumnFilter // or filterable: false in each column

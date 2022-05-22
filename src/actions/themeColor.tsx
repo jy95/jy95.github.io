@@ -22,4 +22,3 @@ const autoSetThemeColor = (color) => ({
     systemColor: color,
     mode: "auto"
 })
-

@@ -39,7 +39,7 @@ export const get_scheduled_games = () => {
                         "id": scheduledGame.playlistId ?? scheduledGame.videoId,
                         "title": scheduledGame.title,
                         "platform": scheduledGame.platform,
-                        "status": scheduledGame.status || (scheduledGame.hasOwnProperty("endAt") ? "RECORDED" : "PENDING")
+                        "status":  (scheduledGame.hasOwnProperty("endAt") ? "RECORDED" : "PENDING")
                     };
 
                     // optional date fields
@@ -51,7 +51,7 @@ export const get_scheduled_games = () => {
                         .reduce( (acc, curr) => {
                             const [key, value] = curr;
                             const { year, month, day } = intergerDateRegex.exec(value).groups;
-                            acc[key] = new Date(+year, month - 1, +day);
+                            acc[key] = new Date(+year, Number(month) - 1, +day);
                             return acc;
                         }, {});
                     
