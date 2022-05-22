@@ -44,7 +44,7 @@ const planningColumns = (t, date_options, language) => [
         headerAlign: 'center',
         renderCell: (params) => (
             <>
-                {params.value.toLocaleDateString(language, date_options)}
+                {params?.value?.toLocaleDateString(language, date_options)}
             </>
         ),
         width: 220
@@ -55,7 +55,7 @@ const planningColumns = (t, date_options, language) => [
         headerAlign: 'center',
         renderCell: (params) => (
             <>
-                {params.value.toLocaleDateString(language, date_options)}
+                {params?.value?.toLocaleDateString(language, date_options)}
             </>
         ),
         width: 220,

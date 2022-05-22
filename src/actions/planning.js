@@ -44,10 +44,10 @@ export const get_scheduled_games = () => {
 
                     // optional date fields
                     const optional = [
-                        ["releaseDate", scheduledGame?.availableAt.toString()],
-                        ["endDate", scheduledGame?.endAt.toString()]
+                        ["releaseDate", scheduledGame?.availableAt?.toString()],
+                        ["endDate", scheduledGame?.endAt?.toString()]
                     ]
-                        .filter( field => field[1].match(intergerDateRegex) )
+                        .filter( field => !!field[1] && field[1].match(intergerDateRegex) )
                         .reduce( (acc, curr) => {
                             const [key, value] = curr;
                             const { year, month, day } = intergerDateRegex.exec(value).groups;
