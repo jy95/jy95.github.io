@@ -1764,6 +1764,20 @@
             "availableAt":20230714,
             "endAt":20230714,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Afro Samurai",
+            "playlistId": "PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
+            "releaseDate": "27/03/2009",
+            "duration": "04:46:22",
+            "genres": [
+                "Action",
+                "Fighting"    
+            ],
+            "platform": "PS3",
+            "availableAt":20230717,
+            "endAt":20230802,
+            "coverFile": "cover.webp"
         }
     ]
 }

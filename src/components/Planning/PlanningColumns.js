@@ -44,10 +44,22 @@ const planningColumns = (t, date_options, language) => [
         headerAlign: 'center',
         renderCell: (params) => (
             <>
-                {params.value.toLocaleDateString(language, date_options)}
+                {params?.value?.toLocaleDateString(language, date_options)}
             </>
         ),
         width: 220
+    },
+    {
+        field: "endDate", 
+        headerName: t("planning.columns.endDate"),
+        headerAlign: 'center',
+        renderCell: (params) => (
+            <>
+                {params?.value?.toLocaleDateString(language, date_options)}
+            </>
+        ),
+        width: 220,
+        hide: true
     },
     {
         field: "status",

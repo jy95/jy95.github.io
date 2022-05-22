@@ -80,6 +80,7 @@
         "columns": {
             "title": "Title",
             "releaseDate": "Release Date",
+            "endDate": "End Date",
             "status": "Status",
             "platform": "Platform"
         }
