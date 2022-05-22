@@ -6,10 +6,13 @@ import {connect} from 'react-redux';
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 
+
 import {
     filter_games_by_genre, 
     filter_games_by_title
-} from "../../actions/games.tsx";
+} 
+// @ts-ignore
+from "../../actions/games.tsx";
 
 // Genres filter of GamesGallery
 function GenresSelect(props) {

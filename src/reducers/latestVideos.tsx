@@ -3,7 +3,9 @@ import {
     FETCHING_OK,
     FETCHING_REQUESTED,
     CACHED_RESPONSE
-} from "../actions/latestVideos.tsx";
+} 
+// @ts-ignore
+from "../actions/latestVideos.tsx";
 
 const initialState = {
     items: [],

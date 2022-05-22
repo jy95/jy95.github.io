@@ -5,7 +5,7 @@ import MuiDrawer from '@mui/material/Drawer';
 export const drawerWidth = 240;
 
 // styled drawer header
-export const DrawerHeader = styled('div')(({ theme }) => ({
+export const DrawerHeader = styled('div')(({ theme }: any) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',

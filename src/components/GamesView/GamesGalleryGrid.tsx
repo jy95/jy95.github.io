@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
+// @ts-ignore
 import {get_games} from "../../actions/games.tsx";
 
 // Style
@@ -8,12 +9,17 @@ import {get_games} from "../../actions/games.tsx";
 import Grid from "@mui/material/Grid";
 
 // Custom
+// @ts-ignore
 import ReloadWrapper from "../Others/ReloadWrapper.tsx";
-
+// @ts-ignore
 import CardEntry from "./CardEntry.tsx";
+// @ts-ignore
 import GamesSorters from "./GamesSorters.tsx";
+// @ts-ignore
 import GenresSelect from "./GenresSelect.tsx";
+// @ts-ignore
 import PlatformSelect from "./PlatformSelect.tsx";
+// @ts-ignore
 import TitleFilter from "./TitleFilter.tsx";
 
 const PREFIX = 'GamesGalleryGrid';

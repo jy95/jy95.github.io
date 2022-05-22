@@ -10,7 +10,9 @@ import ListIcon from '@mui/icons-material/List';
 import {useTranslation} from "react-i18next";
 
 // Custom
+// @ts-ignore
 import GamesGalleryGrid from "./GamesGalleryGrid.tsx";
+// @ts-ignore
 import GamesGalleryList from "./GamesGalleryList.tsx";
 
 // The gallery component

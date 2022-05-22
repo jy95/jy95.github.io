@@ -24,6 +24,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 import {connect} from 'react-redux';
+// @ts-ignore
 import {sort_games, change_sorting_order} from "../../actions/games.tsx";
 
 
@@ -116,7 +117,7 @@ function GamesSorters(props) {
                                             </>
                                         }
                                         label={t(field_labels[criteria])}
-                                        variant="standard" />
+                                    />
                                     {
                                         // Object.keys as I need the following order : UP / DOWN
                                         Object

@@ -1,7 +1,9 @@
 import {
     FETCHING_REQUESTED,
     FETCHING_OK
-} from "../actions/tests.tsx"
+} 
+// @ts-ignore
+from "../actions/tests.tsx"
 
 const initialState = {
     games: []

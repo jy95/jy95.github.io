@@ -17,17 +17,29 @@ import Box from '@mui/material/Box';
 import {frFR, enUS} from '@mui/material/locale';
 
 // Components
+// @ts-ignore
 import Header from "./Home/Header.tsx";
+// @ts-ignore
 import Menu from "./Home/Menu.tsx"
+// @ts-ignore
 import Player from "./YTPlayer/Player.tsx";
+// @ts-ignore
 import GamesGallery from "./GamesView/GamesGallery.tsx";
+// @ts-ignore
 import Planning from "./Planning/Planning.tsx";
+// @ts-ignore
 import TestsGallery from "./Tests/TestsGallery.tsx";
+// @ts-ignore
 import LatestVideosGallery from "./LatestVideos/LatestVideosGallery.tsx";
+// @ts-ignore
 import { DrawerHeader, Main } from "./Home/Drawer.tsx";
 
 // Redux action
-import {setThemeColor} from "../actions/themeColor.tsx";
+import {
+    setThemeColor
+} 
+// @ts-ignore
+from "../actions/themeColor.tsx";
 
 // Languages for Material UI
 const materialUI_languages = {

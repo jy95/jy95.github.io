@@ -8,7 +8,9 @@ import Fab from '@mui/material/Fab';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 // Custom
+// @ts-ignore
 import CenteredGrid from "./CenteredGrid.tsx";
+// @ts-ignore
 import SnackbarWrapper from "./CustomSnackbar.tsx";
 
 // The reload wrapper component

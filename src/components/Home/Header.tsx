@@ -19,10 +19,13 @@ import SvgIcon from '@mui/material/SvgIcon';
 import Tooltip from '@mui/material/Tooltip';
 
 // Redux actions
+// @ts-ignore
 import {setThemeColor} from "../../actions/themeColor.tsx";
+// @ts-ignore
 import {setDrawerOpen} from "../../actions/miscellaneous.tsx"
 
 // Custom icons
+// @ts-ignore
 import languages_with_icons from "./HeaderLanguages.tsx";
 
 // styled AppBar

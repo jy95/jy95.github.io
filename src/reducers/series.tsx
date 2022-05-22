@@ -2,7 +2,9 @@ import {
     FETCHING_FAILED,
     FETCHING_OK,
     FETCHING_REQUESTED
-} from "../actions/series.tsx"
+} 
+// @ts-ignore
+from "../actions/series.tsx"
 
 const initialState = {
     series: [],

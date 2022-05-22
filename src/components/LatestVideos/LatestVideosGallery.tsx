@@ -1,13 +1,16 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
+// @ts-ignore
 import {get_latest_videos} from "../../actions/latestVideos.tsx";
 
 // Custom
+// @ts-ignore
 import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 
 // Style
 import Grid from "@mui/material/Grid";
+// @ts-ignore
 import CardEntry from "../GamesView/CardEntry.tsx";
 
 const PREFIX = 'LatestVideosGallery';

@@ -1,7 +1,9 @@
 import {
     FETCHING_OK,
     FETCHING_REQUESTED
-} from "../actions/planning.tsx"
+} 
+// @ts-ignore
+from "../actions/planning.tsx"
 
 const initialState = {
     planning: [],

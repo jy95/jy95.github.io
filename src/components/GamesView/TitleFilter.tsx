@@ -8,7 +8,9 @@ import TextField from '@mui/material/TextField';
 
 import {
     filter_games_by_title
-} from "../../actions/games.tsx";
+} 
+// @ts-ignore
+from "../../actions/games.tsx";
 
 function TitleFilter(props) {
 

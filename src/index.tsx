@@ -3,9 +3,11 @@ import { render } from 'react-dom'
 
 // Common
 import './index.css';
+// @ts-ignore
 import * as serviceWorker from './serviceWorker.tsx';
-
+// @ts-ignore
 import store from "./components/Store.tsx"
+// @ts-ignore
 import Root from "./components/Root.tsx";
 
 // For v4 to v5 migration 

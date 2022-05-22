@@ -1,10 +1,13 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
+// @ts-ignore
 import {get_tests} from "../../actions/tests.tsx";
 
 // Custom
+// @ts-ignore
 import ReloadWrapper from "../Others/ReloadWrapper.tsx";
+// @ts-ignore
 import CardEntry from "../GamesView/CardEntry.tsx";
 
 // Style

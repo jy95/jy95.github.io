@@ -9,6 +9,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 import Tooltip from '@mui/material/Tooltip';
 
 // Platform icons
+// @ts-ignore
 import iconsSVG from "../GamesView/PlatformIcons.tsx";
 
 // columns definitions

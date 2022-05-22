@@ -7,13 +7,17 @@ import {useTranslation} from "react-i18next";
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 
 // Realod Wrapper
+// @ts-ignore
 import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 // columns definitions
+// @ts-ignore
 import getTableColumns from "./PlanningColumns.tsx";
 // Custom French translation
+// @ts-ignore
 import customTranslation from "./PlanningFrenchLabels.tsx";
 
 // Redux actions
+// @ts-ignore
 import {get_scheduled_games} from "../../actions/planning.tsx";
 
 function Viewer(props) {

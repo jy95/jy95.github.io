@@ -1,6 +1,8 @@
 import {
     SET_DRAWER_OPEN
-} from "../actions/miscellaneous.tsx"
+} 
+// @ts-ignore
+from "../actions/miscellaneous.tsx"
 
 // for stuff I had to share between 2 or more components
 const initialState = {

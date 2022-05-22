@@ -9,9 +9,12 @@ import SvgIcon from '@mui/material/SvgIcon';
 
 import {
     filter_games_by_platform
-} from "../../actions/games.tsx";
+} 
+// @ts-ignore
+from "../../actions/games.tsx";
 
 // icons
+// @ts-ignore
 import iconsSVG from "./PlatformIcons.tsx";
 
 function PlatformSelect(props) {
@@ -31,7 +34,7 @@ function PlatformSelect(props) {
             id="select-game-platform"
             openOnFocus
             options={options}
-            getOptionLabel={(option) => option.label}
+            getOptionLabel={(option: any) => option.label}
             isOptionEqualToValue={(option, value) => 
                 Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
             }
