@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkyt_gaming_library=self.webpackChunkyt_gaming_library||[]).push([[24],{1024:function(t,n,i){i.r(n),i.d(n,{default:function(){return e}});i(2791);var u=i(3134),a=i.n(u),l=i(6871),r=i(184);function e(t){var n=(0,l.UO)().id,i=("PLAYLIST"===((0,l.TH)().pathname.includes("/playlist/")?"PLAYLIST":"VIDEO")?"https://www.youtube.com/playlist?list=":"https://www.youtube.com/watch?v=")+n;return(0,r.jsx)(a(),{controls:!0,url:i,playing:!0,width:"100%",height:"90vh"})}}}]);
+//# sourceMappingURL=24.5bedd9a8.chunk.js.map
