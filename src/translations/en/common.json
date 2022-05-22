@@ -12,7 +12,8 @@
         }
     },
     "common": {
-        "reload": "Reload"
+        "reload": "Reload",
+        "loading": "Loading ..."
     },
     "header": {
         "languages": {

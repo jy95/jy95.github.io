@@ -12,7 +12,8 @@
         }
     },
     "common": {
-        "reload": "Recharger"
+        "reload": "Recharger",
+        "loading": "Chargement en cours ..."
     },
     "header": {
         "languages": {

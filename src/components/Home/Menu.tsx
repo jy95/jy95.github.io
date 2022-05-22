@@ -6,7 +6,7 @@ import {useTranslation} from "react-i18next";
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Tooltip from '@mui/material/Tooltip';
@@ -14,7 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 // Router
 import {
     Link,
-    useRouteMatch
+    useMatch
 } from "react-router-dom"
 
 // icons
@@ -38,24 +38,24 @@ function ListItemLink(props) {
     const { t } = useTranslation('common');
     const entry_label = t(primary);
 
-    const matchUrl = useRouteMatch(to) !== null;
+    const matchUrl = useMatch(to) !== null;
 
     const renderLink = React.useMemo(
         () =>
-            React.forwardRef((linkProps, ref) => (
+            React.forwardRef((linkProps, _ref) => (
                 // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
                 // See https://github.com/ReactTraining/react-router/issues/6056
-                <Link to={to} {...linkProps} innerRef={ref} />
+                <Link to={to} {...linkProps} />
             )),
         [to],
     );
 
     return (
         <Tooltip title={entry_label} aria-label={primary}>
-            <ListItem button component={renderLink} selected={matchUrl}>
+            <ListItemButton component={renderLink} selected={matchUrl}>
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={entry_label} />
-            </ListItem>
+            </ListItemButton>
         </Tooltip>
     )
 };
