@@ -42,15 +42,22 @@ export const get_scheduled_games = () => {
                         "status": scheduledGame.status || (scheduledGame.hasOwnProperty("endAt") ? "RECORDED" : "PENDING")
                     };
 
-                    const releaseDate = scheduledGame?.availableAt.toString();
-                    if ( releaseDate.match(intergerDateRegex)) {
-                        const { year, month, day } = intergerDateRegex.exec(releaseDate).groups;
-                        return {
-                            ...common,
-                            "releaseDate": new Date(+year, month - 1, +day)
-                        }
-                    } else {
-                        return common;
+                    // optional date fields
+                    const optional = [
+                        ["releaseDate", scheduledGame?.availableAt.toString()],
+                        ["endDate", scheduledGame?.endAt.toString()]
+                    ]
+                        .filter( field => field[1].match(intergerDateRegex) )
+                        .reduce( (acc, curr) => {
+                            const [key, value] = curr;
+                            const { year, month, day } = intergerDateRegex.exec(value).groups;
+                            acc[key] = new Date(+year, month - 1, +day);
+                            return acc;
+                        }, {});
+                    
+                    return {
+                        ...common,
+                        ...optional
                     }
                 });
     
