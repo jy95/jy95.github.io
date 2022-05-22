@@ -1,20 +1,20 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
-import {get_games} from "../../actions/games";
+import {get_games} from "../../actions/games.tsx";
 
 // Style
 
 import Grid from "@mui/material/Grid";
 
 // Custom
-import ReloadWrapper from "../Others/ReloadWrapper";
+import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 
-import CardEntry from "./CardEntry";
-import GamesSorters from "./GamesSorters";
-import GenresSelect from "./GenresSelect";
-import PlatformSelect from "./PlatformSelect";
-import TitleFilter from "./TitleFilter";
+import CardEntry from "./CardEntry.tsx";
+import GamesSorters from "./GamesSorters.tsx";
+import GenresSelect from "./GenresSelect.tsx";
+import PlatformSelect from "./PlatformSelect.tsx";
+import TitleFilter from "./TitleFilter.tsx";
 
 const PREFIX = 'GamesGalleryGrid';
 

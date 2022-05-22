@@ -25,10 +25,10 @@ import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 // Redux action
-import {setDrawerOpen} from "../../actions/miscellaneous"
+import {setDrawerOpen} from "../../actions/miscellaneous.tsx"
 
 // Styled components
-import { Drawer, DrawerHeader } from "./Drawer";
+import { Drawer, DrawerHeader } from "./Drawer.tsx";
 
 // List Item
 function ListItemLink(props) {

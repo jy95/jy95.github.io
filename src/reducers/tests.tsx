@@ -1,7 +1,7 @@
 import {
     FETCHING_REQUESTED,
     FETCHING_OK
-} from "../actions/tests"
+} from "../actions/tests.tsx"
 
 const initialState = {
     games: []

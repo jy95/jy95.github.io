@@ -1,12 +1,12 @@
 import { combineReducers } from "redux"
 
-import games from "./games";
-import series from "./series";
-import planning from "./planning"
-import themeColor from "./themeColor";
-import tests from "./tests";
-import latestVideos from "./latestVideos";
-import miscellaneous from "./miscellaneous"
+import games from "./games.tsx";
+import series from "./series.tsx";
+import planning from "./planning.tsx"
+import themeColor from "./themeColor.tsx";
+import tests from "./tests.tsx";
+import latestVideos from "./latestVideos.tsx";
+import miscellaneous from "./miscellaneous.tsx"
 
 const rootReducer = combineReducers({
     games,

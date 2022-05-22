@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
-import {get_series} from "../../actions/series";
+import {get_series} from "../../actions/series.tsx";
 
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -11,8 +11,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Grid from "@mui/material/Grid";
 
 // Custom
-import ReloadWrapper from "../Others/ReloadWrapper";
-import CardEntry from "./CardEntry";
+import ReloadWrapper from "../Others/ReloadWrapper.tsx";
+import CardEntry from "./CardEntry.tsx";
 
 const PREFIX = 'GamesGalleryList';
 

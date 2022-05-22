@@ -1,6 +1,6 @@
 import {
     SET_THEME_COLOR
-} from "../actions/themeColor"
+} from "../actions/themeColor.tsx"
 
 const initialState = {
     currentColor: 'light',

@@ -19,11 +19,11 @@ import SvgIcon from '@mui/material/SvgIcon';
 import Tooltip from '@mui/material/Tooltip';
 
 // Redux actions
-import {setThemeColor} from "../../actions/themeColor";
-import {setDrawerOpen} from "../../actions/miscellaneous"
+import {setThemeColor} from "../../actions/themeColor.tsx";
+import {setDrawerOpen} from "../../actions/miscellaneous.tsx"
 
 // Custom icons
-import languages_with_icons from "./HeaderLanguages";
+import languages_with_icons from "./HeaderLanguages.tsx";
 
 // styled AppBar
 const drawerWidth = 240;

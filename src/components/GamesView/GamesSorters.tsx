@@ -24,7 +24,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 import {connect} from 'react-redux';
-import {sort_games, change_sorting_order} from "../../actions/games";
+import {sort_games, change_sorting_order} from "../../actions/games.tsx";
 
 
 // Sort buttons of GamesGallery

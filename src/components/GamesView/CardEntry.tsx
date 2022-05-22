@@ -13,7 +13,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 import Tooltip from '@mui/material/Tooltip';
 import Image from '@jy95/material-ui-image';
 
-import CardDialog from "./CardDialog";
+import CardDialog from "./CardDialog.tsx";
 
 const PREFIX = 'CardEntry';
 

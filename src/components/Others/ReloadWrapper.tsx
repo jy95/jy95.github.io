@@ -8,8 +8,8 @@ import Fab from '@mui/material/Fab';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 // Custom
-import CenteredGrid from "./CenteredGrid";
-import SnackbarWrapper from "./CustomSnackbar";
+import CenteredGrid from "./CenteredGrid.tsx";
+import SnackbarWrapper from "./CustomSnackbar.tsx";
 
 // The reload wrapper component
 function ReloadWrapper(props) {

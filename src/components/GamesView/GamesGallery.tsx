@@ -10,8 +10,8 @@ import ListIcon from '@mui/icons-material/List';
 import {useTranslation} from "react-i18next";
 
 // Custom
-import GamesGalleryGrid from "./GamesGalleryGrid";
-import GamesGalleryList from "./GamesGalleryList";
+import GamesGalleryGrid from "./GamesGalleryGrid.tsx";
+import GamesGalleryList from "./GamesGalleryList.tsx";
 
 // The gallery component
 function GamesGallery(props) {

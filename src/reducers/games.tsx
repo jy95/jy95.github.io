@@ -7,7 +7,7 @@ import {
     FILTERING_BY_GENRE,
     FILTERING_BY_TITLE,
     FILTERING_BY_PLATFORM
-} from "../actions/games"
+} from "../actions/games.tsx"
 
 // search criterias
 const sortByNameASC = (a, b) => new Intl.Collator().compare(a.title, b.title);

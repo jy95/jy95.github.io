@@ -1,11 +1,11 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
-import {get_tests} from "../../actions/tests";
+import {get_tests} from "../../actions/tests.tsx";
 
 // Custom
-import ReloadWrapper from "../Others/ReloadWrapper";
-import CardEntry from "../GamesView/CardEntry";
+import ReloadWrapper from "../Others/ReloadWrapper.tsx";
+import CardEntry from "../GamesView/CardEntry.tsx";
 
 // Style
 import Grid from "@mui/material/Grid";

@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 import {
     filter_games_by_genre, 
     filter_games_by_title
-} from "../../actions/games";
+} from "../../actions/games.tsx";
 
 // Genres filter of GamesGallery
 function GenresSelect(props) {

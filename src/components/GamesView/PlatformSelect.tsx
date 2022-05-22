@@ -9,10 +9,10 @@ import SvgIcon from '@mui/material/SvgIcon';
 
 import {
     filter_games_by_platform
-} from "../../actions/games";
+} from "../../actions/games.tsx";
 
 // icons
-import iconsSVG from "./PlatformIcons";
+import iconsSVG from "./PlatformIcons.tsx";
 
 function PlatformSelect(props) {
 

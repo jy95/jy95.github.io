@@ -9,7 +9,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 import Tooltip from '@mui/material/Tooltip';
 
 // Platform icons
-import iconsSVG from "../GamesView/PlatformIcons";
+import iconsSVG from "../GamesView/PlatformIcons.tsx";
 
 // columns definitions
 const planningColumns = (t, date_options, language) => [

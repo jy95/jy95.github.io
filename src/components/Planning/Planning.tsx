@@ -7,14 +7,14 @@ import {useTranslation} from "react-i18next";
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 
 // Realod Wrapper
-import ReloadWrapper from "../Others/ReloadWrapper";
+import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 // columns definitions
-import getTableColumns from "./PlanningColumns";
+import getTableColumns from "./PlanningColumns.tsx";
 // Custom French translation
-import customTranslation from "./PlanningFrenchLabels";
+import customTranslation from "./PlanningFrenchLabels.tsx";
 
 // Redux actions
-import {get_scheduled_games} from "../../actions/planning";
+import {get_scheduled_games} from "../../actions/planning.tsx";
 
 function Viewer(props) {
 

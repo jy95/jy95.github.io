@@ -3,7 +3,7 @@ import {
     FETCHING_OK,
     FETCHING_REQUESTED,
     CACHED_RESPONSE
-} from "../actions/latestVideos";
+} from "../actions/latestVideos.tsx";
 
 const initialState = {
     items: [],
