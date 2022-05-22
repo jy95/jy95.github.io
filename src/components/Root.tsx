@@ -1,5 +1,4 @@
 import React from 'react'
-import {useTranslation} from "react-i18next";
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 import { Provider, connect } from 'react-redux'
 import i18n from 'i18next';
@@ -21,6 +20,8 @@ import {frFR, enUS} from '@mui/material/locale';
 import Menu from "./Home/Menu.tsx"
 // @ts-ignore
 import { DrawerHeader, Main } from "./Home/Drawer.tsx";
+// @ts-ignore
+import CommonBackdrop from "./Others/CommonBackdrop.tsx";
 
 // Redux action
 import {
@@ -52,7 +53,6 @@ const materialUI_languages = {
 function Root(props) {
 
     const { store, openMenu } = props;
-    const { t } = useTranslation('common');
 
     return (
         <SnackbarProvider 
@@ -73,32 +73,32 @@ function Root(props) {
                                 <Routes>
                                     <Route path="/" element={<Navigate replace to="/games" />} />
                                     <Route path="/games" element={
-                                        <React.Suspense fallback={<>{t("common.loading")}</>}>
+                                        <React.Suspense fallback={<CommonBackdrop />}>
                                             <GamesGallery />
                                         </React.Suspense>
                                     } />
                                     <Route path="/playlist/:id" element={
-                                        <React.Suspense fallback={<>{t("common.loading")}</>}>
+                                        <React.Suspense fallback={<CommonBackdrop />}>
                                             <Player />
                                         </React.Suspense>
                                     } />
                                     <Route path="/video/:id" element={
-                                        <React.Suspense fallback={<>{t("common.loading")}</>}>
+                                        <React.Suspense fallback={<CommonBackdrop />}>
                                             <Player />
                                         </React.Suspense>
                                     } />
                                     <Route path="/planning" element={
-                                        <React.Suspense fallback={<>{t("common.loading")}</>}>
+                                        <React.Suspense fallback={<CommonBackdrop />}>
                                             <Planning />
                                         </React.Suspense>
                                     } />
                                     <Route path="/tests" element={
-                                        <React.Suspense fallback={<>{t("common.loading")}</>}>
+                                        <React.Suspense fallback={<CommonBackdrop />}>
                                             <TestsGallery />
                                         </React.Suspense>
                                     } />
                                     <Route path="/latest" element={
-                                        <React.Suspense fallback={<>{t("common.loading")}</>}>
+                                        <React.Suspense fallback={<CommonBackdrop />}>
                                             <LatestVideosGallery />
                                         </React.Suspense>
                                     } />

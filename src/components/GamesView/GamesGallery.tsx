@@ -11,9 +11,9 @@ import {useTranslation} from "react-i18next";
 
 // Custom
 // @ts-ignore
-import GamesGalleryGrid from "./GamesGalleryGrid.tsx";
+const GamesGalleryGrid = React.lazy(() => import("./GamesGalleryGrid.tsx"));
 // @ts-ignore
-import GamesGalleryList from "./GamesGalleryList.tsx";
+const GamesGalleryList = React.lazy(() => import("./GamesGalleryList.tsx"));
 
 // The gallery component
 function GamesGallery(props) {
