@@ -1,6 +1,6 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // To check what should happen when clicking on a game
 import { useTheme, styled } from '@mui/material/styles';
@@ -47,7 +47,7 @@ function CardEntry(props) {
     // hooks
     const theme = useTheme();
     const { t } = useTranslation('common');
-    const history = useHistory();
+    const navigate = useNavigate();
 
     // props
     const {game} = props;
@@ -73,7 +73,7 @@ function CardEntry(props) {
         if (is_mobile_device) {
             window.location.href = gameURL;
         } else {
-            history.push(local_path);
+            navigate(local_path);
         }
     }
 

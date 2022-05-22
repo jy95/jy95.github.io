@@ -1,5 +1,6 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import {useTranslation} from "react-i18next";
+import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 import { Provider, connect } from 'react-redux'
 import i18n from 'i18next';
 
@@ -50,6 +51,7 @@ const materialUI_languages = {
 function Root(props) {
 
     const { store, openMenu } = props;
+    const { t } = useTranslation('common');
 
     return (
         <SnackbarProvider 
@@ -67,13 +69,39 @@ function Root(props) {
                         <Menu />
                             <Main open={ openMenu } >
                                 <DrawerHeader />
-                                <Route exact path="/" render={() => <Redirect to="/games" />}/>
-                                <Route path="/games" component={GamesGallery} />
-                                <Route path="/playlist/:id" component={Player} />
-                                <Route path="/video/:id" component={Player} />
-                                <Route path="/planning" component={Planning} />
-                                <Route path="/tests" component={TestsGallery} />
-                                <Route path="/latest" component={LatestVideosGallery} />
+                                <Routes>
+                                    <Route path="/" element={<Navigate replace to="/games" />} />
+                                    <Route path="/games" element={
+                                        <React.Suspense fallback={<>{t("common.loading")}</>}>
+                                            <GamesGallery />
+                                        </React.Suspense>
+                                    } />
+                                    <Route path="/playlist/:id" element={
+                                        <React.Suspense fallback={<>{t("common.loading")}</>}>
+                                            <Player />
+                                        </React.Suspense>
+                                    } />
+                                    <Route path="/video/:id" element={
+                                        <React.Suspense fallback={<>{t("common.loading")}</>}>
+                                            <Player />
+                                        </React.Suspense>
+                                    } />
+                                    <Route path="/planning" element={
+                                        <React.Suspense fallback={<>{t("common.loading")}</>}>
+                                            <Planning />
+                                        </React.Suspense>
+                                    } />
+                                    <Route path="/tests" element={
+                                        <React.Suspense fallback={<>{t("common.loading")}</>}>
+                                            <TestsGallery />
+                                        </React.Suspense>
+                                    } />
+                                    <Route path="/latest" element={
+                                        <React.Suspense fallback={<>{t("common.loading")}</>}>
+                                            <LatestVideosGallery />
+                                        </React.Suspense>
+                                    } />
+                                </Routes>
                             </Main>
                     </Router>
                 </Provider>

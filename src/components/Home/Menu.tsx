@@ -14,7 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 // Router
 import {
     Link,
-    useRouteMatch
+    useMatch
 } from "react-router-dom"
 
 // icons
@@ -38,7 +38,7 @@ function ListItemLink(props) {
     const { t } = useTranslation('common');
     const entry_label = t(primary);
 
-    const matchUrl = useRouteMatch(to) !== null;
+    const matchUrl = useMatch(to) !== null;
 
     const renderLink = React.useMemo(
         () =>

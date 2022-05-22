@@ -1,6 +1,6 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // For full screen Dialog 
 import { useTheme } from '@mui/material/styles';
@@ -44,7 +44,7 @@ function CardDialog(props) {
     
     // hooks
     const { t } = useTranslation('common');
-    const history = useHistory();
+    const navigate = useNavigate();
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
     const { enqueueSnackbar } = useSnackbar();
@@ -66,7 +66,7 @@ function CardDialog(props) {
             "text": t(LABEL_WATCH_HERE, { "gameName": gameTitle}),
             "onClick": () => {
                 setContextMenuOpen(false);
-                history.push(local_path);
+                navigate(local_path);
             }
         },
         // watch on Youtube
