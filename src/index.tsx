@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom'
+import { createRoot } from 'react-dom/client';
 
 // Common
 import './index.css';
@@ -42,15 +42,17 @@ i18next
         resources
     });
 
-render(
+const container = document.getElementById('root');
+// createRoot(container!) if you use TypeScript 
+// https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis 
+const root = createRoot(container!);
+root.render(
     <StyledEngineProvider injectFirst>
         <I18nextProvider i18n={i18next}>
             <Root store={store} />
         </I18nextProvider>
-    </StyledEngineProvider>, 
-    document.getElementById('root')
+    </StyledEngineProvider>
 );
-
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
