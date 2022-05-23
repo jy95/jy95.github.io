@@ -6,7 +6,7 @@
     "@emotion/css": "^11.7.1",
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
-    "@jy95/material-ui-image": "^4.0.0",
+    "@jy95/material-ui-image": "^4.0.1",
     "@mui/icons-material": "^5.4.1",
     "@mui/lab": "^5.0.0-alpha.68",
     "@mui/material": "^5.4.1",
