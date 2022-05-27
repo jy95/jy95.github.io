@@ -1778,6 +1778,20 @@
             "availableAt":20230717,
             "endAt":20230802,
             "coverFile": "cover.webp"
+        },
+        {
+            "title": "Yu-Gi-Oh! Reshef le Destructeur",
+            "videoId": "1vvwPVwbACY",
+            "releaseDate": "10/09/2004",
+            "duration": "05:04:19",
+            "genres": [
+                "RPG",
+                "Card"
+            ],
+            "platform": "GBA",
+            "availableAt":20230804,
+            "endAt":20230804,
+            "coverFile": "cover.webp"
         }
     ]
 }
