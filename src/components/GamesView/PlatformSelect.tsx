@@ -19,7 +19,7 @@ import iconsSVG from "./PlatformIcons.tsx";
 
 function PlatformSelect(props) {
 
-    const { platforms/*, selectedPlatform*/ } = props;
+    const { platforms, selectedPlatform } = props;
     const { t } = useTranslation('common');
 
     const options = platforms
@@ -47,10 +47,15 @@ function PlatformSelect(props) {
                 </li>
             )}
             onChange={(_event, value) => {
-                const platform = (value) ? value.key : "";
+                const platform = (value) ? (value as {[key: string]: any})?.key || value : "";
                 props.filterByPlatform(platform);
             }}
-            //value={selectedPlatform}
+            value={
+                selectedPlatform ? {
+                    key: selectedPlatform,
+                    label: selectedPlatform
+                } : null
+            }
         />
     </>;
 }
