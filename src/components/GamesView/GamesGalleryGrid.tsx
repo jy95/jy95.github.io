@@ -159,8 +159,8 @@ function GamesGalleryGrid(props) {
                         {
                             currentGames.map(renderRow)
                         }
-                        <div ref={loaderRef as any} className="loaderRef" />
                     </Grid>
+                    <div ref={loaderRef as any} className="loaderRef" />
                 </StyledGamesGallery>
             }
         />
