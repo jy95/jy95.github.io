@@ -160,7 +160,7 @@ function GamesGalleryGrid(props) {
                             currentGames.map(renderRow)
                         }
                     </Grid>
-                    <div ref={loaderRef as any} className="loaderRef" />
+                    {!initialLoad && <div ref={loaderRef as any} className="loaderRef" /> }
                 </StyledGamesGallery>
             }
         />
