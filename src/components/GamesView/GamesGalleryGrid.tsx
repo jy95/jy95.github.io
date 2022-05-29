@@ -1,10 +1,10 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
+import useInfiniteLoader from 'react-use-infinite-loader';
 //import {useTranslation} from "react-i18next";
-//import InfiniteScroll from 'react-infinite-scroll-component';
 // @ts-ignore
-import {get_games /*, scrolling_fetching*/} from "../../actions/games.tsx";
+import {get_games, fetch_scrolling_games} from "../../actions/games.tsx";
 
 // Style
 
@@ -67,7 +67,7 @@ const StyledGamesGallery = styled('div')((
 // The gallery component
 function GamesGalleryGrid(props) {
 
-    const {loading, error, currentGames /*, totalItems*/} = props;
+    const {loading, error, currentGames, totalItems, initialLoad, fetch_scrolling_games} = props;
     //const { t } = useTranslation('common');
 
     // on mount, load data (only once)
@@ -87,6 +87,38 @@ function GamesGalleryGrid(props) {
         >
             <CardEntry game={game}/>
     </Grid>;
+
+    const loadMoreGames = React.useCallback( () => {
+        fetch_scrolling_games();
+    }, 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    );
+
+    const { loaderRef } = useInfiniteLoader({
+        loadMore: loadMoreGames,
+
+        // If this is false useInfiniteLoader no longer invokes `loadMore` when it usually does
+        canLoadMore: (currentGames.length <= totalItems),
+
+        // Not used in this example. Used if you already load page 0 on mount, you can tell
+        // useInfiniteLoader what page to begin loading more from
+        startFromPage: 1,
+
+        // Used for if your data fetching library fetches page 0 and renders it when the component
+        // loads, to use this just have a state flag that you set to false once the initial load
+        // from your data fetching lib has happened.
+        initialise: initialLoad === false,
+
+        // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
+        // Set to 0px top margin to allow you to see the loading effect easier in this demo
+        rootMargin: "0px 0px 0px 0px",
+
+        // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
+        // threshold: 0,
+
+        debug: false,
+    });
 
     return (
         <ReloadWrapper 
@@ -112,7 +144,8 @@ function GamesGalleryGrid(props) {
                             <TitleFilter games={currentGames} />
                         </Grid>
                     </Grid>
-            
+
+
                     <Grid
                         container
                         spacing={1}
@@ -123,16 +156,10 @@ function GamesGalleryGrid(props) {
                         }
                         overflow="auto"
                     >
-                        {/*<InfiniteScroll
-                            dataLength={currentGames.length}
-                            hasMore={currentGames.length <= totalItems}
-                            loader={<div>{t("common.loading")}</div>}
-                            next={() => this.props.scrolling_fetching()}
-                        >*/}
                         {
                             currentGames.map(renderRow)
                         }
-                        {/*</InfiniteScroll>*/}            
+                        <div ref={loaderRef as any} className="loaderRef" />
                     </Grid>
                 </StyledGamesGallery>
             }
@@ -144,13 +171,14 @@ function GamesGalleryGrid(props) {
 const mapStateToProps = state => ({
     currentGames: state.games.currentGames,
     totalItems: state.games.totalItems,
+    initialLoad: state.games.initialLoad,
     loading: state.games.loading,
     error: state.games.error
 });
 
 const mapDispatchToProps = {
     get_games,
-    //scrolling_fetching
+    fetch_scrolling_games
 };
 
 export default connect(

@@ -43,6 +43,8 @@ const initialState = {
     totalItems: 0,
     // Page size (used for infinite scrolling)
     pageSize: 24,
+    // Only load once
+    initialLoad: true,
     sorters: {
         currentSortFunction: sortByNameASC,
         state: {
@@ -124,6 +126,7 @@ export default function games(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
+                initialLoad: false,
                 games: action.games,
                 currentGames: action.games.slice(0, action.pageSize),
                 totalItems: action.totalItems,

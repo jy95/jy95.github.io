@@ -85,7 +85,7 @@ export const get_games = (pageSize = 24) => {
     return async (dispatch, getState) => {
         const {
             games: {
-                //games: previousFetchedGames,
+                initialLoad,
                 sorters: {
                     currentSortFunction
                 },
@@ -95,21 +95,24 @@ export const get_games = (pageSize = 24) => {
             }
         } = getState();
 
-        // start fetching
-        dispatch(fetchingStarted());
+        // Only load once
+        if (initialLoad) {
+            // start fetching
+            dispatch(fetchingStarted());
 
-        let games = await all_games();
-        let currentGames = games
-            // remove the ones that doesn't match filter criteria
-            .filter(game => currentFilters.every(condition => condition.filterFunction(game)))
-            // sort them in user preference
-            .sort(currentSortFunction);
+            let games = await all_games();
+            let currentGames = games
+                // remove the ones that doesn't match filter criteria
+                .filter(game => currentFilters.every(condition => condition.filterFunction(game)))
+                // sort them in user preference
+                .sort(currentSortFunction);
 
-        dispatch(fetchingFinished({
-            games: currentGames,
-            totalItems: games.length,
-            pageSize
-        }));
+            dispatch(fetchingFinished({
+                games: currentGames,
+                totalItems: games.length,
+                pageSize
+            }));            
+        }
     };
 };
 
@@ -202,7 +205,7 @@ export const filter_games_by_platform = (platform) => {
     }
 }
 
-export const scrolling_fetching = (pageSize = 24) => {
+export const fetch_scrolling_games = (pageSize = 24) => {
     return (dispatch, getState) => {
         dispatch(scrollingFetching({pageSize}));
     }
