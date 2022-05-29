@@ -19,11 +19,10 @@ import iconsSVG from "./PlatformIcons.tsx";
 
 function PlatformSelect(props) {
 
-    const { filters } = props;
+    const { platforms, selectedPlatform } = props;
     const { t } = useTranslation('common');
 
-    const options = filters
-        .platforms
+    const options = platforms
         .map(platform => ({
             label: platform,
             key: platform
@@ -48,10 +47,15 @@ function PlatformSelect(props) {
                 </li>
             )}
             onChange={(_event, value) => {
-                const platform = (value) ? value.key : "";
+                const platform = (value) ? (value as {[key: string]: any})?.key || value : "";
                 props.filterByPlatform(platform);
             }}
-            //value={filters.selected_genres}
+            value={
+                selectedPlatform ? {
+                    key: selectedPlatform,
+                    label: selectedPlatform
+                } : null
+            }
         />
     </>;
 }
@@ -59,7 +63,8 @@ function PlatformSelect(props) {
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    filters: state.games.filters,
+    platforms: state.games.filters.platforms,
+    selectedPlatform: state.games.filters.activeFilters.find(s => s.key === "selected_platform")?.value || ""
 });
 
 const mapDispatchToProps = {

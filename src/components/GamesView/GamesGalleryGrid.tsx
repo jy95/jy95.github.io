@@ -1,8 +1,10 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
+import useInfiniteLoader from 'react-use-infinite-loader';
+//import {useTranslation} from "react-i18next";
 // @ts-ignore
-import {get_games} from "../../actions/games.tsx";
+import {get_games, fetch_scrolling_games} from "../../actions/games.tsx";
 
 // Style
 
@@ -62,19 +64,11 @@ const StyledGamesGallery = styled('div')((
     }
 }));
 
-// To check if platform match search critiria
-const matches_platform_search = (platform) => (game) => game.platform === platform;
-
-// To check if title match search criteria (insensitive search)
-const matches_title_search = (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i')) >= 0;
-
-// To check if two arrays contains at least one element in common
-const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v.key) >= 0);
-
 // The gallery component
 function GamesGalleryGrid(props) {
 
-    const {loading, error, data, filters, sortFunction} = props;
+    const {loading, error, currentGames, totalItems, initialLoad, fetch_scrolling_games} = props;
+    //const { t } = useTranslation('common');
 
     // on mount, load data (only once)
     React.useEffect(() => {
@@ -84,28 +78,47 @@ function GamesGalleryGrid(props) {
         []
     );
 
-    // prepare filter checks
-    let filter_conditions = [];
-    
-    // if provided platform filter
-    if (filters.platform.length !== 0) {
-        filter_conditions.push(matches_platform_search(filters.platform));
-    }
+    // render row
+    const renderRow = (game) =>
+        <Grid 
+            key={game.playlistId ?? game.videoId} 
+            item 
+            className={classes.gameEntry}
+        >
+            <CardEntry game={game}/>
+    </Grid>;
 
-    // if provided title filter
-    if (filters.title.length !== 0) {
-        filter_conditions.push(matches_title_search(filters.title));
-    }
+    const loadMoreGames = React.useCallback( () => {
+        fetch_scrolling_games();
+    }, 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    );
 
-    // if provided genre filter
-    if (filters.genres.length !== 0) {
-        filter_conditions.push(at_least_one_in_common(filters.genres));
-    }
+    const { loaderRef } = useInfiniteLoader({
+        loadMore: loadMoreGames,
 
-    // Apply filters
-    const currentGames = data
-        .filter(game => filter_conditions.every(condition => condition(game)))
-        .sort(sortFunction);
+        // If this is false useInfiniteLoader no longer invokes `loadMore` when it usually does
+        canLoadMore: (currentGames.length <= totalItems),
+
+        // Not used in this example. Used if you already load page 0 on mount, you can tell
+        // useInfiniteLoader what page to begin loading more from
+        startFromPage: 1,
+
+        // Used for if your data fetching library fetches page 0 and renders it when the component
+        // loads, to use this just have a state flag that you set to false once the initial load
+        // from your data fetching lib has happened.
+        initialise: initialLoad === false,
+
+        // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
+        // Set to 0px top margin to allow you to see the loading effect easier in this demo
+        rootMargin: "0px 0px 0px 0px",
+
+        // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
+        // threshold: 0,
+
+        debug: false,
+    });
 
     return (
         <ReloadWrapper 
@@ -131,7 +144,8 @@ function GamesGalleryGrid(props) {
                             <TitleFilter games={currentGames} />
                         </Grid>
                     </Grid>
-            
+
+
                     <Grid
                         container
                         spacing={1}
@@ -140,20 +154,13 @@ function GamesGalleryGrid(props) {
                                 rowGap: "15px"
                             }
                         }
+                        overflow="auto"
                     >
                         {
-                            currentGames
-                                .map(game => 
-                                        <Grid 
-                                            key={game.playlistId ?? game.videoId} 
-                                            item 
-                                            className={classes.gameEntry}
-                                        >
-                                            <CardEntry game={game}/>
-                                        </Grid>
-                                )
+                            currentGames.map(renderRow)
                         }
                     </Grid>
+                    <div ref={loaderRef as any} className="loaderRef" />
                 </StyledGamesGallery>
             }
         />
@@ -162,19 +169,16 @@ function GamesGalleryGrid(props) {
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    data: state.games.games,
-    filters: {
-        genres: state.games.filters.selected_genres,
-        title: state.games.filters.selected_title,
-        platform: state.games.filters.selected_platform,
-    },
-    sortFunction: state.games.sorters.currentSortFunction,
+    currentGames: state.games.currentGames,
+    totalItems: state.games.totalItems,
+    initialLoad: state.games.initialLoad,
     loading: state.games.loading,
     error: state.games.error
 });
 
 const mapDispatchToProps = {
-    get_games
+    get_games,
+    fetch_scrolling_games
 };
 
 export default connect(

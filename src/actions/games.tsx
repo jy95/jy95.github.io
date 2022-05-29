@@ -3,6 +3,7 @@ import gamesData from "../data/games.json";
 export const FETCHING_REQUESTED = "GAMES_REQUESTED";
 export const FETCHING_OK = "GAMES_FETCHING_OK";
 export const FETCHING_FAILED = "GAMES_FETCHING_FAILED";
+export const FETCHING_SCROLLING = "GAMES_SCROLLING_FETCHING";
 export const SORTING_GAMES = "SORTING_GAMES";
 export const SORTING_ORDER_CHANGED = "SORTING_ORDER_CHANGED";
 export const FILTERING_BY_GENRE = "FILTERING_BY_GENRE";
@@ -42,53 +43,76 @@ function swapSiblingElements(arr, elementIndex , direction) {
 // Regex for duration
 const DURATION_REGEX = /(\d+):(\d+):(\d+)/; 
 
+// Needed in several sub functions
+const all_games = async () => {
+
+    // current date as integer (quicker comparaison)
+    const currentDate = new Date();
+    const integerDate = [
+        currentDate.getFullYear() * 10000,
+        (currentDate.getMonth() + 1) * 100,
+        currentDate.getDate()
+    ].reduce((acc, cur) => acc + cur, 0);
+
+    // Build list of available games
+    return gamesData
+        .games
+        // hide not yet public games on channel
+        .filter(game => !game.hasOwnProperty("availableAt") || game.availableAt <= integerDate)
+        // enhance payload
+        .map(game => {
+            const parts = game.releaseDate.split("/");
+            const id = game.playlistId ?? game.videoId;
+            const base_url = (
+                (game.playlistId) 
+                    ? "https://www.youtube.com/playlist?list=" 
+                    :  "https://www.youtube.com/watch?v="
+            ) + id ;
+            const url_type = (game.playlistId) ? "PLAYLIST" : "VIDEO";
+            return Object.assign({}, game, {
+                "id": id,
+                "imagePath": process.env.PUBLIC_URL + gamesData.coversRootPath + id + "/" + (game.coverFile ?? gamesData.defaultCoverFile),
+                "releaseDate": new Date(+parts[2], Number(parts[1]) -1, +parts[0]),
+                "url": base_url,
+                "url_type": url_type,
+                "durationAsInt": parseInt((game.duration || "00:00:00").replace(DURATION_REGEX, "$1$2$3"))
+            });
+        });
+}
+
 // param à la place du () du genre ({title, password})
-export const get_games = () => {
-    return (dispatch, getState) => {
+export const get_games = (pageSize = 24) => {
+    return async (dispatch, getState) => {
         const {
             games: {
-                games: previousFetchedGames
+                initialLoad,
+                sorters: {
+                    currentSortFunction
+                },
+                filters: {
+                    activeFilters: currentFilters
+                }
             }
         } = getState();
 
-        if (previousFetchedGames.length === 0) {
+        // Only load once
+        if (initialLoad) {
+            // start fetching
             dispatch(fetchingStarted());
 
-            // current date as integer (quicker comparaison)
-            const currentDate = new Date();
-            const integerDate = [
-                currentDate.getFullYear() * 10000,
-                (currentDate.getMonth() + 1) * 100,
-                currentDate.getDate()
-            ].reduce((acc, cur) => acc + cur, 0);
+            let games = await all_games();
+            let currentGames = games
+                // remove the ones that doesn't match filter criteria
+                .filter(game => currentFilters.every(condition => condition.filterFunction(game)))
+                // sort them in user preference
+                .sort(currentSortFunction);
 
-            // Build the object for component
-            let games = gamesData
-                .games
-                // hide not yet public games on channel
-                .filter(game => !game.hasOwnProperty("availableAt") || game.availableAt <= integerDate)
-                .map(game => {
-                    const parts = game.releaseDate.split("/");
-                    const id = game.playlistId ?? game.videoId;
-                    const base_url = (
-                        (game.playlistId) 
-                            ? "https://www.youtube.com/playlist?list=" 
-                            :  "https://www.youtube.com/watch?v="
-                    ) + id ;
-                    const url_type = (game.playlistId) ? "PLAYLIST" : "VIDEO";
-                    return Object.assign({}, game, {
-                        "id": id,
-                        "imagePath": process.env.PUBLIC_URL + gamesData.coversRootPath + id + "/" + (game.coverFile ?? gamesData.defaultCoverFile),
-                        "releaseDate": new Date(+parts[2], Number(parts[1]) -1, +parts[0]),
-                        "url": base_url,
-                        "url_type": url_type,
-                        "durationAsInt": parseInt((game.duration || "00:00:00").replace(DURATION_REGEX, "$1$2$3"))
-                    });
-                });
-
-            dispatch(fetchingFinished(games));
+            dispatch(fetchingFinished({
+                games: currentGames,
+                totalItems: games.length,
+                pageSize
+            }));            
         }
-
     };
 };
 
@@ -165,19 +189,25 @@ export const change_sorting_order = (field, direction) => {
 
 export const filter_games_by_genre = (genres) => {
     return (dispatch, getState) => {
-        dispatch(filterGamesByGenres(genres));
+        dispatch(filterGamesByGenres({genres}));
     }
 }
 
 export const filter_games_by_title = (title) => {
     return (dispatch, getState) => {
-        dispatch(filterGamesByTitle(title));
+        dispatch(filterGamesByTitle({title}));
     }
 }
 
 export const filter_games_by_platform = (platform) => {
     return (dispatch, getState) => {
-        dispatch(filterGamesByPlatform(platform));
+        dispatch(filterGamesByPlatform({platform}));
+    }
+}
+
+export const fetch_scrolling_games = (pageSize = 24) => {
+    return (dispatch, getState) => {
+        dispatch(scrollingFetching({pageSize}));
     }
 }
 
@@ -185,9 +215,11 @@ const fetchingStarted = () => ({
     type: FETCHING_REQUESTED
 });
 
-const fetchingFinished = (games) => ({
+const fetchingFinished = ({games, totalItems, pageSize}) => ({
     type: FETCHING_OK,
-    games
+    games,
+    totalItems,
+    pageSize
 });
 
 // eslint-disable-next-line
@@ -208,17 +240,22 @@ const sortCriteriaOrderChanger = (sortFunction, keys) => ({
     keys
 });
 
-const filterGamesByGenres = (genres) => ({
+const filterGamesByGenres = ({genres}) => ({
     type: FILTERING_BY_GENRE,
     genres
 });
 
-const filterGamesByTitle = (title) => ({
+const filterGamesByTitle = ({title}) => ({
     type: FILTERING_BY_TITLE,
     title
 });
 
-const filterGamesByPlatform = (platform) => ({
+const filterGamesByPlatform = ({platform}) => ({
     type: FILTERING_BY_PLATFORM,
     platform
 });
+
+const scrollingFetching = ({pageSize}) => ({
+    type: FETCHING_SCROLLING,
+    pageSize
+})
