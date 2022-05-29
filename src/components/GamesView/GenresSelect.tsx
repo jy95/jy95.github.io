@@ -17,12 +17,11 @@ from "../../actions/games.tsx";
 // Genres filter of GamesGallery
 function GenresSelect(props) {
 
-    const { filters } = props;
+    const { genres } = props;
     const { t } = useTranslation('common');
 
     // Generate list of values for game genre
-    const genre_options = filters
-        .genres
+    const genre_options = genres
         .map(genre => ({
             label: t("gamesLibrary.gamesGenres." + genre),
             key: genre
@@ -55,7 +54,8 @@ function GenresSelect(props) {
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    filters: state.games.filters,
+    genres: state.games.filters.genres,
+    selectedGenres: state.games.filters.activeFilters.find(s => s.key === "selected_genres")?.value || []
 });
 
 const mapDispatchToProps = {
