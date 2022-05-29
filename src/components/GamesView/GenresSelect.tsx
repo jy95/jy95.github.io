@@ -17,7 +17,7 @@ from "../../actions/games.tsx";
 // Genres filter of GamesGallery
 function GenresSelect(props) {
 
-    const { genres } = props;
+    const { genres, selectedGenres } = props;
     const { t } = useTranslation('common');
 
     // Generate list of values for game genre
@@ -43,10 +43,13 @@ function GenresSelect(props) {
             isOptionEqualToValue={(option, value) => 
                 Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
             }
+            value={selectedGenres.map(genre => ({
+                label: t("gamesLibrary.gamesGenres." + genre),
+                key: genre
+            }))}
             renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.genres")} />}
             onChange={(_event, value) => {
-                const genres = (value) ? value : [];
-                props.filterByGenre(genres);
+                props.filterByGenre(value.map(v => v.key));
             }}
         />
     </>;

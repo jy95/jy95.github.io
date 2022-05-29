@@ -28,7 +28,7 @@ const matches_platform_search = (platform) => (game) => game.platform === platfo
 const matches_title_search = (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i')) >= 0;
 
 // To check if two arrays contains at least one element in common
-const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v.key) >= 0);
+const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v) >= 0);
 
 const initialState = {
     // All available games of the channel
@@ -178,9 +178,8 @@ export default function games(state = initialState, action) {
             }
         case FILTERING_BY_GENRE:
             // If empty, remove filter - if not, add it
-            if (action.genres.length === 0) {
-                newFilters = newFilters.filter(s => s.key !== "selected_genres")
-            } else {
+            newFilters = newFilters.filter(s => s.key !== "selected_genres")
+            if (action.genres.length !== 0) {
                 newFilters.push({
                     key: "selected_genres",
                     value: action.genres,
