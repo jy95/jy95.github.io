@@ -224,10 +224,9 @@ export default function games(state = initialState, action) {
                 }
             }
         case FILTERING_BY_PLATFORM:
-            // If empty, remove filter - if not, add it
-            if (action.platform.length === 0) {
-                newFilters = newFilters.filter(s => s.key !== "selected_platform")
-            } else {
+            // Always clean up in platform filtering
+            newFilters = newFilters.filter(s => s.key !== "selected_platform")
+            if (action.platform.length !== 0) {
                 newFilters.push({
                     key: "selected_platform",
                     value: action.platform,
