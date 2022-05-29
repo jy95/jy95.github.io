@@ -1,8 +1,10 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
+//import {useTranslation} from "react-i18next";
+//import InfiniteScroll from 'react-infinite-scroll-component';
 // @ts-ignore
-import {get_games} from "../../actions/games.tsx";
+import {get_games /*, scrolling_fetching*/} from "../../actions/games.tsx";
 
 // Style
 
@@ -62,19 +64,11 @@ const StyledGamesGallery = styled('div')((
     }
 }));
 
-// To check if platform match search critiria
-const matches_platform_search = (platform) => (game) => game.platform === platform;
-
-// To check if title match search criteria (insensitive search)
-const matches_title_search = (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i')) >= 0;
-
-// To check if two arrays contains at least one element in common
-const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v.key) >= 0);
-
 // The gallery component
 function GamesGalleryGrid(props) {
 
-    const {loading, error, data, filters, sortFunction} = props;
+    const {loading, error, currentGames /*, totalItems*/} = props;
+    //const { t } = useTranslation('common');
 
     // on mount, load data (only once)
     React.useEffect(() => {
@@ -84,28 +78,15 @@ function GamesGalleryGrid(props) {
         []
     );
 
-    // prepare filter checks
-    let filter_conditions = [];
-    
-    // if provided platform filter
-    if (filters.platform.length !== 0) {
-        filter_conditions.push(matches_platform_search(filters.platform));
-    }
-
-    // if provided title filter
-    if (filters.title.length !== 0) {
-        filter_conditions.push(matches_title_search(filters.title));
-    }
-
-    // if provided genre filter
-    if (filters.genres.length !== 0) {
-        filter_conditions.push(at_least_one_in_common(filters.genres));
-    }
-
-    // Apply filters
-    const currentGames = data
-        .filter(game => filter_conditions.every(condition => condition(game)))
-        .sort(sortFunction);
+    // render row
+    const renderRow = (game) =>
+        <Grid 
+            key={game.playlistId ?? game.videoId} 
+            item 
+            className={classes.gameEntry}
+        >
+            <CardEntry game={game}/>
+    </Grid>;
 
     return (
         <ReloadWrapper 
@@ -140,19 +121,18 @@ function GamesGalleryGrid(props) {
                                 rowGap: "15px"
                             }
                         }
+                        overflow="auto"
                     >
+                        {/*<InfiniteScroll
+                            dataLength={currentGames.length}
+                            hasMore={currentGames.length <= totalItems}
+                            loader={<div>{t("common.loading")}</div>}
+                            next={() => this.props.scrolling_fetching()}
+                        >*/}
                         {
-                            currentGames
-                                .map(game => 
-                                        <Grid 
-                                            key={game.playlistId ?? game.videoId} 
-                                            item 
-                                            className={classes.gameEntry}
-                                        >
-                                            <CardEntry game={game}/>
-                                        </Grid>
-                                )
+                            currentGames.map(renderRow)
                         }
+                        {/*</InfiniteScroll>*/}            
                     </Grid>
                 </StyledGamesGallery>
             }
@@ -162,19 +142,15 @@ function GamesGalleryGrid(props) {
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    data: state.games.games,
-    filters: {
-        genres: state.games.filters.selected_genres,
-        title: state.games.filters.selected_title,
-        platform: state.games.filters.selected_platform,
-    },
-    sortFunction: state.games.sorters.currentSortFunction,
+    currentGames: state.games.currentGames,
+    totalItems: state.games.totalItems,
     loading: state.games.loading,
     error: state.games.error
 });
 
 const mapDispatchToProps = {
-    get_games
+    get_games,
+    //scrolling_fetching
 };
 
 export default connect(
