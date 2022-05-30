@@ -128,7 +128,7 @@ export default function games(state = initialState, action) {
                 loading: false,
                 initialLoad: false,
                 games: action.games,
-                //currentGames: action.games.slice(0, action.pageSize),
+                currentGames: action.games.slice(0, action.pageSize),
                 totalItems: action.totalItems,
                 pageSize: action.pageSize,
                 error: null
