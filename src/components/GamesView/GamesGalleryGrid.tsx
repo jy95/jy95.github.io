@@ -101,10 +101,6 @@ function GamesGalleryGrid(props) {
         // If this is false useInfiniteLoader no longer invokes `loadMore` when it usually does
         canLoadMore: (currentGames.length <= totalItems),
 
-        // Not used in this example. Used if you already load page 0 on mount, you can tell
-        // useInfiniteLoader what page to begin loading more from
-        startFromPage: 1,
-
         // Used for if your data fetching library fetches page 0 and renders it when the component
         // loads, to use this just have a state flag that you set to false once the initial load
         // from your data fetching lib has happened.
@@ -160,7 +156,7 @@ function GamesGalleryGrid(props) {
                             currentGames.map(renderRow)
                         }
                     </Grid>
-                    {!initialLoad && <div ref={loaderRef as any} className="loaderRef" /> }
+                    <div ref={loaderRef as any} className="loaderRef" />
                 </StyledGamesGallery>
             }
         />
