@@ -115,7 +115,7 @@ function GamesGalleryGrid(props) {
         rootMargin: "0px 0px 0px 0px",
 
         // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
-        // threshold: 0,
+        threshold: 0.15,
 
         debug: false,
     });
