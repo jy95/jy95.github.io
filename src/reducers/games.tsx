@@ -7,7 +7,8 @@ import {
     FILTERING_BY_GENRE,
     FILTERING_BY_TITLE,
     FILTERING_BY_PLATFORM,
-    FETCHING_SCROLLING
+    SCROLLING_FETCHING,
+    SCROLLING_OK
 } 
 // @ts-ignore
 from "../actions/games.tsx"
@@ -39,6 +40,8 @@ const initialState = {
     error: null,
     // data loading ?
     loading: false,
+    // scrolling loading ?
+    scrollLoading: false,
     // total number of items (including filtering criteria)
     totalItems: 0,
     // Page size (used for infinite scrolling)
@@ -142,13 +145,19 @@ export default function games(state = initialState, action) {
                 totalItems: 0,
                 error: action.error
             };
-        case FETCHING_SCROLLING:
+        case SCROLLING_FETCHING:
+            return {
+                ...state,
+                scrollLoading: true,
+                pageSize: action.pageSize
+            }
+        case SCROLLING_OK:
             // compute new currentGames
             let after_fetching = newVersion({});
             return {
                 ...state,
-                pageSize: action.pageSize,
-                currentGames: after_fetching.slice(0, state.currentGames.length + action.pageSize),
+                scrollLoading: false,
+                currentGames: after_fetching.slice(0, state.currentGames.length + pageSize),
             }
         case SORTING_GAMES:
             // compute new currentGames

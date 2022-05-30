@@ -3,7 +3,8 @@ import gamesData from "../data/games.json";
 export const FETCHING_REQUESTED = "GAMES_REQUESTED";
 export const FETCHING_OK = "GAMES_FETCHING_OK";
 export const FETCHING_FAILED = "GAMES_FETCHING_FAILED";
-export const FETCHING_SCROLLING = "GAMES_SCROLLING_FETCHING";
+export const SCROLLING_FETCHING = "GAMES_SCROLLING_FETCHING";
+export const SCROLLING_OK = "GAMES_SCROLLING_OK";
 export const SORTING_GAMES = "SORTING_GAMES";
 export const SORTING_ORDER_CHANGED = "SORTING_ORDER_CHANGED";
 export const FILTERING_BY_GENRE = "FILTERING_BY_GENRE";
@@ -208,6 +209,7 @@ export const filter_games_by_platform = (platform) => {
 export const fetch_scrolling_games = (pageSize = 24) => {
     return (dispatch, getState) => {
         dispatch(scrollingFetching({pageSize}));
+        dispatch(scrollingFinished())
     }
 }
 
@@ -256,6 +258,11 @@ const filterGamesByPlatform = ({platform}) => ({
 });
 
 const scrollingFetching = ({pageSize}) => ({
-    type: FETCHING_SCROLLING,
+    type: SCROLLING_FETCHING,
     pageSize
+})
+
+// eslint-disable-next-line no-empty-pattern
+const scrollingFinished = ({} = {}) => ({
+    type: SCROLLING_OK
 })

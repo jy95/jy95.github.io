@@ -67,7 +67,15 @@ const StyledGamesGallery = styled('div')((
 // The gallery component
 function GamesGalleryGrid(props) {
 
-    const {loading, error, currentGames, totalItems, initialLoad, fetch_scrolling_games} = props;
+    const {
+        loading, 
+        error, 
+        currentGames, 
+        canLoadMore,
+        scrollLoading,
+        initialLoad, 
+        fetch_scrolling_games
+    } = props;
     //const { t } = useTranslation('common');
 
     // on mount, load data (only once)
@@ -99,7 +107,7 @@ function GamesGalleryGrid(props) {
         loadMore: loadMoreGames,
 
         // If this is false useInfiniteLoader no longer invokes `loadMore` when it usually does
-        canLoadMore: (currentGames.length <= totalItems),
+        canLoadMore: canLoadMore,
 
         // Not used in this example. Used if you already load page 0 on mount, you can tell
         // useInfiniteLoader what page to begin loading more from
@@ -115,8 +123,7 @@ function GamesGalleryGrid(props) {
         rootMargin: "0px 0px 0px 0px",
 
         // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
-        threshold: 0.15,
-
+        //threshold: 0,
         debug: false,
     });
 
@@ -154,13 +161,12 @@ function GamesGalleryGrid(props) {
                                 rowGap: "15px"
                             }
                         }
-                        overflow="auto"
                     >
                         {
                             currentGames.map(renderRow)
                         }
                     </Grid>
-                    {!initialLoad && <div ref={loaderRef as any} className="loaderRef" /> }
+                    {!scrollLoading && <div ref={loaderRef as any} className="loaderRef" />}
                 </StyledGamesGallery>
             }
         />
@@ -170,7 +176,8 @@ function GamesGalleryGrid(props) {
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
     currentGames: state.games.currentGames,
-    totalItems: state.games.totalItems,
+    canLoadMore: state.games.currentGames.length <= state.games.totalItems,
+    scrollLoading: state.games.scrollLoading,
     initialLoad: state.games.initialLoad,
     loading: state.games.loading,
     error: state.games.error
