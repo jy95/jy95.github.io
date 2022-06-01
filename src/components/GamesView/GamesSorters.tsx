@@ -30,7 +30,10 @@ import {sort_games, change_sorting_order} from "../../actions/games.tsx";
 
 // Sort buttons of GamesGallery
 function GamesSorters(props) {
-    
+
+    const { sortState } = props;
+    const { t } = useTranslation('common');
+
     // To handle criteria enabling (or disabling)
     const handleSortChange = (event) => {
         const field = event.target.name;
@@ -44,12 +47,15 @@ function GamesSorters(props) {
         // fetch info
         const field = metadata.name;
         const type_of_sort_change = metadata.getAttribute("aria-label");
-        const direction = (type_of_sort_change === "upSorter") ? "up" : "down";
-        props.change_sorting_order(field, direction);
-    }
+        const currentPosition = sortState.findIndex( (entry) => entry[0] === field);
+        const nextPosition = currentPosition + ((type_of_sort_change === "upSorter") ? -1 : 1);
 
-    const { state: sorters } = props;
-    const { t } = useTranslation('common');
+        // compute new order
+        let newOrder = [...sortState.map(s => s[0])];
+        newOrder.splice(nextPosition,2,newOrder[currentPosition],newOrder[nextPosition]);
+
+        props.change_sorting_order(newOrder);
+    }
 
     // For Popover
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -74,7 +80,7 @@ function GamesSorters(props) {
     // labels for sort buttons (with condition)
     const sort_button_conditions = {
         "upSorter": (index) => index !== 0,
-        "downSorter": (index) => index !== sorters.keys.length -1,
+        "downSorter": (index) => index !== sortState.length -1,
     }
 
     return <>
@@ -98,9 +104,8 @@ function GamesSorters(props) {
             <FormControl component="fieldset" variant="standard">
                 <FormGroup>
                     {
-                        sorters
-                            .keys
-                            .map( (criteria, index) => 
+                        sortState
+                            .map( ([criteria, currentOrder], index) => 
                                 <div
                                     key={"searchCriteria_"+criteria}
                                 >
@@ -108,7 +113,7 @@ function GamesSorters(props) {
                                         control={
                                             <>
                                                 <Checkbox 
-                                                    checked={sorters.state[criteria] !== "ASC"}
+                                                    checked={currentOrder !== "ASC"}
                                                     onChange={handleSortChange}
                                                     name={criteria}
                                                     checkedIcon={<ArrowDropUpIcon />}
@@ -165,7 +170,7 @@ function GamesSorters(props) {
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    state: state.games.sorters,
+    sortState: state.games.sorters,
 });
 
 const mapDispatchToProps = {

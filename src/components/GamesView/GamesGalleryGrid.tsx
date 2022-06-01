@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import useInfiniteLoader from 'react-use-infinite-loader';
 //import {useTranslation} from "react-i18next";
 // @ts-ignore
-import {get_games, fetch_scrolling_games} from "../../actions/games.tsx";
+import {get_games, fetch_scrolling_games, generate_sort_function} from "../../actions/games.tsx";
 
 // Style
 
@@ -188,7 +188,7 @@ function GamesGalleryGrid(props) {
 const mapStateToProps = state => ({
     currentItemCount: state.games.currentItemCount,
     canLoadMore: state.games.currentItemCount <= state.games.totalItems,
-    currentSortFunction: state.games.currentSortFunction,
+    currentSortFunction: generate_sort_function(state.games.sorters),
     filters: state.games.filters.activeFilters,
     games: state.games.games,
     scrollLoading: state.games.scrollLoading,

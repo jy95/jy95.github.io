@@ -13,15 +13,6 @@ import {
 // @ts-ignore
 from "../actions/games.tsx"
 
-// search criterias
-const sortByNameASC = (a, b) => new Intl.Collator().compare(a.title, b.title);
-const sortByReleaseDateASC = (a, b) => {
-    let aa = a["releaseDate"];
-    let bb = b["releaseDate"];
-    return aa < bb ? -1 : (aa > bb ? 1 : 0);
-};
-const sortByDurationASC = (a, b) => (a.durationAsInt < b.durationAsInt) ? -1 : (a.durationAsInt > b.durationAsInt ? 1 : 0);
-
 // To check if platform match search critiria
 const matches_platform_search = (platform) => (game) => game.platform === platform;
 
@@ -50,29 +41,11 @@ const initialState = {
     pageSize: 24,
     // Only load once
     initialLoad: true,
-    sorters: {
-        currentSortFunction: sortByNameASC,
-        state: {
-            "name": "ASC",
-            "releaseDate": "ASC",
-            "duration": "ASC"
-        },
-        keys: ["name", "releaseDate", "duration"],
-        functions: {
-            "name": {
-                "ASC": sortByNameASC,
-                "DESC": (a, b) => -sortByNameASC(a, b)
-            },
-            "releaseDate": {
-                "ASC": sortByReleaseDateASC,
-                "DESC": (a, b) => -sortByReleaseDateASC(a, b)
-            },
-            "duration": {
-                "ASC": sortByDurationASC,
-                "DESC": (a, b) => -sortByDurationASC(a, b)
-            }
-        }
-    },
+    sorters: [
+        ["name", "ASC"],
+        ["releaseDate", "ASC"],
+        ["duration", "ASC"]
+    ],
     filters: {
         // current filters applied
         activeFilters: []
@@ -133,23 +106,13 @@ export default function games(state = initialState, action) {
             return {
                 ...state,
                 currentItemCount: 0,
-                sorters: {
-                    ...state.sorters,
-                    currentSortFunction: action.sortFunction,
-                    state: {
-                        ...action.newSortersState
-                    }
-                }
+                sorters: action.newSortersState
             };
         case SORTING_ORDER_CHANGED:
             return {
                 ...state,
                 currentItemCount: 0,
-                sorters: {
-                    ...state.sorters,
-                    currentSortFunction: action.sortFunction,
-                    keys: action.keys
-                }
+                sorters: action.newSortersState
             }
         case FILTERING_BY_GENRE:
             // If empty, remove filter - if not, add it
