@@ -132,7 +132,7 @@ export default function games(state = initialState, action) {
         case SORTING_GAMES:
             return {
                 ...state,
-                currentItemCount: pageSize,
+                currentItemCount: 0,
                 sorters: {
                     ...state.sorters,
                     currentSortFunction: action.sortFunction,
@@ -144,7 +144,7 @@ export default function games(state = initialState, action) {
         case SORTING_ORDER_CHANGED:
             return {
                 ...state,
-                currentItemCount: pageSize,
+                currentItemCount: 0,
                 sorters: {
                     ...state.sorters,
                     currentSortFunction: action.sortFunction,
@@ -165,7 +165,7 @@ export default function games(state = initialState, action) {
             return {
                 ...state,
                 totalItems: countMatches(games, newFilters),
-                currentItemCount: pageSize,
+                currentItemCount: 0,
                 filters: {
                     ...state.filters,
                     activeFilters: newFilters
@@ -186,7 +186,7 @@ export default function games(state = initialState, action) {
             return {
                 ...state,
                 totalItems: countMatches(games, newFilters),
-                currentItemCount: pageSize,
+                currentItemCount: 0,
                 filters: {
                     ...state.filters,
                     activeFilters: newFilters
@@ -206,7 +206,7 @@ export default function games(state = initialState, action) {
             return {
                 ...state,
                 totalItems: countMatches(games, newFilters),
-                currentItemCount: pageSize,
+                currentItemCount: 0,
                 filters: {
                     ...state.filters,
                     activeFilters: newFilters
