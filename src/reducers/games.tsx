@@ -84,12 +84,13 @@ export default function games(state = initialState, action) {
     let newFilters = state.filters.activeFilters;
     let pageSize = state.pageSize;
     let games = state.games;
-    let currentItemCount = state.currentItemCount; 
-    let currentSortFunction = state.sorters.currentSortFunction;
-    // computes new version of "games" (for currentGames)
-    let newVersion = ({filters = newFilters, sortFunction = currentSortFunction}) => games
-        .filter(game => filters.every(condition => condition.filterFunction(game)))
-        .sort(sortFunction)
+    let currentItemCount = state.currentItemCount;
+    let countMatches = (games, filters) => games
+        .reduce(
+            //  Fastest way to compute that
+            (count, game) => count + (filters.every(condition => condition.filterFunction(game)) & 1),
+            0
+        );
 
     switch (action.type) {
         case FETCHING_REQUESTED:
@@ -160,12 +161,10 @@ export default function games(state = initialState, action) {
                     filterFunction: at_least_one_in_common(action.genres)
                 })
             }
-            // compute new currentGames
-            let after_genre_filtering = newVersion({filters: newFilters});
 
             return {
                 ...state,
-                totalItems: after_genre_filtering.length,
+                totalItems: countMatches(games, newFilters),
                 currentItemCount: pageSize,
                 filters: {
                     ...state.filters,
@@ -183,13 +182,10 @@ export default function games(state = initialState, action) {
                     filterFunction: matches_title_search(action.title)
                 })
             }
-
-            // compute new currentGames
-            let after_title_filtering = newVersion({filters: newFilters});            
-
+           
             return {
                 ...state,
-                totalItems: after_title_filtering.length,
+                totalItems: countMatches(games, newFilters),
                 currentItemCount: pageSize,
                 filters: {
                     ...state.filters,
@@ -207,12 +203,9 @@ export default function games(state = initialState, action) {
                 })
             }
 
-            // compute new currentGames
-            let after_platform_filtering = newVersion({filters: newFilters}); 
-
             return {
                 ...state,
-                totalItems: after_platform_filtering.length,
+                totalItems: countMatches(games, newFilters),
                 currentItemCount: pageSize,
                 filters: {
                     ...state.filters,
