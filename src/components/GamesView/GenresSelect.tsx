@@ -81,7 +81,7 @@ function GenresSelect(props) {
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    selectedGenres: state.games.filters.activeFilters.find(s => s.key === "selected_genres")?.value || []
+    selectedGenres: state.games.activeFilters.find(s => s.key === "selected_genres")?.value || []
 });
 
 const mapDispatchToProps = {

@@ -24,23 +24,47 @@ function makeMultiCriteriaSort(criteria) {
     }
 }
 
-// Swap element position in array with its sibling (left or right)
-// Exception cases are handled in change_sorting_order
-function swapSiblingElements(arr, elementIndex , direction) {
-    // elements to swap
-    const firstElement = (direction === "up") ? arr[elementIndex]: arr[elementIndex + 1];
-    const secondElement = (direction === "up") ? arr[elementIndex - 1] : arr[elementIndex];
-    // indexes for slice call
-    const firstSliceIndex = (direction === "up") ? elementIndex - 1 : elementIndex;
-    const secondSliceIndex = elementIndex + ( (direction === "up") ? 1 : 2);
-    // return new array
-    return [ 
-        ...arr.slice(0, firstSliceIndex), 
-        firstElement, 
-        secondElement, 
-        ...arr.slice(secondSliceIndex) 
-    ];
- }
+// search criterias
+const sortByNameASC = (a, b) => new Intl.Collator().compare(a.title, b.title);
+const sortByReleaseDateASC = (a, b) => {
+    let aa = a["releaseDate"];
+    let bb = b["releaseDate"];
+    return aa < bb ? -1 : (aa > bb ? 1 : 0);
+};
+const sortByDurationASC = (a, b) => (a.durationAsInt < b.durationAsInt) ? -1 : (a.durationAsInt > b.durationAsInt ? 1 : 0);
+
+// To compute new sorting function
+const sortingFunctions = {
+    "name": (order: string) => (order === "ASC") ? sortByNameASC : (a, b) => -sortByNameASC(a, b),
+    "releaseDate": (order: string) => (order === "ASC") ? sortByReleaseDateASC : (a, b) => -sortByReleaseDateASC(a, b),
+    "duration": (order: string) => (order === "ASC") ? sortByDurationASC : (a, b) => -sortByDurationASC(a, b)
+}
+type possibleSortType = "name" | "releaseDate" | "duration";
+type possibleOrdering = "ASC" | "DESC";
+type sortStatesType = [possibleSortType, possibleOrdering][];
+export const generate_sort_function = (sortStates : sortStatesType) => {
+    return makeMultiCriteriaSort(
+        sortStates.map( ([key, order]) => sortingFunctions[key](order))
+    );
+}
+
+// To compute new filtering function
+type possibleFilters = "selected_platform" | "selected_title" | "selected_genres";
+export const filtersFunctions = {
+    // To check if platform match search critiria
+    "selected_platform": (platform) => (game) => game.platform === platform,
+    // To check if title match search criteria (insensitive search)
+    "selected_title": (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i')) >= 0,
+    // To check if two arrays contains at least one element in common
+    "selected_genres": (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v) >= 0)
+}
+export const generate_filter_function = (filtersState : {
+    key: possibleFilters,
+    value: any
+}[] ) => {
+    return (game) => filtersState.every(filter => filtersFunctions[filter.key](filter.value)(game));
+};
+
 // Regex for duration
 const DURATION_REGEX = /(\d+):(\d+):(\d+)/; 
 
@@ -87,12 +111,8 @@ export const get_games = (pageSize = 24) => {
         const {
             games: {
                 initialLoad,
-                sorters: {
-                    currentSortFunction
-                },
-                filters: {
-                    activeFilters: currentFilters
-                }
+                sorters: currentSorters,
+                activeFilters: currentFilters
             }
         } = getState();
 
@@ -102,11 +122,13 @@ export const get_games = (pageSize = 24) => {
             dispatch(fetchingStarted());
 
             let games = await all_games();
+            let filtersFunction = generate_filter_function(currentFilters)
+
             let currentGames = games
                 // remove the ones that doesn't match filter criteria
-                .filter(game => currentFilters.every(condition => condition.filterFunction(game)))
+                .filter(filtersFunction)
                 // sort them in user preference
-                .sort(currentSortFunction);
+                .sort(generate_sort_function(currentSorters));
 
             dispatch(fetchingFinished({
                 games: currentGames,
@@ -118,73 +140,48 @@ export const get_games = (pageSize = 24) => {
 };
 
 // Given field is the one that changed
-export const sort_games = (field) => {
+export const sort_games = (field : possibleSortType) => {
     return (dispatch, getState) => {
         const { 
             games : {
-                sorters: previousState 
+                sorters: previousState
             }
         } = getState();
         
-        let newStates = previousState.state;
-
         // Invert previous state value for this field
-        const oldValue = newStates[field];
-        const newValue = (oldValue === "ASC") ? "DESC" : "ASC";
-        newStates = {
-            ...previousState.state,
-            [field]: newValue
-        }
-
-        // Decide the sort algorithm now
-        // Changed field should be the first criteria, other should be unchanged (following my simple order, from now)
-        const sortFunction = makeMultiCriteriaSort(
-            previousState
-                .keys
-                .map(criteria => {
-                    const sortFcts = previousState.functions[criteria];
-                    const state = newStates[criteria];
-                    return sortFcts[state];
-                })
-        );
+        const newSortersState = previousState
+            .map( ([key, currentOrder]) => {
+                if (key === field) {
+                    return [key, (currentOrder === "ASC") ? "DESC" : "ASC"]
+                } else {
+                    return [key, currentOrder];
+                }
+            })
 
         // Update state
-        dispatch(sortingGames(newStates, sortFunction));
-        
+        dispatch(sortingGames(newSortersState));
     };
 };
 
-export const change_sorting_order = (field, direction) => {
+export const change_sorting_order = (newSortingOrder : possibleSortType[]) => {
     return (dispatch, getState) => {
         const { 
             games : {
                 sorters: previousState 
             }
         } = getState();
+        
+        // get current sorting order for field
+        const previousStateOrder : {
+            [key in possibleSortType]: possibleOrdering;
+        } = previousState.reduce( (acc, [key, currentOrder]) => {
+            acc[key] = currentOrder;
+            return acc;
+        }, {});
 
-        // Get current position
-        const currentIndex = previousState.keys.indexOf(field);
+        const newStateOrder = newSortingOrder.map(field => [field, previousStateOrder[field]]);
 
-        // Some case shoud not possible
-        const wrongCase = 
-            currentIndex === -1 ||
-            (currentIndex === 0 && direction === "up") ||
-            (currentIndex === previousState.keys.length -1 && direction === "down")
-        ;
-        // if nothing wrong, apply change
-        if (!wrongCase){
-            const newSortOrder = swapSiblingElements(previousState.keys, currentIndex, direction);
-            const sortFunction = makeMultiCriteriaSort(
-                newSortOrder
-                    .map(criteria => {
-                        const sortFcts = previousState.functions[criteria];
-                        const state = previousState.state[criteria];
-                        return sortFcts[state];
-                    })
-            );
-
-            dispatch(sortCriteriaOrderChanger(sortFunction, newSortOrder))
-        }
+        dispatch(sortCriteriaOrderChanger(newStateOrder))
     };
 };
 
@@ -230,16 +227,14 @@ const fetchingFailed = (error) => ({
     error
 });
 
-const sortingGames = (newSortersState, sortFunction) => ({
+const sortingGames = (newSortersState) => ({
     type: SORTING_GAMES,
-    newSortersState,
-    sortFunction
+    newSortersState
 });
 
-const sortCriteriaOrderChanger = (sortFunction, keys) => ({
+const sortCriteriaOrderChanger = (newSortersState) => ({
     type: SORTING_ORDER_CHANGED,
-    sortFunction,
-    keys
+    newSortersState
 });
 
 const filterGamesByGenres = ({genres}) => ({
