@@ -8,19 +8,11 @@ import {
     FILTERING_BY_TITLE,
     FILTERING_BY_PLATFORM,
     SCROLLING_FETCHING,
-    SCROLLING_OK
+    SCROLLING_OK,
+    filtersFunctions
 } 
 // @ts-ignore
 from "../actions/games.tsx"
-
-// To check if platform match search critiria
-const matches_platform_search = (platform) => (game) => game.platform === platform;
-
-// To check if title match search criteria (insensitive search)
-const matches_title_search = (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i')) >= 0;
-
-// To check if two arrays contains at least one element in common
-const at_least_one_in_common = (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v) >= 0);
 
 const initialState = {
     // All available games of the channel
@@ -41,27 +33,26 @@ const initialState = {
     pageSize: 24,
     // Only load once
     initialLoad: true,
+    // sorting 
     sorters: [
         ["name", "ASC"],
         ["releaseDate", "ASC"],
         ["duration", "ASC"]
     ],
-    filters: {
-        // current filters applied
-        activeFilters: []
-    }
+    // current filters applied
+    activeFilters: []
 };
 
 export default function games(state = initialState, action) {
 
-    let newFilters = state.filters.activeFilters;
+    let newFilters = state.activeFilters;
     let pageSize = state.pageSize;
     let games = state.games;
     let currentItemCount = state.currentItemCount;
     let countMatches = (games, filters) => games
         .reduce(
             //  Fastest way to compute that
-            (count, game) => count + (filters.every(condition => condition.filterFunction(game)) & 1),
+            (count, game) => count + (filters.every(condition => filtersFunctions[condition.key](condition.value)(game)) & 1),
             0
         );
 
@@ -120,8 +111,7 @@ export default function games(state = initialState, action) {
             if (action.genres.length !== 0) {
                 newFilters.push({
                     key: "selected_genres",
-                    value: action.genres,
-                    filterFunction: at_least_one_in_common(action.genres)
+                    value: action.genres
                 })
             }
 
@@ -129,10 +119,7 @@ export default function games(state = initialState, action) {
                 ...state,
                 totalItems: countMatches(games, newFilters),
                 currentItemCount: 0,
-                filters: {
-                    ...state.filters,
-                    activeFilters: newFilters
-                }
+                activeFilters: newFilters
             }
         case FILTERING_BY_TITLE:    
             // If empty, remove filter - if not, add it
@@ -141,8 +128,7 @@ export default function games(state = initialState, action) {
             } else {
                 newFilters.push({
                     key: "selected_title",
-                    value: action.title,
-                    filterFunction: matches_title_search(action.title)
+                    value: action.title
                 })
             }
            
@@ -150,10 +136,7 @@ export default function games(state = initialState, action) {
                 ...state,
                 totalItems: countMatches(games, newFilters),
                 currentItemCount: 0,
-                filters: {
-                    ...state.filters,
-                    activeFilters: newFilters
-                }
+                activeFilters: newFilters
             }
         case FILTERING_BY_PLATFORM:
             // Always clean up in platform filtering
@@ -161,8 +144,7 @@ export default function games(state = initialState, action) {
             if (action.platform.length !== 0) {
                 newFilters.push({
                     key: "selected_platform",
-                    value: action.platform,
-                    filterFunction: matches_platform_search(action.platform)
+                    value: action.platform
                 })
             }
 
@@ -170,10 +152,7 @@ export default function games(state = initialState, action) {
                 ...state,
                 totalItems: countMatches(games, newFilters),
                 currentItemCount: 0,
-                filters: {
-                    ...state.filters,
-                    activeFilters: newFilters
-                }
+                activeFilters: newFilters
             }
         default:
             return state

@@ -36,7 +36,7 @@ function TitleFilter(props) {
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    title: state.games.filters.activeFilters.find(s => s.key === "selected_title")?.value || "",
+    title: state.games.activeFilters.find(s => s.key === "selected_title")?.value || "",
 });
 
 const mapDispatchToProps = {

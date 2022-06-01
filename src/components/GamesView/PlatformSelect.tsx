@@ -72,7 +72,7 @@ function PlatformSelect(props) {
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    selectedPlatform: state.games.filters.activeFilters.find(s => s.key === "selected_platform")?.value || ""
+    selectedPlatform: state.games.activeFilters.find(s => s.key === "selected_platform")?.value || ""
 });
 
 const mapDispatchToProps = {

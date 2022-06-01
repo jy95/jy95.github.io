@@ -48,6 +48,23 @@ export const generate_sort_function = (sortStates : sortStatesType) => {
     );
 }
 
+// To compute new filtering function
+type possibleFilters = "selected_platform" | "selected_title" | "selected_genres";
+export const filtersFunctions = {
+    // To check if platform match search critiria
+    "selected_platform": (platform) => (game) => game.platform === platform,
+    // To check if title match search criteria (insensitive search)
+    "selected_title": (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i')) >= 0,
+    // To check if two arrays contains at least one element in common
+    "selected_genres": (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v) >= 0)
+}
+export const generate_filter_function = (filtersState : {
+    key: possibleFilters,
+    value: any
+}[] ) => {
+    return (game) => filtersState.every(filter => filtersFunctions[filter.key](filter.value)(game));
+};
+
 // Regex for duration
 const DURATION_REGEX = /(\d+):(\d+):(\d+)/; 
 
@@ -94,12 +111,8 @@ export const get_games = (pageSize = 24) => {
         const {
             games: {
                 initialLoad,
-                sorters: {
-                    currentSortFunction
-                },
-                filters: {
-                    activeFilters: currentFilters
-                }
+                sorters: currentSorters,
+                activeFilters: currentFilters
             }
         } = getState();
 
@@ -109,11 +122,13 @@ export const get_games = (pageSize = 24) => {
             dispatch(fetchingStarted());
 
             let games = await all_games();
+            let filtersFunction = generate_filter_function(currentFilters)
+
             let currentGames = games
                 // remove the ones that doesn't match filter criteria
-                .filter(game => currentFilters.every(condition => condition.filterFunction(game)))
+                .filter(filtersFunction)
                 // sort them in user preference
-                .sort(currentSortFunction);
+                .sort(generate_sort_function(currentSorters));
 
             dispatch(fetchingFinished({
                 games: currentGames,
