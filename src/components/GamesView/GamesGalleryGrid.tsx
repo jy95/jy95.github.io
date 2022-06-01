@@ -70,10 +70,13 @@ function GamesGalleryGrid(props) {
     const {
         loading, 
         error, 
-        currentGames, 
+        games, 
         canLoadMore,
         scrollLoading,
-        initialLoad, 
+        initialLoad,
+        filters,
+        currentItemCount,
+        currentSortFunction,
         fetch_scrolling_games
     } = props;
     //const { t } = useTranslation('common');
@@ -148,7 +151,7 @@ function GamesGalleryGrid(props) {
                             <GenresSelect variant="standard" />
                         </Grid>
                         <Grid item xs={12} md={4}>
-                            <TitleFilter games={currentGames} />
+                            <TitleFilter games={games} />
                         </Grid>
                     </Grid>
 
@@ -163,7 +166,15 @@ function GamesGalleryGrid(props) {
                         }
                     >
                         {
-                            currentGames.map(renderRow)
+                            games
+                                // remove the ones that doesn't match filter criteria
+                                .filter(game => filters.every(condition => condition.filterFunction(game)))
+                                // sort them in user preference
+                                .sort(currentSortFunction)
+                                // 
+                                .slice(0, currentItemCount)
+                                // render row
+                                .map(renderRow)
                         }
                     </Grid>
                     {!scrollLoading && <div ref={loaderRef as any} className="loaderRef" />}
@@ -175,8 +186,11 @@ function GamesGalleryGrid(props) {
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    currentGames: state.games.currentGames,
-    canLoadMore: state.games.currentGames.length <= state.games.totalItems,
+    currentItemCount: state.games.currentItemCount,
+    canLoadMore: state.games.currentItemCount <= state.games.totalItems,
+    currentSortFunction: state.games.currentSortFunction,
+    filters: state.games.filters.activeFilters,
+    games: state.games.games,
     scrollLoading: state.games.scrollLoading,
     initialLoad: state.games.initialLoad,
     loading: state.games.loading,

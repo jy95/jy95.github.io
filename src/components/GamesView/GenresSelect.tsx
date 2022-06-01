@@ -14,14 +14,38 @@ import {
 // @ts-ignore
 from "../../actions/games.tsx";
 
+// Each one is also a key for translation
+const GENRES = [
+    "Action",
+    "Adventure",
+    "Arcade",
+    "Board Games",
+    "Card",
+    "Casual",
+    "Educational",
+    "Family",
+    "Fighting",
+    "Indie",
+    "MMORPG",
+    "Platformer",
+    "Puzzle",
+    "RPG",
+    "Racing",
+    "Shooter",
+    "Simulation",
+    "Sports",
+    "Strategy",
+    "Misc"
+];
+
 // Genres filter of GamesGallery
 function GenresSelect(props) {
 
-    const { genres, selectedGenres } = props;
+    const { selectedGenres } = props;
     const { t } = useTranslation('common');
 
     // Generate list of values for game genre
-    const genre_options = genres
+    const genre_options = GENRES
         .map(genre => ({
             label: t("gamesLibrary.gamesGenres." + genre),
             key: genre
@@ -57,7 +81,6 @@ function GenresSelect(props) {
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    genres: state.games.filters.genres,
     selectedGenres: state.games.filters.activeFilters.find(s => s.key === "selected_genres")?.value || []
 });
 
