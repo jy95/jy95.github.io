@@ -17,12 +17,21 @@ from "../../actions/games.tsx";
 // @ts-ignore
 import iconsSVG from "./PlatformIcons.tsx";
 
+const PLATFORMS = [
+    "GBA",
+    "PC",
+    "PS1",
+    "PS2",
+    "PS3",
+    "PSP"
+];
+
 function PlatformSelect(props) {
 
-    const { platforms, selectedPlatform } = props;
+    const { selectedPlatform } = props;
     const { t } = useTranslation('common');
 
-    const options = platforms
+    const options = PLATFORMS
         .map(platform => ({
             label: platform,
             key: platform
@@ -63,7 +72,6 @@ function PlatformSelect(props) {
 
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
-    platforms: state.games.filters.platforms,
     selectedPlatform: state.games.filters.activeFilters.find(s => s.key === "selected_platform")?.value || ""
 });
 

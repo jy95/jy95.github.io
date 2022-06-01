@@ -44,6 +44,8 @@ const initialState = {
     scrollLoading: false,
     // total number of items (including filtering criteria)
     totalItems: 0,
+    // current loaded items (used for infinite scrolling)
+    currentItemCount: 0,
     // Page size (used for infinite scrolling)
     pageSize: 24,
     // Only load once
@@ -72,37 +74,6 @@ const initialState = {
         }
     },
     filters: {
-        // Each one is also a key for translation
-        genres: [
-            "Action",
-            "Adventure",
-            "Arcade",
-            "Board Games",
-            "Card",
-            "Casual",
-            "Educational",
-            "Family",
-            "Fighting",
-            "Indie",
-            "MMORPG",
-            "Platformer",
-            "Puzzle",
-            "RPG",
-            "Racing",
-            "Shooter",
-            "Simulation",
-            "Sports",
-            "Strategy",
-            "Misc"
-        ],
-        platforms: [
-            "GBA",
-            "PC",
-            "PS1",
-            "PS2",
-            "PS3",
-            "PSP"
-        ],
         // current filters applied
         activeFilters: []
     }
@@ -112,12 +83,14 @@ export default function games(state = initialState, action) {
 
     let newFilters = state.filters.activeFilters;
     let pageSize = state.pageSize;
-    let games = state.games;    
-    let currentSortFunction = state.sorters.currentSortFunction;
-    // computes new version of "games" (for currentGames)
-    let newVersion = ({filters = newFilters, sortFunction = currentSortFunction}) => games
-        .filter(game => filters.every(condition => condition.filterFunction(game)))
-        .sort(sortFunction)
+    let games = state.games;
+    let currentItemCount = state.currentItemCount;
+    let countMatches = (games, filters) => games
+        .reduce(
+            //  Fastest way to compute that
+            (count, game) => count + (filters.every(condition => condition.filterFunction(game)) & 1),
+            0
+        );
 
     switch (action.type) {
         case FETCHING_REQUESTED:
@@ -131,7 +104,6 @@ export default function games(state = initialState, action) {
                 loading: false,
                 initialLoad: false,
                 games: action.games,
-                currentGames: action.games.slice(0, action.pageSize),
                 totalItems: action.totalItems,
                 pageSize: action.pageSize,
                 error: null
@@ -141,8 +113,8 @@ export default function games(state = initialState, action) {
                 ...state,
                 loading: false,
                 games: [],
-                currentGames: [],
                 totalItems: 0,
+                currentItemCount: 0,
                 error: action.error
             };
         case SCROLLING_FETCHING:
@@ -152,19 +124,15 @@ export default function games(state = initialState, action) {
                 pageSize: action.pageSize
             }
         case SCROLLING_OK:
-            // compute new currentGames
-            let after_fetching = newVersion({});
             return {
                 ...state,
                 scrollLoading: false,
-                currentGames: after_fetching.slice(0, state.currentGames.length + pageSize),
+                currentItemCount: currentItemCount + pageSize
             }
         case SORTING_GAMES:
-            // compute new currentGames
-            let after_sorting = newVersion({sortFunction: action.sortFunction});
             return {
                 ...state,
-                currentGames: after_sorting.slice(0, pageSize),
+                currentItemCount: pageSize,
                 sorters: {
                     ...state.sorters,
                     currentSortFunction: action.sortFunction,
@@ -174,11 +142,9 @@ export default function games(state = initialState, action) {
                 }
             };
         case SORTING_ORDER_CHANGED:
-            // compute new currentGames
-            let after_sorting_2 = newVersion({sortFunction: action.sortFunction});
             return {
                 ...state,
-                currentGames: after_sorting_2.slice(0, pageSize),
+                currentItemCount: pageSize,
                 sorters: {
                     ...state.sorters,
                     currentSortFunction: action.sortFunction,
@@ -195,13 +161,11 @@ export default function games(state = initialState, action) {
                     filterFunction: at_least_one_in_common(action.genres)
                 })
             }
-            // compute new currentGames
-            let after_genre_filtering = newVersion({filters: newFilters});
 
             return {
                 ...state,
-                totalItems: after_genre_filtering.length,
-                currentGames: after_genre_filtering.slice(0, pageSize),
+                totalItems: countMatches(games, newFilters),
+                currentItemCount: pageSize,
                 filters: {
                     ...state.filters,
                     activeFilters: newFilters
@@ -218,14 +182,11 @@ export default function games(state = initialState, action) {
                     filterFunction: matches_title_search(action.title)
                 })
             }
-
-            // compute new currentGames
-            let after_title_filtering = newVersion({filters: newFilters});            
-
+           
             return {
                 ...state,
-                totalItems: after_title_filtering.length,
-                currentGames: after_title_filtering.slice(0, pageSize),
+                totalItems: countMatches(games, newFilters),
+                currentItemCount: pageSize,
                 filters: {
                     ...state.filters,
                     activeFilters: newFilters
@@ -242,13 +203,10 @@ export default function games(state = initialState, action) {
                 })
             }
 
-            // compute new currentGames
-            let after_platform_filtering = newVersion({filters: newFilters}); 
-
             return {
                 ...state,
-                totalItems: after_platform_filtering.length,
-                currentGames: after_platform_filtering.slice(0, pageSize),
+                totalItems: countMatches(games, newFilters),
+                currentItemCount: pageSize,
                 filters: {
                     ...state.filters,
                     activeFilters: newFilters
