@@ -130,55 +130,59 @@ function GamesGalleryGrid(props) {
         debug: false,
     });
 
+    const currentGames = games
+        // remove the ones that doesn't match filter criteria
+        .filter(filtersFunction)
+        // sort them in user preference
+        .sort(currentSortFunction)
+        // 
+        .slice(0, currentItemCount);
+
     return (
         <ReloadWrapper 
             loading={loading}
             error={error}
             reloadFct={() => {props.get_games();}}
             component={
-                <StyledGamesGallery>
-                    <Grid
-                        container
-                        className={classes.gamesCriteria}
-                    >
-                        <Grid item xs={12} md={1}>
-                            <GamesSorters />
+                <>
+                    <StyledGamesGallery>
+                        <Grid
+                            container
+                            className={classes.gamesCriteria}
+                        >
+                            <Grid item xs={12} md={1}>
+                                <GamesSorters />
+                            </Grid>
+                            <Grid item xs={12} md={2}>
+                                <PlatformSelect variant="standard" />
+                            </Grid>
+                            <Grid item xs={12} md={5}>
+                                <GenresSelect variant="standard" />
+                            </Grid>
+                            <Grid item xs={12} md={4}>
+                                <TitleFilter games={games} />
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12} md={2}>
-                            <PlatformSelect variant="standard" />
-                        </Grid>
-                        <Grid item xs={12} md={5}>
-                            <GenresSelect variant="standard" />
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <TitleFilter games={games} />
-                        </Grid>
-                    </Grid>
 
 
-                    <Grid
-                        container
-                        spacing={1}
-                        style={
-                            {
-                                rowGap: "15px"
+                        <Grid
+                            container
+                            spacing={1}
+                            style={
+                                {
+                                    rowGap: "15px"
+                                }
                             }
-                        }
-                    >
-                        {
-                            games
-                                // remove the ones that doesn't match filter criteria
-                                .filter(filtersFunction)
-                                // sort them in user preference
-                                .sort(currentSortFunction)
-                                // 
-                                .slice(0, currentItemCount)
-                                // render row
-                                .map(renderRow)
-                        }
-                    </Grid>
+                        >
+                            {
+                                currentGames
+                                    // render row
+                                    .map(renderRow)
+                            }
+                        </Grid>
+                    </StyledGamesGallery>
                     {!scrollLoading && <div ref={loaderRef as any} className="loaderRef" />}
-                </StyledGamesGallery>
+                </>
             }
         />
     );
