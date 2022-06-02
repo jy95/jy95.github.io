@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
 import useInfiniteLoader from 'react-use-infinite-loader';
-//import {useTranslation} from "react-i18next";
+import {useTranslation} from "react-i18next";
 // @ts-ignore
 import {get_games, fetch_scrolling_games, generate_sort_function, generate_filter_function} from "../../actions/games.tsx";
 
@@ -75,17 +75,16 @@ function GamesGalleryGrid(props) {
         totalItems,
         activeFilters,
         sorters,
-        scrollLoading,
         fetch_scrolling_games
     } = props;
-    //const { t } = useTranslation('common');
+    const { t } = useTranslation('common');
 
     // on mount, load data (only once)
     React.useEffect(() => {
         props.get_games();
     },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        []
+        [games]
     );
 
     // render row
@@ -105,18 +104,19 @@ function GamesGalleryGrid(props) {
         []
     );
 
+    const canLoadMore = (currentItemCount <= totalItems);
+
     const { loaderRef } = useInfiniteLoader({
         loadMore: loadMoreGames,
 
         // If this is false useInfiniteLoader no longer invokes `loadMore` when it usually does
-        canLoadMore: (currentItemCount <= totalItems),
+        canLoadMore,
 
         // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
-        // Set to 0px top margin to allow you to see the loading effect easier in this demo
-        rootMargin: "0px 0px 0px 0px",
+        //rootMargin: "0px 0px 0px 0px",
 
         // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
-        //threshold: 0,
+        //threshold: 1,
         debug: true,
     });
 
@@ -137,45 +137,43 @@ function GamesGalleryGrid(props) {
             error={error}
             reloadFct={() => {props.get_games();}}
             component={
-                <>
-                    <StyledGamesGallery>
-                        <Grid
-                            container
-                            className={classes.gamesCriteria}
-                        >
-                            <Grid item xs={12} md={1}>
-                                <GamesSorters />
-                            </Grid>
-                            <Grid item xs={12} md={2}>
-                                <PlatformSelect variant="standard" />
-                            </Grid>
-                            <Grid item xs={12} md={5}>
-                                <GenresSelect variant="standard" />
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                                <TitleFilter games={games} />
-                            </Grid>
+                <StyledGamesGallery>
+                    <Grid
+                        container
+                        className={classes.gamesCriteria}
+                    >
+                        <Grid item xs={12} md={1}>
+                            <GamesSorters />
                         </Grid>
+                        <Grid item xs={12} md={2}>
+                            <PlatformSelect variant="standard" />
+                        </Grid>
+                        <Grid item xs={12} md={5}>
+                            <GenresSelect variant="standard" />
+                        </Grid>
+                        <Grid item xs={12} md={4}>
+                            <TitleFilter games={games} />
+                        </Grid>
+                    </Grid>
 
-
-                        <Grid
-                            container
-                            spacing={1}
-                            style={
-                                {
-                                    rowGap: "15px"
-                                }
-                            }
-                        >
+                    <Grid
+                        container
+                        spacing={1}
+                        style={
                             {
-                                currentGames
-                                    // render row
-                                    .map(renderRow)
+                                rowGap: "15px"
                             }
-                        </Grid>
-                    </StyledGamesGallery>
-                    {!scrollLoading && <div ref={loaderRef as any} className="loaderRef" />}
-                </>
+                        }
+                    >
+                        {
+                            currentGames
+                                // render row
+                                .map(renderRow)
+                        }
+                    </Grid>
+                    <div ref={loaderRef as any} className="loaderRef"/>
+                    {!canLoadMore && <div>{t("common.noResults")}</div>}
+                </StyledGamesGallery>
             }
         />
     );
@@ -188,8 +186,6 @@ const mapStateToProps = state => ({
     activeFilters: state.games.activeFilters,
     sorters: state.games.sorters,
     games: state.games.games,
-    scrollLoading: state.games.scrollLoading,
-    initialLoad: state.games.initialLoad,
     loading: state.games.loading,
     error: state.games.error
 });

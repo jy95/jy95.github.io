@@ -13,7 +13,8 @@
     },
     "common": {
         "reload": "Recharger",
-        "loading": "Chargement en cours ..."
+        "loading": "Chargement en cours ...",
+        "noResults": "Plus d'autre résultats à afficher"
     },
     "header": {
         "languages": {

@@ -13,7 +13,8 @@
     },
     "common": {
         "reload": "Reload",
-        "loading": "Loading ..."
+        "loading": "Loading ...",
+        "noResults": "No more results to display"
     },
     "header": {
         "languages": {
