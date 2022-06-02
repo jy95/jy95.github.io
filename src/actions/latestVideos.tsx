@@ -22,6 +22,12 @@ const diff_minutes = (d1, d2) => Math.abs(
     )
 );
 
+function decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+}
+
 // param à la place du () du genre ({title, password})
 export const get_latest_videos = () => {
     return (dispatch, getState) => {
@@ -46,7 +52,12 @@ export const get_latest_videos = () => {
                     return JSON.parse(data)?.contents || "";
                 }
             })
-                .then(feed => feed.items)
+                .then(feed => feed.items
+                    .map(entry => ({
+                        ...entry,
+                        title: decodeHtml(entry.title)
+                    }))
+                )
                 .then(items => dispatch(fetchingFinished(items,dateNow)) )
                 .catch(error => dispatch(fetchingFailed(error)) );
         } else {
