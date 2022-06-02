@@ -70,13 +70,13 @@ function GamesGalleryGrid(props) {
     const {
         loading, 
         error, 
-        games, 
-        canLoadMore,
+        games,
+        currentItemCount,
+        totalItems,
+        activeFilters,
+        sorters,
         scrollLoading,
         initialLoad,
-        currentItemCount,
-        filtersFunction,
-        currentSortFunction,
         fetch_scrolling_games
     } = props;
     //const { t } = useTranslation('common');
@@ -110,11 +110,7 @@ function GamesGalleryGrid(props) {
         loadMore: loadMoreGames,
 
         // If this is false useInfiniteLoader no longer invokes `loadMore` when it usually does
-        canLoadMore: canLoadMore,
-
-        // Not used in this example. Used if you already load page 0 on mount, you can tell
-        // useInfiniteLoader what page to begin loading more from
-        startFromPage: 1,
+        canLoadMore: (currentItemCount <= totalItems),
 
         // Used for if your data fetching library fetches page 0 and renders it when the component
         // loads, to use this just have a state flag that you set to false once the initial load
@@ -129,6 +125,9 @@ function GamesGalleryGrid(props) {
         //threshold: 0,
         debug: false,
     });
+
+    const currentSortFunction = generate_sort_function(sorters);
+    const filtersFunction = generate_filter_function(activeFilters);
 
     const currentGames = games
         // remove the ones that doesn't match filter criteria
@@ -191,9 +190,9 @@ function GamesGalleryGrid(props) {
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
     currentItemCount: state.games.currentItemCount,
-    canLoadMore: state.games.currentItemCount <= state.games.totalItems,
-    currentSortFunction: generate_sort_function(state.games.sorters),
-    filtersFunction: generate_filter_function(state.games.activeFilters),
+    totalItems: state.games.totalItems,
+    activeFilters: state.games.activeFilters,
+    sorters: state.games.sorters,
     games: state.games.games,
     scrollLoading: state.games.scrollLoading,
     initialLoad: state.games.initialLoad,
