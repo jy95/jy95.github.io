@@ -83,7 +83,7 @@ function GamesGalleryGrid(props) {
 
     // on mount, load data (only once)
     React.useEffect(() => {
-        props.get_games(16);
+        props.get_games();
     },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         []
@@ -100,7 +100,7 @@ function GamesGalleryGrid(props) {
     </Grid>;
 
     const loadMoreGames = React.useCallback( () => {
-        fetch_scrolling_games(24);
+        fetch_scrolling_games();
     }, 
         // eslint-disable-next-line react-hooks/exhaustive-deps
         []
@@ -142,7 +142,7 @@ function GamesGalleryGrid(props) {
         <ReloadWrapper 
             loading={loading}
             error={error}
-            reloadFct={() => {props.get_games(16);}}
+            reloadFct={() => {props.get_games();}}
             component={
                 <>
                     <StyledGamesGallery>
