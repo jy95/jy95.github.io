@@ -67,6 +67,7 @@ export default function games(state = initialState, action) {
                 initialLoad: false,
                 games: action.games,
                 totalItems: action.totalItems,
+                currentItemCount: action.pageSize,
                 pageSize: action.pageSize,
                 error: null
             };
