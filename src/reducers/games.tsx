@@ -17,8 +17,6 @@ from "../actions/games.tsx"
 const initialState = {
     // All available games of the channel
     games: [],
-    // Currently displayed games (shadow copy of "games")
-    currentGames: [],
     // error occurred ?
     error: null,
     // data loading ?
