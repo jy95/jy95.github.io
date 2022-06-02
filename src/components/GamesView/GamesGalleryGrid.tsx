@@ -76,7 +76,6 @@ function GamesGalleryGrid(props) {
         activeFilters,
         sorters,
         scrollLoading,
-        initialLoad,
         fetch_scrolling_games
     } = props;
     //const { t } = useTranslation('common');
@@ -112,18 +111,13 @@ function GamesGalleryGrid(props) {
         // If this is false useInfiniteLoader no longer invokes `loadMore` when it usually does
         canLoadMore: (currentItemCount <= totalItems),
 
-        // Used for if your data fetching library fetches page 0 and renders it when the component
-        // loads, to use this just have a state flag that you set to false once the initial load
-        // from your data fetching lib has happened.
-        initialise: initialLoad === false,
-
         // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
         // Set to 0px top margin to allow you to see the loading effect easier in this demo
         rootMargin: "0px 0px 0px 0px",
 
         // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
         //threshold: 0,
-        debug: false,
+        debug: true,
     });
 
     const currentSortFunction = generate_sort_function(sorters);
