@@ -82,6 +82,7 @@ function GamesGalleryGrid(props) {
         totalItems,
         activeFilters,
         sorters,
+        initialLoad,
         scrollLoading,
         fetch_scrolling_games
     } = props;
@@ -120,12 +121,18 @@ function GamesGalleryGrid(props) {
         // If this is false useInfiniteLoader no longer invokes `loadMore` when it usually does
         canLoadMore,
 
+        // Used for if your data fetching library fetches page 0 and renders it when the component loads, 
+        // to use this just have a state flag that you set to false once the initial load from 
+        //your data fetching lib has happened.
+        // default : true
+        initialise: !initialLoad,
+
         // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
         //rootMargin: "0px 0px 0px 0px",
 
         // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
         //threshold: 1,
-        debug: true,
+        debug: false,
     });
 
     const currentSortFunction = generate_sort_function(sorters);
@@ -179,7 +186,7 @@ function GamesGalleryGrid(props) {
                                 .map(renderRow)
                         }
                     </Grid>
-                    <div ref={loaderRef as any} className={classes.loaderRef} />
+                    {!initialLoad && <div ref={loaderRef as any} className={classes.loaderRef} />}
                     {scrollLoading && <Alert severity="info">{t("common.loading")}</Alert>}
                     {!canLoadMore && <Alert severity="info">{t("common.noResults")}</Alert>}
                 </StyledGamesGallery>
@@ -191,6 +198,7 @@ function GamesGalleryGrid(props) {
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
     currentItemCount: state.games.currentItemCount,
+    initialLoad: state.games.initialLoad,
     scrollLoading: state.games.scrollLoading,
     totalItems: state.games.totalItems,
     activeFilters: state.games.activeFilters,
