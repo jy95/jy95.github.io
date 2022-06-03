@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
 import useInfiniteLoader from 'react-use-infinite-loader';
 import {useTranslation} from "react-i18next";
+import Alert from '@mui/material/Alert';
 // @ts-ignore
 import {get_games, fetch_scrolling_games, generate_sort_function, generate_filter_function} from "../../actions/games.tsx";
 
@@ -28,7 +29,8 @@ const PREFIX = 'GamesGalleryGrid';
 
 const classes = {
     gameEntry: `${PREFIX}-gameEntry`,
-    gamesCriteria: `${PREFIX}-gamesCriteria`
+    gamesCriteria: `${PREFIX}-gamesCriteria`,
+    loaderRef: `${PREFIX}-loaderRef`
 };
 
 const StyledGamesGallery = styled('div')((
@@ -61,6 +63,11 @@ const StyledGamesGallery = styled('div')((
             flexDirection: "row",
             justifyContent: "flex-end"
         }
+    },
+    [`& .${classes.loaderRef}`]: {
+        width: "1px",
+        height: "1px",
+        position: "absolute"
     }
 }));
 
@@ -75,6 +82,7 @@ function GamesGalleryGrid(props) {
         totalItems,
         activeFilters,
         sorters,
+        scrollLoading,
         fetch_scrolling_games
     } = props;
     const { t } = useTranslation('common');
@@ -171,8 +179,9 @@ function GamesGalleryGrid(props) {
                                 .map(renderRow)
                         }
                     </Grid>
-                    <div ref={loaderRef as any} className="loaderRef"/>
-                    {!canLoadMore && <div>{t("common.noResults")}</div>}
+                    <div ref={loaderRef as any} className={classes.loaderRef} />
+                    {scrollLoading && <Alert severity="info">{t("common.loading")}</Alert>}
+                    {!canLoadMore && <Alert severity="info">{t("common.noResults")}</Alert>}
                 </StyledGamesGallery>
             }
         />
@@ -182,6 +191,7 @@ function GamesGalleryGrid(props) {
 // mapStateToProps(state, ownProps)
 const mapStateToProps = state => ({
     currentItemCount: state.games.currentItemCount,
+    scrollLoading: state.games.scrollLoading,
     totalItems: state.games.totalItems,
     activeFilters: state.games.activeFilters,
     sorters: state.games.sorters,
