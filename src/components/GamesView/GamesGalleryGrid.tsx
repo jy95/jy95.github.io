@@ -123,7 +123,7 @@ function GamesGalleryGrid(props) {
 
         // Used for if your data fetching library fetches page 0 and renders it when the component loads, 
         // to use this just have a state flag that you set to false once the initial load from 
-        //your data fetching lib has happened.
+        // your data fetching lib has happened.
         // default : true
         initialise: !initialLoad,
 
