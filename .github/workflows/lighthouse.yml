@@ -1,0 +1,30 @@
+name: Lighthouse Github Pages
+on:
+# Trigger only when the build workflow succeeded
+  workflow_run:
+    workflows: ["Can be deployed"]
+    types:
+      - completed
+# Trigger job on demand
+  repository_dispatch:
+    types: [lighthouse-github-pages]
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+# Only for on pull request event
+    if: github.event_name == 'pull_request'
+    steps:
+    - uses: actions/checkout@master
+    - uses: UnlyEd/github-action-await-vercel@v1.1.15
+      id: await-vercel
+      env:
+        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      with:
+        deployment-url: jy95-github-io.vercel.app # TODO Replace by the domain you want to test
+        timeout: 90 # Wait for 90 seconds before failing
+    - name: Display deployment status
+      run: "echo The deployment at ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }} is ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).readyState }}"
+    - name: Lighthouse
+      uses: foo-software/lighthouse-check-action@master
+      with:
+        urls: "https://jy95.github.io/?/games,${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }}"
