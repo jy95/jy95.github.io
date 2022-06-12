@@ -8,7 +8,7 @@ on:
       - '**.webp'
 jobs:
   convert_all_to_webp:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
         - name: Checkout repository
           uses: actions/checkout@v2
