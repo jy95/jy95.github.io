@@ -19,4 +19,4 @@ jobs:
     - name: Lighthouse
       uses: foo-software/lighthouse-check-action@master
       with:
-        urls: "https://jy95.github.io/?/games,${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }}"
+        urls: "https://jy95.github.io/?/games,https://${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }}/games"
