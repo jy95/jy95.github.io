@@ -13,5 +13,5 @@ jobs:
           node-version: '16.x'
       - name: Install and Build 🔧
         run: |
-          npm install --force
+          npm install
           npm run build

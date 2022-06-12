@@ -15,7 +15,7 @@ jobs:
           node-version: '16.x'
       - name: Install and Build 🔧
         run: |
-          npm install --force
+          npm install
           npm run build
       - name: Deploy 🚀
         uses: peaceiris/actions-gh-pages@v3
