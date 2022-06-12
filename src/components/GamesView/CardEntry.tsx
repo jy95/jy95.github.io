@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import {useTranslation} from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -9,11 +9,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from '@mui/material/CardActionArea';
+import Skeleton from '@mui/material/Skeleton';
 
 import Tooltip from '@mui/material/Tooltip';
 import Image from '@jy95/material-ui-image';
 // @ts-ignore
-import CardDialog from "./CardDialog.tsx";
+const CardDialog = React.lazy(() => import("./CardDialog.tsx"));
 
 const PREFIX = 'CardEntry';
 
@@ -93,13 +94,19 @@ function CardEntry(props) {
                         className={classes.gameCover}
                         title={gameTitle}
                     >
-                        <Image src={game.imagePath} alt={gameTitle}/>
+                        <Image 
+                            src={game.imagePath}
+                            alt={gameTitle} 
+                            //disableSpinner={true} 
+                            loading={<Skeleton variant="rectangular" />}
+                        />
                     </CardMedia>
 
                 </CardActionArea>
             </Tooltip>
-            <CardDialog game={game} contextMenuState={[contextMenuOpen,setContextMenuOpen]} />
-            
+            <Suspense fallback={null}>
+                <CardDialog game={game} contextMenuState={[contextMenuOpen,setContextMenuOpen]} />
+            </Suspense>
         </StyledCard>
     );
 }
