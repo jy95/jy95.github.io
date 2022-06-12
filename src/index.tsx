@@ -10,9 +10,6 @@ import store from "./components/Store.tsx"
 // @ts-ignore
 import Root from "./components/Root.tsx";
 
-// For v4 to v5 migration 
-import { StyledEngineProvider } from '@mui/material/styles';
-
 // For translation
 import {I18nextProvider, initReactI18next} from "react-i18next";
 import detector from "i18next-browser-languagedetector";
@@ -47,11 +44,9 @@ const container = document.getElementById('root');
 // https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis 
 const root = createRoot(container!);
 root.render(
-    <StyledEngineProvider injectFirst>
-        <I18nextProvider i18n={i18next}>
-            <Root store={store} />
-        </I18nextProvider>
-    </StyledEngineProvider>
+    <I18nextProvider i18n={i18next}>
+        <Root store={store} />
+    </I18nextProvider>
 );
 
 // If you want your app to work offline and load faster, you can change
