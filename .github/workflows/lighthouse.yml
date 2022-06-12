@@ -1,18 +1,10 @@
 name: Lighthouse Github Pages
 on:
-# Trigger only when the build workflow succeeded
-  workflow_run:
-    workflows: ["Can be deployed"]
-    types:
-      - completed
-# Trigger job on demand
-  repository_dispatch:
-    types: [lighthouse-github-pages]
+# Only for on pull request event
+  pull_request:
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
-# Only for on pull request event
-    if: github.event_name == 'pull_request'
     steps:
     - uses: actions/checkout@master
     - uses: UnlyEd/github-action-await-vercel@v1.1.15
