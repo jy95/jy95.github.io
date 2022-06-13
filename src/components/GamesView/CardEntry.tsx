@@ -43,6 +43,14 @@ const StyledCard = styled(Card)((
     }
 }));
 
+// for responsive pictures
+const PICTURE_SIZES = ["small", "medium", "big"];
+const SIZES_WITDH = {
+    "small": "150w",
+    "medium": "200w",
+    "big": "250w"
+}
+
 function CardEntry(props) {
 
     // hooks
@@ -78,6 +86,24 @@ function CardEntry(props) {
         }
     }
 
+    // image properties
+    let imageProps : {
+        src: string,
+        alt: string,
+        srcset?: string
+    } = {
+        src: game.imagePath,
+        alt: gameTitle
+    };
+
+    // only 
+    if (game?.hasResponsiveImages) {
+        // TODO maybe in the future make that stuff more configurable
+        imageProps.srcset= PICTURE_SIZES
+            .map(size=>`${game.imagesFolder}/cover@${size}.webp ${SIZES_WITDH[size]}`)
+            .join(",");
+    }
+
     return (
         <StyledCard className={classes.gameRoot}>
 
@@ -95,8 +121,7 @@ function CardEntry(props) {
                         title={gameTitle}
                     >
                         <Image 
-                            src={game.imagePath}
-                            alt={gameTitle} 
+                            {...imageProps}
                             //disableSpinner={true} 
                             loading={<Skeleton variant="rectangular" />}
                         />
