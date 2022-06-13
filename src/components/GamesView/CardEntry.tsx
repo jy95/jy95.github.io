@@ -31,11 +31,11 @@ const StyledCard = styled(Card)((
 ) => ({
     [`&.${classes.gameRoot}`]: {
         position: "relative",
-        height: "100%"
+        //height: "100%"
     },
     [`& .${classes.gameCover}`]: {
         zIndex: 1,
-        height: "inherit"
+        //height: "inherit"
     },
     [`& .${classes.MuiCardActionArea}`]: {
         height: "inherit",
