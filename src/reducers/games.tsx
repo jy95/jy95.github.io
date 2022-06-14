@@ -53,6 +53,7 @@ export default function games(state = initialState, action) {
             (count, game) => count + (filters.every(condition => filtersFunctions[condition.key](condition.value)(game)) & 1),
             0
         );
+    let currentTotalItems = 0;
 
     switch (action.type) {
         case FETCHING_REQUESTED:
@@ -95,13 +96,11 @@ export default function games(state = initialState, action) {
         case SORTING_GAMES:
             return {
                 ...state,
-                currentItemCount: 0,
                 sorters: action.newSortersState
             };
         case SORTING_ORDER_CHANGED:
             return {
                 ...state,
-                currentItemCount: 0,
                 sorters: action.newSortersState
             }
         case FILTERING_BY_GENRE:
@@ -113,11 +112,12 @@ export default function games(state = initialState, action) {
                     value: action.genres
                 })
             }
+            currentTotalItems = countMatches(games, newFilters);
 
             return {
                 ...state,
-                totalItems: countMatches(games, newFilters),
-                currentItemCount: 0,
+                totalItems: currentTotalItems,
+                currentItemCount: (currentTotalItems < pageSize) ? currentTotalItems : pageSize,
                 activeFilters: newFilters
             }
         case FILTERING_BY_TITLE:    
@@ -130,11 +130,12 @@ export default function games(state = initialState, action) {
                     value: action.title
                 })
             }
+            currentTotalItems = countMatches(games, newFilters);
            
             return {
                 ...state,
-                totalItems: countMatches(games, newFilters),
-                currentItemCount: 0,
+                totalItems: currentTotalItems,
+                currentItemCount: (currentTotalItems < pageSize) ? currentTotalItems : pageSize,
                 activeFilters: newFilters
             }
         case FILTERING_BY_PLATFORM:
@@ -146,11 +147,12 @@ export default function games(state = initialState, action) {
                     value: action.platform
                 })
             }
+            currentTotalItems = countMatches(games, newFilters);
 
             return {
                 ...state,
-                totalItems: countMatches(games, newFilters),
-                currentItemCount: 0,
+                totalItems: currentTotalItems,
+                currentItemCount: (currentTotalItems < pageSize) ? currentTotalItems : pageSize,
                 activeFilters: newFilters
             }
         default:
