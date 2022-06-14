@@ -31,11 +31,13 @@ export const get_tests = () => {
                     ) + id ;
                     const url_type = (game.playlistId) ? "PLAYLIST" : "VIDEO";
                     return Object.assign({}, game, {
+                        "imagesFolder": process.env.PUBLIC_URL + gamesData.coversRootPath + id,
                         "imagePath": process.env.PUBLIC_URL + gamesData.coversRootPath + id + "/" + (game.coverFile ?? gamesData.defaultCoverFile),
                         "releaseDate": new Date(+parts[2], Number(parts[1]) -1, +parts[0]),
                         "url": base_url,
                         "url_type": url_type,
-                        "durationAsInt": parseInt((game?.duration || "00:00:00").replace(DURATION_REGEX, "$1$2$3"))
+                        "durationAsInt": parseInt((game?.duration || "00:00:00").replace(DURATION_REGEX, "$1$2$3")),
+                        "hasResponsiveImages": game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages
                     });
                 });
     

@@ -56,7 +56,8 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^4.0.0",
+    "sharp": "^0.30.6"
   },
   "homepage": "https://jy95.github.io"
 }

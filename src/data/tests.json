@@ -1,6 +1,7 @@
 {
     "coversRootPath": "/testscovers/",
     "defaultCoverFile": "cover.webp",
+    "defaultHasResponsiveImages": true,
     "games": [
         {
             "title": "Nova Drift",

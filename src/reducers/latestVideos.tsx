@@ -24,6 +24,8 @@ function mapRSSItemToGame(items) {
                 "url": item.link,
                 "url_type": "VIDEO",
                 "imagePath": "https://i.ytimg.com/vi_webp/" + videoId + "/0.webp",
+                // Youtube RSS doesn't offer dedicated urls for picture
+                "hasResponsiveImages": false
             }
         });
 }

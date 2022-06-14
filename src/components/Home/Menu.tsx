@@ -6,6 +6,7 @@ import {useTranslation} from "react-i18next";
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -51,12 +52,14 @@ function ListItemLink(props) {
     );
 
     return (
-        <Tooltip title={entry_label} aria-label={primary}>
-            <ListItemButton component={renderLink} selected={matchUrl}>
-                <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText primary={entry_label} />
-            </ListItemButton>
-        </Tooltip>
+        <ListItem disablePadding>
+            <Tooltip title={entry_label} aria-label={primary}>
+                <ListItemButton component={renderLink} selected={matchUrl}>
+                    <ListItemIcon>{icon}</ListItemIcon>
+                    <ListItemText primary={entry_label} />
+                </ListItemButton>
+            </Tooltip>
+        </ListItem>
     )
 };
 
@@ -100,7 +103,7 @@ function Menu(props) {
             open={open}
         >
             <DrawerHeader>
-                <IconButton onClick={handleDrawerClose} size="large">
+                <IconButton onClick={handleDrawerClose} size="large" aria-label="Menu" >
                     <ChevronLeftIcon />
                 </IconButton>                
             </DrawerHeader>
