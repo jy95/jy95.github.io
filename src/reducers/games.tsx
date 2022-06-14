@@ -38,7 +38,10 @@ const initialState = {
         ["duration", "ASC"]
     ],
     // current filters applied
-    activeFilters: []
+    activeFilters: [] as {
+        value: string | string[],
+        key: "selected_genres" | "selected_title" | "selected_platform"
+    }[]
 };
 
 export default function games(state = initialState, action) {
