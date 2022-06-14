@@ -90,7 +90,7 @@ function CardEntry(props) {
     let imageProps : {
         src: string,
         alt: string,
-        srcset?: string
+        srcSet?: string
     } = {
         src: game.imagePath,
         alt: gameTitle
@@ -99,7 +99,7 @@ function CardEntry(props) {
     // only 
     if (game?.hasResponsiveImages) {
         // TODO maybe in the future make that stuff more configurable
-        imageProps.srcset= PICTURE_SIZES
+        imageProps.srcSet= PICTURE_SIZES
             .map(size=>`${game.imagesFolder}/cover@${size}.webp ${SIZES_WITDH[size]}`)
             .join(",");
     }
