@@ -100,7 +100,7 @@ function Menu(props) {
             open={open}
         >
             <DrawerHeader>
-                <IconButton onClick={handleDrawerClose} size="large">
+                <IconButton onClick={handleDrawerClose} size="large" aria-label="Menu" >
                     <ChevronLeftIcon />
                 </IconButton>                
             </DrawerHeader>

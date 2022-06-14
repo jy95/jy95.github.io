@@ -88,6 +88,7 @@ function Header(props) {
                         onChange={handleDarkMode}
                         checkedIcon={<Brightness4Icon color="action" />}
                         icon={<Brightness5Icon style={{ color: yellow[500] }}/>}
+                        inputProps={{ 'aria-label': 'Mode' }}
                         color="default"
                     />
                     <div style={{flexGrow: 1}}/>
