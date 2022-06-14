@@ -49,9 +49,10 @@ export default function games(state = initialState, action) {
     let currentItemCount = state.currentItemCount;
     let countMatches = (games, filters) => games
         .reduce(
-            //  Fastest way to compute that
+            // Fastest way to compute that
             (count, game) => count + (filters.every(condition => filtersFunctions[condition.key](condition.value)(game)) & 1),
-            0
+            // If no criteria, all games match
+            (filters.length === 0) ? games.length : 0
         );
     let currentTotalItems = 0;
 
