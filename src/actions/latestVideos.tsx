@@ -12,9 +12,6 @@ const FEED_URL = `https://api.allorigins.win/get?url=${encodeURIComponent(RSS_YO
 // Youtube updates by default rss feed each 15 minutes
 const YOUTUBE_REFRESH_TIME_IN_MINUTES = 15;
 
-// rss parser
-const { parse } = require('rss-to-json');
-
 // to compute delay in minutes between two dates (d1 : previous / d2 : current)
 const diff_minutes = (d1, d2) => Math.abs(
     Math.round(
@@ -30,7 +27,7 @@ function decodeHtml(html) {
 
 // param à la place du () du genre ({title, password})
 export const get_latest_videos = () => {
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
         const {
             latestVideos: {
                 items: previousItems,
@@ -46,6 +43,10 @@ export const get_latest_videos = () => {
 
         if (shouldRequest){
             dispatch(fetchingStarted());
+
+            // rss parser
+            const { parse } = await import('rss-to-json');
+
             parse(FEED_URL, {
                 transformResponse: function (data) {
                     // needed for https://allorigins.win/ 
