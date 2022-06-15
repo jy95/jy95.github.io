@@ -1,21 +1,22 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
-// @ts-ignore
-import {get_series} from "../../actions/series.tsx";
 
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Grid from "@mui/material/Grid";
 
+// @ts-ignore
+import {get_series} from "../../actions/series.tsx";
 // Custom
 // @ts-ignore
 import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 // @ts-ignore
 import CardEntry from "./CardEntry.tsx";
+
+const AccordionDetails = React.lazy(() => import("@mui/material/AccordionDetails"));
 
 const PREFIX = 'GamesGalleryList';
 
@@ -75,31 +76,33 @@ function GamesGalleryList(props) {
                                 >
                                     <Typography>{serie.name}</Typography>
                                 </AccordionSummary>
-                                <AccordionDetails>
-                                    <Grid
-                                        container
-                                        spacing={1}
-                                        style={
-                                            {
-                                                rowGap: "15px"
+                                <React.Suspense fallback={null}>
+                                    <AccordionDetails>
+                                        <Grid
+                                            container
+                                            spacing={1}
+                                            style={
+                                                {
+                                                    rowGap: "15px"
+                                                }
                                             }
-                                        }
-                                    >
-                                        {
-                                            serie
-                                                .items
-                                                .map(game => 
-                                                        <Grid 
-                                                            key={game.playlistId ?? game.videoId} 
-                                                            item 
-                                                            className={classes.gameEntry}
-                                                        >
-                                                            <CardEntry game={game}/>
-                                                        </Grid>
-                                                )
-                                        }
-                                    </Grid> 
-                                </AccordionDetails>
+                                        >
+                                            {
+                                                serie
+                                                    .items
+                                                    .map(game => 
+                                                            <Grid 
+                                                                key={game.playlistId ?? game.videoId} 
+                                                                item 
+                                                                className={classes.gameEntry}
+                                                            >
+                                                                <CardEntry game={game}/>
+                                                            </Grid>
+                                                    )
+                                            }
+                                        </Grid> 
+                                    </AccordionDetails>
+                                </React.Suspense>
                             </Accordion>
                         )
                     }
