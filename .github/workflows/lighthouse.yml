@@ -25,6 +25,8 @@ jobs:
         gitBranch: ${{ github.ref }}
         gitHubAccessToken: ${{ secrets.GITHUB_TOKEN }}
         prCommentEnabled: true
+        device: "all"
+        locale: "fr"
         urls: "https://jy95.github.io/?/games,https://${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }}/games"
     - name: Upload artifacts
       uses: actions/upload-artifact@master
