@@ -46,9 +46,9 @@ const StyledCard = styled(Card)((
 // for responsive pictures
 const PICTURE_SIZES = ["small", "medium", "big"];
 const SIZES_WITDH = {
-    "small": "150w",
-    "medium": "200w",
-    "big": "250w"
+    "small": "97w",
+    "medium": "150w",
+    "big": "200w"
 }
 const SIZES_CONDITIONS = {
     "small": `(min-width: 0px) ${SIZES_WITDH["small"]}`,

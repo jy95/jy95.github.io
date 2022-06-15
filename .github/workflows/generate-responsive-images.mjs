@@ -16,6 +16,7 @@ const gamesJson = JSON.parse(
     )
 );
 
+// Get-ChildItem *@*.webp -Recurse | foreach { Remove-Item -Path $_.FullName }
 async function resizePicture(directory, gameId, pathIcon) {
     const sharpStream = sharp({ failOn: 'none' });
     const readableStream = createReadStream(pathIcon);
@@ -27,20 +28,20 @@ async function resizePicture(directory, gameId, pathIcon) {
     const config = [
         // generate small picture
         {
-            width: 150, 
-            height: 150,
+            width: 97, 
+            height: 97,
             suffix: "small"
         },
         // generate medium picture
         {
-            width: 200, 
-            height: 200,
+            width: 150, 
+            height: 150,
             suffix: "medium"
         },
         // generate big picture
         {
-            width: 250, 
-            height: 250,
+            width: 200, 
+            height: 200,
             suffix: "big"
         },
     ]
@@ -49,7 +50,7 @@ async function resizePicture(directory, gameId, pathIcon) {
         promises.push(
             sharpStream
               .clone()
-              .resize({ width: setting.width, height: setting.height, fit: "inside" })
+              .resize({ width: setting.width, height: setting.height, fit: "fill" })
               .toFile(`${directory}/${gameId}/cover@${setting.suffix}.webp`)
         );
     }
