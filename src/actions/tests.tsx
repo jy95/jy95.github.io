@@ -1,5 +1,3 @@
-import gamesData from "../data/tests.json";
-
 export const FETCHING_REQUESTED = "TESTS_REQUESTED";
 export const FETCHING_OK = "TESTS_FETCHING_OK";
 
@@ -7,7 +5,7 @@ export const FETCHING_OK = "TESTS_FETCHING_OK";
 const DURATION_REGEX = /(\d+):(\d+):(\d+)/;
 
 export const get_tests = () => {
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
         const {
             tests: {
                 games: previousFetchedTests
@@ -17,6 +15,8 @@ export const get_tests = () => {
         if (previousFetchedTests.length === 0) {
 
             dispatch(fetchingStarted());
+
+            const gamesData = await import("../data/tests.json");
 
             // Build the object for component
             let games = gamesData

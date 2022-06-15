@@ -1,5 +1,4 @@
 import React, {Suspense} from "react";
-import {useTranslation} from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 // To check what should happen when clicking on a game
@@ -54,7 +53,6 @@ function CardEntry(props) {
 
     // hooks
     const theme = useTheme();
-    const { t } = useTranslation('common');
     const navigate = useNavigate();
 
     // props
@@ -65,12 +63,7 @@ function CardEntry(props) {
     // state of context menu
     const [contextMenuOpen,setContextMenuOpen] = React.useState(false);
     
-    // labels
-    const LABEL_WATCH_ON_YT = "gamesLibrary.actionsButton.watchOnYt";
-    const LABEL_WATCH_HERE = "gamesLibrary.actionsButton.watchHere";
-
     // consts
-    const label_for_game = (is_mobile_device) ? LABEL_WATCH_ON_YT : LABEL_WATCH_HERE;
     const {
         title: gameTitle,
         url: gameURL
