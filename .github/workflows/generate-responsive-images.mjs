@@ -16,6 +16,7 @@ const gamesJson = JSON.parse(
     )
 );
 
+// Get-ChildItem *@*.webp -Recurse | foreach { Remove-Item -Path $_.FullName }
 async function resizePicture(directory, gameId, pathIcon) {
     const sharpStream = sharp({ failOn: 'none' });
     const readableStream = createReadStream(pathIcon);
