@@ -9,6 +9,9 @@ import AppsIcon from '@mui/icons-material/Apps';
 import ListIcon from '@mui/icons-material/List';
 import {useTranslation} from "react-i18next";
 
+// @ts-ignore
+import CommonBackdrop from "../Others/CommonBackdrop.tsx";
+
 // Custom
 // @ts-ignore
 const GamesGalleryGrid = React.lazy(() => import("./GamesGalleryGrid.tsx"));
@@ -19,10 +22,13 @@ const GamesGalleryList = React.lazy(() => import("./GamesGalleryList.tsx"));
 function GamesGallery(props) {
 
     const [value, setValue] = React.useState('GRID');
+    const [isPending, startTransition] = React.useTransition();
     const { t } = useTranslation('common');
 
     const handleChange = (_event, newValue) => {
-      setValue(newValue);
+        startTransition(() => {
+            setValue(newValue);
+        });
     };
 
     return (
@@ -31,11 +37,12 @@ function GamesGallery(props) {
                 <Tab icon={<AppsIcon />} label={t("gamesLibrary.tabs.grid")} value="GRID" />
                 <Tab icon={<ListIcon />} label={t("gamesLibrary.tabs.list")} value="LIST" />
             </Tabs>
+            {isPending && <CommonBackdrop />}
             <TabPanel value="GRID">
-                <GamesGalleryGrid />
+                { (value === "GRID" ) && <GamesGalleryGrid />}
             </TabPanel>
             <TabPanel value="LIST">
-                <GamesGalleryList />
+                { (value === "LIST" ) && <GamesGalleryList />}
             </TabPanel>
         </TabContext>
     )
