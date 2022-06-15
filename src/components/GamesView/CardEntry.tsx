@@ -1,5 +1,4 @@
 import React, {Suspense} from "react";
-import {useTranslation} from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 // To check what should happen when clicking on a game
@@ -11,7 +10,6 @@ import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from '@mui/material/CardActionArea';
 import Skeleton from '@mui/material/Skeleton';
 
-import Tooltip from '@mui/material/Tooltip';
 import Image from '@jy95/material-ui-image';
 // @ts-ignore
 const CardDialog = React.lazy(() => import("./CardDialog.tsx"));
@@ -55,7 +53,6 @@ function CardEntry(props) {
 
     // hooks
     const theme = useTheme();
-    const { t } = useTranslation('common');
     const navigate = useNavigate();
 
     // props
@@ -66,12 +63,7 @@ function CardEntry(props) {
     // state of context menu
     const [contextMenuOpen,setContextMenuOpen] = React.useState(false);
     
-    // labels
-    const LABEL_WATCH_ON_YT = "gamesLibrary.actionsButton.watchOnYt";
-    const LABEL_WATCH_HERE = "gamesLibrary.actionsButton.watchHere";
-
     // consts
-    const label_for_game = (is_mobile_device) ? LABEL_WATCH_ON_YT : LABEL_WATCH_HERE;
     const {
         title: gameTitle,
         url: gameURL
@@ -107,28 +99,26 @@ function CardEntry(props) {
     return (
         <StyledCard className={classes.gameRoot}>
 
-            <Tooltip title={t(label_for_game, { "gameName": gameTitle})} aria-label="WatchGame">
-                <CardActionArea 
-                    onClick={watchGame}
-                    onContextMenu={(event) => {
-                        event.preventDefault();
-                        setContextMenuOpen(true);
-                    }}
-                    classes={{root: classes.MuiCardActionArea}}
+            <CardActionArea 
+                onClick={watchGame}
+                onContextMenu={(event) => {
+                    event.preventDefault();
+                    setContextMenuOpen(true);
+                }}
+                classes={{root: classes.MuiCardActionArea}}
+            >
+                <CardMedia
+                    className={classes.gameCover}
+                    title={gameTitle}
                 >
-                    <CardMedia
-                        className={classes.gameCover}
-                        title={gameTitle}
-                    >
-                        <Image 
-                            {...imageProps}
-                            //disableSpinner={true} 
-                            loading={<Skeleton variant="rectangular" />}
-                        />
-                    </CardMedia>
+                    <Image 
+                        {...imageProps}
+                        //disableSpinner={true} 
+                        loading={<Skeleton variant="rectangular" />}
+                    />
+                </CardMedia>
 
-                </CardActionArea>
-            </Tooltip>
+            </CardActionArea>
             <Suspense fallback={null}>
                 <CardDialog game={game} contextMenuState={[contextMenuOpen,setContextMenuOpen]} />
             </Suspense>

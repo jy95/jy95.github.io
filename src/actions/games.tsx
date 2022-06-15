@@ -1,5 +1,3 @@
-import gamesData from "../data/games.json";
-
 export const FETCHING_REQUESTED = "GAMES_REQUESTED";
 export const FETCHING_OK = "GAMES_FETCHING_OK";
 export const FETCHING_FAILED = "GAMES_FETCHING_FAILED";
@@ -78,6 +76,8 @@ const all_games = async () => {
         (currentDate.getMonth() + 1) * 100,
         currentDate.getDate()
     ].reduce((acc, cur) => acc + cur, 0);
+
+    const gamesData = await import("../data/games.json");
 
     // Build list of available games
     return gamesData

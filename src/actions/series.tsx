@@ -1,6 +1,3 @@
-import seriesData from "../data/series.json";
-import gamesData from "../data/games.json";
-
 export const FETCHING_REQUESTED = "SERIES_REQUESTED";
 export const FETCHING_OK = "SERIES_FETCHING_OK";
 export const FETCHING_FAILED = "SERIES_FETCHING_FAILED";
@@ -11,7 +8,7 @@ const sortByNameASC = (a, b) => new Intl.Collator().compare(a.name, b.name);
 
 // param à la place du () du genre ({title, password})
 export const get_series = () => {
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
         const {
             series: {
                 series: previousFetchedSeries
@@ -28,6 +25,9 @@ export const get_series = () => {
                 (currentDate.getMonth() + 1) * 100,
                 currentDate.getDate()
             ].reduce((acc, cur) => acc + cur, 0);
+
+            const seriesData = await import("../data/series.json");
+            const gamesData = await import("../data/games.json");
 
             // Build the object for component
             let games = gamesData
