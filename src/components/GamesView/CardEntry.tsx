@@ -11,7 +11,6 @@ import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from '@mui/material/CardActionArea';
 import Skeleton from '@mui/material/Skeleton';
 
-import Tooltip from '@mui/material/Tooltip';
 import Image from '@jy95/material-ui-image';
 // @ts-ignore
 const CardDialog = React.lazy(() => import("./CardDialog.tsx"));
@@ -107,28 +106,26 @@ function CardEntry(props) {
     return (
         <StyledCard className={classes.gameRoot}>
 
-            <Tooltip title={t(label_for_game, { "gameName": gameTitle})} aria-label="WatchGame">
-                <CardActionArea 
-                    onClick={watchGame}
-                    onContextMenu={(event) => {
-                        event.preventDefault();
-                        setContextMenuOpen(true);
-                    }}
-                    classes={{root: classes.MuiCardActionArea}}
+            <CardActionArea 
+                onClick={watchGame}
+                onContextMenu={(event) => {
+                    event.preventDefault();
+                    setContextMenuOpen(true);
+                }}
+                classes={{root: classes.MuiCardActionArea}}
+            >
+                <CardMedia
+                    className={classes.gameCover}
+                    title={gameTitle}
                 >
-                    <CardMedia
-                        className={classes.gameCover}
-                        title={gameTitle}
-                    >
-                        <Image 
-                            {...imageProps}
-                            //disableSpinner={true} 
-                            loading={<Skeleton variant="rectangular" />}
-                        />
-                    </CardMedia>
+                    <Image 
+                        {...imageProps}
+                        //disableSpinner={true} 
+                        loading={<Skeleton variant="rectangular" />}
+                    />
+                </CardMedia>
 
-                </CardActionArea>
-            </Tooltip>
+            </CardActionArea>
             <Suspense fallback={null}>
                 <CardDialog game={game} contextMenuState={[contextMenuOpen,setContextMenuOpen]} />
             </Suspense>

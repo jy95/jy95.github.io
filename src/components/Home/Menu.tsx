@@ -10,7 +10,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Tooltip from '@mui/material/Tooltip';
 
 // Router
 import {
@@ -53,12 +52,10 @@ function ListItemLink(props) {
 
     return (
         <ListItem disablePadding>
-            <Tooltip title={entry_label} aria-label={primary}>
-                <ListItemButton component={renderLink} selected={matchUrl}>
-                    <ListItemIcon>{icon}</ListItemIcon>
-                    <ListItemText primary={entry_label} />
-                </ListItemButton>
-            </Tooltip>
+            <ListItemButton component={renderLink} selected={matchUrl}>
+                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemText primary={entry_label} />
+            </ListItemButton>
         </ListItem>
     )
 };
