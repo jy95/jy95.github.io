@@ -50,6 +50,11 @@ const SIZES_WITDH = {
     "medium": "200w",
     "big": "250w"
 }
+const SIZES_CONDITIONS = {
+    "small": `(min-width: 0px) ${SIZES_WITDH["small"]}`,
+    "medium": `(min-width: 900px) ${SIZES_WITDH["medium"]}`,
+    "big": `(min-width: 1200px) ${SIZES_WITDH["big"]}`
+};
 
 function CardEntry(props) {
 
@@ -90,7 +95,8 @@ function CardEntry(props) {
     let imageProps : {
         src: string,
         alt: string,
-        srcSet?: string
+        srcSet?: string,
+        sizes?: string
     } = {
         src: game.imagePath,
         alt: gameTitle
@@ -102,6 +108,7 @@ function CardEntry(props) {
         imageProps.srcSet= PICTURE_SIZES
             .map(size=>`${game.imagesFolder}/cover@${size}.webp ${SIZES_WITDH[size]}`)
             .join(",");
+        imageProps.sizes = PICTURE_SIZES.map(size => SIZES_CONDITIONS[size]).join(",");
     }
 
     return (
