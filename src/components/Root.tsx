@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 import { Provider, connect } from 'react-redux'
 import i18n from 'i18next';
@@ -73,34 +73,34 @@ function Root(props) {
                                 <Routes>
                                     <Route path="/" element={<Navigate replace to="/games" />} />
                                     <Route path="/games" element={
-                                        <React.Suspense fallback={<LinearProgress />}>
+                                        <Suspense fallback={<LinearProgress />}>
                                             <GamesGallery />
-                                        </React.Suspense>
+                                        </Suspense>
                                     } />
                                     <Route path="/playlist/:id" element={
-                                        <React.Suspense fallback={<Skeleton variant="rectangular" />}>
+                                        <Suspense fallback={<Skeleton variant="rectangular" />}>
                                             <Player />
-                                        </React.Suspense>
+                                        </Suspense>
                                     } />
                                     <Route path="/video/:id" element={
-                                        <React.Suspense fallback={<Skeleton variant="rectangular" />}>
+                                        <Suspense fallback={<Skeleton variant="rectangular" />}>
                                             <Player />
-                                        </React.Suspense>
+                                        </Suspense>
                                     } />
                                     <Route path="/planning" element={
-                                        <React.Suspense fallback={<LinearProgress />}>
+                                        <Suspense fallback={<LinearProgress />}>
                                             <Planning />
-                                        </React.Suspense>
+                                        </Suspense>
                                     } />
                                     <Route path="/tests" element={
-                                        <React.Suspense fallback={<LinearProgress />}>
+                                        <Suspense fallback={<LinearProgress />}>
                                             <TestsGallery />
-                                        </React.Suspense>
+                                        </Suspense>
                                     } />
                                     <Route path="/latest" element={
-                                        <React.Suspense fallback={<LinearProgress />}>
+                                        <Suspense fallback={<LinearProgress />}>
                                             <LatestVideosGallery />
-                                        </React.Suspense>
+                                        </Suspense>
                                     } />
                                 </Routes>
                             </Main>

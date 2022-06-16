@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
 
@@ -76,7 +76,7 @@ function GamesGalleryList(props) {
                                 >
                                     <Typography>{serie.name}</Typography>
                                 </AccordionSummary>
-                                <React.Suspense fallback={null}>
+                                <Suspense fallback={null}>
                                     <AccordionDetails>
                                         <Grid
                                             container
@@ -102,7 +102,7 @@ function GamesGalleryList(props) {
                                             }
                                         </Grid> 
                                     </AccordionDetails>
-                                </React.Suspense>
+                                </Suspense>
                             </Accordion>
                         )
                     }

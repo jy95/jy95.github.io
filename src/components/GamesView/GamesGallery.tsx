@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -37,9 +37,9 @@ function GamesGallery(props) {
             </div>
             <div role="tabpanel" aria-label={t("gamesLibrary.tabs." + value.toLowerCase())} style={{paddingTop: "5px"}}>
                 {isPending && <LinearProgress />}
-                <React.Suspense fallback={null}>
+                <Suspense fallback={null}>
                     { (value === "GRID") ? <GamesGalleryGrid /> : <GamesGalleryList /> }
-                </React.Suspense>
+                </Suspense>
             </div>
         </>
     )
