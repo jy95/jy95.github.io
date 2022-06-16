@@ -7,6 +7,10 @@
         {
           "key": "x-robots-tag",
           "value": "index, follow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "max-age=600"
         }
       ]
     }
