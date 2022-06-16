@@ -12,6 +12,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // MUI components
 import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+import Skeleton from '@mui/material/Skeleton';
 
 // languages
 import {frFR, enUS} from '@mui/material/locale';
@@ -20,8 +22,6 @@ import {frFR, enUS} from '@mui/material/locale';
 import Menu from "./Home/Menu.tsx"
 // @ts-ignore
 import { DrawerHeader, Main } from "./Home/Drawer.tsx";
-// @ts-ignore
-import CommonBackdrop from "./Others/CommonBackdrop.tsx";
 
 // Redux action
 import {
@@ -73,32 +73,32 @@ function Root(props) {
                                 <Routes>
                                     <Route path="/" element={<Navigate replace to="/games" />} />
                                     <Route path="/games" element={
-                                        <React.Suspense fallback={<CommonBackdrop />}>
+                                        <React.Suspense fallback={<LinearProgress />}>
                                             <GamesGallery />
                                         </React.Suspense>
                                     } />
                                     <Route path="/playlist/:id" element={
-                                        <React.Suspense fallback={<CommonBackdrop />}>
+                                        <React.Suspense fallback={<Skeleton variant="rectangular" />}>
                                             <Player />
                                         </React.Suspense>
                                     } />
                                     <Route path="/video/:id" element={
-                                        <React.Suspense fallback={<CommonBackdrop />}>
+                                        <React.Suspense fallback={<Skeleton variant="rectangular" />}>
                                             <Player />
                                         </React.Suspense>
                                     } />
                                     <Route path="/planning" element={
-                                        <React.Suspense fallback={<CommonBackdrop />}>
+                                        <React.Suspense fallback={<LinearProgress />}>
                                             <Planning />
                                         </React.Suspense>
                                     } />
                                     <Route path="/tests" element={
-                                        <React.Suspense fallback={<CommonBackdrop />}>
+                                        <React.Suspense fallback={<LinearProgress />}>
                                             <TestsGallery />
                                         </React.Suspense>
                                     } />
                                     <Route path="/latest" element={
-                                        <React.Suspense fallback={<CommonBackdrop />}>
+                                        <React.Suspense fallback={<LinearProgress />}>
                                             <LatestVideosGallery />
                                         </React.Suspense>
                                     } />
