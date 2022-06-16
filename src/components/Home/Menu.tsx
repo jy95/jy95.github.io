@@ -1,4 +1,4 @@
-import React from "react";
+import { useMemo, forwardRef } from "react";
 import {connect} from 'react-redux';
 import {useTranslation} from "react-i18next";
 
@@ -40,9 +40,9 @@ function ListItemLink(props) {
 
     const matchUrl = useMatch(to) !== null;
 
-    const renderLink = React.useMemo(
+    const renderLink = useMemo(
         () =>
-            React.forwardRef((linkProps, _ref) => (
+            forwardRef((linkProps, _ref) => (
                 // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
                 // See https://github.com/ReactTraining/react-router/issues/6056
                 <Link to={to} {...linkProps} />

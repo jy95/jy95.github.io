@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import {connect} from 'react-redux';
 import i18n from 'i18next';
 import {useTranslation} from "react-i18next";
@@ -26,7 +26,7 @@ function Viewer(props) {
     const { t } = useTranslation('common');
 
     // on mount, load data (only once)
-    React.useEffect(() => {
+    useEffect(() => {
         props.get_scheduled_games();
     },
         // eslint-disable-next-line react-hooks/exhaustive-deps

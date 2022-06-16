@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
 // @ts-ignore
@@ -58,7 +58,7 @@ function TestsGallery(props) {
     const {loading, error, data} = props;
 
     // on mount, load data (only once)
-    React.useEffect(() => {
+    useEffect(() => {
         props.get_tests();
     }, 
         // eslint-disable-next-line react-hooks/exhaustive-deps
