@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import { cx } from '@emotion/css';
@@ -124,7 +124,7 @@ CustomSnackbar.propTypes = {
 };
 
 function CustomizedSnackbar(props) {
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = useState(true);
     const {variant, message} = props;
 
     const handleClose = (event, reason) => {

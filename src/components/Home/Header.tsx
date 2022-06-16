@@ -1,4 +1,3 @@
-import React from 'react';
 import {connect} from 'react-redux';
 import {useTranslation} from "react-i18next";
 
@@ -64,7 +63,7 @@ function Header(props) {
     }
 
     return (
-        <React.Fragment>
+        <>
             <CssBaseline />
             <AppBar
                 position="fixed"
@@ -109,7 +108,7 @@ function Header(props) {
                     </div>
                 </Toolbar>
             </AppBar>
-        </React.Fragment>
+        </>
     );
 }
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 // icons
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
