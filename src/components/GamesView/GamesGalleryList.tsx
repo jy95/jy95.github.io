@@ -1,4 +1,4 @@
-import React, {Suspense} from "react";
+import {Suspense, lazy, useEffect} from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
 
@@ -16,7 +16,7 @@ import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 // @ts-ignore
 import CardEntry from "./CardEntry.tsx";
 
-const AccordionDetails = React.lazy(() => import("@mui/material/AccordionDetails"));
+const AccordionDetails = lazy(() => import("@mui/material/AccordionDetails"));
 
 const PREFIX = 'GamesGalleryList';
 
@@ -52,7 +52,7 @@ function GamesGalleryList(props) {
     const {loading, error, data} = props;
 
     // on mount, load data (only once)
-    React.useEffect(() => {
+    useEffect(() => {
         props.get_series();
     },
         // eslint-disable-next-line react-hooks/exhaustive-deps

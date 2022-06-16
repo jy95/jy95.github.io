@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useCallback } from "react";
 import { styled } from '@mui/material/styles';
 import {connect} from 'react-redux';
 import useInfiniteLoader from 'react-use-infinite-loader';
@@ -8,7 +8,6 @@ import Alert from '@mui/material/Alert';
 import {get_games, fetch_scrolling_games, generate_sort_function, generate_filter_function} from "../../actions/games.tsx";
 
 // Style
-
 import Grid from "@mui/material/Grid";
 
 // Custom
@@ -89,7 +88,7 @@ function GamesGalleryGrid(props) {
     const { t } = useTranslation('common');
 
     // on mount, load data (only once)
-    React.useEffect(() => {
+    useEffect(() => {
         props.get_games();
     },
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -106,7 +105,7 @@ function GamesGalleryGrid(props) {
             <CardEntry game={game}/>
     </Grid>;
 
-    const loadMoreGames = React.useCallback( () => {
+    const loadMoreGames = useCallback( () => {
         fetch_scrolling_games();
     }, 
         // eslint-disable-next-line react-hooks/exhaustive-deps

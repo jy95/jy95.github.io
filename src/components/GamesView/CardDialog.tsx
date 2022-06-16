@@ -1,4 +1,4 @@
-import React from "react";
+import { lazy } from "react";
 import {useTranslation} from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -10,25 +10,25 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSnackbar } from 'notistack';
 
 // For Dialog
-const Dialog = React.lazy(() => import("@mui/material/Dialog"));
-const DialogActions = React.lazy(() => import("@mui/material/DialogActions"));
-const DialogContent = React.lazy(() => import("@mui/material/DialogContent"));
-const DialogTitle = React.lazy(() => import("@mui/material/DialogTitle"));
+const Dialog = lazy(() => import("@mui/material/Dialog"));
+const DialogActions = lazy(() => import("@mui/material/DialogActions"));
+const DialogContent = lazy(() => import("@mui/material/DialogContent"));
+const DialogTitle = lazy(() => import("@mui/material/DialogTitle"));
 
 // For a custom contextMenu (nice for UI)
-const List = React.lazy(() => import("@mui/material/List"));
-const ListItem = React.lazy(() => import("@mui/material/ListItem"));
-const ListItemIcon = React.lazy(() => import("@mui/material/ListItemIcon"));
-const ListItemText = React.lazy(() => import("@mui/material/ListItemText"));
-const Button = React.lazy(() => import("@mui/material/Button"));
+const List = lazy(() => import("@mui/material/List"));
+const ListItem = lazy(() => import("@mui/material/ListItem"));
+const ListItemIcon = lazy(() => import("@mui/material/ListItemIcon"));
+const ListItemText = lazy(() => import("@mui/material/ListItemText"));
+const Button = lazy(() => import("@mui/material/Button"));
 
 // Icons for contextMenu
-const YouTubeIcon = React.lazy(() => import("@mui/icons-material/YouTube"));
-const PlayArrowIcon = React.lazy(() => import("@mui/icons-material/PlayArrow"));
-const FileCopyIcon = React.lazy(() => import("@mui/icons-material/FileCopy"));
-const RedditIcon = React.lazy(() => import("@mui/icons-material/Reddit"));
-const TwitterIcon = React.lazy(() => import("@mui/icons-material/Twitter"));
-const FacebookIcon = React.lazy(() => import("@mui/icons-material/Facebook"));
+const YouTubeIcon = lazy(() => import("@mui/icons-material/YouTube"));
+const PlayArrowIcon = lazy(() => import("@mui/icons-material/PlayArrow"));
+const FileCopyIcon = lazy(() => import("@mui/icons-material/FileCopy"));
+const RedditIcon = lazy(() => import("@mui/icons-material/Reddit"));
+const TwitterIcon = lazy(() => import("@mui/icons-material/Twitter"));
+const FacebookIcon = lazy(() => import("@mui/icons-material/Facebook"));
 
 // labels
 const LABEL_WATCH_ON_YT = "gamesLibrary.actionsButton.watchOnYt";

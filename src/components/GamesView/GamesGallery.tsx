@@ -1,4 +1,4 @@
-import React, {Suspense} from "react";
+import {Suspense, useState, useTransition, lazy} from "react";
 
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -10,15 +10,15 @@ import {useTranslation} from "react-i18next";
 
 // Custom
 // @ts-ignore
-const GamesGalleryGrid = React.lazy(() => import("./GamesGalleryGrid.tsx"));
+const GamesGalleryGrid = lazy(() => import("./GamesGalleryGrid.tsx"));
 // @ts-ignore
-const GamesGalleryList = React.lazy(() => import("./GamesGalleryList.tsx"));
+const GamesGalleryList = lazy(() => import("./GamesGalleryList.tsx"));
 
 // The gallery component
 function GamesGallery(props) {
 
-    const [value, setValue] = React.useState('GRID');
-    const [isPending, startTransition] = React.useTransition();
+    const [value, setValue] = useState('GRID');
+    const [isPending, startTransition] = useTransition();
     const { t } = useTranslation('common');
 
     const handleChange = (_event, newValue) => {

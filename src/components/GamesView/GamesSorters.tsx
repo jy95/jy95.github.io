@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import {useTranslation} from "react-i18next";
 
 import FormControl from '@mui/material/FormControl';
@@ -58,7 +58,7 @@ function GamesSorters(props) {
     }
 
     // For Popover
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);

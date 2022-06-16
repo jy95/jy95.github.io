@@ -1,4 +1,4 @@
-import React, {Suspense} from "react";
+import {Suspense, useState, lazy} from "react";
 import { useNavigate } from "react-router-dom";
 
 // To check what should happen when clicking on a game
@@ -12,7 +12,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 import Image from '@jy95/material-ui-image';
 // @ts-ignore
-const CardDialog = React.lazy(() => import("./CardDialog.tsx"));
+const CardDialog = lazy(() => import("./CardDialog.tsx"));
 
 const PREFIX = 'CardEntry';
 
@@ -61,7 +61,7 @@ function CardEntry(props) {
     const is_mobile_device = useMediaQuery(theme.breakpoints.down('md'));
 
     // state of context menu
-    const [contextMenuOpen,setContextMenuOpen] = React.useState(false);
+    const [contextMenuOpen,setContextMenuOpen] = useState(false);
     
     // consts
     const {
