@@ -8,15 +8,12 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - run: mkdir -p ${{ github.workspace }}/tmp/artifacts
-    - uses: UnlyEd/github-action-await-vercel@v1.2.14
-      id: await-vercel
-      env:
-        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    - name: Waiting for Vercel Preview
+      uses: patrickedqvist/wait-for-vercel-preview@v1.2.0
+      id: vercelPreview
       with:
-        deployment-url: jy95-github-io.vercel.app # TODO Replace by the domain you want to test
-        timeout: 90 # Wait for 90 seconds before failing
-    - name: Display deployment status
-      run: "echo The deployment at ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }} is ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).readyState }}"
+        token: ${{ secrets.GITHUB_TOKEN }}
+        max_timeout: 90 # Wait for 90 seconds before failing
     - name: Lighthouse
       uses: foo-software/lighthouse-check-action@master
       with:
@@ -27,7 +24,7 @@ jobs:
         prCommentEnabled: true
         device: "all"
         locale: "fr"
-        urls: "https://jy95.github.io/?/games,https://${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }}/games"
+        urls: "https://jy95.github.io/?/games,${{ steps.vercelPreview.outputs.url }}/games"
     - name: Upload artifacts
       uses: actions/upload-artifact@master
       with:
