@@ -55,7 +55,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
+  "devDependencies":  {
     "gh-pages": "^4.0.0",
     "sharp": "^0.30.6"
   },
