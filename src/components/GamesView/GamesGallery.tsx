@@ -29,7 +29,7 @@ function GamesGallery(props) {
 
     return (
         <>
-            <div aria-label="icon label tabs" role="tablist" style={{display: "flex", justifyContent: "center"}}>
+            <div aria-label="icon label tabs" role="tablist" aria-owns="tab-GRID tab-LIST" style={{display: "flex", justifyContent: "center"}}>
                 <Tabs value={value} onChange={handleChange} aria-label="icon label tabs" centered>
                     <Tab role="tab" id="tab-GRID" aria-selected={value === "GRID"} icon={<AppsIcon />} label={t("gamesLibrary.tabs.grid")} value="GRID" />
                     <Tab role="tab" id="tab-LIST" aria-selected={value === "LIST"} icon={<ListIcon />} label={t("gamesLibrary.tabs.list")} value="LIST" />
