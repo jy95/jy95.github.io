@@ -1,7 +1,6 @@
 import { createRoot } from 'react-dom/client';
 
 // Common
-import './index.css';
 // @ts-ignore
 import * as serviceWorker from './serviceWorker.tsx';
 // @ts-ignore
