@@ -48,9 +48,7 @@ function PlatformSelect(props) {
             renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.platform")} />}
             renderOption={(props, option, _state) => (
                 <li {...props} key={option.key}>
-                    <SvgIcon titleAccess={option.label}>
-                        <path d={iconsSVG[option.key]} />
-                    </SvgIcon>
+                    <SvgIcon component={iconsSVG[option.key]} inheritViewBox />
                     {option.label}
                 </li>
             )}

@@ -31,9 +31,7 @@ const planningColumns = (t, date_options, language) => [
         //headerAlign: 'center',
         //align: 'center',
         renderCell: (params) => (
-            <SvgIcon titleAccess={params.value}>
-                <path d={iconsSVG[params.value]} />
-            </SvgIcon>
+            <SvgIcon component={iconsSVG[params.value]} inheritViewBox />
         ),
         width: 160
     },
