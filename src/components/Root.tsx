@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react'
+import { useMemo, useEffect, Suspense, lazy} from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 import { Provider, connect } from 'react-redux'
 import i18n from 'i18next';
@@ -32,17 +32,17 @@ from "../actions/themeColor.tsx";
 
 // Components
 // @ts-ignore
-const Header = React.lazy(() => import("./Home/Header.tsx"));
+const Header = lazy(() => import("./Home/Header.tsx"));
 // @ts-ignore
-const Player = React.lazy(() => import("./YTPlayer/Player.tsx"));
+const Player = lazy(() => import("./YTPlayer/Player.tsx"));
 // @ts-ignore
-const GamesGallery = React.lazy(() => import("./GamesView/GamesGallery.tsx"));
+const GamesGallery = lazy(() => import("./GamesView/GamesGallery.tsx"));
 // @ts-ignore
-const Planning = React.lazy(() => import("./Planning/Planning.tsx"));
+const Planning = lazy(() => import("./Planning/Planning.tsx"));
 // @ts-ignore
-const TestsGallery = React.lazy(() => import("./Tests/TestsGallery.tsx"));
+const TestsGallery = lazy(() => import("./Tests/TestsGallery.tsx"));
 // @ts-ignore
-const LatestVideosGallery = React.lazy(() => import("./LatestVideos/LatestVideosGallery.tsx"));
+const LatestVideosGallery = lazy(() => import("./LatestVideos/LatestVideosGallery.tsx"));
 
 // Languages for Material UI
 const materialUI_languages = {
@@ -124,7 +124,7 @@ function withThemeProvider(Component) {
         // Two case handled here :
         // 1) When user comes to the site and have different color that default
         // 2) When user changes on the fly its preferred system color
-        React.useEffect(() => {
+        useEffect(() => {
             if (themeSettings.systemColor !== systemColor) {
                 setThemeColor({color: systemColor, mode: "auto"});
             }
@@ -134,7 +134,7 @@ function withThemeProvider(Component) {
         );
 
         // Prepare theme for possible darkmode
-        const theme = React.useMemo(
+        const theme = useMemo(
             () =>
                 createTheme({
                     palette: {
