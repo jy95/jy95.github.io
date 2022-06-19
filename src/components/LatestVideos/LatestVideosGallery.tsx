@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { styled } from '@mui/material/styles';
-import {connect} from 'react-redux';
-// @ts-ignore
-import {get_latest_videos} from "../../actions/latestVideos.tsx";
+import { useSelector, useDispatch } from 'react-redux';
 
 // Custom
 // @ts-ignore
@@ -12,6 +10,10 @@ import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 import Grid from "@mui/material/Grid";
 // @ts-ignore
 import CardEntry from "../GamesView/CardEntry.tsx";
+
+// Redux
+import { RootState, AppDispatch } from '../Store';
+import { fetchLatestVideos } from "../../services/latestVideosSlice";
 
 const PREFIX = 'LatestVideosGallery';
 
@@ -55,11 +57,14 @@ const StyledLatestVideosGallery = styled('div')((
 // The gallery component
 function LatestVideosGallery(props) {
 
-    const {loading, error, data} = props;
+    const dispatch: AppDispatch = useDispatch();
+    const loading = useSelector((state: RootState) => state.latestVideos.loading);
+    const error = useSelector((state: RootState) => state.latestVideos.error);
+    const data = useSelector((state: RootState) => state.latestVideos.items);
 
     // on mount, load data (only once)
     useEffect(() => {
-        props.get_latest_videos();
+        dispatch(fetchLatestVideos());
     }, 
         // eslint-disable-next-line react-hooks/exhaustive-deps
         []
@@ -69,7 +74,7 @@ function LatestVideosGallery(props) {
         <ReloadWrapper 
             loading={loading}
             error={error}
-            reloadFct={() => {props.get_latest_videos();}}
+            reloadFct={() => {dispatch(fetchLatestVideos());}}
             component={
                 <StyledLatestVideosGallery>    
                     <Grid
@@ -85,7 +90,7 @@ function LatestVideosGallery(props) {
                             data
                                 .map(game => 
                                         <Grid 
-                                            key={game.playlistId ?? game.videoId} 
+                                            key={game.videoId} 
                                             item 
                                             className={classes.gameEntry}
                                         >
@@ -100,16 +105,4 @@ function LatestVideosGallery(props) {
     );
 }
 
-// mapStateToProps(state, ownProps)
-const mapStateToProps = state => ({
-    data: state.latestVideos.items
-});
-
-const mapDispatchToProps = {
-    get_latest_videos
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(LatestVideosGallery);
+export default LatestVideosGallery;

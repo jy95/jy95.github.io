@@ -1,6 +1,6 @@
 import {Suspense, lazy, useEffect} from "react";
 import { styled } from '@mui/material/styles';
-import {connect} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -8,13 +8,16 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Grid from "@mui/material/Grid";
 
-// @ts-ignore
-import {get_series} from "../../actions/series.tsx";
 // Custom
 // @ts-ignore
 import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 // @ts-ignore
 import CardEntry from "./CardEntry.tsx";
+
+import { RootState, AppDispatch } from '../Store';
+import { 
+    fetchSeries
+} from "../../services/seriesSlice";
 
 const AccordionDetails = lazy(() => import("@mui/material/AccordionDetails"));
 
@@ -47,13 +50,16 @@ const StyledSeriesGallery = styled('div')((
 }));
 
 // The gallery component
-function GamesGalleryList(props) {
+function GamesGalleryList(_props) {
 
-    const {loading, error, data} = props;
+    const dispatch: AppDispatch = useDispatch();
+    const loading = useSelector((state: RootState) => state.series.loading);
+    const error = useSelector((state: RootState) => state.series.error);
+    const data = useSelector((state: RootState) => state.series.series);
 
     // on mount, load data (only once)
     useEffect(() => {
-        props.get_series();
+        dispatch(fetchSeries());
     },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         []
@@ -63,7 +69,7 @@ function GamesGalleryList(props) {
         <ReloadWrapper 
             loading={loading}
             error={error}
-            reloadFct={() => {props.get_series();}}
+            reloadFct={() => {dispatch(fetchSeries());}}
             component={
                 <StyledSeriesGallery>
                     {
@@ -119,11 +125,4 @@ const mapStateToProps = state => ({
     error: state.series.error
 });
 
-const mapDispatchToProps = {
-    get_series
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(GamesGalleryList);
+export default GamesGalleryList;

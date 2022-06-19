@@ -1,6 +1,6 @@
 import { useMemo, useEffect, Suspense, lazy} from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
-import { Provider, connect } from 'react-redux'
+import { Provider, useSelector, useDispatch  } from 'react-redux'
 import i18n from 'i18next';
 
 // snackbars
@@ -24,11 +24,10 @@ import Menu from "./Home/Menu.tsx"
 import { DrawerHeader, Main } from "./Home/Drawer.tsx";
 
 // Redux action
-import {
-    setThemeColor
-} 
 // @ts-ignore
-from "../actions/themeColor.tsx";
+import { themeColor } from "../services/themeColorSlice";
+
+import { RootState, AppDispatch } from './Store';
 
 // Components
 // @ts-ignore
@@ -114,7 +113,10 @@ function Root(props) {
 function withThemeProvider(Component) {
     function WithThemeProvider(props) {
         // for theme Color
-        const { setThemeColor, themeSettings} = props;
+        const dispatch: AppDispatch = useDispatch();
+        const currentColor = useSelector((state: RootState) => state.themeColor.currentColor);
+        const currentSystemColor = useSelector((state: RootState) => state.themeColor.systemColor);
+        //const openMenu = useSelector((state: RootState) => state.miscellaneous.drawerOpen);
         const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
         const systemColor = prefersDarkMode ? "dark" : "light";
 
@@ -125,12 +127,12 @@ function withThemeProvider(Component) {
         // 1) When user comes to the site and have different color that default
         // 2) When user changes on the fly its preferred system color
         useEffect(() => {
-            if (themeSettings.systemColor !== systemColor) {
-                setThemeColor({color: systemColor, mode: "auto"});
+            if (currentSystemColor !== systemColor) {
+                dispatch(themeColor({color: systemColor, mode: "auto"}));
             }
         },
             // eslint-disable-next-line react-hooks/exhaustive-deps
-            [themeSettings.systemColor, systemColor]
+            [currentSystemColor, currentColor]
         );
 
         // Prepare theme for possible darkmode
@@ -138,10 +140,10 @@ function withThemeProvider(Component) {
             () =>
                 createTheme({
                     palette: {
-                        mode: themeSettings.currentColor,
+                        mode: currentColor,
                     },
                 }, materialUI_languages[currentLanguage]),
-            [currentLanguage, themeSettings.currentColor],
+            [currentLanguage, currentColor],
         );
         return (
             <ThemeProvider theme={theme}>
@@ -152,17 +154,4 @@ function withThemeProvider(Component) {
     return WithThemeProvider;
 }
 
-// mapStateToProps(state, ownProps)
-const mapStateToProps = state => ({
-    themeSettings: state.themeColor,
-    openMenu: state.miscellaneous.drawerOpen
-});
-
-const mapDispatchToProps = {
-    setThemeColor
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withThemeProvider(Root));
+export default withThemeProvider(Root);
