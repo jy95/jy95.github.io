@@ -118,11 +118,4 @@ function GamesGalleryList(_props) {
     )
 }
 
-// mapStateToProps(state, ownProps)
-const mapStateToProps = state => ({
-    data: state.series.series,
-    loading: state.series.loading,
-    error: state.series.error
-});
-
 export default GamesGalleryList;

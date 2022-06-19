@@ -23,7 +23,7 @@ import PlatformSelect from "./PlatformSelect.tsx";
 import TitleFilter from "./TitleFilter.tsx";
 
 // Redux
-import { RootState, AppDispatch } from '../Store';
+import { RootState, AppDispatch } from '../Store.tsx';
 import { 
     fetchGames,
     scrollingFetching,
@@ -199,18 +199,5 @@ function GamesGalleryGrid(_props) {
         />
     );
 }
-
-// mapStateToProps(state, ownProps)
-const mapStateToProps = state => ({
-    currentItemCount: state.games.currentItemCount,
-    initialLoad: state.games.initialLoad,
-    scrollLoading: state.games.scrollLoading,
-    totalItems: state.games.totalItems,
-    activeFilters: state.games.activeFilters,
-    sorters: state.games.sorters,
-    games: state.games.games,
-    loading: state.games.loading,
-    error: state.games.error
-});
 
 export default GamesGalleryGrid;
