@@ -1,17 +1,17 @@
 import {useTranslation} from "react-i18next";
-import {connect} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 
-
 import {
-    filter_games_by_genre, 
-    filter_games_by_title
+    filteringByGenre
 } 
 // @ts-ignore
-from "../../actions/games.tsx";
+from "../../services/gamesSlice.tsx";
+// @ts-ignore
+import { RootState, AppDispatch } from '../Store.tsx';
 
 // Each one is also a key for translation
 const GENRES = [
@@ -38,9 +38,15 @@ const GENRES = [
 ];
 
 // Genres filter of GamesGallery
-function GenresSelect(props) {
+function GenresSelect(_props) {
 
-    const { selectedGenres } = props;
+    const dispatch: AppDispatch = useDispatch();
+    const selectedGenres : string[]  = useSelector(
+        (state: RootState) => (state.games.activeFilters.find((s => s.key === "selected_genres")) as {
+            key: "selected_genres";
+            value: string[]
+        } | undefined)?.value
+    ) || [];
     const { t } = useTranslation('common');
 
     // Generate list of values for game genre
@@ -72,23 +78,10 @@ function GenresSelect(props) {
             }))}
             renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.genres")} />}
             onChange={(_event, value) => {
-                props.filterByGenre(value.map(v => v.key));
+                dispatch(filteringByGenre(value.map(v => v.key)));
             }}
         />
     </>;
 }
 
-// mapStateToProps(state, ownProps)
-const mapStateToProps = state => ({
-    selectedGenres: state.games.activeFilters.find(s => s.key === "selected_genres")?.value || []
-});
-
-const mapDispatchToProps = {
-    filterByGenre: filter_games_by_genre, 
-    filterByTitle: filter_games_by_title
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(GenresSelect);
+export default GenresSelect;

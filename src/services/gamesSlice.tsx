@@ -8,11 +8,13 @@ type gamesSorters = [
 ][];
 
 // To compute new filtering function
-type possibleFilters = "selected_platform" | "selected_title" | "selected_genres";
-type gamesFilters = {
-    value: string | string[],
-    key: possibleFilters
-}[];
+type gamesFilters = ({
+    value: string,
+    key: "selected_platform" | "selected_title"
+} | {
+    value: string[],
+    key: "selected_genres"
+})[];
 export const filtersFunctions = {
     // To check if platform match search critiria
     "selected_platform": (platform) => (game) => game.platform === platform,

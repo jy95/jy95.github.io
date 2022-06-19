@@ -1,19 +1,29 @@
 import {useTranslation} from "react-i18next";
-import {connect} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 
 import {
-    filter_games_by_title
+    filterByTitle
 } 
 // @ts-ignore
-from "../../actions/games.tsx";
+from "../../services/gamesSlice.tsx";
+// @ts-ignore
+import { RootState, AppDispatch } from '../Store.tsx';
 
-function TitleFilter(props) {
+function TitleFilter(_props) {
 
-    const { title, filterByTitle, games } = props;
+    const dispatch: AppDispatch = useDispatch();
+    const games = useSelector((state: RootState) => state.games.games);
+    const title : string  = useSelector(
+        (state: RootState) => (state.games.activeFilters.find((s => s.key === "selected_title")) as {
+            key: "selected_title";
+            value: string
+        } | undefined)?.value
+    ) || "";
+
     const { t } = useTranslation('common');
     // needed as this Autocomplete cannot have duplicate
     const options = [...new Set(games.map(game => game.title))];
@@ -26,23 +36,11 @@ function TitleFilter(props) {
             value={title}
             renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.title")} />}
             onInputChange={(_event, value) => {
-                filterByTitle(value);
+                dispatch(filterByTitle(value));
             }}
         />
     </>;
 
 }
 
-// mapStateToProps(state, ownProps)
-const mapStateToProps = state => ({
-    title: state.games.activeFilters.find(s => s.key === "selected_title")?.value || "",
-});
-
-const mapDispatchToProps = {
-    filterByTitle: filter_games_by_title, 
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(TitleFilter);
+export default TitleFilter;

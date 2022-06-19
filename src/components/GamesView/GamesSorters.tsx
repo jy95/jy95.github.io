@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import {useTranslation} from "react-i18next";
 
 import FormControl from '@mui/material/FormControl';
@@ -23,21 +24,37 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
-import {connect} from 'react-redux';
+import {
+    sortingGames,
+    sortingOrderChange
+} 
 // @ts-ignore
-import {sort_games, change_sorting_order} from "../../actions/games.tsx";
-
+from "../../services/gamesSlice.tsx";
+// @ts-ignore
+import { RootState, AppDispatch } from '../Store.tsx';
 
 // Sort buttons of GamesGallery
-function GamesSorters(props) {
+function GamesSorters(_props) {
 
-    const { sortState } = props;
     const { t } = useTranslation('common');
+    const dispatch: AppDispatch = useDispatch();
+    const sortState = useSelector((state: RootState) => state.games.sorters);
 
     // To handle criteria enabling (or disabling)
     const handleSortChange = (event) => {
         const field = event.target.name;
-        props.sort_games(field);
+        const newSortersState : [
+            "name" | "releaseDate" | "duration",
+            "ASC" | "DESC"
+        ][] = sortState
+            .map( ([key, currentOrder]) => {
+                if (key === field) {
+                    return [key, (currentOrder === "ASC") ? "DESC" : "ASC"]
+                } else {
+                    return [key, currentOrder];
+                }
+            });
+        dispatch(sortingGames(newSortersState));
     }
 
     // To handle sort criteria 
@@ -51,10 +68,10 @@ function GamesSorters(props) {
         const nextPosition = currentPosition + ((type_of_sort_change === "upSorter") ? -1 : 1);
 
         // compute new order
-        let newOrder = [...sortState.map(s => s[0])];
+        let newOrder = [...sortState];
         newOrder.splice(nextPosition,2,newOrder[currentPosition],newOrder[nextPosition]);
 
-        props.change_sorting_order(newOrder);
+        dispatch(sortingOrderChange(newOrder));
     }
 
     // For Popover
@@ -168,17 +185,4 @@ function GamesSorters(props) {
     </>;
 }
 
-// mapStateToProps(state, ownProps)
-const mapStateToProps = state => ({
-    sortState: state.games.sorters,
-});
-
-const mapDispatchToProps = {
-    sort_games,
-    change_sorting_order
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(GamesSorters);
+export default GamesSorters;
