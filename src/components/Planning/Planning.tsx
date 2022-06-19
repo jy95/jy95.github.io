@@ -25,9 +25,9 @@ import { fetchPlanning } from "../../services/planningSlice.tsx";
 function Viewer(_props) {
 
     const dispatch: AppDispatch = useDispatch();
-    const loading = useSelector((state: RootState) => state.tests.loading);
-    const error = useSelector((state: RootState) => state.tests.error);
-    const data = useSelector((state: RootState) => state.tests.games);
+    const loading = useSelector((state: RootState) => state.planning.loading);
+    const error = useSelector((state: RootState) => state.planning.error);
+    const data = useSelector((state: RootState) => state.planning.planning);
     const { t } = useTranslation('common');
 
     // on mount, load data (only once)

@@ -37,7 +37,7 @@ export const fetchPlanning = createAsyncThunk('planning/fetchGames', async () =>
     const should_be_displayed = (elem, min, max) => elem <= max || elem <= min;
     const gamesData = await import("../data/games.json");
 
-    return (gamesData.games as BasicGame[])
+    const planningGames = (gamesData.games as BasicGame[])
         // only scheduled games - TODO add a property later for "on hold" entries
         // only active entries
         .filter(game => game.hasOwnProperty("availableAt") && should_be_displayed(integerDate, game.availableAt, game.endAt))
@@ -68,6 +68,10 @@ export const fetchPlanning = createAsyncThunk('planning/fetchGames', async () =>
                 ...optional
             }
         }) as planningEntry[];
+
+        return {
+            planning: planningGames
+        }
 });
 
 const planningSlice = createSlice({
