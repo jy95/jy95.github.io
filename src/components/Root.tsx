@@ -1,6 +1,6 @@
 import { useMemo, useEffect, Suspense, lazy} from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
-import { Provider, useSelector, useDispatch  } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import i18n from 'i18next';
 
 // snackbars
@@ -49,9 +49,9 @@ const materialUI_languages = {
     en: enUS
 }
 
-function Root(props) {
+function Root(_props) {
 
-    const { store, openMenu } = props;
+    const openMenu = useSelector((state: RootState) => state.miscellaneous.drawerOpen);
 
     return (
         <SnackbarProvider 
@@ -62,49 +62,47 @@ function Root(props) {
             }}
         >
             <Box sx={{ display: 'flex' }}>
-                <Provider store={store}>
-                    {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
-                    <Router basename={process.env.PUBLIC_URL} >
-                        <Header />
-                        <Menu />
-                            <Main open={ openMenu } >
-                                <DrawerHeader />
-                                <Routes>
-                                    <Route path="/" element={<Navigate replace to="/games" />} />
-                                    <Route path="/games" element={
-                                        <Suspense fallback={<LinearProgress />}>
-                                            <GamesGallery />
-                                        </Suspense>
-                                    } />
-                                    <Route path="/playlist/:id" element={
-                                        <Suspense fallback={<Skeleton variant="rectangular" />}>
-                                            <Player />
-                                        </Suspense>
-                                    } />
-                                    <Route path="/video/:id" element={
-                                        <Suspense fallback={<Skeleton variant="rectangular" />}>
-                                            <Player />
-                                        </Suspense>
-                                    } />
-                                    <Route path="/planning" element={
-                                        <Suspense fallback={<LinearProgress />}>
-                                            <Planning />
-                                        </Suspense>
-                                    } />
-                                    <Route path="/tests" element={
-                                        <Suspense fallback={<LinearProgress />}>
-                                            <TestsGallery />
-                                        </Suspense>
-                                    } />
-                                    <Route path="/latest" element={
-                                        <Suspense fallback={<LinearProgress />}>
-                                            <LatestVideosGallery />
-                                        </Suspense>
-                                    } />
-                                </Routes>
-                            </Main>
-                    </Router>
-                </Provider>
+                {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
+                <Router basename={process.env.PUBLIC_URL} >
+                    <Header />
+                    <Menu />
+                        <Main open={ openMenu } >
+                            <DrawerHeader />
+                            <Routes>
+                                <Route path="/" element={<Navigate replace to="/games" />} />
+                                <Route path="/games" element={
+                                    <Suspense fallback={<LinearProgress />}>
+                                        <GamesGallery />
+                                    </Suspense>
+                                } />
+                                <Route path="/playlist/:id" element={
+                                    <Suspense fallback={<Skeleton variant="rectangular" />}>
+                                        <Player />
+                                    </Suspense>
+                                } />
+                                <Route path="/video/:id" element={
+                                    <Suspense fallback={<Skeleton variant="rectangular" />}>
+                                        <Player />
+                                    </Suspense>
+                                } />
+                                <Route path="/planning" element={
+                                    <Suspense fallback={<LinearProgress />}>
+                                        <Planning />
+                                    </Suspense>
+                                } />
+                                <Route path="/tests" element={
+                                    <Suspense fallback={<LinearProgress />}>
+                                        <TestsGallery />
+                                    </Suspense>
+                                } />
+                                <Route path="/latest" element={
+                                    <Suspense fallback={<LinearProgress />}>
+                                        <LatestVideosGallery />
+                                    </Suspense>
+                                } />
+                            </Routes>
+                        </Main>
+                </Router>
             </Box>
         </SnackbarProvider>
     )
@@ -116,7 +114,6 @@ function withThemeProvider(Component) {
         const dispatch: AppDispatch = useDispatch();
         const currentColor = useSelector((state: RootState) => state.themeColor.currentColor);
         const currentSystemColor = useSelector((state: RootState) => state.themeColor.systemColor);
-        //const openMenu = useSelector((state: RootState) => state.miscellaneous.drawerOpen);
         const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
         const systemColor = prefersDarkMode ? "dark" : "light";
 
@@ -147,7 +144,7 @@ function withThemeProvider(Component) {
         );
         return (
             <ThemeProvider theme={theme}>
-                <Component {...props} />
+                <Component />
             </ThemeProvider>
         );
     }
