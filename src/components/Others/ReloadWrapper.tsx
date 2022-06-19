@@ -1,31 +1,36 @@
+import { Suspense, lazy } from "react";
 import {useTranslation} from "react-i18next";
-import {connect} from 'react-redux';
 
 // Icons
-import CircularProgress from '@mui/material/CircularProgress';
-import Fab from '@mui/material/Fab';
-import AutorenewIcon from '@mui/icons-material/Autorenew';
+const CircularProgress = lazy(() => import("@mui/material/CircularProgress"));
+const Fab = lazy(() => import("@mui/material/Fab"));
+const AutorenewIcon = lazy(() => import("@mui/icons-material/Autorenew"));
 
 // Custom
 // @ts-ignore
-import CenteredGrid from "./CenteredGrid.tsx";
+const CenteredGrid = lazy(() => import("./CenteredGrid.tsx"));
 // @ts-ignore
-import SnackbarWrapper from "./CustomSnackbar.tsx";
+const SnackbarWrapper = lazy(() => import("./CustomSnackbar.tsx"));
 
 // The reload wrapper component
 function ReloadWrapper(props) {
 
-    const {loading, error, component, reloadFct} = props;
+    const {loading, error, component, reloadFct} = props as {
+        loading: boolean;
+        error: Error | undefined;
+        reloadFct: () => any;
+        component: JSX.Element;
+        [key: string]: any;
+    };
     const { t } = useTranslation('common');
 
-    if (loading) {
-        return <CenteredGrid>
-            <CircularProgress/>
-        </CenteredGrid>
+    const RealComponent = () => {
+        return component;
     }
 
-    if (error) {
-        return <>
+    return <Suspense fallback={null}>
+        {loading && <CenteredGrid><CircularProgress/></CenteredGrid>}
+        {error && <>
             <SnackbarWrapper
                 variant={"error"}
                 message={error}
@@ -42,17 +47,9 @@ function ReloadWrapper(props) {
                     { t("common.reload") }
                 </Fab>
             </CenteredGrid>
-        </>;
-    }
-    
-    return component;
+        </>}
+        { ( (loading === false) && !error) && <RealComponent /> }
+    </Suspense>
 }
 
-// mapStateToProps(state, ownProps)
-const mapStateToProps = _state => ({});
-const mapDispatchToProps = {};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ReloadWrapper);
+export default ReloadWrapper;

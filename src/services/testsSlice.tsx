@@ -33,6 +33,7 @@ export const fetchTests = createAsyncThunk('tests/fetchGames', async () => {
             ) + id ;
             const url_type = (game.playlistId) ? "PLAYLIST" : "VIDEO";
             return Object.assign({}, game, {
+                "id": id,
                 "imagesFolder": process.env.PUBLIC_URL + gamesData.coversRootPath + id,
                 "imagePath": process.env.PUBLIC_URL + gamesData.coversRootPath + id + "/" + (game.coverFile ?? gamesData.defaultCoverFile),
                 "releaseDate": new Date(+parts[2], Number(parts[1]) -1, +parts[0]),

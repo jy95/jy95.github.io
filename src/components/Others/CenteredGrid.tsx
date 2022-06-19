@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import Grid from "@mui/material/Grid";
 
 function CenteredBox(props) {
@@ -16,9 +15,5 @@ function CenteredBox(props) {
         </Grid>
     );
 }
-
-CenteredBox.propTypes = {
-  children: PropTypes.node,
-};
 
 export default CenteredBox;

@@ -1,17 +1,23 @@
-import { useState } from 'react';
+import { useState, Suspense, lazy } from 'react';
 import { styled } from '@mui/material/styles';
-import PropTypes from 'prop-types';
 import { cx } from '@emotion/css';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import ErrorIcon from '@mui/icons-material/Error';
-import InfoIcon from '@mui/icons-material/Info';
 import CloseIcon from '@mui/icons-material/Close';
 import { amber, green } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
-import WarningIcon from '@mui/icons-material/Warning';
 import Snackbar from '@mui/material/Snackbar';
 import SnackbarContent from '@mui/material/SnackbarContent';
 
+const CheckCircleIcon = lazy(() => import("@mui/icons-material/CheckCircle"));
+const WarningIcon = lazy(() => import("@mui/icons-material/Warning"));
+const ErrorIcon = lazy(() => import("@mui/icons-material/Error"));
+const InfoIcon = lazy(() => import("@mui/icons-material/Info"));
+
+const variantIcon = {
+    success: CheckCircleIcon,
+    warning: WarningIcon,
+    error: ErrorIcon,
+    info: InfoIcon,
+};
 
 const PREFIX = 'CustomizedSnackbar';
 
@@ -78,17 +84,15 @@ const StyledSnackbar = styled(Snackbar)((
     }
 }));
 
-
-const variantIcon = {
-    success: CheckCircleIcon,
-    warning: WarningIcon,
-    error: ErrorIcon,
-    info: InfoIcon,
-};
-
 function CustomSnackbar(props) {
 
-    const { className, message, onClose, variant, ...other } = props;
+    const { className, message, onClose, variant, ...other } = props as {
+        variant: 'error' | 'info' | 'success' | 'warning';
+        className: string;
+        message: string;
+        onClose: () => void;
+        [key: string]: any;
+    };
     const Icon = variantIcon[variant];
 
     return (
@@ -97,9 +101,11 @@ function CustomSnackbar(props) {
             aria-describedby="client-snackbar"
             message={
                 <span id="client-snackbar" className={classes.message}>
-          <Icon className={cx(classes.icon, classes.iconVariant)} />
+                    <Suspense fallback={null}>
+                        <Icon className={cx(classes.icon, classes.iconVariant)} />
+                    </Suspense>
                     {message}
-        </span>
+                </span>
             }
             action={[
                 <IconButton
@@ -116,22 +122,18 @@ function CustomSnackbar(props) {
     );
 }
 
-CustomSnackbar.propTypes = {
-    className: PropTypes.string,
-    message: PropTypes.string,
-    onClose: PropTypes.func,
-    variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
-};
-
 function CustomizedSnackbar(props) {
     const [open, setOpen] = useState(true);
-    const {variant, message} = props;
+    const {variant, message} = props as {
+        variant: 'error' | 'info' | 'success' | 'warning';
+        message: string;
+        [key: string]: any;
+    };
 
-    const handleClose = (event, reason) => {
+    const handleClose = (_event, reason : string) => {
         if (reason === 'clickaway') {
             return;
         }
-
         setOpen(false);
     };
 
@@ -149,10 +151,5 @@ function CustomizedSnackbar(props) {
         </StyledSnackbar>
     );
 }
-
-CustomizedSnackbar.propTypes = {
-    variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
-    message: PropTypes.string.isRequired,
-};
 
 export default CustomizedSnackbar;
