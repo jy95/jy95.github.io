@@ -196,7 +196,7 @@ export const fetchGames : AsyncThunk<{
 
 export const scrollingFetching = createAsyncThunk('games/scrollingFetching', async (params) => {
     const pageSize = (params as any).pageSize || 24;
-    return pageSize;
+    return await Promise.resolve(pageSize);
 });
 
 const gamesSlice = createSlice({
@@ -205,14 +205,6 @@ const gamesSlice = createSlice({
 // Redux Toolkit allows us to write "mutating" logic in reducers. It
 // doesn't actually mutate the state because it uses the Immer library
     reducers: {
-        scrollingFetching(state : GamesState, action: PayloadAction<number>) {
-            state.scrollLoading = true;
-            state.pageSize = action.payload;
-        },
-        scrollingOk(state : GamesState) {
-            state.scrollLoading = false;
-            state.currentItemCount += state.pageSize;
-        },
         sortingGames(state : GamesState, action: PayloadAction<gamesSorters>) {
             state.sorters = action.payload;
         },
