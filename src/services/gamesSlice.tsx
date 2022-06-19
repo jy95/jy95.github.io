@@ -195,8 +195,10 @@ export const fetchGames : AsyncThunk<{
 });
 
 export const scrollingFetching = createAsyncThunk('games/scrollingFetching', async (params) => {
-    const pageSize = (params as any).pageSize || 24;
-    return await Promise.resolve(pageSize);
+    const pageSize = ((params as any)?.pageSize as number | undefined );
+    return {
+        pageSize
+    };
 });
 
 const gamesSlice = createSlice({
@@ -278,12 +280,14 @@ const gamesSlice = createSlice({
                 state.currentItemCount = 0;
                 state.error = payload as Error;
             })
-            .addCase(scrollingFetching.pending, (state : GamesState, { payload }) => {
+            .addCase(scrollingFetching.pending, (state : GamesState, _) => {
                 state.scrollLoading = true;
-                state.pageSize = (payload as unknown) as number;
             })
-            .addCase(scrollingFetching.fulfilled, (state : GamesState, _) => {
+            .addCase(scrollingFetching.fulfilled, (state : GamesState, { payload }) => {
                 state.scrollLoading = false;
+                if (payload.pageSize && (state.pageSize !== payload.pageSize)) {
+                    state.pageSize = payload.pageSize;
+                }
                 state.currentItemCount += state.pageSize;
             })
             .addCase(scrollingFetching.rejected, (state : GamesState, { payload }) => {
