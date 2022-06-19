@@ -25,8 +25,10 @@ import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 // Redux 
-import { RootState, AppDispatch } from '../Store';
-import { drawerOpen } from "../../services/miscellaneousSlice";
+// @ts-ignore
+import { RootState, AppDispatch } from '../Store.tsx';
+// @ts-ignore
+import { drawerOpen } from "../../services/miscellaneousSlice.tsx";
 
 // Styled components
 // @ts-ignore

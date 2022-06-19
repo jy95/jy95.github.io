@@ -12,8 +12,10 @@ import Grid from "@mui/material/Grid";
 import CardEntry from "../GamesView/CardEntry.tsx";
 
 // Redux
-import { RootState, AppDispatch } from '../Store';
-import { fetchLatestVideos } from "../../services/latestVideosSlice";
+// @ts-ignore
+import { RootState, AppDispatch } from '../Store.tsx';
+// @ts-ignore
+import { fetchLatestVideos } from "../../services/latestVideosSlice.tsx";
 
 const PREFIX = 'LatestVideosGallery';
 

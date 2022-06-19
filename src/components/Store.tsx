@@ -1,19 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 // @ts-ignore
-import games from "../services/gamesSlice";
+import games from "../services/gamesSlice.tsx";
 // @ts-ignore
-import planning from "../services/planningSlice"
+import planning from "../services/planningSlice.tsx"
 // @ts-ignore
-import themeColor from "../services/themeColorSlice";
+import themeColor from "../services/themeColorSlice.tsx";
 // @ts-ignore
-import miscellaneous from "../services/miscellaneousSlice";
+import miscellaneous from "../services/miscellaneousSlice.tsx";
 // @ts-ignore
-import latestVideos from "../services/latestVideosSlice";
+import latestVideos from "../services/latestVideosSlice.tsx";
 // @ts-ignore
-import tests from "../services/testsSlice";
+import tests from "../services/testsSlice.tsx";
 // @ts-ignore
-import series from "../services/seriesSlice";
+import series from "../services/seriesSlice.tsx";
 
 /* eslint-disable no-underscore-dangle */
 const store = configureStore({

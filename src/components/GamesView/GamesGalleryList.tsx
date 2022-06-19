@@ -13,11 +13,13 @@ import Grid from "@mui/material/Grid";
 import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 // @ts-ignore
 import CardEntry from "./CardEntry.tsx";
-
-import { RootState, AppDispatch } from '../Store';
+// @ts-ignore
+import { RootState, AppDispatch } from '../Store.tsx';
 import { 
     fetchSeries
-} from "../../services/seriesSlice";
+} 
+// @ts-ignore
+from "../../services/seriesSlice.tsx";
 
 const AccordionDetails = lazy(() => import("@mui/material/AccordionDetails"));
 

@@ -25,9 +25,9 @@ import { DrawerHeader, Main } from "./Home/Drawer.tsx";
 
 // Redux action
 // @ts-ignore
-import { themeColor } from "../services/themeColorSlice";
-
-import { RootState, AppDispatch } from './Store';
+import { themeColor } from "../services/themeColorSlice.tsx";
+// @ts-ignore
+import { RootState, AppDispatch } from './Store.tsx';
 
 // Components
 // @ts-ignore

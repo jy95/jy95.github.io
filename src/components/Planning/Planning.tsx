@@ -17,8 +17,10 @@ import getTableColumns from "./PlanningColumns.tsx";
 import customTranslation from "./PlanningFrenchLabels.tsx";
 
 // Redux
-import { RootState, AppDispatch } from '../Store';
-import { fetchPlanning } from "../../services/planningSlice";
+// @ts-ignore
+import { RootState, AppDispatch } from '../Store.tsx';
+// @ts-ignore
+import { fetchPlanning } from "../../services/planningSlice.tsx";
 
 function Viewer(_props) {
 

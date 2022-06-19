@@ -42,6 +42,10 @@ export const fetchTests = createAsyncThunk('tests/fetchGames', async () => {
                 "hasResponsiveImages": game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages
             });
         });
+
+        return {
+            games
+        }
 });
 
 const planningSlice = createSlice({

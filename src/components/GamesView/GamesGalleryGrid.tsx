@@ -23,13 +23,16 @@ import PlatformSelect from "./PlatformSelect.tsx";
 import TitleFilter from "./TitleFilter.tsx";
 
 // Redux
+// @ts-ignore
 import { RootState, AppDispatch } from '../Store.tsx';
 import { 
     fetchGames,
     scrollingFetching,
     generate_sort_function,
     generate_filter_function,
-} from "../../services/gamesSlice";
+} 
+// @ts-ignore
+from "../../services/gamesSlice.tsx";
 
 const PREFIX = 'GamesGalleryGrid';
 

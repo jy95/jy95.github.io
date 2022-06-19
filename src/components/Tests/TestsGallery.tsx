@@ -10,9 +10,10 @@ import Grid from "@mui/material/Grid";
 import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 // @ts-ignore
 import CardEntry from "../GamesView/CardEntry.tsx";
-
-import { RootState, AppDispatch } from '../Store';
-import { fetchTests } from "../../services/testsSlice";
+// @ts-ignore
+import { RootState, AppDispatch } from '../Store.tsx';
+// @ts-ignore
+import { fetchTests } from "../../services/testsSlice.tsx";
 
 const PREFIX = 'TestsGallery';
 

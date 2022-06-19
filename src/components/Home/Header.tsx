@@ -18,9 +18,12 @@ import SvgIcon from '@mui/material/SvgIcon';
 import Tooltip from '@mui/material/Tooltip';
 
 // Redux
-import { RootState, AppDispatch } from '../Store';
-import { drawerOpen } from "../../services/miscellaneousSlice";
-import { themeColor } from "../../services/themeColorSlice";
+// @ts-ignore
+import { RootState, AppDispatch } from '../Store.tsx';
+// @ts-ignore
+import { drawerOpen } from "../../services/miscellaneousSlice.tsx";
+// @ts-ignore
+import { themeColor } from "../../services/themeColorSlice.tsx";
 
 // Custom icons
 // @ts-ignore

@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type themeColor = 'light' | 'dark';
+type themeColorType = 'light' | 'dark';
 
 export interface themeColorState {
     // Current color for UI
-    currentColor: themeColor;
+    currentColor: themeColorType;
     mode: 'manual' | "auto";
-    systemColor: themeColor
+    systemColor: themeColorType
 }
 
 const initialState : themeColorState = {
@@ -20,12 +20,12 @@ const themeColorSlice = createSlice({
     initialState,
     reducers: {
         themeColor(state : themeColorState, action: PayloadAction<{
-            color: themeColor,
+            color: themeColorType,
             mode: 'manual' | "auto"
         }>) {
-            state.currentColor = action.payload.color,
-            state.mode = action.payload.mode,
-            state.systemColor = (action.payload.mode === "auto") ? action.payload.color : state.systemColor
+            state.currentColor = action.payload.color;
+            state.mode = action.payload.mode;
+            state.systemColor = (action.payload.mode === "auto") ? action.payload.color : state.systemColor;
         }
     }
 });
