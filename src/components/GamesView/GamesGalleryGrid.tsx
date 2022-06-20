@@ -83,7 +83,9 @@ const StyledGamesGallery = styled('div')((
 // The gallery component
 function GamesGalleryGrid(_props) {
 
+    const { t } = useTranslation('common');
     const dispatch: AppDispatch = useDispatch();
+
     const loading = useSelector((state: RootState) => state.games.loading);
     const error = useSelector((state: RootState) => state.games.error);
     const games = useSelector((state: RootState) => state.games.games);
@@ -94,7 +96,7 @@ function GamesGalleryGrid(_props) {
     const initialLoad = useSelector((state: RootState) => state.games.initialLoad);
     const scrollLoading = useSelector((state: RootState) => state.games.scrollLoading);
 
-    const { t } = useTranslation('common');
+    const canLoadMore = (currentItemCount <= totalItems);
 
     // on mount, load data (only once)
     useEffect(() => {
@@ -118,10 +120,8 @@ function GamesGalleryGrid(_props) {
         dispatch(scrollingFetching());
     }, 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        []
+        [scrollLoading, canLoadMore]
     );
-
-    const canLoadMore = (currentItemCount <= totalItems);
 
     const { loaderRef } = useInfiniteLoader({
         loadMore: loadMoreGames,
