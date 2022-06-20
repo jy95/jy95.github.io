@@ -1,5 +1,5 @@
 import {useTranslation} from "react-i18next";
-import {connect} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
@@ -7,10 +7,12 @@ import TextField from '@mui/material/TextField';
 import SvgIcon from '@mui/material/SvgIcon';
 
 import {
-    filter_games_by_platform
-} 
+    filterByPlatform
+}
 // @ts-ignore
-from "../../actions/games.tsx";
+from "../../services/gamesSlice.tsx";
+// @ts-ignore
+import { RootState, AppDispatch } from '../Store.tsx';
 
 // icons
 // @ts-ignore
@@ -25,10 +27,16 @@ const PLATFORMS = [
     "PSP"
 ];
 
-function PlatformSelect(props) {
+function PlatformSelect(_props) {
 
-    const { selectedPlatform } = props;
     const { t } = useTranslation('common');
+    const dispatch: AppDispatch = useDispatch();
+    const selectedPlatform : string  = useSelector(
+        (state: RootState) => (state.games.activeFilters.find((s => s.key === "selected_platform")) as {
+            key: "selected_platform";
+            value: string
+        } | undefined)?.value
+    ) || "";
 
     const options = PLATFORMS
         .map(platform => ({
@@ -56,7 +64,7 @@ function PlatformSelect(props) {
             )}
             onChange={(_event, value) => {
                 const platform = (value) ? (value as {[key: string]: any})?.key || value : "";
-                props.filterByPlatform(platform);
+                dispatch(filterByPlatform(platform));
             }}
             value={
                 selectedPlatform ? {
@@ -68,17 +76,4 @@ function PlatformSelect(props) {
     </>;
 }
 
-
-// mapStateToProps(state, ownProps)
-const mapStateToProps = state => ({
-    selectedPlatform: state.games.activeFilters.find(s => s.key === "selected_platform")?.value || ""
-});
-
-const mapDispatchToProps = {
-    filterByPlatform: filter_games_by_platform, 
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(PlatformSelect);
+export default PlatformSelect;

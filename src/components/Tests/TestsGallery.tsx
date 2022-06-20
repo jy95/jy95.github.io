@@ -1,17 +1,19 @@
 import { useEffect } from "react";
 import { styled } from '@mui/material/styles';
-import {connect} from 'react-redux';
-// @ts-ignore
-import {get_tests} from "../../actions/tests.tsx";
+import { useSelector, useDispatch } from 'react-redux';
+
+// Style
+import Grid from "@mui/material/Grid";
 
 // Custom
 // @ts-ignore
 import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 // @ts-ignore
 import CardEntry from "../GamesView/CardEntry.tsx";
-
-// Style
-import Grid from "@mui/material/Grid";
+// @ts-ignore
+import { RootState, AppDispatch } from '../Store.tsx';
+// @ts-ignore
+import { fetchTests } from "../../services/testsSlice.tsx";
 
 const PREFIX = 'TestsGallery';
 
@@ -53,13 +55,16 @@ const StyledTestsGallery = styled('div')((
 }));
 
 // The gallery component
-function TestsGallery(props) {
+function TestsGallery(_props) {
 
-    const {loading, error, data} = props;
+    const dispatch: AppDispatch = useDispatch();
+    const loading = useSelector((state: RootState) => state.tests.loading);
+    const error = useSelector((state: RootState) => state.tests.error);
+    const data = useSelector((state: RootState) => state.tests.games);
 
     // on mount, load data (only once)
     useEffect(() => {
-        props.get_tests();
+        dispatch(fetchTests());
     }, 
         // eslint-disable-next-line react-hooks/exhaustive-deps
         []
@@ -69,7 +74,7 @@ function TestsGallery(props) {
         <ReloadWrapper  
             loading={loading}
             error={error}
-            reloadFct={() => {props.get_tests();}}
+            reloadFct={() => {dispatch(fetchTests());}}
             component={
                 <StyledTestsGallery>    
                     <Grid
@@ -100,16 +105,4 @@ function TestsGallery(props) {
     );
 }
 
-// mapStateToProps(state, ownProps)
-const mapStateToProps = state => ({
-    data: state.tests.games
-});
-
-const mapDispatchToProps = {
-    get_tests
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(TestsGallery);
+export default TestsGallery;

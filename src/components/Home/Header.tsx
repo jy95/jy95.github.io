@@ -1,4 +1,4 @@
-import {connect} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {useTranslation} from "react-i18next";
 
 // React Material UI
@@ -17,11 +17,13 @@ import { yellow } from '@mui/material/colors';
 import SvgIcon from '@mui/material/SvgIcon';
 import Tooltip from '@mui/material/Tooltip';
 
-// Redux actions
+// Redux
 // @ts-ignore
-import {setThemeColor} from "../../actions/themeColor.tsx";
+import { RootState, AppDispatch } from '../Store.tsx';
 // @ts-ignore
-import {setDrawerOpen} from "../../actions/miscellaneous.tsx"
+import { drawerOpen } from "../../services/miscellaneousSlice.tsx";
+// @ts-ignore
+import { themeColor } from "../../services/themeColorSlice.tsx";
 
 // Custom icons
 // @ts-ignore
@@ -48,18 +50,20 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 // main component
-function Header(props) {
+function Header(_props) {
 
     const [t, i18n] = useTranslation('common');
-    const {drawerOpen} = props;
+    const dispatch: AppDispatch = useDispatch();
+    const isdrawerOpen = useSelector((state: RootState) => state.miscellaneous.drawerOpen);
+    const currentColor = useSelector((state: RootState) => state.themeColor.currentColor);
 
     const handleDrawerOpen = () => {
-        props.setDrawerOpen(true);
+        dispatch(drawerOpen(true));
     };
 
     const handleDarkMode = (event) => {
         const color = (event.target.checked) ? "dark" : "light";
-        props.setThemeColor({color, mode: "manual"});
+        dispatch(themeColor({color, mode: "manual"}));
     }
 
     return (
@@ -67,7 +71,7 @@ function Header(props) {
             <CssBaseline />
             <AppBar
                 position="fixed"
-                open={drawerOpen}
+                open={isdrawerOpen}
             >
                 <Toolbar>
                     <IconButton
@@ -77,13 +81,13 @@ function Header(props) {
                         edge="start"
                         sx={{
                             marginRight: 5,
-                            ...(drawerOpen && { display: 'none' }),
+                            ...(isdrawerOpen && { display: 'none' }),
                         }}
                     >
                         <MenuIcon/>
                     </IconButton>
                     <Switch 
-                        checked={props.isDark}
+                        checked={currentColor === "dark"}
                         onChange={handleDarkMode}
                         checkedIcon={<Brightness4Icon color="action" />}
                         icon={<Brightness5Icon style={{ color: yellow[500] }}/>}
@@ -112,18 +116,4 @@ function Header(props) {
     );
 }
 
-// mapStateToProps(state, ownProps)
-const mapStateToProps = state => ({
-    isDark: state.themeColor.currentColor === "dark",
-    drawerOpen: state.miscellaneous.drawerOpen
-});
-
-const mapDispatchToProps = {
-    setThemeColor,
-    setDrawerOpen
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Header);
+export default Header;

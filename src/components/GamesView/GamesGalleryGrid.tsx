@@ -1,11 +1,9 @@
 import { useEffect, useCallback } from "react";
 import { styled } from '@mui/material/styles';
-import {connect} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import useInfiniteLoader from 'react-use-infinite-loader';
 import {useTranslation} from "react-i18next";
 import Alert from '@mui/material/Alert';
-// @ts-ignore
-import {get_games, fetch_scrolling_games, generate_sort_function, generate_filter_function} from "../../actions/games.tsx";
 
 // Style
 import Grid from "@mui/material/Grid";
@@ -23,6 +21,18 @@ import GenresSelect from "./GenresSelect.tsx";
 import PlatformSelect from "./PlatformSelect.tsx";
 // @ts-ignore
 import TitleFilter from "./TitleFilter.tsx";
+
+// Redux
+// @ts-ignore
+import { RootState, AppDispatch } from '../Store.tsx';
+import { 
+    fetchGames,
+    scrollingFetching,
+    generate_sort_function,
+    generate_filter_function,
+} 
+// @ts-ignore
+from "../../services/gamesSlice.tsx";
 
 const PREFIX = 'GamesGalleryGrid';
 
@@ -71,25 +81,26 @@ const StyledGamesGallery = styled('div')((
 }));
 
 // The gallery component
-function GamesGalleryGrid(props) {
+function GamesGalleryGrid(_props) {
 
-    const {
-        loading, 
-        error, 
-        games,
-        currentItemCount,
-        totalItems,
-        activeFilters,
-        sorters,
-        initialLoad,
-        scrollLoading,
-        fetch_scrolling_games
-    } = props;
     const { t } = useTranslation('common');
+    const dispatch: AppDispatch = useDispatch();
+
+    const loading = useSelector((state: RootState) => state.games.loading);
+    const error = useSelector((state: RootState) => state.games.error);
+    const games = useSelector((state: RootState) => state.games.games);
+    const currentItemCount = useSelector((state: RootState) => state.games.currentItemCount);
+    const totalItems = useSelector((state: RootState) => state.games.totalItems);
+    const activeFilters = useSelector((state: RootState) => state.games.activeFilters);
+    const sorters = useSelector((state: RootState) => state.games.sorters);
+    const initialLoad = useSelector((state: RootState) => state.games.initialLoad);
+    const scrollLoading = useSelector((state: RootState) => state.games.scrollLoading);
+
+    const canLoadMore = (currentItemCount <= totalItems);
 
     // on mount, load data (only once)
     useEffect(() => {
-        props.get_games();
+        dispatch(fetchGames({currentFilters: activeFilters, sortStates: sorters}))
     },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [games]
@@ -106,13 +117,11 @@ function GamesGalleryGrid(props) {
     </Grid>;
 
     const loadMoreGames = useCallback( () => {
-        fetch_scrolling_games();
+        dispatch(scrollingFetching());
     }, 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        []
+        [scrollLoading, canLoadMore]
     );
-
-    const canLoadMore = (currentItemCount <= totalItems);
 
     const { loaderRef } = useInfiniteLoader({
         loadMore: loadMoreGames,
@@ -149,7 +158,7 @@ function GamesGalleryGrid(props) {
         <ReloadWrapper 
             loading={loading}
             error={error}
-            reloadFct={() => {props.get_games();}}
+            reloadFct={() => {dispatch(fetchGames({currentFilters: activeFilters, sortStates: sorters}))}}
             component={
                 <StyledGamesGallery>
                     <Grid
@@ -166,7 +175,7 @@ function GamesGalleryGrid(props) {
                             <GenresSelect variant="standard" />
                         </Grid>
                         <Grid item xs={12} md={4}>
-                            <TitleFilter games={games} />
+                            <TitleFilter />
                         </Grid>
                     </Grid>
 
@@ -194,25 +203,4 @@ function GamesGalleryGrid(props) {
     );
 }
 
-// mapStateToProps(state, ownProps)
-const mapStateToProps = state => ({
-    currentItemCount: state.games.currentItemCount,
-    initialLoad: state.games.initialLoad,
-    scrollLoading: state.games.scrollLoading,
-    totalItems: state.games.totalItems,
-    activeFilters: state.games.activeFilters,
-    sorters: state.games.sorters,
-    games: state.games.games,
-    loading: state.games.loading,
-    error: state.games.error
-});
-
-const mapDispatchToProps = {
-    get_games,
-    fetch_scrolling_games
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(GamesGalleryGrid);
+export default GamesGalleryGrid;

@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux'
 
 // Common
 // @ts-ignore
@@ -43,7 +44,9 @@ const container = document.getElementById('root');
 const root = createRoot(container!);
 root.render(
     <I18nextProvider i18n={i18next}>
-        <Root store={store} />
+        <Provider store={store}>
+            <Root />
+        </Provider>
     </I18nextProvider>
 );
 

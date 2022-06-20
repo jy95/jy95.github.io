@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import {connect} from 'react-redux';
 import i18n from 'i18next';
 import {useTranslation} from "react-i18next";
+import { useSelector, useDispatch } from 'react-redux';
 
 // Material UI
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
@@ -16,18 +16,23 @@ import getTableColumns from "./PlanningColumns.tsx";
 // @ts-ignore
 import customTranslation from "./PlanningFrenchLabels.tsx";
 
-// Redux actions
+// Redux
 // @ts-ignore
-import {get_scheduled_games} from "../../actions/planning.tsx";
+import { RootState, AppDispatch } from '../Store.tsx';
+// @ts-ignore
+import { fetchPlanning } from "../../services/planningSlice.tsx";
 
-function Viewer(props) {
+function Viewer(_props) {
 
-    const {loading, error, data} = props;
+    const dispatch: AppDispatch = useDispatch();
+    const loading = useSelector((state: RootState) => state.planning.loading);
+    const error = useSelector((state: RootState) => state.planning.error);
+    const data = useSelector((state: RootState) => state.planning.planning);
     const { t } = useTranslation('common');
 
     // on mount, load data (only once)
     useEffect(() => {
-        props.get_scheduled_games();
+        dispatch(fetchPlanning());
     },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         []
@@ -41,7 +46,7 @@ function Viewer(props) {
     return <ReloadWrapper 
         loading={loading}
         error={error}
-        reloadFct={() => {props.get_scheduled_games();}}
+        reloadFct={() => {dispatch(fetchPlanning());}}
         component={
             <div style={{ height: 450, width: '100%' }}>
                 <div style={{ display: 'flex', height: '100%' }}>
@@ -69,18 +74,4 @@ function Viewer(props) {
     />
 }
 
-// mapStateToProps(state, ownProps)
-const mapStateToProps = state => ({
-    data: state.planning.planning,
-    loading: state.planning.loading,
-    error: state.planning.error,
-});
-
-const mapDispatchToProps = {
-    get_scheduled_games
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Viewer);
+export default Viewer;

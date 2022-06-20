@@ -1,5 +1,5 @@
 import { useMemo, forwardRef } from "react";
-import {connect} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {useTranslation} from "react-i18next";
 
 // Material UI
@@ -24,9 +24,11 @@ import ExtensionIcon from '@mui/icons-material/Extension';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
-// Redux action
+// Redux 
 // @ts-ignore
-import {setDrawerOpen} from "../../actions/miscellaneous.tsx"
+import { RootState, AppDispatch } from '../Store.tsx';
+// @ts-ignore
+import { drawerOpen } from "../../services/miscellaneousSlice.tsx";
 
 // Styled components
 // @ts-ignore
@@ -87,17 +89,20 @@ const ENTRIES = [
 // Main component
 function Menu(props) {
 
-    const {container, open} = props;
+    const {container} = props;
+
+    const dispatch: AppDispatch = useDispatch();
+    const isdrawerOpen = useSelector((state: RootState) => state.miscellaneous.drawerOpen);
 
     const handleDrawerClose = () => {
-        props.setDrawerOpen(false);
+        dispatch(drawerOpen(false));
     };
 
     return (
         <Drawer
             container={container}
             variant={"permanent"}
-            open={open}
+            open={isdrawerOpen}
         >
             <DrawerHeader>
                 <IconButton onClick={handleDrawerClose} size="large" aria-label="Menu" >
@@ -114,16 +119,4 @@ function Menu(props) {
     );
 }
 
-// mapStateToProps(state, ownProps)
-const mapStateToProps = state => ({
-    open: state.miscellaneous.drawerOpen
-});
-
-const mapDispatchToProps = {
-    setDrawerOpen
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Menu);
+export default Menu;
