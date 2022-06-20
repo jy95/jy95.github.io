@@ -27,7 +27,7 @@ interface latestVideosState {
     // Latest videos
     items: rssItem[],
     // When latest fetch happens
-    latestFetchedDate: Date | undefined;
+    latestFetchedDate: number | undefined;
 }
 
 const initialState : latestVideosState = {
@@ -52,13 +52,13 @@ function mapRSSItemsToGame(items : {
         .map(item => {
             const videoId = item.link.replace("https://www.youtube.com/watch?v=","");
             return {
-                "videoId": videoId,
-                "title": decodeHtml(item.title),
-                "url": item.link,
-                "url_type": "VIDEO",
-                "imagePath": "https://i.ytimg.com/vi_webp/" + videoId + "/0.webp",
+                videoId,
+                title: decodeHtml(item.title),
+                url: item.link,
+                url_type: "VIDEO",
+                imagePath: "https://i.ytimg.com/vi_webp/" + videoId + "/0.webp",
                 // Youtube RSS doesn't offer dedicated urls for picture
-                "hasResponsiveImages": false
+                hasResponsiveImages: false
             }
         });
 }
@@ -73,9 +73,9 @@ const diff_minutes = (d1: Date, d2: Date) => Math.abs(
     )
 );
 
-const shouldRequest = (data : any[], latestFetchingDate : Date | undefined, dateNow : Date) => [
+const shouldRequest = (data : any[], latestFetchingDate : number | undefined, dateNow : Date) => [
     () => data.length === 0,
-    () => (latestFetchingDate && diff_minutes(latestFetchingDate, dateNow) >= YOUTUBE_REFRESH_TIME_IN_MINUTES)
+    () => (latestFetchingDate && diff_minutes(new Date(latestFetchingDate), dateNow) >= YOUTUBE_REFRESH_TIME_IN_MINUTES)
 ].some(pred => pred() === true);
 
 export const fetchLatestVideos = createAsyncThunk('Youtube/fetchLatestVideo', async () => {
@@ -123,7 +123,7 @@ const latestVideosSlice = createSlice({
                 state.loading = false;
                 state.items = (payload as any).items as rssItem[];
                 state.error = null;
-                state.latestFetchedDate = new Date();
+                state.latestFetchedDate = new Date().getTime();
             })
             .addCase(fetchLatestVideos.rejected, (state : latestVideosState, { payload }) => {
                 state.loading = false;

@@ -175,7 +175,7 @@ function GamesGalleryGrid(_props) {
                             <GenresSelect variant="standard" />
                         </Grid>
                         <Grid item xs={12} md={4}>
-                            <TitleFilter games={games} />
+                            <TitleFilter />
                         </Grid>
                     </Grid>
 

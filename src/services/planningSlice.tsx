@@ -5,7 +5,7 @@ import { BasicGame } from "./sharedDefintion.tsx";
 // For fetching games for planning
 interface planningEntry extends BasicGame {
     status: "RECORDED" | "PENDING";
-    endDate?: string
+    endDate?: number
 }
 
 export interface PlanningState {
@@ -44,22 +44,22 @@ export const fetchPlanning = createAsyncThunk('planning/fetchGames', async () =>
         .map(scheduledGame => {
 
             const common = {
-                "id": scheduledGame.playlistId ?? scheduledGame.videoId,
-                "title": scheduledGame.title,
-                "platform": scheduledGame.platform,
-                "status":  (scheduledGame.hasOwnProperty("endAt") ? "RECORDED" : "PENDING")
+                id: scheduledGame.playlistId ?? scheduledGame.videoId,
+                title: scheduledGame.title,
+                platform: scheduledGame.platform,
+                status:  (scheduledGame.hasOwnProperty("endAt") ? "RECORDED" : "PENDING")
             };
 
             // optional date fields
-            const optional = [
+            const optional = ([
                 ["releaseDate", scheduledGame?.availableAt?.toString()],
                 ["endDate", scheduledGame?.endAt?.toString()]
-            ]
+            ] as [string, string | undefined][] )
                 .filter( field => !!field[1] && field[1].match(intergerDateRegex) )
                 .reduce( (acc, curr) => {
                     const [key, value] = curr;
-                    const { year, month, day } = (intergerDateRegex.exec(value) as any).groups;
-                    acc[key] = new Date(+year, Number(month) - 1, +day);
+                    const { year, month, day } = (intergerDateRegex.exec(value as string) as any).groups;
+                    acc[key] = new Date(+year, Number(month) - 1, +day).getTime();
                     return acc;
                 }, {});
             

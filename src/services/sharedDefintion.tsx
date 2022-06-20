@@ -51,8 +51,8 @@ export interface EnhancedGame extends Omit<BasicGame, "releaseDate"> {
     imagesFolder?: string;
     // Link to the main picture (for the card components)
     imagePath: string;
-    // When the game was released
-    releaseDate: Date;
+    // When the game was released (Date(2020, 02, 02).getTime())
+    releaseDate: number;
     // "duration" into something useful for sorting
     durationAsInt: number;
     // Link to Youtube

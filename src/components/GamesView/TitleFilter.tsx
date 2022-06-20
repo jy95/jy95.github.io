@@ -15,18 +15,19 @@ import { RootState, AppDispatch } from '../Store.tsx';
 
 function TitleFilter(_props) {
 
+    const { t } = useTranslation('common');
     const dispatch: AppDispatch = useDispatch();
-    const games = useSelector((state: RootState) => state.games.games);
+
+    // needed as this Autocomplete cannot have duplicate
+    const options = useSelector((state: RootState) => 
+        [...new Set(state.games.games.map(game => game.title))]
+    );
     const title : string  = useSelector(
         (state: RootState) => (state.games.activeFilters.find((s => s.key === "selected_title")) as {
             key: "selected_title";
             value: string
-        } | undefined)?.value
-    ) || "";
-
-    const { t } = useTranslation('common');
-    // needed as this Autocomplete cannot have duplicate
-    const options = [...new Set(games.map(game => game.title))];
+        } | undefined)?.value || ""
+    );
 
     return <>
         <Autocomplete
