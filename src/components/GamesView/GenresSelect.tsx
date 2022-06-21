@@ -11,7 +11,7 @@ import {
 // @ts-ignore
 from "../../services/gamesSlice.tsx";
 // @ts-ignore
-import { RootState, AppDispatch } from '../Store.tsx';
+import type { RootState, AppDispatch } from '../Store.tsx';
 
 // Each one is also a key for translation
 const GENRES = [

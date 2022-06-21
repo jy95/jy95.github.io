@@ -18,7 +18,7 @@ import customTranslation from "./PlanningFrenchLabels.tsx";
 
 // Redux
 // @ts-ignore
-import { RootState, AppDispatch } from '../Store.tsx';
+import type { RootState, AppDispatch } from '../Store.tsx';
 // @ts-ignore
 import { fetchPlanning } from "../../services/planningSlice.tsx";
 
