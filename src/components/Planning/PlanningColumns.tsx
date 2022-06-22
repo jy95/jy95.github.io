@@ -16,7 +16,7 @@ const renderNumberAsDate = (language : string, date_options) => (params : GridRe
 </>
 
 // columns definitions
-const planningColumns = (t, date_options, language) => [
+const planningColumns = (t : (key: string, ...rest : any) => string, date_options, language : string) => [
     {
         field: "title", 
         headerName: t("planning.columns.title"),
