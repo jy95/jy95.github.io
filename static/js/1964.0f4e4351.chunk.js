@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkyt_gaming_library=self.webpackChunkyt_gaming_library||[]).push([[1964],{1964:function(e,a,t){var r=t(5318);Object.defineProperty(a,"__esModule",{value:!0}),a.default=void 0;var u=r(t(5649)),h=t(184),i=(0,u.default)((0,h.jsx)("path",{d:"M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"}),"Warning");a.default=i}}]);
-//# sourceMappingURL=1964.0f4e4351.chunk.js.map

@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkyt_gaming_library=self.webpackChunkyt_gaming_library||[]).push([[8384],{8384:function(e,a,l){var t=l(5318);Object.defineProperty(a,"__esModule",{value:!0}),a.default=void 0;var r=t(l(5649)),u=l(184),i=(0,r.default)((0,u.jsx)("path",{d:"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"}),"CheckCircle");a.default=i}}]);
-//# sourceMappingURL=8384.6e7a5cd7.chunk.js.map
