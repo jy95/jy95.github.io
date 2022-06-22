@@ -1,4 +1,4 @@
-import {Suspense, useState, useTransition, lazy} from "react";
+import { Suspense, useState, useTransition, lazy } from "react";
 
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -6,7 +6,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 
 import AppsIcon from '@mui/icons-material/Apps';
 import ListIcon from '@mui/icons-material/List';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 // Custom
 // @ts-ignore

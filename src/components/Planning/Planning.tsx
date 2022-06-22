@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import i18n from 'i18next';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from 'react-redux';
 
 // Material UI
@@ -18,9 +18,9 @@ import customTranslation from "./PlanningFrenchLabels.tsx";
 
 // Redux
 // @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
-// @ts-ignore
 import { fetchPlanning } from "../../services/planningSlice.tsx";
+// @ts-ignore
+import type { RootState, AppDispatch } from '../Store.tsx';
 
 function Viewer(_props) {
 

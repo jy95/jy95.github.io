@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 // @ts-ignore
-import { BasicGame } from "./sharedDefintion.tsx";
+import type { BasicGame } from "./sharedDefintion.tsx";
 
 // For fetching games for planning
 interface planningEntry extends BasicGame {

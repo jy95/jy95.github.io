@@ -11,9 +11,9 @@ import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 // @ts-ignore
 import CardEntry from "../GamesView/CardEntry.tsx";
 // @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
-// @ts-ignore
 import { fetchTests } from "../../services/testsSlice.tsx";
+// @ts-ignore
+import type { RootState, AppDispatch } from '../Store.tsx';
 
 const PREFIX = 'TestsGallery';
 

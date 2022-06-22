@@ -1,4 +1,4 @@
-import {Suspense, useState, lazy} from "react";
+import { Suspense, useState, lazy } from "react";
 import { useNavigate } from "react-router-dom";
 
 // To check what should happen when clicking on a game
