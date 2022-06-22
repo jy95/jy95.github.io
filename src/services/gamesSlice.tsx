@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk, AsyncThunk } from '@reduxjs/toolkit';
 // @ts-ignore
-import { BasicGame, EnhancedGame } from "./sharedDefintion.tsx";
+import type { BasicGame, EnhancedGame } from "./sharedDefintion.tsx";
 
 type gamesSorters = [
     "name" | "releaseDate" | "duration",

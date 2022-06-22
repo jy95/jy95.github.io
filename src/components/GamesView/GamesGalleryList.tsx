@@ -1,4 +1,4 @@
-import {Suspense, lazy, useEffect} from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { styled } from '@mui/material/styles';
 import { useSelector, useDispatch } from 'react-redux';
 

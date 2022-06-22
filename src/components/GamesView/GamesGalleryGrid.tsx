@@ -2,7 +2,7 @@ import { useEffect, useCallback } from "react";
 import { styled } from '@mui/material/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import useInfiniteLoader from 'react-use-infinite-loader';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import Alert from '@mui/material/Alert';
 
 // Style
@@ -23,8 +23,6 @@ import PlatformSelect from "./PlatformSelect.tsx";
 import TitleFilter from "./TitleFilter.tsx";
 
 // Redux
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
 import { 
     fetchGames,
     scrollingFetching,
@@ -33,6 +31,8 @@ import {
 } 
 // @ts-ignore
 from "../../services/gamesSlice.tsx";
+// @ts-ignore
+import type { RootState, AppDispatch } from '../Store.tsx';
 
 const PREFIX = 'GamesGalleryGrid';
 

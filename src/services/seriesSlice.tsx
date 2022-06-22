@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 // @ts-ignore
-import { EnhancedGame } from "./sharedDefintion.tsx";
-// @ts-ignore
 import { all_games } from "./gamesSlice.tsx";
+// @ts-ignore
+import type { EnhancedGame } from "./sharedDefintion.tsx";
 
 type serieType = {
     name: string,

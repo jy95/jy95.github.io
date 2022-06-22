@@ -1,6 +1,6 @@
 import { useState, Suspense, lazy } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 import Button from '@mui/material/Button';
 

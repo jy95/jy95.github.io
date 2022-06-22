@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 // @ts-ignore
-import { BasicGame, EnhancedGame } from "./sharedDefintion.tsx";
+import type { BasicGame, EnhancedGame } from "./sharedDefintion.tsx";
 
 export interface TestsState {
     // error occurred ?

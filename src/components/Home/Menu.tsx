@@ -1,6 +1,6 @@
 import { useMemo, forwardRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 // Material UI
 import Divider from '@mui/material/Divider';
@@ -24,15 +24,15 @@ import ExtensionIcon from '@mui/icons-material/Extension';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
-// Redux 
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
-// @ts-ignore
-import { drawerOpen } from "../../services/miscellaneousSlice.tsx";
-
 // Styled components
 // @ts-ignore
 import { Drawer, DrawerHeader } from "./Drawer.tsx";
+
+// Redux 
+// @ts-ignore
+import { drawerOpen } from "../../services/miscellaneousSlice.tsx";
+// @ts-ignore
+import type { RootState, AppDispatch } from '../Store.tsx';
 
 // List Item
 function ListItemLink(props) {

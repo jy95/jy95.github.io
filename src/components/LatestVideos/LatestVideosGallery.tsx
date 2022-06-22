@@ -1,21 +1,20 @@
 import { useEffect } from "react";
 import { styled } from '@mui/material/styles';
 import { useSelector, useDispatch } from 'react-redux';
+import Grid from "@mui/material/Grid";
 
 // Custom
 // @ts-ignore
 import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 
-// Style
-import Grid from "@mui/material/Grid";
 // @ts-ignore
 import CardEntry from "../GamesView/CardEntry.tsx";
 
 // Redux
 // @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
-// @ts-ignore
 import { fetchLatestVideos } from "../../services/latestVideosSlice.tsx";
+// @ts-ignore
+import type { RootState, AppDispatch } from '../Store.tsx';
 
 const PREFIX = 'LatestVideosGallery';
 

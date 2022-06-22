@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 // Icons
 const CircularProgress = lazy(() => import("@mui/material/CircularProgress"));

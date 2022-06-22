@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 // React Material UI
 import {CssBaseline, IconButton, Toolbar} from "@mui/material";
@@ -17,17 +17,17 @@ import { yellow } from '@mui/material/colors';
 import SvgIcon from '@mui/material/SvgIcon';
 import Tooltip from '@mui/material/Tooltip';
 
-// Redux
+// Custom icons
 // @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
+import languages_with_icons from "./HeaderLanguages.tsx";
+
+// Redux
 // @ts-ignore
 import { drawerOpen } from "../../services/miscellaneousSlice.tsx";
 // @ts-ignore
 import { themeColor } from "../../services/themeColorSlice.tsx";
-
-// Custom icons
 // @ts-ignore
-import languages_with_icons from "./HeaderLanguages.tsx";
+import type { RootState, AppDispatch } from '../Store.tsx';
 
 // styled AppBar
 const drawerWidth = 240;
