@@ -1,5 +1,7 @@
 import { Suspense, lazy } from "react";
 import { useTranslation } from "react-i18next";
+// For snackbars
+import { useSnackbar } from 'notistack';
 
 // Icons
 const CircularProgress = lazy(() => import("@mui/material/CircularProgress"));
@@ -9,8 +11,6 @@ const AutorenewIcon = lazy(() => import("@mui/icons-material/Autorenew"));
 // Custom
 // @ts-ignore
 const CenteredGrid = lazy(() => import("./CenteredGrid.tsx"));
-// @ts-ignore
-const SnackbarWrapper = lazy(() => import("./CustomSnackbar.tsx"));
 
 // The reload wrapper component
 function ReloadWrapper(props) {
@@ -23,18 +23,24 @@ function ReloadWrapper(props) {
         [key: string]: any;
     };
     const { t } = useTranslation('common');
+    const { enqueueSnackbar } = useSnackbar();
 
     const RealComponent = () => {
         return component;
     }
 
+    if (error){
+        enqueueSnackbar(
+            error.message,
+            {
+                variant: 'error'
+            }
+        )
+    }
+
     return <Suspense fallback={null}>
         {loading && <CenteredGrid><CircularProgress/></CenteredGrid>}
         {error && <>
-            <SnackbarWrapper
-                variant={"error"}
-                message={error}
-            />
             <CenteredGrid>
                 <Fab
                     variant="extended"
