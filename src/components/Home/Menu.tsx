@@ -26,7 +26,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 // Redux 
 // @ts-ignore
-import { RootState, AppDispatch } from '../Store.tsx';
+import type { RootState, AppDispatch } from '../Store.tsx';
 // @ts-ignore
 import { drawerOpen } from "../../services/miscellaneousSlice.tsx";
 

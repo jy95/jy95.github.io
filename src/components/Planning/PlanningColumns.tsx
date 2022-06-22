@@ -2,7 +2,7 @@
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import SvgIcon from '@mui/material/SvgIcon';
-import { GridRenderCellParams } from '@mui/x-data-grid';
+import type { GridRenderCellParams, GridColDef } from '@mui/x-data-grid';
 
 // Others
 import Tooltip from '@mui/material/Tooltip';
@@ -16,12 +16,12 @@ const renderNumberAsDate = (language : string, date_options) => (params : GridRe
 </>
 
 // columns definitions
-const planningColumns = (t, date_options, language) => [
+const planningColumns = (t : (key: string, ...rest : any) => string, date_options, language : string) => [
     {
         field: "title", 
         headerName: t("planning.columns.title"),
         headerAlign: 'center',
-        renderCell: (params) => (
+        renderCell: (params : GridRenderCellParams) => (
             <Tooltip title={params.value} aria-label={params.value}>
                 <div>
                     {params.value}
@@ -35,7 +35,7 @@ const planningColumns = (t, date_options, language) => [
         headerName: t("planning.columns.platform"),
         //headerAlign: 'center',
         //align: 'center',
-        renderCell: (params) => (
+        renderCell: (params : GridRenderCellParams) => (
             <SvgIcon titleAccess={params.value}>
                 <path d={iconsSVG[params.value]} />
             </SvgIcon>
@@ -61,7 +61,7 @@ const planningColumns = (t, date_options, language) => [
         field: "status",
         headerName: t("planning.columns.status"),
         //headerAlign: 'center',
-        renderCell: (params) => (
+        renderCell: (params : GridRenderCellParams) => (
             <Tooltip title={t("planning.states." + params.value )} aria-label={params.value}>
                 { 
                     (params.value === "RECORDED") ? <CheckCircleIcon /> : <HourglassEmptyIcon />
@@ -70,6 +70,6 @@ const planningColumns = (t, date_options, language) => [
         ),
         width: 130
     }
-];
+] as GridColDef[];
 
 export default planningColumns;

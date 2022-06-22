@@ -11,7 +11,7 @@ import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 // @ts-ignore
 import CardEntry from "../GamesView/CardEntry.tsx";
 // @ts-ignore
-import { RootState, AppDispatch } from '../Store.tsx';
+import type { RootState, AppDispatch } from '../Store.tsx';
 // @ts-ignore
 import { fetchTests } from "../../services/testsSlice.tsx";
 

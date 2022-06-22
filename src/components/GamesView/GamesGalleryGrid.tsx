@@ -24,7 +24,7 @@ import TitleFilter from "./TitleFilter.tsx";
 
 // Redux
 // @ts-ignore
-import { RootState, AppDispatch } from '../Store.tsx';
+import type { RootState, AppDispatch } from '../Store.tsx';
 import { 
     fetchGames,
     scrollingFetching,

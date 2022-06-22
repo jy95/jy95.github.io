@@ -13,7 +13,7 @@ import CardEntry from "../GamesView/CardEntry.tsx";
 
 // Redux
 // @ts-ignore
-import { RootState, AppDispatch } from '../Store.tsx';
+import type { RootState, AppDispatch } from '../Store.tsx';
 // @ts-ignore
 import { fetchLatestVideos } from "../../services/latestVideosSlice.tsx";
 

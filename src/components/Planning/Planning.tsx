@@ -18,7 +18,7 @@ import customTranslation from "./PlanningFrenchLabels.tsx";
 
 // Redux
 // @ts-ignore
-import { RootState, AppDispatch } from '../Store.tsx';
+import type { RootState, AppDispatch } from '../Store.tsx';
 // @ts-ignore
 import { fetchPlanning } from "../../services/planningSlice.tsx";
 
@@ -53,7 +53,7 @@ function Viewer(_props) {
                     <div style={{ flexGrow: 1 }}>
                         <DataGrid 
                             rows={data} 
-                            columns={columns as any} 
+                            columns={columns} 
                             disableSelectionOnClick 
                             //disableExtendRowFullWidth // No needed for now
                             disableColumnFilter // or filterable: false in each column

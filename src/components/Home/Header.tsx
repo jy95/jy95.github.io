@@ -19,7 +19,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 // Redux
 // @ts-ignore
-import { RootState, AppDispatch } from '../Store.tsx';
+import type { RootState, AppDispatch } from '../Store.tsx';
 // @ts-ignore
 import { drawerOpen } from "../../services/miscellaneousSlice.tsx";
 // @ts-ignore

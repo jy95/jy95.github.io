@@ -12,7 +12,7 @@ import {
 // @ts-ignore
 from "../../services/gamesSlice.tsx";
 // @ts-ignore
-import { RootState, AppDispatch } from '../Store.tsx';
+import type { RootState, AppDispatch } from '../Store.tsx';
 
 // icons
 // @ts-ignore

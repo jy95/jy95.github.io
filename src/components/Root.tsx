@@ -27,7 +27,7 @@ import { DrawerHeader, Main } from "./Home/Drawer.tsx";
 // @ts-ignore
 import { themeColor } from "../services/themeColorSlice.tsx";
 // @ts-ignore
-import { RootState, AppDispatch } from './Store.tsx';
+import type { RootState, AppDispatch } from './Store.tsx';
 
 // Components
 // @ts-ignore
