@@ -136,10 +136,13 @@ function GamesGalleryGrid(_props) {
         initialise: !initialLoad,
 
         // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
+        // Default : "100px 0px 0px 0px"
         //rootMargin: "0px 0px 0px 0px",
 
         // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
-        //threshold: 1,
+        threshold: 1,
+
+        // Prints some helpful messages about what useInfiniteLoader is doing.
         debug: false,
     });
 
@@ -194,7 +197,7 @@ function GamesGalleryGrid(_props) {
                                 .map(renderRow)
                         }
                     </Grid>
-                    {!initialLoad && <div ref={loaderRef as any} className={classes.loaderRef} />}
+                    <div ref={loaderRef as any} className={classes.loaderRef} />
                     {scrollLoading && <Alert severity="info">{t("common.loading")}</Alert>}
                     {!canLoadMore && <Alert severity="info">{t("common.noResults")}</Alert>}
                 </StyledGamesGallery>
