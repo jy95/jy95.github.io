@@ -148,7 +148,7 @@ function withThemeProvider(Component) {
                         mode: currentColor,
                     },
                 }, muiLanguage),
-            [currentLanguage, currentColor],
+            [muiLanguage, currentColor],
         );
         return (
             <ThemeProvider theme={theme}>
