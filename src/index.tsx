@@ -12,22 +12,21 @@ import Root from "./components/Root.tsx";
 // For translation
 import {I18nextProvider, initReactI18next} from "react-i18next";
 import detector from "i18next-browser-languagedetector";
+import resourcesToBackend from 'i18next-resources-to-backend';
 import i18next from "i18next";
 
-import common_fr from "./translations/fr/common.json";
-import common_en from "./translations/en/common.json";
-
-// the translations
-const resources = {
-    fr: {
-        common: common_fr // 'common' is our custom namespace
-    },
-    en: {
-        common: common_en
-    }
-}
 
 i18next
+    // Lazy translations : most of the time, user will choose only one language
+    .use(resourcesToBackend((language, namespace, callback) => {
+        import(`./translations/${language}/${namespace}.json`)
+            .then((resources) => {
+                callback(null, resources)
+            })
+            .catch((error) => {
+                callback(error, null)
+            })
+    }))
     .use(detector)
     .use(initReactI18next) // passes i18n down to react-i18next
     .init({
@@ -35,7 +34,8 @@ i18next
         //lng: "fr", // the language to use by default // <--- turn off for detection to work
         fallbackLng: 'fr', // if detected lng is not available
         supportedLngs: ['fr', 'en'],
-        resources
+        ns: ['common'],
+        defaultNS: 'common'
     });
 
 const container = document.getElementById('root');
