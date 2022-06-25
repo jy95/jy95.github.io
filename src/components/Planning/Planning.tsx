@@ -44,8 +44,18 @@ function Viewer(_props) {
     const customLocaleText = useAsyncMemo(async () => {
         switch(language) {
             case 'fr':
-                const { frFR : language} = await import("@mui/x-data-grid");
-                return language.components.MuiDataGrid.defaultProps.localeText;
+                const { 
+                    frFR : {
+                        components : {
+                            MuiDataGrid : {
+                                defaultProps : {
+                                    localeText
+                                }
+                            }
+                        }
+                    }
+                } = await import("@mui/x-data-grid");
+                return localeText;
             // English is by default built-in in @mui package, so no need to include
             default:
                 return {};
