@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // Material UI
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import type { GridSlotsComponent } from '@mui/x-data-grid';
 
 // Realod Wrapper
 // @ts-ignore
@@ -12,9 +13,9 @@ import ReloadWrapper from "../Others/ReloadWrapper.tsx";
 // columns definitions
 // @ts-ignore
 import getTableColumns from "./PlanningColumns.tsx";
-// Custom French translation
+
 // @ts-ignore
-import customTranslation from "./PlanningFrenchLabels.tsx";
+import { useAsyncMemo } from "../../hooks/useAsyncMemo.tsx";
 
 // Redux
 // @ts-ignore
@@ -41,7 +42,30 @@ function Viewer(_props) {
     const date_options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
     const language = i18n.language;
     const columns = getTableColumns(t, date_options, language);
-    const customLocaleText = (language.startsWith("fr")) ? customTranslation : {};
+    const customLocaleText = useAsyncMemo(async () => {
+        switch(language) {
+            case 'fr':
+                const { 
+                    frFR : {
+                        components : {
+                            MuiDataGrid : {
+                                defaultProps : {
+                                    localeText
+                                }
+                            }
+                        }
+                    }
+                } = await import("@mui/x-data-grid");
+                return localeText;
+            // English is by default built-in in @mui package, so no need to include
+            default:
+                return {};
+        }
+    }, [language], {} as any);
+
+    let components : Partial<GridSlotsComponent> = {
+        Toolbar: GridToolbar
+    };
 
     return <ReloadWrapper 
         loading={loading}
@@ -59,7 +83,7 @@ function Viewer(_props) {
                             disableColumnFilter // or filterable: false in each column
                             autoHeight  
                             localeText={customLocaleText}
-                            components={{ Toolbar: GridToolbar }}
+                            components={components}
                             sortingOrder={['asc', 'desc']}
                             initialState={{
                                 sorting: {
