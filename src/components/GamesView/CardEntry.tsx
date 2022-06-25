@@ -8,7 +8,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from '@mui/material/CardActionArea';
-import Skeleton from '@mui/material/Skeleton';
 
 import Image from '@jy95/material-ui-image';
 // @ts-ignore
@@ -113,8 +112,7 @@ function CardEntry(props) {
                 >
                     <Image 
                         {...imageProps}
-                        //disableSpinner={true} 
-                        loading={<Skeleton variant="rectangular" />}
+                        disableSpinner={true}
                     />
                 </CardMedia>
 
