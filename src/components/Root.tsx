@@ -44,14 +44,6 @@ const TestsGallery = lazy(() => import("./Tests/TestsGallery.tsx"));
 // @ts-ignore
 const LatestVideosGallery = lazy(() => import("./LatestVideos/LatestVideosGallery.tsx"));
 
-// Languages for Material UI
-const materialUI_languages : {
-    [lang : string]: 'frFR' | 'enUS'
-} = {
-    fr: "frFR",
-    en: "enUS"
-}
-
 function Root(_props) {
 
     const openMenu = useSelector((state: RootState) => state.miscellaneous.drawerOpen);
@@ -137,12 +129,13 @@ function withThemeProvider(Component) {
 
         // Prepare theme for possible darkmode
         const muiLanguage = useAsyncMemo(async () => {
-            // English is by default built-in in @mui package
-            if ( currentLanguage !== "en" ) {
-                const { [materialUI_languages[currentLanguage]] : language} = await import("@mui/material/locale");
-                return language;
-            } else {
-                return {};
+            switch(currentLanguage) {
+                case 'fr':
+                    const { frFR : language} = await import("@mui/material/locale");
+                    return language;
+                // English is by default built-in in @mui package, so no need to include
+                default:
+                    return {};
             }
         }, [currentLanguage], {} as any);
 
