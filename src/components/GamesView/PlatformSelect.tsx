@@ -57,7 +57,7 @@ function PlatformSelect(_props) {
             renderOption={(props, option, _state) => (
                 <li {...props} key={option.key}>
                     <SvgIcon titleAccess={option.label}>
-                        <path d={iconsSVG[option.key]} />
+                        {iconsSVG[option.key]}
                     </SvgIcon>
                     {option.label}
                 </li>

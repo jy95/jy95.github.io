@@ -37,7 +37,7 @@ const planningColumns = (t : (key: string, ...rest : any) => string, date_option
         //align: 'center',
         renderCell: (params : GridRenderCellParams) => (
             <SvgIcon titleAccess={params.value}>
-                <path d={iconsSVG[params.value]} />
+                {iconsSVG[params.value]}
             </SvgIcon>
         ),
         width: 160
