@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 
 // Common
 // @ts-ignore
-import * as serviceWorker from './serviceWorker.tsx';
+//import * as serviceWorker from './serviceWorker.tsx';
 // @ts-ignore
 import store from "./components/Store.tsx"
 // @ts-ignore
@@ -53,4 +53,4 @@ root.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// serviceWorker.unregister();
