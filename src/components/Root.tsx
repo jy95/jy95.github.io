@@ -13,7 +13,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 // MUI components
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
-import Skeleton from '@mui/material/Skeleton';
 
 // hooks
 // @ts-ignore
@@ -71,12 +70,12 @@ function Root(_props) {
                                     </Suspense>
                                 } />
                                 <Route path="/playlist/:id" element={
-                                    <Suspense fallback={<Skeleton variant="rectangular" />}>
+                                    <Suspense fallback={<LinearProgress />}>
                                         <Player />
                                     </Suspense>
                                 } />
                                 <Route path="/video/:id" element={
-                                    <Suspense fallback={<Skeleton variant="rectangular" />}>
+                                    <Suspense fallback={<LinearProgress />}>
                                         <Player />
                                     </Suspense>
                                 } />
