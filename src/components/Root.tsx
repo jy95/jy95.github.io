@@ -137,8 +137,13 @@ function withThemeProvider(Component) {
 
         // Prepare theme for possible darkmode
         const muiLanguage = useAsyncMemo(async () => {
-            const { [materialUI_languages[currentLanguage]] : language} = await import("@mui/material/locale");
-            return language;
+            // English is by default built-in in @mui package
+            if ( currentLanguage !== "en" ) {
+                const { [materialUI_languages[currentLanguage]] : language} = await import("@mui/material/locale");
+                return language;
+            } else {
+                return {};
+            }
         }, [currentLanguage], {} as any);
 
         const theme = useMemo(
