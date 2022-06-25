@@ -23,13 +23,13 @@ function ReloadWrapper(props) {
         [key: string]: any;
     };
     const { t } = useTranslation('common');
-    const { enqueueSnackbar } = useSnackbar();
 
     const RealComponent = () => {
         return component;
     }
 
     if (error){
+        const { enqueueSnackbar } = useSnackbar();
         enqueueSnackbar(
             error.message,
             {
