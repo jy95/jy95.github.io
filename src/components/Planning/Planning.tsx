@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // Material UI
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import type { GridSlotsComponent } from '@mui/x-data-grid';
 
 // Realod Wrapper
 // @ts-ignore
@@ -62,6 +63,10 @@ function Viewer(_props) {
         }
     }, [language], {} as any);
 
+    let components : Partial<GridSlotsComponent> = {
+        Toolbar: GridToolbar
+    };
+
     return <ReloadWrapper 
         loading={loading}
         error={error}
@@ -78,7 +83,7 @@ function Viewer(_props) {
                             disableColumnFilter // or filterable: false in each column
                             autoHeight  
                             localeText={customLocaleText}
-                            components={{ Toolbar: GridToolbar }}
+                            components={components}
                             sortingOrder={['asc', 'desc']}
                             initialState={{
                                 sorting: {

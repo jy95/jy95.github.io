@@ -28,7 +28,9 @@ const planningColumns = (t : (key: string, ...rest : any) => string, date_option
                 </div>
             </Tooltip>
         ),
-        width: 270
+        width: 270,
+        // Needed so that Material ui doesn't try to import their stuff
+        renderEditCell: (_params) => <></>
     },
     {
         field: "platform",
@@ -40,14 +42,18 @@ const planningColumns = (t : (key: string, ...rest : any) => string, date_option
                 {iconsSVG[params.value]}
             </SvgIcon>
         ),
-        width: 160
+        width: 160,
+        // Needed so that Material ui doesn't try to import their stuff
+        renderEditCell: (_params) => <></>
     },
     {
         field: "releaseDate", 
         headerName: t("planning.columns.releaseDate"),
         headerAlign: 'center',
         renderCell: renderNumberAsDate(language, date_options),
-        width: 220
+        width: 220,
+        // Needed so that Material ui doesn't try to import their stuff
+        renderEditCell: (_params) => <></>
     },
     {
         field: "endDate", 
@@ -55,7 +61,9 @@ const planningColumns = (t : (key: string, ...rest : any) => string, date_option
         headerAlign: 'center',
         renderCell: renderNumberAsDate(language, date_options),
         width: 220,
-        hide: true
+        hide: true,
+        // Needed so that Material ui doesn't try to import their stuff
+        renderEditCell: (_params) => <></>
     },
     {
         field: "status",
@@ -68,7 +76,9 @@ const planningColumns = (t : (key: string, ...rest : any) => string, date_option
                 }
             </Tooltip>
         ),
-        width: 130
+        width: 130,
+        // Needed so that Material ui doesn't try to import their stuff
+        renderEditCell: (_params) => <></>
     }
 ] as GridColDef[];
 
