@@ -15,8 +15,9 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import Skeleton from '@mui/material/Skeleton';
 
-// languages
-import {frFR, enUS} from '@mui/material/locale';
+// hooks
+// @ts-ignore
+import { useAsyncMemo } from "../hooks/useAsyncMemo.tsx";
 
 // @ts-ignore
 import Menu from "./Home/Menu.tsx"
@@ -44,9 +45,11 @@ const TestsGallery = lazy(() => import("./Tests/TestsGallery.tsx"));
 const LatestVideosGallery = lazy(() => import("./LatestVideos/LatestVideosGallery.tsx"));
 
 // Languages for Material UI
-const materialUI_languages = {
-    fr: frFR,
-    en: enUS
+const materialUI_languages : {
+    [lang : string]: 'frFR' | 'enUS'
+} = {
+    fr: "frFR",
+    en: "enUS"
 }
 
 function Root(_props) {
@@ -118,7 +121,7 @@ function withThemeProvider(Component) {
         const systemColor = prefersDarkMode ? "dark" : "light";
 
         // for language of the app
-        const currentLanguage = i18n.language;
+        const currentLanguage = i18n.language as 'fr' | 'en';
 
         // Two case handled here :
         // 1) When user comes to the site and have different color that default
@@ -133,13 +136,18 @@ function withThemeProvider(Component) {
         );
 
         // Prepare theme for possible darkmode
+        const muiLanguage = useAsyncMemo(async () => {
+            const { [materialUI_languages[currentLanguage]] : language} = await import("@mui/material/locale");
+            return language;
+        }, [currentLanguage], {} as any);
+
         const theme = useMemo(
             () =>
                 createTheme({
                     palette: {
                         mode: currentColor,
                     },
-                }, materialUI_languages[currentLanguage]),
+                }, muiLanguage),
             [currentLanguage, currentColor],
         );
         return (
