@@ -147,36 +147,19 @@ function GamesSorters(_props) {
                                             // Object.keys as I need the following order : UP / DOWN
                                             Object
                                                 .keys(sort_button_conditions)
+                                                .filter(sort_key => sort_button_conditions[sort_key](index))
                                                 .map(
-                                                    sort_key => {
-                                                        const condition_check = sort_button_conditions[sort_key];
-                                                        if (!condition_check(index)) {
-                                                            return null;
-                                                        } else {
-                                                            return (
-                                                                <IconButton 
-                                                                    aria-label={sort_key} 
-                                                                    name={criteria} 
-                                                                    size="small" 
-                                                                    onClick={handleSortOrderChange}
-                                                                    key={criteria + "_"+ sort_key}
-                                                                >
-                                                                    {
-                                                                        (() => {
-                                                                            switch(sort_key){
-                                                                                case "upSorter":
-                                                                                    return <ArrowUpwardIcon fontSize="inherit" />
-                                                                                case "downSorter":
-                                                                                    return <ArrowDownwardIcon fontSize="inherit" />
-                                                                                default:
-                                                                                    return null;
-                                                                            }
-                                                                        })()
-                                                                    } 
-                                                                </IconButton> 
-                                                            )
-                                                        }
-                                                    }
+                                                    sort_key => 
+                                                        <IconButton 
+                                                            aria-label={sort_key} 
+                                                            name={criteria} 
+                                                            size="small" 
+                                                            onClick={handleSortOrderChange}
+                                                            key={criteria + "_"+ sort_key}
+                                                        >
+                                                            { (sort_key === "upSorter") && <ArrowUpwardIcon fontSize="inherit" />}
+                                                            { (sort_key === "downSorter") && <ArrowDownwardIcon fontSize="inherit" />}
+                                                        </IconButton> 
                                                 )
                                         }
                                     </div>
