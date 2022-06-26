@@ -1,6 +1,12 @@
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux'
 
+// For translation
+import {I18nextProvider, initReactI18next} from "react-i18next";
+import detector from "i18next-browser-languagedetector";
+import resourcesToBackend from 'i18next-resources-to-backend';
+import i18next from "i18next";
+
 // Common
 // @ts-ignore
 //import * as serviceWorker from './serviceWorker.tsx';
@@ -8,13 +14,6 @@ import { Provider } from 'react-redux'
 import store from "./components/Store.tsx"
 // @ts-ignore
 import Root from "./components/Root.tsx";
-
-// For translation
-import {I18nextProvider, initReactI18next} from "react-i18next";
-import detector from "i18next-browser-languagedetector";
-import resourcesToBackend from 'i18next-resources-to-backend';
-import i18next from "i18next";
-
 
 i18next
     // Lazy translations : most of the time, user will choose only one language
