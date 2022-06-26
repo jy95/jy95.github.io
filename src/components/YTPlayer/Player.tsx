@@ -1,7 +1,7 @@
-import React from 'react'
+import { lazy } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 
-const ReactPlayer = React.lazy(() => import("react-player/youtube"));
+const ReactPlayer = lazy(() => import("react-player/youtube"));
 
 export default function Player(props) {
     const { id } = useParams();
