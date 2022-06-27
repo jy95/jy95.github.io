@@ -1,5 +1,6 @@
 import { Suspense, lazy } from "react";
 import { useTranslation } from "react-i18next";
+
 // For snackbars
 import { useSnackbar } from 'notistack';
 
@@ -33,7 +34,11 @@ function ReloadWrapper(props) {
         enqueueSnackbar(
             error.message,
             {
-                variant: 'error'
+                variant: 'error',
+                TransitionProps: {
+                    unmountOnExit: true,
+                    in: false
+                }
             }
         )
     }
