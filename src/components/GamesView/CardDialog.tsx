@@ -94,12 +94,8 @@ function CardDialog(props) {
                 enqueueSnackbar(
                     t(LABEL_COPIED_LINK, { "gameName": gameTitle }),
                     {
-                        variant: "success",
-                        autoHideDuration: 2500,
-                        TransitionProps: {
-                            unmountOnExit: true,
-                            in: false
-                        }
+                        "variant": "success",
+                        "autoHideDuration": 2500
                     }
                 )
                 setContextMenuOpen(false);
