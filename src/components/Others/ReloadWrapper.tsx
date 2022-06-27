@@ -1,7 +1,5 @@
 import { Suspense, lazy } from "react";
 import { useTranslation } from "react-i18next";
-// For snackbars
-import { useSnackbar } from 'notistack';
 
 // Icons
 const CircularProgress = lazy(() => import("@mui/material/CircularProgress"));
@@ -23,19 +21,9 @@ function ReloadWrapper(props) {
         [key: string]: any;
     };
     const { t } = useTranslation('common');
-    const { enqueueSnackbar } = useSnackbar();
 
     const RealComponent = () => {
         return component;
-    }
-
-    if (error){
-        enqueueSnackbar(
-            error.message,
-            {
-                variant: 'error'
-            }
-        )
     }
 
     return <Suspense fallback={null}>
