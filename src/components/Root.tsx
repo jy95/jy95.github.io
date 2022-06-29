@@ -1,7 +1,7 @@
 import { useMemo, useEffect, Suspense, lazy} from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import i18n from 'i18next';
+import { useTranslation } from "react-i18next";
 
 // snackbars
 import { SnackbarProvider } from 'notistack';
@@ -112,6 +112,7 @@ function withThemeProvider(Component) {
         const systemColor = prefersDarkMode ? "dark" : "light";
 
         // for language of the app
+        const { i18n } = useTranslation('common');
         const currentLanguage = i18n.language as 'fr' | 'en';
 
         // Two case handled here :

@@ -52,7 +52,7 @@ const AppBar = styled(MuiAppBar, {
 // main component
 function Header(_props) {
 
-    const [t, i18n] = useTranslation('common');
+    const {t, i18n} = useTranslation('common');
     const dispatch: AppDispatch = useDispatch();
     const isdrawerOpen = useSelector((state: RootState) => state.miscellaneous.drawerOpen);
     const currentColor = useSelector((state: RootState) => state.themeColor.currentColor);

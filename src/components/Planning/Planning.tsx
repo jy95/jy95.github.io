@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import i18n from 'i18next';
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -40,6 +39,8 @@ function Viewer(_props) {
     )
 
     const date_options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+
+    const { i18n } = useTranslation('common');
     const language = i18n.language;
     const columns = getTableColumns(t, date_options, language);
     const customLocaleText = useAsyncMemo(async () => {
