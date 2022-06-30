@@ -22,10 +22,6 @@ function ReloadWrapper(props) {
     };
     const { t } = useTranslation('common');
 
-    const RealComponent = () => {
-        return component;
-    }
-
     return <Suspense fallback={null}>
         {loading && <CenteredGrid><CircularProgress/></CenteredGrid>}
         {error && <>
@@ -42,7 +38,7 @@ function ReloadWrapper(props) {
                 </Fab>
             </CenteredGrid>
         </>}
-        { ( (loading === false) && !error) && <RealComponent /> }
+        { ( !loading && !error) && <>{component}</> }
     </Suspense>
 }
 
