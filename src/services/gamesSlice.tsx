@@ -115,11 +115,9 @@ export const all_games = async () => {
 
     // current date as integer (quicker comparaison)
     const currentDate = new Date();
-    const integerDate = [
-        currentDate.getFullYear() * 10000,
-        (currentDate.getMonth() + 1) * 100,
-        currentDate.getDate()
-    ].reduce((acc, cur) => acc + cur, 0);
+    const integerDate = (currentDate.getFullYear() * 10000) + 
+        ( (currentDate.getMonth() + 1) * 100 ) + 
+        currentDate.getDate();
 
     const gamesData = await import("../data/games.json");
 

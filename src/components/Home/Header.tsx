@@ -11,7 +11,6 @@ import { styled } from '@mui/material/styles';
 // Icons for switch
 import Brightness5Icon from '@mui/icons-material/Brightness5'; // sun
 import Brightness4Icon from '@mui/icons-material/Brightness4'; // moon
-import { yellow } from '@mui/material/colors';
 
 // Icons for languages
 import SvgIcon from '@mui/material/SvgIcon';
@@ -90,7 +89,7 @@ function Header(_props) {
                         checked={currentColor === "dark"}
                         onChange={handleDarkMode}
                         checkedIcon={<Brightness4Icon color="action" />}
-                        icon={<Brightness5Icon style={{ color: yellow[500] }}/>}
+                        icon={<Brightness5Icon style={{ color: '#ffeb3b' }}/>}
                         inputProps={{ 'aria-label': 'Mode' }}
                         color="default"
                     />

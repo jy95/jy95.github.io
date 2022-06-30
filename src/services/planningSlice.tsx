@@ -26,11 +26,9 @@ const initialState : PlanningState = {
 export const fetchPlanning = createAsyncThunk('planning/fetchGames', async () => {
     // current date as integer (quicker comparaison)
     const currentDate = new Date();
-    const integerDate = [
-        currentDate.getFullYear() * 10000,
-        (currentDate.getMonth() + 1) * 100,
-        currentDate.getDate()
-    ].reduce((acc, cur) => acc + cur, 0);
+    const integerDate = (currentDate.getFullYear() * 10000) + 
+        ( (currentDate.getMonth() + 1) * 100 ) + 
+        currentDate.getDate();
     const intergerDateRegex = /(?<year>\d{4,})(?<month>\d{2})(?<day>\d{2})/;
 
     // a scheduled game should only be displayed with these specific conditions
