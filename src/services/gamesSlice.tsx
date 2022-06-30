@@ -75,7 +75,7 @@ export interface GamesState {
     currentItemCount: number,
     // Page size (used for infinite scrolling)
     pageSize: number,
-    // Only load once
+    // Is first load (Only load once)
     initialLoad: boolean,
     // sorting
     sorters: gamesSorters,
@@ -197,6 +197,23 @@ export const scrollingFetching = createAsyncThunk('games/scrollingFetching', asy
     return {
         pageSize
     };
+}, {
+    condition: (_params, { getState } ) => {
+        const {
+            scrollLoading,
+            initialLoad
+        } = getState() as {
+            [key: string]: any,
+            scrollLoading: boolean,
+            initialLoad: boolean
+        };
+        // if first load or still loading, ignore request
+        if (initialLoad || scrollLoading) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 });
 
 const gamesSlice = createSlice({

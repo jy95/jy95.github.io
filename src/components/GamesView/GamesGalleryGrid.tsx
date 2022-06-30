@@ -120,7 +120,7 @@ function GamesGalleryGrid(_props) {
         dispatch(scrollingFetching());
     }, 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [scrollLoading]
+        [scrollLoading, canLoadMore]
     );
 
     const { loaderRef } = useInfiniteLoader({
