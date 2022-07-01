@@ -52,13 +52,16 @@ function ListItemLink(props) {
         [to],
     );
 
-    return (
-        <ListItem disablePadding>
-            <ListItemButton component={renderLink} selected={matchUrl}>
-                <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText primary={entry_label} />
-            </ListItemButton>
-        </ListItem>
+    return useMemo(
+        () => 
+            <ListItem disablePadding>
+                <ListItemButton component={renderLink} selected={matchUrl}>
+                    <ListItemIcon>{icon}</ListItemIcon>
+                    <ListItemText primary={entry_label} />
+                </ListItemButton>
+            </ListItem>,
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [matchUrl]
     )
 };
 
