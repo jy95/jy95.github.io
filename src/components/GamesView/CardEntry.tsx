@@ -9,7 +9,9 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from '@mui/material/CardActionArea';
 
-import Image from '@jy95/material-ui-image';
+// @ts-ignore
+import LazyImage from "../Others/LazyImage.tsx";
+
 // @ts-ignore
 const CardDialog = lazy(() => import("./CardDialog.tsx"));
 
@@ -79,13 +81,8 @@ function CardEntry(props) {
 
     // image properties
     let imageProps : {
-        src: string,
-        alt: string,
         srcSet?: string
-    } = {
-        src: game.imagePath,
-        alt: gameTitle
-    };
+    } = {};
 
     // only 
     if (game?.hasResponsiveImages) {
@@ -110,9 +107,10 @@ function CardEntry(props) {
                     className={classes.gameCover}
                     title={gameTitle}
                 >
-                    <Image 
-                        {...imageProps}
-                        disableSpinner={true}
+                    <LazyImage 
+                        imagePath={game.imagePath}
+                        title={gameTitle}
+                        propsImage={imageProps}
                     />
                 </CardMedia>
 
