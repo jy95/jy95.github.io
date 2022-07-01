@@ -81,10 +81,12 @@ function CardEntry(props) {
     let imageProps : {
         src: string,
         alt: string,
-        srcSet?: string
+        srcSet?: string,
+        loading: 'lazy' | 'eager'
     } = {
         src: game.imagePath,
-        alt: gameTitle
+        alt: gameTitle,
+        loading: "lazy"
     };
 
     // only 
