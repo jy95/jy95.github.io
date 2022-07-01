@@ -45,10 +45,7 @@ function LazyImage(props : PropsLazyImage) {
                 onError={() => setImageStatus("error")}
                 onLoad={() => setImageStatus("loaded")}
                 style={{
-                    objectFit: 'inherit',
-                    position: 'absolute',
-                    height: "inherit",
-                    top: "0px"
+                    width: "100%"
                 }}
                 // Extra image attributes
                 {...propsImage}
