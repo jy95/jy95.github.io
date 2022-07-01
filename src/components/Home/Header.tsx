@@ -11,7 +11,6 @@ import { styled } from '@mui/material/styles';
 // Icons for switch
 import Brightness5Icon from '@mui/icons-material/Brightness5'; // sun
 import Brightness4Icon from '@mui/icons-material/Brightness4'; // moon
-import { yellow } from '@mui/material/colors';
 
 // Icons for languages
 import SvgIcon from '@mui/material/SvgIcon';
@@ -52,7 +51,7 @@ const AppBar = styled(MuiAppBar, {
 // main component
 function Header(_props) {
 
-    const [t, i18n] = useTranslation('common');
+    const {t, i18n} = useTranslation('common');
     const dispatch: AppDispatch = useDispatch();
     const isdrawerOpen = useSelector((state: RootState) => state.miscellaneous.drawerOpen);
     const currentColor = useSelector((state: RootState) => state.themeColor.currentColor);
@@ -90,7 +89,7 @@ function Header(_props) {
                         checked={currentColor === "dark"}
                         onChange={handleDarkMode}
                         checkedIcon={<Brightness4Icon color="action" />}
-                        icon={<Brightness5Icon style={{ color: yellow[500] }}/>}
+                        icon={<Brightness5Icon style={{ color: '#ffeb3b' }}/>}
                         inputProps={{ 'aria-label': 'Mode' }}
                         color="default"
                     />

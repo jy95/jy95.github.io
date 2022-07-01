@@ -2,9 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // rss url
 // Because Youtube, I have to pass by a proxy
-const RSS_YOUTUBE_BASE_PATH = "https://www.youtube.com/feeds/videos.xml?channel_id=";
-const YOUTUBE_CHANNEL_ID = "UCG0N7IV-C43AM9psxslejCQ";
-const FEED_URL = `https://api.allorigins.win/get?url=${encodeURIComponent(RSS_YOUTUBE_BASE_PATH + YOUTUBE_CHANNEL_ID)}`;
+const RSS_YOUTUBE_FEED_URL = "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ";
+const FEED_URL = `https://api.allorigins.win/get?url=${encodeURIComponent(RSS_YOUTUBE_FEED_URL)}`;
 
 interface rssItem {
     // Video ID on Youtube
@@ -50,7 +49,7 @@ function mapRSSItemsToGame(items : {
 }[]) : rssItem[] {
     return items
         .map(item => {
-            const videoId = item.link.replace("https://www.youtube.com/watch?v=","");
+            const videoId = item.id.substring("yt:video:".length);
             return {
                 videoId,
                 title: decodeHtml(item.title),
