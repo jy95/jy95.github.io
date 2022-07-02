@@ -21,6 +21,7 @@ import type { RootState, AppDispatch } from '../Store.tsx';
 // Lazy
 const Checkbox = lazy(() => import("@mui/material/Checkbox"));
 const Select = lazy(() => import("@mui/material/Select"));
+const MenuItem = lazy(() => import("@mui/material/MenuItem"));
 
 const List = lazy(() => import("@mui/material/List"));
 const ListItem = lazy(() => import("@mui/material/ListItem"));
@@ -56,6 +57,34 @@ function GamesSorters(_props) {
         "duration": "gamesLibrary.sortLabels.duration"
     }
 
+    // handle input change
+    const handleInputChange = (
+        params : {
+            index: number,
+            type: 'criteriaOrder' | 'changeFieldOrder'
+            field: 'name' | 'releaseDate' | 'duration'
+        }
+    ) => {
+        const index = params.index;
+        const modifiedState = [...newSortState];
+
+        switch (params.type) {
+            case "criteriaOrder":
+                const nextState = (modifiedState[index][1] === "ASC") ? "DESC" : "ASC";
+                modifiedState[index] = [ modifiedState[index][0], nextState]
+                setNewSortState(modifiedState);
+                break;
+
+            case "changeFieldOrder":
+                modifiedState[index] = [params.field, modifiedState[index][1]];
+                setNewSortState(modifiedState);
+                break;
+        
+            default:
+                break;
+        }
+    }
+
     return <>
         <Button variant="contained" onClick={() => setDialogOpen(true)}>
             {t("gamesLibrary.sortButtonLabel")}
@@ -80,35 +109,38 @@ function GamesSorters(_props) {
                                     id={"searchCriteria_" + index}
                                     label={t("gamesLibrary.sortForm.criteria") + " : "}
                                     native={fullScreen}
-                                    defaultValue={newSortState[index][0]}
+                                    value={newSortState[index][0]}
                                     // @ts-ignore Typings are not considering `native`
                                     onChange={
-                                        (event : SelectChangeEvent<HTMLSelectElement>) => {
-                                            const field = event.target.value;
-                                            newSortState[index] = [field, newSortState[index][1]];
-                                            setNewSortState(newSortState);
-                                        }
+                                        (event : SelectChangeEvent<HTMLSelectElement>) => 
+                                            handleInputChange({
+                                                index, 
+                                                field: event.target.value.toString() as "name" | "releaseDate" | "duration", 
+                                                type: "changeFieldOrder"
+                                            })
                                     }
                                 >
                                     {
                                         Object
                                             .entries(field_labels)
                                             .map( ([field, translationKey]) => 
-                                                <option value={field} key={field}>
+                                                <MenuItem value={field} key={field}>
                                                     {t(translationKey)}
-                                                </option>
+                                                </MenuItem>
                                             )
                                     }
                                 </Select>
                                 <Checkbox
-                                    edge={'end'} 
+                                    edge={'end'}
                                     checked={newSortState[index][1] !== "ASC"}
-                                    onChange={() => {
-                                        const nextState = (newSortState[index][1] === "ASC") ? "DESC" : "ASC";
-                                        newSortState[index] = [ newSortState[index][0], nextState]
-                                        setNewSortState(newSortState);
-                                    }}
-                                    name={criteria}
+                                    onChange={
+                                        () => 
+                                        handleInputChange({
+                                            index, 
+                                            field: criteria, 
+                                            type: "criteriaOrder"
+                                        })
+                                    }
                                     checkedIcon={<ArrowDropUpIcon />}
                                     icon={<ArrowDropDownIcon />} 
                                 />
@@ -117,11 +149,18 @@ function GamesSorters(_props) {
                     </List>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={() => setDialogOpen(false)}>
+                    <Button autoFocus onClick={() => {
+                        // restore previous state
+                        setNewSortState(sortState);
+                        setDialogOpen(false);
+                    }}>
                         {t("gamesLibrary.sortForm.cancelButton")}
                     </Button>
                     {/* TODO replace that */}
-                    <Button autoFocus onClick={() => setDialogOpen(false)}>
+                    <Button autoFocus onClick={() => {
+                        setDialogOpen(false);
+                        dispatch(sortingGames(newSortState));
+                    }}>
                         {t("gamesLibrary.sortForm.sortButton")}
                     </Button>
                 </DialogActions>
