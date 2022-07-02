@@ -1,15 +1,15 @@
 import { useState, Suspense, lazy } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from "react-i18next";
+// To check what should happen when clicking on a game
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Button from '@mui/material/Button';
+import type { SelectChangeEvent } from '@mui/material/Select';
 
-import {
-    sortingGames,
-    sortingOrderChange
-} 
 // @ts-ignore
-from "../../services/gamesSlice.tsx";
+import { sortingGames } from "../../services/gamesSlice.tsx";
 // @ts-ignore
 import type { RootState, AppDispatch } from '../Store.tsx';
 
@@ -19,155 +19,113 @@ import type { RootState, AppDispatch } from '../Store.tsx';
 //import Switch from '@mui/material/Switch';
 
 // Lazy
-const FormControl = lazy(() => import("@mui/material/FormControl"));
-const FormGroup = lazy(() => import("@mui/material/FormGroup"));
-const Popover = lazy(() => import("@mui/material/Popover"));
 const Checkbox = lazy(() => import("@mui/material/Checkbox"));
-const FormControlLabel = lazy(() => import("@mui/material/FormControlLabel"));
-const IconButton = lazy(() => import("@mui/material/IconButton"));
+const Select = lazy(() => import("@mui/material/Select"));
+
+const List = lazy(() => import("@mui/material/List"));
+const ListItem = lazy(() => import("@mui/material/ListItem"));
+const ListItemText = lazy(() => import("@mui/material/ListItemText"));
+
+const Dialog = lazy(() => import("@mui/material/Dialog"));
+const DialogTitle = lazy(() => import("@mui/material/DialogTitle"));
+const DialogContent = lazy(() => import("@mui/material/DialogContent"));
+const DialogActions = lazy(() => import("@mui/material/DialogActions"));
 
 // To display ASC / DESC
 const ArrowDropUpIcon = lazy(() => import("@mui/icons-material/ArrowDropUp"));
 const ArrowDropDownIcon = lazy(() => import("@mui/icons-material/ArrowDropDown"));
 
-// To move sort
-const ArrowUpwardIcon = lazy(() => import("@mui/icons-material/ArrowUpward"));
-const ArrowDownwardIcon = lazy(() => import("@mui/icons-material/ArrowDownward"));
-
 // Sort buttons of GamesGallery
 function GamesSorters(_props) {
 
+    // hooks
     const { t } = useTranslation('common');
     const dispatch: AppDispatch = useDispatch();
+    const theme = useTheme();
+
+    // state
+    const [ isDialogOpen, setDialogOpen ] = useState(false);
     const sortState = useSelector((state: RootState) => state.games.sorters);
-
-    // To handle criteria enabling (or disabling)
-    const handleSortChange = (event) => {
-        const field = event.target.name;
-        const newSortersState : [
-            "name" | "releaseDate" | "duration",
-            "ASC" | "DESC"
-        ][] = sortState
-            .map( ([key, currentOrder]) => {
-                if (key === field) {
-                    return [key, (currentOrder === "ASC") ? "DESC" : "ASC"]
-                } else {
-                    return [key, currentOrder];
-                }
-            });
-        dispatch(sortingGames(newSortersState));
-    }
-
-    // To handle sort criteria 
-    const handleSortOrderChange = (event) => {
-        // Warning : using IconButton, event.target doesn't work as expected
-        const metadata = event.currentTarget;
-        // fetch info
-        const field = metadata.name;
-        const type_of_sort_change = metadata.getAttribute("aria-label");
-        const currentPosition = sortState.findIndex( (entry) => entry[0] === field);
-        const nextPosition = currentPosition + ((type_of_sort_change === "upSorter") ? -1 : 1);
-
-        // compute new order
-        let newOrder = [...sortState];
-        newOrder.splice(nextPosition,2,newOrder[currentPosition],newOrder[nextPosition]);
-
-        dispatch(sortingOrderChange(newOrder));
-    }
-
-    // For Popover
-    const [anchorEl, setAnchorEl] = useState(null);
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-    
-    const open = Boolean(anchorEl);
-    const id = open ? 'sort-popover' : undefined;
+    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+    let [ newSortState, setNewSortState ] = useState([...sortState]);
 
     // map field to labels in translation file(s)
     const field_labels = {
-        "name": "gamesLibrary.sortLabels.byName",
-        "releaseDate": "gamesLibrary.sortLabels.byReleaseDate",
-        "duration": "gamesLibrary.sortLabels.byDuration"
-    }
-    // labels for sort buttons (with condition)
-    const sort_button_conditions = {
-        "upSorter": (index) => index !== 0,
-        "downSorter": (index) => index !== sortState.length -1,
+        "name": "gamesLibrary.sortLabels.name",
+        "releaseDate": "gamesLibrary.sortLabels.releaseDate",
+        "duration": "gamesLibrary.sortLabels.duration"
     }
 
-    // TODO one day, delete Popover for something more user friendly (and lighter)
     return <>
-        <Button aria-describedby={id} variant="contained" onClick={handleClick}>
+        <Button variant="contained" onClick={() => setDialogOpen(true)}>
             {t("gamesLibrary.sortButtonLabel")}
         </Button>
         <Suspense fallback={null}>
-            <Popover
-                id={id}
-                open={open}
-                anchorEl={anchorEl}
-                onClose={handleClose}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center',
-                }}
+            <Dialog
+                //fullWidth
+                fullScreen={fullScreen}
+                open={isDialogOpen}
+                onClose={() => setDialogOpen(false)}
+                aria-labelledby="games-sorters-dialog"
             >
-                <FormControl component="fieldset" variant="standard">
-                    <FormGroup>
+                <DialogTitle id="games-sorters-dialog">
+                    {t("gamesLibrary.sortForm.title")}
+                </DialogTitle>
+                <DialogContent>
+                    <List>
                         {
-                            sortState
-                                .map( ([criteria, currentOrder], index) => 
-                                    <div
-                                        key={"searchCriteria_"+criteria}
-                                    >
-                                        <FormControlLabel
-                                            control={
-                                                <>
-                                                    <Checkbox 
-                                                        checked={currentOrder !== "ASC"}
-                                                        onChange={handleSortChange}
-                                                        name={criteria}
-                                                        checkedIcon={<ArrowDropUpIcon />}
-                                                        icon={<ArrowDropDownIcon />} 
-                                                    />
-                                                </>
-                                            }
-                                            label={t(field_labels[criteria])}
-                                        />
-                                        {
-                                            // Object.keys as I need the following order : UP / DOWN
-                                            Object
-                                                .keys(sort_button_conditions)
-                                                .filter(sort_key => sort_button_conditions[sort_key](index))
-                                                .map(
-                                                    sort_key => 
-                                                        <IconButton 
-                                                            aria-label={sort_key} 
-                                                            name={criteria} 
-                                                            size="small" 
-                                                            onClick={handleSortOrderChange}
-                                                            key={criteria + "_"+ sort_key}
-                                                        >
-                                                            { (sort_key === "upSorter") && <ArrowUpwardIcon fontSize="inherit" />}
-                                                            { (sort_key === "downSorter") && <ArrowDownwardIcon fontSize="inherit" />}
-                                                        </IconButton> 
-                                                )
+                            newSortState.map( ([criteria, _], index) => <ListItem key={index}>
+                                <ListItemText primary={ t((index === 0) ? "gamesLibrary.sortForm.firstSort" : "gamesLibrary.sortForm.nextSort" ) }/>
+                                <Select
+                                    id={"searchCriteria_" + index}
+                                    label={t("gamesLibrary.sortForm.criteria") + " : "}
+                                    native={fullScreen}
+                                    defaultValue={newSortState[index][0]}
+                                    // @ts-ignore Typings are not considering `native`
+                                    onChange={
+                                        (event : SelectChangeEvent<HTMLSelectElement>) => {
+                                            const field = event.target.value;
+                                            newSortState[index] = [field, newSortState[index][1]];
+                                            setNewSortState(newSortState);
                                         }
-                                    </div>
-                                )
+                                    }
+                                >
+                                    {
+                                        Object
+                                            .entries(field_labels)
+                                            .map( ([field, translationKey]) => 
+                                                <option value={field} key={field}>
+                                                    {t(translationKey)}
+                                                </option>
+                                            )
+                                    }
+                                </Select>
+                                <Checkbox
+                                    edge={'end'} 
+                                    checked={newSortState[index][1] !== "ASC"}
+                                    onChange={() => {
+                                        const nextState = (newSortState[index][1] === "ASC") ? "DESC" : "ASC";
+                                        newSortState[index] = [ newSortState[index][0], nextState]
+                                        setNewSortState(newSortState);
+                                    }}
+                                    name={criteria}
+                                    checkedIcon={<ArrowDropUpIcon />}
+                                    icon={<ArrowDropDownIcon />} 
+                                />
+                            </ListItem>)
                         }
-                    </FormGroup>
-                </FormControl>
-            </Popover>
+                    </List>
+                </DialogContent>
+                <DialogActions>
+                    <Button autoFocus onClick={() => setDialogOpen(false)}>
+                        {t("gamesLibrary.sortForm.cancelButton")}
+                    </Button>
+                    {/* TODO replace that */}
+                    <Button autoFocus onClick={() => setDialogOpen(false)}>
+                        {t("gamesLibrary.sortForm.sortButton")}
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Suspense>
     </>;
 }
