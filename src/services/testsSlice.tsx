@@ -40,12 +40,7 @@ export const fetchTests = createAsyncThunk('tests/fetchGames', async () => {
                 url: base_url,
                 url_type: url_type,
                 durationAsInt: (game.duration) 
-                    ? game.duration
-                        .split(":")
-                        .reduce( 
-                            (acc : number, curr : string, idx: number) => acc + (parseInt(curr) * Math.pow(100, 2 - idx)),
-                            0
-                        )
+                    ? Number(game.duration.replaceAll(":", ""))
                     : 0,
                 hasResponsiveImages: game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages
             });
