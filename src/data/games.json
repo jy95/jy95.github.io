@@ -1727,6 +1727,19 @@
           "platform":"GBA",
           "availableAt":20230804,
           "endAt":20230804
+       },
+       {
+         "title": "Pursuit Force",
+         "playlistId": "PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB",
+         "releaseDate": "23/11/2005",
+         "duration": "03:06:59",
+         "genres": [
+            "Action",
+            "Racing"
+         ],
+         "platform": "PSP",
+         "availableAt":20230807,
+         "endAt":20230816
        }
     ]
  }
