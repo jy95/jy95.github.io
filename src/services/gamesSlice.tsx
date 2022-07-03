@@ -127,7 +127,6 @@ export const all_games = async () => {
         .filter(game => !game.hasOwnProperty("availableAt") || game?.availableAt <= integerDate)
         // enhance payload
         .map(game => {
-            const parts = game.releaseDate.split("/");
             const id = game.playlistId ?? game.videoId;
             const base_url = (
                 (game.playlistId) 
@@ -139,7 +138,9 @@ export const all_games = async () => {
                 id,
                 imagesFolder: process.env.PUBLIC_URL + gamesData.coversRootPath + id,
                 imagePath: process.env.PUBLIC_URL + gamesData.coversRootPath + id + "/" + (game?.coverFile ?? gamesData.defaultCoverFile),
-                releaseDate: new Date(+parts[2], Number(parts[1]) -1, +parts[0]).getTime(),
+                releaseDate: game.releaseDate
+                    .split("/")
+                    .reduce( (acc : number, curr : number, idx : number) => acc + (curr * Math.pow(100, idx)), 0),
                 url: base_url,
                 url_type: url_type,
                 durationAsInt: (game.duration) ? parseInt(game.duration.replace(DURATION_REGEX, "$1$2$3")) : 0,
