@@ -137,7 +137,7 @@ export const all_games = async () => {
                 imagePath: process.env.PUBLIC_URL + gamesData.coversRootPath + id + "/" + (game?.coverFile ?? gamesData.defaultCoverFile),
                 releaseDate: game.releaseDate
                     .split("/")
-                    .reduce( (acc : number, curr : number, idx : number) => acc + (curr * Math.pow(100, idx)), 0),
+                    .reduce( (acc : number, curr : string, idx : number) => acc + (parseInt(curr) * Math.pow(100, idx)), 0),
                 url: base_url,
                 url_type: url_type,
                 durationAsInt: (game.duration) 
