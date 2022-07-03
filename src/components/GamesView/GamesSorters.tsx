@@ -108,7 +108,9 @@ function GamesSorters(_props) {
                             newSortState.map( ([criteria, _], index) => <ListItem key={index}>
                                 <ListItemText primary={ t((index === 0) ? "gamesLibrary.sortForm.firstSort" : "gamesLibrary.sortForm.nextSort" ) }/>
                                 <FormControl>
-                                    <InputLabel id={"searchCriteriaLabel_" + index}>{t("gamesLibrary.sortForm.criteria")}</InputLabel>
+                                    <InputLabel htmlFor={"searchCriteria_" + index} id={"searchCriteriaLabel_" + index}>
+                                        {t("gamesLibrary.sortForm.criteria")}
+                                    </InputLabel>
                                     <Select
                                         id={"searchCriteria_" + index}
                                         labelId={"searchCriteriaLabel_" + index}
