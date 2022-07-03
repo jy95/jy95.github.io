@@ -84,19 +84,17 @@ function CardDialog(props) {
             "icon": () => <FileCopyIcon fontSize="small"/>,
             "text": t(LABEL_COPY_LINK),
             "onClick": async () => {
-                if (navigator.clipboard !== undefined) {//Chrome
+                if (navigator.clipboard !== undefined) {
                     await navigator.clipboard.writeText(gameURL);
-                } else if((window as any).clipboardData) { // Internet Explorer
-                    (window as any).clipboardData.setData("text/plain", gameURL);
+                    enqueueSnackbar(
+                        t(LABEL_COPIED_LINK, { "gameName": gameTitle }),
+                        {
+                            "variant": "success",
+                            "autoHideDuration": 2500
+                        }
+                    )
+                    setContextMenuOpen(false);
                 }
-                enqueueSnackbar(
-                    t(LABEL_COPIED_LINK, { "gameName": gameTitle }),
-                    {
-                        "variant": "success",
-                        "autoHideDuration": 2500
-                    }
-                )
-                setContextMenuOpen(false);
             }
         },
         // Share on Twitter
