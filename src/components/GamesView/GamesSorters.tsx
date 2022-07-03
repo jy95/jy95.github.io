@@ -6,7 +6,6 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Button from '@mui/material/Button';
-import type { SelectChangeEvent } from '@mui/material/Select';
 
 // @ts-ignore
 import { sortingGames } from "../../services/gamesSlice.tsx";
@@ -21,6 +20,7 @@ import type { RootState, AppDispatch } from '../Store.tsx';
 // Lazy
 const Checkbox = lazy(() => import("@mui/material/Checkbox"));
 const Select = lazy(() => import("@mui/material/Select"));
+const NativeSelect = lazy(() => import("@mui/material/NativeSelect"));
 const MenuItem = lazy(() => import("@mui/material/MenuItem"));
 const InputLabel = lazy(() => import("@mui/material/InputLabel"));
 const FormControl = lazy(() => import("@mui/material/FormControl"));
@@ -49,7 +49,7 @@ function GamesSorters(_props) {
     // state
     const [ isDialogOpen, setDialogOpen ] = useState(false);
     const sortState = useSelector((state: RootState) => state.games.sorters);
-    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+    const isNative = useMediaQuery(theme.breakpoints.down('md'));
     let [ newSortState, setNewSortState ] = useState([...sortState]);
 
     // map field to labels in translation file(s)
@@ -87,6 +87,61 @@ function GamesSorters(_props) {
         }
     }
 
+    const CustomSelect = ({criteria, index}) => {
+        // shared props
+        const props = {
+            value: newSortState[index][0],
+            id: "searchCriteria_" + index,
+            label: t("gamesLibrary.sortForm.criteria"),
+            onChange: (event) => handleInputChange({
+                    index, 
+                    field: event.target.value.toString() as "name" | "releaseDate" | "duration", 
+                    type: "changeFieldOrder"
+            })
+        }
+
+        if (isNative){
+            return <FormControl>
+                <InputLabel htmlFor={"searchCriteria_" + index}>
+                    {t("gamesLibrary.sortForm.criteria")}
+                </InputLabel>
+                <NativeSelect
+                    {...props}
+                >
+                    {
+                        Object
+                            .entries(field_labels)
+                            .map( ([field, translationKey]) => 
+                                <option value={field} key={field}>
+                                    {t(translationKey)}
+                                </option>
+                            )
+                    }
+                </NativeSelect>
+            </FormControl>
+        } else {
+            return <FormControl>
+                <InputLabel id={"searchCriteriaLabel_" + index}>
+                    {t("gamesLibrary.sortForm.criteria")}
+                </InputLabel>
+                <Select
+                    {...props}
+                    labelId={"searchCriteriaLabel_" + index}
+                >
+                    {
+                        Object
+                            .entries(field_labels)
+                            .map( ([field, translationKey]) => 
+                                <MenuItem value={field} key={field}>
+                                    {t(translationKey)}
+                                </MenuItem>
+                            )
+                    }
+                </Select>                
+            </FormControl>
+        }
+    }
+
     return <>
         <Button variant="contained" onClick={() => setDialogOpen(true)}>
             {t("gamesLibrary.sortButtonLabel")}
@@ -94,7 +149,7 @@ function GamesSorters(_props) {
         <Suspense fallback={null}>
             <Dialog
                 //fullWidth
-                fullScreen={fullScreen}
+                fullScreen={isNative}
                 open={isDialogOpen}
                 onClose={() => setDialogOpen(false)}
                 aria-labelledby="games-sorters-dialog"
@@ -107,37 +162,11 @@ function GamesSorters(_props) {
                         {
                             newSortState.map( ([criteria, _], index) => <ListItem key={index}>
                                 <ListItemText primary={ t((index === 0) ? "gamesLibrary.sortForm.firstSort" : "gamesLibrary.sortForm.nextSort" ) }/>
-                                <FormControl>
-                                    <InputLabel htmlFor={"searchCriteria_" + index} id={"searchCriteriaLabel_" + index}>
-                                        {t("gamesLibrary.sortForm.criteria")}
-                                    </InputLabel>
-                                    <Select
-                                        id={"searchCriteria_" + index}
-                                        labelId={"searchCriteriaLabel_" + index}
-                                        label={t("gamesLibrary.sortForm.criteria")}
-                                        native={fullScreen}
-                                        value={newSortState[index][0]}
-                                        // @ts-ignore Typings are not considering `native`
-                                        onChange={
-                                            (event : SelectChangeEvent<HTMLSelectElement>) => 
-                                                handleInputChange({
-                                                    index, 
-                                                    field: event.target.value.toString() as "name" | "releaseDate" | "duration", 
-                                                    type: "changeFieldOrder"
-                                                })
-                                        }
-                                    >
-                                        {
-                                            Object
-                                                .entries(field_labels)
-                                                .map( ([field, translationKey]) => 
-                                                    <MenuItem value={field} key={field}>
-                                                        {t(translationKey)}
-                                                    </MenuItem>
-                                                )
-                                        }
-                                    </Select>
-                                </FormControl>
+                                <CustomSelect 
+                                    criteria={criteria}
+                                    index={index}
+                                    key={index}
+                                />
                                 <Checkbox
                                     edge={'end'}
                                     checked={newSortState[index][1] !== "ASC"}
