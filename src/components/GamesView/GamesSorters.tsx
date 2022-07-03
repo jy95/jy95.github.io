@@ -22,6 +22,8 @@ import type { RootState, AppDispatch } from '../Store.tsx';
 const Checkbox = lazy(() => import("@mui/material/Checkbox"));
 const Select = lazy(() => import("@mui/material/Select"));
 const MenuItem = lazy(() => import("@mui/material/MenuItem"));
+const InputLabel = lazy(() => import("@mui/material/InputLabel"));
+const FormControl = lazy(() => import("@mui/material/FormControl"));
 
 const List = lazy(() => import("@mui/material/List"));
 const ListItem = lazy(() => import("@mui/material/ListItem"));
@@ -105,31 +107,35 @@ function GamesSorters(_props) {
                         {
                             newSortState.map( ([criteria, _], index) => <ListItem key={index}>
                                 <ListItemText primary={ t((index === 0) ? "gamesLibrary.sortForm.firstSort" : "gamesLibrary.sortForm.nextSort" ) }/>
-                                <Select
-                                    id={"searchCriteria_" + index}
-                                    label={t("gamesLibrary.sortForm.criteria") + " : "}
-                                    native={fullScreen}
-                                    value={newSortState[index][0]}
-                                    // @ts-ignore Typings are not considering `native`
-                                    onChange={
-                                        (event : SelectChangeEvent<HTMLSelectElement>) => 
-                                            handleInputChange({
-                                                index, 
-                                                field: event.target.value.toString() as "name" | "releaseDate" | "duration", 
-                                                type: "changeFieldOrder"
-                                            })
-                                    }
-                                >
-                                    {
-                                        Object
-                                            .entries(field_labels)
-                                            .map( ([field, translationKey]) => 
-                                                <MenuItem value={field} key={field}>
-                                                    {t(translationKey)}
-                                                </MenuItem>
-                                            )
-                                    }
-                                </Select>
+                                <FormControl>
+                                    <InputLabel id={"searchCriteriaLabel_" + index}>{t("gamesLibrary.sortForm.criteria")}</InputLabel>
+                                    <Select
+                                        id={"searchCriteria_" + index}
+                                        labelId={"searchCriteriaLabel_" + index}
+                                        label={t("gamesLibrary.sortForm.criteria")}
+                                        native={fullScreen}
+                                        value={newSortState[index][0]}
+                                        // @ts-ignore Typings are not considering `native`
+                                        onChange={
+                                            (event : SelectChangeEvent<HTMLSelectElement>) => 
+                                                handleInputChange({
+                                                    index, 
+                                                    field: event.target.value.toString() as "name" | "releaseDate" | "duration", 
+                                                    type: "changeFieldOrder"
+                                                })
+                                        }
+                                    >
+                                        {
+                                            Object
+                                                .entries(field_labels)
+                                                .map( ([field, translationKey]) => 
+                                                    <MenuItem value={field} key={field}>
+                                                        {t(translationKey)}
+                                                    </MenuItem>
+                                                )
+                                        }
+                                    </Select>
+                                </FormControl>
                                 <Checkbox
                                     edge={'end'}
                                     checked={newSortState[index][1] !== "ASC"}
