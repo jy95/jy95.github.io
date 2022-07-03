@@ -225,9 +225,6 @@ const gamesSlice = createSlice({
         sortingGames(state : GamesState, action: PayloadAction<gamesSorters>) {
             state.sorters = action.payload;
         },
-        sortingOrderChange(state : GamesState, action: PayloadAction<gamesSorters>){
-            state.sorters = action.payload;
-        },
         filteringByGenre(state : GamesState, action: PayloadAction<string[]>) {
             // If empty, remove filter - if not, add it
             let newFilters = state.activeFilters.filter(s => s.key !== "selected_genres");
@@ -315,7 +312,6 @@ const gamesSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const {
     sortingGames,
-    sortingOrderChange,
     filteringByGenre,
     filterByTitle,
     filterByPlatform

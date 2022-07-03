@@ -29,9 +29,17 @@
             "list": "Séries"
         },
         "sortLabels": {
-            "byName": "Par nom",
-            "byReleaseDate": "Par date de sortie",
-            "byDuration": "Par durée"
+            "name": "Nom",
+            "releaseDate": "Date de sortie",
+            "duration": "Durée"
+        },
+        "sortForm": {
+            "firstSort": "Trier par",
+            "nextSort": "puis par",
+            "title": "Trier les jeux",
+            "criteria": "Critère",
+            "cancelButton": "Annuler",
+            "sortButton": "Trier"
         },
         "snackbarsMessages": {
             "copiedLink": "Lien de {{gameName}} copié"

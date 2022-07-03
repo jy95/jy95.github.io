@@ -28,10 +28,18 @@
             "grid": "Games",
             "list": "Series"
         },
+        "sortForm": {
+            "firstSort": "Sort by",
+            "nextSort": "Then by",
+            "title": "Sort games",
+            "criteria": "Criteria",
+            "cancelButton": "Cancel",
+            "sortButton": "Sort"
+        },
         "sortLabels": {
-            "byName": "By name",
-            "byReleaseDate": "By release date",
-            "byDuration": "By duration"
+            "name": "Name",
+            "releaseDate": "Release date",
+            "duration": "Duration"
         },
         "snackbarsMessages": {
             "copiedLink": "Link of {{gameName}} copied"
