@@ -1,8 +1,7 @@
 import { Suspense, useState, lazy } from "react";
 import { useNavigate } from "react-router-dom";
 
-// To check what should happen when clicking on a game
-import { useTheme, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Card from "@mui/material/Card";
@@ -51,13 +50,11 @@ const SIZES_WITDH = {
 function CardEntry(props) {
 
     // hooks
-    const theme = useTheme();
     const navigate = useNavigate();
 
     // props
     const {game} = props;
-
-    const is_mobile_device = useMediaQuery(theme.breakpoints.down('md'));
+    const is_mobile_device = useMediaQuery( (theme : any) => theme.breakpoints.down('md'));
 
     // state of context menu
     const [contextMenuOpen,setContextMenuOpen] = useState(false);

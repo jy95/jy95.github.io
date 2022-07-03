@@ -2,7 +2,6 @@ import { useState, Suspense, lazy } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from "react-i18next";
 // To check what should happen when clicking on a game
-import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Button from '@mui/material/Button';
@@ -44,12 +43,11 @@ function GamesSorters(_props) {
     // hooks
     const { t } = useTranslation('common');
     const dispatch: AppDispatch = useDispatch();
-    const theme = useTheme();
 
     // state
     const [ isDialogOpen, setDialogOpen ] = useState(false);
     const sortState = useSelector((state: RootState) => state.games.sorters);
-    const isNative = useMediaQuery(theme.breakpoints.down('md'));
+    const isNative = useMediaQuery( (theme : any) => theme.breakpoints.down('md'));
     let [ newSortState, setNewSortState ] = useState([...sortState]);
 
     // map field to labels in translation file(s)

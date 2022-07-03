@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 // For full screen Dialog 
-import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 // For snackbars
@@ -45,8 +44,7 @@ function CardDialog(props) {
     // hooks
     const { t } = useTranslation('common');
     const navigate = useNavigate();
-    const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+    const fullScreen = useMediaQuery( (theme : any) => theme.breakpoints.down('md'));
     const { enqueueSnackbar } = useSnackbar();
 
     // props
