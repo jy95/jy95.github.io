@@ -23,13 +23,23 @@ const initialState : PlanningState = {
     planning: []
 }
 
+// Turn "YYYY...MMDD" to int
+function turnDateToInt(value: number | undefined) {
+    if (value) {
+        const { year, month, day } = (/(?<year>\d{4,})(?<month>\d{2})(?<day>\d{2})/.exec(value.toString()) as any).groups;
+        // TODO one day, remove that & let PlanningColumn do the job
+        return new Date(+year, Number(month) - 1, +day).getTime();
+    } else {
+        return undefined;
+    }
+}
+
 export const fetchPlanning = createAsyncThunk('planning/fetchGames', async () => {
     // current date as integer (quicker comparaison)
     const currentDate = new Date();
     const integerDate = (currentDate.getFullYear() * 10000) + 
         ( (currentDate.getMonth() + 1) * 100 ) + 
         currentDate.getDate();
-    const intergerDateRegex = /(?<year>\d{4,})(?<month>\d{2})(?<day>\d{2})/;
 
     // a scheduled game should only be displayed with these specific conditions
     const should_be_displayed = (elem, min, max) => elem <= max || elem <= min;
@@ -39,33 +49,14 @@ export const fetchPlanning = createAsyncThunk('planning/fetchGames', async () =>
         // only scheduled games - TODO add a property later for "on hold" entries
         // only active entries
         .filter(game => game.hasOwnProperty("availableAt") && should_be_displayed(integerDate, game.availableAt, game.endAt))
-        .map(scheduledGame => {
-
-            const common = {
-                id: scheduledGame.playlistId ?? scheduledGame.videoId,
-                title: scheduledGame.title,
-                platform: scheduledGame.platform,
-                status:  (scheduledGame.hasOwnProperty("endAt") ? "RECORDED" : "PENDING")
-            };
-
-            // optional date fields
-            const optional = ([
-                ["releaseDate", scheduledGame?.availableAt?.toString()],
-                ["endDate", scheduledGame?.endAt?.toString()]
-            ] as [string, string | undefined][] )
-                .filter( field => !!field[1] && field[1].match(intergerDateRegex) )
-                .reduce( (acc, curr) => {
-                    const [key, value] = curr;
-                    const { year, month, day } = (intergerDateRegex.exec(value as string) as any).groups;
-                    acc[key] = new Date(+year, Number(month) - 1, +day).getTime();
-                    return acc;
-                }, {});
-            
-            return {
-                ...common,
-                ...optional
-            }
-        }) as planningEntry[];
+        .map(scheduledGame => ({
+            id: scheduledGame.playlistId ?? scheduledGame.videoId,
+            title: scheduledGame.title,
+            platform: scheduledGame.platform,
+            status:  (scheduledGame.hasOwnProperty("endAt") ? "RECORDED" : "PENDING"),
+            releaseDate: turnDateToInt(scheduledGame?.availableAt),
+            endDate: turnDateToInt(scheduledGame?.endAt)
+        })) as planningEntry[];
 
         return {
             planning: planningGames
