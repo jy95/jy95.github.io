@@ -110,9 +110,6 @@ let countMatches = (games, filters) => games
 
 // Needed in several sub functions
 export const all_games = async () => {
-    // Regex for duration
-    const DURATION_REGEX = /(\d+):(\d+):(\d+)/; 
-
     // current date as integer (quicker comparaison)
     const currentDate = new Date();
     const integerDate = (currentDate.getFullYear() * 10000) + 
@@ -143,7 +140,14 @@ export const all_games = async () => {
                     .reduce( (acc : number, curr : number, idx : number) => acc + (curr * Math.pow(100, idx)), 0),
                 url: base_url,
                 url_type: url_type,
-                durationAsInt: (game.duration) ? parseInt(game.duration.replace(DURATION_REGEX, "$1$2$3")) : 0,
+                durationAsInt: (game.duration) 
+                    ? game.duration
+                        .split(":")
+                        .reduce( 
+                            (acc : number, curr : string, idx: number) => acc + (parseInt(curr) * Math.pow(100, 2 - idx)),
+                            0
+                        )
+                    : 0,
                 hasResponsiveImages: game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages
             });
         }) as EnhancedGame[];
