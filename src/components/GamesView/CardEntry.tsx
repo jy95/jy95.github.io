@@ -111,7 +111,7 @@ function CardEntry(props) {
                 >
                     <Image 
                         {...imageProps}
-                        disableSpinner={true}
+                        //disableSpinner={true}
                     />
                 </CardMedia>
 
