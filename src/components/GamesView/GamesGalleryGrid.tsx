@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import Alert from '@mui/material/Alert';
 
 // Style
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Grid";
 
 // Custom
 // @ts-ignore
@@ -109,7 +109,8 @@ function GamesGalleryGrid(_props) {
     // render row
     const renderRow = (game) =>
         <Grid 
-            key={game.playlistId ?? game.videoId}
+            key={game.playlistId ?? game.videoId} 
+            item 
             className={classes.gameEntry}
         >
             <CardEntry game={game}/>
