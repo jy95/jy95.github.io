@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Style
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Unstable_Grid2";
 
 // Custom
 // @ts-ignore
@@ -91,7 +91,6 @@ function TestsGallery(_props) {
                                 .map(game => 
                                         <Grid 
                                             key={game.playlistId ?? game.videoId} 
-                                            item 
                                             className={classes.gameEntry}
                                         >
                                             <CardEntry game={game}/>

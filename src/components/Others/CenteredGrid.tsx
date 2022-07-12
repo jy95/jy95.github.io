@@ -1,4 +1,4 @@
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Unstable_Grid2";
 
 function CenteredBox(props) {
     const {children} = props;

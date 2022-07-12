@@ -6,7 +6,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Unstable_Grid2";
 
 // Custom
 // @ts-ignore
@@ -101,7 +101,6 @@ function GamesGalleryList(_props) {
                                                     .map(game => 
                                                             <Grid 
                                                                 key={game.playlistId ?? game.videoId} 
-                                                                item 
                                                                 className={classes.gameEntry}
                                                             >
                                                                 <CardEntry game={game}/>
