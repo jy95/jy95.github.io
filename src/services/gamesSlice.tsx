@@ -130,16 +130,16 @@ export const all_games = async () => {
                     ? "https://www.youtube.com/playlist?list=" 
                     :  "https://www.youtube.com/watch?v="
             ) + id ;
-            const url_type = (game.playlistId) ? "PLAYLIST" : "VIDEO";
+            const base_path = `${process.env.PUBLIC_URL}${gamesData.coversRootPath}${id}`;
             return Object.assign({}, game, {
                 id,
-                imagesFolder: process.env.PUBLIC_URL + gamesData.coversRootPath + id,
-                imagePath: process.env.PUBLIC_URL + gamesData.coversRootPath + id + "/" + (game?.coverFile ?? gamesData.defaultCoverFile),
+                imagesFolder: base_path,
+                imagePath: `${base_path}/${ game?.coverFile ?? gamesData.defaultCoverFile }`,
                 releaseDate: game.releaseDate
                     .split("/")
                     .reduce( (acc : number, curr : string, idx : number) => acc + (parseInt(curr) * Math.pow(100, idx)), 0),
                 url: base_url,
-                url_type: url_type,
+                url_type: (game.playlistId) ? "PLAYLIST" : "VIDEO",
                 durationAsInt: (game.duration) 
                     ? Number(game.duration.replaceAll(":", ""))
                     : 0,
