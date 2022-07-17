@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk, AsyncThunk } from '@reduxjs/toolkit';
-// @ts-ignore
-import type { BasicGame, EnhancedGame } from "./sharedDefintion.tsx";
+import type { BasicGame, EnhancedGame, BasicVideo, BasicPlaylist } from "./sharedDefintion";
 
 type gamesSorters = [
     "name" | "releaseDate" | "duration",
@@ -122,12 +121,12 @@ export const all_games = async () => {
     // Build list of available games
     return (gamesData.games as BasicGame[])
         // hide not yet public games on channel
-        .filter(game => !game.hasOwnProperty("availableAt") || game?.availableAt <= integerDate)
+        .filter(game => (game?.availableAt === undefined) || game?.availableAt <= integerDate)
         // enhance payload
         .map(game => {
-            const id = game.playlistId ?? game.videoId;
+            const id = (game as BasicPlaylist).playlistId ?? (game as BasicVideo).videoId;
             const base_url = (
-                (game.playlistId) 
+                ("playlistId" in game) 
                     ? "https://www.youtube.com/playlist?list=" 
                     :  "https://www.youtube.com/watch?v="
             ) + id ;
@@ -140,8 +139,8 @@ export const all_games = async () => {
                     .split("/")
                     .reduce( (acc : number, curr : string, idx : number) => acc + (parseInt(curr) * Math.pow(100, idx)), 0),
                 url: base_url,
-                url_type: (game.playlistId) ? "PLAYLIST" : "VIDEO",
-                durationAsInt: (game.duration) 
+                url_type: ("playlistId" in game) ? "PLAYLIST" : "VIDEO",
+                durationAsInt: (game.duration)
                     ? Number(game.duration.replaceAll(":", ""))
                     : 0,
                 hasResponsiveImages: game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages

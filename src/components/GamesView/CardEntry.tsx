@@ -66,7 +66,7 @@ function CardEntry(props : {
         title: gameTitle,
         url: gameURL
     } = game;
-    const local_path = game.url_type === "PLAYLIST" ? "/playlist/" + game.playlistId : "/video/" + game.videoId;
+    const local_path = game.url_type === "PLAYLIST" ? "/playlist/" + game.id : "/video/" + game.id;
 
     function watchGame() {
         if (is_mobile_device) {

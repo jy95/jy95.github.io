@@ -1,12 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// @ts-ignore
-import type { BasicGame } from "./sharedDefintion.tsx";
+import type { BasicGame, BasicVideo, BasicPlaylist } from "./sharedDefintion";
 
 // For fetching games for planning
-interface planningEntry extends BasicGame {
+type planningEntry = Omit<BasicGame, "genres" | "videoId" | "playlistId" | "releaseDate"> & {
+    /** @description Still in progress or finished ? */
     status: "RECORDED" | "PENDING";
-    endDate?: number
-}
+    /** @description When to display the game public, such as 20210412 (12/04/2021) */
+    releaseDate: number;
+    /** @description When to display the game public, such as 20210420 (20/04/2021) */
+    endDate?: number;
+};
 
 export interface PlanningState {
     // error occurred ?
@@ -42,15 +45,15 @@ export const fetchPlanning = createAsyncThunk('planning/fetchGames', async () =>
         currentDate.getDate();
 
     // a scheduled game should only be displayed with these specific conditions
-    const should_be_displayed = (elem : number, min : number | undefined, max : number | undefined) => min === undefined || (max !== undefined && elem <= max) || elem <= min;
+    const should_be_displayed = (elem : number, min : number | undefined, max : number | undefined) => (min !== undefined && max === undefined) || (max !== undefined && elem <= max);
     const gamesData = await import("../data/games.json");
 
-    const planningGames = (gamesData.games as BasicGame[])
+    const planningGames = (gamesData.games)
         // only scheduled games - TODO add a property later for "on hold" entries
         // only active entries
         .filter(game =>  should_be_displayed(integerDate, game.availableAt, game.endAt))
         .map(scheduledGame => ({
-            id: scheduledGame.playlistId ?? scheduledGame.videoId,
+            id: (scheduledGame as BasicPlaylist).playlistId ?? (scheduledGame as BasicVideo).videoId,
             title: scheduledGame.title,
             platform: scheduledGame.platform,
             status:  (scheduledGame.hasOwnProperty("endAt") ? "RECORDED" : "PENDING"),

@@ -22,9 +22,8 @@ import {
     scrollingFetching,
     generate_sort_function,
     generate_filter_function,
-} 
-// @ts-ignore
-from "../../services/gamesSlice.tsx";
+}
+from "../../services/gamesSlice";
 import type { RootState, AppDispatch } from '../Store';
 import type { EnhancedGame } from "../../services/sharedDefintion";
 
@@ -103,7 +102,7 @@ function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
     // render row
     const renderRow = (game : EnhancedGame) =>
         <Grid 
-            key={game.playlistId ?? game.videoId} 
+            key={game.id}
             item 
             className={classes.gameEntry}
         >

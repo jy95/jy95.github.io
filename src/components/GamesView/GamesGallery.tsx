@@ -9,10 +9,8 @@ import ListIcon from '@mui/icons-material/List';
 import { useTranslation } from "react-i18next";
 
 // Custom
-// @ts-ignore
-const GamesGalleryGrid = lazy(() => import("./GamesGalleryGrid.tsx"));
-// @ts-ignore
-const GamesGalleryList = lazy(() => import("./GamesGalleryList.tsx"));
+const GamesGalleryGrid = lazy(() => import("./GamesGalleryGrid"));
+const GamesGalleryList = lazy(() => import("./GamesGalleryList"));
 
 // The gallery component
 function GamesGallery(_props : {[key: string | number | symbol] : any}) {

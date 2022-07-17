@@ -93,7 +93,7 @@ function GamesGalleryList(_props : {[key: string | number | symbol] : any}) {
                                                     .items
                                                     .map(game => 
                                                             <Grid 
-                                                                key={game.playlistId ?? game.videoId} 
+                                                                key={game.id}
                                                                 item 
                                                                 className={classes.gameEntry}
                                                             >

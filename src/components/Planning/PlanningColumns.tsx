@@ -8,8 +8,7 @@ import type { GridRenderCellParams, GridColDef } from '@mui/x-data-grid';
 import Tooltip from '@mui/material/Tooltip';
 
 // Platform icons
-// @ts-ignore
-import iconsSVG from "../GamesView/PlatformIcons.tsx";
+import iconsSVG from "../GamesView/PlatformIcons";
 
 const renderNumberAsDate = (language : string, date_options : any) => (params : GridRenderCellParams<string | undefined>) => <>
     { (params.value) ? new Date(params.value).toLocaleDateString(language, date_options) : null }
@@ -37,7 +36,7 @@ const planningColumns = (t : (key: string, ...rest : any) => string, date_option
         //align: 'center',
         renderCell: (params : GridRenderCellParams) => (
             <SvgIcon titleAccess={params.value}>
-                {iconsSVG[params.value]}
+                {iconsSVG[params.value as 'PS1' | 'PS2' | 'PS3' | 'PSP' | 'PC' | 'GBA']}
             </SvgIcon>
         ),
         width: 160

@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// @ts-ignore
-import { all_games } from "./gamesSlice.tsx";
-// @ts-ignore
-import type { EnhancedGame } from "./sharedDefintion.tsx";
+import { all_games } from "./gamesSlice";
+import type { EnhancedGame } from "./sharedDefintion";
 
 type serieType = {
     name: string,
@@ -35,7 +33,7 @@ export const fetchSeries = createAsyncThunk('Series/fetchSeries', async () => {
         return acc;
     }, {})
 
-    const sortByNameASC = (a : EnhancedGame, b : EnhancedGame) => new Intl.Collator().compare(a.name, b.name);
+    const sortByNameASC = (a : serieType, b : serieType) => new Intl.Collator().compare(a.name, b.name);
 
     let series = seriesData
         .series

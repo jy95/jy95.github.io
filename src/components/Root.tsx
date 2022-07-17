@@ -15,33 +15,22 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 
 // hooks
-// @ts-ignore
-import { useAsyncMemo } from "../hooks/useAsyncMemo.tsx";
+import { useAsyncMemo } from "../hooks/useAsyncMemo";
 
-// @ts-ignore
-import Menu from "./Home/Menu.tsx"
-// @ts-ignore
-import { DrawerHeader, Main } from "./Home/Drawer.tsx";
+import Menu from "./Home/Menu"
+import { DrawerHeader, Main } from "./Home/Drawer";
 
 // Redux action
-// @ts-ignore
-import { themeColor } from "../services/themeColorSlice.tsx";
-// @ts-ignore
-import type { RootState, AppDispatch } from './Store.tsx';
+import { themeColor } from "../services/themeColorSlice";
+import type { RootState, AppDispatch } from './Store';
 
 // Components
-// @ts-ignore
-const Header = lazy(() => import("./Home/Header.tsx"));
-// @ts-ignore
-const Player = lazy(() => import("./YTPlayer/Player.tsx"));
-// @ts-ignore
-const GamesGallery = lazy(() => import("./GamesView/GamesGallery.tsx"));
-// @ts-ignore
-const Planning = lazy(() => import("./Planning/Planning.tsx"));
-// @ts-ignore
-const TestsGallery = lazy(() => import("./Tests/TestsGallery.tsx"));
-// @ts-ignore
-const LatestVideosGallery = lazy(() => import("./LatestVideos/LatestVideosGallery.tsx"));
+const Header = lazy(() => import("./Home/Header"));
+const Player = lazy(() => import("./YTPlayer/Player"));
+const GamesGallery = lazy(() => import("./GamesView/GamesGallery"));
+const Planning = lazy(() => import("./Planning/Planning"));
+const TestsGallery = lazy(() => import("./Tests/TestsGallery"));
+const LatestVideosGallery = lazy(() => import("./LatestVideos/LatestVideosGallery"));
 
 function Root(_props : { [key: string | number | symbol] : any }) {
 
@@ -60,6 +49,7 @@ function Root(_props : { [key: string | number | symbol] : any }) {
                 <Router basename={process.env.PUBLIC_URL} >
                     <Header />
                     <Menu />
+                        {/* @ts-ignore Mui has some issue sending attr to children*/}
                         <Main open={ openMenu } >
                             <DrawerHeader />
                             <Routes>
