@@ -10,8 +10,8 @@ import { filterByPlatform } from "../../services/gamesSlice";
 import type { RootState, AppDispatch } from '../Store';
 
 // icons
-// @ts-ignore
-import iconsSVG from "./PlatformIcons.tsx";
+import iconsSVG from "./PlatformIcons";
+import type { Platform } from "../../services/sharedDefintion";
 
 const PLATFORMS = [
     "GBA",
@@ -52,7 +52,7 @@ function PlatformSelect(_props : {[key: string | number | symbol] : any}) {
             renderOption={(props, option, _state) => (
                 <li {...props} key={option.key}>
                     <SvgIcon titleAccess={option.label}>
-                        {iconsSVG[option.key]}
+                        {iconsSVG[option.key as Platform]}
                     </SvgIcon>
                     {option.label}
                 </li>

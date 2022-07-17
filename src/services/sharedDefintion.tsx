@@ -1,4 +1,4 @@
-export type Platform = "PC" | "GBA" | "PSP" | "PS1" | "PS2" | "PS3" | string;
+export type Platform = "PC" | "GBA" | "PSP" | "PS1" | "PS2" | "PS3";
 
 // structure used in data/games.json
 interface BasicEntry {
