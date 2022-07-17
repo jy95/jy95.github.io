@@ -35,8 +35,6 @@ i18next
     });
 
 const container = document.getElementById('root');
-// createRoot(container!) if you use TypeScript 
-// https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis 
 const root = createRoot(container!);
 root.render(
     <I18nextProvider i18n={i18next}>

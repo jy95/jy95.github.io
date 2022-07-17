@@ -3,9 +3,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 type themeColorType = 'light' | 'dark';
 
 export interface themeColorState {
-    // Current color for UI
+    /** @description Current color for UI */
     currentColor: themeColorType;
+    /** @description How color change was detected ? */
     mode: 'manual' | "auto";
+    /** @description Browser preferred color */
     systemColor: themeColorType
 }
 

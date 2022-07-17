@@ -2,11 +2,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { BasicVideo, BasicPlaylist, BasicGame, CardGame } from "./sharedDefintion";
 
 export interface TestsState {
-    // error occurred ?
+    /** @description error occurred ? */
     error: null | Error,
-    // data loading ?
+    /** @description data loading ? */
     loading: boolean,
-    // All available games in test
+    /** @description All available games in test */
     games: CardGame[],
 }
 

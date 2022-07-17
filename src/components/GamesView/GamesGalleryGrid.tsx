@@ -118,21 +118,8 @@ function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
 
     const { loaderRef } = useInfiniteLoader({
         loadMore: loadMoreGames,
-
-        // If this is false useInfiniteLoader no longer invokes `loadMore` when it usually does
         canLoadMore,
-
-        // Used for if your data fetching library fetches page 0 and renders it when the component loads, 
-        // to use this just have a state flag that you set to false once the initial load from 
-        // your data fetching lib has happened.
-        // default : true
         initialise: !initialLoad,
-
-        // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
-        //rootMargin: "0px 0px 0px 0px",
-
-        // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
-        //threshold: 1,
         debug: false,
     });
 
@@ -144,7 +131,6 @@ function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
         .filter(filtersFunction)
         // sort them in user preference
         .sort(currentSortFunction)
-        // 
         .slice(0, currentItemCount);
 
     return (

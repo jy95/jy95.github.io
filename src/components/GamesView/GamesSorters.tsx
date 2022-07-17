@@ -9,9 +9,7 @@ import Button from '@mui/material/Button';
 import { sortingGames } from "../../services/gamesSlice";
 import type { RootState, AppDispatch } from '../Store';
 
-// For sorting criteria reorder
-// Not used as it produces a bug
-//import ButtonGroup from '@mui/material/ButtonGroup';
+// TODO Idea For sorting criteria reorder
 //import Switch from '@mui/material/Switch';
 
 // Lazy

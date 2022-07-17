@@ -46,8 +46,6 @@ function ListItemLink(props : {
     const renderLink = useMemo(
         () =>
             forwardRef((linkProps, _ref) => (
-                // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
-                // See https://github.com/ReactTraining/react-router/issues/6056
                 <Link to={to} {...linkProps} />
             )),
         [to],

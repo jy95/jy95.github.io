@@ -33,8 +33,6 @@ const planningColumns = (t : (key: string, ...rest : any) => string, date_option
     {
         field: "platform",
         headerName: t("planning.columns.platform"),
-        //headerAlign: 'center',
-        //align: 'center',
         renderCell: (params : GridRenderCellParams) => (
             <SvgIcon titleAccess={params.value}>
                 {iconsSVG[params.value as Platform]}
@@ -60,7 +58,6 @@ const planningColumns = (t : (key: string, ...rest : any) => string, date_option
     {
         field: "status",
         headerName: t("planning.columns.status"),
-        //headerAlign: 'center',
         renderCell: (params : GridRenderCellParams) => (
             <Tooltip title={t("planning.states." + params.value )} aria-label={params.value}>
                 { 

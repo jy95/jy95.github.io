@@ -15,11 +15,11 @@ type gamesFilters = ({
     key: "selected_genres"
 })[];
 export const filtersFunctions = {
-    // To check if platform match search critiria
+    /** @description To check if platform match search critiria */
     "selected_platform": (platform : string) => (game : EnhancedGame) => game.platform === platform,
-    // To check if title match search criteria (insensitive search)
+    /** @description To check if title match search criteria (insensitive search) */
     "selected_title": (searchTitle : string) => (game : EnhancedGame) => game.title.search(new RegExp(searchTitle, 'i')) >= 0,
-    // To check if two arrays contains at least one element in common
+    /** @description To check if two arrays contains at least one element in common */
     "selected_genres": (requestedGenres : string[]) => (game : EnhancedGame) => requestedGenres.some(v => game.genres.indexOf(v) >= 0)
 }
 
@@ -61,25 +61,25 @@ export const generate_filter_function = (currentFilters : gamesFilters) => (game
 
 // Interface from the JSON file
 export interface GamesState {
-    // All available games of the channel
+    /** @description  All available games of the channel */
     games: EnhancedGame[],
-    // error occurred ?
+    /** @description  error occurred ? */
     error: null | Error,
-    // data loading ?
+    /** @description  data loading ? */
     loading: boolean,
-    // scrolling loading ?
+    /** @description  scrolling loading ? */
     scrollLoading: boolean,
-    // total number of items (including filtering criteria)
+    /** @description  total number of items (including filtering criteria) */
     totalItems: number,
-    // current loaded items (used for infinite scrolling)
+    /** @description  current loaded items (used for infinite scrolling) */
     currentItemCount: number,
-    // Page size (used for infinite scrolling)
+    /** @description  Page size (used for infinite scrolling) */
     pageSize: number,
-    // Is first load (Only load once)
+    /** @description  Is first load (Only load once) */
     initialLoad: boolean,
-    // sorting
+    /** @description  sorting */
     sorters: gamesSorters,
-    // current filters applied
+    /** @description  current filters applied */
     activeFilters: gamesFilters
 }
 

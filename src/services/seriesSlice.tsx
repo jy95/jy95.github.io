@@ -8,11 +8,11 @@ type serieType = {
 };
 
 interface SeriesState {
-    // error occurred ?
+    /** @description error occurred ? */
     error: null | Error,
-    // data loading ?
+    /** @description data loading ? */
     loading: boolean,
-    // Series
+    /** @description Series */
     series: serieType[]
 }
 

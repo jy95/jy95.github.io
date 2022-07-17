@@ -12,11 +12,11 @@ type planningEntry = Omit<BasicGame, "genres" | "videoId" | "playlistId" | "rele
 };
 
 export interface PlanningState {
-    // error occurred ?
+    /** @description error occurred ? */
     error: null | Error,
-    // data loading ?
+    /** @description data loading ? */
     loading: boolean,
-    // All available games of the channel
+    /** @description All available games of the channel */
     planning: planningEntry[],
 }
 

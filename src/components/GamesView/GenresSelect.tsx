@@ -60,7 +60,6 @@ function GenresSelect(_props : {[key: string | number | symbol] : any}) {
             openOnFocus
             filterSelectedOptions 
             id="select-game-genre"
-            //style={{ width: 300 }}
             limitTags={3}
             options={genre_options}
             getOptionLabel={(option : any) => option.label}
