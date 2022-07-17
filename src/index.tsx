@@ -8,12 +8,9 @@ import resourcesToBackend from 'i18next-resources-to-backend';
 import i18next from "i18next";
 
 // Common
-// @ts-ignore
-//import * as serviceWorker from './serviceWorker.tsx';
-// @ts-ignore
-import store from "./components/Store.tsx"
-// @ts-ignore
-import Root from "./components/Root.tsx";
+//import * as serviceWorker from './serviceWorker';
+import store from "./components/Store"
+import Root from "./components/Root";
 
 i18next
     // Lazy translations : most of the time, user will choose only one language
@@ -38,8 +35,6 @@ i18next
     });
 
 const container = document.getElementById('root');
-// createRoot(container!) if you use TypeScript 
-// https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis 
 const root = createRoot(container!);
 root.render(
     <I18nextProvider i18n={i18next}>

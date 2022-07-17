@@ -1,31 +1,38 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // rss url
-// Because Youtube, I have to pass by a proxy
+// Because of Youtube, I have to pass by a proxy
 const RSS_YOUTUBE_FEED_URL = "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ";
 const FEED_URL = `https://api.allorigins.win/get?url=${encodeURIComponent(RSS_YOUTUBE_FEED_URL)}`;
 
 interface rssItem {
-    // Video ID on Youtube
+    /** @description  Video ID on Youtube */
     videoId: string;
-    // Title on Youtube
+    /** @description  Title on Youtube */
     title: string;
-    // Type of Link
+    /** @description  Type of Link */
     url_type: "VIDEO";
-    // Thumbnail on Youtube
+    /** @description  Thumbnail on Youtube */
     imagePath: string;
-    // Youtube RSS doesn't offer dedicated urls for picture
-    hasResponsiveImages: false
+    /** @description  Youtube RSS doesn't offer dedicated urls for picture */
+    hasResponsiveImages: false;
+    /** @description  Youtube link */
+    url: string;
+    /** @description  React ID : identical to videoId */
+    id: string
+    // TODO : Duration as int
+    // TODO : Release date
+    // TODO : genre
 }
 
 interface latestVideosState {
-    // error occurred ?
+    /** @description error occurred ? */
     error: null | Error,
-    // data loading ?
+    /** @description data loading ? */
     loading: boolean,
-    // Latest videos
+    /** @description Latest videos */
     items: rssItem[],
-    // When latest fetch happens
+    /** @description When latest fetch happens */
     latestFetchedDate: number | undefined;
 }
 
@@ -52,6 +59,7 @@ function mapRSSItemsToGame(items : {
             const videoId = item.id.substring("yt:video:".length);
             return {
                 videoId,
+                id: videoId,
                 title: decodeHtml(item.title),
                 url: item.link,
                 url_type: "VIDEO",

@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk, AsyncThunk } from '@reduxjs/toolkit';
-// @ts-ignore
-import type { BasicGame, EnhancedGame } from "./sharedDefintion.tsx";
+import type { BasicGame, EnhancedGame, BasicVideo, BasicPlaylist } from "./sharedDefintion";
 
 type gamesSorters = [
     "name" | "releaseDate" | "duration",
@@ -16,33 +15,34 @@ type gamesFilters = ({
     key: "selected_genres"
 })[];
 export const filtersFunctions = {
-    // To check if platform match search critiria
-    "selected_platform": (platform) => (game) => game.platform === platform,
-    // To check if title match search criteria (insensitive search)
-    "selected_title": (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i')) >= 0,
-    // To check if two arrays contains at least one element in common
-    "selected_genres": (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v) >= 0)
+    /** @description To check if platform match search critiria */
+    "selected_platform": (platform : string) => (game : EnhancedGame) => game.platform === platform,
+    /** @description To check if title match search criteria (insensitive search) */
+    "selected_title": (searchTitle : string) => (game : EnhancedGame) => game.title.search(new RegExp(searchTitle, 'i')) >= 0,
+    /** @description To check if two arrays contains at least one element in common */
+    "selected_genres": (requestedGenres : string[]) => (game : EnhancedGame) => requestedGenres.some(v => game.genres.indexOf(v) >= 0)
 }
 
 // search criterias
-const sortByNameASC = (a, b) => new Intl.Collator().compare(a.title, b.title);
-const sortByReleaseDateASC = (a, b) => {
+const sortByNameASC = (a : EnhancedGame, b : EnhancedGame) => new Intl.Collator().compare(a.title, b.title);
+const sortByReleaseDateASC = (a : EnhancedGame, b : EnhancedGame) => {
     let aa = a["releaseDate"];
     let bb = b["releaseDate"];
     return aa < bb ? -1 : (aa > bb ? 1 : 0);
 };
-const sortByDurationASC = (a, b) => (a.durationAsInt < b.durationAsInt) ? -1 : (a.durationAsInt > b.durationAsInt ? 1 : 0);
+const sortByDurationASC = (a : EnhancedGame, b : EnhancedGame) => (a.durationAsInt < b.durationAsInt) ? -1 : (a.durationAsInt > b.durationAsInt ? 1 : 0);
 
 // To compute new sorting function
 const sortingFunctions = {
-    "name": (order: string) => (order === "ASC") ? sortByNameASC : (a, b) => -sortByNameASC(a, b),
-    "releaseDate": (order: string) => (order === "ASC") ? sortByReleaseDateASC : (a, b) => -sortByReleaseDateASC(a, b),
-    "duration": (order: string) => (order === "ASC") ? sortByDurationASC : (a, b) => -sortByDurationASC(a, b)
+    "name": (order: string) => (order === "ASC") ? sortByNameASC : (a : EnhancedGame, b : EnhancedGame) => -sortByNameASC(a, b),
+    "releaseDate": (order: string) => (order === "ASC") ? sortByReleaseDateASC : (a : EnhancedGame, b : EnhancedGame) => -sortByReleaseDateASC(a, b),
+    "duration": (order: string) => (order === "ASC") ? sortByDurationASC : (a : EnhancedGame, b : EnhancedGame) => -sortByDurationASC(a, b)
 }
 
 // Inspired by https://stackoverflow.com/a/60068169/6149867
-function makeMultiCriteriaSort(criteria) {
-    return (a, b) => {
+type sortingCriteriaType = ((a : EnhancedGame, b: EnhancedGame) => number)[];
+function makeMultiCriteriaSort(criteria : sortingCriteriaType) {
+    return (a : EnhancedGame, b : EnhancedGame) => {
         for(let i = 0; i < criteria.length; i++) {
             const comparatorResult = criteria[i](a, b);
             if (comparatorResult !== 0) {
@@ -57,29 +57,29 @@ export const generate_sort_function = (sortStates: gamesSorters) => makeMultiCri
     sortStates.map( ([key, order]) => sortingFunctions[key](order))
 );
 
-export const generate_filter_function = (currentFilters : gamesFilters) => (game) => currentFilters.every(filter => filtersFunctions[filter.key](filter.value)(game));
+export const generate_filter_function = (currentFilters : gamesFilters) => (game : EnhancedGame) => currentFilters.every(filter => filtersFunctions[filter.key](filter.value as any)(game));
 
 // Interface from the JSON file
 export interface GamesState {
-    // All available games of the channel
+    /** @description  All available games of the channel */
     games: EnhancedGame[],
-    // error occurred ?
+    /** @description  error occurred ? */
     error: null | Error,
-    // data loading ?
+    /** @description  data loading ? */
     loading: boolean,
-    // scrolling loading ?
+    /** @description  scrolling loading ? */
     scrollLoading: boolean,
-    // total number of items (including filtering criteria)
+    /** @description  total number of items (including filtering criteria) */
     totalItems: number,
-    // current loaded items (used for infinite scrolling)
+    /** @description  current loaded items (used for infinite scrolling) */
     currentItemCount: number,
-    // Page size (used for infinite scrolling)
+    /** @description  Page size (used for infinite scrolling) */
     pageSize: number,
-    // Is first load (Only load once)
+    /** @description  Is first load (Only load once) */
     initialLoad: boolean,
-    // sorting
+    /** @description  sorting */
     sorters: gamesSorters,
-    // current filters applied
+    /** @description  current filters applied */
     activeFilters: gamesFilters
 }
 
@@ -100,10 +100,10 @@ const initialState: GamesState = {
     activeFilters: []
 };
 
-let countMatches = (games, filters) => games
+let countMatches = (games : EnhancedGame[], filters : gamesFilters) => games
     .reduce(
         // Fastest way to compute that
-        (count, game) => count + (filters.every(condition => filtersFunctions[condition.key](condition.value)(game)) & 1),
+        (count, game) => count + (filters.every(condition => filtersFunctions[condition.key](condition.value as any)(game)) ? 1 : 0),
         // If no criteria, all games match
         (filters.length === 0) ? games.length : 0
     );
@@ -121,26 +121,26 @@ export const all_games = async () => {
     // Build list of available games
     return (gamesData.games as BasicGame[])
         // hide not yet public games on channel
-        .filter(game => !game.hasOwnProperty("availableAt") || game?.availableAt <= integerDate)
+        .filter(game => (game?.availableAt === undefined) || game?.availableAt <= integerDate)
         // enhance payload
         .map(game => {
-            const id = game.playlistId ?? game.videoId;
+            const id = (game as BasicPlaylist).playlistId ?? (game as BasicVideo).videoId;
             const base_url = (
-                (game.playlistId) 
+                ("playlistId" in game) 
                     ? "https://www.youtube.com/playlist?list=" 
                     :  "https://www.youtube.com/watch?v="
             ) + id ;
-            const url_type = (game.playlistId) ? "PLAYLIST" : "VIDEO";
+            const base_path = `${process.env.PUBLIC_URL}${gamesData.coversRootPath}${id}`;
             return Object.assign({}, game, {
                 id,
-                imagesFolder: process.env.PUBLIC_URL + gamesData.coversRootPath + id,
-                imagePath: process.env.PUBLIC_URL + gamesData.coversRootPath + id + "/" + (game?.coverFile ?? gamesData.defaultCoverFile),
+                imagesFolder: base_path,
+                imagePath: `${base_path}/${ game?.coverFile ?? gamesData.defaultCoverFile }`,
                 releaseDate: game.releaseDate
                     .split("/")
                     .reduce( (acc : number, curr : string, idx : number) => acc + (parseInt(curr) * Math.pow(100, idx)), 0),
                 url: base_url,
-                url_type: url_type,
-                durationAsInt: (game.duration) 
+                url_type: ("playlistId" in game) ? "PLAYLIST" : "VIDEO",
+                durationAsInt: (game.duration)
                     ? Number(game.duration.replaceAll(":", ""))
                     : 0,
                 hasResponsiveImages: game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages
@@ -164,7 +164,7 @@ export const fetchGames : AsyncThunk<{
 }) => {
     let games = await all_games();
 
-    let filtersFunction = (game) => currentFilters.every(filter => filtersFunctions[filter.key](filter.value)(game));
+    let filtersFunction = (game : EnhancedGame) => currentFilters.every(filter => filtersFunctions[filter.key](filter.value as any)(game));
     let sortFunction = generate_sort_function(sortStates);
 
     let currentGames = games

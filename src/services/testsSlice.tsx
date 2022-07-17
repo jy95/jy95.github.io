@@ -1,14 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// @ts-ignore
-import type { BasicGame, EnhancedGame } from "./sharedDefintion.tsx";
+import type { BasicVideo, BasicPlaylist, BasicGame, CardGame } from "./sharedDefintion";
 
 export interface TestsState {
-    // error occurred ?
+    /** @description error occurred ? */
     error: null | Error,
-    // data loading ?
+    /** @description data loading ? */
     loading: boolean,
-    // All available games in test
-    games: EnhancedGame[],
+    /** @description All available games in test */
+    games: CardGame[],
 }
 
 const initialState : TestsState = {
@@ -21,15 +20,15 @@ export const fetchTests = createAsyncThunk('tests/fetchGames', async () => {
     const gamesData = await import("../data/tests.json");
 
     // Build the object for component
-    let games : EnhancedGame[] = (gamesData.games as BasicGame[])
+    let games = (gamesData.games as BasicGame[])
         .map(game => {
-            const id = game.playlistId ?? game.videoId;
+            const url_type = ("playlistId" in game) ? "PLAYLIST" : "VIDEO";
+            const id = (game as BasicPlaylist).playlistId ?? (game as BasicVideo).videoId;
             const base_url = (
-                (game.playlistId) 
+                ("playlistId" in game)
                     ? "https://www.youtube.com/playlist?list=" 
                     :  "https://www.youtube.com/watch?v="
             ) + id ;
-            const url_type = (game.playlistId) ? "PLAYLIST" : "VIDEO";
             return Object.assign({}, game, {
                 id,
                 imagesFolder: process.env.PUBLIC_URL + gamesData.coversRootPath + id,
@@ -44,7 +43,7 @@ export const fetchTests = createAsyncThunk('tests/fetchGames', async () => {
                     : 0,
                 hasResponsiveImages: game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages
             });
-        });
+        }) as CardGame[];
 
         return {
             games
@@ -62,7 +61,7 @@ const planningSlice = createSlice({
             })       
             .addCase(fetchTests.fulfilled, (state : TestsState, { payload }) => {
                 state.loading = false;
-                state.games = (payload as any).games as TestsState[];
+                state.games = (payload as any).games as CardGame[];
                 state.error = null;
             })
             .addCase(fetchTests.rejected, (state : TestsState, { payload }) => {

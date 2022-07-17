@@ -3,7 +3,7 @@ import { useParams, useLocation } from 'react-router-dom'
 
 const ReactPlayer = lazy(() => import("react-player/youtube"));
 
-export default function Player(props) {
+export default function Player(_props : {[key: string | number | symbol] : any}) {
     const { id } = useParams();
     const location = useLocation();
     const type = (location.pathname.includes("/playlist/")) ? "PLAYLIST" : "VIDEO";

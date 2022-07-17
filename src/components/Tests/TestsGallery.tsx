@@ -6,14 +6,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import Grid from "@mui/material/Grid";
 
 // Custom
-// @ts-ignore
-import ReloadWrapper from "../Others/ReloadWrapper.tsx";
-// @ts-ignore
-import CardEntry from "../GamesView/CardEntry.tsx";
-// @ts-ignore
-import { fetchTests } from "../../services/testsSlice.tsx";
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
+import ReloadWrapper from "../Others/ReloadWrapper";
+import CardEntry from "../GamesView/CardEntry";
+import { fetchTests } from "../../services/testsSlice";
+import type { RootState, AppDispatch } from '../Store';
 
 const PREFIX = 'TestsGallery';
 
@@ -55,7 +51,7 @@ const StyledTestsGallery = styled('div')((
 }));
 
 // The gallery component
-function TestsGallery(_props) {
+function TestsGallery(_props : {[key: string | number | symbol] : any}) {
 
     const dispatch: AppDispatch = useDispatch();
     const loading = useSelector((state: RootState) => state.tests.loading);
@@ -90,7 +86,7 @@ function TestsGallery(_props) {
                             data
                                 .map(game => 
                                         <Grid 
-                                            key={game.playlistId ?? game.videoId} 
+                                            key={game.id}
                                             item 
                                             className={classes.gameEntry}
                                         >

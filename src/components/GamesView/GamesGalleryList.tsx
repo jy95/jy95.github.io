@@ -9,17 +9,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Grid from "@mui/material/Grid";
 
 // Custom
-// @ts-ignore
-import ReloadWrapper from "../Others/ReloadWrapper.tsx";
-// @ts-ignore
-import CardEntry from "./CardEntry.tsx";
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
-import { 
-    fetchSeries
-} 
-// @ts-ignore
-from "../../services/seriesSlice.tsx";
+import ReloadWrapper from "../Others/ReloadWrapper";
+import CardEntry from "./CardEntry";
+import type { RootState, AppDispatch } from '../Store';
+import { fetchSeries } from "../../services/seriesSlice";
 
 const AccordionDetails = lazy(() => import("@mui/material/AccordionDetails"));
 
@@ -52,7 +45,7 @@ const StyledSeriesGallery = styled('div')((
 }));
 
 // The gallery component
-function GamesGalleryList(_props) {
+function GamesGalleryList(_props : {[key: string | number | symbol] : any}) {
 
     const dispatch: AppDispatch = useDispatch();
     const loading = useSelector((state: RootState) => state.series.loading);
@@ -100,7 +93,7 @@ function GamesGalleryList(_props) {
                                                     .items
                                                     .map(game => 
                                                             <Grid 
-                                                                key={game.playlistId ?? game.videoId} 
+                                                                key={game.id}
                                                                 item 
                                                                 className={classes.gameEntry}
                                                             >

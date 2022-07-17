@@ -7,22 +7,16 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import type { GridSlotsComponent } from '@mui/x-data-grid';
 
 // Realod Wrapper
-// @ts-ignore
-import ReloadWrapper from "../Others/ReloadWrapper.tsx";
+import ReloadWrapper from "../Others/ReloadWrapper";
 // columns definitions
-// @ts-ignore
-import getTableColumns from "./PlanningColumns.tsx";
-
-// @ts-ignore
-import { useAsyncMemo } from "../../hooks/useAsyncMemo.tsx";
+import getTableColumns from "./PlanningColumns";
+import { useAsyncMemo } from "../../hooks/useAsyncMemo";
 
 // Redux
-// @ts-ignore
-import { fetchPlanning } from "../../services/planningSlice.tsx";
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
+import { fetchPlanning } from "../../services/planningSlice";
+import type { RootState, AppDispatch } from '../Store';
 
-function Viewer(_props) {
+function Viewer(_props : {[key: string | number | symbol] : any}) {
 
     const dispatch: AppDispatch = useDispatch();
     const loading = useSelector((state: RootState) => state.planning.loading);

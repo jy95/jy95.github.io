@@ -8,15 +8,15 @@ import type { GridRenderCellParams, GridColDef } from '@mui/x-data-grid';
 import Tooltip from '@mui/material/Tooltip';
 
 // Platform icons
-// @ts-ignore
-import iconsSVG from "../GamesView/PlatformIcons.tsx";
+import iconsSVG from "../GamesView/PlatformIcons";
+import type { Platform } from '../../services/sharedDefintion';
 
-const renderNumberAsDate = (language : string, date_options) => (params : GridRenderCellParams<string | undefined>) => <>
+const renderNumberAsDate = (language : string, date_options : any) => (params : GridRenderCellParams<string | undefined>) => <>
     { (params.value) ? new Date(params.value).toLocaleDateString(language, date_options) : null }
 </>
 
 // columns definitions
-const planningColumns = (t : (key: string, ...rest : any) => string, date_options, language : string) => [
+const planningColumns = (t : (key: string, ...rest : any) => string, date_options : any, language : string) => [
     {
         field: "title", 
         headerName: t("planning.columns.title"),
@@ -33,11 +33,9 @@ const planningColumns = (t : (key: string, ...rest : any) => string, date_option
     {
         field: "platform",
         headerName: t("planning.columns.platform"),
-        //headerAlign: 'center',
-        //align: 'center',
         renderCell: (params : GridRenderCellParams) => (
             <SvgIcon titleAccess={params.value}>
-                {iconsSVG[params.value]}
+                {iconsSVG[params.value as Platform]}
             </SvgIcon>
         ),
         width: 160
@@ -60,7 +58,6 @@ const planningColumns = (t : (key: string, ...rest : any) => string, date_option
     {
         field: "status",
         headerName: t("planning.columns.status"),
-        //headerAlign: 'center',
         renderCell: (params : GridRenderCellParams) => (
             <Tooltip title={t("planning.states." + params.value )} aria-label={params.value}>
                 { 

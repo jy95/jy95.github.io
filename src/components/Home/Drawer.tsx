@@ -1,6 +1,9 @@
 import { styled } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 
+// For typings
+import type { Theme } from '@mui/material/styles';
+
 // drawerWidth
 export const drawerWidth = 240;
 
@@ -15,7 +18,7 @@ export const DrawerHeader = styled('div')(({ theme }: any) => ({
 }));
 
 // Drawer Mixins
-export const openedMixin = (theme) => ({
+export const openedMixin = (theme : Theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
@@ -24,7 +27,7 @@ export const openedMixin = (theme) => ({
   overflowX: 'hidden',
 });
   
-export const closedMixin = (theme) => ({
+export const closedMixin = (theme : Theme) => ({
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -51,11 +54,12 @@ export const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 
       ...closedMixin(theme),
       '& .MuiDrawer-paper': closedMixin(theme),
     }),
-  }),
+  }) as any,
 );
 
 // styled Main
 export const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+  // @ts-ignore : open does exist in MUI
   ({ theme, open }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),

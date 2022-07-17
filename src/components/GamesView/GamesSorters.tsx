@@ -6,14 +6,10 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Button from '@mui/material/Button';
 
-// @ts-ignore
-import { sortingGames } from "../../services/gamesSlice.tsx";
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
+import { sortingGames } from "../../services/gamesSlice";
+import type { RootState, AppDispatch } from '../Store';
 
-// For sorting criteria reorder
-// Not used as it produces a bug
-//import ButtonGroup from '@mui/material/ButtonGroup';
+// TODO Idea For sorting criteria reorder
 //import Switch from '@mui/material/Switch';
 
 // Lazy
@@ -38,7 +34,7 @@ const ArrowDropUpIcon = lazy(() => import("@mui/icons-material/ArrowDropUp"));
 const ArrowDropDownIcon = lazy(() => import("@mui/icons-material/ArrowDropDown"));
 
 // Sort buttons of GamesGallery
-function GamesSorters(_props) {
+function GamesSorters(_props : {[key: string | number | symbol] : any}) {
 
     // hooks
     const { t } = useTranslation('common');
@@ -85,14 +81,14 @@ function GamesSorters(_props) {
         }
     }
 
-    const CustomSelect = ({criteria, index}) => {
+    const CustomSelect = ({criteria, index} : {criteria: string, index: number}) => {
         // shared props
         const props = {
             value: newSortState[index][0],
             id: "searchCriteria_" + index,
             label: t("gamesLibrary.sortForm.criteria"),
-            onChange: (event) => handleInputChange({
-                    index, 
+            onChange: (event : any) => handleInputChange({
+                    index,
                     field: event.target.value.toString() as "name" | "releaseDate" | "duration", 
                     type: "changeFieldOrder"
             })

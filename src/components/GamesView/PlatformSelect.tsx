@@ -6,17 +6,12 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 import SvgIcon from '@mui/material/SvgIcon';
 
-import {
-    filterByPlatform
-}
-// @ts-ignore
-from "../../services/gamesSlice.tsx";
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
+import { filterByPlatform } from "../../services/gamesSlice";
+import type { RootState, AppDispatch } from '../Store';
 
 // icons
-// @ts-ignore
-import iconsSVG from "./PlatformIcons.tsx";
+import iconsSVG from "./PlatformIcons";
+import type { Platform } from "../../services/sharedDefintion";
 
 const PLATFORMS = [
     "GBA",
@@ -27,7 +22,7 @@ const PLATFORMS = [
     "PSP"
 ];
 
-function PlatformSelect(_props) {
+function PlatformSelect(_props : {[key: string | number | symbol] : any}) {
 
     const { t } = useTranslation('common');
     const dispatch: AppDispatch = useDispatch();
@@ -57,7 +52,7 @@ function PlatformSelect(_props) {
             renderOption={(props, option, _state) => (
                 <li {...props} key={option.key}>
                     <SvgIcon titleAccess={option.label}>
-                        {iconsSVG[option.key]}
+                        {iconsSVG[option.key as Platform]}
                     </SvgIcon>
                     {option.label}
                 </li>

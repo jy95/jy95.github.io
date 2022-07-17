@@ -9,8 +9,8 @@ import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from '@mui/material/CardActionArea';
 
 import Image from '@jy95/material-ui-image';
-// @ts-ignore
-const CardDialog = lazy(() => import("./CardDialog.tsx"));
+import type { CardGame } from "../../services/sharedDefintion";
+const CardDialog = lazy(() => import("./CardDialog"));
 
 const PREFIX = 'CardEntry';
 
@@ -40,14 +40,16 @@ const StyledCard = styled(Card)((
 }));
 
 // for responsive pictures
-const PICTURE_SIZES = ["small", "medium", "big"];
 const SIZES_WITDH = {
     "small": "150w",
     "medium": "200w",
     "big": "250w"
 }
 
-function CardEntry(props) {
+function CardEntry(props : {
+    game: CardGame;
+    [key: string | number | symbol] : any;
+}) {
 
     // hooks
     const navigate = useNavigate();
@@ -64,7 +66,7 @@ function CardEntry(props) {
         title: gameTitle,
         url: gameURL
     } = game;
-    const local_path = game.url_type === "PLAYLIST" ? "/playlist/" + game.playlistId : "/video/" + game.videoId;
+    const local_path = game.url_type === "PLAYLIST" ? "/playlist/" + game.id : "/video/" + game.id;
 
     function watchGame() {
         if (is_mobile_device) {
@@ -89,8 +91,9 @@ function CardEntry(props) {
     // only 
     if (game?.hasResponsiveImages) {
         // TODO maybe in the future make that stuff more configurable
-        imageProps.srcSet= PICTURE_SIZES
-            .map(size=>`${game.imagesFolder}/cover@${size}.webp ${SIZES_WITDH[size]}`)
+        imageProps.srcSet = Object
+            .entries(SIZES_WITDH)
+            .map( ([size, param]) =>`${game.imagesFolder}/cover@${size}.webp ${param}`)
             .join(",");
     }
 

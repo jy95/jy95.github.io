@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface MiscellaneousState {
-    // Is Drawer open ?
+    /** @description Is Drawer open ? */
     drawerOpen: boolean
 }
 
@@ -19,7 +19,6 @@ const miscellaneousSlice = createSlice({
     }
 });
 
-// Action creators are generated for each case reducer function
 export const {
     drawerOpen
 } = miscellaneousSlice.actions;

@@ -9,18 +9,12 @@ import Alert from '@mui/material/Alert';
 import Grid from "@mui/material/Grid";
 
 // Custom
-// @ts-ignore
-import ReloadWrapper from "../Others/ReloadWrapper.tsx";
-// @ts-ignore
-import CardEntry from "./CardEntry.tsx";
-// @ts-ignore
-import GamesSorters from "./GamesSorters.tsx";
-// @ts-ignore
-import GenresSelect from "./GenresSelect.tsx";
-// @ts-ignore
-import PlatformSelect from "./PlatformSelect.tsx";
-// @ts-ignore
-import TitleFilter from "./TitleFilter.tsx";
+import ReloadWrapper from "../Others/ReloadWrapper";
+import CardEntry from "./CardEntry";
+import GamesSorters from "./GamesSorters";
+import GenresSelect from "./GenresSelect";
+import PlatformSelect from "./PlatformSelect";
+import TitleFilter from "./TitleFilter";
 
 // Redux
 import { 
@@ -28,11 +22,10 @@ import {
     scrollingFetching,
     generate_sort_function,
     generate_filter_function,
-} 
-// @ts-ignore
-from "../../services/gamesSlice.tsx";
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
+}
+from "../../services/gamesSlice";
+import type { RootState, AppDispatch } from '../Store';
+import type { EnhancedGame } from "../../services/sharedDefintion";
 
 const PREFIX = 'GamesGalleryGrid';
 
@@ -81,7 +74,7 @@ const StyledGamesGallery = styled('div')((
 }));
 
 // The gallery component
-function GamesGalleryGrid(_props) {
+function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
 
     const { t } = useTranslation('common');
     const dispatch: AppDispatch = useDispatch();
@@ -107,9 +100,9 @@ function GamesGalleryGrid(_props) {
     );
 
     // render row
-    const renderRow = (game) =>
+    const renderRow = (game : EnhancedGame) =>
         <Grid 
-            key={game.playlistId ?? game.videoId} 
+            key={game.id}
             item 
             className={classes.gameEntry}
         >
@@ -125,21 +118,8 @@ function GamesGalleryGrid(_props) {
 
     const { loaderRef } = useInfiniteLoader({
         loadMore: loadMoreGames,
-
-        // If this is false useInfiniteLoader no longer invokes `loadMore` when it usually does
         canLoadMore,
-
-        // Used for if your data fetching library fetches page 0 and renders it when the component loads, 
-        // to use this just have a state flag that you set to false once the initial load from 
-        // your data fetching lib has happened.
-        // default : true
         initialise: !initialLoad,
-
-        // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
-        //rootMargin: "0px 0px 0px 0px",
-
-        // Passed directly to the intersection observer https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Intersection_observer_options
-        //threshold: 1,
         debug: false,
     });
 
@@ -151,7 +131,6 @@ function GamesGalleryGrid(_props) {
         .filter(filtersFunction)
         // sort them in user preference
         .sort(currentSortFunction)
-        // 
         .slice(0, currentItemCount);
 
     return (

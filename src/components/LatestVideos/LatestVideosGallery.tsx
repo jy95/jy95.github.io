@@ -4,17 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import Grid from "@mui/material/Grid";
 
 // Custom
-// @ts-ignore
-import ReloadWrapper from "../Others/ReloadWrapper.tsx";
-
-// @ts-ignore
-import CardEntry from "../GamesView/CardEntry.tsx";
+import ReloadWrapper from "../Others/ReloadWrapper";
+import CardEntry from "../GamesView/CardEntry";
 
 // Redux
-// @ts-ignore
-import { fetchLatestVideos } from "../../services/latestVideosSlice.tsx";
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
+import { fetchLatestVideos } from "../../services/latestVideosSlice";
+import type { RootState, AppDispatch } from '../Store';
 
 const PREFIX = 'LatestVideosGallery';
 
@@ -56,7 +51,7 @@ const StyledLatestVideosGallery = styled('div')((
 }));
 
 // The gallery component
-function LatestVideosGallery(props) {
+function LatestVideosGallery(_props : {[key: string | number | symbol] : any}) {
 
     const dispatch: AppDispatch = useDispatch();
     const loading = useSelector((state: RootState) => state.latestVideos.loading);
