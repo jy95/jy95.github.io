@@ -11,12 +11,12 @@ import Tooltip from '@mui/material/Tooltip';
 // @ts-ignore
 import iconsSVG from "../GamesView/PlatformIcons.tsx";
 
-const renderNumberAsDate = (language : string, date_options) => (params : GridRenderCellParams<string | undefined>) => <>
+const renderNumberAsDate = (language : string, date_options : any) => (params : GridRenderCellParams<string | undefined>) => <>
     { (params.value) ? new Date(params.value).toLocaleDateString(language, date_options) : null }
 </>
 
 // columns definitions
-const planningColumns = (t : (key: string, ...rest : any) => string, date_options, language : string) => [
+const planningColumns = (t : (key: string, ...rest : any) => string, date_options : any, language : string) => [
     {
         field: "title", 
         headerName: t("planning.columns.title"),

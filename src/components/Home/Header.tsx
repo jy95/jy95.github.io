@@ -17,21 +17,18 @@ import SvgIcon from '@mui/material/SvgIcon';
 import Tooltip from '@mui/material/Tooltip';
 
 // Custom icons
-// @ts-ignore
-import languages_with_icons from "./HeaderLanguages.tsx";
+import languages_with_icons from "./HeaderLanguages";
 
 // Redux
-// @ts-ignore
-import { drawerOpen } from "../../services/miscellaneousSlice.tsx";
-// @ts-ignore
-import { themeColor } from "../../services/themeColorSlice.tsx";
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
+import { drawerOpen } from "../../services/miscellaneousSlice";
+import { themeColor } from "../../services/themeColorSlice";
+import type { RootState, AppDispatch } from '../Store';
 
 // styled AppBar
 const drawerWidth = 240;
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
+// @ts-ignore : open does exist in MUI
 })(({ theme, open }) => ({
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
@@ -49,7 +46,7 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 // main component
-function Header(_props) {
+function Header(_props : { [key: string | number | symbol] : any }) {
 
     const {t, i18n} = useTranslation('common');
     const dispatch: AppDispatch = useDispatch();
@@ -60,7 +57,7 @@ function Header(_props) {
         dispatch(drawerOpen(true));
     };
 
-    const handleDarkMode = (event) => {
+    const handleDarkMode = (event : any) => {
         const color = (event.target.checked) ? "dark" : "light";
         dispatch(themeColor({color, mode: "manual"}));
     }
@@ -70,6 +67,7 @@ function Header(_props) {
             <CssBaseline />
             <AppBar
                 position="fixed"
+                // @ts-ignore : open does exist in MUI
                 open={isdrawerOpen}
             >
                 <Toolbar>
@@ -98,11 +96,11 @@ function Header(_props) {
                         {
                             Object
                                 .keys(languages_with_icons)
-                                .map(language =>
+                                .map( language =>
                                     <Tooltip title={t("header.languages." + language)} key={language}>
                                         <IconButton onClick={() => i18n.changeLanguage(language)} size="large">
                                             <SvgIcon>
-                                                {languages_with_icons[language]}
+                                                {languages_with_icons[language as 'fr' | 'en']}
                                             </SvgIcon>
                                         </IconButton>
                                     </Tooltip>                   

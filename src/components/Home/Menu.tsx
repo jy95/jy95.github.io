@@ -25,17 +25,18 @@ import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 // Styled components
-// @ts-ignore
-import { Drawer, DrawerHeader } from "./Drawer.tsx";
+import { Drawer, DrawerHeader } from "./Drawer";
 
 // Redux 
-// @ts-ignore
-import { drawerOpen } from "../../services/miscellaneousSlice.tsx";
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
+import { drawerOpen } from "../../services/miscellaneousSlice";
+import type { RootState, AppDispatch } from '../Store';
 
 // List Item
-function ListItemLink(props) {
+function ListItemLink(props : {
+    [key: string | number | symbol] : any;
+    to: string;
+    primary: string;
+}) {
     const { icon, primary, to } = props;
     const { t } = useTranslation('common');
     const entry_label = t(primary);
@@ -90,7 +91,7 @@ const ENTRIES = [
 ]
 
 // Main component
-function Menu(props) {
+function Menu(props : {[key: string | number | symbol] : any}) {
 
     const {container} = props;
 

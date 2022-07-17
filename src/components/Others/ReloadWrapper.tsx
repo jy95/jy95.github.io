@@ -7,19 +7,18 @@ const Fab = lazy(() => import("@mui/material/Fab"));
 const AutorenewIcon = lazy(() => import("@mui/icons-material/Autorenew"));
 
 // Custom
-// @ts-ignore
-const CenteredGrid = lazy(() => import("./CenteredGrid.tsx"));
+const CenteredGrid = lazy(() => import("./CenteredGrid"));
 
 // The reload wrapper component
-function ReloadWrapper(props) {
+function ReloadWrapper(props : {
+    loading: boolean;
+    error: Error | null | undefined;
+    reloadFct: () => any;
+    component: JSX.Element;
+    [key: string | number | symbol] : any
+}) {
 
-    const {loading, error, component, reloadFct} = props as {
-        loading: boolean;
-        error: Error | undefined;
-        reloadFct: () => any;
-        component: JSX.Element;
-        [key: string]: any;
-    };
+    const {loading, error, component, reloadFct} = props;
     const { t } = useTranslation('common');
 
     return <Suspense fallback={null}>

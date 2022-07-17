@@ -15,7 +15,14 @@ interface rssItem {
     // Thumbnail on Youtube
     imagePath: string;
     // Youtube RSS doesn't offer dedicated urls for picture
-    hasResponsiveImages: false
+    hasResponsiveImages: false;
+    // Youtube link
+    url: string;
+    // React ID : identical to videoId
+    id: string
+    // TODO : Duration as int
+    // TODO : Release date
+    // TODO : genre
 }
 
 interface latestVideosState {
@@ -52,6 +59,7 @@ function mapRSSItemsToGame(items : {
             const videoId = item.id.substring("yt:video:".length);
             return {
                 videoId,
+                id: videoId,
                 title: decodeHtml(item.title),
                 url: item.link,
                 url_type: "VIDEO",

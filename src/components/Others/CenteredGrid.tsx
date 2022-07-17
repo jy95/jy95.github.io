@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 
-function CenteredBox(props) {
+function CenteredBox(props : {[key: string | number | symbol] : any}) {
     const {children} = props;
     return (
         <Grid

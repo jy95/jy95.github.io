@@ -7,6 +7,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 // For snackbars
 import { useSnackbar } from 'notistack';
+import type { CardGame } from "../../services/sharedDefintion";
 
 // For Dialog
 const Dialog = lazy(() => import("@mui/material/Dialog"));
@@ -39,7 +40,10 @@ const LABEL_REDDIT = "gamesLibrary.actionsButton.shareOnReddit";
 const LABEL_CLOSE_BUTTON = "gamesLibrary.actionsButton.closeContextMenu";
 const LABEL_COPIED_LINK = "gamesLibrary.snackbarsMessages.copiedLink";
 
-function CardDialog(props) {
+function CardDialog(props : {
+    game: CardGame;
+    contextMenuState : [boolean, (x: boolean) => void]
+}) {
     
     // hooks
     const { t } = useTranslation('common');

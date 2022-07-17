@@ -15,13 +15,13 @@ const GamesGalleryGrid = lazy(() => import("./GamesGalleryGrid.tsx"));
 const GamesGalleryList = lazy(() => import("./GamesGalleryList.tsx"));
 
 // The gallery component
-function GamesGallery(props) {
+function GamesGallery(_props : {[key: string | number | symbol] : any}) {
 
     const [value, setValue] = useState('GRID');
     const [isPending, startTransition] = useTransition();
     const { t } = useTranslation('common');
 
-    const handleChange = (_event, newValue) => {
+    const handleChange = (_event : any, newValue : string) => {
         startTransition(() => {
             setValue(newValue);
         });

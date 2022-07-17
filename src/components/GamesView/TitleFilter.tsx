@@ -8,12 +8,10 @@ import TextField from '@mui/material/TextField';
 import {
     filterByTitle
 } 
-// @ts-ignore
-from "../../services/gamesSlice.tsx";
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
+from "../../services/gamesSlice";
+import type { RootState, AppDispatch } from '../Store';
 
-function TitleFilter(_props) {
+function TitleFilter(_props : {[key: string | number | symbol] : any}) {
 
     const { t } = useTranslation('common');
     const dispatch: AppDispatch = useDispatch();

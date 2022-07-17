@@ -43,7 +43,7 @@ const TestsGallery = lazy(() => import("./Tests/TestsGallery.tsx"));
 // @ts-ignore
 const LatestVideosGallery = lazy(() => import("./LatestVideos/LatestVideosGallery.tsx"));
 
-function Root(_props) {
+function Root(_props : { [key: string | number | symbol] : any }) {
 
     const openMenu = useSelector((state: RootState) => state.miscellaneous.drawerOpen);
 
@@ -102,8 +102,8 @@ function Root(_props) {
     )
 }
 
-function withThemeProvider(Component) {
-    function WithThemeProvider(props) {
+function withThemeProvider(Component : any) {
+    function WithThemeProvider(_props : { [key: string | number | symbol] : any }) {
         // for theme Color
         const dispatch: AppDispatch = useDispatch();
         const currentColor = useSelector((state: RootState) => state.themeColor.currentColor);

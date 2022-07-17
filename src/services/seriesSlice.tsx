@@ -30,12 +30,12 @@ export const fetchSeries = createAsyncThunk('Series/fetchSeries', async () => {
     const seriesData = await import("../data/series.json");
 
     // Convert array to { "id": Game }
-    let games_dictionary = games.reduce( (acc, game) => {
+    let games_dictionary = games.reduce( (acc : {[id: string]: EnhancedGame}, game : EnhancedGame) => {
         acc[game.id] = game;
         return acc;
     }, {})
 
-    const sortByNameASC = (a, b) => new Intl.Collator().compare(a.name, b.name);
+    const sortByNameASC = (a : EnhancedGame, b : EnhancedGame) => new Intl.Collator().compare(a.name, b.name);
 
     let series = seriesData
         .series

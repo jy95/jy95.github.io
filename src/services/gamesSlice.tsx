@@ -17,32 +17,33 @@ type gamesFilters = ({
 })[];
 export const filtersFunctions = {
     // To check if platform match search critiria
-    "selected_platform": (platform) => (game) => game.platform === platform,
+    "selected_platform": (platform : string) => (game : EnhancedGame) => game.platform === platform,
     // To check if title match search criteria (insensitive search)
-    "selected_title": (searchTitle) => (game) => game.title.search(new RegExp(searchTitle, 'i')) >= 0,
+    "selected_title": (searchTitle : string) => (game : EnhancedGame) => game.title.search(new RegExp(searchTitle, 'i')) >= 0,
     // To check if two arrays contains at least one element in common
-    "selected_genres": (requestedGenres) => (game) => requestedGenres.some(v => game.genres.indexOf(v) >= 0)
+    "selected_genres": (requestedGenres : string[]) => (game : EnhancedGame) => requestedGenres.some(v => game.genres.indexOf(v) >= 0)
 }
 
 // search criterias
-const sortByNameASC = (a, b) => new Intl.Collator().compare(a.title, b.title);
-const sortByReleaseDateASC = (a, b) => {
+const sortByNameASC = (a : EnhancedGame, b : EnhancedGame) => new Intl.Collator().compare(a.title, b.title);
+const sortByReleaseDateASC = (a : EnhancedGame, b : EnhancedGame) => {
     let aa = a["releaseDate"];
     let bb = b["releaseDate"];
     return aa < bb ? -1 : (aa > bb ? 1 : 0);
 };
-const sortByDurationASC = (a, b) => (a.durationAsInt < b.durationAsInt) ? -1 : (a.durationAsInt > b.durationAsInt ? 1 : 0);
+const sortByDurationASC = (a : EnhancedGame, b : EnhancedGame) => (a.durationAsInt < b.durationAsInt) ? -1 : (a.durationAsInt > b.durationAsInt ? 1 : 0);
 
 // To compute new sorting function
 const sortingFunctions = {
-    "name": (order: string) => (order === "ASC") ? sortByNameASC : (a, b) => -sortByNameASC(a, b),
-    "releaseDate": (order: string) => (order === "ASC") ? sortByReleaseDateASC : (a, b) => -sortByReleaseDateASC(a, b),
-    "duration": (order: string) => (order === "ASC") ? sortByDurationASC : (a, b) => -sortByDurationASC(a, b)
+    "name": (order: string) => (order === "ASC") ? sortByNameASC : (a : EnhancedGame, b : EnhancedGame) => -sortByNameASC(a, b),
+    "releaseDate": (order: string) => (order === "ASC") ? sortByReleaseDateASC : (a : EnhancedGame, b : EnhancedGame) => -sortByReleaseDateASC(a, b),
+    "duration": (order: string) => (order === "ASC") ? sortByDurationASC : (a : EnhancedGame, b : EnhancedGame) => -sortByDurationASC(a, b)
 }
 
 // Inspired by https://stackoverflow.com/a/60068169/6149867
-function makeMultiCriteriaSort(criteria) {
-    return (a, b) => {
+type sortingCriteriaType = ((a : EnhancedGame, b: EnhancedGame) => number)[];
+function makeMultiCriteriaSort(criteria : sortingCriteriaType) {
+    return (a : EnhancedGame, b : EnhancedGame) => {
         for(let i = 0; i < criteria.length; i++) {
             const comparatorResult = criteria[i](a, b);
             if (comparatorResult !== 0) {
@@ -57,7 +58,7 @@ export const generate_sort_function = (sortStates: gamesSorters) => makeMultiCri
     sortStates.map( ([key, order]) => sortingFunctions[key](order))
 );
 
-export const generate_filter_function = (currentFilters : gamesFilters) => (game) => currentFilters.every(filter => filtersFunctions[filter.key](filter.value)(game));
+export const generate_filter_function = (currentFilters : gamesFilters) => (game : EnhancedGame) => currentFilters.every(filter => filtersFunctions[filter.key](filter.value as any)(game));
 
 // Interface from the JSON file
 export interface GamesState {
@@ -100,10 +101,10 @@ const initialState: GamesState = {
     activeFilters: []
 };
 
-let countMatches = (games, filters) => games
+let countMatches = (games : EnhancedGame[], filters : gamesFilters) => games
     .reduce(
         // Fastest way to compute that
-        (count, game) => count + (filters.every(condition => filtersFunctions[condition.key](condition.value)(game)) & 1),
+        (count, game) => count + (filters.every(condition => filtersFunctions[condition.key](condition.value as any)(game)) ? 1 : 0),
         // If no criteria, all games match
         (filters.length === 0) ? games.length : 0
     );
@@ -164,7 +165,7 @@ export const fetchGames : AsyncThunk<{
 }) => {
     let games = await all_games();
 
-    let filtersFunction = (game) => currentFilters.every(filter => filtersFunctions[filter.key](filter.value)(game));
+    let filtersFunction = (game : EnhancedGame) => currentFilters.every(filter => filtersFunctions[filter.key](filter.value as any)(game));
     let sortFunction = generate_sort_function(sortStates);
 
     let currentGames = games

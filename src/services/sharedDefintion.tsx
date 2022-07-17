@@ -19,44 +19,56 @@ export type Platform = "PC" | "GBA" | "PSP" | "PS1" | "PS2" | "PS3" | string;
 
 // structure used in data/games.json
 export interface BasicGame {
-    // Technical identifier for React - by default : playlistId | videoId
+    /** @description Technical identifier for React - by default : playlistId | videoId */
     id: string,
-    // Title of the game, such as "Beyond Good & Evil"
+    /** @description Title of the game, such as "Beyond Good & Evil" */
     title: string;
-    // Playlist ID from Youtube, what you see after "playlist?list="
+    /** @description Playlist ID from Youtube, what you see after "playlist?list=" */
     playlistId?: string;
-    // Video ID from Youtube - what you see after "watch?v="
+    /** @description Video ID from Youtube - what you see after "watch?v=" */
     videoId?: string;
-    // Platform for that game
+    /** @description Platform for that game */
     platform: Platform;
-    // Duration of the walkthrough
+    /** @description Duration of the walkthrough */
     duration?: Duration;
-    // Genres of the game
+    /** @description Genres of the game */
     genres: string[];
-    // When the game was released, such "01/09/2005"
+    /** @description When the game was released, such "01/09/2005" */
     releaseDate: string;
-    // When to display the game public, such as 20210412 (12/04/2021)
+    /** @description When to display the game public, such as 20210412 (12/04/2021) */
     availableAt?: number;
-    // When to display the game public, such as 20210420 (20/04/2021)
+    /** @description When to display the game public, such as 20210420 (20/04/2021) */
     endAt?: number;
-    // Name of the main cover file, such as "cover.webp"
+    /** @description Name of the main cover file, such as "cover.webp" */
     coverFile?: string;
-    // Does game has responsive images to offer
+    /** @description Does game has responsive images to offer */
     hasResponsiveImages?: boolean;
 }
 
 // structured after parsing data/games.json
 export interface EnhancedGame extends Omit<BasicGame, "releaseDate"> {
-    // Folder containing responsive images
+    /** @description Folder containing responsive images */
     imagesFolder?: string;
-    // Link to the main picture (for the card components)
+    /** @description Link to the main picture (for the card components) */
     imagePath: string;
-    // When the game was released (Date(2020, 02, 02).getTime())
+    /** @description When the game was released (Date(2020, 02, 02).getTime()) */
     releaseDate: number;
-    // "duration" into something useful for sorting
+    /** @description "duration" into something useful for sorting */
     durationAsInt: number;
-    // Link to Youtube
+    /** @description Link to Youtube */
     url: string;
-    // Type of Youtube link
+    /** @description Type of Youtube link */
     url_type: "PLAYLIST" | "VIDEO"
+}
+
+// structure used for GameEntry and thus GameDialog
+export interface CardGame extends Omit<BasicGame, "releaseDate" | "genres" | "platform"> {
+    /** @description Link to Youtube */
+    url: string;
+    /** @description Type of Youtube link */
+    url_type: "PLAYLIST" | "VIDEO";
+    /** @description Folder containing responsive images */
+    imagesFolder?: string;
+    /** @description Link to the main picture (for the card components) */
+    imagePath: string;
 }

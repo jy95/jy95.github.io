@@ -5,13 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 
-import {
-    filteringByGenre
-} 
-// @ts-ignore
-from "../../services/gamesSlice.tsx";
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
+import { filteringByGenre } from "../../services/gamesSlice";
+import type { RootState, AppDispatch } from '../Store';
 
 // Each one is also a key for translation
 const GENRES = [
@@ -38,7 +33,7 @@ const GENRES = [
 ];
 
 // Genres filter of GamesGallery
-function GenresSelect(_props) {
+function GenresSelect(_props : {[key: string | number | symbol] : any}) {
 
     const dispatch: AppDispatch = useDispatch();
     const selectedGenres : string[]  = useSelector(

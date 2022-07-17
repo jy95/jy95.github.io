@@ -9,18 +9,12 @@ import Alert from '@mui/material/Alert';
 import Grid from "@mui/material/Grid";
 
 // Custom
-// @ts-ignore
-import ReloadWrapper from "../Others/ReloadWrapper.tsx";
-// @ts-ignore
-import CardEntry from "./CardEntry.tsx";
-// @ts-ignore
-import GamesSorters from "./GamesSorters.tsx";
-// @ts-ignore
-import GenresSelect from "./GenresSelect.tsx";
-// @ts-ignore
-import PlatformSelect from "./PlatformSelect.tsx";
-// @ts-ignore
-import TitleFilter from "./TitleFilter.tsx";
+import ReloadWrapper from "../Others/ReloadWrapper";
+import CardEntry from "./CardEntry";
+import GamesSorters from "./GamesSorters";
+import GenresSelect from "./GenresSelect";
+import PlatformSelect from "./PlatformSelect";
+import TitleFilter from "./TitleFilter";
 
 // Redux
 import { 
@@ -31,8 +25,8 @@ import {
 } 
 // @ts-ignore
 from "../../services/gamesSlice.tsx";
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Store.tsx';
+import type { RootState, AppDispatch } from '../Store';
+import type { EnhancedGame } from "../../services/sharedDefintion";
 
 const PREFIX = 'GamesGalleryGrid';
 
@@ -81,7 +75,7 @@ const StyledGamesGallery = styled('div')((
 }));
 
 // The gallery component
-function GamesGalleryGrid(_props) {
+function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
 
     const { t } = useTranslation('common');
     const dispatch: AppDispatch = useDispatch();
@@ -107,7 +101,7 @@ function GamesGalleryGrid(_props) {
     );
 
     // render row
-    const renderRow = (game) =>
+    const renderRow = (game : EnhancedGame) =>
         <Grid 
             key={game.playlistId ?? game.videoId} 
             item 

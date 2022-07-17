@@ -42,13 +42,13 @@ export const fetchPlanning = createAsyncThunk('planning/fetchGames', async () =>
         currentDate.getDate();
 
     // a scheduled game should only be displayed with these specific conditions
-    const should_be_displayed = (elem, min, max) => elem <= max || elem <= min;
+    const should_be_displayed = (elem : number, min : number | undefined, max : number | undefined) => min === undefined || (max !== undefined && elem <= max) || elem <= min;
     const gamesData = await import("../data/games.json");
 
     const planningGames = (gamesData.games as BasicGame[])
         // only scheduled games - TODO add a property later for "on hold" entries
         // only active entries
-        .filter(game => game.hasOwnProperty("availableAt") && should_be_displayed(integerDate, game.availableAt, game.endAt))
+        .filter(game =>  should_be_displayed(integerDate, game.availableAt, game.endAt))
         .map(scheduledGame => ({
             id: scheduledGame.playlistId ?? scheduledGame.videoId,
             title: scheduledGame.title,
