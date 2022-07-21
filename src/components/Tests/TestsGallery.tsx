@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { styled } from '@mui/material/styles';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Style
@@ -10,45 +9,6 @@ import ReloadWrapper from "../Others/ReloadWrapper";
 import CardEntry from "../GamesView/CardEntry";
 import { fetchTests } from "../../services/testsSlice";
 import type { RootState, AppDispatch } from '../Store';
-
-const PREFIX = 'TestsGallery';
-
-const classes = {
-    gameEntry: `${PREFIX}-gameEntry`,
-    gamesCriteria: `${PREFIX}-gamesCriteria`
-};
-
-const StyledTestsGallery = styled('div')((
-    {
-        theme
-    }
-) => ({
-    [`& .${classes.gameEntry}`]: {
-        [theme.breakpoints.only('xs')]: {
-            flexBasis: "calc((100% / 1) - 1%)"
-        },
-        [theme.breakpoints.only('sm')]: {
-            flexBasis: "calc((100% / 2) - 1%)"
-        },
-        [theme.breakpoints.only('md')]: {
-            flexBasis: "calc((100% / 4) - 1%)"
-        },
-        [theme.breakpoints.up('lg')]: {
-            flexBasis: "calc((100% / 5) - 1%)"
-        },
-    },
-    [`& .${classes.gamesCriteria}`]: {
-        display: "flex",
-        [theme.breakpoints.down('md')]: {
-            flexDirection: "column",
-            rowGap: "8px"
-        },
-        [theme.breakpoints.up('md')]: {
-            flexDirection: "row",
-            justifyContent: "flex-end"
-        }
-    }
-}));
 
 // The gallery component
 function TestsGallery(_props : {[key: string | number | symbol] : any}) {
@@ -72,7 +32,7 @@ function TestsGallery(_props : {[key: string | number | symbol] : any}) {
             error={error}
             reloadFct={() => {dispatch(fetchTests());}}
             component={
-                <StyledTestsGallery>    
+                <div>    
                     <Grid
                         container
                         spacing={1}
@@ -88,14 +48,18 @@ function TestsGallery(_props : {[key: string | number | symbol] : any}) {
                                         <Grid 
                                             key={game.id}
                                             item 
-                                            className={classes.gameEntry}
+                                            xs={12}
+                                            sm={6}
+                                            md={3}
+                                            // 5 items for this screen size
+                                            lg={2.4}
                                         >
                                             <CardEntry game={game}/>
                                         </Grid>
                                 )
                         }
                     </Grid>
-                </StyledTestsGallery>            
+                </div>
             }
         />
     );

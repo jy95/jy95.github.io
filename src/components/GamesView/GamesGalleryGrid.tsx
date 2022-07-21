@@ -30,7 +30,6 @@ import type { EnhancedGame } from "../../services/sharedDefintion";
 const PREFIX = 'GamesGalleryGrid';
 
 const classes = {
-    gameEntry: `${PREFIX}-gameEntry`,
     gamesCriteria: `${PREFIX}-gamesCriteria`,
     loaderRef: `${PREFIX}-loaderRef`
 };
@@ -41,20 +40,6 @@ const StyledGamesGallery = styled('div')((
     }
 ) => ({
     // inspired by the settings https://www.youtube.com/gaming uses ;)
-    [`& .${classes.gameEntry}`]: {
-        // 2 items on [0, sm]
-        [theme.breakpoints.only('xs')]: {
-            flexBasis: "calc((100% / 2) - 1%)"
-        },
-        // 4 items on [sm, md[
-        [theme.breakpoints.only('sm')]: {
-            flexBasis: "calc((100% / 4) - 1%)"
-        },
-        // 8 items on [md, infinity]
-        [theme.breakpoints.up('md')]: {
-            flexBasis: "calc((100% / 8) - 1%)"
-        },
-    },
     [`& .${classes.gamesCriteria}`]: {
         display: "flex",
         [theme.breakpoints.down('md')]: {
@@ -103,8 +88,10 @@ function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
     const renderRow = (game : EnhancedGame) =>
         <Grid 
             key={game.id}
-            item 
-            className={classes.gameEntry}
+            item
+            xs={6}
+            md={4}
+            lg={1.5}
         >
             <CardEntry game={game}/>
     </Grid>;

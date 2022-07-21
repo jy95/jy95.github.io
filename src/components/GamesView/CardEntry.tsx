@@ -1,7 +1,6 @@
 import { Suspense, useState, lazy } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Card from "@mui/material/Card";
@@ -11,33 +10,6 @@ import CardActionArea from '@mui/material/CardActionArea';
 import Image from '@jy95/material-ui-image';
 import type { CardGame } from "../../services/sharedDefintion";
 const CardDialog = lazy(() => import("./CardDialog"));
-
-const PREFIX = 'CardEntry';
-
-const classes = {
-    gameRoot: `${PREFIX}-gameRoot`,
-    gameCover: `${PREFIX}-gameCover`,
-    MuiCardActionArea: `${PREFIX}-MuiCardActionArea`
-};
-
-const StyledCard = styled(Card)((
-    {
-        theme
-    }
-) => ({
-    [`&.${classes.gameRoot}`]: {
-        position: "relative",
-        //height: "100%"
-    },
-    [`& .${classes.gameCover}`]: {
-        zIndex: 1,
-        //height: "inherit"
-    },
-    [`& .${classes.MuiCardActionArea}`]: {
-        height: "inherit",
-        zIndex: 1
-    }
-}));
 
 // for responsive pictures
 const SIZES_WITDH = {
@@ -98,7 +70,7 @@ function CardEntry(props : {
     }
 
     return (
-        <StyledCard className={classes.gameRoot}>
+        <Card sx={{ position: "relative" }}>
 
             <CardActionArea 
                 onClick={watchGame}
@@ -106,10 +78,10 @@ function CardEntry(props : {
                     event.preventDefault();
                     setContextMenuOpen(true);
                 }}
-                classes={{root: classes.MuiCardActionArea}}
+                sx={{ height: "inherit", zIndex: 1 }}
             >
                 <CardMedia
-                    className={classes.gameCover}
+                    sx={{ zIndex: 1 }}
                     title={gameTitle}
                 >
                     <Image 
@@ -122,7 +94,7 @@ function CardEntry(props : {
             <Suspense fallback={null}>
                 <CardDialog game={game} contextMenuState={[contextMenuOpen,setContextMenuOpen]} />
             </Suspense>
-        </StyledCard>
+        </Card>
     );
 }
 
