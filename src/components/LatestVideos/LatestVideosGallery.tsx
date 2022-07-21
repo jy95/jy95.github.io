@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { styled } from '@mui/material/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import Grid from "@mui/material/Grid";
 
@@ -10,30 +9,6 @@ import CardEntry from "../GamesView/CardEntry";
 // Redux
 import { fetchLatestVideos } from "../../services/latestVideosSlice";
 import type { RootState, AppDispatch } from '../Store';
-
-const PREFIX = 'LatestVideosGallery';
-
-const classes = {
-    gamesCriteria: `${PREFIX}-gamesCriteria`
-};
-
-const StyledLatestVideosGallery = styled('div')((
-    {
-        theme
-    }
-) => ({
-    [`& .${classes.gamesCriteria}`]: {
-        display: "flex",
-        [theme.breakpoints.down('md')]: {
-            flexDirection: "column",
-            rowGap: "8px"
-        },
-        [theme.breakpoints.up('md')]: {
-            flexDirection: "row",
-            justifyContent: "flex-end"
-        }
-    }
-}));
 
 // The gallery component
 function LatestVideosGallery(_props : {[key: string | number | symbol] : any}) {
@@ -57,7 +32,7 @@ function LatestVideosGallery(_props : {[key: string | number | symbol] : any}) {
             error={error}
             reloadFct={() => {dispatch(fetchLatestVideos());}}
             component={
-                <StyledLatestVideosGallery>    
+                <div>    
                     <Grid
                         container
                         spacing={1}
@@ -84,7 +59,7 @@ function LatestVideosGallery(_props : {[key: string | number | symbol] : any}) {
                                 )
                         }
                     </Grid>
-                </StyledLatestVideosGallery>            
+                </div>
             }
         />
     );
