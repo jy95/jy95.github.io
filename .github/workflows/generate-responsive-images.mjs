@@ -58,6 +58,7 @@ async function resizePicture(directory, gameId, pathIcon) {
     return await Promise.all(promises);
 }
 
+// For big bang pictures refactoring
 async function resizePicturesInFolder() {
     for (let folder of [gamesJson, testsJson]) {
         let directory = normalize(`${__dirname}/../../public/${ folder.coversRootPath }`);
@@ -74,4 +75,27 @@ async function resizePicturesInFolder() {
     }
 }
 
-resizePicturesInFolder();
+// For new game / test entry
+async function resizePicturesInSingleFolder(folder, game, icon) {
+    let directory = normalize(`${__dirname}/../../public/${ folder }`);
+    let gameIcon = `${directory}/${game}/${ icon }`
+    try {
+        await resizePicture(directory, game, gameIcon);
+        console.log(`${game} - finished`);
+    } catch (error) {
+        console.error(`Cannot generate responsive images for ${game}`);
+    }
+}
+
+// Main
+const args = process.argv.slice(2);
+switch (args[0]) {
+    case 'singleGame':
+        console.log("Resize single game");
+        const [_, gameId, folder = "covers", icon = "cover.jpg", ...rest] = args;
+        resizePicturesInSingleFolder(folder, gameId, icon);
+        break;
+    default:
+        console.log("Resize all pictures ....");
+        resizePicturesInFolder();
+}
