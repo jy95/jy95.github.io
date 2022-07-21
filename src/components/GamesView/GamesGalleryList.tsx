@@ -1,5 +1,4 @@
 import { Suspense, lazy, useEffect } from "react";
-import { styled } from '@mui/material/styles';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Accordion from '@mui/material/Accordion';
@@ -15,34 +14,6 @@ import type { RootState, AppDispatch } from '../Store';
 import { fetchSeries } from "../../services/seriesSlice";
 
 const AccordionDetails = lazy(() => import("@mui/material/AccordionDetails"));
-
-const PREFIX = 'GamesGalleryList';
-
-const classes = {
-    gameEntry: `${PREFIX}-gameEntry`
-};
-
-const StyledSeriesGallery = styled('div')((
-    {
-        theme
-    }
-) => ({
-    // inspired by the settings https://www.youtube.com/gaming uses ;)
-    [`& .${classes.gameEntry}`]: {
-        // 2 items on [0, sm]
-        [theme.breakpoints.only('xs')]: {
-            flexBasis: "calc((100% / 2) - 1%)"
-        },
-        // 4 items on [sm, md[
-        [theme.breakpoints.only('sm')]: {
-            flexBasis: "calc((100% / 4) - 1%)"
-        },
-        // 8 items on [md, infinity]
-        [theme.breakpoints.up('md')]: {
-            flexBasis: "calc((100% / 8) - 1%)"
-        },
-    }
-}));
 
 // The gallery component
 function GamesGalleryList(_props : {[key: string | number | symbol] : any}) {
@@ -66,7 +37,7 @@ function GamesGalleryList(_props : {[key: string | number | symbol] : any}) {
             error={error}
             reloadFct={() => {dispatch(fetchSeries());}}
             component={
-                <StyledSeriesGallery>
+                <div>
                     {
                         data.map(serie => 
                             <Accordion key={serie.name}>
@@ -95,7 +66,9 @@ function GamesGalleryList(_props : {[key: string | number | symbol] : any}) {
                                                             <Grid 
                                                                 key={game.id}
                                                                 item 
-                                                                className={classes.gameEntry}
+                                                                xs={6}
+                                                                md={4}
+                                                                lg={1.5}
                                                             >
                                                                 <CardEntry game={game}/>
                                                             </Grid>
@@ -107,7 +80,7 @@ function GamesGalleryList(_props : {[key: string | number | symbol] : any}) {
                             </Accordion>
                         )
                     }
-                </StyledSeriesGallery>
+                </div>
             }
         />
     )
