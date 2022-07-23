@@ -108,6 +108,13 @@ let countMatches = (games : EnhancedGame[], filters : gamesFilters) => games
         (filters.length === 0) ? games.length : 0
     );
 
+// for responsive pictures
+const SIZES_WITDH = {
+    "small": "150w",
+    "medium": "200w",
+    "big": "250w"
+}
+
 // Needed in several sub functions
 export const all_games = async () => {
     // current date as integer (quicker comparaison)
@@ -133,8 +140,13 @@ export const all_games = async () => {
             const base_path = `${process.env.PUBLIC_URL}${gamesData.coversRootPath}${id}`;
             return Object.assign({}, game, {
                 id,
-                imagesFolder: base_path,
                 imagePath: `${base_path}/${ game?.coverFile ?? gamesData.defaultCoverFile }`,
+                srcSet: (game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages) 
+                    ? Object
+                        .entries(SIZES_WITDH)
+                        .map( ([size, param]) =>`${base_path}/cover@${size}.webp ${param}`)
+                        .join(",")
+                    : undefined,
                 releaseDate: game.releaseDate
                     .split("/")
                     .reduce( (acc : number, curr : string, idx : number) => acc + (parseInt(curr) * Math.pow(100, idx)), 0),
@@ -142,8 +154,7 @@ export const all_games = async () => {
                 url_type: ("playlistId" in game) ? "PLAYLIST" : "VIDEO",
                 durationAsInt: (game.duration)
                     ? Number(game.duration.replaceAll(":", ""))
-                    : 0,
-                hasResponsiveImages: game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages
+                    : 0
             });
         }) as EnhancedGame[];
 }

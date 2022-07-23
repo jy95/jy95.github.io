@@ -14,8 +14,6 @@ interface rssItem {
     url_type: "VIDEO";
     /** @description  Thumbnail on Youtube */
     imagePath: string;
-    /** @description  Youtube RSS doesn't offer dedicated urls for picture */
-    hasResponsiveImages: false;
     /** @description  Youtube link */
     url: string;
     /** @description  React ID : identical to videoId */
@@ -63,9 +61,7 @@ function mapRSSItemsToGame(items : {
                 title: decodeHtml(item.title),
                 url: item.link,
                 url_type: "VIDEO",
-                imagePath: "https://i.ytimg.com/vi_webp/" + videoId + "/0.webp",
-                // Youtube RSS doesn't offer dedicated urls for picture
-                hasResponsiveImages: false
+                imagePath: "https://i.ytimg.com/vi_webp/" + videoId + "/0.webp"
             }
         });
 }

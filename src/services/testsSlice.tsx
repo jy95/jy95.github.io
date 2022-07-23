@@ -16,6 +16,13 @@ const initialState : TestsState = {
     games: []
 }
 
+// for responsive pictures
+const SIZES_WITDH = {
+    "small": "150w",
+    "medium": "200w",
+    "big": "250w"
+}
+
 export const fetchTests = createAsyncThunk('tests/fetchGames', async () => {
     const gamesData = await import("../data/tests.json");
 
@@ -29,10 +36,16 @@ export const fetchTests = createAsyncThunk('tests/fetchGames', async () => {
                     ? "https://www.youtube.com/playlist?list=" 
                     :  "https://www.youtube.com/watch?v="
             ) + id ;
+            const base_path = process.env.PUBLIC_URL + gamesData.coversRootPath + id;
             return Object.assign({}, game, {
                 id,
-                imagesFolder: process.env.PUBLIC_URL + gamesData.coversRootPath + id,
-                imagePath: process.env.PUBLIC_URL + gamesData.coversRootPath + id + "/" + (game.coverFile ?? gamesData.defaultCoverFile),
+                imagePath: `${ base_path }/${ game.coverFile ?? gamesData.defaultCoverFile }`,
+                srcSet: (game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages) 
+                    ? Object
+                        .entries(SIZES_WITDH)
+                        .map( ([size, param]) =>`${base_path}/cover@${size}.webp ${param}`)
+                        .join(",")
+                    : undefined,
                 releaseDate: game.releaseDate
                     .split("/")
                     .reduce( (acc : number, curr : string, idx : number) => acc + (parseInt(curr) * Math.pow(100, idx)), 0),
@@ -40,8 +53,7 @@ export const fetchTests = createAsyncThunk('tests/fetchGames', async () => {
                 url_type: url_type,
                 durationAsInt: (game.duration) 
                     ? Number(game.duration.replaceAll(":", ""))
-                    : 0,
-                hasResponsiveImages: game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages
+                    : 0
             });
         }) as CardGame[];
 
