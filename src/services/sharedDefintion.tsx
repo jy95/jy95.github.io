@@ -39,10 +39,10 @@ export type BasicGame = BasicVideo | BasicPlaylist;
 
 // structure for Card entry
 interface CardEntry {
-    /** @description Folder containing responsive images */
-    imagesFolder?: string;
     /** @description Link to the main picture (for the card components) */
     imagePath: string;
+    /** @description Responsive images */
+    srcSet?: string;
     /** @description Link to Youtube */
     url: string;
     /** @description Type of Youtube link */

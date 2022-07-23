@@ -11,13 +11,6 @@ import Image from '@jy95/material-ui-image';
 import type { CardGame } from "../../services/sharedDefintion";
 const CardDialog = lazy(() => import("./CardDialog"));
 
-// for responsive pictures
-const SIZES_WITDH = {
-    "small": "150w",
-    "medium": "200w",
-    "big": "250w"
-}
-
 function CardEntry(props : {
     game: CardGame;
     [key: string | number | symbol] : any;
@@ -56,18 +49,10 @@ function CardEntry(props : {
         loading: 'lazy' | 'eager'
     } = {
         src: game.imagePath,
+        srcSet: game.srcSet,
         alt: gameTitle,
         loading: "lazy"
     };
-
-    // only 
-    if (game?.hasResponsiveImages) {
-        // TODO maybe in the future make that stuff more configurable
-        imageProps.srcSet = Object
-            .entries(SIZES_WITDH)
-            .map( ([size, param]) =>`${game.imagesFolder}/cover@${size}.webp ${param}`)
-            .join(",");
-    }
 
     return (
         <Card sx={{ position: "relative" }}>
