@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import Grid from "@mui/material/Grid";
 
 // Custom
@@ -14,9 +14,11 @@ import type { RootState, AppDispatch } from '../Store';
 function LatestVideosGallery(_props : {[key: string | number | symbol] : any}) {
 
     const dispatch: AppDispatch = useDispatch();
-    const loading = useSelector((state: RootState) => state.latestVideos.loading);
-    const error = useSelector((state: RootState) => state.latestVideos.error);
-    const data = useSelector((state: RootState) => state.latestVideos.items);
+    const {
+        loading,
+        error,
+        items: data
+    } = useSelector((state: RootState) => state.latestVideos, shallowEqual);
 
     // on mount, load data (only once)
     useEffect(() => {

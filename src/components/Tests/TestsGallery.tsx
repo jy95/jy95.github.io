@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 
 // Style
 import Grid from "@mui/material/Grid";
@@ -14,9 +14,11 @@ import type { RootState, AppDispatch } from '../Store';
 function TestsGallery(_props : {[key: string | number | symbol] : any}) {
 
     const dispatch: AppDispatch = useDispatch();
-    const loading = useSelector((state: RootState) => state.tests.loading);
-    const error = useSelector((state: RootState) => state.tests.error);
-    const data = useSelector((state: RootState) => state.tests.games);
+    const {
+        loading,
+        error,
+        games: data
+    } = useSelector((state: RootState) => state.tests, shallowEqual);
 
     // on mount, load data (only once)
     useEffect(() => {

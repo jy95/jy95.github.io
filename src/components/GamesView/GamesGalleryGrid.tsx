@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from "react";
 import { styled } from '@mui/material/styles';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import useInfiniteLoader from 'react-use-infinite-loader';
 import { useTranslation } from "react-i18next";
 import Alert from '@mui/material/Alert';
@@ -64,15 +64,17 @@ function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
     const { t } = useTranslation('common');
     const dispatch: AppDispatch = useDispatch();
 
-    const loading = useSelector((state: RootState) => state.games.loading);
-    const error = useSelector((state: RootState) => state.games.error);
-    const games = useSelector((state: RootState) => state.games.games);
-    const currentItemCount = useSelector((state: RootState) => state.games.currentItemCount);
-    const totalItems = useSelector((state: RootState) => state.games.totalItems);
-    const activeFilters = useSelector((state: RootState) => state.games.activeFilters);
-    const sorters = useSelector((state: RootState) => state.games.sorters);
-    const initialLoad = useSelector((state: RootState) => state.games.initialLoad);
-    const scrollLoading = useSelector((state: RootState) => state.games.scrollLoading);
+    const {
+        loading,
+        error,
+        games,
+        currentItemCount,
+        totalItems,
+        activeFilters,
+        sorters,
+        initialLoad,
+        scrollLoading
+    } = useSelector((state: RootState) => state.games, shallowEqual);
 
     const canLoadMore = (currentItemCount <= totalItems);
 
