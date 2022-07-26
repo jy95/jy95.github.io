@@ -91,9 +91,6 @@ function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
         <Grid 
             key={game.id}
             item
-            xs={6}
-            md={4}
-            lg={1.5}
         >
             <CardEntry game={game}/>
     </Grid>;

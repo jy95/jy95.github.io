@@ -51,19 +51,18 @@ function CardEntry(props : {
                     event.preventDefault();
                     setContextMenuOpen(true);
                 }}
-                sx={{ height: "inherit", zIndex: 1 }}
+                sx={{ zIndex: 1 }}
             >
                 <CardMedia
-                    sx={{ zIndex: 1 }}
+                    sx={{ zIndex: 1}}
                     title={gameTitle}
                 >
                     <LazyImage
                         imagePath={game.imagePath}
                         title={gameTitle}
                         propsPlaceholder={{
-                            width: "100%",
-                            // Needed 
-                            height: "200px"
+                            width: "250px",
+                            height: "250px"
                         }}
                         propsImage={{
                             srcSet: game.srcSet,
