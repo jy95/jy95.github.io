@@ -7,7 +7,8 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from '@mui/material/CardActionArea';
 
-import Image from '@jy95/material-ui-image';
+import LazyImage from "../Others/LazyImage";
+
 import type { CardGame } from "../../services/sharedDefintion";
 const CardDialog = lazy(() => import("./CardDialog"));
 
@@ -41,19 +42,6 @@ function CardEntry(props : {
         }
     }
 
-    // image properties
-    let imageProps : {
-        src: string,
-        alt: string,
-        srcSet?: string,
-        loading: 'lazy' | 'eager'
-    } = {
-        src: game.imagePath,
-        srcSet: game.srcSet,
-        alt: gameTitle,
-        loading: "lazy"
-    };
-
     return (
         <Card sx={{ position: "relative" }}>
 
@@ -69,9 +57,17 @@ function CardEntry(props : {
                     sx={{ zIndex: 1 }}
                     title={gameTitle}
                 >
-                    <Image 
-                        {...imageProps}
-                        disableSpinner={true}
+                    <LazyImage
+                        imagePath={game.imagePath}
+                        title={gameTitle}
+                        propsPlaceholder={{
+                            width: "100%",
+                            // Needed 
+                            height: "200px"
+                        }}
+                        propsImage={{
+                            srcSet: game.srcSet
+                        }}
                     />
                 </CardMedia>
 
