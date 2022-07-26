@@ -43,6 +43,8 @@ interface CardEntry {
     imagePath: string;
     /** @description Responsive images */
     srcSet?: string;
+    /** @description Responsive sizes */
+    sizes?: string;
     /** @description Link to Youtube */
     url: string;
     /** @description Type of Youtube link */
