@@ -66,7 +66,8 @@ function CardEntry(props : {
                             height: "200px"
                         }}
                         propsImage={{
-                            srcSet: game.srcSet
+                            srcSet: game.srcSet,
+                            sizes: game.sizes
                         }}
                     />
                 </CardMedia>
