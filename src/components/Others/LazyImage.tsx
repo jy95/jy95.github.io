@@ -22,6 +22,8 @@ function LazyImage(props : PropsLazyImage) {
 
     const [ imageStatus, setImageStatus ] = useState("loading" as loadingStatus);
     const { imagePath, title, propsImage = {}, propsPlaceholder} = props;
+    // temp
+    console.log(`${title} - ${ imageStatus }`);
 
     return <Suspense fallback={<Skeleton variant="rectangular" {...propsPlaceholder} />}>
         <img
