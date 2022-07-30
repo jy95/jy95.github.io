@@ -35,10 +35,7 @@ function TitleFilter(_props : {[key: string | number | symbol] : any}) {
             value={title}
             renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.title")} />}
             onInputChange={(_event, value) => {
-                // TODO : needed as because of useSelector, refreshs can happen
-                if (value !== title){
-                    dispatch(filterByTitle(value));
-                }
+                dispatch(filterByTitle(value));
             }}
         />
     </>;
