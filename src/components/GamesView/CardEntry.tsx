@@ -41,21 +41,6 @@ function CardEntry(props : {
         }
     }
 
-    // image properties
-    let imageProps : {
-        src: string,
-        alt: string,
-        srcSet?: string,
-        sizes?: string,
-        loading: 'lazy' | 'eager'
-    } = {
-        src: game.imagePath,
-        srcSet: game.srcSet,
-        sizes: game.sizes,
-        alt: gameTitle,
-        loading: "lazy"
-    };
-
     return (
         <Card sx={{ position: "relative" }}>
 
@@ -72,7 +57,11 @@ function CardEntry(props : {
                     title={gameTitle}
                 >
                     <Image 
-                        {...imageProps}
+                        src={game.imagePath}
+                        srcSet={game.srcSet}
+                        sizes={game.sizes}
+                        alt={gameTitle}
+                        loading={"lazy"}
                         disableSpinner={true}
                     />
                 </CardMedia>
