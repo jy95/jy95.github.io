@@ -17,11 +17,23 @@ const initialState : TestsState = {
 }
 
 // for responsive pictures
-const SIZES_WITDH = {
-    "small": "150w",
-    "medium": "200w",
-    "big": "250w"
-}
+const SIZES_WITDH = [
+    {
+        name: "small",
+        srcSet: "150w",
+        sizes: "(min-width: 1200px) 150px"
+    },
+    {
+        name: "medium",
+        srcSet: "200w",
+        sizes: "(min-width: 900px) 200px"
+    },
+    {
+        name: "big",
+        srcSet: "250w",
+        sizes: "250px"
+    }
+]
 
 export const fetchTests = createAsyncThunk('tests/fetchGames', async () => {
     const gamesData = await import("../data/tests.json");
@@ -41,10 +53,14 @@ export const fetchTests = createAsyncThunk('tests/fetchGames', async () => {
                 id,
                 imagePath: `${ base_path }/${ game.coverFile ?? gamesData.defaultCoverFile }`,
                 srcSet: (game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages) 
-                    ? Object
-                        .entries(SIZES_WITDH)
-                        .map( ([size, param]) =>`${base_path}/cover@${size}.webp ${param}`)
+                    ? SIZES_WITDH
+                        .map( ({name, srcSet}) =>`${base_path}/cover@${name}.webp ${srcSet}`)
                         .join(",")
+                    : undefined,
+                sizes: (game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages) 
+                    ? SIZES_WITDH
+                        .map( ({sizes}) =>`${sizes}`)
+                        .join(",") 
                     : undefined,
                 releaseDate: game.releaseDate
                     .split("/")
