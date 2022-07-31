@@ -1767,6 +1767,18 @@
          "availableAt": 20230904,
          "endAt": 20230904,
          "coverFile": "cover.webp"
+       },
+       {
+         "title": "Jet Li: Rise to Honour",
+         "playlistId": "PLRfhDHeBTBJ5K0xPqtndkObR9g05hHw5h",
+         "releaseDate": "07/04/2004",
+         "genres": [
+            "Action",
+            "Shooter"
+         ],
+         "platform": "PS2",
+         "availableAt": 20230905,
+         "coverFile": "cover.jpg"
        }
     ]
  }
