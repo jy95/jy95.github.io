@@ -54,7 +54,7 @@ function CardDialog(props : {
         // Watch here
         {
             "key": "watchHere",
-            "icon": () => <PlayArrowIcon fontSize="small"/>,
+            "icon": <PlayArrowIcon fontSize="small"/>,
             "text": t("gamesLibrary.actionsButton.watchHere", { "gameName": gameTitle}),
             "onClick": () => {
                 setContextMenuOpen(false);
@@ -64,7 +64,7 @@ function CardDialog(props : {
         // watch on Youtube
         {
             "key": "watchOnYoutube",
-            "icon": () => <YouTubeIcon fontSize="small"/>,
+            "icon": <YouTubeIcon fontSize="small"/>,
             "text": t("gamesLibrary.actionsButton.watchOnYt", { "gameName": gameTitle}),
             "onClick": () => {
                 setContextMenuOpen(false);
@@ -75,7 +75,7 @@ function CardDialog(props : {
         {
             "key": "copyLink",
             "divider": true,
-            "icon": () => <FileCopyIcon fontSize="small"/>,
+            "icon": <FileCopyIcon fontSize="small"/>,
             "text": t("gamesLibrary.actionsButton.copyLink"),
             "onClick": async () => {
                 if (navigator.clipboard !== undefined) {
@@ -94,7 +94,7 @@ function CardDialog(props : {
         // Share on Twitter
         {
             "key": "share-on-twitter",
-            "icon": () => <TwitterIcon fontSize="small"/>,
+            "icon": <TwitterIcon fontSize="small"/>,
             "text": t("gamesLibrary.actionsButton.shareOnTwitter"),
             "onClick": () => {
                 window.open("https://twitter.com/intent/tweet?url=" + encodeURIComponent(gameURL), "_blank");
@@ -104,7 +104,7 @@ function CardDialog(props : {
         // Share on Facebook
         {
             "key": "share-on-facebook",
-            "icon": () => <FacebookIcon fontSize="small"/>,
+            "icon": <FacebookIcon fontSize="small"/>,
             "text": t("gamesLibrary.actionsButton.shareOnFacebook"),
             "onClick": () => {
                 window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(gameURL), "_blank")
@@ -114,7 +114,7 @@ function CardDialog(props : {
         // Share on Reddit
         {
             "key": "share-on-reddit",
-            "icon": () => <RedditIcon fontSize="small"/>,
+            "icon": <RedditIcon fontSize="small"/>,
             "text": t("gamesLibrary.actionsButton.shareOnReddit"),
             "onClick": () => {
                 window.open("http://www.reddit.com/submit?title=" + encodeURIComponent(gameTitle) + "&url=" + encodeURIComponent(gameURL) + "&title=","_blank")
@@ -143,7 +143,7 @@ function CardDialog(props : {
                                 key={option.key}
                             >
                                 <ListItemIcon>
-                                    {option.icon()}
+                                    {option.icon}
                                 </ListItemIcon>
                                 <ListItemText primary={option.text} />
                             </ListItem>
