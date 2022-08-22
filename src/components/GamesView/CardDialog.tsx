@@ -30,16 +30,6 @@ const RedditIcon = lazy(() => import("@mui/icons-material/Reddit"));
 const TwitterIcon = lazy(() => import("@mui/icons-material/Twitter"));
 const FacebookIcon = lazy(() => import("@mui/icons-material/Facebook"));
 
-// labels
-const LABEL_WATCH_ON_YT = "gamesLibrary.actionsButton.watchOnYt";
-const LABEL_WATCH_HERE = "gamesLibrary.actionsButton.watchHere";
-const LABEL_COPY_LINK = "gamesLibrary.actionsButton.copyLink";
-const LABEL_TWITTER = "gamesLibrary.actionsButton.shareOnTwitter";
-const LABEL_FACEBOOK = "gamesLibrary.actionsButton.shareOnFacebook";
-const LABEL_REDDIT = "gamesLibrary.actionsButton.shareOnReddit";
-const LABEL_CLOSE_BUTTON = "gamesLibrary.actionsButton.closeContextMenu";
-const LABEL_COPIED_LINK = "gamesLibrary.snackbarsMessages.copiedLink";
-
 function CardDialog(props : {
     game: CardGame;
     contextMenuState : [boolean, (x: boolean) => void]
@@ -65,7 +55,7 @@ function CardDialog(props : {
         {
             "key": "watchHere",
             "icon": () => <PlayArrowIcon fontSize="small"/>,
-            "text": t(LABEL_WATCH_HERE, { "gameName": gameTitle}),
+            "text": t("gamesLibrary.actionsButton.watchHere", { "gameName": gameTitle}),
             "onClick": () => {
                 setContextMenuOpen(false);
                 navigate(local_path);
@@ -75,7 +65,7 @@ function CardDialog(props : {
         {
             "key": "watchOnYoutube",
             "icon": () => <YouTubeIcon fontSize="small"/>,
-            "text": t(LABEL_WATCH_ON_YT, { "gameName": gameTitle}),
+            "text": t("gamesLibrary.actionsButton.watchOnYt", { "gameName": gameTitle}),
             "onClick": () => {
                 setContextMenuOpen(false);
                 window.location.href = gameURL;
@@ -86,12 +76,12 @@ function CardDialog(props : {
             "key": "copyLink",
             "divider": true,
             "icon": () => <FileCopyIcon fontSize="small"/>,
-            "text": t(LABEL_COPY_LINK),
+            "text": t("gamesLibrary.actionsButton.copyLink"),
             "onClick": async () => {
                 if (navigator.clipboard !== undefined) {
                     await navigator.clipboard.writeText(gameURL);
                     enqueueSnackbar(
-                        t(LABEL_COPIED_LINK, { "gameName": gameTitle }),
+                        t("gamesLibrary.snackbarsMessages.copiedLink", { "gameName": gameTitle }),
                         {
                             "variant": "success",
                             "autoHideDuration": 2500
@@ -105,7 +95,7 @@ function CardDialog(props : {
         {
             "key": "share-on-twitter",
             "icon": () => <TwitterIcon fontSize="small"/>,
-            "text": t(LABEL_TWITTER),
+            "text": t("gamesLibrary.actionsButton.shareOnTwitter"),
             "onClick": () => {
                 window.open("https://twitter.com/intent/tweet?url=" + encodeURIComponent(gameURL), "_blank");
                 setContextMenuOpen(false);
@@ -115,7 +105,7 @@ function CardDialog(props : {
         {
             "key": "share-on-facebook",
             "icon": () => <FacebookIcon fontSize="small"/>,
-            "text": t(LABEL_FACEBOOK),
+            "text": t("gamesLibrary.actionsButton.shareOnFacebook"),
             "onClick": () => {
                 window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(gameURL), "_blank")
                 setContextMenuOpen(false);
@@ -125,7 +115,7 @@ function CardDialog(props : {
         {
             "key": "share-on-reddit",
             "icon": () => <RedditIcon fontSize="small"/>,
-            "text": t(LABEL_REDDIT),
+            "text": t("gamesLibrary.actionsButton.shareOnReddit"),
             "onClick": () => {
                 window.open("http://www.reddit.com/submit?title=" + encodeURIComponent(gameTitle) + "&url=" + encodeURIComponent(gameURL) + "&title=","_blank")
                 setContextMenuOpen(false);
@@ -162,7 +152,7 @@ function CardDialog(props : {
                 </List>
             </DialogContent>
             <DialogActions>
-                <Button autoFocus onClick={() => {setContextMenuOpen(false)}}>{t(LABEL_CLOSE_BUTTON)}</Button>
+                <Button autoFocus onClick={() => {setContextMenuOpen(false)}}>{t("gamesLibrary.actionsButton.closeContextMenu")}</Button>
             </DialogActions>
         </Dialog>
     );
