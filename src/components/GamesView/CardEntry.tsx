@@ -46,10 +46,12 @@ function CardEntry(props : {
         src: string,
         alt: string,
         srcSet?: string,
+        sizes?: string,
         loading: 'lazy' | 'eager'
     } = {
         src: game.imagePath,
         srcSet: game.srcSet,
+        sizes: game.sizes,
         alt: gameTitle,
         loading: "lazy"
     };
