@@ -1781,6 +1781,21 @@
          "availableAt": 20230905,
          "endAt": 20230922,
          "coverFile": "cover.webp"
+       },
+       {
+         "title": "Kya : Dark Lineage",
+         "playlistId": "PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj",
+         "duration": "7:34:50",
+         "releaseDate": "21/11/2003",
+         "genres": [
+            "Action",
+            "Adventure",
+            "Platformer"
+         ],
+         "platform": "PS2",
+         "availableAt": 20230925,
+         "endAt": 20231018,
+         "coverFile": "cover.jpg"
        }
     ]
  }
