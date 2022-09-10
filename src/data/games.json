@@ -1796,6 +1796,21 @@
          "availableAt": 20230925,
          "endAt": 20231018,
          "coverFile": "cover.webp"
+       },
+       {
+         "title": "Bionicle",
+         "videoId": "rGnInmyP2s4",
+         "duration": "1:20:42",
+         "releaseDate": "30/10/2003",
+         "genres": [
+            "Action",
+            "Adventure",
+            "Platformer"
+         ],
+         "platform": "PC",
+         "availableAt": 20231020,
+         "endAt": 20231020,
+         "coverFile": "cover.webp"
        }
     ]
  }
