@@ -1815,6 +1815,7 @@
        {
          "title": "Pursuit Force: Extreme Justice",
          "playlistId": "PLRfhDHeBTBJ72gRyZBPf23ZfxSlG5h8Em",
+         "duration": "4:35:22",
          "releaseDate": "12/12/2007",
          "genres": [
             "Action",
@@ -1822,6 +1823,7 @@
          ],
          "platform": "PSP",
          "availableAt": 20231023,
+         "endAt": 20231101,
          "coverFile": "cover.webp"
        }
     ]
