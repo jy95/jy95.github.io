@@ -50,7 +50,7 @@ function Viewer(_props : {[key: string | number | symbol] : any}) {
                             }
                         }
                     }
-                } = await import("@mui/x-data-grid");
+                } = await import(/* webpackExports: "frFR" */ "@mui/x-data-grid");
                 return localeText;
             // English is by default built-in in @mui package, so no need to include
             default:
