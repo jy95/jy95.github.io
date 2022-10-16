@@ -46,7 +46,7 @@ export const fetchSeries = createAsyncThunk('Series/fetchSeries', async () => {
                     .filter(game => game !== undefined)
             }
         })
-        .filter(serie => serie.items.length > 0)
+        .filter(serie => serie.items.length > 1)
         .sort(sortByNameASC);
 
     return {
