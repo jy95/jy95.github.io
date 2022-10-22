@@ -97,7 +97,7 @@ function Header(_props : { [key: string | number | symbol] : any }) {
                             Object
                                 .keys(languages_with_icons)
                                 .map( language =>
-                                    <Tooltip title={t("header.languages." + language)} key={language}>
+                                    <Tooltip title={t(`header.languages.${language as 'fr' | 'en'}` as const)} key={language}>
                                         <IconButton onClick={() => i18n.changeLanguage(language)} size="large">
                                             <SvgIcon>
                                                 {languages_with_icons[language as 'fr' | 'en']}

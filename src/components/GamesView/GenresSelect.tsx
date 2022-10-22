@@ -30,7 +30,8 @@ const GENRES = [
     "Sports",
     "Strategy",
     "Misc"
-];
+] as const;
+type GenreValue = typeof GENRES[number];
 
 // Genres filter of GamesGallery
 function GenresSelect(_props : {[key: string | number | symbol] : any}) {
@@ -45,9 +46,12 @@ function GenresSelect(_props : {[key: string | number | symbol] : any}) {
     const { t } = useTranslation('common');
 
     // Generate list of values for game genre
-    const genre_options = GENRES
+    const genre_options : {
+        label: string,
+        key: GenreValue
+    }[] = GENRES
         .map(genre => ({
-            label: t("gamesLibrary.gamesGenres." + genre),
+            label: t(`gamesLibrary.gamesGenres.${genre}` as const),
             key: genre
         }))
         .sort( 
@@ -67,10 +71,10 @@ function GenresSelect(_props : {[key: string | number | symbol] : any}) {
                 Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
             }
             value={selectedGenres.map(genre => ({
-                label: t("gamesLibrary.gamesGenres." + genre),
+                label: t(`gamesLibrary.gamesGenres.${genre as GenreValue}` as const),
                 key: genre
             }))}
-            renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.genres")} />}
+            renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.genres") as string} />}
             onChange={(_event, value) => {
                 dispatch(filteringByGenre(value.map(v => v.key)));
             }}

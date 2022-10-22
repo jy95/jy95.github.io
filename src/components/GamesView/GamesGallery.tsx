@@ -33,7 +33,7 @@ function GamesGallery(_props : {[key: string | number | symbol] : any}) {
                     <Tab role="tab" id="tab-LIST" aria-selected={value === "LIST"} icon={<ListIcon />} label={t("gamesLibrary.tabs.list")} value="LIST" />
                 </Tabs>            
             </div>
-            <div role="tabpanel" aria-label={t("gamesLibrary.tabs." + value.toLowerCase())} style={{paddingTop: "5px"}}>
+            <div role="tabpanel" aria-label={t(`gamesLibrary.tabs.${value.toLowerCase() as 'grid' | 'list'}` as const)} style={{paddingTop: "5px"}}>
                 {isPending && <LinearProgress />}
                 <Suspense fallback={null}>
                     { (value === "GRID") ? <GamesGalleryGrid /> : <GamesGalleryList /> }

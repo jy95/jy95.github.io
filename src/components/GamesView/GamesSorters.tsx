@@ -47,7 +47,10 @@ function GamesSorters(_props : {[key: string | number | symbol] : any}) {
     let [ newSortState, setNewSortState ] = useState([...sortState]);
 
     // map field to labels in translation file(s)
-    const field_labels = {
+    type sortLabels = 'name' | 'releaseDate' | 'duration';
+    const field_labels : {
+        [sortKey: string]: `gamesLibrary.sortLabels.${sortLabels}`
+    } = {
         "name": "gamesLibrary.sortLabels.name",
         "releaseDate": "gamesLibrary.sortLabels.releaseDate",
         "duration": "gamesLibrary.sortLabels.duration"
@@ -107,7 +110,7 @@ function GamesSorters(_props : {[key: string | number | symbol] : any}) {
                             .entries(field_labels)
                             .map( ([field, translationKey]) => 
                                 <option value={field} key={field}>
-                                    {t(translationKey)}
+                                    {t(`${translationKey}` as const)}
                                 </option>
                             )
                     }
@@ -127,7 +130,7 @@ function GamesSorters(_props : {[key: string | number | symbol] : any}) {
                             .entries(field_labels)
                             .map( ([field, translationKey]) => 
                                 <MenuItem value={field} key={field}>
-                                    {t(translationKey)}
+                                    {t(`${translationKey}` as const)}
                                 </MenuItem>
                             )
                     }

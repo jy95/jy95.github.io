@@ -31,11 +31,13 @@ import { Drawer, DrawerHeader } from "./Drawer";
 import { drawerOpen } from "../../services/miscellaneousSlice";
 import type { RootState, AppDispatch } from '../Store';
 
+type menuEntryTranslationKey = 'gamesKey' | 'planningKey' | 'testsKey' | 'latestVideosKey';
+
 // List Item
 function ListItemLink(props : {
     [key: string | number | symbol] : any;
     to: string;
-    primary: string;
+    primary: `main.menuEntries.${menuEntryTranslationKey}`;
 }) {
     const { icon, primary, to } = props;
     const { t } = useTranslation('common');
@@ -65,7 +67,11 @@ function ListItemLink(props : {
 };
 
 // entries
-const ENTRIES = [
+const ENTRIES : {
+    icon: JSX.Element,
+    to: string,
+    primary: `main.menuEntries.${menuEntryTranslationKey}`
+}[] = [
     {
         "icon": <SportsEsportsIcon />,
         "primary": "main.menuEntries.gamesKey",
