@@ -50,34 +50,40 @@ function CardDialog(props : {
     const local_path = game.url_type === "PLAYLIST" ? "/playlist/" + game.id : "/video/" + game.id;
 
     // dialog options
-    const dialog_options = [
+    const dialog_options : {
+        key: string,
+        icon: JSX.Element,
+        text: string,
+        onClick: () => void,
+        divider?: boolean
+    }[] = [
         // Watch here
         {
-            "key": "watchHere",
-            "icon": <PlayArrowIcon fontSize="small"/>,
-            "text": t("gamesLibrary.actionsButton.watchHere", { "gameName": gameTitle}),
-            "onClick": () => {
+            key: "watchHere",
+            icon: <PlayArrowIcon fontSize="small"/>,
+            text: t("gamesLibrary.actionsButton.watchHere", { "gameName": gameTitle}),
+            onClick: () => {
                 setContextMenuOpen(false);
                 navigate(local_path);
             }
         },
         // watch on Youtube
         {
-            "key": "watchOnYoutube",
-            "icon": <YouTubeIcon fontSize="small"/>,
-            "text": t("gamesLibrary.actionsButton.watchOnYt", { "gameName": gameTitle}),
-            "onClick": () => {
+            key: "watchOnYoutube",
+            icon: <YouTubeIcon fontSize="small"/>,
+            text: t("gamesLibrary.actionsButton.watchOnYt", { "gameName": gameTitle}),
+            onClick: () => {
                 setContextMenuOpen(false);
                 window.location.href = gameURL;
             }
         },
         // Copy link
         {
-            "key": "copyLink",
-            "divider": true,
-            "icon": <FileCopyIcon fontSize="small"/>,
-            "text": t("gamesLibrary.actionsButton.copyLink"),
-            "onClick": async () => {
+            key: "copyLink",
+            divider: true,
+            icon: <FileCopyIcon fontSize="small"/>,
+            text: t("gamesLibrary.actionsButton.copyLink"),
+            onClick: async () => {
                 if (navigator.clipboard !== undefined) {
                     await navigator.clipboard.writeText(gameURL);
                     enqueueSnackbar(
@@ -93,30 +99,30 @@ function CardDialog(props : {
         },
         // Share on Twitter
         {
-            "key": "share-on-twitter",
-            "icon": <TwitterIcon fontSize="small"/>,
-            "text": t("gamesLibrary.actionsButton.shareOnTwitter"),
-            "onClick": () => {
+            key: "share-on-twitter",
+            icon: <TwitterIcon fontSize="small"/>,
+            text: t("gamesLibrary.actionsButton.shareOnTwitter"),
+            onClick: () => {
                 window.open("https://twitter.com/intent/tweet?url=" + encodeURIComponent(gameURL), "_blank");
                 setContextMenuOpen(false);
             }
         },
         // Share on Facebook
         {
-            "key": "share-on-facebook",
-            "icon": <FacebookIcon fontSize="small"/>,
-            "text": t("gamesLibrary.actionsButton.shareOnFacebook"),
-            "onClick": () => {
+            key: "share-on-facebook",
+            icon: <FacebookIcon fontSize="small"/>,
+            text: t("gamesLibrary.actionsButton.shareOnFacebook"),
+            onClick: () => {
                 window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(gameURL), "_blank")
                 setContextMenuOpen(false);
             }
         },
         // Share on Reddit
         {
-            "key": "share-on-reddit",
-            "icon": <RedditIcon fontSize="small"/>,
-            "text": t("gamesLibrary.actionsButton.shareOnReddit"),
-            "onClick": () => {
+            key: "share-on-reddit",
+            icon: <RedditIcon fontSize="small"/>,
+            text: t("gamesLibrary.actionsButton.shareOnReddit"),
+            onClick: () => {
                 window.open("http://www.reddit.com/submit?title=" + encodeURIComponent(gameTitle) + "&url=" + encodeURIComponent(gameURL) + "&title=","_blank")
                 setContextMenuOpen(false);
             }
