@@ -1840,6 +1840,20 @@
          "availableAt": 20231023,
          "endAt": 20231101,
          "coverFile": "cover.webp"
-       }
+       },
+       {
+         "title":"God of War: Chains of Olympus Remastered",
+         "playlistId":"PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX",
+         "releaseDate":"13/09/2011",
+         "duration":"3:20:24",
+         "genres":[
+            "Action",
+            "Adventure"
+         ],
+         "platform":"PS3",
+         "availableAt": 20231106,
+         "endAt": 20231115,
+         "coverFile": "cover.webp"
+      }
     ]
  }
