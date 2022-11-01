@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import { all_games } from "./gamesSlice";
 import type { EnhancedGame } from "./sharedDefintion";
 
@@ -75,6 +75,11 @@ const seriesSlice = createSlice({
             });
     }
 });
+
+export const selectSeries = createSelector(
+    (state : { series : SeriesState }) => state.series,
+    (series) => series
+);
 
 // Action creators are generated for each case reducer function
 // export const {} = seriesSlice.actions;

@@ -1,5 +1,4 @@
 import { useMemo, forwardRef } from "react";
-import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next";
 
 // Material UI
@@ -29,7 +28,8 @@ import { Drawer, DrawerHeader } from "./Drawer";
 
 // Redux 
 import { drawerOpen } from "../../services/miscellaneousSlice";
-import type { RootState, AppDispatch } from '../Store';
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
 type menuEntryTranslationKey = 'gamesKey' | 'planningKey' | 'testsKey' | 'latestVideosKey';
 
@@ -99,8 +99,8 @@ function Menu(props : {[key: string | number | symbol] : any}) {
 
     const {container} = props;
 
-    const dispatch: AppDispatch = useDispatch();
-    const isdrawerOpen = useSelector((state: RootState) => state.miscellaneous.drawerOpen);
+    const dispatch = useAppDispatch();
+    const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
 
     const handleDrawerClose = () => {
         dispatch(drawerOpen(false));

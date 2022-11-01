@@ -1,6 +1,5 @@
 import { useMemo, useEffect, Suspense, lazy} from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from "react-i18next";
 
 // snackbars
@@ -16,13 +15,13 @@ import LinearProgress from '@mui/material/LinearProgress';
 
 // hooks
 import { useAsyncMemo } from "../hooks/useAsyncMemo";
+import { useAppDispatch, useAppSelector } from "../hooks/typedRedux";
 
 import Menu from "./Home/Menu"
 import { DrawerHeader, Main } from "./Home/Drawer";
 
 // Redux action
 import { themeColor } from "../services/themeColorSlice";
-import type { RootState, AppDispatch } from './Store';
 
 // Components
 const Header = lazy(() => import("./Home/Header"));
@@ -34,7 +33,7 @@ const LatestVideosGallery = lazy(() => import("./LatestVideos/LatestVideosGaller
 
 function Root(_props : { [key: string | number | symbol] : any }) {
 
-    const openMenu = useSelector((state: RootState) => state.miscellaneous.drawerOpen);
+    const openMenu = useAppSelector((state) => state.miscellaneous.drawerOpen);
 
     return (
         <SnackbarProvider 
@@ -95,9 +94,9 @@ function Root(_props : { [key: string | number | symbol] : any }) {
 function withThemeProvider(Component : any) {
     function WithThemeProvider(_props : { [key: string | number | symbol] : any }) {
         // for theme Color
-        const dispatch: AppDispatch = useDispatch();
-        const currentColor = useSelector((state: RootState) => state.themeColor.currentColor);
-        const currentSystemColor = useSelector((state: RootState) => state.themeColor.systemColor);
+        const dispatch = useAppDispatch();
+        const currentColor = useAppSelector((state) => state.themeColor.currentColor);
+        const currentSystemColor = useAppSelector((state) => state.themeColor.systemColor);
         const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
         const systemColor = prefersDarkMode ? "dark" : "light";
 

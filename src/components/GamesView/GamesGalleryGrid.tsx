@@ -1,9 +1,12 @@
 import { useEffect, useCallback } from "react";
 import { styled } from '@mui/material/styles';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { shallowEqual } from 'react-redux';
 import useInfiniteLoader from 'react-use-infinite-loader';
 import { useTranslation } from "react-i18next";
 import Alert from '@mui/material/Alert';
+
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
 // Style
 import Grid from "@mui/material/Grid";
@@ -20,11 +23,9 @@ import TitleFilter from "./TitleFilter";
 import { 
     fetchGames,
     scrollingFetching,
-    generate_sort_function,
-    generate_filter_function,
+    selectCurrentGames
 }
 from "../../services/gamesSlice";
-import type { RootState, AppDispatch } from '../Store';
 import type { EnhancedGame } from "../../services/sharedDefintion";
 
 const PREFIX = 'GamesGalleryGrid';
@@ -62,28 +63,32 @@ const StyledGamesGallery = styled('div')((
 function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
 
     const { t } = useTranslation('common');
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
+
+    // Current displayed games
+    const currentGames = useAppSelector(
+        (state) => selectCurrentGames(state)
+    );
 
     const {
         loading,
         error,
-        games,
         currentItemCount,
         totalItems,
         activeFilters,
         sorters,
         initialLoad,
         scrollLoading
-    } = useSelector((state: RootState) => state.games, shallowEqual);
+    } = useAppSelector((state) => state.games, shallowEqual);
 
     const canLoadMore = (currentItemCount <= totalItems);
 
     // on mount, load data (only once)
     useEffect(() => {
         dispatch(fetchGames({currentFilters: activeFilters, sortStates: sorters}))
-    },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [games]
+    }, 
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
+        []
     );
 
     // render row
@@ -100,9 +105,9 @@ function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
 
     const loadMoreGames = useCallback( () => {
         dispatch(scrollingFetching());
-    }, 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [currentItemCount, totalItems]
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
+        []
     );
 
     const { loaderRef } = useInfiniteLoader({
@@ -111,16 +116,6 @@ function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
         initialise: !initialLoad,
         debug: false,
     });
-
-    const currentSortFunction = generate_sort_function(sorters);
-    const filtersFunction = generate_filter_function(activeFilters);
-
-    const currentGames = games
-        // remove the ones that doesn't match filter criteria
-        .filter(filtersFunction)
-        // sort them in user preference
-        .sort(currentSortFunction)
-        .slice(0, currentItemCount);
 
     return (
         <ReloadWrapper 

@@ -1,5 +1,4 @@
 import { useState, Suspense, lazy } from "react";
-import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from "react-i18next";
 // To check what should happen when clicking on a game
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -7,7 +6,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Button from '@mui/material/Button';
 
 import { sortingGames } from "../../services/gamesSlice";
-import type { RootState, AppDispatch } from '../Store';
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
 // TODO Idea For sorting criteria reorder
 //import Switch from '@mui/material/Switch';
@@ -38,11 +38,11 @@ function GamesSorters(_props : {[key: string | number | symbol] : any}) {
 
     // hooks
     const { t } = useTranslation('common');
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     // state
     const [ isDialogOpen, setDialogOpen ] = useState(false);
-    const sortState = useSelector((state: RootState) => state.games.sorters);
+    const sortState = useAppSelector((state) => state.games.sorters);
     const isNative = useMediaQuery( (theme : any) => theme.breakpoints.down('md'));
     let [ newSortState, setNewSortState ] = useState([...sortState]);
 

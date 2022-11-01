@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import type { BasicVideo, BasicPlaylist, BasicGame, CardGame } from "./sharedDefintion";
 
 export interface TestsState {
@@ -99,6 +99,11 @@ const planningSlice = createSlice({
             });
     }
 });
+
+export const selectTests = createSelector(
+    (state : { tests : TestsState }) => state.tests,
+    (tests) => tests
+);
 
 // Action creators are generated for each case reducer function
 // export const {} = planningSlice.actions;

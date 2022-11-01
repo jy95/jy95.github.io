@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next";
 
 // React Material UI
@@ -22,7 +21,9 @@ import languages_with_icons from "./HeaderLanguages";
 // Redux
 import { drawerOpen } from "../../services/miscellaneousSlice";
 import { themeColor } from "../../services/themeColorSlice";
-import type { RootState, AppDispatch } from '../Store';
+
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
 // styled AppBar
 const drawerWidth = 240;
@@ -49,9 +50,9 @@ const AppBar = styled(MuiAppBar, {
 function Header(_props : { [key: string | number | symbol] : any }) {
 
     const {t, i18n} = useTranslation('common');
-    const dispatch: AppDispatch = useDispatch();
-    const isdrawerOpen = useSelector((state: RootState) => state.miscellaneous.drawerOpen);
-    const currentColor = useSelector((state: RootState) => state.themeColor.currentColor);
+    const dispatch = useAppDispatch();
+    const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
+    const currentColor = useAppSelector((state) => state.themeColor.currentColor);
 
     const handleDrawerOpen = () => {
         dispatch(drawerOpen(true));

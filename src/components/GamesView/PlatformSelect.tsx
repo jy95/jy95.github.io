@@ -1,13 +1,13 @@
 import { useTranslation } from "react-i18next";
-import { useSelector, useDispatch } from 'react-redux';
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 import SvgIcon from '@mui/material/SvgIcon';
 
-import { filterByPlatform } from "../../services/gamesSlice";
-import type { RootState, AppDispatch } from '../Store';
+import { filterByPlatform, selectFilterByName } from "../../services/gamesSlice";
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
 // icons
 import iconsSVG from "./PlatformIcons";
@@ -25,13 +25,13 @@ const PLATFORMS = [
 function PlatformSelect(_props : {[key: string | number | symbol] : any}) {
 
     const { t } = useTranslation('common');
-    const dispatch: AppDispatch = useDispatch();
-    const selectedPlatform : string  = useSelector(
-        (state: RootState) => (state.games.activeFilters.find((s => s.key === "selected_platform")) as {
-            key: "selected_platform";
-            value: string
-        } | undefined)?.value
-    ) || "";
+    const dispatch = useAppDispatch();
+    const selectedPlatform : string  = useAppSelector(
+        (state) => selectFilterByName(state, {
+            filterKey: "selected_platform",
+            defaultValue: ""
+        })
+    )
 
     const options = PLATFORMS
         .map(platform => ({

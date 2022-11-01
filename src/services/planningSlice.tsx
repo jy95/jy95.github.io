@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import type { BasicGame, BasicVideo, BasicPlaylist } from "./sharedDefintion";
 
 // For fetching games for planning
@@ -87,6 +87,11 @@ const planningSlice = createSlice({
             });
     }
 });
+
+export const selectPlanning = createSelector(
+    (state: { planning : PlanningState }) => state.planning,
+    (planning) => planning
+);
 
 // Action creators are generated for each case reducer function
 // export const {} = planningSlice.actions;

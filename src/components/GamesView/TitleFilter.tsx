@@ -1,31 +1,32 @@
 import { useTranslation } from "react-i18next";
-import { useSelector, useDispatch } from 'react-redux';
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 
 import {
-    filterByTitle
+    filterByTitle,
+    selectFilterByName
 } 
 from "../../services/gamesSlice";
-import type { RootState, AppDispatch } from '../Store';
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
 function TitleFilter(_props : {[key: string | number | symbol] : any}) {
 
     const { t } = useTranslation('common');
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     // needed as this Autocomplete cannot have duplicate
-    const options = useSelector((state: RootState) => 
+    const options = useAppSelector((state) => 
         [...new Set(state.games.games.map(game => game.title))]
     );
-    const title : string  = useSelector(
-        (state: RootState) => (state.games.activeFilters.find((s => s.key === "selected_title")) as {
-            key: "selected_title";
-            value: string
-        } | undefined)?.value || ""
-    );
+    const title : string  = useAppSelector(
+        (state) => selectFilterByName(state, {
+            filterKey: "selected_title",
+            defaultValue: ""
+        })
+    )
 
     return <>
         <Autocomplete

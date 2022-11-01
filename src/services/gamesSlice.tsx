@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, createAsyncThunk, AsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createAsyncThunk, AsyncThunk, createSelector } from '@reduxjs/toolkit';
 import type { BasicGame, EnhancedGame, BasicVideo, BasicPlaylist } from "./sharedDefintion";
 
 type gamesSorters = [
@@ -7,6 +7,7 @@ type gamesSorters = [
 ][];
 
 // To compute new filtering function
+type gamesFilterKeys = "selected_platform" | "selected_title" | "selected_genres";
 type gamesFilters = ({
     value: string,
     key: "selected_platform" | "selected_title"
@@ -185,23 +186,15 @@ export const fetchGames : AsyncThunk<{
     sortStates: gamesSorters;
     pageSize? : number
 }, {}> = createAsyncThunk('games/fetchGames', async ({
-    currentFilters,
-    sortStates,
+    //currentFilters,
+    //sortStates,
     pageSize = 24
 }) => {
+    // TODO Somewhere in the future, use provided parameters for some API
     let games = await all_games();
-
-    let filtersFunction = (game : EnhancedGame) => currentFilters.every(filter => filtersFunctions[filter.key](filter.value as any)(game));
-    let sortFunction = generate_sort_function(sortStates);
-
-    let currentGames = games
-        // remove the ones that doesn't match filter criteria
-        .filter(filtersFunction)
-        // sort them in user preference
-        .sort(sortFunction);
     
     return {
-        games: currentGames,
+        games,
         totalItems: games.length,
         pageSize
     }
@@ -335,6 +328,41 @@ const gamesSlice = createSlice({
             });
     }
 })
+
+// memoized selector functions
+const selectActiveFilters = (state : { games : GamesState }) => state.games.activeFilters;
+const selectActiveFiltersParams = (_state : { games : GamesState }, params : { filterKey : gamesFilterKeys, defaultValue : any }) => params;
+export const selectFilterByName = createSelector(
+    [
+        selectActiveFilters,
+        selectActiveFiltersParams
+    ],
+    (filters : gamesFilters, params : { filterKey : gamesFilterKeys, defaultValue : any }) => {
+        return filters.find(s => s.key === params.filterKey)?.value || params.defaultValue
+    }
+)
+
+const selectActiveSorters = (state : { games : GamesState }) => state.games.sorters;
+export const selectCurrentGames = createSelector(
+    [
+        (state : { games : GamesState }) => state.games.games,
+        selectActiveFilters,
+        selectActiveSorters,
+        (state : { games : GamesState }) => state.games.currentItemCount
+    ],
+    (games, activeFilters, activeSorters, currentItemCount) => {
+
+        const currentSortFunction = generate_sort_function(activeSorters);
+        const filtersFunction = generate_filter_function(activeFilters);
+
+        return games
+            // remove the ones that doesn't match filter criteria
+            .filter(filtersFunction)
+            // sort them in user preference
+            .sort(currentSortFunction)
+            .slice(0, currentItemCount);
+    }
+);
 
 // Action creators are generated for each case reducer function
 export const {
