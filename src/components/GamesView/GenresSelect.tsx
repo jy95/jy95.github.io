@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 
-import { filteringByGenre } from "../../services/gamesSlice";
+import { filteringByGenre, selectFilterByName } from "../../services/gamesSlice";
 import type { RootState, AppDispatch } from '../Store';
 
 // Each one is also a key for translation
@@ -37,12 +37,12 @@ type GenreValue = typeof GENRES[number];
 function GenresSelect(_props : {[key: string | number | symbol] : any}) {
 
     const dispatch: AppDispatch = useDispatch();
-    const selectedGenres : string[]  = useSelector(
-        (state: RootState) => (state.games.activeFilters.find((s => s.key === "selected_genres")) as {
-            key: "selected_genres";
-            value: string[]
-        } | undefined)?.value
-    ) || [];
+    const selectedGenres : string[] = useSelector(
+        (state: RootState) => selectFilterByName(state, {
+            filterKey: "selected_genres",
+            defaultValue: []
+        })
+    )
     const { t } = useTranslation('common');
 
     // Generate list of values for game genre

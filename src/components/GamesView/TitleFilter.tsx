@@ -6,7 +6,8 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 
 import {
-    filterByTitle
+    filterByTitle,
+    selectFilterByName
 } 
 from "../../services/gamesSlice";
 import type { RootState, AppDispatch } from '../Store';
@@ -21,11 +22,11 @@ function TitleFilter(_props : {[key: string | number | symbol] : any}) {
         [...new Set(state.games.games.map(game => game.title))]
     );
     const title : string  = useSelector(
-        (state: RootState) => (state.games.activeFilters.find((s => s.key === "selected_title")) as {
-            key: "selected_title";
-            value: string
-        } | undefined)?.value || ""
-    );
+        (state: RootState) => selectFilterByName(state, {
+            filterKey: "selected_title",
+            defaultValue: ""
+        })
+    )
 
     return <>
         <Autocomplete

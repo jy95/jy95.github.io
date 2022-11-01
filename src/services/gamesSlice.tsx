@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, createAsyncThunk, AsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createAsyncThunk, AsyncThunk, createSelector } from '@reduxjs/toolkit';
 import type { BasicGame, EnhancedGame, BasicVideo, BasicPlaylist } from "./sharedDefintion";
 
 type gamesSorters = [
@@ -7,6 +7,7 @@ type gamesSorters = [
 ][];
 
 // To compute new filtering function
+type gamesFilterKeys = "selected_platform" | "selected_title" | "selected_genres";
 type gamesFilters = ({
     value: string,
     key: "selected_platform" | "selected_title"
@@ -335,6 +336,19 @@ const gamesSlice = createSlice({
             });
     }
 })
+
+// memoized selector functions
+const selectActiveFilters = (state : { games : GamesState }) => state.games.activeFilters;
+const selectActiveFiltersParams = (_state : { games : GamesState }, params : { filterKey : gamesFilterKeys, defaultValue : any }) => params;
+export const selectFilterByName = createSelector(
+    [
+        selectActiveFilters,
+        selectActiveFiltersParams
+    ],
+    (filters : gamesFilters, params : { filterKey : gamesFilterKeys, defaultValue : any }) => {
+        return filters.find(s => s.key === params.filterKey)?.value || params.defaultValue
+    }
+)
 
 // Action creators are generated for each case reducer function
 export const {

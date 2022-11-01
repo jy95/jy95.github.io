@@ -6,7 +6,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 import SvgIcon from '@mui/material/SvgIcon';
 
-import { filterByPlatform } from "../../services/gamesSlice";
+import { filterByPlatform, selectFilterByName } from "../../services/gamesSlice";
 import type { RootState, AppDispatch } from '../Store';
 
 // icons
@@ -27,11 +27,11 @@ function PlatformSelect(_props : {[key: string | number | symbol] : any}) {
     const { t } = useTranslation('common');
     const dispatch: AppDispatch = useDispatch();
     const selectedPlatform : string  = useSelector(
-        (state: RootState) => (state.games.activeFilters.find((s => s.key === "selected_platform")) as {
-            key: "selected_platform";
-            value: string
-        } | undefined)?.value
-    ) || "";
+        (state: RootState) => selectFilterByName(state, {
+            filterKey: "selected_platform",
+            defaultValue: ""
+        })
+    )
 
     const options = PLATFORMS
         .map(platform => ({
