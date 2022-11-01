@@ -86,7 +86,10 @@ function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
     // on mount, load data (only once)
     useEffect(() => {
         dispatch(fetchGames({currentFilters: activeFilters, sortStates: sorters}))
-    });
+    }, 
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
+        []
+    );
 
     // render row
     const renderRow = (game : EnhancedGame) =>
