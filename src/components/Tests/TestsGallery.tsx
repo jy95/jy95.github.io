@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { shallowEqual } from 'react-redux';
 
 // Style
 import Grid from "@mui/material/Grid";
@@ -7,7 +6,7 @@ import Grid from "@mui/material/Grid";
 // Custom
 import ReloadWrapper from "../Others/ReloadWrapper";
 import CardEntry from "../GamesView/CardEntry";
-import { fetchTests } from "../../services/testsSlice";
+import { fetchTests, selectTests } from "../../services/testsSlice";
 // Hooks
 import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
@@ -19,7 +18,7 @@ function TestsGallery(_props : {[key: string | number | symbol] : any}) {
         loading,
         error,
         games: data
-    } = useAppSelector((state) => state.tests, shallowEqual);
+    } = useAppSelector((state) => selectTests(state));
 
     // on mount, load data (only once)
     useEffect(() => {

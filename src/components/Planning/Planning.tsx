@@ -12,16 +12,18 @@ import getTableColumns from "./PlanningColumns";
 import { useAsyncMemo } from "../../hooks/useAsyncMemo";
 
 // Redux
-import { fetchPlanning } from "../../services/planningSlice";
+import { fetchPlanning, selectPlanning } from "../../services/planningSlice";
 // Hooks
 import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
 function Viewer(_props : {[key: string | number | symbol] : any}) {
 
     const dispatch = useAppDispatch();
-    const loading = useAppSelector((state) => state.planning.loading);
-    const error = useAppSelector((state) => state.planning.error);
-    const data = useAppSelector((state) => state.planning.planning);
+    const {
+        loading,
+        error,
+        planning : data
+    } = useAppSelector((state) => selectPlanning(state));
     const { t } = useTranslation('common');
 
     // on mount, load data (only once)

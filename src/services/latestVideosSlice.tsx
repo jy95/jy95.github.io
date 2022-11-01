@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 
 // rss url
 // Because of Youtube, I have to pass by a proxy
@@ -136,6 +136,11 @@ const latestVideosSlice = createSlice({
             });
     }
 });
+
+export const selectLatestVideos = createSelector(
+    (state : { latestVideos : latestVideosState }) => state.latestVideos,
+    (latestVideos) => latestVideos
+);
 
 // Action creators are generated for each case reducer function
 // export const {} = latestVideosSlice.actions;

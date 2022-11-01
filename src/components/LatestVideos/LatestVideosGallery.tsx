@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { shallowEqual } from 'react-redux';
 import Grid from "@mui/material/Grid";
 
 // Custom
@@ -7,7 +6,7 @@ import ReloadWrapper from "../Others/ReloadWrapper";
 import CardEntry from "../GamesView/CardEntry";
 
 // Redux
-import { fetchLatestVideos } from "../../services/latestVideosSlice";
+import { fetchLatestVideos, selectLatestVideos } from "../../services/latestVideosSlice";
 // Hooks
 import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
@@ -18,8 +17,8 @@ function LatestVideosGallery(_props : {[key: string | number | symbol] : any}) {
     const {
         loading,
         error,
-        items: data
-    } = useAppSelector((state) => state.latestVideos, shallowEqual);
+        items : data
+    } = useAppSelector( (state) => selectLatestVideos(state));
 
     // on mount, load data (only once)
     useEffect(() => {
