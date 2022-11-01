@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { shallowEqual } from 'react-redux';
 import Grid from "@mui/material/Grid";
 
 // Custom
@@ -8,17 +8,18 @@ import CardEntry from "../GamesView/CardEntry";
 
 // Redux
 import { fetchLatestVideos } from "../../services/latestVideosSlice";
-import type { RootState, AppDispatch } from '../Store';
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
 // The gallery component
 function LatestVideosGallery(_props : {[key: string | number | symbol] : any}) {
 
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const {
         loading,
         error,
         items: data
-    } = useSelector((state: RootState) => state.latestVideos, shallowEqual);
+    } = useAppSelector((state) => state.latestVideos, shallowEqual);
 
     // on mount, load data (only once)
     useEffect(() => {

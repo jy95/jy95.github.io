@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { useSelector, useDispatch } from 'react-redux';
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
@@ -7,7 +6,8 @@ import TextField from '@mui/material/TextField';
 import SvgIcon from '@mui/material/SvgIcon';
 
 import { filterByPlatform, selectFilterByName } from "../../services/gamesSlice";
-import type { RootState, AppDispatch } from '../Store';
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
 // icons
 import iconsSVG from "./PlatformIcons";
@@ -25,9 +25,9 @@ const PLATFORMS = [
 function PlatformSelect(_props : {[key: string | number | symbol] : any}) {
 
     const { t } = useTranslation('common');
-    const dispatch: AppDispatch = useDispatch();
-    const selectedPlatform : string  = useSelector(
-        (state: RootState) => selectFilterByName(state, {
+    const dispatch = useAppDispatch();
+    const selectedPlatform : string  = useAppSelector(
+        (state) => selectFilterByName(state, {
             filterKey: "selected_platform",
             defaultValue: ""
         })

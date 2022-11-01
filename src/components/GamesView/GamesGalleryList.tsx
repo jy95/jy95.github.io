@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect } from "react";
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { shallowEqual } from 'react-redux';
 
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -7,10 +7,12 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Grid from "@mui/material/Grid";
 
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
+
 // Custom
 import ReloadWrapper from "../Others/ReloadWrapper";
 import CardEntry from "./CardEntry";
-import type { RootState, AppDispatch } from '../Store';
 import { fetchSeries } from "../../services/seriesSlice";
 
 const AccordionDetails = lazy(() => import("@mui/material/AccordionDetails"));
@@ -18,12 +20,12 @@ const AccordionDetails = lazy(() => import("@mui/material/AccordionDetails"));
 // The gallery component
 function GamesGalleryList(_props : {[key: string | number | symbol] : any}) {
 
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const {
         loading,
         error,
         series: data
-    } = useSelector((state: RootState) => state.series, shallowEqual);
+    } = useAppSelector((state) => state.series, shallowEqual);
 
     // on mount, load data (only once)
     useEffect(() => {

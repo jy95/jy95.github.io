@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
-import { useSelector, useDispatch } from 'react-redux';
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 
 import { filteringByGenre, selectFilterByName } from "../../services/gamesSlice";
-import type { RootState, AppDispatch } from '../Store';
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
 // Each one is also a key for translation
 const GENRES = [
@@ -36,9 +36,9 @@ type GenreValue = typeof GENRES[number];
 // Genres filter of GamesGallery
 function GenresSelect(_props : {[key: string | number | symbol] : any}) {
 
-    const dispatch: AppDispatch = useDispatch();
-    const selectedGenres : string[] = useSelector(
-        (state: RootState) => selectFilterByName(state, {
+    const dispatch = useAppDispatch();
+    const selectedGenres : string[] = useAppSelector(
+        (state) => selectFilterByName(state, {
             filterKey: "selected_genres",
             defaultValue: []
         })

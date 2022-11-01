@@ -1,9 +1,12 @@
 import { useEffect, useCallback } from "react";
 import { styled } from '@mui/material/styles';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { shallowEqual } from 'react-redux';
 import useInfiniteLoader from 'react-use-infinite-loader';
 import { useTranslation } from "react-i18next";
 import Alert from '@mui/material/Alert';
+
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
 // Style
 import Grid from "@mui/material/Grid";
@@ -24,7 +27,6 @@ import {
     generate_filter_function,
 }
 from "../../services/gamesSlice";
-import type { RootState, AppDispatch } from '../Store';
 import type { EnhancedGame } from "../../services/sharedDefintion";
 
 const PREFIX = 'GamesGalleryGrid';
@@ -62,7 +64,7 @@ const StyledGamesGallery = styled('div')((
 function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
 
     const { t } = useTranslation('common');
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const {
         loading,
@@ -74,7 +76,7 @@ function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
         sorters,
         initialLoad,
         scrollLoading
-    } = useSelector((state: RootState) => state.games, shallowEqual);
+    } = useAppSelector((state) => state.games, shallowEqual);
 
     const canLoadMore = (currentItemCount <= totalItems);
 

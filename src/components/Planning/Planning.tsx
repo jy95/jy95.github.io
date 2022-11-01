@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useTranslation } from "react-i18next";
-import { useSelector, useDispatch } from 'react-redux';
 
 // Material UI
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
@@ -14,14 +13,15 @@ import { useAsyncMemo } from "../../hooks/useAsyncMemo";
 
 // Redux
 import { fetchPlanning } from "../../services/planningSlice";
-import type { RootState, AppDispatch } from '../Store';
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
 function Viewer(_props : {[key: string | number | symbol] : any}) {
 
-    const dispatch: AppDispatch = useDispatch();
-    const loading = useSelector((state: RootState) => state.planning.loading);
-    const error = useSelector((state: RootState) => state.planning.error);
-    const data = useSelector((state: RootState) => state.planning.planning);
+    const dispatch = useAppDispatch();
+    const loading = useAppSelector((state) => state.planning.loading);
+    const error = useAppSelector((state) => state.planning.error);
+    const data = useAppSelector((state) => state.planning.planning);
     const { t } = useTranslation('common');
 
     // on mount, load data (only once)
