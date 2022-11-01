@@ -23,8 +23,7 @@ import TitleFilter from "./TitleFilter";
 import { 
     fetchGames,
     scrollingFetching,
-    generate_sort_function,
-    generate_filter_function,
+    selectCurrentGames
 }
 from "../../services/gamesSlice";
 import type { EnhancedGame } from "../../services/sharedDefintion";
@@ -66,10 +65,14 @@ function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
     const { t } = useTranslation('common');
     const dispatch = useAppDispatch();
 
+    // Current displayed games
+    const currentGames = useAppSelector(
+        (state) => selectCurrentGames(state)
+    );
+
     const {
         loading,
         error,
-        games,
         currentItemCount,
         totalItems,
         activeFilters,
@@ -83,10 +86,7 @@ function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
     // on mount, load data (only once)
     useEffect(() => {
         dispatch(fetchGames({currentFilters: activeFilters, sortStates: sorters}))
-    },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [games]
-    );
+    });
 
     // render row
     const renderRow = (game : EnhancedGame) =>
@@ -102,9 +102,9 @@ function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
 
     const loadMoreGames = useCallback( () => {
         dispatch(scrollingFetching());
-    }, 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [currentItemCount, totalItems]
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
+        []
     );
 
     const { loaderRef } = useInfiniteLoader({
@@ -113,16 +113,6 @@ function GamesGalleryGrid(_props : {[key: string | number | symbol] : any}) {
         initialise: !initialLoad,
         debug: false,
     });
-
-    const currentSortFunction = generate_sort_function(sorters);
-    const filtersFunction = generate_filter_function(activeFilters);
-
-    const currentGames = games
-        // remove the ones that doesn't match filter criteria
-        .filter(filtersFunction)
-        // sort them in user preference
-        .sort(currentSortFunction)
-        .slice(0, currentItemCount);
 
     return (
         <ReloadWrapper 
