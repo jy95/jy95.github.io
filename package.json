@@ -36,7 +36,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "generate-responsive-images": "node .github/workflows/generate-responsive-images.mjs"
   },
   "eslintConfig": {
     "extends": "react-app"
