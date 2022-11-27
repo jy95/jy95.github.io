@@ -4,7 +4,8 @@
             "gamesKey": "Games",
             "planningKey": "Calendar",
             "testsKey": "Tests",
-            "latestVideosKey": "Latest Videos"
+            "latestVideosKey": "Latest Videos",
+            "stats": "Stats"
         },
         "sortOrders": {
             "ASC": "Ascending sorting",

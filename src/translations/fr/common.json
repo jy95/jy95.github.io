@@ -4,7 +4,8 @@
             "gamesKey": "Jeux",
             "planningKey": "Planning",
             "testsKey": "Tests",
-            "latestVideosKey": "Dernières vidéos"
+            "latestVideosKey": "Dernières vidéos",
+            "stats": "Statistiques"
         },
         "sortOrders": {
             "ASC": "Tri ascendant",

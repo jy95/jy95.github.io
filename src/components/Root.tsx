@@ -30,6 +30,7 @@ const GamesGallery = lazy(() => import("./GamesView/GamesGallery"));
 const Planning = lazy(() => import("./Planning/Planning"));
 const TestsGallery = lazy(() => import("./Tests/TestsGallery"));
 const LatestVideosGallery = lazy(() => import("./LatestVideos/LatestVideosGallery"));
+const StatsPage = lazy(() => import("./Stats/StatsPage"));
 
 function Root(_props : { [key: string | number | symbol] : any }) {
 
@@ -81,6 +82,11 @@ function Root(_props : { [key: string | number | symbol] : any }) {
                                 <Route path="/latest" element={
                                     <Suspense fallback={<LinearProgress />}>
                                         <LatestVideosGallery />
+                                    </Suspense>
+                                } />
+                                <Route path="/stats" element={
+                                    <Suspense fallback={<LinearProgress />}>
+                                        <StatsPage />
                                     </Suspense>
                                 } />
                             </Routes>
