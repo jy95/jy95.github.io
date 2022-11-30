@@ -98,7 +98,13 @@
     },
     "stats": {
         "genresChart": {
+            "title": "Genres",
             "total": "Total",
+            "total_available": "Available",
+            "total_unavailable": "Not yet available"
+        },
+        "platformsChart": {
+            "title": "Platforms",
             "total_available": "Available",
             "total_unavailable": "Not yet available"
         }

@@ -1,6 +1,22 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, PolarAngleAxis, PolarGrid, Radar, RadarChart } from 'recharts';
+import { 
+    BarChart, 
+    Bar, 
+    XAxis, 
+    YAxis, 
+    CartesianGrid, 
+    Tooltip, 
+    PolarAngleAxis, 
+    PolarGrid, 
+    Radar, 
+    RadarChart, 
+    ResponsiveContainer,
+    Legend
+} from 'recharts';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 // Custom
 import ReloadWrapper from "../Others/ReloadWrapper";
@@ -56,23 +72,52 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
                 <>
                 {
                     genresData.length > 0 &&
-                    <BarChart width={500} height={250} data={genresData}>
-                        <CartesianGrid strokeDasharray="2 2" />
-                        <XAxis dataKey="category" stroke={strokeColor} />
-                        <YAxis stroke={strokeColor}  />
-                        <Tooltip contentStyle={{backgroundColor: currentColor}} />
-                        <Bar type="monotone" dataKey="total_available" stackId="1" stroke="#82ca9d" fill="#82ca9d" name={t("stats.genresChart.total_available")} />
-                        <Bar type="monotone" dataKey="total_unavailable" stackId="1" stroke="#8884d8" fill="#8884d8" name={t("stats.genresChart.total_unavailable")} />
-                    </BarChart>
+                    <Grid item xs={12} md={4} lg={3}>
+                        <Paper
+                            sx={{
+                                p: 2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                height: 250,
+                            }}
+                        >
+                            <Typography component="h2" variant="h6" color="primary" gutterBottom>{t("stats.genresChart.title")}</Typography>
+                            <ResponsiveContainer>
+                                <BarChart data={genresData}>
+                                    <CartesianGrid strokeDasharray="2 2" />
+                                    <XAxis dataKey="category" stroke={strokeColor} />
+                                    <YAxis stroke={strokeColor}  />
+                                    <Tooltip contentStyle={{backgroundColor: currentColor}} />
+                                    <Bar type="monotone" dataKey="total_available" stackId="1" stroke="#82ca9d" fill="#82ca9d" name={t("stats.genresChart.total_available")} />
+                                    <Bar type="monotone" dataKey="total_unavailable" stackId="1" stroke="#8884d8" fill="#8884d8" name={t("stats.genresChart.total_unavailable")} />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </Paper>
+                    </Grid>
                 }
                 { 
                     platformsData.length > 0 &&
-                    <RadarChart outerRadius={90} width={300} height={250} data={platformsData}>
-                        <PolarGrid />
-                        <PolarAngleAxis dataKey="key" stroke={strokeColor} />
-                        <Radar name="Mike" dataKey="total_available" stroke="#1fa134" fill="#1fa134" fillOpacity={0.6} />
-                        <Radar name="Mike" dataKey="total_unavailable" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-                    </RadarChart>
+                    <Grid item xs={12} md={4} lg={3}>
+                        <Paper
+                            sx={{
+                                p: 2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                height: 360,
+                            }}
+                        >
+                            <Typography component="h2" variant="h6" color="primary" gutterBottom>{t("stats.platformsChart.title")}</Typography>
+                            <ResponsiveContainer>
+                                <RadarChart outerRadius={90} data={platformsData}>
+                                    <PolarGrid />
+                                    <PolarAngleAxis dataKey="key" stroke={strokeColor} />
+                                    <Radar name={t("stats.platformsChart.total_available")} dataKey="total_available" stroke="#1fa134" fill="#1fa134" fillOpacity={0.6} />
+                                    <Radar name={t("stats.platformsChart.total_unavailable")} dataKey="total_unavailable" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+                                    <Legend />
+                                </RadarChart>
+                            </ResponsiveContainer>
+                        </Paper>
+                    </Grid>
                 }
                 </>
             }
