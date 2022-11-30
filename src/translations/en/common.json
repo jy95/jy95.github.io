@@ -95,5 +95,12 @@
             "status": "Status",
             "platform": "Platform"
         }
+    },
+    "stats": {
+        "genresChart": {
+            "total": "Total",
+            "total_available": "Available",
+            "total_unavailable": "Not yet available"
+        }
     }
 }
