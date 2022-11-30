@@ -69,16 +69,16 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
             error={error}
             reloadFct={() => {dispatch(fetchStats());}}
             component={
-                <>
+                <Grid container spacing={3}>
                 {
                     genresData.length > 0 &&
-                    <Grid item xs={12} md={4} lg={3}>
+                    <Grid item xs={12} md={8} lg={8}>
                         <Paper
                             sx={{
                                 p: 2,
                                 display: 'flex',
                                 flexDirection: 'column',
-                                height: 250,
+                                height: 360,
                             }}
                         >
                             <Typography component="h2" variant="h6" color="primary" gutterBottom>{t("stats.genresChart.title")}</Typography>
@@ -97,7 +97,7 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
                 }
                 { 
                     platformsData.length > 0 &&
-                    <Grid item xs={12} md={4} lg={3}>
+                    <Grid item xs={12} md={4} lg={4}>
                         <Paper
                             sx={{
                                 p: 2,
@@ -119,7 +119,7 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
                         </Paper>
                     </Grid>
                 }
-                </>
+                </Grid>
             }
         />
     );
