@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, PolarAngleAxis, PolarGrid, Radar, RadarChart } from 'recharts';
 
 // Custom
 import ReloadWrapper from "../Others/ReloadWrapper";
@@ -65,14 +65,14 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
                         <Bar type="monotone" dataKey="total_unavailable" stackId="1" stroke="#8884d8" fill="#8884d8" name={t("stats.genresChart.total_unavailable")} />
                     </BarChart>
                 }
-                { /*
+                { 
                     platformsData.length > 0 &&
                     <RadarChart outerRadius={90} width={300} height={250} data={platformsData}>
                         <PolarGrid />
-                        <PolarAngleAxis dataKey="key" />
+                        <PolarAngleAxis dataKey="key" stroke={strokeColor} />
                         <Radar name="Mike" dataKey="total_available" stroke="#1fa134" fill="#1fa134" fillOpacity={0.6} />
-                        <Radar name="Mike" dataKey="total_unavailable" stroke="#ff0000" fill="#ff0000" fillOpacity={0.6} />
-                    </RadarChart> */
+                        <Radar name="Mike" dataKey="total_unavailable" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+                    </RadarChart>
                 }
                 </>
             }
