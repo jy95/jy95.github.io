@@ -50,7 +50,7 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
                 <>
                 {
                     genresData.length > 0 &&
-                    <RadarChart outerRadius={90} width={500} height={500} data={genresData}>
+                    <RadarChart outerRadius={90} width={500} height={250} data={genresData}>
                         <PolarGrid />
                         <PolarAngleAxis dataKey="category" />
                         <PolarRadiusAxis angle={30} />
@@ -58,14 +58,16 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
                         <Radar name="Mike" dataKey="total_unavailable" stroke="#8faaba" fill="#8faaba" fillOpacity={0.6} />
                     </RadarChart>
                 }
-                { /*
-                <RadarChart outerRadius={90} width={500} height={500} data={platformsData}>
-                    <PolarGrid />
-                    <PolarAngleAxis dataKey="key" />
-                    <PolarRadiusAxis angle={30} />
-                    <Radar name="Mike" dataKey="total_available" stroke="#1fa134" fill="#1fa134" fillOpacity={0.6} />
-                    <Radar name="Mike" dataKey="total_unavailable" stroke="#8faaba" fill="#8faaba" fillOpacity={0.6} />
-            </RadarChart> */}
+                { 
+                    platformsData.length > 0 &&
+                    <RadarChart outerRadius={90} width={300} height={250} data={platformsData}>
+                        <PolarGrid />
+                        <PolarAngleAxis dataKey="key" />
+                        <PolarRadiusAxis angle={30} />
+                        <Radar name="Mike" dataKey="total_available" stroke="#1fa134" fill="#1fa134" fillOpacity={0.6} />
+                        <Radar name="Mike" dataKey="total_unavailable" stroke="#8faaba" fill="#8faaba" fillOpacity={0.6} />
+                    </RadarChart>
+                }
                 </>
             }
         />
