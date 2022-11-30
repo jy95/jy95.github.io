@@ -37,6 +37,9 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
         category: t(`gamesLibrary.gamesGenres.${s.key as GenreValue}` as const)
     }));
 
+    // for platform chart
+    const platformsData = stats.platforms;
+
     // TODO
     return (
         <ReloadWrapper  
@@ -44,13 +47,26 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
             error={error}
             reloadFct={() => {dispatch(fetchStats());}}
             component={
-                <RadarChart outerRadius={90} width={500} height={500} data={genresData}>
+                <>
+                {
+                    genresData.length > 0 &&
+                    <RadarChart outerRadius={90} width={500} height={500} data={genresData}>
+                        <PolarGrid />
+                        <PolarAngleAxis dataKey="category" />
+                        <PolarRadiusAxis angle={30} />
+                        <Radar name="Mike" dataKey="total_available" stroke="#1fa134" fill="#1fa134" fillOpacity={0.6} />
+                        <Radar name="Mike" dataKey="total_unavailable" stroke="#8faaba" fill="#8faaba" fillOpacity={0.6} />
+                    </RadarChart>
+                }
+                { /*
+                <RadarChart outerRadius={90} width={500} height={500} data={platformsData}>
                     <PolarGrid />
-                    <PolarAngleAxis dataKey="category" />
+                    <PolarAngleAxis dataKey="key" />
                     <PolarRadiusAxis angle={30} />
                     <Radar name="Mike" dataKey="total_available" stroke="#1fa134" fill="#1fa134" fillOpacity={0.6} />
                     <Radar name="Mike" dataKey="total_unavailable" stroke="#8faaba" fill="#8faaba" fillOpacity={0.6} />
-                </RadarChart>
+            </RadarChart> */}
+                </>
             }
         />
     );
