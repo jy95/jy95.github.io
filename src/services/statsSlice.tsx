@@ -12,6 +12,7 @@ type statsEntry = {
 
 // For extraneous properties in "general"
 type statsGeneral = statsEntry & {
+    // Info can be found in Youtube RSS feed
     "channel_start_date": string
 }
 

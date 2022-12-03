@@ -107,6 +107,11 @@
             "title": "Plate-formes",
             "total_available": "Disponible",
             "total_unavailable": "Pas encore disponible"
+        },
+        "generalStats": {
+            "title": "Chiffres clés",
+            "total_games": "Nombre de jeux",
+            "total_games_details": "( {{available}} disponible(s) / {{not_available}} pas encore disponible(s) )"
         }
     }
 }

@@ -18,6 +18,9 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+
 // Custom
 import ReloadWrapper from "../Others/ReloadWrapper";
 
@@ -54,11 +57,14 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
         category: t(`gamesLibrary.gamesGenres.${s.key as GenreValue}` as const)
     }));
 
+    // StackedAreaChart : https://recharts.org/en-US/examples/StackedAreaChart
+    // StackedBarChart : https://recharts.org/en-US/examples/StackedBarChart
+
     // for platform chart
     const platformsData = stats.platforms;
 
-    // StackedAreaChart : https://recharts.org/en-US/examples/StackedAreaChart
-    // StackedBarChart : https://recharts.org/en-US/examples/StackedBarChart
+    // for generals line
+    const generalStats = stats.general;
 
     const strokeColor = (currentColor === "dark") ? "white": "dark";    
 
@@ -70,55 +76,69 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
             reloadFct={() => {dispatch(fetchStats());}}
             component={
                 <Grid container spacing={3}>
-                {
-                    genresData.length > 0 &&
-                    <Grid item xs={12} md={8} lg={8}>
+                    <Grid item xs={12} md={12} lg={12}>
                         <Paper
                             sx={{
                                 p: 2,
                                 display: 'flex',
-                                flexDirection: 'column',
-                                height: 360,
+                                flexDirection: 'column'
                             }}
                         >
-                            <Typography component="h2" variant="h6" color="primary" gutterBottom>{t("stats.genresChart.title")}</Typography>
-                            <ResponsiveContainer>
-                                <BarChart data={genresData}>
-                                    <CartesianGrid strokeDasharray="2 2" />
-                                    <XAxis dataKey="category" stroke={strokeColor} />
-                                    <YAxis stroke={strokeColor}  />
-                                    <Tooltip contentStyle={{backgroundColor: currentColor}} />
-                                    <Bar type="monotone" dataKey="total_available" stackId="1" stroke="#82ca9d" fill="#82ca9d" name={t("stats.genresChart.total_available")} />
-                                    <Bar type="monotone" dataKey="total_unavailable" stackId="1" stroke="#8884d8" fill="#8884d8" name={t("stats.genresChart.total_unavailable")} />
-                                </BarChart>
-                            </ResponsiveContainer>
+                            <Typography component="h2" variant="h6" color="primary" gutterBottom>{t("stats.generalStats.title")}</Typography>
+                            <List>
+                                <ListItem>{`${t("stats.generalStats.total_games")} : ${generalStats.total} ${t("stats.generalStats.total_games_details", {available : generalStats.total_available, not_available: generalStats.total_unavailable})}` }</ListItem>
+                            </List>
                         </Paper>
                     </Grid>
-                }
-                { 
-                    platformsData.length > 0 &&
-                    <Grid item xs={12} md={4} lg={4}>
-                        <Paper
-                            sx={{
-                                p: 2,
-                                display: 'flex',
-                                flexDirection: 'column',
-                                height: 360,
-                            }}
-                        >
-                            <Typography component="h2" variant="h6" color="primary" gutterBottom>{t("stats.platformsChart.title")}</Typography>
-                            <ResponsiveContainer>
-                                <RadarChart outerRadius={90} data={platformsData}>
-                                    <PolarGrid />
-                                    <PolarAngleAxis dataKey="key" stroke={strokeColor} />
-                                    <Radar name={t("stats.platformsChart.total_available")} dataKey="total_available" stroke="#1fa134" fill="#1fa134" fillOpacity={0.6} />
-                                    <Radar name={t("stats.platformsChart.total_unavailable")} dataKey="total_unavailable" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-                                    <Legend />
-                                </RadarChart>
-                            </ResponsiveContainer>
-                        </Paper>
-                    </Grid>
-                }
+                    {
+                        genresData.length > 0 &&
+                        <Grid item xs={12} md={8} lg={8}>
+                            <Paper
+                                sx={{
+                                    p: 2,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    height: 360,
+                                }}
+                            >
+                                <Typography component="h2" variant="h6" color="primary" gutterBottom>{t("stats.genresChart.title")}</Typography>
+                                <ResponsiveContainer>
+                                    <BarChart data={genresData}>
+                                        <CartesianGrid strokeDasharray="2 2" />
+                                        <XAxis dataKey="category" stroke={strokeColor} />
+                                        <YAxis stroke={strokeColor}  />
+                                        <Tooltip contentStyle={{backgroundColor: currentColor}} />
+                                        <Bar type="monotone" dataKey="total_available" stackId="1" stroke="#82ca9d" fill="#82ca9d" name={t("stats.genresChart.total_available")} />
+                                        <Bar type="monotone" dataKey="total_unavailable" stackId="1" stroke="#8884d8" fill="#8884d8" name={t("stats.genresChart.total_unavailable")} />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </Paper>
+                        </Grid>
+                    }
+                    { 
+                        platformsData.length > 0 &&
+                        <Grid item xs={12} md={4} lg={4}>
+                            <Paper
+                                sx={{
+                                    p: 2,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    height: 360,
+                                }}
+                            >
+                                <Typography component="h2" variant="h6" color="primary" gutterBottom>{t("stats.platformsChart.title")}</Typography>
+                                <ResponsiveContainer>
+                                    <RadarChart outerRadius={90} data={platformsData}>
+                                        <PolarGrid />
+                                        <PolarAngleAxis dataKey="key" stroke={strokeColor} />
+                                        <Radar name={t("stats.platformsChart.total_available")} dataKey="total_available" stroke="#1fa134" fill="#1fa134" fillOpacity={0.6} />
+                                        <Radar name={t("stats.platformsChart.total_unavailable")} dataKey="total_unavailable" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+                                        <Legend />
+                                    </RadarChart>
+                                </ResponsiveContainer>
+                            </Paper>
+                        </Grid>
+                    }
                 </Grid>
             }
         />
