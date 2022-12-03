@@ -15,7 +15,15 @@
     "common": {
         "reload": "Recharger",
         "loading": "Chargement en cours ...",
-        "noResults": "Plus d'autre résultats à afficher"
+        "noResults": "Plus d'autre résultats à afficher",
+        "dates": {
+            "years_one": "1 année",
+            "years_other": "{{count}} années",
+            "months_one": "1 mois",
+            "months_other": "{{count}} mois",
+            "days_one": "1 jour",
+            "days_other": "{{count}} jours"
+        }
     },
     "header": {
         "languages": {
@@ -111,7 +119,9 @@
         "generalStats": {
             "title": "Chiffres clés",
             "total_games": "Nombre de jeux",
-            "total_games_details": "( {{available}} disponible(s) / {{not_available}} pas encore disponible(s) )"
+            "total_games_details": "( {{available}} disponible(s) / {{not_available}} pas encore disponible(s) )",
+            "channel_start_date": "Début de la chaine",
+            "channel_start_date_details": "(soit {{value}} sur Youtube)"
         }
     }
 }
