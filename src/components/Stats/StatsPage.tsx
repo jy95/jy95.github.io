@@ -20,6 +20,15 @@ import Paper from '@mui/material/Paper';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
+import HourglassTopIcon from '@mui/icons-material/HourglassTop';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 // Custom
 import ReloadWrapper from "../Others/ReloadWrapper";
@@ -154,22 +163,50 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
                         >
                             <Typography component="h2" variant="h6" color="primary" gutterBottom>{t("stats.generalStats.title")}</Typography>
                             <List>
-                                <ListItem>{`${
-                                    t("stats.generalStats.total_games")
-                                } : ${generalStats.total} ${
-                                    t("stats.generalStats.total_games_details", {available : generalStats.total_available, not_available: generalStats.total_unavailable})}` 
-                                }
+
+                                <ListItem>
+                                    <ListItemAvatar>
+                                    <Avatar>
+                                        <SportsEsportsIcon />
+                                    </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary={t("stats.generalStats.total_games")} secondary={t("stats.generalStats.total_games_details", {available : generalStats.total_available, not_available: generalStats.total_unavailable})} />
                                 </ListItem>
-                                <ListItem>{`${t("stats.generalStats.total_duration")} : ${ pretty_duration(generalStats.total_time, t) }`}</ListItem>
-                                <ListItem>{`${t("stats.generalStats.total_duration_available")} : ${ pretty_duration(generalStats.total_time_available, t) }`}</ListItem>
-                                <ListItem>{`${t("stats.generalStats.total_duration_unavailable")} : ${ pretty_duration(generalStats.total_time_unavailable, t) }`}</ListItem>
-                                <ListItem>{`${
-                                    t("stats.generalStats.channel_start_date")
-                                } : ${
-                                    new Date(generalStats.channel_start_date).toLocaleDateString()
-                                } ${
-                                    t("stats.generalStats.channel_start_date_details", {value: calcDate(generalStats.channel_start_date, t).result})
-                                }`}
+
+                                <ListItem>
+                                    <ListItemAvatar>
+                                    <Avatar>
+                                        <HourglassFullIcon />
+                                    </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary={t("stats.generalStats.total_duration")} secondary={pretty_duration(generalStats.total_time, t)} />
+                                </ListItem>
+
+                                <ListItem>
+                                    <ListItemAvatar>
+                                    <Avatar>
+                                        <HourglassBottomIcon />
+                                    </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary={t("stats.generalStats.total_duration_available")} secondary={pretty_duration(generalStats.total_time_available, t)} />
+                                </ListItem>
+
+                                <ListItem>
+                                    <ListItemAvatar>
+                                    <Avatar>
+                                        <HourglassTopIcon />
+                                    </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary={t("stats.generalStats.total_duration_unavailable")} secondary={pretty_duration(generalStats.total_time_unavailable, t)} />
+                                </ListItem>
+
+                                <ListItem>
+                                    <ListItemAvatar>
+                                    <Avatar>
+                                        <YouTubeIcon />
+                                    </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary={t("stats.generalStats.channel_start_date")} secondary={t("stats.generalStats.channel_start_date_details", {value: calcDate(generalStats.channel_start_date, t).result})} />
                                 </ListItem>
                             </List>
                         </Paper>
