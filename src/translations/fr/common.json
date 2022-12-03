@@ -22,7 +22,13 @@
             "months_one": "1 mois",
             "months_other": "{{count}} mois",
             "days_one": "1 jour",
-            "days_other": "{{count}} jours"
+            "days_other": "{{count}} jours",
+            "hours_one": "1 heure",
+            "hours_other": "{{count}} heures",
+            "minutes_one": "1 minute",
+            "minutes_other": "{{count}} minutes",
+            "seconds_one": "1 seconde",
+            "seconds_other": "{{count}} secondes"
         }
     },
     "header": {
@@ -121,7 +127,10 @@
             "total_games": "Nombre de jeux",
             "total_games_details": "( {{available}} disponible(s) / {{not_available}} pas encore disponible(s) )",
             "channel_start_date": "Début de la chaine",
-            "channel_start_date_details": "(soit {{value}} sur Youtube)"
+            "channel_start_date_details": "(soit {{value}} sur Youtube)",
+            "total_duration": "Durée totale du contenu",
+            "total_duration_available": "Durée totale du contenu (disponible)",
+            "total_duration_unavailable": "Durée totale du contenu (pas encore disponible)"
         }
     }
 }

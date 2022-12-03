@@ -68,7 +68,11 @@ function calcDate(date1 : string,  t : (key : string, options?: any) => string) 
     const total_weeks = ( total_days >= 7 ) ? total_days / 7 : 0;
 
     //display result with custom text
-    const result = `${t("common.dates.years", {count: years_passed})} ${t("common.dates.months", {count: months_passed})} ${t("common.dates.days", {count: days_passed})}`
+    const result = [
+        t("common.dates.years", {count: years_passed}),
+        t("common.dates.months", {count: months_passed}),
+        t("common.dates.days", {count: days_passed})
+    ].join(" ");
 
     //return the result
     return {
@@ -79,6 +83,20 @@ function calcDate(date1 : string,  t : (key : string, options?: any) => string) 
         "total_seconds": Math.round(total_secs),
         "result": result.trim()
     }
+}
+
+// Pretty print duration
+function pretty_duration(contentDuration : {
+    hours: number,
+    minutes: number,
+    seconds: number
+}, t : (key : string, options?: any) => string) {
+
+    return [
+        t("common.dates.hours", {count: contentDuration.hours}),
+        t("common.dates.minutes", {count: contentDuration.minutes}),
+        t("common.dates.seconds", {count: contentDuration.seconds})
+    ].join(" ");
 }
 
 // The gallery component
@@ -142,6 +160,9 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
                                     t("stats.generalStats.total_games_details", {available : generalStats.total_available, not_available: generalStats.total_unavailable})}` 
                                 }
                                 </ListItem>
+                                <ListItem>{`${t("stats.generalStats.total_duration")} : ${ pretty_duration(generalStats.total_time, t) }`}</ListItem>
+                                <ListItem>{`${t("stats.generalStats.total_duration_available")} : ${ pretty_duration(generalStats.total_time_available, t) }`}</ListItem>
+                                <ListItem>{`${t("stats.generalStats.total_duration_unavailable")} : ${ pretty_duration(generalStats.total_time_unavailable, t) }`}</ListItem>
                                 <ListItem>{`${
                                     t("stats.generalStats.channel_start_date")
                                 } : ${

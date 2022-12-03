@@ -10,7 +10,6 @@ type statsEntry = {
     total_unavailable: number    
 }
 
-// For extraneous properties in "general"
 type contentDuration = {
     hours: number,
     minutes: number,
@@ -23,6 +22,7 @@ let defaultDuration : contentDuration = {
     seconds: 0
 }
 
+// For extraneous properties in "general"
 type statsGeneral = statsEntry & {
     // Info can be found in Youtube RSS feed
     "channel_start_date": string,
