@@ -10,6 +10,11 @@ type statsEntry = {
     total_unavailable: number    
 }
 
+// For extraneous properties in "general"
+type statsGeneral = statsEntry & {
+    "channel_start_date": string
+}
+
 type statsProperty = {
     /** @description  Stats about platforms covered */
     platforms: {
@@ -20,7 +25,7 @@ type statsProperty = {
         [G in Genre]?: statsEntry
     },
     /** @description  General stats */
-    general: statsEntry
+    general: statsGeneral
 };
 
 export interface StatsState {
@@ -41,7 +46,9 @@ const initialState: StatsState = {
         general: {
             total: 0,
             total_available: 0,
-            total_unavailable: 0
+            total_unavailable: 0,
+            // Info can be found in Youtube RSS feed
+            channel_start_date: "2014-04-15T17:35:16+00:00"
         }
     }
 };
@@ -109,7 +116,9 @@ export const fetchStats = createAsyncThunk('stats/fetchStats', async () => {
             general: {
                 total: 0,
                 total_available: 0,
-                total_unavailable: 0
+                total_unavailable: 0,
+                // Info can be found in Youtube RSS feed
+                channel_start_date: "2014-04-15T17:35:16+00:00"
             }
         });
 
@@ -141,7 +150,9 @@ const statsSlice = createSlice({
                     general: {
                         total: 0,
                         total_available: 0,
-                        total_unavailable: 0
+                        total_unavailable: 0,
+                        // Info can be found in Youtube RSS feed
+                        channel_start_date: "2014-04-15T17:35:16+00:00"
                     }
                 }
                 state.error = payload as Error;
