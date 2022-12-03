@@ -11,9 +11,24 @@ type statsEntry = {
 }
 
 // For extraneous properties in "general"
+type contentDuration = {
+    hours: number,
+    minutes: number,
+    seconds: number
+}
+
+let defaultDuration : contentDuration = {
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+}
+
 type statsGeneral = statsEntry & {
     // Info can be found in Youtube RSS feed
-    "channel_start_date": string
+    "channel_start_date": string,
+    "total_time": contentDuration,
+    "total_time_available": contentDuration,
+    "total_time_unavailable": contentDuration,
 }
 
 type statsProperty = {
@@ -38,6 +53,41 @@ export interface StatsState {
     stats: statsProperty
 }
 
+// To compute sum of two times
+function sumTimes(currentTotal: contentDuration, gameDuration: string | undefined) : contentDuration {
+    // If game time isn't specified, then no need to compute
+    if (gameDuration === undefined){
+        return currentTotal;
+    } else {
+        let fields = gameDuration.split(":");
+
+        let hours = Number((fields.length === 3) ? fields[0] : 0);
+        let minutes = Number((fields.length === 2) ? fields[0] : fields[1]);
+        let seconds = Number((fields.length === 2) ? fields[1] : fields[2]);
+
+        // Combine them with 
+        let totalInSeconds = [
+            (hours + currentTotal.hours) * 3600,
+            (minutes + currentTotal.minutes) * 60,
+            (seconds + currentTotal.seconds)
+        ].reduce( (acc, total) => acc + total, 0);
+        
+        // Time to normalize the result
+        let new_hours = Math.floor(totalInSeconds / 3600);
+        totalInSeconds %= 3600;
+        let new_minutes = Math.floor(totalInSeconds / 60);
+        let new_seconds = totalInSeconds % 60;
+
+        return {
+            hours: new_hours,
+            minutes: new_minutes,
+            seconds : new_seconds
+        }
+
+    }
+
+}
+
 const initialState: StatsState = {
     error: null,
     loading: false,
@@ -49,7 +99,10 @@ const initialState: StatsState = {
             total_available: 0,
             total_unavailable: 0,
             // Info can be found in Youtube RSS feed
-            channel_start_date: "2014-04-15T17:35:16+00:00"
+            channel_start_date: "2014-04-15T17:35:16+00:00",
+            total_time: defaultDuration,
+            total_time_available: defaultDuration,
+            total_time_unavailable: defaultDuration
         }
     }
 };
@@ -104,10 +157,13 @@ export const fetchStats = createAsyncThunk('stats/fetchStats', async () => {
 
             // Update general stats
             acc.general.total = acc.general.total + 1;
+            acc.general.total_time = sumTimes(acc.general.total_time, game.duration)
             if (isAlreadyPublic) {
                 acc.general.total_available = acc.general.total_available + 1;
+                acc.general.total_time_available = sumTimes(acc.general.total_time_available, game.duration)
             } else {
                 acc.general.total_unavailable = acc.general.total_unavailable + 1;
+                acc.general.total_time_unavailable = sumTimes(acc.general.total_time_unavailable, game.duration)
             }
 
             return acc;
@@ -119,7 +175,10 @@ export const fetchStats = createAsyncThunk('stats/fetchStats', async () => {
                 total_available: 0,
                 total_unavailable: 0,
                 // Info can be found in Youtube RSS feed
-                channel_start_date: "2014-04-15T17:35:16+00:00"
+                channel_start_date: "2014-04-15T17:35:16+00:00",
+                total_time: defaultDuration,
+                total_time_available: defaultDuration,
+                total_time_unavailable: defaultDuration,
             }
         });
 
@@ -153,7 +212,10 @@ const statsSlice = createSlice({
                         total_available: 0,
                         total_unavailable: 0,
                         // Info can be found in Youtube RSS feed
-                        channel_start_date: "2014-04-15T17:35:16+00:00"
+                        channel_start_date: "2014-04-15T17:35:16+00:00",
+                        total_time: defaultDuration,
+                        total_time_available: defaultDuration,
+                        total_time_unavailable: defaultDuration,
                     }
                 }
                 state.error = payload as Error;
