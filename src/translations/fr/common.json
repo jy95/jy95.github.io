@@ -4,7 +4,8 @@
             "gamesKey": "Jeux",
             "planningKey": "Planning",
             "testsKey": "Tests",
-            "latestVideosKey": "Dernières vidéos"
+            "latestVideosKey": "Dernières vidéos",
+            "stats": "Statistiques"
         },
         "sortOrders": {
             "ASC": "Tri ascendant",
@@ -14,7 +15,21 @@
     "common": {
         "reload": "Recharger",
         "loading": "Chargement en cours ...",
-        "noResults": "Plus d'autre résultats à afficher"
+        "noResults": "Plus d'autre résultats à afficher",
+        "dates": {
+            "years_one": "1 année",
+            "years_other": "{{count}} années",
+            "months_one": "1 mois",
+            "months_other": "{{count}} mois",
+            "days_one": "1 jour",
+            "days_other": "{{count}} jours",
+            "hours_one": "1 heure",
+            "hours_other": "{{count}} heures",
+            "minutes_one": "1 minute",
+            "minutes_other": "{{count}} minutes",
+            "seconds_one": "1 seconde",
+            "seconds_other": "{{count}} secondes"
+        }
     },
     "header": {
         "languages": {
@@ -93,6 +108,30 @@
             "endDate": "Date de fin",
             "status": "Statut",
             "platform": "Plateforme"
+        }
+    },
+    "stats": {
+        "genresChart": {
+            "title": "Genres",
+            "total": "Total",
+            "total_available": "Disponible",
+            "total_unavailable": "Pas encore disponible"
+        },
+        "platformsChart": {
+            "title": "Plate-formes",
+            "total_available": "Disponible",
+            "total_unavailable": "Pas encore disponible"
+        },
+        "generalStats": {
+            "title": "Chiffres clés",
+            "total_games": "Nombre de jeux",
+            "total_games_available": "Nombre de jeux (disponible)",
+            "total_games_unavailable": "Nombre de jeux (pas encore disponible)",
+            "channel_start_date": "Début de la chaine",
+            "channel_start_date_details": "(soit {{value}} sur Youtube)",
+            "total_duration": "Durée totale du contenu",
+            "total_duration_available": "Durée totale du contenu (disponible)",
+            "total_duration_unavailable": "Durée totale du contenu (pas encore disponible)"
         }
     }
 }

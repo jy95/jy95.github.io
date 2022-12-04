@@ -7,6 +7,7 @@ import miscellaneous from "../services/miscellaneousSlice";
 import latestVideos from "../services/latestVideosSlice";
 import tests from "../services/testsSlice";
 import series from "../services/seriesSlice";
+import stats from "../services/statsSlice";
 
 /* eslint-disable no-underscore-dangle */
 const store = configureStore({
@@ -17,7 +18,8 @@ const store = configureStore({
         miscellaneous,
         latestVideos,
         tests,
-        series
+        series,
+        stats
     }
 })
 export default store;

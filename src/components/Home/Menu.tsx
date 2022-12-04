@@ -22,6 +22,7 @@ import ScheduleIcon from '@mui/icons-material/Schedule';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
 
 // Styled components
 import { Drawer, DrawerHeader } from "./Drawer";
@@ -31,7 +32,7 @@ import { drawerOpen } from "../../services/miscellaneousSlice";
 // Hooks
 import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
-type menuEntryTranslationKey = 'gamesKey' | 'planningKey' | 'testsKey' | 'latestVideosKey';
+type menuEntryTranslationKey = 'gamesKey' | 'planningKey' | 'testsKey' | 'latestVideosKey' | 'stats';
 
 // List Item
 function ListItemLink(props : {
@@ -91,6 +92,11 @@ const ENTRIES : {
         "icon": <VideoLibraryIcon />,
         "primary": "main.menuEntries.latestVideosKey",
         "to": "/latest"
+    },
+    {
+        "icon": <QueryStatsIcon />,
+        "primary": "main.menuEntries.stats",
+        "to": "/stats"
     }
 ]
 

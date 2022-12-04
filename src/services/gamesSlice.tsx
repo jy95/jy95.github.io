@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction, createAsyncThunk, AsyncThunk, createSelector } from '@reduxjs/toolkit';
-import type { BasicGame, EnhancedGame, BasicVideo, BasicPlaylist } from "./sharedDefintion";
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
+import type { PayloadAction, AsyncThunk } from "@reduxjs/toolkit";
+import type { BasicGame, EnhancedGame, BasicVideo, BasicPlaylist, Genre } from "./sharedDefintion";
 
 type gamesSorters = [
     "name" | "releaseDate" | "duration",
@@ -21,7 +22,7 @@ export const filtersFunctions = {
     /** @description To check if title match search criteria (insensitive search) */
     "selected_title": (searchTitle : string) => (game : EnhancedGame) => game.title.search(new RegExp(searchTitle, 'i')) >= 0,
     /** @description To check if two arrays contains at least one element in common */
-    "selected_genres": (requestedGenres : string[]) => (game : EnhancedGame) => requestedGenres.some(v => game.genres.indexOf(v) >= 0)
+    "selected_genres": (requestedGenres : Genre[]) => (game : EnhancedGame) => requestedGenres.some(v => game.genres.indexOf(v) >= 0)
 }
 
 // search criterias

@@ -8,30 +8,9 @@ import { filteringByGenre, selectFilterByName } from "../../services/gamesSlice"
 // Hooks
 import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
+import type { Genre as GenreValue } from "../../services/sharedDefintion";
 // Each one is also a key for translation
-const GENRES = [
-    "Action",
-    "Adventure",
-    "Arcade",
-    "Board Games",
-    "Card",
-    "Casual",
-    "Educational",
-    "Family",
-    "Fighting",
-    "Indie",
-    "MMORPG",
-    "Platformer",
-    "Puzzle",
-    "RPG",
-    "Racing",
-    "Shooter",
-    "Simulation",
-    "Sports",
-    "Strategy",
-    "Misc"
-] as const;
-type GenreValue = typeof GENRES[number];
+import { genre_list as GENRES } from "../../services/sharedDefintion";
 
 // Genres filter of GamesGallery
 function GenresSelect(_props : {[key: string | number | symbol] : any}) {
