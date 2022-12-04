@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkyt_gaming_library=self.webpackChunkyt_gaming_library||[]).push([[366],{70366:function(e,a,r){var t=r(64836);Object.defineProperty(a,"__esModule",{value:!0}),a.default=void 0;var u=t(r(45649)),l=r(80184),i=(0,u.default)((0,l.jsx)("path",{d:"m7 14 5-5 5 5z"}),"ArrowDropUp");a.default=i}}]);
+//# sourceMappingURL=366.cae46d5d.chunk.js.map
