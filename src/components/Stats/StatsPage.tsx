@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import { 
     BarChart, 
@@ -17,6 +17,9 @@ import {
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -173,32 +176,43 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
                                     <ListItemText primary={t("stats.generalStats.total_games")} secondary={t("stats.generalStats.total_games_details", {available : generalStats.total_available, not_available: generalStats.total_unavailable})} />
                                 </ListItem>
 
-                                <ListItem>
-                                    <ListItemAvatar>
-                                    <Avatar>
-                                        <HourglassFullIcon />
-                                    </Avatar>
-                                    </ListItemAvatar>
-                                    <ListItemText primary={t("stats.generalStats.total_duration")} secondary={pretty_duration(generalStats.total_time, t)} />
-                                </ListItem>
+                                <Accordion key={"total_duration"}>
+                                    <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon />}
+                                        aria-controls={"panel-content_total_duration"}
+                                        id={"panel-header_total_duration"}
+                                    >
+                                        <ListItemAvatar>
+                                            <Avatar>
+                                                <HourglassFullIcon />
+                                            </Avatar>
+                                        </ListItemAvatar>
+                                        <ListItemText primary={t("stats.generalStats.total_duration")} secondary={pretty_duration(generalStats.total_time, t)} />
+                                    </AccordionSummary>
+                                    <Suspense fallback={null}>
+                                        <List>
 
-                                <ListItem>
-                                    <ListItemAvatar>
-                                    <Avatar>
-                                        <HourglassBottomIcon />
-                                    </Avatar>
-                                    </ListItemAvatar>
-                                    <ListItemText primary={t("stats.generalStats.total_duration_available")} secondary={pretty_duration(generalStats.total_time_available, t)} />
-                                </ListItem>
+                                            <ListItem>
+                                                <ListItemAvatar>
+                                                <Avatar>
+                                                    <HourglassBottomIcon />
+                                                </Avatar>
+                                                </ListItemAvatar>
+                                                <ListItemText primary={t("stats.generalStats.total_duration_available")} secondary={pretty_duration(generalStats.total_time_available, t)} />
+                                            </ListItem>
 
-                                <ListItem>
-                                    <ListItemAvatar>
-                                    <Avatar>
-                                        <HourglassTopIcon />
-                                    </Avatar>
-                                    </ListItemAvatar>
-                                    <ListItemText primary={t("stats.generalStats.total_duration_unavailable")} secondary={pretty_duration(generalStats.total_time_unavailable, t)} />
-                                </ListItem>
+                                            <ListItem>
+                                                <ListItemAvatar>
+                                                <Avatar>
+                                                    <HourglassTopIcon />
+                                                </Avatar>
+                                                </ListItemAvatar>
+                                                <ListItemText primary={t("stats.generalStats.total_duration_unavailable")} secondary={pretty_duration(generalStats.total_time_unavailable, t)} />
+                                            </ListItem>
+
+                                        </List>
+                                    </Suspense>
+                                </Accordion>
 
                                 <ListItem>
                                     <ListItemAvatar>
@@ -206,7 +220,7 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
                                         <YouTubeIcon />
                                     </Avatar>
                                     </ListItemAvatar>
-                                    <ListItemText primary={t("stats.generalStats.channel_start_date")} secondary={t("stats.generalStats.channel_start_date_details", {value: calcDate(generalStats.channel_start_date, t).result})} />
+                                    <ListItemText primary={t("stats.generalStats.channel_start_date")} secondary={`${new Date(generalStats.channel_start_date).toLocaleDateString()} ${t("stats.generalStats.channel_start_date_details", {value: calcDate(generalStats.channel_start_date, t).result})}`} />
                                 </ListItem>
                             </List>
                         </Paper>
