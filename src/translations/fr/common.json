@@ -125,7 +125,8 @@
         "generalStats": {
             "title": "Chiffres clés",
             "total_games": "Nombre de jeux",
-            "total_games_details": "( {{available}} disponible(s) / {{not_available}} pas encore disponible(s) )",
+            "total_games_available": "Nombre de jeux (disponible)",
+            "total_games_unavailable": "Nombre de jeux (pas encore disponible)",
             "channel_start_date": "Début de la chaine",
             "channel_start_date_details": "(soit {{value}} sur Youtube)",
             "total_duration": "Durée totale du contenu",

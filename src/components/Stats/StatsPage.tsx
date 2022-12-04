@@ -167,14 +167,43 @@ function StatsPage(_props : {[key: string | number | symbol] : any}) {
                             <Typography component="h2" variant="h6" color="primary" gutterBottom>{t("stats.generalStats.title")}</Typography>
                             <List>
 
-                                <ListItem>
-                                    <ListItemAvatar>
-                                    <Avatar>
-                                        <SportsEsportsIcon />
-                                    </Avatar>
-                                    </ListItemAvatar>
-                                    <ListItemText primary={t("stats.generalStats.total_games")} secondary={t("stats.generalStats.total_games_details", {available : generalStats.total_available, not_available: generalStats.total_unavailable})} />
-                                </ListItem>
+                                <Accordion key={"total_games"}>
+                                    <AccordionSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                            aria-controls={"panel-content_total_games"}
+                                            id={"panel-header_total_games"}
+                                        >
+                                            <ListItemAvatar>
+                                                <Avatar>
+                                                    <SportsEsportsIcon />
+                                                </Avatar>
+                                            </ListItemAvatar>
+                                            <ListItemText primary={t("stats.generalStats.total_games")} secondary={generalStats.total} />
+                                    </AccordionSummary>
+                                    <Suspense fallback={null}>
+                                        <List>
+
+                                            <ListItem>
+                                                    <ListItemAvatar>
+                                                    <Avatar>
+                                                        <SportsEsportsIcon />
+                                                    </Avatar>
+                                                    </ListItemAvatar>
+                                                    <ListItemText primary={t("stats.generalStats.total_games_available")} secondary={generalStats.total_available} />
+                                            </ListItem>
+
+                                            <ListItem>
+                                                    <ListItemAvatar>
+                                                    <Avatar>
+                                                        <SportsEsportsIcon />
+                                                    </Avatar>
+                                                    </ListItemAvatar>
+                                                    <ListItemText primary={t("stats.generalStats.total_games_unavailable")} secondary={generalStats.total_unavailable} />
+                                            </ListItem>
+
+                                        </List>
+                                    </Suspense>
+                                </Accordion>
 
                                 <Accordion key={"total_duration"}>
                                     <AccordionSummary

@@ -125,7 +125,8 @@
         "generalStats": {
             "title": "Key metrics",
             "total_games": "Number of games",
-            "total_games_details": "( {{available}} available / {{not_available}} not yet available )",
+            "total_games_available": "Number of games (available)",
+            "total_games_unavailable": "Number of games (not yet available)",
             "channel_start_date": "Channel start date",
             "channel_start_date_details": "(so {{value}} on Youtube)",
             "total_duration": "Content total duration",
