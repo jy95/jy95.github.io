@@ -14,15 +14,7 @@ import Root from "./components/Root";
 
 i18next
     // Lazy translations : most of the time, user will choose only one language
-    .use(resourcesToBackend((language, namespace, callback) => {
-        import(`./translations/${language}/${namespace}.json`)
-            .then((resources) => {
-                callback(null, resources)
-            })
-            .catch((error) => {
-                callback(error, null)
-            })
-    }))
+    .use(resourcesToBackend((language : string, namespace : string) => import(`./translations/${language}/${namespace}.json`)))
     .use(detector)
     .use(initReactI18next) // passes i18n down to react-i18next
     .init({
