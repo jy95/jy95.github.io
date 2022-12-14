@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkyt_gaming_library=self.webpackChunkyt_gaming_library||[]).push([[3253],{43253:function(n,e,t){t.r(e);var i=t(61889),r=t(80184);e.default=function(n){var e=n.children;return(0,r.jsx)(i.ZP,{container:!0,spacing:0,direction:"column",alignItems:"center",justifyContent:"center",style:{minHeight:"80vh"},children:e})}}}]);
+//# sourceMappingURL=3253.9e755ee8.chunk.js.map
