@@ -1868,6 +1868,21 @@
          "availableAt": 20231120,
          "endAt": 20231218,
          "coverFile": "cover.webp"
-      }
+      },
+      {
+         "title":"Astérix aux Jeux olympiques",
+         "playlistId":"PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
+         "releaseDate":"09/11/2007",
+         "duration":"3:23:11",
+         "genres":[
+            "Action",
+            "Adventure",
+            "Platformer"
+         ],
+         "platform":"PS2",
+         "availableAt": 20240101,
+         "endAt": 20240119,
+         "coverFile": "cover.webp"
+      }      
     ]
  }
