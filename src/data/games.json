@@ -1842,7 +1842,7 @@
          "coverFile": "cover.webp"
        },
        {
-         "title":"God of War: Chains of Olympus Remastered",
+         "title":"God of War: Chains of Olympus HD",
          "playlistId":"PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX",
          "releaseDate":"13/09/2011",
          "duration":"3:20:24",
@@ -1883,6 +1883,20 @@
          "availableAt": 20240101,
          "endAt": 20240119,
          "coverFile": "cover.webp"
-      }      
+      },
+      {
+         "title":"God of War: Ghost of Sparta HD",
+         "playlistId":"PLRfhDHeBTBJ7TJ1MBUMRg588JQd9p-ub9",
+         "releaseDate":"14/09/2011",
+         "duration":"4:30:40",
+         "genres":[
+            "Action",
+            "Adventure"
+         ],
+         "platform":"PS3",
+         "availableAt": 20240122,
+         "endAt": 20240223,
+         "coverFile": "cover.jpg"
+      }  
     ]
  }
