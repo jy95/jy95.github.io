@@ -27,7 +27,7 @@ const initialState : PlanningState = {
 }
 
 // Turn "YYYY...MMDD" to int
-function turnDateToInt(value: number | undefined) {
+function turnDateToInt(value: number | string | undefined) {
     if (value) {
         const { year, month, day } = (/(?<year>\d{4,})(?<month>\d{2})(?<day>\d{2})/.exec(value.toString()) as any).groups;
         // TODO one day, remove that & let PlanningColumn do the job
@@ -51,7 +51,7 @@ export const fetchPlanning = createAsyncThunk('planning/fetchGames', async () =>
     const planningGames = (gamesData.games)
         // only scheduled games - TODO add a property later for "on hold" entries
         // only active entries
-        .filter(game =>  should_be_displayed(integerDate, game.availableAt, game.endAt))
+        .filter(game =>  should_be_displayed(integerDate, game.availableAt as number | undefined, game.endAt as number | undefined))
         .map(scheduledGame => ({
             id: (scheduledGame as BasicPlaylist).playlistId ?? (scheduledGame as BasicVideo).videoId,
             title: scheduledGame.title,
