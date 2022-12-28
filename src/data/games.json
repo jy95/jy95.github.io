@@ -1897,6 +1897,20 @@
          "availableAt": 20240122,
          "endAt": 20240223,
          "coverFile": "cover.webp"
-      }  
+      },
+      {
+         "title": "Lucky Luke : Tous à l'Ouest",
+         "videoId": "kDoc1rzc-Zs",
+         "releaseDate": "07/11/2007",
+         "duration": "1:21:01",
+         "genres": [
+            "Arcade",
+            "Casual"
+         ],
+         "platform": "PC",
+         "availableAt": "20240304",
+         "endAt": "20240304",
+         "coverFile": "cover.webp"
+      }
     ]
  }
