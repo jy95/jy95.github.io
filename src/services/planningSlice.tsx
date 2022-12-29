@@ -51,7 +51,7 @@ export const fetchPlanning = createAsyncThunk('planning/fetchGames', async () =>
     const planningGames = (gamesData.games)
         // only scheduled games - TODO add a property later for "on hold" entries
         // only active entries
-        .filter(game =>  should_be_displayed(integerDate, game.availableAt as number | undefined, game.endAt as number | undefined))
+        .filter(game =>  game?.availableAt !== undefined)
         .map(scheduledGame => ({
             id: (scheduledGame as BasicPlaylist).playlistId ?? (scheduledGame as BasicVideo).videoId,
             title: scheduledGame.title,
