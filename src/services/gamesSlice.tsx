@@ -142,7 +142,7 @@ export const all_games = async () => {
     // Build list of available games
     return (gamesData.games as BasicGame[])
         // hide not yet public games on channel
-        .filter(game => (game?.availableAt === undefined) || game?.availableAt <= integerDate)
+        //.filter(game => (game?.availableAt === undefined) || game?.availableAt <= integerDate)
         // enhance payload
         .map(game => {
             const id = (game as BasicPlaylist).playlistId ?? (game as BasicVideo).videoId;
