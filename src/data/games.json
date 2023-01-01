@@ -1911,6 +1911,21 @@
          "availableAt": "20240304",
          "endAt": "20240304",
          "coverFile": "cover.webp"
+      },
+      {
+         "title": "Jak and Daxter: The Lost Frontier",
+         "playlistId": "PLRfhDHeBTBJ5yE1da-5kvYirmxBd7sLEX",
+         "releaseDate": "18/11/2009",
+         "duration": "5:16:27",
+         "genres": [
+             "Action",
+             "Adventure",
+             "Platformer"
+         ],
+         "platform": "PSP",
+         "availableAt": "20240306",
+         "endAt": "20240325",
+         "coverFile": "cover.jpg"
       }
     ]
  }
