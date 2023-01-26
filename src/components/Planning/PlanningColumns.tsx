@@ -11,10 +11,6 @@ import Tooltip from '@mui/material/Tooltip';
 import iconsSVG from "../GamesView/PlatformIcons";
 import type { Platform } from '../../services/sharedDefintion';
 
-const renderNumberAsDate = (language : string, date_options : any) => (params : GridRenderCellParams<string | undefined>) => <>
-    { (params.value) ? new Date(params.value).toLocaleDateString(language, date_options) : null }
-</>
-
 // columns definitions
 const planningColumns = (t : (key: string, ...rest : any) => string, date_options : any, language : string) => [
     {
@@ -44,14 +40,16 @@ const planningColumns = (t : (key: string, ...rest : any) => string, date_option
         field: "releaseDate", 
         headerName: t("planning.columns.releaseDate"),
         headerAlign: 'center',
-        renderCell: renderNumberAsDate(language, date_options),
+        type: 'date',
+        valueGetter: (params) => (params.value) ? new Date(params.value) : null,
         width: 220
     },
     {
         field: "endDate", 
         headerName: t("planning.columns.endDate"),
         headerAlign: 'center',
-        renderCell: renderNumberAsDate(language, date_options),
+        type: 'date',
+        valueGetter: (params) => (params.value) ? new Date(params.value) : null,
         width: 220,
         hide: true
     },

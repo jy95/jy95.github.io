@@ -75,7 +75,7 @@ function Viewer(_props : {[key: string | number | symbol] : any}) {
                         <DataGrid 
                             rows={data} 
                             columns={columns} 
-                            disableSelectionOnClick 
+                            disableRowSelectionOnClick 
                             //disableExtendRowFullWidth // No needed for now
                             disableColumnFilter // or filterable: false in each column
                             autoHeight  
