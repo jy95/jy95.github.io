@@ -1926,6 +1926,20 @@
          "availableAt": "20240306",
          "endAt": "20240325",
          "coverFile": "cover.webp"
+      },
+      {
+         "title": "Batman The Telltale Series",
+         "playlistId": "PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
+         "releaseDate": "02/08/2016",
+         "duration": "7:08:15",
+         "genres": [
+            "Action",
+            "Adventure"
+         ],
+         "platform": "PC",
+         "availableAt": "20240329",
+         "endAt": "20240408",
+         "coverFile": "cover.png"
       }
     ]
  }
