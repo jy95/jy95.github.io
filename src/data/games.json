@@ -1940,6 +1940,20 @@
          "availableAt": "20240329",
          "endAt": "20240408",
          "coverFile": "cover.webp"
+      },
+      {
+         "title":"Splinter Cell HD",
+         "playlistId":"PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
+         "releaseDate":"10/08/2011",
+         "duration":"4:40:45",
+         "genres":[
+            "Action",
+            "Adventure"
+         ],
+         "platform":"PS3",
+         "availableAt": "20240410",
+         "endAt": "20240501",
+         "coverFile": "cover.png"
       }
     ]
  }
