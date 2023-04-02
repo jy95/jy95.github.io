@@ -39,7 +39,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "generate-responsive-images": "node .github/workflows/generate-responsive-images.mjs",
-    "sample-game": "npm run generate-responsive-images -- singleGame PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q covers cover.png"
+    "sample-game": "npm run generate-responsive-images -- singleGame PLRfhDHeBTBJ5AJN9pWW6v6NQSxnK5tGTV covers cover.jpg"
   },
   "eslintConfig": {
     "extends": "react-app"
