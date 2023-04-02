@@ -1954,6 +1954,21 @@
          "availableAt": "20240410",
          "endAt": "20240501",
          "coverFile": "cover.webp"
+      },
+      {
+         "title": "Daxter",
+         "playlistId": "PLRfhDHeBTBJ5AJN9pWW6v6NQSxnK5tGTV",
+         "releaseDate": "20/04/2006",
+         "duration": "5:12:35",
+         "genres": [
+            "Action",
+            "Adventure",
+            "Platformer"
+         ],
+         "platform": "PSP",
+         "availableAt": "20240503",
+         "endAt": "20240603",
+         "coverFile": "cover.jpg"
       }
     ]
  }
