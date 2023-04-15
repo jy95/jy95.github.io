@@ -1969,6 +1969,21 @@
          "availableAt": "20240503",
          "endAt": "20240603",
          "coverFile": "cover.webp"
+      },
+      {
+         "title":"Chili Con Carnage",
+         "playlistId":"PLRfhDHeBTBJ7-gVyU44CdXMekwgbm-sNn",
+         "releaseDate":"23/02/2007",
+         "duration":"3:19:49",
+         "genres":[
+            "Action",
+            "Adventure",
+            "Shooter"
+         ],
+         "platform":"PSP",
+         "availableAt": "20240610",
+         "endAt": "20240624",
+         "coverFile": "cover.jpg"
       }
     ]
  }
