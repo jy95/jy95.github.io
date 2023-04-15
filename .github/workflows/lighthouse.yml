@@ -9,7 +9,7 @@ jobs:
     - uses: actions/checkout@master
     - run: mkdir -p ${{ github.workspace }}/tmp/artifacts
     - name: Waiting for Vercel Preview
-      uses: patrickedqvist/wait-for-vercel-preview@v1.2.0
+      uses: patrickedqvist/wait-for-vercel-preview@v1.3.1
       id: vercelPreview
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
