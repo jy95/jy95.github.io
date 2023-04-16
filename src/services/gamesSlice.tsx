@@ -132,17 +132,19 @@ const SIZES_WITDH = [
 // Needed in several sub functions
 export const all_games = async () => {
     // current date as integer (quicker comparaison)
+    /*
     const currentDate = new Date();
     const integerDate = (currentDate.getFullYear() * 10000) + 
         ( (currentDate.getMonth() + 1) * 100 ) + 
         currentDate.getDate();
+    */
 
     const gamesData = await import("../data/games.json");
 
     // Build list of available games
     return (gamesData.games as BasicGame[])
         // hide not yet public games on channel
-        .filter(game => (game?.availableAt === undefined) || game?.availableAt <= integerDate)
+        //.filter(game => (game?.availableAt === undefined) || game?.availableAt <= integerDate)
         // enhance payload
         .map(game => {
             const id = (game as BasicPlaylist).playlistId ?? (game as BasicVideo).videoId;
