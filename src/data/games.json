@@ -1984,6 +1984,21 @@
          "availableAt": "20240610",
          "endAt": "20240624",
          "coverFile": "cover.webp"
+      },
+      {
+         "title": "Robots",
+         "playlistId": "PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR",
+         "releaseDate": "01/04/2005",
+         "duration": "3:28:59",
+         "genres": [
+            "Action",
+            "Adventure",
+            "Platformer"
+         ],
+         "platform": "PS2",
+         "availableAt": "20240701",
+         "endAt": "20240717",
+         "coverFile": "cover.webp"
       }
     ]
  }
