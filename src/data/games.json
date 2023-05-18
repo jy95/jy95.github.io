@@ -1999,6 +1999,19 @@
          "availableAt": "20240701",
          "endAt": "20240717",
          "coverFile": "cover.webp"
+      },
+      {
+         "title": "Legend of Kay Anniversary",
+         "playlistId": "PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
+         "releaseDate": "29/05/2015",
+         "genres": [
+            "Action",
+            "Adventure",
+            "Platformer"
+         ],
+         "platform": "PS3",
+         "availableAt": "20240722",
+         "coverFile": "cover.webp"
       }
     ]
  }
