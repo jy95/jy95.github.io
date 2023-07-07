@@ -10,9 +10,10 @@ import Tooltip from '@mui/material/Tooltip';
 // Platform icons
 import iconsSVG from "../GamesView/PlatformIcons";
 import type { Platform } from '../../services/sharedDefintion';
+import type { TFunction } from 'i18next';
 
 // columns definitions
-const planningColumns = (t : (key: string, ...rest : any) => string, date_options : any, language : string) => [
+const planningColumns = (t : TFunction<"common", undefined>, date_options : any, language : string) => [
     {
         field: "title", 
         headerName: t("planning.columns.title"),
@@ -57,7 +58,8 @@ const planningColumns = (t : (key: string, ...rest : any) => string, date_option
         field: "status",
         headerName: t("planning.columns.status"),
         renderCell: (params : GridRenderCellParams) => (
-            <Tooltip title={t("planning.states." + params.value )} aria-label={params.value}>
+            // @ts-ignore https://www.i18next.com/overview/typescript#troubleshooting
+            <Tooltip title={t(`planning.states.${params.value}` as const)} aria-label={params.value}>
                 { 
                     (params.value === "RECORDED") ? <CheckCircleIcon /> : <HourglassEmptyIcon />
                 }

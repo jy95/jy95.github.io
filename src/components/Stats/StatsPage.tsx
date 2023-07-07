@@ -42,10 +42,11 @@ import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
 // types
 import type { Genre as GenreValue } from "../../services/sharedDefintion";
+import type { TFunction } from "i18next";
 
 // Inspired by https://blog.bitsrc.io/calculate-the-difference-between-two-2-dates-e1d76737c05a
 // My version includes some improvements in the codebase & changes to fit my needs
-function calcDate(date1 : string,  t : (key : string, options?: any) => string) {
+function calcDate(date1 : string,  t : TFunction<"common", undefined>) {
 
     //new date instance
     const dt_date1 = new Date(date1);
@@ -102,7 +103,7 @@ function pretty_duration(contentDuration : {
     hours: number,
     minutes: number,
     seconds: number
-}, t : (key : string, options?: any) => string) {
+}, t : TFunction<"common", undefined>) {
 
     return [
         t("common.dates.hours", {count: contentDuration.hours}),
