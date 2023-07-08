@@ -2012,6 +2012,17 @@
          "platform": "PS3",
          "availableAt": "20240722",
          "coverFile": "cover.webp"
+      },
+      {
+         "title": "Dr. Fetus' Mean Meat Machine",
+         "playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD",
+         "releaseDate": "22/06/2023",
+         "duration": "5:28:02",
+         "genres": [
+            "Puzzle"
+         ],
+         "platform": "PC",
+         "coverFile": "cover.webp"
       }
     ]
  }
