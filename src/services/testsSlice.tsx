@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import type { BasicVideo, BasicPlaylist, BasicGame, CardGame } from "./sharedDefintion";
+import type { RootState } from "../components/Store"
 
 export interface TestsState {
     /** @description error occurred ? */
@@ -101,7 +102,7 @@ const planningSlice = createSlice({
 });
 
 export const selectTests = createSelector(
-    (state : { tests : TestsState }) => state.tests,
+    (state : RootState) => state.tests,
     (tests) => tests
 );
 

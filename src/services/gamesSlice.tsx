@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import type { PayloadAction, AsyncThunk } from "@reduxjs/toolkit";
 import type { BasicGame, EnhancedGame, BasicVideo, BasicPlaylist, Genre } from "./sharedDefintion";
+import type { RootState } from "../components/Store"
 
 type gamesSorters = [
     "name" | "releaseDate" | "duration",
@@ -331,8 +332,8 @@ const gamesSlice = createSlice({
 })
 
 // memoized selector functions
-const selectActiveFilters = (state : { games : GamesState }) => state.games.activeFilters;
-const selectActiveFiltersParams = (_state : { games : GamesState }, params : { filterKey : gamesFilterKeys, defaultValue : any }) => params;
+const selectActiveFilters = (state : RootState) => state.games.activeFilters;
+const selectActiveFiltersParams = (_state : RootState, params : { filterKey : gamesFilterKeys, defaultValue : any }) => params;
 export const selectFilterByName = createSelector(
     [
         selectActiveFilters,
@@ -343,13 +344,13 @@ export const selectFilterByName = createSelector(
     }
 )
 
-const selectActiveSorters = (state : { games : GamesState }) => state.games.sorters;
+const selectActiveSorters = (state : RootState) => state.games.sorters;
 export const selectCurrentGames = createSelector(
     [
-        (state : { games : GamesState }) => state.games.games,
+        (state : RootState) => state.games.games,
         selectActiveFilters,
         selectActiveSorters,
-        (state : { games : GamesState }) => state.games.currentItemCount
+        (state : RootState) => state.games.currentItemCount
     ],
     (games, activeFilters, activeSorters, currentItemCount) => {
 
