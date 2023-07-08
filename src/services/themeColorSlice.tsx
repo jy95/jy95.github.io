@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from "@reduxjs/toolkit";
+import type { RootState } from "../components/Store"
 
 type themeColorType = 'light' | 'dark';
 
@@ -38,3 +39,7 @@ export const {
     themeColor
 } = themeColorSlice.actions;
 export default themeColorSlice.reducer;
+
+// Selectors
+export const selectCurrentColor = (state: RootState) => state.themeColor.currentColor;
+export const selectCurrentSystemColor = (state: RootState) => state.themeColor.systemColor;

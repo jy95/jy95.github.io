@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from "@reduxjs/toolkit";
+import type { RootState } from "../components/Store"
 
 export interface MiscellaneousState {
     /** @description Is Drawer open ? */
@@ -24,3 +25,6 @@ export const {
     drawerOpen
 } = miscellaneousSlice.actions;
 export default miscellaneousSlice.reducer;
+
+// Selectors
+export const selectOpenMenu = (state: RootState) => state.miscellaneous.drawerOpen;

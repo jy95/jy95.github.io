@@ -23,6 +23,10 @@ import { DrawerHeader, Main } from "./Home/Drawer";
 // Redux action
 import { themeColor } from "../services/themeColorSlice";
 
+// Selectors
+import { selectCurrentColor, selectCurrentSystemColor } from '../services/themeColorSlice';
+import { selectOpenMenu } from '../services/miscellaneousSlice';
+
 // Components
 const Header = lazy(() => import("./Home/Header"));
 const Player = lazy(() => import("./YTPlayer/Player"));
@@ -34,7 +38,7 @@ const StatsPage = lazy(() => import("./Stats/StatsPage"));
 
 function Root(_props : { [key: string | number | symbol] : any }) {
 
-    const openMenu = useAppSelector((state) => state.miscellaneous.drawerOpen);
+    const openMenu = useAppSelector((state) => selectOpenMenu(state));
 
     return (
         <SnackbarProvider 
@@ -101,8 +105,8 @@ function withThemeProvider(Component : any) {
     function WithThemeProvider(_props : { [key: string | number | symbol] : any }) {
         // for theme Color
         const dispatch = useAppDispatch();
-        const currentColor = useAppSelector((state) => state.themeColor.currentColor);
-        const currentSystemColor = useAppSelector((state) => state.themeColor.systemColor);
+        const currentColor = useAppSelector((state) => selectCurrentColor(state));
+        const currentSystemColor = useAppSelector((state) => selectCurrentSystemColor(state));
         const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
         const systemColor = prefersDarkMode ? "dark" : "light";
 
