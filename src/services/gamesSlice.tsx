@@ -9,7 +9,7 @@ type gamesSorters = [
 ][];
 
 // To compute new filtering function
-type gamesFilterKeys = "selected_platform" | "selected_title" | "selected_genres";
+//type gamesFilterKeys = "selected_platform" | "selected_title" | "selected_genres";
 type gamesFilters = ({
     value: string,
     key: "selected_platform" | "selected_title"
@@ -333,14 +333,49 @@ const gamesSlice = createSlice({
 
 // memoized selector functions
 const selectActiveFilters = (state : RootState) => state.games.activeFilters;
-const selectActiveFiltersParams = (_state : RootState, params : { filterKey : gamesFilterKeys, defaultValue : any }) => params;
-export const selectFilterByName = createSelector(
+
+// Selected genres
+export const selectSelectedGenres = createSelector(
     [
         selectActiveFilters,
-        selectActiveFiltersParams
     ],
-    (filters : gamesFilters, params : { filterKey : gamesFilterKeys, defaultValue : any }) => {
-        return filters.find(s => s.key === params.filterKey)?.value || params.defaultValue
+    (filters) => {
+        let entry = filters.find(s => s.key === "selected_genres");
+        if (!entry) {
+            return [];
+        } else {
+            return entry.value as string[]
+        }
+    }
+);
+
+// Selected platform
+export const selectSelectedPlatform = createSelector(
+    [
+        selectActiveFilters,
+    ],
+    (filters) => {
+        let entry = filters.find(s => s.key === "selected_platform");
+        if (!entry) {
+            return "";
+        } else {
+            return entry.value as string
+        }
+    }
+);
+
+// Selected title
+export const selectSelectedTitle = createSelector(
+    [
+        selectActiveFilters,
+    ],
+    (filters) => {
+        let entry = filters.find(s => s.key === "selected_title");
+        if (!entry) {
+            return "";
+        } else {
+            return entry.value as string
+        }
     }
 )
 

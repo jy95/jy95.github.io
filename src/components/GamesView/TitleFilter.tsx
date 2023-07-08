@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 
 import {
     filterByTitle,
-    selectFilterByName
+    selectSelectedTitle
 } 
 from "../../services/gamesSlice";
 // Hooks
@@ -22,10 +22,7 @@ function TitleFilter(_props : {[key: string | number | symbol] : any}) {
         [...new Set(state.games.games.map(game => game.title))]
     );
     const title : string  = useAppSelector(
-        (state) => selectFilterByName(state, {
-            filterKey: "selected_title",
-            defaultValue: ""
-        })
+        (state) => selectSelectedTitle(state)
     )
 
     return <>
