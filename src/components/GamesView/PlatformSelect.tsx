@@ -5,7 +5,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 import SvgIcon from '@mui/material/SvgIcon';
 
-import { filterByPlatform, selectFilterByName } from "../../services/gamesSlice";
+import { filterByPlatform, selectSelectedPlatform } from "../../services/gamesSlice";
 // Hooks
 import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
@@ -26,11 +26,8 @@ function PlatformSelect(_props : {[key: string | number | symbol] : any}) {
 
     const { t } = useTranslation('common');
     const dispatch = useAppDispatch();
-    const selectedPlatform : string  = useAppSelector(
-        (state) => selectFilterByName(state, {
-            filterKey: "selected_platform",
-            defaultValue: ""
-        })
+    const selectedPlatform = useAppSelector(
+        (state) => selectSelectedPlatform(state)
     )
 
     const options = PLATFORMS

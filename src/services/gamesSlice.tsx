@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import type { PayloadAction, AsyncThunk } from "@reduxjs/toolkit";
 import type { BasicGame, EnhancedGame, BasicVideo, BasicPlaylist, Genre } from "./sharedDefintion";
+import type { RootState } from "../components/Store"
 
 type gamesSorters = [
     "name" | "releaseDate" | "duration",
@@ -8,7 +9,7 @@ type gamesSorters = [
 ][];
 
 // To compute new filtering function
-type gamesFilterKeys = "selected_platform" | "selected_title" | "selected_genres";
+//type gamesFilterKeys = "selected_platform" | "selected_title" | "selected_genres";
 type gamesFilters = ({
     value: string,
     key: "selected_platform" | "selected_title"
@@ -331,25 +332,60 @@ const gamesSlice = createSlice({
 })
 
 // memoized selector functions
-const selectActiveFilters = (state : { games : GamesState }) => state.games.activeFilters;
-const selectActiveFiltersParams = (_state : { games : GamesState }, params : { filterKey : gamesFilterKeys, defaultValue : any }) => params;
-export const selectFilterByName = createSelector(
+const selectActiveFilters = (state : RootState) => state.games.activeFilters;
+
+// Selected genres
+export const selectSelectedGenres = createSelector(
     [
         selectActiveFilters,
-        selectActiveFiltersParams
     ],
-    (filters : gamesFilters, params : { filterKey : gamesFilterKeys, defaultValue : any }) => {
-        return filters.find(s => s.key === params.filterKey)?.value || params.defaultValue
+    (filters) => {
+        let entry = filters.find(s => s.key === "selected_genres");
+        if (!entry) {
+            return [];
+        } else {
+            return entry.value as string[]
+        }
+    }
+);
+
+// Selected platform
+export const selectSelectedPlatform = createSelector(
+    [
+        selectActiveFilters,
+    ],
+    (filters) => {
+        let entry = filters.find(s => s.key === "selected_platform");
+        if (!entry) {
+            return "";
+        } else {
+            return entry.value as string
+        }
+    }
+);
+
+// Selected title
+export const selectSelectedTitle = createSelector(
+    [
+        selectActiveFilters,
+    ],
+    (filters) => {
+        let entry = filters.find(s => s.key === "selected_title");
+        if (!entry) {
+            return "";
+        } else {
+            return entry.value as string
+        }
     }
 )
 
-const selectActiveSorters = (state : { games : GamesState }) => state.games.sorters;
+const selectActiveSorters = (state : RootState) => state.games.sorters;
 export const selectCurrentGames = createSelector(
     [
-        (state : { games : GamesState }) => state.games.games,
+        (state : RootState) => state.games.games,
         selectActiveFilters,
         selectActiveSorters,
-        (state : { games : GamesState }) => state.games.currentItemCount
+        (state : RootState) => state.games.currentItemCount
     ],
     (games, activeFilters, activeSorters, currentItemCount) => {
 

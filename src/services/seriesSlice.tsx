@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import { all_games } from "./gamesSlice";
 import type { EnhancedGame } from "./sharedDefintion";
+import type { RootState } from "../components/Store"
 
 type serieType = {
     name: string,
@@ -77,7 +78,7 @@ const seriesSlice = createSlice({
 });
 
 export const selectSeries = createSelector(
-    (state : { series : SeriesState }) => state.series,
+    (state : RootState) => state.series,
     (series) => series
 );
 

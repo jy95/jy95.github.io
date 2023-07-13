@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
+import type { RootState } from "../components/Store"
 
 // rss url
 // Because of Youtube, I have to pass by a proxy
@@ -138,7 +139,7 @@ const latestVideosSlice = createSlice({
 });
 
 export const selectLatestVideos = createSelector(
-    (state : { latestVideos : latestVideosState }) => state.latestVideos,
+    (state : RootState) => state.latestVideos,
     (latestVideos) => latestVideos
 );
 

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import type { BasicGame, BasicVideo, BasicPlaylist } from "./sharedDefintion";
+import type { RootState } from "../components/Store"
 
 // For fetching games for planning
 type planningEntry = Omit<BasicGame, "genres" | "videoId" | "playlistId" | "releaseDate"> & {
@@ -89,7 +90,7 @@ const planningSlice = createSlice({
 });
 
 export const selectPlanning = createSelector(
-    (state: { planning : PlanningState }) => state.planning,
+    (state: RootState) => state.planning,
     (planning) => planning
 );
 

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 
-import { filteringByGenre, selectFilterByName } from "../../services/gamesSlice";
+import { filteringByGenre, selectSelectedGenres } from "../../services/gamesSlice";
 // Hooks
 import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
 
@@ -16,11 +16,8 @@ import { genre_list as GENRES } from "../../services/sharedDefintion";
 function GenresSelect(_props : {[key: string | number | symbol] : any}) {
 
     const dispatch = useAppDispatch();
-    const selectedGenres : string[] = useAppSelector(
-        (state) => selectFilterByName(state, {
-            filterKey: "selected_genres",
-            defaultValue: []
-        })
+    const selectedGenres = useAppSelector(
+        (state) => selectSelectedGenres(state)
     )
     const { t } = useTranslation('common');
 
