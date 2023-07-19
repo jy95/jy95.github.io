@@ -5,6 +5,10 @@ on:
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      pull-requests: write
     steps:
     - uses: actions/checkout@master
     - run: mkdir -p ${{ github.workspace }}/tmp/artifacts
