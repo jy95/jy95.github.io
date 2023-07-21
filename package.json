@@ -9,7 +9,7 @@
     "@jy95/material-ui-image": "^4.0.8",
     "@mui/icons-material": "^5.14.1",
     "@mui/material": "^5.14.1",
-    "@mui/x-data-grid": "^v6.10.0",
+    "@mui/x-data-grid": "^v6.10.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.4.2",
