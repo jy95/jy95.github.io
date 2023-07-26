@@ -39,7 +39,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const muiLanguage = useAsyncMemo(async () => {
         switch(currentLanguage) {
             case 'fr':
-                const { frFR : language} = await import(/* webpackExports: "frFR" */ "@mui/material/locale");
+                const { frFR : language} = await import("@mui/material/locale");
                 return language;
             // English is by default built-in in @mui package, so no need to include
             default:

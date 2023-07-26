@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslation } from "react-i18next";
 
 // React Material UI
@@ -47,7 +49,7 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 // main component
-function Header(_props : { [key: string | number | symbol] : any }) {
+function Header() {
 
     const {t, i18n} = useTranslation('common');
     const dispatch = useAppDispatch();

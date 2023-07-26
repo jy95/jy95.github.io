@@ -84,7 +84,7 @@ const shouldRequest = (data : any[], latestFetchingDate : number | undefined, da
 
 export const fetchLatestVideos = createAsyncThunk('Youtube/fetchLatestVideo', async () => {
     // rss parser
-    const { parse } = await import(/* webpackExports: "parse" */ 'rss-to-json');
+    const { parse } = await import('rss-to-json');
 
     const { items } = await parse(FEED_URL, {
         transformResponse: function (data) {

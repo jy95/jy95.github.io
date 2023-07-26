@@ -1,3 +1,5 @@
+"use client";
+
 // Router
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -34,23 +36,25 @@ type menuEntryTranslationKey = 'gamesKey' | 'planningKey' | 'testsKey' | 'latest
 // List Item
 function ListItemLink(props : {
     [key: string | number | symbol] : any;
-    to: string;
+    href: string;
     primary: `main.menuEntries.${menuEntryTranslationKey}`;
 }) {
-    const { icon, primary, to } = props;
+    const { icon, primary, href } = props;
     const { t } = useTranslation('common');
     const pathname = usePathname()
     const entry_label = t(primary);
 
-    const isActive = pathname.startsWith(to)
+    const isActive = pathname.startsWith(href)
+    console.log(href)
+    console.log(isActive)
 
     const renderLink = useMemo(
         () => forwardRef(
             function CustomLink(linkProps, _ref) {
-                return <Link href={to} {...linkProps} />
+                return <Link href={`${href}`} {...linkProps} />
             }
         ),
-        [to]
+        [href]
     )
 
     return useMemo(
@@ -69,40 +73,38 @@ function ListItemLink(props : {
 // entries
 const ENTRIES : {
     icon: JSX.Element,
-    to: string,
+    href: string,
     primary: `main.menuEntries.${menuEntryTranslationKey}`
 }[] = [
     {
-        "icon": <SportsEsportsIcon />,
-        "primary": "main.menuEntries.gamesKey",
-        "to": "/games"
+        icon: <SportsEsportsIcon />,
+        primary: "main.menuEntries.gamesKey",
+        href: "/games"
     },
     {
-        "icon": <ScheduleIcon />,
-        "primary": "main.menuEntries.planningKey",
-        "to": "/planning"
+        icon: <ScheduleIcon />,
+        primary: "main.menuEntries.planningKey",
+        href: "/planning"
     },
     {
-        "icon": <ExtensionIcon />,
-        "primary": "main.menuEntries.testsKey",
-        "to": "/tests"  
+        icon: <ExtensionIcon />,
+        primary: "main.menuEntries.testsKey",
+        href: "/tests"  
     },
     {
-        "icon": <VideoLibraryIcon />,
-        "primary": "main.menuEntries.latestVideosKey",
-        "to": "/latest"
+        icon: <VideoLibraryIcon />,
+        primary: "main.menuEntries.latestVideosKey",
+        href: "/latest"
     },
     {
-        "icon": <QueryStatsIcon />,
-        "primary": "main.menuEntries.stats",
-        "to": "/stats"
+        icon: <QueryStatsIcon />,
+        primary: "main.menuEntries.stats",
+        href: "/stats"
     }
 ]
 
 // Main component
-function Menu(props : {[key: string | number | symbol] : any}) {
-
-    const {container} = props;
+function Menu() {
 
     const dispatch = useAppDispatch();
     const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
@@ -113,7 +115,6 @@ function Menu(props : {[key: string | number | symbol] : any}) {
 
     return (
         <Drawer
-            container={container}
             variant={"permanent"}
             open={isdrawerOpen}
         >
@@ -123,11 +124,13 @@ function Menu(props : {[key: string | number | symbol] : any}) {
                 </IconButton>                
             </DrawerHeader>
             <Divider />
+            {/*
             <List>
                 {
-                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.to} />)
+                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.href} />)
                 }
             </List>
+            */}
         </Drawer>
     );
 }

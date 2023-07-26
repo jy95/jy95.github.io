@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useEffect } from "react";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "@/i18n/client";
 
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
