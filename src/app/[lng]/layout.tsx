@@ -3,7 +3,6 @@
 // i18n
 import { dir } from 'i18next'
 import { languages } from '@/i18n/settings'
-import type { languagesValues } from "@/i18n/settings";
 
 //import type { Metadata } from 'next'
 import { Providers as ReduxProviders } from "@/redux/provider";
@@ -22,8 +21,8 @@ import { selectOpenMenu } from '@/redux/services/miscellaneousSlice';
 // MUI component
 import Box from '@mui/material/Box';
 
-// Next
-import { useParams } from 'next/navigation'
+// Hooks
+import { useLocale } from "@/hooks/useLocale";
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }))
@@ -42,9 +41,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-  const params = useParams()
-  let { lng } = params;
-  const language = lng as languagesValues;
+  const language = useLocale();
 
   return (
     <html lang={language} dir={dir(language)}>

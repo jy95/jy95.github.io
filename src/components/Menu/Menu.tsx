@@ -2,9 +2,12 @@
 
 // Router
 import Link from 'next/link'
-import { usePathname, useParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { useMemo, forwardRef } from "react";
 import { useTranslation } from "@/i18n/client";
+
+// Hooks
+import { useLocale } from "@/hooks/useLocale";
 
 // Material UI
 import Divider from '@mui/material/Divider';
@@ -107,7 +110,7 @@ const ENTRIES : {
 function Menu() {
 
     const dispatch = useAppDispatch();
-    const { lng } = useParams()
+    const lng = useLocale();
     const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
 
     const handleDrawerClose = () => {
@@ -128,7 +131,7 @@ function Menu() {
             {/*
             <List>
                 {
-                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.href} language={lng as languagesValues} />)
+                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.href} language={lng} />)
                 }
             </List>
             */}
