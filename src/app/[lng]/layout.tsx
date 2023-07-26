@@ -5,8 +5,10 @@ import { dir } from 'i18next'
 import { languages } from '@/i18n/settings'
 
 //import type { Metadata } from 'next'
+// Providers
 import { Providers as ReduxProviders } from "@/redux/provider";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { SnackbarProvider } from 'notistack';
 
 // MUI
 import Menu from "@/components/Menu/Menu";
@@ -48,11 +50,19 @@ export default function RootLayout({
       <body>
         <ReduxProviders>
           <ThemeProvider lng={language}>
-            <Box sx={{ display: 'flex' }}>
-              <Header />
-              <Menu />
-              <MainRoot children={children}/>
-            </Box>
+            <SnackbarProvider 
+              maxSnack={3}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}
+            >
+              <Box sx={{ display: 'flex' }}>
+                <Header />
+                <Menu />
+                <MainRoot children={children}/>
+              </Box>
+            </SnackbarProvider>
           </ThemeProvider>
         </ReduxProviders>
       </body>
