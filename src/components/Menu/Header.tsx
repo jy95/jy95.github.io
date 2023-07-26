@@ -1,6 +1,7 @@
 "use client";
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "@/i18n/client";
+import { useParams } from 'next/navigation'
 
 // React Material UI
 import {CssBaseline, IconButton, Toolbar} from "@mui/material";
@@ -27,6 +28,8 @@ import { themeColor } from "@/redux/services/themeColorSlice";
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
+import type { languagesValues } from '@/i18n/settings';
+
 // styled AppBar
 const drawerWidth = 240;
 const AppBar = styled(MuiAppBar, {
@@ -51,7 +54,8 @@ const AppBar = styled(MuiAppBar, {
 // main component
 function Header() {
 
-    const {t, i18n} = useTranslation('common');
+    const { lng } = useParams()
+    const {t, i18n} = useTranslation(lng as languagesValues, 'common');
     const dispatch = useAppDispatch();
     const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
     const currentColor = useAppSelector((state) => state.themeColor.currentColor);

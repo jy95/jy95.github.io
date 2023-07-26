@@ -2,9 +2,9 @@
 
 // Router
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useParams } from 'next/navigation'
 import { useMemo, forwardRef } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "@/i18n/client";
 
 // Material UI
 import Divider from '@mui/material/Divider';
@@ -30,6 +30,7 @@ import { Drawer, DrawerHeader } from "./Drawer";
 import { drawerOpen } from "@/redux/services/miscellaneousSlice";
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import type { languagesValues } from '@/i18n/settings';
 
 type menuEntryTranslationKey = 'gamesKey' | 'planningKey' | 'testsKey' | 'latestVideosKey' | 'stats';
 
@@ -38,15 +39,14 @@ function ListItemLink(props : {
     [key: string | number | symbol] : any;
     href: string;
     primary: `main.menuEntries.${menuEntryTranslationKey}`;
+    language: languagesValues;
 }) {
-    const { icon, primary, href } = props;
-    const { t } = useTranslation('common');
+    const { icon, primary, href, language } = props;
+    const { t } = useTranslation(language, 'common');
     const pathname = usePathname()
     const entry_label = t(primary);
 
     const isActive = pathname.startsWith(href)
-    console.log(href)
-    console.log(isActive)
 
     const renderLink = useMemo(
         () => forwardRef(
@@ -107,6 +107,7 @@ const ENTRIES : {
 function Menu() {
 
     const dispatch = useAppDispatch();
+    const { lng } = useParams()
     const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
 
     const handleDrawerClose = () => {
@@ -127,7 +128,7 @@ function Menu() {
             {/*
             <List>
                 {
-                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.href} />)
+                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.href} language={lng as languagesValues} />)
                 }
             </List>
             */}

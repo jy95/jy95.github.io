@@ -5,12 +5,12 @@ import { createTheme, ThemeProvider as MUIThemeProvider } from '@mui/material/st
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectCurrentColor, selectCurrentSystemColor, themeColor } from '@/redux/services/themeColorSlice';
 import { useMediaQuery } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 import { useEffect, useMemo } from 'react';
 import { useAsyncMemo } from '@/hooks/useAsyncMemo';
+import type { languagesValues } from "@/i18n/settings"
 
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+export function ThemeProvider({ children, lng }: { children: React.ReactNode, lng : languagesValues }) {
 
     // for theme Color
     const dispatch = useAppDispatch();
@@ -18,10 +18,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const currentSystemColor = useAppSelector((state) => selectCurrentSystemColor(state));
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
     const systemColor = prefersDarkMode ? "dark" : "light";
-
-    // for language of the app
-    const { i18n } = useTranslation('common');
-    const currentLanguage = i18n.language as 'fr' | 'en';
 
     // Two case handled here :
     // 1) When user comes to the site and have different color that default
@@ -37,7 +33,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     // Prepare theme for possible darkmode
     const muiLanguage = useAsyncMemo(async () => {
-        switch(currentLanguage) {
+        switch(lng) {
             case 'fr':
                 const { frFR : language} = await import("@mui/material/locale");
                 return language;
@@ -45,7 +41,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
             default:
                 return {};
         }
-    }, [currentLanguage], {} as any);
+    }, [lng], {} as any);
 
     const theme = useMemo(
         () =>

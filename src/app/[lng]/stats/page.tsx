@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect } from "react";
 import { useTranslation } from "@/i18n/client";
+import { useParams } from 'next/navigation'
 
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
@@ -113,7 +114,8 @@ function pretty_duration(
 }
 
 export default function StatsPage() {
-    const { t } = useTranslation('common');
+    const { lng } = useParams()
+    const { t } = useTranslation(lng as string, 'common');
     const dispatch = useAppDispatch();
     const {
         loading,

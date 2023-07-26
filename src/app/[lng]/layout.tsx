@@ -50,7 +50,7 @@ export default function RootLayout({
     <html lang={language} dir={dir(language)}>
       <body>
         <ReduxProviders>
-          <ThemeProvider>
+          <ThemeProvider lng={language}>
             <Box sx={{ display: 'flex' }}>
               <Header />
               <Menu />
