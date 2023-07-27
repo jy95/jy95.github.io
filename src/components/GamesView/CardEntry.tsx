@@ -57,13 +57,18 @@ function CardEntry(props : {
                     sx={{ zIndex: 1, height: "inherit" }}
                     title={gameTitle}
                 >
-                    <Image 
-                        src={game.imagePath}
-                        alt={gameTitle}
-                        fill={true}
-                        layout="fill"
-                        objectFit="cover"
-                    />
+                    <div style={{
+                        paddingTop: "100%",
+                        position: "relative"
+                    }}>
+                        <Image 
+                            src={game.imagePath}
+                            alt={gameTitle}
+                            fill={true}
+                            layout="fill"
+                            objectFit="cover"
+                        />
+                    </div>
                 </CardMedia>
 
             </CardActionArea>
