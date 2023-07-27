@@ -59,14 +59,13 @@ function CardEntry(props : {
                 >
                     <div style={{
                         paddingTop: "100%",
-                        position: "relative"
+                        position: "relative",
+                        objectFit: "cover"
                     }}>
                         <Image 
                             src={game.imagePath}
                             alt={gameTitle}
                             fill={true}
-                            layout="fill"
-                            objectFit="cover"
                         />
                     </div>
                 </CardMedia>
