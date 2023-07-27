@@ -8,7 +8,6 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from '@mui/material/CardActionArea';
 
-//import Image from '@jy95/material-ui-image';
 import Image from 'next/image'
 import type { CardGame } from "@/redux/services/sharedDefintion";
 const CardDialog = lazy(() => import("./CardDialog"));
