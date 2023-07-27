@@ -14,7 +14,7 @@ import type { Genre as GenreValue } from "@/redux/services/sharedDefintion";
 import { genre_list as GENRES } from "@/redux/services/sharedDefintion";
 
 // Genres filter of GamesGallery
-function GenresSelect(_props : {[key: string | number | symbol] : any}) {
+function GenresSelect() {
 
     const dispatch = useAppDispatch();
     const locale = useLocale();

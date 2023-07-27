@@ -152,15 +152,10 @@ export const all_games = async () => {
                     ? "https://www.youtube.com/playlist?list=" 
                     :  "https://www.youtube.com/watch?v="
             ) + id ;
-            const base_path = `${process.env.PUBLIC_URL}${gamesData.coversRootPath}${id}`;
+            const base_path = `${gamesData.coversRootPath}${id}`;
             return Object.assign({}, game, {
                 id,
                 imagePath: `${base_path}/${ game?.coverFile ?? gamesData.defaultCoverFile }`,
-                srcSet: (game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages) 
-                    ? SIZES_WITDH
-                        .map( ({name, srcSet}) =>`${base_path}/cover@${name}.webp ${srcSet}`)
-                        .join(",")
-                    : undefined,
                 sizes: (game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages) 
                     ? SIZES_WITDH
                         .map( ({sizes}) =>`${sizes}`)

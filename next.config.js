@@ -3,9 +3,9 @@ const nextConfig = {
     redirects: async() => {
         return [
             {
-                source: "/",
-                destination: "/stats",
-                permanent: true
+                source: "/games",
+                destination: "/",
+                permanent: false
             }
         ]
     }

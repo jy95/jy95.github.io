@@ -57,8 +57,8 @@ export default function RootLayout({
                 horizontal: 'right',
               }}
             >
+              <Header />
               <Box sx={{ display: 'flex' }}>
-                <Header />
                 <Menu />
                 <MainRoot children={children}/>
               </Box>
