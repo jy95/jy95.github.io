@@ -17,23 +17,13 @@ const initialState : TestsState = {
     games: []
 }
 
-// for responsive pictures
-const SIZES_WITDH = [
-    {
-        name: "small",
-        srcSet: "150w",
-        sizes: "(min-width: 1200px) 150px"
-    },
-    {
-        name: "medium",
-        srcSet: "200w",
-        sizes: "(min-width: 900px) 200px"
-    },
-    {
-        name: "big",
-        srcSet: "250w",
-        sizes: "250px"
-    }
+const SIZES = [
+    // Mobile view (small) : 1 entry per row 
+    "(max-width: 600px) 100vw",
+    // Mobile view : 2 entry per row 
+    "(max-width: 600px) 100vw",
+    // (Default size) : 4 entries per row 
+    "25vw"
 ]
 
 export const fetchTests = createAsyncThunk('tests/fetchGames', async () => {
@@ -54,9 +44,7 @@ export const fetchTests = createAsyncThunk('tests/fetchGames', async () => {
                 id,
                 imagePath: `${ base_path }/${ game.coverFile ?? gamesData.defaultCoverFile }`,
                 sizes: (game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages) 
-                    ? SIZES_WITDH
-                        .map( ({sizes}) =>`${sizes}`)
-                        .join(",")
+                    ? SIZES.join(", ")
                     : undefined,
                 releaseDate: game.releaseDate
                     .split("/")
@@ -96,10 +84,7 @@ const planningSlice = createSlice({
     }
 });
 
-export const selectTests = createSelector(
-    (state : RootState) => state.tests,
-    (tests) => tests
-);
+export const selectTests = (state : RootState) => state.tests.games;
 
 // Action creators are generated for each case reducer function
 // export const {} = planningSlice.actions;

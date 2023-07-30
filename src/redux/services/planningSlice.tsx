@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { BasicGame, BasicVideo, BasicPlaylist } from "./sharedDefintion";
 import type { RootState } from "../Store"
 
@@ -89,10 +89,7 @@ const planningSlice = createSlice({
     }
 });
 
-export const selectPlanning = createSelector(
-    (state: RootState) => state.planning,
-    (planning) => planning
-);
+export const selectPlanning = (state: RootState) => state.planning;
 
 // Action creators are generated for each case reducer function
 // export const {} = planningSlice.actions;

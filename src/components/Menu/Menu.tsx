@@ -1,7 +1,7 @@
 "use client";
 
 // Router
-import { forwardRef } from "react";
+import { forwardRef, useMemo } from "react";
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -32,7 +32,10 @@ import { drawerOpen } from "@/redux/services/miscellaneousSlice";
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
+import type { LinkProps } from "next/link";
+
 type menuEntryTranslationKey = 'gamesKey' | 'planningKey' | 'testsKey' | 'latestVideosKey' | 'stats';
+type MUILinkProps = LinkProps & { [x: string]: any };
 
 // List Item
 function ListItemLink(props : {
@@ -48,15 +51,19 @@ function ListItemLink(props : {
     const href = `${path}`;
     const isActive = pathname.startsWith(href)
 
-    const renderLink = forwardRef(
-        (_linkProps, _ref) => (
-            <Link locale={lang} href={href} />
-        )
-    )
+    const CustomLink = useMemo(
+        () => forwardRef(
+            (linkProps : MUILinkProps, _ref) => (
+                <Link locale={lang} {...linkProps} />
+            )
+        ),
+        [path]
+    );
+
 
     return (
         <ListItem disablePadding>
-            <ListItemButton component={renderLink} selected={isActive}>
+            <ListItemButton component={CustomLink} selected={isActive} href={href} >
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={entry_label} />
             </ListItemButton>

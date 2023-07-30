@@ -114,11 +114,7 @@ function pretty_duration(
 export default function StatsPage() {
     const { t } = useTranslation('common');
     const dispatch = useAppDispatch();
-    const {
-        loading,
-        error,
-        stats
-    } = useAppSelector((state) => selectStats(state));
+    const stats = useAppSelector((state) => selectStats(state));
     const currentColor = useAppSelector( (state) => state.themeColor.currentColor )
 
     // on mount, load data (only once)

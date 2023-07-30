@@ -253,13 +253,9 @@ export const selectStats = createSelector(
             });
 
         return {
-            loading: stats.loading,
-            error: stats.error,
-            stats: {
-                general: stats.stats.general,
-                genres: reducerObject(stats.stats.genres),
-                platforms: reducerObject(stats.stats.platforms)
-            }
+            general: stats.stats.general,
+            genres: reducerObject(stats.stats.genres),
+            platforms: reducerObject(stats.stats.platforms)
         };
     }
 );

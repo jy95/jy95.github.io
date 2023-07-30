@@ -21,11 +21,7 @@ const AccordionDetails = lazy(() => import("@mui/material/AccordionDetails"));
 function GamesGalleryList(_props : {[key: string | number | symbol] : any}) {
 
     const dispatch = useAppDispatch();
-    const {
-        loading,
-        error,
-        series: data
-    } = useAppSelector((state) => selectSeries(state));
+    const data = useAppSelector((state) => selectSeries(state));
 
     // on mount, load data (only once)
     useEffect(() => {

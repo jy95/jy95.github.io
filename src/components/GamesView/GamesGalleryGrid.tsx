@@ -71,6 +71,8 @@ function GamesGalleryGrid() {
         (state) => selectCurrentGames(state)
     );
 
+    // https://stackoverflow.com/questions/76492706/selector-memoized-returned-the-root-state-when-called-redux-toolkit
+
     const {
         //loading,
         //error,
