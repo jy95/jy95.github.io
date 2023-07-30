@@ -7,10 +7,9 @@ import { selectCurrentColor, selectCurrentSystemColor, themeColor } from '@/redu
 import { useMediaQuery } from '@mui/material';
 import { useEffect, useMemo } from 'react';
 import { useAsyncMemo } from '@/hooks/useAsyncMemo';
-import type { languagesValues } from "@/i18n/settings"
 
 
-export function ThemeProvider({ children, lng }: { children: React.ReactNode, lng : languagesValues }) {
+export function ThemeProvider({ children, lng }: { children: React.ReactNode, lng : string }) {
 
     // for theme Color
     const dispatch = useAppDispatch();

@@ -162,26 +162,13 @@ export const all_games = async () => {
 }
 
 // For fetching games
-export const fetchGames : AsyncThunk<{
-    games: EnhancedGame[];
-    totalItems: number;
-    pageSize: number;
-}, {
-    currentFilters: gamesFilters;
-    sortStates: gamesSorters;
-    pageSize? : number
-}, {}> = createAsyncThunk('games/fetchGames', async ({
-    //currentFilters,
-    //sortStates,
-    pageSize = 24
-}) => {
+export const fetchGames = createAsyncThunk('games/fetchGames', async () => {
     // TODO Somewhere in the future, use provided parameters for some API
     let games = await all_games();
     
     return {
         games,
         totalItems: games.length,
-        pageSize
     }
 }, {
     condition: (_params, { getState } ) => {
@@ -383,6 +370,27 @@ export const selectCurrentGames = createSelector(
             .slice(0, currentItemCount);
     }
 );
+
+// Can load more in scrolling
+export const selectCanLoadMore = createSelector(
+    [
+        (state : RootState) => state.games.currentItemCount,
+        (state : RootState) => state.games.totalItems
+    ],
+    (currentItemCount, totalItems) => {
+        return currentItemCount <= totalItems;
+    }
+);
+
+// List of game titles
+export const selectListOfGameTitles = createSelector(
+    [
+        (state : RootState) => state.games.games
+    ],
+    (games) => {
+        return [...new Set(games.map(game => game.title))]
+    }
+)
 
 // Action creators are generated for each case reducer function
 export const {

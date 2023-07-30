@@ -44,7 +44,7 @@ function GenresSelect() {
             id="select-game-genre"
             limitTags={3}
             options={genre_options}
-            getOptionLabel={(option : any) => option.label}
+            getOptionLabel={(option) => option.label}
             isOptionEqualToValue={(option, value) => 
                 Array.isArray(value) ? value.some(v => v.id === option.id) : value.id === option.id
             }

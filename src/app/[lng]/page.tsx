@@ -17,7 +17,7 @@ const GamesGalleryGrid = lazy(() => import("@/components/GamesView/GamesGalleryG
 const GamesGalleryList = lazy(() => import("@/components/GamesView/GamesGalleryList"));
 
 // The gallery component
-function GamesGallery(_props : {[key: string | number | symbol] : any}) {
+function GamesGallery() {
 
     const [value, setValue] = useState('GRID');
     const [isPending, startTransition] = useTransition();

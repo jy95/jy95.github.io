@@ -2,7 +2,6 @@
 
 import { useEffect, useCallback } from "react";
 import { styled } from '@mui/material/styles';
-import { shallowEqual } from 'react-redux';
 
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -24,7 +23,8 @@ import TitleFilter from "./TitleFilter";
 import { 
     fetchGames,
     scrollingFetching,
-    selectCurrentGames
+    selectCurrentGames,
+    selectCanLoadMore
 }
 from "@/redux/services/gamesSlice";
 import type { EnhancedGame } from "@/redux/services/sharedDefintion";
@@ -71,25 +71,25 @@ function GamesGalleryGrid() {
         (state) => selectCurrentGames(state)
     );
 
-    // https://stackoverflow.com/questions/76492706/selector-memoized-returned-the-root-state-when-called-redux-toolkit
+    // Can load more
+    const canLoadMore = useAppSelector(
+        (state) => selectCanLoadMore(state)
+    );
 
-    const {
-        //loading,
-        //error,
-        currentItemCount,
-        totalItems,
-        activeFilters,
-        sorters,
-        initialLoad,
-        scrollLoading
-    } = useAppSelector((state) => state.games, shallowEqual);
+    // initialLoad
+    const initialLoad = useAppSelector(
+        (state) => state.games.initialLoad
+    )
 
-    const canLoadMore = (currentItemCount <= totalItems);
+    // scrollLoading
+    const scrollLoading = useAppSelector(
+        (state) => state.games.scrollLoading
+    )
 
     // on mount, load data (only once)
     useEffect(() => {
-        dispatch(fetchGames({currentFilters: activeFilters, sortStates: sorters}))
-    }, 
+        dispatch(fetchGames())
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps 
         []
     );

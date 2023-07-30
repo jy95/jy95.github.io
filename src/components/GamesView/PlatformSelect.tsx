@@ -41,17 +41,15 @@ function PlatformSelect() {
             id: platform as Platform
         }))
 
-    return <>
+    return (
         <Autocomplete<Platform_Entry, false>
             id="select-game-platform"
             openOnFocus
             options={options}
             getOptionLabel={(option) => option.label}
-            isOptionEqualToValue={(option, value) => 
-                Array.isArray(value) ? value.some(v => v.id === option.id) : value.id === option.id
-            }
-            renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.platform")} />}
-            renderOption={(props, option, _state) => (
+            isOptionEqualToValue={(option, value) => value.id === option.id}
+            renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.platform") as string} />}
+            renderOption={(props, option) => (
                 <li {...props} key={option.id}>
                     <SvgIcon titleAccess={option.label}>
                         {iconsSVG[option.id as Platform]}
@@ -60,7 +58,7 @@ function PlatformSelect() {
                 </li>
             )}
             onChange={(_event, value) => {
-                const platform = (value) ? value.id || value : "";
+                const platform = (value) ? value.id : "";
                 dispatch(filterByPlatform(platform));
             }}
             value={
@@ -70,7 +68,7 @@ function PlatformSelect() {
                 } : null
             }
         />
-    </>;
+    );
 }
 
 export default PlatformSelect;

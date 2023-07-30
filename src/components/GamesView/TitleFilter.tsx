@@ -6,7 +6,8 @@ import TextField from '@mui/material/TextField';
 
 import {
     filterByTitle,
-    selectSelectedTitle
+    selectSelectedTitle,
+    selectListOfGameTitles
 } 
 from "@/redux/services/gamesSlice";
 // Hooks
@@ -18,12 +19,8 @@ function TitleFilter() {
     const dispatch = useAppDispatch();
 
     // needed as this Autocomplete cannot have duplicate
-    const options = useAppSelector((state) => 
-        [...new Set(state.games.games.map(game => game.title))]
-    );
-    const title : string  = useAppSelector(
-        (state) => selectSelectedTitle(state)
-    )
+    const options = useAppSelector((state) => selectListOfGameTitles(state));
+    const title : string  = useAppSelector((state) => selectSelectedTitle(state));
 
     return <>
         <Autocomplete
