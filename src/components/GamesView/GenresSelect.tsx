@@ -12,6 +12,12 @@ import type { Genre as GenreValue } from "@/redux/services/sharedDefintion";
 // Each one is also a key for translation
 import { genre_list as GENRES } from "@/redux/services/sharedDefintion";
 
+// Generate list of values for game genre
+type Genre = {
+    label: string,
+    id: GenreValue
+};
+
 // Genres filter of GamesGallery
 function GenresSelect() {
 
@@ -21,21 +27,17 @@ function GenresSelect() {
     )
     const { t } = useTranslation('common');
 
-    // Generate list of values for game genre
-    const genre_options : {
-        label: string,
-        key: GenreValue
-    }[] = GENRES
+    const genre_options : Genre[] = GENRES
         .map(genre => ({
             label: t(`gamesLibrary.gamesGenres.${genre}` as const),
-            key: genre
+            id: genre
         }))
         .sort( 
             (a, b) => (a.label < b.label) ? -1 : (a.label > b.label ? 1 : 0) 
         );
 
     return <>
-        <Autocomplete
+        <Autocomplete<Genre, true, true>
             multiple
             openOnFocus
             filterSelectedOptions 
@@ -44,15 +46,15 @@ function GenresSelect() {
             options={genre_options}
             getOptionLabel={(option : any) => option.label}
             isOptionEqualToValue={(option, value) => 
-                Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
+                Array.isArray(value) ? value.some(v => v.id === option.id) : value.id === option.id
             }
             value={selectedGenres.map(genre => ({
                 label: t(`gamesLibrary.gamesGenres.${genre as GenreValue}` as const),
-                key: genre
+                id: genre as GenreValue
             }))}
             renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.genres") as string} />}
             onChange={(_event, value) => {
-                dispatch(filteringByGenre(value.map(v => v.key)));
+                dispatch(filteringByGenre(value.map(v => v.id)));
             }}
         />
     </>;

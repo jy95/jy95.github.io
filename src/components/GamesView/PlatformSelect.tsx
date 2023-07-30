@@ -22,6 +22,11 @@ const PLATFORMS = [
     "PSP"
 ];
 
+type Platform_Entry = {
+    label: string;
+    id: Platform;
+}
+
 function PlatformSelect() {
 
     const { t } = useTranslation('common');
@@ -33,34 +38,34 @@ function PlatformSelect() {
     const options = PLATFORMS
         .map(platform => ({
             label: platform,
-            key: platform
+            id: platform as Platform
         }))
 
     return <>
-        <Autocomplete
+        <Autocomplete<Platform_Entry, false>
             id="select-game-platform"
             openOnFocus
             options={options}
-            getOptionLabel={(option: any) => option.label}
+            getOptionLabel={(option) => option.label}
             isOptionEqualToValue={(option, value) => 
-                Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
+                Array.isArray(value) ? value.some(v => v.id === option.id) : value.id === option.id
             }
             renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.platform")} />}
             renderOption={(props, option, _state) => (
-                <li {...props} key={option.key}>
+                <li {...props} key={option.id}>
                     <SvgIcon titleAccess={option.label}>
-                        {iconsSVG[option.key as Platform]}
+                        {iconsSVG[option.id as Platform]}
                     </SvgIcon>
                     {option.label}
                 </li>
             )}
             onChange={(_event, value) => {
-                const platform = (value) ? (value as {[key: string]: any})?.key || value : "";
+                const platform = (value) ? value.id || value : "";
                 dispatch(filterByPlatform(platform));
             }}
             value={
                 selectedPlatform ? {
-                    key: selectedPlatform,
+                    id: selectedPlatform as Platform,
                     label: selectedPlatform
                 } : null
             }
