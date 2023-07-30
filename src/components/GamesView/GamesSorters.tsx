@@ -1,6 +1,5 @@
 import { useState, Suspense, lazy } from "react";
-import { useTranslation } from "@/i18n/client";
-import { useLocale } from "@/hooks/useLocale";
+import useTranslation from 'next-translate/useTranslation'
 // To check what should happen when clicking on a game
 import useMediaQuery from '@mui/material/useMediaQuery';
 
@@ -38,8 +37,7 @@ const ArrowDropDownIcon = lazy(() => import("@mui/icons-material/ArrowDropDown")
 function GamesSorters(_props : {[key: string | number | symbol] : any}) {
 
     // hooks
-    const locale = useLocale();
-    const { t } = useTranslation(locale, 'common');
+    const { t } = useTranslation('common');
     const dispatch = useAppDispatch();
 
     // state

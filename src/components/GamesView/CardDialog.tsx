@@ -1,6 +1,7 @@
+"use client";
+
 import { lazy } from "react";
-import { useTranslation } from "@/i18n/client";
-import { useLocale } from "@/hooks/useLocale";
+import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/navigation';
 
 // For full screen Dialog 
@@ -38,8 +39,7 @@ function CardDialog(props : {
     
     // hooks
     const router = useRouter();
-    const locale = useLocale();
-    const { t } = useTranslation(locale, 'common');
+    const { t } = useTranslation('common');
     const fullScreen = useMediaQuery( (theme : any) => theme.breakpoints.down('md'));
     const { enqueueSnackbar } = useSnackbar();
 
@@ -66,7 +66,7 @@ function CardDialog(props : {
             text: t("gamesLibrary.actionsButton.watchHere", { "gameName": gameTitle}),
             onClick: () => {
                 setContextMenuOpen(false);
-                router.push(`${locale}/${local_path}`);
+                router.push(`${local_path}`);
             }
         },
         // watch on Youtube

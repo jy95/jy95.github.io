@@ -1,5 +1,7 @@
+"use client";
+
 import { Suspense, useState, lazy } from "react";
-import { useLocale } from "@/hooks/useLocale";
+import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/navigation';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -19,7 +21,7 @@ function CardEntry(props : {
 
     // hooks
     const router = useRouter();
-    const locale = useLocale();
+    const { lang } = useTranslation("common");
 
     // props
     const {game} = props;
@@ -39,7 +41,7 @@ function CardEntry(props : {
         if (is_mobile_device) {
             window.location.href = gameURL;
         } else {
-            router.push(`${locale}/${local_path}`);
+            router.push(`${lang}/${local_path}`);
         }
     }
 
@@ -63,9 +65,10 @@ function CardEntry(props : {
                         objectFit: "cover"
                     }}>
                         <Image 
+                            fill
                             src={game.imagePath}
+                            sizes={game.hasResponsiveImages ? game.sizes! : "100vw"}
                             alt={gameTitle}
-                            fill={true}
                         />
                     </div>
                 </CardMedia>

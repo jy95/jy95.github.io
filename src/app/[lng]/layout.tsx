@@ -1,10 +1,5 @@
 "use client";
 
-// i18n
-import { dir } from 'i18next'
-import { languages } from '@/i18n/settings'
-
-//import type { Metadata } from 'next'
 // Providers
 import { Providers as ReduxProviders } from "@/redux/provider";
 import { ThemeProvider } from "@/providers/ThemeProvider";
@@ -24,11 +19,7 @@ import { selectOpenMenu } from '@/redux/services/miscellaneousSlice';
 import Box from '@mui/material/Box';
 
 // Hooks
-import { useLocale } from "@/hooks/useLocale";
-
-export async function generateStaticParams() {
-  return languages.map((lng) => ({ lng }))
-}
+import useTranslation from 'next-translate/useTranslation'
 
 /*
 export const metadata: Metadata = {
@@ -43,13 +34,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-  const language = useLocale();
+  const { lang } = useTranslation("common");
 
   return (
-    <html lang={language} dir={dir(language)}>
+    <html lang={lang}>
       <body>
         <ReduxProviders>
-          <ThemeProvider lng={language}>
+          <ThemeProvider lng={lang}>
             <SnackbarProvider 
               maxSnack={3}
               anchorOrigin={{

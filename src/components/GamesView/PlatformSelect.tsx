@@ -1,5 +1,4 @@
-import { useTranslation } from "@/i18n/client";
-import { useLocale } from "@/hooks/useLocale";
+import useTranslation from 'next-translate/useTranslation'
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
@@ -25,8 +24,7 @@ const PLATFORMS = [
 
 function PlatformSelect() {
 
-    const locale = useLocale();
-    const { t } = useTranslation(locale, 'common');
+    const { t } = useTranslation('common');
     const dispatch = useAppDispatch();
     const selectedPlatform = useAppSelector(
         (state) => selectSelectedPlatform(state)

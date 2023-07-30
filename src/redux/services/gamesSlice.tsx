@@ -111,23 +111,13 @@ let countMatches = (games : EnhancedGame[], filters : gamesFilters) => games
         (filters.length === 0) ? games.length : 0
     );
 
-// for responsive pictures
-const SIZES_WITDH = [
-    {
-        name: "small",
-        srcSet: "150w",
-        sizes: "(min-width: 1200px) 150px"
-    },
-    {
-        name: "medium",
-        srcSet: "200w",
-        sizes: "(min-width: 900px) 200px"
-    },
-    {
-        name: "big",
-        srcSet: "250w",
-        sizes: "250px"
-    }
+const SIZES = [
+    // Mobile view : 2 entries per row 
+    "(max-width: 600px) 50vw",
+    // Tablet view : 4 entries
+    "(max-width: 1280px) 25vw",
+    // Desktop view (Default size) : 8 entries per row 
+    "12.50vw"
 ]
 
 // Needed in several sub functions
@@ -157,9 +147,7 @@ export const all_games = async () => {
                 id,
                 imagePath: `${base_path}/${ game?.coverFile ?? gamesData.defaultCoverFile }`,
                 sizes: (game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages) 
-                    ? SIZES_WITDH
-                        .map( ({sizes}) =>`${sizes}`)
-                        .join(",") 
+                    ? SIZES.join(", ") 
                     : undefined,
                 releaseDate: game.releaseDate
                     .split("/")

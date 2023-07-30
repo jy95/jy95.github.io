@@ -6,8 +6,7 @@ import { shallowEqual } from 'react-redux';
 
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useTranslation } from "@/i18n/client";
-import { useLocale } from "@/hooks/useLocale";
+import useTranslation from 'next-translate/useTranslation'
 import useInfiniteLoader from 'react-use-infinite-loader';
 
 // Style
@@ -64,8 +63,7 @@ const StyledGamesGallery = styled('div')((
 // The gallery component
 function GamesGalleryGrid() {
 
-    const locale = useLocale();
-    const { t } = useTranslation(locale, 'common');
+    const { t } = useTranslation('common');
     const dispatch = useAppDispatch();
 
     // Current displayed games

@@ -1,8 +1,7 @@
 "use client";
 
 import { Suspense, useEffect } from "react";
-import { useTranslation } from "@/i18n/client";
-import { useLocale } from "@/hooks/useLocale";
+import useTranslation from 'next-translate/useTranslation'
 
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
@@ -38,14 +37,13 @@ import {
   Legend,
 } from "recharts";
 
-import type { TFunction } from "i18next";
 import type { Genre as GenreValue } from "@/redux/services/sharedDefintion";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { fetchStats, selectStats } from "@/redux/services/statsSlice";
 
 // Inspired by https://blog.bitsrc.io/calculate-the-difference-between-two-2-dates-e1d76737c05a
 // My version includes some improvements in the codebase & changes to fit my needs
-function calcDate(date1: string, t: TFunction<"common", undefined>) {
+function calcDate(date1: string, t: any) {
   //new date instance
   const dt_date1 = new Date(date1);
   const dt_date2 = new Date();
@@ -104,7 +102,7 @@ function pretty_duration(
     minutes: number;
     seconds: number;
   },
-  t: TFunction<"common", undefined>
+  t: any
 ) {
   return [
     t("common.dates.hours", { count: contentDuration.hours }),
@@ -114,8 +112,7 @@ function pretty_duration(
 }
 
 export default function StatsPage() {
-    const lng = useLocale();
-    const { t } = useTranslation(lng as string, 'common');
+    const { t } = useTranslation('common');
     const dispatch = useAppDispatch();
     const {
         loading,

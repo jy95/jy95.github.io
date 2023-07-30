@@ -19,18 +19,18 @@
     "@types/react-dom": "18.2.7",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
-    "i18next": "^23.2.11",
-    "i18next-browser-languagedetector": "^7.1.0",
-    "i18next-resources-to-backend": "^1.1.4",
     "next": "13.4.12",
+    "next-translate": "^2.5.2",
     "notistack": "^3.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-i18next": "^13.0.2",
     "react-player": "^2.12.0",
     "react-redux": "^8.1.1",
     "react-use-infinite-loader": "^1.0.0",
     "recharts": "^2.7.2",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "next-translate-plugin": "^2.5.2"
   }
 }

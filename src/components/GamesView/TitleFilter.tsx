@@ -1,5 +1,4 @@
-import { useTranslation } from "@/i18n/client";
-import { useLocale } from "@/hooks/useLocale";
+import useTranslation from 'next-translate/useTranslation'
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
@@ -15,8 +14,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 function TitleFilter() {
 
-    const locale = useLocale();
-    const { t } = useTranslation(locale, 'common');
+    const { t } = useTranslation('common');
     const dispatch = useAppDispatch();
 
     // needed as this Autocomplete cannot have duplicate

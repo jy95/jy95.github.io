@@ -9,8 +9,8 @@ import AppsIcon from '@mui/icons-material/Apps';
 import ListIcon from '@mui/icons-material/List';
 
 // hooks
-import { useTranslation } from "@/i18n/client";
-import { useLocale } from "@/hooks/useLocale";
+import useTranslation from 'next-translate/useTranslation'
+
 
 // Custom
 const GamesGalleryGrid = lazy(() => import("@/components/GamesView/GamesGalleryGrid"));
@@ -19,10 +19,9 @@ const GamesGalleryList = lazy(() => import("@/components/GamesView/GamesGalleryL
 // The gallery component
 function GamesGallery(_props : {[key: string | number | symbol] : any}) {
 
-    const locale = useLocale();
     const [value, setValue] = useState('GRID');
     const [isPending, startTransition] = useTransition();
-    const { t } = useTranslation(locale, 'common');
+    const { t } = useTranslation('common');
 
     const handleChange = (_event : any, newValue : string) => {
         startTransition(() => {

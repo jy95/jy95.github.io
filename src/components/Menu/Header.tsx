@@ -1,8 +1,8 @@
 "use client";
 
 // Hooks
-import { useLocale } from "@/hooks/useLocale";
-import { useTranslation } from "@/i18n/client";
+import useTranslation from 'next-translate/useTranslation'
+import setLanguage from 'next-translate/setLanguage'
 
 // React Material UI
 import {CssBaseline, IconButton, Toolbar} from "@mui/material";
@@ -53,8 +53,7 @@ const AppBar = styled(MuiAppBar, {
 // main component
 function Header() {
 
-    const lng = useLocale();
-    const {t, i18n} = useTranslation(lng, 'common');
+    const { t } = useTranslation('common');
     const dispatch = useAppDispatch();
     const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
     const currentColor = useAppSelector((state) => state.themeColor.currentColor);
@@ -104,7 +103,7 @@ function Header() {
                                 .keys(languages_with_icons)
                                 .map( language =>
                                     <Tooltip title={t(`header.languages.${language as 'fr' | 'en'}` as const)} key={language}>
-                                        <IconButton onClick={() => i18n.changeLanguage(language)} size="large">
+                                        <IconButton onClick={async () => await setLanguage(language)} size="large">
                                             <SvgIcon>
                                                 {languages_with_icons[language as 'fr' | 'en']}
                                             </SvgIcon>

@@ -1,5 +1,4 @@
-import { useTranslation } from "@/i18n/client";
-import { useLocale } from "@/hooks/useLocale";
+import useTranslation from 'next-translate/useTranslation'
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
@@ -17,11 +16,10 @@ import { genre_list as GENRES } from "@/redux/services/sharedDefintion";
 function GenresSelect() {
 
     const dispatch = useAppDispatch();
-    const locale = useLocale();
     const selectedGenres = useAppSelector(
         (state) => selectSelectedGenres(state)
     )
-    const { t } = useTranslation(locale, 'common');
+    const { t } = useTranslation('common');
 
     // Generate list of values for game genre
     const genre_options : {

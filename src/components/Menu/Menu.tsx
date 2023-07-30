@@ -1,13 +1,12 @@
 "use client";
 
 // Router
+import { forwardRef } from "react";
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useMemo, forwardRef } from "react";
-import { useTranslation } from "@/i18n/client";
 
 // Hooks
-import { useLocale } from "@/hooks/useLocale";
+import useTranslation from 'next-translate/useTranslation'
 
 // Material UI
 import Divider from '@mui/material/Divider';
@@ -22,7 +21,6 @@ import ListItemText from '@mui/material/ListItemText';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import ExtensionIcon from '@mui/icons-material/Extension';
-import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 
@@ -33,7 +31,6 @@ import { Drawer, DrawerHeader } from "./Drawer";
 import { drawerOpen } from "@/redux/services/miscellaneousSlice";
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import type { languagesValues } from '@/i18n/settings';
 
 type menuEntryTranslationKey = 'gamesKey' | 'planningKey' | 'testsKey' | 'latestVideosKey' | 'stats';
 
@@ -42,19 +39,24 @@ function ListItemLink(props : {
     icon: JSX.Element;
     path: string;
     primary: `main.menuEntries.${menuEntryTranslationKey}`;
-    language: languagesValues;
 }) {
-    const { icon, primary, path, language } = props;
-    const { t } = useTranslation(language, 'common');
+    const { icon, primary, path } = props;
+    const { t, lang } = useTranslation('common');
     const pathname = usePathname()
     const entry_label = t(primary);
 
-    const href = `${language}${path}`;
+    const href = `${path}`;
     const isActive = pathname.startsWith(href)
+
+    const renderLink = forwardRef(
+        (_linkProps, _ref) => (
+            <Link locale={lang} href={href} />
+        )
+    )
 
     return (
         <ListItem disablePadding>
-            <ListItemButton component={Link} selected={isActive} href={`${href}`}>
+            <ListItemButton component={renderLink} selected={isActive}>
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={entry_label} />
             </ListItemButton>
@@ -84,11 +86,6 @@ const ENTRIES : {
         path: "/tests"  
     },
     {
-        icon: <VideoLibraryIcon />,
-        primary: "main.menuEntries.latestVideosKey",
-        path: "/latest"
-    },
-    {
         icon: <QueryStatsIcon />,
         primary: "main.menuEntries.stats",
         path: "/stats"
@@ -99,7 +96,6 @@ const ENTRIES : {
 function Menu() {
 
     const dispatch = useAppDispatch();
-    const lng = useLocale();
     const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
 
     const handleDrawerClose = () => {
@@ -119,7 +115,7 @@ function Menu() {
             <Divider />
             <List>
                 {
-                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.path} language={lng} />)
+                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.path} />)
                 }
             </List>
         </Drawer>
