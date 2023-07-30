@@ -32,10 +32,12 @@ import { drawerOpen } from "@/redux/services/miscellaneousSlice";
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
+// Links props
 import type { LinkProps } from "next/link";
+import type { LinkBaseProps as MuiProps } from "@mui/material"
 
 type menuEntryTranslationKey = 'gamesKey' | 'planningKey' | 'testsKey' | 'latestVideosKey' | 'stats';
-type MUILinkProps = LinkProps & { [x: string]: any };
+type MUILinkProps = LinkProps & MuiProps;
 
 // List Item
 function ListItemLink(props : {
@@ -53,11 +55,13 @@ function ListItemLink(props : {
 
     const CustomLink = useMemo(
         () => forwardRef(
-            (linkProps : MUILinkProps, _ref) => (
-                <Link locale={lang} {...linkProps} />
-            )
+            function OwnLink(linkProps : MUILinkProps, _ref) {
+                return (
+                    <Link locale={lang} {...linkProps} />
+                )
+            }
         ),
-        [path]
+        [lang]
     );
 
 

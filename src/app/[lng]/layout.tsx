@@ -51,7 +51,9 @@ export default function RootLayout({
               <Header />
               <Box sx={{ display: 'flex' }}>
                 <Menu />
-                <MainRoot children={children}/>
+                <MainRoot>
+                  {children}
+                </MainRoot>
               </Box>
             </SnackbarProvider>
           </ThemeProvider>
