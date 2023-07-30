@@ -39,70 +39,59 @@ type menuEntryTranslationKey = 'gamesKey' | 'planningKey' | 'testsKey' | 'latest
 
 // List Item
 function ListItemLink(props : {
-    [key: string | number | symbol] : any;
-    href: string;
+    icon: JSX.Element;
+    path: string;
     primary: `main.menuEntries.${menuEntryTranslationKey}`;
     language: languagesValues;
 }) {
-    const { icon, primary, href, language } = props;
+    const { icon, primary, path, language } = props;
     const { t } = useTranslation(language, 'common');
     const pathname = usePathname()
     const entry_label = t(primary);
 
+    const href = `${language}${path}`;
     const isActive = pathname.startsWith(href)
 
-    const renderLink = useMemo(
-        () => forwardRef(
-            function CustomLink(linkProps, _ref) {
-                return <Link href={`${href}`} {...linkProps} />
-            }
-        ),
-        [href]
-    )
-
-    return useMemo(
-        () => 
-            <ListItem disablePadding>
-                <ListItemButton component={renderLink} selected={isActive}>
-                    <ListItemIcon>{icon}</ListItemIcon>
-                    <ListItemText primary={entry_label} />
-                </ListItemButton>
-            </ListItem>,
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [isActive]
-    )
+    return (
+        <ListItem disablePadding>
+            <ListItemButton component={Link} selected={isActive} href={`${href}`}>
+                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemText primary={entry_label} />
+            </ListItemButton>
+        </ListItem>
+    );
 };
 
 // entries
 const ENTRIES : {
     icon: JSX.Element,
-    href: string,
+    path: string,
     primary: `main.menuEntries.${menuEntryTranslationKey}`
 }[] = [
     {
         icon: <SportsEsportsIcon />,
         primary: "main.menuEntries.gamesKey",
-        href: "/games"
+        path: "/games"
     },
     {
         icon: <ScheduleIcon />,
         primary: "main.menuEntries.planningKey",
-        href: "/planning"
+        path: "/planning"
     },
     {
         icon: <ExtensionIcon />,
         primary: "main.menuEntries.testsKey",
-        href: "/tests"  
+        path: "/tests"  
     },
     {
         icon: <VideoLibraryIcon />,
         primary: "main.menuEntries.latestVideosKey",
-        href: "/latest"
+        path: "/latest"
     },
     {
         icon: <QueryStatsIcon />,
         primary: "main.menuEntries.stats",
-        href: "/stats"
+        path: "/stats"
     }
 ]
 
@@ -128,13 +117,11 @@ function Menu() {
                 </IconButton>                
             </DrawerHeader>
             <Divider />
-            {/*
             <List>
                 {
-                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.href} language={lng} />)
+                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.path} language={lng} />)
                 }
             </List>
-            */}
         </Drawer>
     );
 }
