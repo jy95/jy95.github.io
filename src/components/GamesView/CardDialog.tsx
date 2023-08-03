@@ -3,6 +3,7 @@
 import { lazy } from "react";
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/navigation';
+import type { MouseEventHandler } from "react";
 
 // For full screen Dialog 
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -56,7 +57,7 @@ function CardDialog(props : {
         key: string,
         icon: JSX.Element,
         text: string,
-        onClick: () => void,
+        onClick: MouseEventHandler<HTMLLIElement>,
         divider?: boolean
     }[] = [
         // Watch here
@@ -64,7 +65,8 @@ function CardDialog(props : {
             key: "watchHere",
             icon: <PlayArrowIcon fontSize="small"/>,
             text: t("gamesLibrary.actionsButton.watchHere", { "gameName": gameTitle}),
-            onClick: () => {
+            onClick: (event) => {
+                event.preventDefault();
                 setContextMenuOpen(false);
                 router.push(`${local_path}`);
             }
