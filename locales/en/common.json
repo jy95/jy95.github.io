@@ -10,7 +10,8 @@
         "sortOrders": {
             "ASC": "Ascending sorting",
             "DESC": "Descending sorting"
-        }
+        },
+        "description": "Your prime destination for exciting gaming experiences !"
     },
     "common": {
         "reload": "Reload",
