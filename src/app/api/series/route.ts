@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import type { EnhancedGame } from "@/redux/services/sharedDefintion";
+import type { EnhancedGame } from "@/redux/sharedDefintion";
 import type { ResponseBody as GamesResponseBody } from "@/app/api/games/route";
 
-type serieType = {
+export type serieType = {
     name: string,
     items: EnhancedGame[]
 };
@@ -43,7 +43,5 @@ export async function GET(_request: Request) {
         .filter(serie => serie.items.length > 1)
         .sort(sortByNameASC);
 
-    return NextResponse.json({
-        items: series
-    });
+    return NextResponse.json(series);
 }

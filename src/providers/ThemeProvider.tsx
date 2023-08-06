@@ -3,7 +3,7 @@
 import { createTheme, ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
 
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { selectCurrentColor, selectCurrentSystemColor, themeColor } from '@/redux/services/themeColorSlice';
+import { selectCurrentColor, selectCurrentSystemColor, themeColor } from '@/redux/features/themeColorSlice';
 import { useMediaQuery } from '@mui/material';
 import { useEffect, useMemo } from 'react';
 import { useAsyncMemo } from '@/hooks/useAsyncMemo';

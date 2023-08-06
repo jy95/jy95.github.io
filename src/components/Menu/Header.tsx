@@ -23,8 +23,8 @@ import Tooltip from '@mui/material/Tooltip';
 import languages_with_icons from "./HeaderLanguages";
 
 // Redux
-import { drawerOpen } from "@/redux/services/miscellaneousSlice";
-import { themeColor } from "@/redux/services/themeColorSlice";
+import { drawerOpen } from "@/redux/features/miscellaneousSlice";
+import { themeColor } from "@/redux/features/themeColorSlice";
 
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";

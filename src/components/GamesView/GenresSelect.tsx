@@ -8,9 +8,9 @@ import { filteringByGenre, selectSelectedGenres } from "@/redux/services/gamesSl
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
-import type { Genre as GenreValue } from "@/redux/services/sharedDefintion";
+import type { Genre as GenreValue } from "@/redux/sharedDefintion";
 // Each one is also a key for translation
-import { genre_list as GENRES } from "@/redux/services/sharedDefintion";
+import { genre_list as GENRES } from "@/redux/sharedDefintion";
 
 // Generate list of values for game genre
 type Genre = {

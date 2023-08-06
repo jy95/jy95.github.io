@@ -5,7 +5,12 @@ import type {
     BasicPlaylist,
     BasicVideo,
     YTUrlType
-} from "@/redux/services/sharedDefintion";
+} from "@/redux/sharedDefintion";
+
+export type TestsResponse = {
+    items: CardGame[],
+    total_items: number
+}
 
 export async function GET(request: Request) {
 

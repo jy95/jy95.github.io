@@ -10,7 +10,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from '@mui/material/CardActionArea';
 
 import Image from 'next/image'
-import type { CardGame } from "@/redux/services/sharedDefintion";
+import type { CardGame } from "@/redux/sharedDefintion";
 const CardDialog = lazy(() => import("./CardDialog"));
 
 function CardEntry(props : {

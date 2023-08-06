@@ -44,7 +44,7 @@ import {
 } from "recharts";
 
 // type
-import type { Genre as GenreValue } from "@/redux/services/sharedDefintion";
+import type { Genre as GenreValue } from "@/redux/sharedDefintion";
 
 
 

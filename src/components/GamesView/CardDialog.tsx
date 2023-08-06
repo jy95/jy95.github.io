@@ -10,7 +10,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 // For snackbars
 import { useSnackbar } from 'notistack';
-import type { CardGame } from "@/redux/services/sharedDefintion";
+import type { CardGame } from "@/redux/sharedDefintion";
 
 // For Dialog
 const Dialog = lazy(() => import("@mui/material/Dialog"));

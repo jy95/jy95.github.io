@@ -1,12 +1,14 @@
 "use client";
 
+// Hooks
 import { useEffect, useCallback } from "react";
 import { styled } from '@mui/material/styles';
 
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import useTranslation from 'next-translate/useTranslation'
+import {useTranslations} from 'next-intl';
 import useInfiniteLoader from 'react-use-infinite-loader';
+import { fetchGames, scrollingFetching, selectCanLoadMore } from "@/redux/services/gamesSlice";
 
 // Style
 import Alert from '@mui/material/Alert';
@@ -18,16 +20,10 @@ import GenresSelect from "./GenresSelect";
 import PlatformSelect from "./PlatformSelect";
 import TitleFilter from "./TitleFilter";
 
-// Redux
-import { 
-    fetchGames,
-    scrollingFetching,
-    selectCurrentGames,
-    selectCanLoadMore
-}
-from "@/redux/services/gamesSlice";
+// Types
 import type { EnhancedGame } from "@/redux/sharedDefintion";
 
+// Custom component
 const PREFIX = 'GamesGalleryGrid';
 
 const classes = {
@@ -59,16 +55,10 @@ const StyledGamesGallery = styled('div')((
     }
 }));
 
-// The gallery component
-function GamesGalleryGrid() {
+export default function GamesGalleryGrid() {
 
-    const { t } = useTranslation('common');
+    const t = useTranslations();
     const dispatch = useAppDispatch();
-
-    // Current displayed games
-    const currentGames = useAppSelector(
-        (state) => selectCurrentGames(state)
-    );
 
     // Can load more
     const canLoadMore = useAppSelector(
@@ -84,14 +74,6 @@ function GamesGalleryGrid() {
     const scrollLoading = useAppSelector(
         (state) => state.games.scrollLoading
     )
-
-    // on mount, load data (only once)
-    useEffect(() => {
-        dispatch(fetchGames())
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps 
-        []
-    );
 
     // render row
     const renderRow = (game : EnhancedGame) =>
@@ -118,6 +100,14 @@ function GamesGalleryGrid() {
         initialise: !initialLoad,
         debug: false,
     });
+
+    // on mount, load data (only once)
+    useEffect(() => {
+        dispatch(fetchGames())
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
+        []
+    );
 
     return (
         <StyledGamesGallery>
@@ -146,16 +136,14 @@ function GamesGalleryGrid() {
                 }
             >
                 {
-                    currentGames
-                        // render row
-                        .map(renderRow)
+                    // render row
+                    games.map(renderRow)
                 }
             </Grid>
             {!initialLoad && <div ref={loaderRef as any} className={classes.loaderRef} />}
             {scrollLoading && <Alert severity="info">{t("common.loading")}</Alert>}
             {!canLoadMore && <Alert severity="info">{t("common.noResults")}</Alert>}
         </StyledGamesGallery>
-    );
-}
+    )
 
-export default GamesGalleryGrid;
+}

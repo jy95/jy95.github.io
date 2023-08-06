@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import type { BasicGame, BasicPlaylist, BasicVideo } from "@/redux/services/sharedDefintion";
+import type { BasicGame, BasicPlaylist, BasicVideo } from "@/redux/sharedDefintion";
 
-type planningEntry = Omit<BasicGame, "genres" | "videoId" | "playlistId" | "releaseDate"> & {
+export type planningEntry = Omit<BasicGame, "genres" | "videoId" | "playlistId" | "releaseDate"> & {
     /** @description Still in progress or finished ? */
     status: "RECORDED" | "PENDING";
     /** @description When to display the game public, such as 20210412 (12/04/2021) */
@@ -25,9 +25,7 @@ export async function GET(_request: Request) {
     const should_be_displayed = (elem : number, min : number | undefined, max : number | undefined) => (min !== undefined && max === undefined) || (max !== undefined && elem <= max);
     const games = gamesData.filter(game =>  should_be_displayed(integerDate, game.availableAt as number | undefined, game.endAt as number | undefined))
     
-    return NextResponse.json({
-        items: games
-    })
+    return NextResponse.json(games.map(game => enhanceGameItem(game as BasicGame)));
 }
 
 // Turn "YYYY...MMDD" to int

@@ -8,7 +8,7 @@ import type {
     YTUrlType,
     Platform,
     Genre
-} from "@/redux/services/sharedDefintion";
+} from "@/redux/sharedDefintion";
 
 // Extract criteria from request into something useful for me
 
@@ -44,13 +44,19 @@ type RequestParams = {
     // limit result 
     // Put "-1" if you still want ALL result
     limit: number
+    // offset
+    offset: number
 }
 
 export type ResponseBody = {
     // the games we are looking for
     items: EnhancedGame[],
     // Number of result matching criteria
-    total_items: number
+    total_items: number,
+    // offset used
+    offset: number,
+    // limit used
+    limit: number
 }
 
 export async function GET(request: Request) {
@@ -108,7 +114,9 @@ function generateResponse(params : RequestParams, gamesData: BasicGame[]): Respo
     
     return {
         items: sortedAndFilteredResultset(params, filtered_games).map(enhanceGameItem),
-        total_items: filtered_games.length
+        total_items: filtered_games.length,
+        offset: params.offset,
+        limit: params.limit
     }
 }
 
@@ -117,7 +125,7 @@ function sortedAndFilteredResultset(params : RequestParams, games: BasicGame[]) 
 
     // No sort criteria, return the filtered list only
     if (params.sorters.length === 0) {
-        return (params.limit === -1) ? games : games.slice(0, params.limit);
+        return (params.limit === -1) ? games : games.slice(params.offset, params.limit);
     }
 
     // At least one criteria for sort
@@ -161,7 +169,7 @@ function sortedAndFilteredResultset(params : RequestParams, games: BasicGame[]) 
         })
     
     // filtered resultset ?
-    return (params.limit === -1) ? gamesData : gamesData.slice(0, params.limit);
+    return (params.limit === -1) ? gamesData : gamesData.slice(params.offset, params.limit);
 }
 
 // Sort function
@@ -208,6 +216,7 @@ function extractParameters(params: URLSearchParams): RequestParams {
 
     return {
         limit: parseInt(params.get("limit") || "20"),
+        offset: parseInt(params.get("offset") || "0"),
         filters: filters,
         sorters: sorters
     }

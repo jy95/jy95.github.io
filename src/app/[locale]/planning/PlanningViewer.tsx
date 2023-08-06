@@ -14,7 +14,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 
 // Platform icons
 import iconsSVG from "@/components/GamesView/PlatformIcons";
-import type { Platform } from '@/redux/services/sharedDefintion';
+import type { Platform } from '@/redux/sharedDefintion';
 
 // Others
 import Tooltip from '@mui/material/Tooltip';

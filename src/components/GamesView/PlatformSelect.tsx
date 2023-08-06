@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 // icons
 import iconsSVG from "@/components/GamesView/PlatformIcons";
-import type { Platform } from "@/redux/services/sharedDefintion";
+import type { Platform } from "@/redux/sharedDefintion";
 
 const PLATFORMS = [
     "GBA",

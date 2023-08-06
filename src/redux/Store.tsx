@@ -1,23 +1,25 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import games from "./services/gamesSlice";
-import planning from "./services/planningSlice"
-import themeColor from "./services/themeColorSlice";
-import miscellaneous from "./services/miscellaneousSlice";
-import tests from "./services/testsSlice";
-import series from "./services/seriesSlice";
-import stats from "./services/statsSlice";
+import games from "./features/gamesSlice";
+import themeColor from "./features/themeColorSlice";
+import miscellaneous from "./features/miscellaneousSlice";
+import { gamesAPI } from "./services/gamesAPI";
+import { planningAPI } from "./services/planningAPI";
+import { seriesAPI } from "./services/seriesAPI";
+import { statsAPI } from "./services/statsAPI";
 
 /* eslint-disable no-underscore-dangle */
 const store = configureStore({
     reducer: {
+        // common reducers
         games,
-        planning,
         themeColor,
         miscellaneous,
-        tests,
-        series,
-        stats
+        // API calls
+        [gamesAPI.reducerPath]: gamesAPI.reducer,
+        [planningAPI.reducerPath]: planningAPI.reducer,
+        [seriesAPI.reducerPath]: seriesAPI.reducer,
+        [statsAPI.reducerPath]: statsAPI.reducer,
     }
 })
 export default store;

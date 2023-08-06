@@ -13,7 +13,7 @@ import { DrawerHeader, Main } from '@/components/Menu/Drawer';
 import { useAppSelector } from "@/redux/hooks";
 
 // Selectors
-import { selectOpenMenu } from '@/redux/services/miscellaneousSlice';
+import { selectOpenMenu } from '@/redux/features/miscellaneousSlice';
 
 // MUI component
 import Box from '@mui/material/Box';

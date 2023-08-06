@@ -28,7 +28,7 @@ import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import { Drawer, DrawerHeader } from "./Drawer";
 
 // Redux 
-import { drawerOpen } from "@/redux/services/miscellaneousSlice";
+import { drawerOpen } from "@/redux/features/miscellaneousSlice";
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
