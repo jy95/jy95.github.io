@@ -25,7 +25,7 @@ export const genre_list = [
 export type Genre = typeof genre_list[number];
 
 // structure used in data/games.json
-interface BasicEntry {
+export type BasicEntry = {
     /** @description Technical identifier for React - by default : playlistId | videoId */
     id: string,
     /** @description Title of the game, such as "Beyond Good & Evil" */
@@ -48,18 +48,20 @@ interface BasicEntry {
     hasResponsiveImages?: boolean;
 }
 
-export interface BasicVideo extends BasicEntry {
+export type BasicVideo = BasicEntry & {
     /** @description Video ID from Youtube - what you see after "watch?v=" */
     videoId: string;
 }
 
-export interface BasicPlaylist extends BasicEntry {
+export type BasicPlaylist = BasicEntry & {
     /** @description Playlist ID from Youtube, what you see after "playlist?list=" */
     playlistId: string;
 }
 
 // structure used in data/games.json
 export type BasicGame = BasicVideo | BasicPlaylist;
+// Type of Youtube link 
+export type YTUrlType = 'PLAYLIST' | 'VIDEO';
 
 // structure for Card entry
 interface CardEntry {
@@ -72,7 +74,7 @@ interface CardEntry {
     /** @description Link to Youtube */
     url: string;
     /** @description Type of Youtube link */
-    url_type: 'PLAYLIST' | 'VIDEO';
+    url_type: YTUrlType;
 };
 
 // structured after parsing data/games.json

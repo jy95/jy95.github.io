@@ -2,7 +2,6 @@
 
 // Hooks
 import { useEffect } from 'react';
-import useTranslation from 'next-translate/useTranslation'
 
 // Material UI
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
@@ -27,11 +26,31 @@ import { fetchPlanning, selectPlanning } from "@/redux/services/planningSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useAsyncMemo } from '@/hooks/useAsyncMemo';
 
-function Viewer() {
+type GameStatus = "RECORDED" | "PENDING";
+
+type Props = {
+    // label for title column
+    titleColumn: string,
+    // label for platform column
+    titlePlatform: string,
+    // label for releaseDate column
+    titleReleaseDate: string,
+    // label for endDate column
+    titleEndDate: string,
+    // label for status column
+    titleStatus: string,
+    // locale
+    lang: string,
+    // game status
+    status: {
+        [key in GameStatus]: string
+    }
+}
+
+export default function PlanningViewer({titleColumn, titleEndDate, titlePlatform, titleReleaseDate, titleStatus, lang, status} : Props) {
 
     const dispatch = useAppDispatch();
     const { planning : data } = useAppSelector((state) => selectPlanning(state));
-    const { t, lang } = useTranslation('common');
 
     // on mount, load data (only once)
     useEffect(() => {
@@ -44,7 +63,7 @@ function Viewer() {
     const columns : GridColDef[] = [
         {
             field: "title", 
-            headerName: t("planning.columns.title"),
+            headerName: titleColumn,
             headerAlign: 'center',
             renderCell: (params : GridRenderCellParams) => (
                 <Tooltip title={params.value} aria-label={params.value}>
@@ -57,7 +76,7 @@ function Viewer() {
         },
         {
             field: "platform",
-            headerName: t("planning.columns.platform"),
+            headerName: titlePlatform,
             renderCell: (params : GridRenderCellParams) => (
                 <SvgIcon titleAccess={params.value}>
                     {iconsSVG[params.value as Platform]}
@@ -67,7 +86,7 @@ function Viewer() {
         },
         {
             field: "releaseDate", 
-            headerName: t("planning.columns.releaseDate"),
+            headerName: titleReleaseDate,
             headerAlign: 'center',
             type: 'date',
             valueGetter: (params) => (params.value) ? new Date(params.value) : null,
@@ -75,7 +94,7 @@ function Viewer() {
         },
         {
             field: "endDate", 
-            headerName: t("planning.columns.endDate"),
+            headerName: titleEndDate,
             headerAlign: 'center',
             type: 'date',
             valueGetter: (params) => (params.value) ? new Date(params.value) : null,
@@ -83,9 +102,9 @@ function Viewer() {
         },
         {
             field: "status",
-            headerName: t("planning.columns.status"),
+            headerName: titleStatus,
             renderCell: (params : GridRenderCellParams) => (
-                <Tooltip title={t(`planning.states.${params.value}` as const)} aria-label={params.value}>
+                <Tooltip title={status[params.value as "RECORDED" | "PENDING"]} aria-label={params.value}>
                     { 
                         (params.value === "RECORDED") ? <CheckCircleIcon /> : <HourglassEmptyIcon />
                     }
@@ -149,5 +168,3 @@ function Viewer() {
             </div>
         )
 }
-
-export default Viewer;

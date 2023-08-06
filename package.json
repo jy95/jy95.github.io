@@ -21,7 +21,7 @@
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
     "next": "13.4.12",
-    "next-translate": "^2.5.2",
+    "next-intl": "^2.19.1",
     "notistack": "^3.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -30,8 +30,5 @@
     "react-use-infinite-loader": "^1.0.0",
     "recharts": "^2.7.2",
     "typescript": "5.1.6"
-  },
-  "devDependencies": {
-    "next-translate-plugin": "^2.5.2"
   }
 }

@@ -103,63 +103,6 @@ const initialState: GamesState = {
     activeFilters: []
 };
 
-let countMatches = (games : EnhancedGame[], filters : gamesFilters) => games
-    .reduce(
-        // Fastest way to compute that
-        (count, game) => count + (filters.every(condition => filtersFunctions[condition.key](condition.value as any)(game)) ? 1 : 0),
-        // If no criteria, all games match
-        (filters.length === 0) ? games.length : 0
-    );
-
-const SIZES = [
-    // Mobile view : 2 entries per row 
-    "(max-width: 600px) 50vw",
-    // Tablet view : 4 entries
-    "(max-width: 1280px) 25vw",
-    // Desktop view (Default size) : 8 entries per row 
-    "12.50vw"
-]
-
-// Needed in several sub functions
-export const all_games = async () => {
-    // current date as integer (quicker comparaison)
-    const currentDate = new Date();
-    const integerDate = (currentDate.getFullYear() * 10000) + 
-        ( (currentDate.getMonth() + 1) * 100 ) + 
-        currentDate.getDate();
-
-    const gamesData = await import("../data/games.json");
-
-    // Build list of available games
-    return (gamesData.games as BasicGame[])
-        // hide not yet public games on channel
-        .filter(game => (game?.availableAt === undefined) || game?.availableAt <= integerDate)
-        // enhance payload
-        .map(game => {
-            const id = (game as BasicPlaylist).playlistId ?? (game as BasicVideo).videoId;
-            const base_url = (
-                ("playlistId" in game) 
-                    ? "https://www.youtube.com/playlist?list=" 
-                    :  "https://www.youtube.com/watch?v="
-            ) + id ;
-            const base_path = `${gamesData.coversRootPath}${id}`;
-            return Object.assign({}, game, {
-                id,
-                imagePath: `${base_path}/${ game?.coverFile ?? gamesData.defaultCoverFile }`,
-                sizes: (game?.hasResponsiveImages || gamesData.defaultHasResponsiveImages) 
-                    ? SIZES.join(", ") 
-                    : undefined,
-                releaseDate: game.releaseDate
-                    .split("/")
-                    .reduce( (acc : number, curr : string, idx : number) => acc + (parseInt(curr) * Math.pow(100, idx)), 0),
-                url: base_url,
-                url_type: ("playlistId" in game) ? "PLAYLIST" : "VIDEO",
-                durationAsInt: (game.duration)
-                    ? Number(game.duration.replaceAll(":", ""))
-                    : 0
-            });
-        }) as EnhancedGame[];
-}
 
 // For fetching games
 export const fetchGames = createAsyncThunk('games/fetchGames', async () => {
@@ -349,28 +292,6 @@ export const selectSelectedTitle = createSelector(
     }
 )
 
-const selectActiveSorters = (state : RootState) => state.games.sorters;
-export const selectCurrentGames = createSelector(
-    [
-        (state : RootState) => state.games.games,
-        selectActiveFilters,
-        selectActiveSorters,
-        (state : RootState) => state.games.currentItemCount
-    ],
-    (games, activeFilters, activeSorters, currentItemCount) => {
-
-        const currentSortFunction = generate_sort_function(activeSorters);
-        const filtersFunction = generate_filter_function(activeFilters);
-
-        return games
-            // remove the ones that doesn't match filter criteria
-            .filter(filtersFunction)
-            // sort them in user preference
-            .sort(currentSortFunction)
-            .slice(0, currentItemCount);
-    }
-);
-
 // Can load more in scrolling
 export const selectCanLoadMore = createSelector(
     [
@@ -382,15 +303,6 @@ export const selectCanLoadMore = createSelector(
     }
 );
 
-// List of game titles
-export const selectListOfGameTitles = createSelector(
-    [
-        (state : RootState) => state.games.games
-    ],
-    (games) => {
-        return [...new Set(games.map(game => game.title))]
-    }
-)
 
 // Action creators are generated for each case reducer function
 export const {

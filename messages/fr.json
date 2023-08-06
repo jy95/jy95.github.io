@@ -18,18 +18,12 @@
         "loading": "Chargement en cours ...",
         "noResults": "Plus d'autre résultats à afficher",
         "dates": {
-            "years_one": "1 année",
-            "years_other": "{{count}} années",
-            "months_one": "1 mois",
-            "months_other": "{{count}} mois",
-            "days_one": "1 jour",
-            "days_other": "{{count}} jours",
-            "hours_one": "1 heure",
-            "hours_other": "{{count}} heures",
-            "minutes_one": "1 minute",
-            "minutes_other": "{{count}} minutes",
-            "seconds_one": "1 seconde",
-            "seconds_other": "{{count}} secondes"
+            "years": "{count, plural, =1 {1 année} other {# années} }",
+            "months": "{count, plural, =1 {1 mois} other {# mois} }",
+            "days": "{count, plural, =1 {1 jour} other {# jours} }",
+            "hours": "{count, plural, =1 {1 heure} other {# heures} }",
+            "minutes": "{count, plural, =1 {1 minute} other {# minutes} }",
+            "seconds": "{count, plural, =1 {1 seconde} other {# secondes} }"
         }
     },
     "header": {
@@ -58,11 +52,11 @@
             "sortButton": "Trier"
         },
         "snackbarsMessages": {
-            "copiedLink": "Lien de {{gameName}} copié"
+            "copiedLink": "Lien de {gameName} copié"
         },
         "actionsButton": {
-            "watchHere": "Regarder {{gameName}}",
-            "watchOnYt": "Regarder {{gameName}} sur Youtube",
+            "watchHere": "Regarder {gameName}",
+            "watchOnYt": "Regarder {gameName} sur Youtube",
             "copyLink": "Copier le lien",
             "shareOnTwitter": "Partager sur Twitter",
             "shareOnFacebook": "Partager sur Facebook",
@@ -129,7 +123,7 @@
             "total_games_available": "Nombre de jeux (disponible)",
             "total_games_unavailable": "Nombre de jeux (pas encore disponible)",
             "channel_start_date": "Début de la chaine",
-            "channel_start_date_details": "(soit {{value}} sur Youtube)",
+            "channel_start_date_details": "(soit {value} sur Youtube)",
             "total_duration": "Durée totale du contenu",
             "total_duration_available": "Durée totale du contenu (disponible)",
             "total_duration_unavailable": "Durée totale du contenu (pas encore disponible)"

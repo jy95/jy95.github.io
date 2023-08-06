@@ -1,8 +1,12 @@
 "use client";
 
+// hooks
 import { Suspense, useEffect } from "react";
-import useTranslation from 'next-translate/useTranslation'
+import {useTranslations} from 'next-intl';
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { fetchStats, selectStats } from "@/redux/services/statsSlice";
 
+// MUI component
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
@@ -15,6 +19,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 
+// Icons
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import HourglassFullIcon from "@mui/icons-material/HourglassFull";
 import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
@@ -22,6 +27,7 @@ import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
+// Recharts components
 import {
   BarChart,
   Bar,
@@ -37,13 +43,45 @@ import {
   Legend,
 } from "recharts";
 
+// type
 import type { Genre as GenreValue } from "@/redux/services/sharedDefintion";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { fetchStats, selectStats } from "@/redux/services/statsSlice";
+
+
+
+export default function StatsPage() {
+    const t = useTranslations();
+    const dispatch = useAppDispatch();
+    const stats = useAppSelector((state) => selectStats(state));
+    const currentColor = useAppSelector( (state) => state.themeColor.currentColor )
+
+    // on mount, load data (only once)
+    useEffect(() => {
+        dispatch(fetchStats());
+    }, 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    );
+
+    // for genre chart
+    const genresData = stats.genres.map(s => ({
+        ...s,
+        category: t(`gamesLibrary.gamesGenres.${s.key as GenreValue}` as const)
+    }));
+
+    // StackedAreaChart : https://recharts.org/en-US/examples/StackedAreaChart
+    // StackedBarChart : https://recharts.org/en-US/examples/StackedBarChart
+
+    // for platform chart
+    const platformsData = stats.platforms;
+
+    // for generals line
+    const generalStats = stats.general;
+
+    const strokeColor = (currentColor === "dark") ? "white": "dark"; 
 
 // Inspired by https://blog.bitsrc.io/calculate-the-difference-between-two-2-dates-e1d76737c05a
 // My version includes some improvements in the codebase & changes to fit my needs
-function calcDate(date1: string, t: any) {
+function calcDate(date1: string) {
   //new date instance
   const dt_date1 = new Date(date1);
   const dt_date2 = new Date();
@@ -101,8 +139,7 @@ function pretty_duration(
     hours: number;
     minutes: number;
     seconds: number;
-  },
-  t: any
+  }
 ) {
   return [
     t("common.dates.hours", { count: contentDuration.hours }),
@@ -110,37 +147,6 @@ function pretty_duration(
     t("common.dates.seconds", { count: contentDuration.seconds }),
   ].join(" ");
 }
-
-export default function StatsPage() {
-    const { t } = useTranslation('common');
-    const dispatch = useAppDispatch();
-    const stats = useAppSelector((state) => selectStats(state));
-    const currentColor = useAppSelector( (state) => state.themeColor.currentColor )
-
-    // on mount, load data (only once)
-    useEffect(() => {
-        dispatch(fetchStats());
-    }, 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        []
-    );
-
-    // for genre chart
-    const genresData = stats.genres.map(s => ({
-        ...s,
-        category: t(`gamesLibrary.gamesGenres.${s.key as GenreValue}` as const)
-    }));
-
-    // StackedAreaChart : https://recharts.org/en-US/examples/StackedAreaChart
-    // StackedBarChart : https://recharts.org/en-US/examples/StackedBarChart
-
-    // for platform chart
-    const platformsData = stats.platforms;
-
-    // for generals line
-    const generalStats = stats.general;
-
-    const strokeColor = (currentColor === "dark") ? "white": "dark"; 
 
   return (
     <Grid container spacing={3}>
@@ -214,7 +220,7 @@ export default function StatsPage() {
                 </ListItemAvatar>
                 <ListItemText
                   primary={t("stats.generalStats.total_duration")}
-                  secondary={pretty_duration(generalStats.total_time, t)}
+                  secondary={pretty_duration(generalStats.total_time)}
                 />
               </AccordionSummary>
               <Suspense fallback={null}>
@@ -228,8 +234,7 @@ export default function StatsPage() {
                     <ListItemText
                       primary={t("stats.generalStats.total_duration_available")}
                       secondary={pretty_duration(
-                        generalStats.total_time_available,
-                        t
+                        generalStats.total_time_available
                       )}
                     />
                   </ListItem>
@@ -245,8 +250,7 @@ export default function StatsPage() {
                         "stats.generalStats.total_duration_unavailable"
                       )}
                       secondary={pretty_duration(
-                        generalStats.total_time_unavailable,
-                        t
+                        generalStats.total_time_unavailable
                       )}
                     />
                   </ListItem>
@@ -266,7 +270,7 @@ export default function StatsPage() {
                   generalStats.channel_start_date
                 ).toLocaleDateString()} ${t(
                   "stats.generalStats.channel_start_date_details",
-                  { value: calcDate(generalStats.channel_start_date, t).result }
+                  { value: calcDate(generalStats.channel_start_date).result }
                 )}`}
               />
             </ListItem>

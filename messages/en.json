@@ -18,18 +18,12 @@
         "loading": "Loading ...",
         "noResults": "No more results to display",
         "dates": {
-            "years_one": "1 year",
-            "years_other": "{{count}} years",
-            "months_one": "1 month",
-            "months_other": "{{count}} months",
-            "days_one": "1 day",
-            "days_other": "{{count}} days",
-            "hours_one": "1 hour",
-            "hours_other": "{{count}} hours",
-            "minutes_one": "1 minute",
-            "minutes_other": "{{count}} minutes",
-            "seconds_one": "1 second",
-            "seconds_other": "{{count}} seconds"
+            "years": "{count, plural, =1 {1 year} other {# years} }",
+            "months": "{count, plural, =1 {1 month} other {# months} }",
+            "days": "{count, plural, =1 {1 day} other {# days} }",
+            "hours": "{count, plural, =1 {1 hour} other {# hours} }",
+            "minutes": "{count, plural, =1 {1 minute} other {# minutes} }",
+            "seconds": "{count, plural, =1 {1 second} other {# seconds} }"
         }
     },
     "header": {
@@ -58,11 +52,11 @@
             "duration": "Duration"
         },
         "snackbarsMessages": {
-            "copiedLink": "Link of {{gameName}} copied"
+            "copiedLink": "Link of {gameName} copied"
         },
         "actionsButton": {
-            "watchHere": "Watch {{gameName}}",
-            "watchOnYt": "Watch {{gameName}} on Youtube",
+            "watchHere": "Watch {gameName}",
+            "watchOnYt": "Watch {gameName} on Youtube",
             "copyLink": "Copy link",
             "shareOnTwitter": "Share on Twitter",
             "shareOnFacebook": "Share on Facebook",
@@ -129,7 +123,7 @@
             "total_games_available": "Number of games (available)",
             "total_games_unavailable": "Number of games (not yet available)",
             "channel_start_date": "Channel start date",
-            "channel_start_date_details": "(so {{value}} on Youtube)",
+            "channel_start_date_details": "(so {value} on Youtube)",
             "total_duration": "Content total duration",
             "total_duration_available": "Content total duration (Available)",
             "total_duration_unavailable": "Content total duration (Not yet available)"

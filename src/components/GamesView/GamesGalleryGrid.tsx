@@ -14,7 +14,6 @@ import Grid from "@mui/material/Grid";
 
 // Custom
 import CardEntry from "./CardEntry";
-import GamesSorters from "./GamesSorters";
 import GenresSelect from "./GenresSelect";
 import PlatformSelect from "./PlatformSelect";
 import TitleFilter from "./TitleFilter";
@@ -126,10 +125,7 @@ function GamesGalleryGrid() {
                 container
                 className={classes.gamesCriteria}
             >
-                <Grid item xs={12} md={1}>
-                    <GamesSorters />
-                </Grid>
-                <Grid item xs={12} md={2}>
+                <Grid item xs={12} md={3}>
                     <PlatformSelect />
                 </Grid>
                 <Grid item xs={12} md={5}>

@@ -18,9 +18,6 @@ import { selectOpenMenu } from '@/redux/services/miscellaneousSlice';
 // MUI component
 import Box from '@mui/material/Box';
 
-// Hooks
-import useTranslation from 'next-translate/useTranslation'
-
 /*
 export const metadata: Metadata = {
   title: 'GamesPassionFR',
@@ -28,19 +25,20 @@ export const metadata: Metadata = {
 }
 */
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+type Props = {
+  children: React.ReactNode,
+  params: {
+    locale: "en" | "fr"
+  }
+}
 
-  const { lang } = useTranslation("common");
+export default function RootLayout({children, params: {locale}} : Props) {
 
   return (
-    <html lang={lang}>
+    <html lang={locale}>
       <body>
         <ReduxProviders>
-          <ThemeProvider lng={lang}>
+          <ThemeProvider lng={locale}>
             <SnackbarProvider 
               maxSnack={3}
               anchorOrigin={{
