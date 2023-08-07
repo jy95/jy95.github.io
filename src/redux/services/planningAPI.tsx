@@ -7,7 +7,7 @@ export const planningAPI = createApi({
     reducerPath: 'planningApi',
     baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
     endpoints: (builder) => ({
-        getPlanning: builder.query<planningEntry, undefined>({
+        getPlanning: builder.query<planningEntry[], void>({
             query: () => "/planning"
         })
     })

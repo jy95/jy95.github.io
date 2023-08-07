@@ -7,7 +7,7 @@ export const statsAPI = createApi({
     reducerPath: 'statsAPI',
     baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
     endpoints: (builder) => ({
-        getStats: builder.query<statsProperty, undefined>({
+        getStats: builder.query<statsProperty, void>({
             query: () => "/stats"
         })
     })

@@ -2,6 +2,10 @@
 
 // Hooks
 import { useEffect } from 'react';
+import { useAsyncMemo } from '@/hooks/useAsyncMemo';
+
+// Redux
+import { useGetPlanningQuery } from "@/redux/services/planningAPI";
 
 // Material UI
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
@@ -18,13 +22,6 @@ import type { Platform } from '@/redux/sharedDefintion';
 
 // Others
 import Tooltip from '@mui/material/Tooltip';
-
-// Redux
-import { fetchPlanning, selectPlanning } from "@/redux/services/planningSlice";
-
-// Hooks
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useAsyncMemo } from '@/hooks/useAsyncMemo';
 
 type GameStatus = "RECORDED" | "PENDING";
 
@@ -49,16 +46,20 @@ type Props = {
 
 export default function PlanningViewer({titleColumn, titleEndDate, titlePlatform, titleReleaseDate, titleStatus, lang, status} : Props) {
 
-    const dispatch = useAppDispatch();
-    const { planning : data } = useAppSelector((state) => selectPlanning(state));
+    // Using a query hook automatically fetches data and returns query values
+    const { data, error, isLoading } = useGetPlanningQuery();
 
-    // on mount, load data (only once)
-    useEffect(() => {
-        dispatch(fetchPlanning());
-    },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        []
-    )
+    if (error) {
+        return <>Something bad happened</>
+    }
+
+    if (isLoading) {
+        return <>Loading</>
+    }
+
+    if (!data) {
+        return null;
+    }
     
     const columns : GridColDef[] = [
         {

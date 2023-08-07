@@ -1,5 +1,5 @@
 {
-    "main": {
+    "header": {
         "menuEntries": {
             "gamesKey": "Games",
             "planningKey": "Calendar",
@@ -7,9 +7,9 @@
             "latestVideosKey": "Latest Videos",
             "stats": "Stats"
         },
-        "sortOrders": {
-            "ASC": "Ascending sorting",
-            "DESC": "Descending sorting"
+        "languages": {
+            "en": "English version of the site",
+            "fr": "French version of the site"
         },
         "description": "Your prime destination for exciting gaming experiences !"
     },
@@ -24,12 +24,6 @@
             "hours": "{count, plural, =1 {1 hour} other {# hours} }",
             "minutes": "{count, plural, =1 {1 minute} other {# minutes} }",
             "seconds": "{count, plural, =1 {1 second} other {# seconds} }"
-        }
-    },
-    "header": {
-        "languages": {
-            "en": "English version of the site",
-            "fr": "French version of the site"
         }
     },
     "gamesLibrary": {
