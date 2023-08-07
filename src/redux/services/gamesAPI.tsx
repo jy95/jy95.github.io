@@ -77,6 +77,7 @@ export const gamesAPI = createApi({
                     }
                 }
 
+                // sorters parameter
                 if (params.sorters.length > 0) {
                     parameters["sortCriteria"] = params.sorters.map(s => s[0]);
                     parameters["sortOrder"] = params.sorters.map(s => s[1]);

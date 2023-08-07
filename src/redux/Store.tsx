@@ -7,6 +7,7 @@ import { gamesAPI } from "./services/gamesAPI";
 import { planningAPI } from "./services/planningAPI";
 import { seriesAPI } from "./services/seriesAPI";
 import { statsAPI } from "./services/statsAPI";
+import { testsAPI } from "./services/testsAPI";
 
 /* eslint-disable no-underscore-dangle */
 const store = configureStore({
@@ -20,6 +21,7 @@ const store = configureStore({
         [planningAPI.reducerPath]: planningAPI.reducer,
         [seriesAPI.reducerPath]: seriesAPI.reducer,
         [statsAPI.reducerPath]: statsAPI.reducer,
+        [testsAPI.reducerPath]: testsAPI.reducer,
     }
 })
 export default store;

@@ -22,12 +22,15 @@ export async function GET(request: Request) {
 
     // return subset
     const limit = searchParams.has("limit") ? parseInt(searchParams.get("limit")!) : -1;
-    const games = (limit === -1) ? gamesData : gamesData.slice(0, limit);
+    const offset = searchParams.has("offset") ? parseInt(searchParams.get("offset")!) : 0;
+    const games = (limit === -1) ? gamesData : gamesData.slice(offset, limit);
 
     // Returns results
     return NextResponse.json({
         items: games.map(game => enhanceGameItem(game as BasicGame)),
-        total_items: gamesData.length
+        total_items: gamesData.length,
+        limit: limit,
+        offset: offset
     });
 }
 
