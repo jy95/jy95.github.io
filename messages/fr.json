@@ -1,5 +1,5 @@
 {
-    "main": {
+    "header": {
         "menuEntries": {
             "gamesKey": "Jeux",
             "planningKey": "Planning",
@@ -7,9 +7,9 @@
             "latestVideosKey": "Dernières vidéos",
             "stats": "Statistiques"
         },
-        "sortOrders": {
-            "ASC": "Tri ascendant",
-            "DESC": "Tri descendant"
+        "languages": {
+            "en": "Version anglaise du site",
+            "fr": "Version française du site"
         },
         "description": "Votre destination privilégiée pour des expériences de jeu passionnantes !"
     },
@@ -24,12 +24,6 @@
             "hours": "{count, plural, =1 {1 heure} other {# heures} }",
             "minutes": "{count, plural, =1 {1 minute} other {# minutes} }",
             "seconds": "{count, plural, =1 {1 seconde} other {# secondes} }"
-        }
-    },
-    "header": {
-        "languages": {
-            "en": "Version anglaise du site",
-            "fr": "Version française du site"
         }
     },
     "gamesLibrary": {

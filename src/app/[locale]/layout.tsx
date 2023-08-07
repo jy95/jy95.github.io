@@ -1,29 +1,25 @@
-"use client";
-
 // Providers
+import { NextIntlClientProvider } from 'next-intl';
 import { Providers as ReduxProviders } from "@/redux/provider";
 import { ThemeProvider } from "@/providers/ThemeProvider";
-import { SnackbarProvider } from 'notistack';
+import { SnackbarProvider } from "@/providers/SnackbarProvider"
 
-// MUI
+// Not found
+import {notFound} from 'next/navigation';
+
+// components
+import MainRoot from '@/components/Main/MainRoot';
 import Menu from "@/components/Menu/Menu";
 import Header from "@/components/Menu/Header";
-import { DrawerHeader, Main } from '@/components/Menu/Drawer';
+import Box from "@/components/Main/Box";
 
-import { useAppSelector } from "@/redux/hooks";
+// Types
+import { Metadata } from 'next/types';
 
-// Selectors
-import { selectOpenMenu } from '@/redux/features/miscellaneousSlice';
-
-// MUI component
-import Box from '@mui/material/Box';
-
-/*
 export const metadata: Metadata = {
   title: 'GamesPassionFR',
   description: 'Catalogue des jeux de GamesPassionFR',
 }
-*/
 
 type Props = {
   children: React.ReactNode,
@@ -32,48 +28,45 @@ type Props = {
   }
 }
 
-export default function RootLayout({children, params: {locale}} : Props) {
+export function generateStaticParams() {
+  return [{locale: 'fr'}, {locale: 'en'}];
+}
+
+export default async  function RootLayout({children, params: {locale}} : Props) {
+
+  // Fetch messages in locale asked
+  let messages;
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
 
   return (
     <html lang={locale}>
       <body>
         <ReduxProviders>
-          <ThemeProvider lng={locale}>
-            <SnackbarProvider 
-              maxSnack={3}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
-            >
-              <Header />
-              <Box sx={{ display: 'flex' }}>
-                <Menu />
-                <MainRoot>
-                  {children}
-                </MainRoot>
-              </Box>
-            </SnackbarProvider>
-          </ThemeProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <ThemeProvider lng={locale}>
+              <SnackbarProvider 
+                maxSnack={3}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+              >
+                <Header />
+                <Box sx={{ display: 'flex' }}>
+                  <Menu lang={locale} />
+                  <MainRoot>
+                    {children}
+                  </MainRoot>
+                </Box>
+              </SnackbarProvider>
+            </ThemeProvider>
+          </NextIntlClientProvider>
         </ReduxProviders>
       </body>
     </html>
-  )
-}
-
-function MainRoot({
-  children,
-}: {
-  children: React.ReactNode
-}){
-
-  const openMenu = useAppSelector((state) => selectOpenMenu(state));
-
-  return (
-    /* @ts-ignore Mui has some issue sending attr to children*/
-    <Main open={ openMenu } >
-      <DrawerHeader />
-      {children}
-    </Main>
   )
 }

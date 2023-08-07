@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 // Hooks
-import useTranslation from 'next-translate/useTranslation'
+import {useTranslations} from 'next-intl';
 
 // Material UI
 import Divider from '@mui/material/Divider';
@@ -43,10 +43,11 @@ type MUILinkProps = LinkProps & MuiProps;
 function ListItemLink(props : {
     icon: JSX.Element;
     path: string;
-    primary: `main.menuEntries.${menuEntryTranslationKey}`;
+    primary: `${menuEntryTranslationKey}`;
+    lang: string;
 }) {
-    const { icon, primary, path } = props;
-    const { t, lang } = useTranslation('common');
+    const { icon, primary, path, lang } = props;
+    const t = useTranslations('main.menuEntries');
     const pathname = usePathname()
     const entry_label = t(primary);
 
@@ -79,32 +80,36 @@ function ListItemLink(props : {
 const ENTRIES : {
     icon: JSX.Element,
     path: string,
-    primary: `main.menuEntries.${menuEntryTranslationKey}`
+    primary: `${menuEntryTranslationKey}`
 }[] = [
     {
         icon: <SportsEsportsIcon />,
-        primary: "main.menuEntries.gamesKey",
+        primary: "gamesKey",
         path: "/games"
     },
     {
         icon: <ScheduleIcon />,
-        primary: "main.menuEntries.planningKey",
+        primary: "planningKey",
         path: "/planning"
     },
     {
         icon: <ExtensionIcon />,
-        primary: "main.menuEntries.testsKey",
+        primary: "testsKey",
         path: "/tests"  
     },
     {
         icon: <QueryStatsIcon />,
-        primary: "main.menuEntries.stats",
+        primary: "stats",
         path: "/stats"
     }
 ]
 
+type Props = {
+    lang: string
+}
+
 // Main component
-function Menu() {
+function Menu({ lang }: Props) {
 
     const dispatch = useAppDispatch();
     const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
@@ -126,7 +131,7 @@ function Menu() {
             <Divider />
             <List>
                 {
-                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.path} />)
+                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.path} lang={lang} />)
                 }
             </List>
         </Drawer>
