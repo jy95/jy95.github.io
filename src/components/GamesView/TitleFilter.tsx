@@ -1,19 +1,20 @@
-import useTranslation from 'next-translate/useTranslation'
+"use client";
 
-// React Material UI
-import TextField from '@mui/material/TextField';
-
+// Hooks 
+import { useTranslations } from "next-intl";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
     filterByTitle,
     selectSelectedTitle,
 } 
-from "@/redux/services/gamesSlice";
-// Hooks
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+from "@/redux/features/gamesSlice";
+
+// React Material UI
+import TextField from '@mui/material/TextField';
 
 function TitleFilter() {
 
-    const { t } = useTranslation('common');
+    const t = useTranslations("gamesLibrary.filtersLabels")
     const dispatch = useAppDispatch();
 
     // current value
@@ -22,7 +23,7 @@ function TitleFilter() {
     return <>
         <TextField
             id="search-game-title"
-            label={t("gamesLibrary.filtersLabels.title")}
+            label={t("title")}
             value={title}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 dispatch(filterByTitle(event.target.value));

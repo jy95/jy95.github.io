@@ -1,7 +1,7 @@
 "use client";
 
 import { lazy } from "react";
-import useTranslation from 'next-translate/useTranslation'
+import { useTranslations } from "next-intl";
 import { useRouter } from 'next/navigation';
 import type { MouseEventHandler } from "react";
 
@@ -40,7 +40,7 @@ function CardDialog(props : {
     
     // hooks
     const router = useRouter();
-    const { t } = useTranslation('common');
+    const t = useTranslations("gamesLibrary");
     const fullScreen = useMediaQuery( (theme : any) => theme.breakpoints.down('md'));
     const { enqueueSnackbar } = useSnackbar();
 
@@ -64,7 +64,7 @@ function CardDialog(props : {
         {
             key: "watchHere",
             icon: <PlayArrowIcon fontSize="small"/>,
-            text: t("gamesLibrary.actionsButton.watchHere", { "gameName": gameTitle}),
+            text: t("actionsButton.watchHere", { "gameName": gameTitle}),
             onClick: (event) => {
                 event.preventDefault();
                 setContextMenuOpen(false);
@@ -75,7 +75,7 @@ function CardDialog(props : {
         {
             key: "watchOnYoutube",
             icon: <YouTubeIcon fontSize="small"/>,
-            text: t("gamesLibrary.actionsButton.watchOnYt", { "gameName": gameTitle}),
+            text: t("actionsButton.watchOnYt", { "gameName": gameTitle}),
             onClick: () => {
                 setContextMenuOpen(false);
                 window.location.href = gameURL;
@@ -86,12 +86,12 @@ function CardDialog(props : {
             key: "copyLink",
             divider: true,
             icon: <FileCopyIcon fontSize="small"/>,
-            text: t("gamesLibrary.actionsButton.copyLink"),
+            text: t("actionsButton.copyLink"),
             onClick: async () => {
                 if (navigator.clipboard !== undefined) {
                     await navigator.clipboard.writeText(gameURL);
                     enqueueSnackbar(
-                        t("gamesLibrary.snackbarsMessages.copiedLink", { "gameName": gameTitle }),
+                        t("snackbarsMessages.copiedLink", { "gameName": gameTitle }),
                         {
                             "variant": "success",
                             "autoHideDuration": 2500
@@ -105,7 +105,7 @@ function CardDialog(props : {
         {
             key: "share-on-twitter",
             icon: <TwitterIcon fontSize="small"/>,
-            text: t("gamesLibrary.actionsButton.shareOnTwitter"),
+            text: t("actionsButton.shareOnTwitter"),
             onClick: () => {
                 window.open("https://twitter.com/intent/tweet?url=" + encodeURIComponent(gameURL), "_blank");
                 setContextMenuOpen(false);
@@ -115,7 +115,7 @@ function CardDialog(props : {
         {
             key: "share-on-facebook",
             icon: <FacebookIcon fontSize="small"/>,
-            text: t("gamesLibrary.actionsButton.shareOnFacebook"),
+            text: t("actionsButton.shareOnFacebook"),
             onClick: () => {
                 window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(gameURL), "_blank")
                 setContextMenuOpen(false);
@@ -125,7 +125,7 @@ function CardDialog(props : {
         {
             key: "share-on-reddit",
             icon: <RedditIcon fontSize="small"/>,
-            text: t("gamesLibrary.actionsButton.shareOnReddit"),
+            text: t("actionsButton.shareOnReddit"),
             onClick: () => {
                 window.open("http://www.reddit.com/submit?title=" + encodeURIComponent(gameTitle) + "&url=" + encodeURIComponent(gameURL) + "&title=","_blank")
                 setContextMenuOpen(false);
@@ -162,7 +162,7 @@ function CardDialog(props : {
                 </List>
             </DialogContent>
             <DialogActions>
-                <Button autoFocus onClick={() => {setContextMenuOpen(false)}}>{t("gamesLibrary.actionsButton.closeContextMenu")}</Button>
+                <Button autoFocus onClick={() => {setContextMenuOpen(false)}}>{t("actionsButton.closeContextMenu")}</Button>
             </DialogActions>
         </Dialog>
     );

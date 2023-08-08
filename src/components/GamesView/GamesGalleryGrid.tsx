@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import useTranslation from 'next-translate/useTranslation'
+import { useTranslations } from "next-intl";
 import useInfiniteLoader from 'react-use-infinite-loader';
 
 // Style
@@ -25,7 +25,7 @@ import {
     selectCurrentGames,
     selectCanLoadMore
 }
-from "@/redux/services/gamesSlice";
+from "@/redux/features/gamesSlice";
 import type { EnhancedGame } from "@/redux/sharedDefintion";
 
 const PREFIX = 'GamesGalleryGrid';
@@ -62,7 +62,7 @@ const StyledGamesGallery = styled('div')((
 // The gallery component
 function GamesGalleryGrid() {
 
-    const { t } = useTranslation('common');
+    const t = useTranslations("common")
     const dispatch = useAppDispatch();
 
     // Current displayed games
@@ -152,8 +152,8 @@ function GamesGalleryGrid() {
                 }
             </Grid>
             {!initialLoad && <div ref={loaderRef as any} className={classes.loaderRef} />}
-            {scrollLoading && <Alert severity="info">{t("common.loading")}</Alert>}
-            {!canLoadMore && <Alert severity="info">{t("common.noResults")}</Alert>}
+            {scrollLoading && <Alert severity="info">{t("loading")}</Alert>}
+            {!canLoadMore && <Alert severity="info">{t("noResults")}</Alert>}
         </StyledGamesGallery>
     );
 }
