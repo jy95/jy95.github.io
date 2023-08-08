@@ -22,7 +22,15 @@ const store = configureStore({
         [seriesAPI.reducerPath]: seriesAPI.reducer,
         [statsAPI.reducerPath]: statsAPI.reducer,
         [testsAPI.reducerPath]: testsAPI.reducer,
-    }
+    },
+    // Adding the api middleware enables caching, invalidation, polling,
+    // and other useful features of `rtk-query`.
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+        .concat(gamesAPI.middleware)
+        .concat(planningAPI.middleware)
+        .concat(seriesAPI.middleware)
+        .concat(statsAPI.middleware)
+        .concat(testsAPI.middleware),
 })
 export default store;
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -1,8 +1,8 @@
 "use client";
 
-// Hooks
-import useTranslation from 'next-translate/useTranslation'
-import setLanguage from 'next-translate/setLanguage'
+// Next js 
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 // React Material UI
 import {CssBaseline, IconButton, Toolbar} from "@mui/material";
@@ -28,6 +28,7 @@ import { themeColor } from "@/redux/features/themeColorSlice";
 
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import {useTranslations} from 'next-intl';
 
 // styled AppBar
 const drawerWidth = 240;
@@ -53,7 +54,8 @@ const AppBar = styled(MuiAppBar, {
 // main component
 function Header() {
 
-    const { t } = useTranslation('common');
+    const t = useTranslations('header.languages');
+    const pathname = usePathname()
     const dispatch = useAppDispatch();
     const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
     const currentColor = useAppSelector((state) => state.themeColor.currentColor);
@@ -102,12 +104,14 @@ function Header() {
                             Object
                                 .keys(languages_with_icons)
                                 .map( language =>
-                                    <Tooltip title={t(`header.languages.${language as 'fr' | 'en'}` as const)} key={language}>
-                                        <IconButton onClick={async () => await setLanguage(language)} size="large">
-                                            <SvgIcon>
-                                                {languages_with_icons[language as 'fr' | 'en']}
-                                            </SvgIcon>
-                                        </IconButton>
+                                    <Tooltip title={t(`${language as 'fr' | 'en'}` as const)} key={language}>
+                                        <Link locale={language} href={pathname}>
+                                            <IconButton size="large">
+                                                <SvgIcon>
+                                                    {languages_with_icons[language as 'fr' | 'en']}
+                                                </SvgIcon>
+                                            </IconButton>
+                                        </Link>
                                     </Tooltip>                   
                                 )
                         }

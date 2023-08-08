@@ -47,7 +47,7 @@ function ListItemLink(props : {
     lang: string;
 }) {
     const { icon, primary, path, lang } = props;
-    const t = useTranslations('main.menuEntries');
+    const t = useTranslations('header.menuEntries');
     const pathname = usePathname()
     const entry_label = t(primary);
 
