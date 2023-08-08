@@ -1,8 +1,8 @@
 "use client";
 
 // Hooks
-import {useTranslations , useLocale} from 'next-intl';
-import { useAsyncMemo } from '@/hooks/useAsyncMemo';
+import { useTranslations } from 'next-intl';
+import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
 
 // Redux
 import { useGetPlanningQuery } from "@/redux/services/planningAPI";
@@ -29,7 +29,7 @@ export default function PlanningViewer() {
 
     // Using a query hook automatically fetches data and returns query values
     const { data, error, isLoading } = useGetPlanningQuery();
-    const lang = useLocale();
+    const customLocaleText = useMuiXDataGridText();
     const t = useTranslations("planning");
 
     if (error) {
@@ -97,27 +97,6 @@ export default function PlanningViewer() {
             width: 130
         }
     ];
-
-    const customLocaleText = useAsyncMemo(async () => {
-        switch(lang) {
-            case 'fr':
-                const { 
-                    frFR : {
-                        components : {
-                            MuiDataGrid : {
-                                defaultProps : {
-                                    localeText
-                                }
-                            }
-                        }
-                    }
-                } = await import("@mui/x-data-grid");
-                return localeText;
-            // English is by default built-in in @mui package, so no need to include
-            default:
-                return {};
-        }
-    }, [lang], {} as any);
 
     return (
             <div style={{ height: 450, width: '100%' }}>
