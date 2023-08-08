@@ -9,7 +9,9 @@ import type {
 
 export type TestsResponse = {
     items: CardGame[],
-    total_items: number
+    total_items: number,
+    limit: number,
+    offset: number
 }
 
 export async function GET(request: Request) {

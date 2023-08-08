@@ -1,29 +1,28 @@
 "use client";
 
+// hooks
+import { useGetTestsQuery } from "@/redux/services/testsAPI";
+
 // Components
 import CardEntry from "@/components/GamesView/CardEntry";
 import Grid from "@mui/material/Grid";
 
-// Redux
-import { fetchTests, selectTests } from "@/redux/services/testsSlice";
-
-// Hooks
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-
-
 export default function TestsPage() {
 
-    const dispatch = useAppDispatch();
-    const data = useAppSelector((state) => selectTests(state));
+    // Using a query hook automatically fetches data and returns query values
+    const { data, error, isLoading } = useGetTestsQuery({});
 
-    // on mount, load data (only once)
-    useEffect(() => {
-        dispatch(fetchTests());
-    }, 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        []
-    );
+    if (error) {
+        return <>Something bad happened</>;
+    }
+    
+    if (isLoading) {
+        return <>Loading</>;
+    }
+
+    if (!data) {
+        return null;
+    }
 
     return (
         <div>    
@@ -38,6 +37,7 @@ export default function TestsPage() {
             >
                 {
                     data
+                        .items
                         .map(game => 
                                 <Grid 
                                     key={game.id}

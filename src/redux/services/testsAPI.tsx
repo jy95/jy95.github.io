@@ -31,7 +31,7 @@ export const testsAPI = createApi({
         getTests: builder.query<TestsResponse, Parameters>({
             query: (params) => {
                 if (Object.keys(params).length > 0) {
-                    return `/games?${stringifyObject(params)}`;
+                    return `/tests?${stringifyObject(params)}`;
                 } else {
                     return `/tests`;
                 }
