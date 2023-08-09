@@ -1,35 +1,38 @@
 "use client";
 
-import { Suspense, lazy, useEffect } from "react";
+// Next js
+import dynamic from 'next/dynamic'
 
+// Hooks
+import { useGetSeriesQuery } from "@/redux/services/seriesAPI";
+
+// Mui component
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Grid from "@mui/material/Grid";
 
-// Hooks
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-
 // Custom
-import CardEntry from "@/components/GamesView/CardEntry";
-import { fetchSeries, selectSeries } from "@/redux/services/seriesSlice";
-
-const AccordionDetails = lazy(() => import("@mui/material/AccordionDetails"));
+const CardEntry = dynamic(() => import('@/components/GamesView/CardEntry'));
+const AccordionDetails = dynamic(() => import('@mui/material/AccordionDetails'));
 
 // The gallery component
-function GamesGalleryList(_props : {[key: string | number | symbol] : any}) {
+function GamesGalleryList() {
 
-    const dispatch = useAppDispatch();
-    const data = useAppSelector((state) => selectSeries(state));
+    const { data, error, isLoading } = useGetSeriesQuery();
 
-    // on mount, load data (only once)
-    useEffect(() => {
-        dispatch(fetchSeries());
-    },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        []
-    );
+    if (error) {
+        return <>Something bad happened</>;
+    }
+    
+    if (isLoading) {
+        return <>Loading</>;
+    }
+
+    if (!data) {
+        return null;
+    }
 
     return (
         <div>
@@ -43,35 +46,33 @@ function GamesGalleryList(_props : {[key: string | number | symbol] : any}) {
                         >
                             <Typography>{serie.name}</Typography>
                         </AccordionSummary>
-                        <Suspense fallback={null}>
-                            <AccordionDetails>
-                                <Grid
-                                    container
-                                    spacing={1}
-                                    style={
-                                        {
-                                            rowGap: "15px"
-                                        }
-                                    }
-                                >
+                        <AccordionDetails>
+                            <Grid
+                                container
+                                spacing={1}
+                                style={
                                     {
-                                        serie
-                                            .items
-                                            .map(game => 
-                                                    <Grid 
-                                                        key={game.id}
-                                                        item 
-                                                        xs={6}
-                                                        md={4}
-                                                        lg={1.5}
-                                                    >
-                                                        <CardEntry game={game}/>
-                                                    </Grid>
-                                            )
+                                        rowGap: "15px"
                                     }
-                                </Grid> 
-                            </AccordionDetails>
-                        </Suspense>
+                                }
+                            >
+                                {
+                                    serie
+                                        .items
+                                        .map(game => 
+                                                <Grid 
+                                                    key={game.id}
+                                                    item 
+                                                    xs={6}
+                                                    md={4}
+                                                    lg={1.5}
+                                                >
+                                                    <CardEntry game={game}/>
+                                                </Grid>
+                                        )
+                                }
+                            </Grid> 
+                        </AccordionDetails>
                     </Accordion>
                 )
             }

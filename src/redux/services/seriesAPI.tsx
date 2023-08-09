@@ -7,7 +7,7 @@ export const seriesAPI = createApi({
     reducerPath: 'seriesApi',
     baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
     endpoints: (builder) => ({
-        getSeries: builder.query<serieType, undefined>({
+        getSeries: builder.query<serieType[], void>({
             query: () => "/series"
         })
     })
