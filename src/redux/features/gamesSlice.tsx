@@ -1,5 +1,10 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
+
+// Types
 import type { RootState } from "../Store"
+import type { PayloadAction } from "@reduxjs/toolkit";
+import type { Platform } from "@/redux/sharedDefintion";
+import type { Genre as GenreValue } from "@/redux/sharedDefintion";
 
 type gamesSorters = [
     "name" | "releaseDate" | "duration",
@@ -49,8 +54,41 @@ const gamesSlice = createSlice({
     initialState,
 // Redux Toolkit allows us to write "mutating" logic in reducers. It
 // doesn't actually mutate the state because it uses the Immer library
-    reducers: {},
-    extraReducers(_builder) {}
+    reducers: {
+        filteringByGenre(state : GamesState, action: PayloadAction<GenreValue[]>) {
+            // If empty, remove filter - if not, add it
+            let newFilters = state.activeFilters.filter(s => s.key !== "selected_genres");
+            if (action.payload.length !== 0) {
+                newFilters.push({
+                    key: "selected_genres",
+                    value: action.payload
+                });
+            }
+            state.activeFilters = newFilters;
+        },
+        filterByTitle(state : GamesState, action: PayloadAction<string>) {
+            // If empty, remove filter - if not, add it
+            let newFilters = state.activeFilters.filter(s => s.key !== "selected_title");
+            if (action.payload.length !== 0) {
+                newFilters.push({
+                    key: "selected_title",
+                    value: action.payload
+                });
+            }
+            state.activeFilters = newFilters;
+        },
+        filterByPlatform(state : GamesState, action: PayloadAction<Platform | "">) {
+            // If empty, remove filter - if not, add it
+            let newFilters = state.activeFilters.filter(s => s.key !== "selected_platform");
+            if (action.payload.length !== 0) {
+                newFilters.push({
+                    key: "selected_platform",
+                    value: action.payload
+                });
+            }
+            state.activeFilters = newFilters;
+        }
+    }
 });
 
 // memoized selector functions
@@ -113,5 +151,5 @@ export const selectCanLoadMore = createSelector(
 );
 
 // Action creators are generated for each case reducer function
-export const {} = gamesSlice.actions;
+export const { filteringByGenre, filterByTitle, filterByPlatform } = gamesSlice.actions;
 export default gamesSlice.reducer;

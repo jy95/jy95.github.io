@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { usePathname } from "next/navigation"
+import {useTranslations} from 'next-intl';
 
 // Mui components
 import Tabs from '@mui/material/Tabs';
@@ -17,18 +18,12 @@ import ListIcon from '@mui/icons-material/List';
 // Views
 type ViewType = "GRID" | "LIST";
 
-type Props = {
-    // label for Grid view
-    gridView: string,
-    // label for List view
-    listView: string
-}
-
-export default function GalleryMode({gridView, listView} : Props) {
+export default function GalleryMode() {
 
     const router = useRouter()
     const pathname = usePathname()
     const searchParams = useSearchParams()
+    const t = useTranslations("gamesLibrary.tabs");
     const viewMode : ViewType = searchParams.get("mode") === "LIST" ? "LIST" : "GRID";
 
     // Get a new searchParams string by merging the current
@@ -47,7 +42,7 @@ export default function GalleryMode({gridView, listView} : Props) {
         router.push(pathname + '?' + createQueryString('mode', newValue))
     };
 
-    const labelGenerator = (value : 'GRID' | 'LIST') => value === "GRID" ? gridView : listView;
+    const labelGenerator = (value : 'GRID' | 'LIST') => value === "GRID" ? t("grid") : t("list");
 
     return (
         <div style={{display: "flex", justifyContent: "center"}}>
