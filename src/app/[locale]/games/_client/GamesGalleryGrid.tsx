@@ -5,7 +5,7 @@ import { useState, useCallback } from "react";
 import { styled } from '@mui/material/styles';
 import { useGetGamesQuery } from "@/redux/services/gamesAPI";
 
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "@/redux/hooks";
 import {useTranslations} from 'next-intl';
 import useInfiniteLoader from 'react-use-infinite-loader';
 
@@ -63,7 +63,6 @@ export default function GamesGalleryGrid() {
     const [offset, setOffset] = useState(0);
 
     const t = useTranslations("common");
-    const dispatch = useAppDispatch();
 
     // Active filters
     const activeFilters = useAppSelector(

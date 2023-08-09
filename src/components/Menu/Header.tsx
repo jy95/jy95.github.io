@@ -2,7 +2,11 @@
 
 // Next js 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+
+// Hooks
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import {useTranslations} from 'next-intl';
+import usePathWithoutLocale from "@/hooks/usePathWithoutLocale";
 
 // React Material UI
 import {CssBaseline, IconButton, Toolbar} from "@mui/material";
@@ -25,10 +29,6 @@ import languages_with_icons from "./HeaderLanguages";
 // Redux
 import { drawerOpen } from "@/redux/features/miscellaneousSlice";
 import { themeColor } from "@/redux/features/themeColorSlice";
-
-// Hooks
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import {useTranslations} from 'next-intl';
 
 // styled AppBar
 const drawerWidth = 240;
@@ -55,7 +55,7 @@ const AppBar = styled(MuiAppBar, {
 function Header() {
 
     const t = useTranslations('header.languages');
-    const pathname = usePathname()
+    const pathname = usePathWithoutLocale()
     const dispatch = useAppDispatch();
     const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
     const currentColor = useAppSelector((state) => state.themeColor.currentColor);
@@ -105,7 +105,7 @@ function Header() {
                                 .keys(languages_with_icons)
                                 .map( language =>
                                     <Tooltip title={t(`${language as 'fr' | 'en'}` as const)} key={language}>
-                                        <Link locale={language} href={pathname}>
+                                        <Link locale={language} href={`/${language}/${pathname}`}>
                                             <IconButton size="large">
                                                 <SvgIcon>
                                                     {languages_with_icons[language as 'fr' | 'en']}
