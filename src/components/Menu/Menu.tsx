@@ -51,7 +51,7 @@ function ListItemLink(props : {
     const pathname = usePathname()
     const entry_label = t(primary);
 
-    const href = `${path}`;
+    const href = `/${lang}${path}`;
     const isActive = pathname.startsWith(href)
 
     const CustomLink = useMemo(
