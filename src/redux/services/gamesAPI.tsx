@@ -88,6 +88,19 @@ export const gamesAPI = createApi({
                 } else {
                     return `/games`
                 }
+            },
+            // Only have one cache entry because the arg always maps to one string
+            serializeQueryArgs: ({ endpointName }) => {
+                return endpointName;
+            },
+            // Always merge incoming data to the cache entry
+            merge: (currentCache, newItems) => {
+                // merges items
+                currentCache.items.push(...newItems.items);
+            },
+            // Refetch when the page arg changes
+            forceRefetch({ currentArg, previousArg }) {
+                return currentArg !== previousArg;
             }
         })
     })

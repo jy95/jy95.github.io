@@ -22,14 +22,6 @@ type gamesFilters = ({
 })[];
 
 export interface GamesState {
-    /** @description  scrolling loading ? */
-    scrollLoading: boolean,
-    /** @description  total number of items (including filtering criteria) */
-    totalItems: number,
-    /** @description  current loaded items (used for infinite scrolling) */
-    currentItemCount: number,
-    /** @description  Is first load (Only load once) */
-    initialLoad: boolean,
     /** @description  sorting */
     sorters: gamesSorters,
     /** @description  current filters applied */
@@ -37,10 +29,6 @@ export interface GamesState {
 }
 
 const initialState: GamesState = {
-    scrollLoading: false,
-    totalItems: 0,
-    currentItemCount: 0,
-    initialLoad: true,
     sorters: [
         ["name", "ASC"],
         ["releaseDate", "ASC"],
@@ -138,17 +126,6 @@ export const selectSelectedTitle = createSelector(
         }
     }
 )
-
-// Can load more in scrolling
-export const selectCanLoadMore = createSelector(
-    [
-        (state : RootState) => state.games.currentItemCount,
-        (state : RootState) => state.games.totalItems
-    ],
-    (currentItemCount, totalItems) => {
-        return currentItemCount <= totalItems;
-    }
-);
 
 // Action creators are generated for each case reducer function
 export const { filteringByGenre, filterByTitle, filterByPlatform } = gamesSlice.actions;

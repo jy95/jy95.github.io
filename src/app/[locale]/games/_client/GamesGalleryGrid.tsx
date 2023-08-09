@@ -1,24 +1,23 @@
 "use client";
 
 // Hooks
-import { useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { styled } from '@mui/material/styles';
+import { useGetGamesQuery } from "@/redux/services/gamesAPI";
 
-// Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {useTranslations} from 'next-intl';
 import useInfiniteLoader from 'react-use-infinite-loader';
-import { fetchGames, scrollingFetching, selectCanLoadMore } from "@/redux/services/gamesSlice";
 
 // Style
 import Alert from '@mui/material/Alert';
 import Grid from "@mui/material/Grid";
 
 // Custom
-import CardEntry from "./CardEntry";
-import GenresSelect from "./GenresSelect";
-import PlatformSelect from "./PlatformSelect";
-import TitleFilter from "./TitleFilter";
+import CardEntry from "@/components/GamesView/CardEntry";
+import GenresSelect from "@/components/GamesView/GenresSelect";
+import PlatformSelect from "@/components/GamesView/PlatformSelect";
+import TitleFilter from "@/components/GamesView/TitleFilter";
 
 // Types
 import type { EnhancedGame } from "@/redux/sharedDefintion";
@@ -57,23 +56,34 @@ const StyledGamesGallery = styled('div')((
 
 export default function GamesGalleryGrid() {
 
-    const t = useTranslations();
+    // To skip fetching, when no more result to print
+    const [skip, setSkip] = useState(false)
+
+    // To force the fetch of next data
+    const [offset, setOffset] = useState(0);
+
+    const t = useTranslations("common");
     const dispatch = useAppDispatch();
 
-    // Can load more
-    const canLoadMore = useAppSelector(
-        (state) => selectCanLoadMore(state)
+    // Active filters
+    const activeFilters = useAppSelector(
+        (state) => state.games.activeFilters
     );
 
-    // initialLoad
-    const initialLoad = useAppSelector(
-        (state) => state.games.initialLoad
-    )
+    // Active sorters
+    const activeSorters = useAppSelector(
+        (state) => state.games.sorters
+    );
 
-    // scrollLoading
-    const scrollLoading = useAppSelector(
-        (state) => state.games.scrollLoading
-    )
+    const { data, isFetching } = useGetGamesQuery({
+        filters: activeFilters,
+        sorters: activeSorters,
+        limit: 20,
+        offset: offset
+    });
+
+    // Can load more ?
+    const canLoadMore = (data?.items.length ?? 0) < (data?.total_items ?? 1)
 
     // render row
     const renderRow = (game : EnhancedGame) =>
@@ -88,7 +98,9 @@ export default function GamesGalleryGrid() {
     </Grid>;
 
     const loadMoreGames = useCallback( () => {
-        dispatch(scrollingFetching());
+        setOffset(
+            data?.offset ?? 0
+        );
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps 
         []
@@ -97,17 +109,10 @@ export default function GamesGalleryGrid() {
     const { loaderRef } = useInfiniteLoader({
         loadMore: loadMoreGames,
         canLoadMore,
-        initialise: !initialLoad,
         debug: false,
     });
 
-    // on mount, load data (only once)
-    useEffect(() => {
-        dispatch(fetchGames())
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps 
-        []
-    );
+    const games = data?.items ?? [];
 
     return (
         <StyledGamesGallery>
@@ -140,9 +145,9 @@ export default function GamesGalleryGrid() {
                     games.map(renderRow)
                 }
             </Grid>
-            {!initialLoad && <div ref={loaderRef as any} className={classes.loaderRef} />}
-            {scrollLoading && <Alert severity="info">{t("common.loading")}</Alert>}
-            {!canLoadMore && <Alert severity="info">{t("common.noResults")}</Alert>}
+            <div ref={loaderRef as any} className={classes.loaderRef} />
+            {isFetching && <Alert severity="info">{t("loading")}</Alert>}
+            {!canLoadMore && <Alert severity="info">{t("noResults")}</Alert>}
         </StyledGamesGallery>
     )
 
