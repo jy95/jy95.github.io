@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import type { EnhancedGame } from "@/redux/sharedDefintion";
-import type { ResponseBody as GamesResponseBody } from "@/app/api/games/route";
+import { generateResponse as generateGamesResponse } from "@/app/api/games/route";
+import type { BasicGame, EnhancedGame } from "@/redux/sharedDefintion";
 
 export type serieType = {
     name: string,
@@ -9,13 +9,14 @@ export type serieType = {
 
 export async function GET(_request: Request) {
 
-    // Fetch all games
-    const gamesUrl = "/api/games" + '?' + new URLSearchParams({
-        limit: "-1"
-    }).toString();
-
-    const gamesPayload = await fetch(gamesUrl);
-    const games = await gamesPayload.json() as GamesResponseBody;
+    // Fetch games data
+    const gamesData = (await import("@/app/api/games/games.json")).default;
+    const games = generateGamesResponse({
+        filters: {},
+        sorters: [],
+        limit: -1,
+        offset: 0
+    }, gamesData as BasicGame[])
 
     // Fetch series data
     const seriesData = (await import("./series.json")).default;
