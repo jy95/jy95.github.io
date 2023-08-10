@@ -28,7 +28,7 @@ jobs:
         prCommentEnabled: true
         device: "all"
         locale: "fr"
-        urls: "https://jy95.github.io/?/games,${{ steps.vercelPreview.outputs.url }}/games"
+        urls: "https://jy95.github.io/?/games,${{ steps.vercelPreview.outputs.url }}/fr/games"
     - name: Upload artifacts
       uses: actions/upload-artifact@master
       with:

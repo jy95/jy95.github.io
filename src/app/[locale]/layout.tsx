@@ -32,7 +32,7 @@ export function generateStaticParams() {
   return [{locale: 'fr'}, {locale: 'en'}];
 }
 
-export default async  function RootLayout({children, params: {locale}} : Props) {
+export default async function RootLayout({children, params: {locale}} : Props) {
 
   // Fetch messages in locale asked
   let messages;
