@@ -6,8 +6,8 @@ import dynamic from 'next/dynamic'
 
 // Client components
 import GalleryMode from './_client/GalleryMode';
-const GamesGalleryGrid = dynamic(() => import('./_client/GamesGalleryGrid'))
-const GamesGalleryList = dynamic(() => import('./_client/GamesGalleryList'))
+const GamesGalleryGrid = dynamic(() => import('./_client/GamesGalleryGrid'), { ssr: false })
+const GamesGalleryList = dynamic(() => import('./_client/GamesGalleryList'), { ssr: false })
 
 type ViewType = "GRID" | "LIST";
 

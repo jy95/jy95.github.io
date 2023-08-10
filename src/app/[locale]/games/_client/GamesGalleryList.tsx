@@ -14,8 +14,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Grid from "@mui/material/Grid";
 
 // Custom
-const CardEntry = dynamic(() => import('@/components/GamesView/CardEntry'));
-const AccordionDetails = dynamic(() => import('@mui/material/AccordionDetails'));
+const CardEntry = dynamic(() => import('@/components/GamesView/CardEntry'), { ssr: false });
+const AccordionDetails = dynamic(() => import('@mui/material/AccordionDetails'), { ssr: false });
 
 // The gallery component
 function GamesGalleryList() {
