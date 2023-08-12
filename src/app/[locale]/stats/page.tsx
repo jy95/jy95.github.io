@@ -87,13 +87,22 @@ export default function StatsPage() {
     return (
       <Grid container spacing={2}>
         <Grid xs={12} md={12} lg={12}>
-          <Skeleton variant="rectangular" animation="wave" width="100%" height={150} style={{ borderRadius: 8 }} />
+          <Paper style={{ padding: 16 }}>
+            <Skeleton variant="text" animation="wave" width="28%" style={{ marginBottom: 16 }} />
+            <Skeleton variant="rectangular" animation="wave" width="100%" height={150} />
+          </Paper>
         </Grid>
         <Grid item xs={12} md={8} lg={8}>
-          <Skeleton variant="rectangular" animation="wave" width="100%" height={250} style={{ borderRadius: 8 }} />
+          <Paper style={{ padding: 16 }}>
+            <Skeleton variant="text" animation="wave" width="40%" style={{ marginBottom: 16 }} />
+            <Skeleton variant="rectangular" animation="wave" width="100%" height={250} />
+          </Paper>
         </Grid>
         <Grid item xs={12} md={4} lg={4}>
-          <Skeleton variant="rectangular" animation="wave" width="100%" height={250} style={{ borderRadius: 8 }} />
+          <Paper style={{ padding: 16 }}>
+            <Skeleton variant="text" animation="wave" width="40%" style={{ marginBottom: 16 }} />
+            <Skeleton variant="rectangular" animation="wave" width="100%" height={250} />
+          </Paper>
         </Grid>
     </Grid>
     );
