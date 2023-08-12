@@ -7,7 +7,6 @@ import { useGetGamesQuery } from "@/redux/services/gamesAPI";
 
 import { useAppSelector } from "@/redux/hooks";
 import {useTranslations} from 'next-intl';
-import useInfiniteLoader from 'react-use-infinite-loader';
 
 // Style
 import Alert from '@mui/material/Alert';
@@ -56,12 +55,6 @@ const StyledGamesGallery = styled('div')((
 
 export default function GamesGalleryGrid() {
 
-    // To skip fetching, when no more result to print
-    const [skip, setSkip] = useState(false)
-
-    // To force the fetch of next data
-    const [offset, setOffset] = useState(0);
-
     const t = useTranslations("common");
 
     // Active filters
@@ -74,15 +67,13 @@ export default function GamesGalleryGrid() {
         (state) => state.games.sorters
     );
 
+    // Eager load from now ; later I can reconsider it if data source changes
     const { data, isFetching } = useGetGamesQuery({
         filters: activeFilters,
         sorters: activeSorters,
-        limit: 20,
-        offset: offset
+        limit: -1,
+        offset: 0
     });
-
-    // Can load more ?
-    const canLoadMore = (data?.items.length ?? 0) < (data?.total_items ?? 1)
 
     // render row
     const renderRow = (game : EnhancedGame) =>
@@ -95,21 +86,6 @@ export default function GamesGalleryGrid() {
         >
             <CardEntry game={game}/>
     </Grid>;
-
-    const loadMoreGames = useCallback( () => {
-        setOffset(
-            data?.offset ?? 0
-        );
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps 
-        []
-    );
-
-    const { loaderRef } = useInfiniteLoader({
-        loadMore: loadMoreGames,
-        canLoadMore,
-        debug: false,
-    });
 
     const games = data?.items ?? [];
 
@@ -144,9 +120,7 @@ export default function GamesGalleryGrid() {
                     games.map(renderRow)
                 }
             </Grid>
-            <div ref={loaderRef as any} className={classes.loaderRef} />
             {isFetching && <Alert severity="info">{t("loading")}</Alert>}
-            {!canLoadMore && <Alert severity="info">{t("noResults")}</Alert>}
         </StyledGamesGallery>
     )
 
