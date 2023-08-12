@@ -24,6 +24,7 @@ function TitleFilter() {
         <TextField
             id="search-game-title"
             label={t("title")}
+            fullWidth
             value={title}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 dispatch(filterByTitle(event.target.value));
