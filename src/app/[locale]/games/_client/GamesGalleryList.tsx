@@ -30,7 +30,7 @@ function GamesGalleryList() {
     if (isLoading) {
         return (
             <div>
-                {Array.from({ length: 10 }).map((_, index) => (
+                {Array.from({ length: 5 }).map((_, index) => (
                     <div key={index} style={{ marginBottom: '15px' }}>
                         <Skeleton variant="rectangular" width="100%" height={50} />
                     </div>

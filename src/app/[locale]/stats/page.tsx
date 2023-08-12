@@ -18,6 +18,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
+import Skeleton from "@mui/material/Skeleton";
 
 // Icons
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
@@ -83,7 +84,19 @@ export default function StatsPage() {
   }
 
   if (isLoading) {
-    return <>Loading</>;
+    return (
+      <Grid container spacing={2}>
+        <Grid xs={12} md={12} lg={12}>
+          <Skeleton variant="rectangular" animation="wave" width="100%" height={150} style={{ borderRadius: 8 }} />
+        </Grid>
+        <Grid item xs={12} md={8} lg={8}>
+          <Skeleton variant="rectangular" animation="wave" width="100%" height={250} style={{ borderRadius: 8 }} />
+        </Grid>
+        <Grid item xs={12} md={4} lg={4}>
+          <Skeleton variant="rectangular" animation="wave" width="100%" height={250} style={{ borderRadius: 8 }} />
+        </Grid>
+    </Grid>
+    );
   }
 
   if (!data) {
