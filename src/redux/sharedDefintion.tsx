@@ -44,8 +44,6 @@ export type BasicEntry = {
     endAt?: number;
     /** @description Name of the main cover file, such as "cover.webp" */
     coverFile?: string;
-    /** @description Does game has responsive images to offer */
-    hasResponsiveImages?: boolean;
 }
 
 export type BasicVideo = BasicEntry & {
@@ -65,10 +63,8 @@ export type YTUrlType = 'PLAYLIST' | 'VIDEO';
 
 // structure for Card entry
 interface CardEntry {
-    /** @description Link to the main picture (for the card components) */
+    /** @description Link to the picture for the card component */
     imagePath: string;
-    /** @description Responsive images */
-    srcSet?: string;
     /** @description Responsive sizes */
     sizes?: string;
     /** @description Link to Youtube */

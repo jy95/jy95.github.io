@@ -1,15 +1,12 @@
 "use client";
 
 // Hooks
-import { useState, useCallback } from "react";
 import { styled } from '@mui/material/styles';
 import { useGetGamesQuery } from "@/redux/services/gamesAPI";
 
 import { useAppSelector } from "@/redux/hooks";
-import {useTranslations} from 'next-intl';
 
 // Style
-import Alert from '@mui/material/Alert';
 import Grid from "@mui/material/Grid";
 
 // Custom
@@ -54,8 +51,6 @@ const StyledGamesGallery = styled('div')((
 }));
 
 export default function GamesGalleryGrid() {
-
-    const t = useTranslations("common");
 
     // Active filters
     const activeFilters = useAppSelector(
@@ -120,7 +115,6 @@ export default function GamesGalleryGrid() {
                     games.map(renderRow)
                 }
             </Grid>
-            {isFetching && <Alert severity="info">{t("loading")}</Alert>}
         </StyledGamesGallery>
     )
 

@@ -236,9 +236,7 @@ function enhanceGameItem(game: BasicGame): EnhancedGame {
     return Object.assign({}, game, {
         id,
         imagePath: `/covers/${id}/${ game?.coverFile ?? "cover.webp" }`,
-        sizes: (game?.hasResponsiveImages || true) 
-            ? SIZES.join(", ") 
-            : undefined,
+        sizes: SIZES.join(", "),
         releaseDate: game.releaseDate
             .split("/")
             .reduce( (acc : number, curr : string, idx : number) => acc + (parseInt(curr) * Math.pow(100, idx)), 0),

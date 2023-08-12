@@ -60,13 +60,15 @@ function CardEntry(props : {
                     <div style={{
                         paddingTop: "100%",
                         position: "relative",
-                        objectFit: "cover"
                     }}>
                         <Image 
                             fill
                             src={game.imagePath}
                             sizes={game.sizes ? game.sizes : "100vw"}
                             alt={gameTitle}
+                            style={{
+                                objectFit: "fill"
+                            }}
                         />
                     </div>
                 </CardMedia>
