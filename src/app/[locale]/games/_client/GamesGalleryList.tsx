@@ -6,12 +6,13 @@ import dynamic from 'next/dynamic'
 // Hooks
 import { useGetSeriesQuery } from "@/redux/services/seriesAPI";
 
-// Mui component
+// MUI component
+import Grid from "@mui/material/Grid";
+import Skeleton from '@mui/material/Skeleton';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Grid from "@mui/material/Grid";
 
 // Custom
 const CardEntry = dynamic(() => import('@/components/GamesView/CardEntry'), { ssr: false });
@@ -27,7 +28,15 @@ function GamesGalleryList() {
     }
     
     if (isLoading) {
-        return <>Loading</>;
+        return (
+            <div>
+                {Array.from({ length: 10 }).map((_, index) => (
+                    <div key={index} style={{ marginBottom: '15px' }}>
+                        <Skeleton variant="rectangular" width="100%" height={50} />
+                    </div>
+                ))}
+          </div>
+        );
     }
 
     if (!data) {
