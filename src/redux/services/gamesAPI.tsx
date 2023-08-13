@@ -95,12 +95,18 @@ export const gamesAPI = createApi({
             },
             // Custom key for cache
             serializeQueryArgs: ({ endpointName }) => endpointName,
-            // Always merge incoming data to the cache entry
+            // merge incoming data to the cache entry when possible
             merge: (currentCache, newItems) => {
-                currentCache.items.push(...newItems.items);
-                currentCache.limit = newItems.limit;
-                currentCache.offset = newItems.offset;
-                currentCache.total_items = newItems.total_items;
+                // When applying new filters for example
+                if (newItems.offset === 0) {
+                    return newItems;
+                } else {
+                    currentCache.items.push(...newItems.items);
+                    currentCache.limit = newItems.limit;
+                    currentCache.offset = newItems.offset;
+                    currentCache.total_items = newItems.total_items;
+                    return currentCache;
+                }
             }
         })
     })
