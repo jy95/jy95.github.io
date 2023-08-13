@@ -126,7 +126,7 @@ function sortedAndFilteredResultset(params : RequestParams, games: BasicGame[]) 
 
     // No sort criteria, return the filtered list only
     if (params.sorters.length === 0) {
-        return (params.limit === -1) ? games : games.slice(params.offset, params.limit);
+        return (params.limit === -1) ? games : games.slice(params.offset, params.offset + params.limit);
     }
 
     // At least one criteria for sort
@@ -170,7 +170,7 @@ function sortedAndFilteredResultset(params : RequestParams, games: BasicGame[]) 
         })
     
     // filtered resultset ?
-    return (params.limit === -1) ? gamesData : gamesData.slice(params.offset, params.limit);
+    return (params.limit === -1) ? gamesData : gamesData.slice(params.offset, params.offset + params.limit);
 }
 
 // Sort function

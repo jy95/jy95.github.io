@@ -1,6 +1,7 @@
 "use client";
 
 // Hooks
+import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import { useGetGamesQuery } from "@/redux/services/gamesAPI";
 
@@ -8,6 +9,8 @@ import { useAppSelector } from "@/redux/hooks";
 
 // Style
 import Grid from "@mui/material/Grid";
+import Skeleton from '@mui/material/Skeleton';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 // Custom
 import CardEntry from "@/components/GamesView/CardEntry";
@@ -50,7 +53,12 @@ const StyledGamesGallery = styled('div')((
     }
 }));
 
+// <Skeleton variant="rectangular" width={169} height={169} />
+
 export default function GamesGalleryGrid() {
+
+    // Current offset
+    const [offset, setOffset] = useState(0);
 
     // Active filters
     const activeFilters = useAppSelector(
@@ -62,12 +70,13 @@ export default function GamesGalleryGrid() {
         (state) => state.games.sorters
     );
 
-    // Eager load from now ; later I can reconsider it if data source changes
+    // Lazy load from now ; later I can reconsider it if data source changes
+    const LIMIT_PAGE = 16;
     const { data, isFetching } = useGetGamesQuery({
         filters: activeFilters,
         sorters: activeSorters,
-        limit: -1,
-        offset: 0
+        limit : LIMIT_PAGE,
+        offset: offset
     });
 
     // render row
@@ -101,8 +110,8 @@ export default function GamesGalleryGrid() {
                 </Grid>
             </Grid>
 
-            <Grid
-                container
+            <Grid 
+                container 
                 spacing={1}
                 style={
                     {
@@ -110,11 +119,32 @@ export default function GamesGalleryGrid() {
                     }
                 }
             >
-                {
-                    // render row
-                    games.map(renderRow)
-                }
+                {games.map(renderRow)}
+                {/*isFetching && (
+                    // Render additional skeleton loaders while fetching more data
+                    Array.from({ length: LIMIT_PAGE }).map((_, index) => (
+                        <Grid key={`skeleton-${index}`} item xs={12} sm={6} md={4} lg={3}>
+                            <Skeleton variant="rectangular" width={169} height={169} />
+                        </Grid>
+                    ))
+                )*/}
             </Grid>
+            <div style={{
+                justifyContent: "center",
+                display: "flex",
+                marginTop: "15px"
+            }}>
+                <LoadingButton
+                    loading={isFetching}
+                    disabled={ (offset + (data?.limit || LIMIT_PAGE) ) >= (data?.total_items ?? 0)}
+                    onClick={() => {
+                        setOffset(offset + LIMIT_PAGE)
+                    }}
+                    variant="outlined"
+                >
+                    <span>Load more</span>
+                </LoadingButton>
+            </div>
         </StyledGamesGallery>
     )
 

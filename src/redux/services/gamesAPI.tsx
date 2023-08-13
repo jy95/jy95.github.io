@@ -57,30 +57,30 @@ export const gamesAPI = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
     endpoints: (builder) => ({
         getGames: builder.query<GamesResponse, Parameters>({
-            query: (params) => {
+            query: ({ limit, offset, filters, sorters }) => {
                 let parameters : RequestParams = {};
 
                 // limit parameter
-                if (params.limit) {
-                    parameters["limit"] = `${params.limit}`;
+                if (limit) {
+                    parameters["limit"] = `${limit}`;
                 }
 
                 // offset parameter
-                if (params.offset) {
-                    parameters["offset"] = `${params.offset}`
+                if (offset) {
+                    parameters["offset"] = `${offset}`
                 }
 
                 // filters parameter
-                if (params.filters.length > 0) {
-                    for(let filters of params.filters) {
-                        parameters[filters.key] = filters.value as any;
+                if (filters.length > 0) {
+                    for(let filter of filters) {
+                        parameters[filter.key] = filter.value as any;
                     }
                 }
 
                 // sorters parameter
-                if (params.sorters.length > 0) {
-                    parameters["sortCriteria"] = params.sorters.map(s => s[0]);
-                    parameters["sortOrder"] = params.sorters.map(s => s[1]);
+                if (sorters.length > 0) {
+                    parameters["sortCriteria"] = sorters.map(s => s[0]);
+                    parameters["sortOrder"] = sorters.map(s => s[1]);
                 }
 
                 if (Object.keys(parameters).length > 0) {
@@ -88,6 +88,20 @@ export const gamesAPI = createApi({
                 } else {
                     return `/games`
                 }
+            },
+            // Force refresh when offset change
+            forceRefetch: ({ currentArg, previousArg }) => {
+                return currentArg !== previousArg;
+            },
+            // Custom key for cache
+            serializeQueryArgs: ({ endpointName, queryArgs }) => {
+                return `${endpointName}-${stringifyObject(queryArgs)}`
+            },
+            // Always merge incoming data to the cache entry
+            merge: (currentCache, newItems) => {
+                currentCache.items.push(...newItems.items);
+                currentCache.limit = currentCache.offset + newItems.items.length;
+                currentCache.offset = currentCache.offset;
             }
         })
     })
