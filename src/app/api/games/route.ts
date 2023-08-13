@@ -51,6 +51,10 @@ type RequestParams = {
 export type ResponseBody = {
     // the games we are looking for
     items: EnhancedGame[],
+    // Filter criteria used
+    filters: gamesFilters,
+    // sort results used
+    sorters: gamesSorters,
     // Number of result matching criteria
     total_items: number,
     // offset used
@@ -117,7 +121,9 @@ export function generateResponse(params : RequestParams, gamesData: BasicGame[])
         items: sortedAndFilteredResultset(params, filtered_games).map(enhanceGameItem),
         total_items: filtered_games.length,
         offset: params.offset,
-        limit: params.limit
+        limit: params.limit,
+        filters: params.filters,
+        sorters: params.sorters
     }
 }
 
