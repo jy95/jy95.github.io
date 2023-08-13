@@ -138,7 +138,8 @@ export default function GamesGalleryGrid() {
                     loading={isFetching}
                     disabled={ (offset + (data?.limit || LIMIT_PAGE) ) >= (data?.total_items ?? 0)}
                     onClick={() => {
-                        setOffset(offset + LIMIT_PAGE)
+                        // Reminder : https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state
+                        setOffset( (previousOffset) => previousOffset + LIMIT_PAGE )
                     }}
                     variant="outlined"
                 >

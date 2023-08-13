@@ -61,12 +61,12 @@ export const gamesAPI = createApi({
                 let parameters : RequestParams = {};
 
                 // limit parameter
-                if (limit) {
+                if (limit !== undefined) {
                     parameters["limit"] = `${limit}`;
                 }
 
                 // offset parameter
-                if (offset) {
+                if (offset !== undefined) {
                     parameters["offset"] = `${offset}`
                 }
 
