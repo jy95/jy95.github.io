@@ -6,14 +6,14 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { Platform } from "@/redux/sharedDefintion";
 import type { Genre as GenreValue } from "@/redux/sharedDefintion";
 
-type gamesSorters = [
+export type gamesSorters = [
     "name" | "releaseDate" | "duration",
     "ASC" | "DESC"
 ][];
 
 // To compute new filtering function
 //type gamesFilterKeys = "selected_platform" | "selected_title" | "selected_genres";
-type gamesFilters = ({
+export type gamesFilters = ({
     value: string,
     key: "selected_platform" | "selected_title"
 } | {

@@ -2,7 +2,6 @@
 
 // Hooks
 import { useState } from 'react';
-import { styled } from '@mui/material/styles';
 import { useGetGamesQuery } from "@/redux/services/gamesAPI";
 
 import { useAppSelector } from "@/redux/hooks";
@@ -14,51 +13,31 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 // Custom
 import CardEntry from "@/components/GamesView/CardEntry";
-import GenresSelect from "@/components/GamesView/GenresSelect";
-import PlatformSelect from "@/components/GamesView/PlatformSelect";
-import TitleFilter from "@/components/GamesView/TitleFilter";
+import GamesFilters from "./GamesFilters";
 
 // Types
 import type { EnhancedGame } from "@/redux/sharedDefintion";
-
-// Custom component
-const PREFIX = 'GamesGalleryGrid';
-
-const classes = {
-    gamesCriteria: `${PREFIX}-gamesCriteria`,
-    loaderRef: `${PREFIX}-loaderRef`
-};
-
-const StyledGamesGallery = styled('div')((
-    {
-        theme
-    }
-) => ({
-    // inspired by the settings https://www.youtube.com/gaming uses ;)
-    [`& .${classes.gamesCriteria}`]: {
-        display: "flex",
-        [theme.breakpoints.down('md')]: {
-            flexDirection: "column",
-            rowGap: "8px"
-        },
-        [theme.breakpoints.up('md')]: {
-            flexDirection: "row",
-            justifyContent: "flex-end"
-        }
-    },
-    [`& .${classes.loaderRef}`]: {
-        width: "1px",
-        height: "1px",
-        position: "absolute"
-    }
-}));
+import { gamesSorters, gamesFilters } from '@/redux/features/gamesSlice';
 
 // <Skeleton variant="rectangular" width={169} height={169} />
 
-export default function GamesGalleryGrid() {
+// To force reset of page when filters / sorters criteria changes
+type InnerProps = {
+    activeFilters: gamesFilters,
+    activeSorters: gamesSorters,
+}
 
-    // Current page
-    const [page, setPage] = useState(1);
+// To help react detect change in filters / sorters
+function generateKey({activeFilters, activeSorters} : InnerProps) : string {
+    return Object
+        .entries({
+            activeFilters,
+            activeSorters
+        })
+        .toString();
+}
+
+export default function GamesGalleryGrid() {
 
     // Active filters
     const activeFilters = useAppSelector(
@@ -69,6 +48,25 @@ export default function GamesGalleryGrid() {
     const activeSorters = useAppSelector(
         (state) => state.games.sorters
     );
+
+
+    return (
+        <div>
+            <GamesFilters />
+            <GamesGalleryGridInner 
+                activeFilters={activeFilters}
+                activeSorters={activeSorters}
+                key={generateKey({activeFilters, activeSorters})}
+            />
+        </div>
+    )
+}
+
+// To force reset of page when filters / sorters criteria changes
+function GamesGalleryGridInner({ activeFilters, activeSorters } : InnerProps) {
+
+    // Current page
+    const [page, setPage] = useState(1);
 
     // Lazy load from now ; later I can reconsider it if data source changes
     const LIMIT_PAGE = 16;
@@ -94,22 +92,7 @@ export default function GamesGalleryGrid() {
     const games = data?.items ?? [];
 
     return (
-        <StyledGamesGallery>
-            <Grid
-                container
-                className={classes.gamesCriteria}
-            >
-                <Grid item xs={12} md={3}>
-                    <PlatformSelect />
-                </Grid>
-                <Grid item xs={12} md={5}>
-                    <GenresSelect />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <TitleFilter />
-                </Grid>
-            </Grid>
-
+        <>
             <Grid 
                 container 
                 spacing={1}
@@ -145,8 +128,7 @@ export default function GamesGalleryGrid() {
                 >
                     <span>Load more</span>
                 </LoadingButton>
-            </div>
-        </StyledGamesGallery>
+            </div> 
+        </>
     )
-
 }
