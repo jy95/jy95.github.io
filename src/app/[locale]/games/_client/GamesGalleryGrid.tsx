@@ -8,7 +8,6 @@ import { useAppSelector } from "@/redux/hooks";
 
 // Style
 import Grid from "@mui/material/Grid";
-import Skeleton from '@mui/material/Skeleton';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 // Custom
@@ -18,8 +17,6 @@ import GamesFilters from "./GamesFilters";
 // Types
 import type { EnhancedGame } from "@/redux/sharedDefintion";
 import { gamesSorters, gamesFilters } from '@/redux/features/gamesSlice';
-
-// <Skeleton variant="rectangular" width={169} height={169} />
 
 // To force reset of page when filters / sorters criteria changes
 type InnerProps = {
@@ -103,14 +100,6 @@ function GamesGalleryGridInner({ activeFilters, activeSorters } : InnerProps) {
                 }
             >
                 {games.map(renderRow)}
-                {isFetching && (
-                    // Render additional skeleton loaders while fetching more data
-                    Array.from({ length: LIMIT_PAGE }).map((_, index) => (
-                        <Grid key={`skeleton-${index}`} item xs={6} md={4} lg={1.5}>
-                            <Skeleton variant="rectangular" height={169} />
-                        </Grid>
-                    ))
-                )}
             </Grid>
             <div style={{
                 justifyContent: "center",
