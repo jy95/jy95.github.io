@@ -119,7 +119,7 @@ function GamesGalleryGridInner({ activeFilters, activeSorters } : InnerProps) {
             }}>
                 <LoadingButton
                     loading={isFetching}
-                    disabled={ page === data?.total_pages }
+                    disabled={ page >= (data?.total_pages || 1) }
                     onClick={() => {
                         // Reminder : https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state
                         setPage( (prev) => prev + 1 );

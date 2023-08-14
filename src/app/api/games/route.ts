@@ -41,11 +41,13 @@ type RequestParams = {
     filters: gamesFilters,
     // sort results
     sorters: gamesSorters,
-    // limit result 
-    // Put "-1" if you still want ALL result
-    limit: number
-    // offset
-    offset: number
+    // page size
+    // If equal to -1, it means full result
+    pageSize: number
+    // requested page
+    page: number
+    // include previous page result ?
+    includePreviousPagesResult: boolean
 }
 
 export type ResponseBody = {
@@ -59,10 +61,11 @@ export type ResponseBody = {
     total_items: number,
     // Number of page available
     total_pages: number,
-    // offset used
-    offset: number,
-    // limit used
-    limit: number
+    // Page size used
+    // If equal to -1, it means full result
+    pageSize: number,
+    // Current page
+    page: number
 }
 
 export async function GET(request: Request) {
@@ -122,9 +125,9 @@ export function generateResponse(params : RequestParams, gamesData: BasicGame[])
     return {
         items: sortedAndFilteredResultset(params, filtered_games).map(enhanceGameItem),
         total_items: filtered_games.length,
-        total_pages: Math.ceil(filtered_games.length / params.limit),
-        offset: params.offset,
-        limit: params.limit,
+        total_pages: Math.ceil(filtered_games.length / params.pageSize),
+        page: params.page,
+        pageSize: params.pageSize,
         filters: params.filters,
         sorters: params.sorters
     }
@@ -133,9 +136,14 @@ export function generateResponse(params : RequestParams, gamesData: BasicGame[])
 // Return subset and sorted resultset
 function sortedAndFilteredResultset(params : RequestParams, games: BasicGame[]) : BasicGame[] {
 
+    // Bound for result
+    const [startOffset, endOffset] = (params.includePreviousPagesResult) 
+        ? [0, params.pageSize * params.page]
+        : [ (params.pageSize - 1) * params.page, params.pageSize * params.page];
+
     // No sort criteria, return the filtered list only
     if (params.sorters.length === 0) {
-        return (params.limit === -1) ? games : games.slice(params.offset, params.offset + params.limit);
+        return (params.pageSize === -1) ? games : games.slice(startOffset, endOffset);
     }
 
     // At least one criteria for sort
@@ -179,7 +187,7 @@ function sortedAndFilteredResultset(params : RequestParams, games: BasicGame[]) 
         })
     
     // filtered resultset ?
-    return (params.limit === -1) ? gamesData : gamesData.slice(params.offset, params.offset + params.limit);
+    return (params.pageSize === -1) ? gamesData : gamesData.slice(startOffset, endOffset);
 }
 
 // Sort function
@@ -225,10 +233,11 @@ function extractParameters(params: URLSearchParams): RequestParams {
         });
 
     return {
-        limit: parseInt(params.get("limit") || "20"),
-        offset: parseInt(params.get("offset") || "0"),
+        page: parseInt(params.get("page") || "1"),
+        pageSize: parseInt(params.get("pageSize") || "16"),
         filters: filters,
-        sorters: sorters
+        sorters: sorters,
+        includePreviousPagesResult: (params.has("includePreviousPagesResult")) ? !!params.get("includePreviousPagesResult") : false
     }
 }
 

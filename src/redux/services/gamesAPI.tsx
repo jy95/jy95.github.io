@@ -32,8 +32,9 @@ type RequestParams = {
     selected_genres?: string[],
     sortCriteria?: string[],
     sortOrder?: string[],
-    limit?: string,
-    offset?: string
+    page: number,
+    pageSize: number,
+    includePreviousPagesResult: boolean
 }
 
 const stringifyObject = (object: any) => {
@@ -58,13 +59,15 @@ export const gamesAPI = createApi({
     endpoints: (builder) => ({
         getGames: builder.query<GamesResponse, Parameters>({
             query: ({ pageSize, page, filters, sorters }) => {
-                let parameters : RequestParams = {};
-
-                // limit parameter
-                parameters["limit"] = `${pageSize}`;
-
-                // page parameter
-                parameters["offset"] = `${ (page -1) * pageSize}`
+                let parameters : RequestParams = {
+                    // page size
+                    pageSize: pageSize,
+                    // asked page
+                    page: page,
+                    // Needed for RTK Query to work properly
+                    // In the future, I should likely remove that stuff
+                    includePreviousPagesResult: true
+                };
 
                 // filters parameter
                 if (filters.length > 0) {
@@ -79,11 +82,7 @@ export const gamesAPI = createApi({
                     parameters["sortOrder"] = sorters.map(s => s[1]);
                 }
 
-                if (Object.keys(parameters).length > 0) {
-                    return `/games?${stringifyObject(parameters)}`;
-                } else {
-                    return `/games`
-                }
+                return `/games?${stringifyObject(parameters)}`;
             },
             // Force refresh when offset change
             forceRefetch: ({ currentArg, previousArg }) => {
@@ -92,16 +91,10 @@ export const gamesAPI = createApi({
             // Custom key for cache
             serializeQueryArgs: ({ endpointName }) => endpointName,
             // merge incoming data to the cache entry when possible
-            merge: (currentCache, newItems, { arg }) => {
-                if (arg.page !== 1) {
-                    return {
-                        ...currentCache,
-                        ...newItems,
-                        items: [...currentCache.items, ...newItems.items]
-                    }
-                } else {
-                    return newItems;
-                }
+            merge: (_currentCache, newItems) => {
+                // API is returning all the results, so need to put advanced strategy here
+                // Maybe one day fix that behavior
+                return newItems;
             }
         })
     })
