@@ -57,6 +57,8 @@ export type ResponseBody = {
     sorters: gamesSorters,
     // Number of result matching criteria
     total_items: number,
+    // Number of page available
+    total_pages: number,
     // offset used
     offset: number,
     // limit used
@@ -120,6 +122,7 @@ export function generateResponse(params : RequestParams, gamesData: BasicGame[])
     return {
         items: sortedAndFilteredResultset(params, filtered_games).map(enhanceGameItem),
         total_items: filtered_games.length,
+        total_pages: Math.ceil(filtered_games.length / params.limit),
         offset: params.offset,
         limit: params.limit,
         filters: params.filters,

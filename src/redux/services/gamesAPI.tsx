@@ -21,8 +21,8 @@ type gamesFilters = ({
 type Parameters = {
     filters: gamesFilters,
     sorters: gamesSorters,
-    limit?: number,
-    offset?: number
+    page: number,
+    pageSize: number,
 }
 
 // Parameters for API
@@ -57,18 +57,14 @@ export const gamesAPI = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
     endpoints: (builder) => ({
         getGames: builder.query<GamesResponse, Parameters>({
-            query: ({ limit, offset, filters, sorters }) => {
+            query: ({ pageSize, page, filters, sorters }) => {
                 let parameters : RequestParams = {};
 
                 // limit parameter
-                if (limit !== undefined) {
-                    parameters["limit"] = `${limit}`;
-                }
+                parameters["limit"] = `${pageSize}`;
 
-                // offset parameter
-                if (offset !== undefined) {
-                    parameters["offset"] = `${offset}`
-                }
+                // page parameter
+                parameters["offset"] = `${ (page -1) * pageSize}`
 
                 // filters parameter
                 if (filters.length > 0) {
@@ -105,6 +101,7 @@ export const gamesAPI = createApi({
                     currentCache.limit = newItems.limit;
                     currentCache.offset = newItems.offset;
                     currentCache.total_items = newItems.total_items;
+                    currentCache.total_pages = newItems.total_pages;
                     return currentCache;
                 }
             }

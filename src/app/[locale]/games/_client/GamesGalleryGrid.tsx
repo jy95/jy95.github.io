@@ -57,8 +57,8 @@ const StyledGamesGallery = styled('div')((
 
 export default function GamesGalleryGrid() {
 
-    // Current offset
-    const [offset, setOffset] = useState(0);
+    // Current page
+    const [page, setPage] = useState(1);
 
     // Active filters
     const activeFilters = useAppSelector(
@@ -75,8 +75,8 @@ export default function GamesGalleryGrid() {
     const { data, isFetching } = useGetGamesQuery({
         filters: activeFilters,
         sorters: activeSorters,
-        limit : LIMIT_PAGE,
-        offset: offset
+        pageSize : LIMIT_PAGE,
+        page: page
     });
 
     // render row
@@ -136,10 +136,10 @@ export default function GamesGalleryGrid() {
             }}>
                 <LoadingButton
                     loading={isFetching}
-                    disabled={ (offset + (data?.limit || LIMIT_PAGE) ) >= (data?.total_items ?? 0)}
+                    disabled={ page === data?.total_pages }
                     onClick={() => {
                         // Reminder : https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state
-                        setOffset( (previousOffset) => previousOffset + LIMIT_PAGE )
+                        setPage( (prev) => prev + 1 );
                     }}
                     variant="outlined"
                 >
