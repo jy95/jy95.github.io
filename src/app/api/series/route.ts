@@ -14,8 +14,9 @@ export async function GET(_request: Request) {
     const games = generateGamesResponse({
         filters: {},
         sorters: [],
-        limit: -1,
-        offset: 0
+        page: 1,
+        pageSize: -1,
+        includePreviousPagesResult: true
     }, gamesData as BasicGame[])
 
     // Fetch series data

@@ -103,14 +103,14 @@ function GamesGalleryGridInner({ activeFilters, activeSorters } : InnerProps) {
                 }
             >
                 {games.map(renderRow)}
-                {/*isFetching && (
+                {isFetching && (
                     // Render additional skeleton loaders while fetching more data
                     Array.from({ length: LIMIT_PAGE }).map((_, index) => (
-                        <Grid key={`skeleton-${index}`} item xs={12} sm={6} md={4} lg={3}>
-                            <Skeleton variant="rectangular" width={169} height={169} />
+                        <Grid key={`skeleton-${index}`} item xs={6} md={4} lg={1.5}>
+                            <Skeleton variant="rectangular" height={169} />
                         </Grid>
                     ))
-                )*/}
+                )}
             </Grid>
             <div style={{
                 justifyContent: "center",
