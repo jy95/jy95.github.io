@@ -34,20 +34,18 @@ export function generateStaticParams() {
 
 export default async function RootLayout({children, params: {locale}} : Props) {
 
+  // To catch with stuff that aren't a locale
+  let resolvedLocale = (["en", "fr"].includes(locale)) ? locale : "fr";
+
   // Fetch messages in locale asked
-  let messages;
-  try {
-    messages = (await import(`../../../messages/${locale}.json`)).default;
-  } catch (error) {
-    notFound();
-  }
+  let messages = (await import(`../../../messages/${resolvedLocale}.json`)).default;
 
   return (
-    <html lang={locale}>
+    <html lang={resolvedLocale}>
       <body>
         <ReduxProviders>
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            <ThemeProvider lng={locale}>
+          <NextIntlClientProvider locale={resolvedLocale} messages={messages}>
+            <ThemeProvider lng={resolvedLocale}>
               <SnackbarProvider 
                 maxSnack={3}
                 anchorOrigin={{
@@ -57,7 +55,7 @@ export default async function RootLayout({children, params: {locale}} : Props) {
               >
                 <Header />
                 <Box sx={{ display: 'flex' }}>
-                  <Menu lang={locale} />
+                  <Menu lang={resolvedLocale} />
                   <MainRoot>
                     {children}
                   </MainRoot>
