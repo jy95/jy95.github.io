@@ -2,8 +2,10 @@
 
 // Router
 import { forwardRef, useMemo } from "react";
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+
+// https://next-intl-docs.vercel.app/docs/routing/navigation
+import Link from 'next-intl/link';
+import {usePathname} from 'next-intl/client';
 
 // Hooks
 import {useTranslations} from 'next-intl';
@@ -33,42 +35,39 @@ import { drawerOpen } from "@/redux/features/miscellaneousSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 // Links props
-import type { LinkProps } from "next/link";
 import type { LinkBaseProps as MuiProps } from "@mui/material"
 
 type menuEntryTranslationKey = 'gamesKey' | 'planningKey' | 'testsKey' | 'latestVideosKey' | 'stats';
-type MUILinkProps = LinkProps & MuiProps;
+type MUILinkProps = MuiProps & any;
 
 // List Item
 function ListItemLink(props : {
     icon: JSX.Element;
     path: string;
     primary: `${menuEntryTranslationKey}`;
-    lang: string;
 }) {
-    const { icon, primary, path, lang } = props;
+    const { icon, primary, path } = props;
     const t = useTranslations('header.menuEntries');
     const pathname = usePathname()
     const entry_label = t(primary);
 
-    const href = `/${lang}${path}`;
-    const isActive = pathname.startsWith(href)
+    const isActive = pathname.startsWith(path);
 
     const CustomLink = useMemo(
         () => forwardRef(
             function OwnLink(linkProps : MUILinkProps, _ref) {
                 return (
-                    <Link locale={lang} {...linkProps} />
+                    <Link {...linkProps} href={path} />
                 )
             }
         ),
-        [lang]
+        [path]
     );
 
 
     return (
         <ListItem disablePadding>
-            <ListItemButton component={CustomLink} selected={isActive} href={href} >
+            <ListItemButton component={CustomLink} selected={isActive} href={path} >
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={entry_label} />
             </ListItemButton>
@@ -104,12 +103,8 @@ const ENTRIES : {
     }
 ]
 
-type Props = {
-    lang: string
-}
-
 // Main component
-function Menu({ lang }: Props) {
+export default function Menu() {
 
     const dispatch = useAppDispatch();
     const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
@@ -131,11 +126,9 @@ function Menu({ lang }: Props) {
             <Divider />
             <List>
                 {
-                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.path} lang={lang} />)
+                    ENTRIES.map(entry => <ListItemLink {...entry} key={entry.path} />)
                 }
             </List>
         </Drawer>
     );
 }
-
-export default Menu;

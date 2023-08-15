@@ -6,7 +6,7 @@ import Link from 'next/link'
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {useTranslations} from 'next-intl';
-import usePathWithoutLocale from "@/hooks/usePathWithoutLocale";
+import {usePathname} from 'next-intl/client';
 
 // React Material UI
 import {CssBaseline, IconButton, Toolbar} from "@mui/material";
@@ -55,7 +55,8 @@ const AppBar = styled(MuiAppBar, {
 function Header() {
 
     const t = useTranslations('header.languages');
-    const pathname = usePathWithoutLocale()
+    // When the user is on `/en`, this will be `/`
+    const pathname = usePathname()
     const dispatch = useAppDispatch();
     const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
     const currentColor = useAppSelector((state) => state.themeColor.currentColor);
@@ -105,7 +106,7 @@ function Header() {
                                 .keys(languages_with_icons)
                                 .map( language =>
                                     <Tooltip title={t(`${language as 'fr' | 'en'}` as const)} key={language}>
-                                        <Link locale={language} href={`/${language}/${pathname}`}>
+                                        <Link locale={language} href={pathname}>
                                             <IconButton size="large">
                                                 <SvgIcon>
                                                     {languages_with_icons[language as 'fr' | 'en']}

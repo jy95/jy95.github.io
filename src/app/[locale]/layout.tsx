@@ -52,7 +52,7 @@ export default async function RootLayout({children, params: {locale}} : Props) {
               >
                 <Header />
                 <Box sx={{ display: 'flex' }}>
-                  <Menu lang={resolvedLocale} />
+                  <Menu />
                   <MainRoot>
                     {children}
                   </MainRoot>

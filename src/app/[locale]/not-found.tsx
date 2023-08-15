@@ -5,17 +5,14 @@
 // Hooks
 import {useTranslations} from 'next-intl';
 
-// Nextjs
-import Link from 'next/link';
+// https://next-intl-docs.vercel.app/docs/routing/navigation
+import Link from 'next-intl/link';
 
 // Components
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-
-// Next.js
-//import Link from 'next/link'
 
 export default function NotFoundPage() {
 
