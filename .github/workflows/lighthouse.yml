@@ -17,7 +17,7 @@ jobs:
       id: vercelPreview
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        max_timeout: 300 # Wait for 300 seconds before failing
+        max_timeout: 600 # Wait for 600 seconds before failing
     - name: Lighthouse
       uses: foo-software/lighthouse-check-action@master
       with:
