@@ -13,6 +13,14 @@
         },
         "description": "Votre destination privilégiée pour des expériences de jeu passionnantes !"
     },
+    "error": {
+        "title": "Quelque chose s'est mal passé !",
+        "retry": "Réessayer"
+    },
+    "notFound": {
+        "title": "Page not found",
+        "goGome": "Retour à l'accueil"
+    },
     "common": {
         "reload": "Recharger",
         "loading": "Chargement en cours ...",

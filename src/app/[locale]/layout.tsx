@@ -4,9 +4,6 @@ import { Providers as ReduxProviders } from "@/redux/provider";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { SnackbarProvider } from "@/providers/SnackbarProvider"
 
-// Not found
-import {notFound} from 'next/navigation';
-
 // components
 import MainRoot from '@/components/Main/MainRoot';
 import Menu from "@/components/Menu/Menu";

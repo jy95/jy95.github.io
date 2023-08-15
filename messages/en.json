@@ -13,6 +13,14 @@
         },
         "description": "Your prime destination for exciting gaming experiences !"
     },
+    "error": {
+        "title": "Something went wrong !",
+        "retry": "Try Again"
+    },
+    "notFound": {
+        "title": "Page not found",
+        "goGome": "Return home"
+    },
     "common": {
         "reload": "Reload",
         "loading": "Loading ...",
