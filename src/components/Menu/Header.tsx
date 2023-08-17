@@ -1,7 +1,7 @@
 "use client";
 
-// Next js 
-import Link from 'next/link'
+// Links
+import Link from 'next-intl/link';
 
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -103,17 +103,17 @@ function Header() {
                     <div>
                         {
                             Object
-                                .keys(languages_with_icons)
-                                .map( language =>
+                                .entries(languages_with_icons)
+                                .map( ([language, lngIcon]) => 
                                     <Tooltip title={t(`${language as 'fr' | 'en'}` as const)} key={language}>
                                         <Link locale={language} href={pathname}>
                                             <IconButton size="large">
                                                 <SvgIcon>
-                                                    {languages_with_icons[language as 'fr' | 'en']}
+                                                    {lngIcon}
                                                 </SvgIcon>
                                             </IconButton>
                                         </Link>
-                                    </Tooltip>                   
+                                    </Tooltip>
                                 )
                         }
                     </div>
