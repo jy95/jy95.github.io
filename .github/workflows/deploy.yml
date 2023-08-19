@@ -2,7 +2,7 @@ name: Deploy on Github Pages
 on:
   push:
     branches:
-      - master
+      - master-2
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -12,7 +12,7 @@ jobs:
       - name: Set up Node.js ✨
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '18.x'
       - name: Install and Build 🔧
         run: |
           npm install

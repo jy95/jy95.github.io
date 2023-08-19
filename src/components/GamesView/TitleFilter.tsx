@@ -1,39 +1,33 @@
-import { useTranslation } from "react-i18next";
+"use client";
 
-// React Material UI
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from '@mui/material/TextField';
-
+// Hooks 
+import { useTranslations } from "next-intl";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
     filterByTitle,
-    selectSelectedTitle
+    selectSelectedTitle,
 } 
-from "../../services/gamesSlice";
-// Hooks
-import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
+from "@/redux/features/gamesSlice";
 
-function TitleFilter(_props : {[key: string | number | symbol] : any}) {
+// React Material UI
+import TextField from '@mui/material/TextField';
 
-    const { t } = useTranslation('common');
+function TitleFilter() {
+
+    const t = useTranslations("gamesLibrary.filtersLabels")
     const dispatch = useAppDispatch();
 
-    // needed as this Autocomplete cannot have duplicate
-    const options = useAppSelector((state) => 
-        [...new Set(state.games.games.map(game => game.title))]
-    );
-    const title : string  = useAppSelector(
-        (state) => selectSelectedTitle(state)
-    )
+    // current value
+    const title : string  = useAppSelector((state) => selectSelectedTitle(state));
 
     return <>
-        <Autocomplete
+        <TextField
             id="search-game-title"
-            freeSolo
-            options={options}
+            label={t("title")}
+            fullWidth
             value={title}
-            renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.title")} />}
-            onInputChange={(_event, value) => {
-                dispatch(filterByTitle(value));
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch(filterByTitle(event.target.value));
             }}
         />
     </>;

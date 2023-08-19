@@ -1,17 +1,18 @@
-import { useTranslation } from "react-i18next";
+"use client";
+
+// Hooks
+import { useTranslations } from "next-intl";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { filterByPlatform, selectSelectedPlatform } from "@/redux/features/gamesSlice";
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 import SvgIcon from '@mui/material/SvgIcon';
 
-import { filterByPlatform, selectSelectedPlatform } from "../../services/gamesSlice";
-// Hooks
-import { useAppDispatch, useAppSelector } from "../../hooks/typedRedux";
-
 // icons
-import iconsSVG from "./PlatformIcons";
-import type { Platform } from "../../services/sharedDefintion";
+import iconsSVG from "@/components/GamesView/PlatformIcons";
+import type { Platform } from "@/redux/sharedDefintion";
 
 const PLATFORMS = [
     "GBA",
@@ -22,9 +23,14 @@ const PLATFORMS = [
     "PSP"
 ];
 
-function PlatformSelect(_props : {[key: string | number | symbol] : any}) {
+type Platform_Entry = {
+    label: string;
+    id: Platform;
+}
 
-    const { t } = useTranslation('common');
+function PlatformSelect() {
+
+    const t = useTranslations("gamesLibrary.filtersLabels")
     const dispatch = useAppDispatch();
     const selectedPlatform = useAppSelector(
         (state) => selectSelectedPlatform(state)
@@ -33,39 +39,37 @@ function PlatformSelect(_props : {[key: string | number | symbol] : any}) {
     const options = PLATFORMS
         .map(platform => ({
             label: platform,
-            key: platform
+            id: platform as Platform
         }))
 
-    return <>
-        <Autocomplete
+    return (
+        <Autocomplete<Platform_Entry, false>
             id="select-game-platform"
             openOnFocus
             options={options}
-            getOptionLabel={(option: any) => option.label}
-            isOptionEqualToValue={(option, value) => 
-                Array.isArray(value) ? value.some(v => v.key === option.key) : value.key === option.key
-            }
-            renderInput={(params) => <TextField {...params} label={t("gamesLibrary.filtersLabels.platform")} />}
-            renderOption={(props, option, _state) => (
-                <li {...props} key={option.key}>
+            getOptionLabel={(option) => option.label}
+            isOptionEqualToValue={(option, value) => value.id === option.id}
+            renderInput={(params) => <TextField {...params} label={t("platform") as string} />}
+            renderOption={(props, option) => (
+                <li {...props} key={option.id}>
                     <SvgIcon titleAccess={option.label}>
-                        {iconsSVG[option.key as Platform]}
+                        {iconsSVG[option.id as Platform]}
                     </SvgIcon>
                     {option.label}
                 </li>
             )}
             onChange={(_event, value) => {
-                const platform = (value) ? (value as {[key: string]: any})?.key || value : "";
+                const platform = (value) ? value.id : "";
                 dispatch(filterByPlatform(platform));
             }}
             value={
                 selectedPlatform ? {
-                    key: selectedPlatform,
+                    id: selectedPlatform as Platform,
                     label: selectedPlatform
                 } : null
             }
         />
-    </>;
+    );
 }
 
 export default PlatformSelect;

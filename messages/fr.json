@@ -1,0 +1,135 @@
+{
+    "header": {
+        "menuEntries": {
+            "gamesKey": "Jeux",
+            "planningKey": "Planning",
+            "testsKey": "Tests",
+            "latestVideosKey": "Dernières vidéos",
+            "stats": "Statistiques"
+        },
+        "languages": {
+            "en": "Version anglaise du site",
+            "fr": "Version française du site"
+        },
+        "description": "Votre destination privilégiée pour des expériences de jeu passionnantes !"
+    },
+    "error": {
+        "title": "Quelque chose s'est mal passé !",
+        "retry": "Réessayer"
+    },
+    "notFound": {
+        "title": "Cette page n’existe pas (plus)",
+        "goGome": "Retour à l'accueil"
+    },
+    "common": {
+        "reload": "Recharger",
+        "loadMore": "Charger plus",
+        "loading": "Chargement en cours ...",
+        "noResults": "Plus d'autre résultats à afficher",
+        "dates": {
+            "years": "{count, plural, =1 {1 année} other {# années} }",
+            "months": "{count, plural, =1 {1 mois} other {# mois} }",
+            "days": "{count, plural, =1 {1 jour} other {# jours} }",
+            "hours": "{count, plural, =1 {1 heure} other {# heures} }",
+            "minutes": "{count, plural, =1 {1 minute} other {# minutes} }",
+            "seconds": "{count, plural, =1 {1 seconde} other {# secondes} }"
+        }
+    },
+    "gamesLibrary": {
+        "sortButtonLabel": "Tris",
+        "tabs": {
+            "grid": "Jeux",
+            "list": "Séries"
+        },
+        "sortLabels": {
+            "name": "Nom",
+            "releaseDate": "Date de sortie",
+            "duration": "Durée"
+        },
+        "sortForm": {
+            "firstSort": "Trier par",
+            "nextSort": "puis par",
+            "title": "Trier les jeux",
+            "criteria": "Critère",
+            "cancelButton": "Annuler",
+            "sortButton": "Trier"
+        },
+        "snackbarsMessages": {
+            "copiedLink": "Lien de {gameName} copié"
+        },
+        "actionsButton": {
+            "watchHere": "Regarder {gameName}",
+            "watchOnYt": "Regarder {gameName} sur Youtube",
+            "copyLink": "Copier le lien",
+            "shareOnTwitter": "Partager sur Twitter",
+            "shareOnFacebook": "Partager sur Facebook",
+            "shareOnReddit": "Partager sur Reddit",
+            "closeContextMenu": "Fermer"
+        },
+        "filtersButtonLabel": "Filtres",
+        "filtersLabels": {
+            "genres": "Genres",
+            "platform": "Plateforme",
+            "title": "Titre"
+        },
+        "gamesGenres": {
+            "Action": "Action",
+            "Adventure": "Aventure",
+            "Arcade": "Arcade",
+            "Board Games": "Jeux de société",
+            "Card": "Cartes",
+            "Casual": "Casual",
+            "Educational": "Éducatif",
+            "Family": "Familial",
+            "Fighting": "Combat",
+            "Indie": "Indépendant",
+            "MMORPG": "MMORPG",
+            "Platformer": "Plate-formes",
+            "Puzzle": "Réflexion",
+            "RPG": "RPG",
+            "Racing": "Jeu de course",
+            "Shooter": "Jeu de tir",
+            "Simulation": "Simulation",
+            "Sports": "Sports",
+            "Strategy": "Stratégie",
+            "Misc": "Autre"
+        }
+    },
+    "planning": {
+        "states": {
+            "RECORDED": "Terminé",
+            "PENDING": "En cours"
+        },
+        "columns": {
+            "title": "Titre",
+            "releaseDate": "Date de sortie",
+            "endDate": "Date de fin",
+            "status": "Statut",
+            "platform": "Plateforme"
+        }
+    },
+    "stats": {
+        "genresChart": {
+            "title": "Genres",
+            "total": "Total",
+            "total_available": "Disponible",
+            "total_unavailable": "Pas encore disponible"
+        },
+        "platformsChart": {
+            "title": "Plate-formes",
+            "total_available": "Disponible",
+            "total_unavailable": "Pas encore disponible"
+        },
+        "generalStats": {
+            "title": "Chiffres clés",
+            "total_games": "Nombre de jeux",
+            "total_games_available": "Nombre de jeux (disponible)",
+            "total_games_unavailable": "Nombre de jeux (pas encore disponible)",
+            "channel_start_date": "Début de la chaine",
+            "channel_start_date_details": "(soit {value} sur Youtube)",
+            "total_duration": "Durée totale du contenu",
+            "total_duration_available": "Durée totale du contenu (disponible)",
+            "total_duration_unavailable": "Durée totale du contenu (pas encore disponible)"
+        }
+    }
+}

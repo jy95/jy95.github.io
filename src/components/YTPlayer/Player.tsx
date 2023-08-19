@@ -1,17 +1,15 @@
-import { lazy } from 'react'
-import { useParams, useLocation } from 'react-router-dom'
+"use client";
 
+import { lazy } from 'react'
 const ReactPlayer = lazy(() => import("react-player/youtube"));
 
-export default function Player(_props : {[key: string | number | symbol] : any}) {
-    const { id } = useParams();
-    const location = useLocation();
-    const type = (location.pathname.includes("/playlist/")) ? "PLAYLIST" : "VIDEO";
-    const url = (type === "PLAYLIST" 
-        ? "https://www.youtube.com/playlist?list=" 
-        : "https://www.youtube.com/watch?v="
-    ) + id;
+type Params = {type: "PLAYLIST" | "VIDEO", identifier : string}
 
+export default function Player({type, identifier} : Params) {
+    const url = (type === "PLAYLIST") 
+        ? `https://www.youtube.com/playlist?list=${identifier}` 
+        : `https://www.youtube.com/watch?v=${identifier}`;
+    
     return (
         <ReactPlayer
             controls={true}
@@ -20,5 +18,5 @@ export default function Player(_props : {[key: string | number | symbol] : any})
             width='100%'
             height='90vh'
         />
-    )
+    );
 }

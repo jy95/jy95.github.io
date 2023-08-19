@@ -1,13 +1,16 @@
+"use client";
+
 import { lazy } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useTranslations } from "next-intl";
+import { useRouter } from 'next/navigation';
+import type { MouseEventHandler } from "react";
 
 // For full screen Dialog 
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 // For snackbars
 import { useSnackbar } from 'notistack';
-import type { CardGame } from "../../services/sharedDefintion";
+import type { CardGame } from "@/redux/sharedDefintion";
 
 // For Dialog
 const Dialog = lazy(() => import("@mui/material/Dialog"));
@@ -36,8 +39,8 @@ function CardDialog(props : {
 }) {
     
     // hooks
-    const { t } = useTranslation('common');
-    const navigate = useNavigate();
+    const router = useRouter();
+    const t = useTranslations("gamesLibrary");
     const fullScreen = useMediaQuery( (theme : any) => theme.breakpoints.down('md'));
     const { enqueueSnackbar } = useSnackbar();
 
@@ -54,24 +57,25 @@ function CardDialog(props : {
         key: string,
         icon: JSX.Element,
         text: string,
-        onClick: () => void,
+        onClick: MouseEventHandler<HTMLLIElement>,
         divider?: boolean
     }[] = [
         // Watch here
         {
             key: "watchHere",
             icon: <PlayArrowIcon fontSize="small"/>,
-            text: t("gamesLibrary.actionsButton.watchHere", { "gameName": gameTitle}),
-            onClick: () => {
+            text: t("actionsButton.watchHere", { "gameName": gameTitle}),
+            onClick: (event) => {
+                event.preventDefault();
                 setContextMenuOpen(false);
-                navigate(local_path);
+                router.push(`${local_path}`);
             }
         },
         // watch on Youtube
         {
             key: "watchOnYoutube",
             icon: <YouTubeIcon fontSize="small"/>,
-            text: t("gamesLibrary.actionsButton.watchOnYt", { "gameName": gameTitle}),
+            text: t("actionsButton.watchOnYt", { "gameName": gameTitle}),
             onClick: () => {
                 setContextMenuOpen(false);
                 window.location.href = gameURL;
@@ -82,12 +86,12 @@ function CardDialog(props : {
             key: "copyLink",
             divider: true,
             icon: <FileCopyIcon fontSize="small"/>,
-            text: t("gamesLibrary.actionsButton.copyLink"),
+            text: t("actionsButton.copyLink"),
             onClick: async () => {
                 if (navigator.clipboard !== undefined) {
                     await navigator.clipboard.writeText(gameURL);
                     enqueueSnackbar(
-                        t("gamesLibrary.snackbarsMessages.copiedLink", { "gameName": gameTitle }),
+                        t("snackbarsMessages.copiedLink", { "gameName": gameTitle }),
                         {
                             "variant": "success",
                             "autoHideDuration": 2500
@@ -101,7 +105,7 @@ function CardDialog(props : {
         {
             key: "share-on-twitter",
             icon: <TwitterIcon fontSize="small"/>,
-            text: t("gamesLibrary.actionsButton.shareOnTwitter"),
+            text: t("actionsButton.shareOnTwitter"),
             onClick: () => {
                 window.open("https://twitter.com/intent/tweet?url=" + encodeURIComponent(gameURL), "_blank");
                 setContextMenuOpen(false);
@@ -111,7 +115,7 @@ function CardDialog(props : {
         {
             key: "share-on-facebook",
             icon: <FacebookIcon fontSize="small"/>,
-            text: t("gamesLibrary.actionsButton.shareOnFacebook"),
+            text: t("actionsButton.shareOnFacebook"),
             onClick: () => {
                 window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(gameURL), "_blank")
                 setContextMenuOpen(false);
@@ -121,7 +125,7 @@ function CardDialog(props : {
         {
             key: "share-on-reddit",
             icon: <RedditIcon fontSize="small"/>,
-            text: t("gamesLibrary.actionsButton.shareOnReddit"),
+            text: t("actionsButton.shareOnReddit"),
             onClick: () => {
                 window.open("http://www.reddit.com/submit?title=" + encodeURIComponent(gameTitle) + "&url=" + encodeURIComponent(gameURL) + "&title=","_blank")
                 setContextMenuOpen(false);
@@ -158,7 +162,7 @@ function CardDialog(props : {
                 </List>
             </DialogContent>
             <DialogActions>
-                <Button autoFocus onClick={() => {setContextMenuOpen(false)}}>{t("gamesLibrary.actionsButton.closeContextMenu")}</Button>
+                <Button autoFocus onClick={() => {setContextMenuOpen(false)}}>{t("actionsButton.closeContextMenu")}</Button>
             </DialogActions>
         </Dialog>
     );
