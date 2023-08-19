@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Catalogue des jeux de GamesPassionFR</title>
+    <script type="text/javascript">
+      // Redirect to the target URL while keeping the path
+      var redirectTo = "https://gpfr-jy95.vercel.app";
+      var l = window.location;
+
+      // Get the relative path from the current URL
+      var currentURL = new URL(window.location.href);
+
+      // Construct the final redirect URL
+      var finalURL = redirectTo + currentURL.pathname + currentURL.search + currentURL.hash;
+
+      window.location.replace(finalURL);
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+  </body>
+</html>
