@@ -4,6 +4,9 @@ import { Providers as ReduxProviders } from "@/redux/provider";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { SnackbarProvider } from "@/providers/SnackbarProvider"
 
+// Next.js Analytics
+import { Analytics } from '@vercel/analytics/react';
+
 // components
 import MainRoot from '@/components/Main/MainRoot';
 import Menu from "@/components/Menu/Menu";
@@ -61,6 +64,7 @@ export default async function RootLayout({children, params: {locale}} : Props) {
             </ThemeProvider>
           </NextIntlClientProvider>
         </ReduxProviders>
+        <Analytics mode={'production'} />;
       </body>
     </html>
   )
