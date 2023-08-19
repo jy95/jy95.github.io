@@ -12,7 +12,7 @@ updates:
       prefix: chore
       include: "scope"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
 # Workflow files stored in the default location of `.github/workflows`
   - package-ecosystem: "github-actions"
     directory: "/"
