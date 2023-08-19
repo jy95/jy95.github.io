@@ -18,11 +18,12 @@
         "retry": "Try Again"
     },
     "notFound": {
-        "title": "Page not found",
+        "title": "We couldn't find that page",
         "goGome": "Return home"
     },
     "common": {
         "reload": "Reload",
+        "loadMore": "Load more",
         "loading": "Loading ...",
         "noResults": "No more results to display",
         "dates": {

@@ -3,8 +3,8 @@
 // Hooks
 import { useState } from 'react';
 import { useGetGamesQuery } from "@/redux/services/gamesAPI";
-
 import { useAppSelector } from "@/redux/hooks";
+import {useTranslations} from 'next-intl';
 
 // Style
 import Grid from "@mui/material/Grid";
@@ -46,7 +46,6 @@ export default function GamesGalleryGrid() {
         (state) => state.games.sorters
     );
 
-
     return (
         <div>
             <GamesFilters />
@@ -64,6 +63,9 @@ function GamesGalleryGridInner({ activeFilters, activeSorters } : InnerProps) {
 
     // Current page
     const [page, setPage] = useState(1);
+
+    //
+    const t = useTranslations('common');
 
     // Lazy load from now ; later I can reconsider it if data source changes
     const LIMIT_PAGE = 16;
@@ -115,7 +117,7 @@ function GamesGalleryGridInner({ activeFilters, activeSorters } : InnerProps) {
                     }}
                     variant="outlined"
                 >
-                    <span>Load more</span>
+                    <span>{t('loadMore')}</span>
                 </LoadingButton>
             </div> 
         </>
