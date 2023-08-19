@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - master
+  repository_dispatch:
+    types: [deploy-gh-pages]
 jobs:
   deploy:
     runs-on: ubuntu-latest
