@@ -114,7 +114,7 @@ export function generateResponse(params : RequestParams, gamesData: BasicGame[])
             }
 
             // hide not matching title
-            if (params.filters.title !== undefined && game.title.search(new RegExp(params.filters.title)) === -1) {
+            if (params.filters.title !== undefined && game.title.search(new RegExp(params.filters.title, "i")) === -1) {
                 return false;
             }
 
