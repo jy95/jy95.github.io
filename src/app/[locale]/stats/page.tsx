@@ -86,7 +86,7 @@ export default function StatsPage() {
   if (isLoading) {
     return (
       <Grid container spacing={2}>
-        <Grid xs={12} md={12} lg={12}>
+        <Grid item xs={12} md={12} lg={12}>
           <Paper style={{ padding: 16 }}>
             <Skeleton variant="text" animation="wave" width="28%" style={{ marginBottom: 16 }} />
             <Skeleton variant="rectangular" animation="wave" width="100%" height={150} />
