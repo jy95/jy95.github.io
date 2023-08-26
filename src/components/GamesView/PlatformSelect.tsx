@@ -56,6 +56,7 @@ function PlatformSelect() {
                         height={24}
                         width={24}
                         alt={option.label}
+                        unoptimized={true}
                     />
                     {option.label}
                 </li>

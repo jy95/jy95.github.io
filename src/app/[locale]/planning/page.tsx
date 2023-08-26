@@ -68,6 +68,7 @@ export default function PlanningViewer() {
                     height={24}
                     width={24}
                     alt={params.value!}
+                    unoptimized={true}
                 />
             ),
             width: 160
