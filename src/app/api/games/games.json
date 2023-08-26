@@ -1522,8 +1522,7 @@
      ],
      "platform":"PC",
      "availableAt":20221230,
-     "endAt":20221230,
-     "coverFile": "cover.webp"
+     "endAt":20221230
    },
    {
       "title":"Dead to Rights : Retribution",
@@ -1763,8 +1762,7 @@
      ],
      "platform": "PC",
      "availableAt": 20230818,
-     "endAt": 20230901,
-     "coverFile": "cover.webp"
+     "endAt": 20230901
    },
    {
      "title": "Metal Slug XX",
@@ -1776,8 +1774,7 @@
      ],
      "platform": "PSP",
      "availableAt": 20230904,
-     "endAt": 20230904,
-     "coverFile": "cover.webp"
+     "endAt": 20230904
    },
    {
      "title": "Jet Li: Rise to Honour",
@@ -1790,8 +1787,7 @@
      ],
      "platform": "PS2",
      "availableAt": 20230905,
-     "endAt": 20230922,
-     "coverFile": "cover.webp"
+     "endAt": 20230922
    },
    {
      "title": "Kya : Dark Lineage",
@@ -1805,8 +1801,7 @@
      ],
      "platform": "PS2",
      "availableAt": 20230925,
-     "endAt": 20231018,
-     "coverFile": "cover.webp"
+     "endAt": 20231018
    },
    {
      "title": "Bionicle",
@@ -1820,8 +1815,7 @@
      ],
      "platform": "PC",
      "availableAt": 20231020,
-     "endAt": 20231020,
-     "coverFile": "cover.webp"
+     "endAt": 20231020
    },
    {
      "title": "Pursuit Force: Extreme Justice",
@@ -1834,8 +1828,7 @@
      ],
      "platform": "PSP",
      "availableAt": 20231023,
-     "endAt": 20231101,
-     "coverFile": "cover.webp"
+     "endAt": 20231101
    },
    {
      "title":"God of War: Chains of Olympus HD",
@@ -1848,8 +1841,7 @@
      ],
      "platform":"PS3",
      "availableAt": 20231106,
-     "endAt": 20231115,
-     "coverFile": "cover.webp"
+     "endAt": 20231115
   },
   {
      "title":"God of War I HD",
@@ -1862,8 +1854,7 @@
      ],
      "platform":"PS3",
      "availableAt": 20231120,
-     "endAt": 20231218,
-     "coverFile": "cover.webp"
+     "endAt": 20231218
   },
   {
      "title":"Astérix aux Jeux olympiques",
@@ -1877,8 +1868,7 @@
      ],
      "platform":"PS2",
      "availableAt": 20240101,
-     "endAt": 20240119,
-     "coverFile": "cover.webp"
+     "endAt": 20240119
   },
   {
      "title":"God of War: Ghost of Sparta HD",
@@ -1891,8 +1881,7 @@
      ],
      "platform":"PS3",
      "availableAt": 20240122,
-     "endAt": 20240223,
-     "coverFile": "cover.webp"
+     "endAt": 20240223
   },
   {
      "title": "Lucky Luke : Tous à l'Ouest",
@@ -1904,9 +1893,8 @@
         "Casual"
      ],
      "platform": "PC",
-     "availableAt": "20240304",
-     "endAt": "20240304",
-     "coverFile": "cover.webp"
+     "availableAt": 20240304,
+     "endAt": 20240304
   },
   {
      "title": "Jak and Daxter: The Lost Frontier",
@@ -1919,9 +1907,8 @@
          "Platformer"
      ],
      "platform": "PSP",
-     "availableAt": "20240306",
-     "endAt": "20240325",
-     "coverFile": "cover.webp"
+     "availableAt": 20240306,
+     "endAt": 20240325
   },
   {
      "title": "Batman The Telltale Series",
@@ -1933,9 +1920,8 @@
         "Adventure"
      ],
      "platform": "PC",
-     "availableAt": "20240329",
-     "endAt": "20240408",
-     "coverFile": "cover.webp"
+     "availableAt": 20240329,
+     "endAt": 20240408
   },
   {
      "title":"Splinter Cell HD",
@@ -1947,9 +1933,8 @@
         "Adventure"
      ],
      "platform":"PS3",
-     "availableAt": "20240410",
-     "endAt": "20240501",
-     "coverFile": "cover.webp"
+     "availableAt": 20240410,
+     "endAt": 20240501
   },
   {
      "title": "Daxter",
@@ -1962,9 +1947,8 @@
         "Platformer"
      ],
      "platform": "PSP",
-     "availableAt": "20240503",
-     "endAt": "20240603",
-     "coverFile": "cover.webp"
+     "availableAt": 20240503,
+     "endAt": 20240603
   },
   {
      "title":"Chili Con Carnage",
@@ -1977,9 +1961,8 @@
         "Shooter"
      ],
      "platform":"PSP",
-     "availableAt": "20240610",
-     "endAt": "20240624",
-     "coverFile": "cover.webp"
+     "availableAt": 20240610,
+     "endAt": 20240624
   },
   {
      "title": "Robots",
@@ -1992,9 +1975,8 @@
         "Platformer"
      ],
      "platform": "PS2",
-     "availableAt": "20240701",
-     "endAt": "20240717",
-     "coverFile": "cover.webp"
+     "availableAt": 20240701,
+     "endAt": 20240717
   },
   {
      "title": "Legend of Kay Anniversary",
@@ -2007,9 +1989,8 @@
         "Platformer"
      ],
      "platform": "PS3",
-     "availableAt": "20240722",
-     "endAt": "20240826",
-     "coverFile": "cover.webp"
+     "availableAt": 20240722,
+     "endAt": 20240826
   },
   {
      "title": "Dr. Fetus' Mean Meat Machine",
@@ -2019,7 +2000,6 @@
      "genres": [
         "Puzzle"
      ],
-     "platform": "PC",
-     "coverFile": "cover.webp"
+     "platform": "PC"
   }
 ]
