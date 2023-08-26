@@ -2000,6 +2000,7 @@
      "title": "Legend of Kay Anniversary",
      "playlistId": "PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
      "releaseDate": "29/05/2015",
+     "duration": "9:06:52",
      "genres": [
         "Action",
         "Adventure",
@@ -2007,6 +2008,7 @@
      ],
      "platform": "PS3",
      "availableAt": "20240722",
+     "endAt": "20240826",
      "coverFile": "cover.webp"
   },
   {
