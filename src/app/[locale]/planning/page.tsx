@@ -1,5 +1,8 @@
 "use client";
 
+// Next.js
+import Image from 'next/image'
+
 // Hooks
 import { useTranslations } from 'next-intl';
 import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
@@ -14,10 +17,8 @@ import type { GridRenderCellParams, GridColDef } from '@mui/x-data-grid';
 // Icons
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
-import SvgIcon from '@mui/material/SvgIcon';
 
 // Platform icons
-import iconsSVG from "@/components/GamesView/PlatformIcons";
 import type { Platform } from '@/redux/sharedDefintion';
 
 // Others
@@ -61,10 +62,13 @@ export default function PlanningViewer() {
         {
             field: "platform",
             headerName: t("columns.platform"),
-            renderCell: (params : GridRenderCellParams) => (
-                <SvgIcon titleAccess={params.value}>
-                    {iconsSVG[params.value as Platform]}
-                </SvgIcon>
+            renderCell: (params : GridRenderCellParams<any, Platform>) => (
+                <Image 
+                    src={`/platforms/${params.value!}.svg`}
+                    height={24}
+                    width={24}
+                    alt={params.value!}
+                />
             ),
             width: 160
         },

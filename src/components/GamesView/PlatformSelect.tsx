@@ -8,10 +8,9 @@ import { filterByPlatform, selectSelectedPlatform } from "@/redux/features/games
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
-import SvgIcon from '@mui/material/SvgIcon';
 
 // icons
-import iconsSVG from "@/components/GamesView/PlatformIcons";
+import Image from 'next/image'
 import type { Platform } from "@/redux/sharedDefintion";
 
 const PLATFORMS = [
@@ -52,9 +51,12 @@ function PlatformSelect() {
             renderInput={(params) => <TextField {...params} label={t("platform") as string} />}
             renderOption={(props, option) => (
                 <li {...props} key={option.id}>
-                    <SvgIcon titleAccess={option.label}>
-                        {iconsSVG[option.id as Platform]}
-                    </SvgIcon>
+                    <Image 
+                        src={`/platforms/${option.id}.svg`}
+                        height={24}
+                        width={24}
+                        alt={option.label}
+                    />
                     {option.label}
                 </li>
             )}
