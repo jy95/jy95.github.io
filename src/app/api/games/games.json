@@ -2001,5 +2001,16 @@
         "Puzzle"
      ],
      "platform": "PC"
+  },
+  {
+   "title": "Dante's Inferno",
+   "playlistId": "PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP",
+   "releaseDate": "04/10/2010",
+   "genres": [
+      "Action",
+      "Adventure"
+   ],
+   "platform": "PS3",
+   "availableAt": 20240902
   }
 ]
