@@ -2006,11 +2006,13 @@
    "title": "Dante's Inferno",
    "playlistId": "PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP",
    "releaseDate": "04/10/2010",
+   "duration": "5:48:59",  
    "genres": [
       "Action",
       "Adventure"
    ],
    "platform": "PS3",
-   "availableAt": 20240902
+   "availableAt": 20240902,
+   "endAt": 20240923
   }
 ]
