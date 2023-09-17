@@ -16,7 +16,7 @@ jobs:
             ref: ${{ github.head_ref }}
         - name: Install WEBP converter
           run: | 
-            sudo apt install webp
+            sudo apt-get update && sudo apt install webp
             sudo chmod ugo+x .github/workflows/toWebp
         - name: Convert every picture to webp (and replace references)
           run: |

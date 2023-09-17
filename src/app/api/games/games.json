@@ -2014,5 +2014,17 @@
    "platform": "PS3",
    "availableAt": 20240902,
    "endAt": 20240923
+  },
+  {
+   "title": "Lollipop Chainsaw",
+   "playlistId": "PLRfhDHeBTBJ7-G7QCx-nB3Oc-TNmIaXMk",
+   "releaseDate": "12/06/2012",
+   "genres": [
+      "Action",
+      "Adventure",
+      "RPG"
+   ],
+   "platform": "PS3",
+   "availableAt": 20240927
   }
 ]
