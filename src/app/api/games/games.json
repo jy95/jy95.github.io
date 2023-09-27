@@ -2028,5 +2028,33 @@
    "platform": "PS3",
    "availableAt": 20240927,
    "endAt": 20241011
+  },
+  {
+   "title":"Ratchet & Clank : Quest for Booty",
+   "playlistId":"PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
+   "releaseDate":"21/08/2008",
+   "duration":"1:48:22",
+   "genres":[
+      "Action",
+      "Adventure",
+      "Platformer",
+      "Shooter"
+   ],
+   "platform":"PS3",
+   "availableAt":20241015,
+   "endAt":20241021
+  },
+  {
+   "title":"Ratchet & Clank Nexus ",
+   "playlistId":"PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
+   "releaseDate":"21/08/2008",
+   "genres":[
+      "Action",
+      "Adventure",
+      "Platformer",
+      "Shooter"
+   ],
+   "platform":"PS3",
+   "availableAt":20241023
   }
 ]
