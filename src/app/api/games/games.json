@@ -2045,9 +2045,10 @@
    "endAt":20241021
   },
   {
-   "title":"Ratchet & Clank Nexus ",
+   "title":"Ratchet & Clank Nexus",
    "playlistId":"PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
    "releaseDate":"21/08/2008",
+   "duration": "3:39:10",
    "genres":[
       "Action",
       "Adventure",
@@ -2055,6 +2056,7 @@
       "Shooter"
    ],
    "platform":"PS3",
-   "availableAt":20241023
+   "availableAt":20241023,
+   "endAt":20241104
   }
 ]
