@@ -2058,5 +2058,20 @@
    "platform":"PS3",
    "availableAt":20241023,
    "endAt":20241104
+  },
+  {
+   "title": "La Légende de Korra",
+   "playlistId": "PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
+   "releaseDate": "22/10/2014",
+   "duration": "2:33:20",
+   "genres":[
+      "Action",
+      "Adventure",
+      "Platformer",
+      "Shooter"
+   ],
+   "platform":"PS3",
+   "availableAt":20241106,
+   "endAt":20241120
   }
 ]
