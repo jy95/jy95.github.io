@@ -7,7 +7,11 @@ export type serieType = {
     items: EnhancedGame[]
 };
 
-export async function GET(_request: Request) {
+// Revalidate at most every day
+// https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
+export const revalidate = 86400;
+
+export async function GET() {
 
     // Fetch games data
     const gamesData = (await import("@/app/api/games/games.json")).default;

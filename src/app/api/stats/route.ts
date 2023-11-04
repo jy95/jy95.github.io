@@ -44,7 +44,11 @@ export type statsProperty = {
     general: statsGeneral
 };
 
-export async function GET(_request: Request) {
+// Revalidate at most every day
+// https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
+export const revalidate = 86400;
+
+export async function GET() {
 
     const gamesData = (await import("../games/games.json")).default;
 
