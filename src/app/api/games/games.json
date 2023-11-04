@@ -2073,5 +2073,18 @@
    "platform":"PS3",
    "availableAt":20241106,
    "endAt":20241120
+  },
+  {
+   "title": "Sly Raccoon",
+   "playlistId": "PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
+   "releaseDate": "07/12/2011",
+   "duration": "4:05:13",
+   "genres": [
+      "Action",
+      "Adventure"
+   ],
+   "platform": "PS3",
+   "availableAt":20241122,
+   "endAt":20241202
   }
 ]
