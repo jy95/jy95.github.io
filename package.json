@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "generate-responsive-images": "node generate-responsive-images.mjs",
-    "sample-game": "npm run generate-responsive-images -- singleGame PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR covers cover.jpg"
+    "sample-game": "npm run generate-responsive-images -- singleGame PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x covers cover.jpg"
   },
   "overrides": {
     "next-intl": {
