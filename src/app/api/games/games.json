@@ -2086,5 +2086,18 @@
    "platform": "PS3",
    "availableAt":20241122,
    "endAt":20241202
+  },
+  {
+   "title": "DuckTales Remastered",
+   "playlistId": "PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
+   "releaseDate": "14/08/2013",
+   "duration": "2:34:47",
+   "genres": [
+      "Action",
+      "Platformer"
+   ],
+   "platform": "PS3",
+   "availableAt":20241209,
+   "endAt":20241223
   }
 ]
