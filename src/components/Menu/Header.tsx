@@ -1,12 +1,11 @@
 "use client";
 
-// Links
-import Link from 'next-intl/link';
+// Navigation
+import { Link, usePathname } from '@/navigation';
 
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {useTranslations} from 'next-intl';
-import {usePathname} from 'next-intl/client';
 
 // React Material UI
 import {CssBaseline, IconButton, Toolbar} from "@mui/material";
@@ -106,7 +105,7 @@ function Header() {
                                 .entries(languages_with_icons)
                                 .map( ([language, lngIcon]) => 
                                     <Tooltip title={t(`${language as 'fr' | 'en'}` as const)} key={language}>
-                                        <Link locale={language} href={pathname}>
+                                        <Link href={pathname}>
                                             <IconButton size="large">
                                                 <SvgIcon>
                                                     {lngIcon}
