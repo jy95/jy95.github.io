@@ -4,8 +4,7 @@
 import { forwardRef, useMemo } from "react";
 
 // https://next-intl-docs.vercel.app/docs/routing/navigation
-import Link from 'next-intl/link';
-import {usePathname} from 'next-intl/client';
+import { Link, usePathname } from "@/navigation";
 
 // Hooks
 import {useTranslations} from 'next-intl';

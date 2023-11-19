@@ -7,11 +7,16 @@ import { SnackbarProvider } from "@/providers/SnackbarProvider"
 // Next.js Analytics
 import { Analytics } from '@vercel/analytics/react';
 
+// Workaround
+import {unstable_setRequestLocale} from 'next-intl/server';
+
 // components
 import MainRoot from '@/components/Main/MainRoot';
 import Menu from "@/components/Menu/Menu";
 import Header from "@/components/Menu/Header";
 import Box from "@/components/Main/Box";
+
+import { locales } from '@/navigation';
 
 // Types
 import type { Metadata } from 'next/types';
@@ -29,16 +34,18 @@ type Props = {
 }
 
 export function generateStaticParams() {
-  return [{locale: 'fr'}, {locale: 'en'}];
+  return locales.map((locale) => ({locale}));
 }
 
 export default async function RootLayout({children, params: {locale}} : Props) {
 
   // To catch with stuff that aren't a locale
-  let resolvedLocale = (["en", "fr"].includes(locale)) ? locale : "fr";
+  let resolvedLocale = (locales.includes(locale)) ? locale : "fr";
 
   // Fetch messages in locale asked
   let messages = (await import(`../../../messages/${resolvedLocale}.json`)).default;
+
+  unstable_setRequestLocale(resolvedLocale);
 
   return (
     <html lang={resolvedLocale}>

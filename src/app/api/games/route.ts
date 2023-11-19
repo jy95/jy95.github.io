@@ -86,7 +86,7 @@ export async function GET(request: Request) {
 }
 
 // Function used by /games & /series endpoints as Next.js can't invoke /games inside /series
-export function generateResponse(params : RequestParams, gamesData: BasicGame[]): ResponseBody {
+function generateResponse(params : RequestParams, gamesData: BasicGame[]): ResponseBody {
 
     // current date as integer (quicker comparaison)
     const currentDate = new Date();
