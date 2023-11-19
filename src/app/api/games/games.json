@@ -2099,5 +2099,18 @@
    "platform": "PS3",
    "availableAt":20241209,
    "endAt":20241223
+  },
+  {
+   "title":"Splinter Cell Double Agent HD",
+   "playlistId": "PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
+   "releaseDate":"27/03/2007",
+   "duration":"2:32:32",
+   "genres":[
+      "Action",
+      "Adventure"
+   ],
+   "platform":"PS3",
+   "availableAt":20241225,
+   "endAt":20250115
   }
 ]
