@@ -105,7 +105,7 @@ function Header() {
                                 .entries(languages_with_icons)
                                 .map( ([language, lngIcon]) => 
                                     <Tooltip title={t(`${language as 'fr' | 'en'}` as const)} key={language}>
-                                        <Link href={pathname}>
+                                        <Link href={pathname} lang={language}>
                                             <IconButton size="large">
                                                 <SvgIcon>
                                                     {lngIcon}
