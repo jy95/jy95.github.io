@@ -2112,5 +2112,18 @@
    "platform":"PS3",
    "availableAt":20241225,
    "endAt":20250115
+  },
+  {
+   "title": "Enslaved Odyssey to the West",
+   "playlistId": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+   "releaseDate": "08/10/2010",
+   "duration": "0:00:00",
+   "genres":[
+      "Action",
+      "Adventure"
+   ],
+   "platform":"PS3",
+   "availableAt":20250117,
+   "endAt":20250217
   }
 ]
