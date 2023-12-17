@@ -2125,5 +2125,18 @@
    "platform":"PS3",
    "availableAt":20250117,
    "endAt":20250217
+  },
+  {
+   "title": "Sly 2 : Association de voleurs",
+   "playlistId": "PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
+   "releaseDate": "07/12/2011",
+   "duration": "11:26:08",
+   "genres": [
+      "Action",
+      "Adventure"
+   ],
+   "platform": "PS3",
+   "availableAt":20250221,
+   "endAt":20250312
   }
 ]
