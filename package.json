@@ -22,7 +22,7 @@
     "@types/react": "^18.2.45",
     "@types/react-dom": "18.2.17",
     "@vercel/analytics": "^1.1.1",
-    "eslint": "8.54.0",
+    "eslint": "8.56.0",
     "eslint-config-next": "14.0.3",
     "next": "14.0.3",
     "next-intl": "^3.3.1",
