@@ -8,7 +8,7 @@ import {useTranslations} from 'next-intl';
 
 // Style
 import Grid from "@mui/material/Grid";
-import LoadingButton from '@mui/lab/LoadingButton';
+import LoadingButton from './LoadingButton';
 
 // Custom
 import CardEntry from "@/components/GamesView/CardEntry";
@@ -115,7 +115,6 @@ function GamesGalleryGridInner({ activeFilters, activeSorters } : InnerProps) {
                         // Reminder : https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state
                         setPage( (prev) => prev + 1 );
                     }}
-                    variant="outlined"
                 >
                     <span>{t('loadMore')}</span>
                 </LoadingButton>
