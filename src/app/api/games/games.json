@@ -2138,5 +2138,18 @@
    "platform": "PS3",
    "availableAt":20250221,
    "endAt":20250312
+  },
+  {
+   "title": "Batman The Enemy Within",
+   "playlistId": "PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
+   "releaseDate": "08/08/2017",
+   "duration": "8:10:21",
+   "genres": [
+      "Action",
+      "Adventure"
+   ],
+   "platform": "PC",
+   "availableAt": 20250317,
+   "endAt": 20250326
   }
 ]
