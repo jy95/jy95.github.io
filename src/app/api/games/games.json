@@ -2151,5 +2151,17 @@
    "platform": "PC",
    "availableAt": 20250317,
    "endAt": 20250326
+  },
+  {
+   "title": "Fahrenheit Indigo Prophecy",
+   "playlistId": "PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
+   "releaseDate": "16/09/2005",
+   "duration": "5:38:37",
+   "genres": [
+      "Action"
+   ],
+   "platform": "PS2",
+   "availableAt":20250328,
+   "endAt":20250506
   }
 ]
