@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import Fuse from 'fuse.js'
 
 import type { 
     BasicGame, 
@@ -113,19 +114,18 @@ function generateResponse(params : RequestParams, gamesData: BasicGame[]): Respo
                 return false;
             }
 
-            // hide not matching title
-            if (params.filters.title !== undefined && game.title.search(new RegExp(params.filters.title, "i")) === -1) {
-                return false;
-            }
-
             // Either it is a valid game
             return true;
         });
+
+    const results = (params.filters.title === undefined) 
+        ? filtered_games
+        : new Fuse(filtered_games, {keys: ["title"]}).search(params.filters.title).map(s => s.item)
     
     return {
-        items: sortedAndFilteredResultset(params, filtered_games).map(enhanceGameItem),
-        total_items: filtered_games.length,
-        total_pages: Math.ceil(filtered_games.length / params.pageSize),
+        items: sortedAndFilteredResultset(params, results).map(enhanceGameItem),
+        total_items: results.length,
+        total_pages: Math.ceil(results.length / params.pageSize),
         page: params.page,
         pageSize: params.pageSize,
         filters: params.filters,
