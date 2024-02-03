@@ -1,8 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+#  [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) Gaming Catalog
+
+Online catalog to have a clear view of the [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) channel.  
+Currently, we have the following pages :
+* [`/games`](https://jy95.github.io/games) - List of games & series published on [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) YT channel
+* [`/planning`](https://jy95.github.io/planning) - Upcoming games that will be published on [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) YT channel
+* [`/tests`](https://jy95.github.io/tests) - Games review on [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) YT channel
+* [`/stats`](https://jy95.github.io/stats) - Statistics on [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) YT channel
 
 ## Getting Started
 
-First, run the development server:
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -14,9 +23,8 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.  
+This project uses [`Fuse.js`](https://www.fusejs.io/) to offer fuzzy-search for the games.
 
 ## Learn More
 

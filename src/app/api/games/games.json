@@ -2163,5 +2163,18 @@
    "platform": "PS2",
    "availableAt":20250328,
    "endAt":20250506
+  },
+  {
+   "title": "Metal Gear Rising Revengeance",
+   "playlistId": "PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
+   "releaseDate": "21/02/2013",
+   "duration": "5:59:03",
+   "genres": [
+      "Action",
+      "Adventure"
+   ],
+   "platform": "PS3",
+   "availableAt":20250508,
+   "endAt":20250523  
   }
 ]
