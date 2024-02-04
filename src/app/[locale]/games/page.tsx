@@ -2,6 +2,7 @@
 
 // Hooks
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 
 // Client components
@@ -12,7 +13,7 @@ const GamesGalleryList = dynamic(() => import('./_client/GamesGalleryList'), { s
 type ViewType = "GRID" | "LIST";
 
 // The gallery component
-export default function GamesPage() {
+function GamesView() {
 
     const searchParams = useSearchParams()
     const viewMode : ViewType = searchParams.get("mode") === "LIST" ? "LIST" : "GRID";
@@ -24,5 +25,15 @@ export default function GamesPage() {
                 { (viewMode === "GRID") ? <GamesGalleryGrid /> : <GamesGalleryList /> }
             </div>
         </>
+    )
+}
+
+// The gallery component
+export default function GamesPage() {
+    return (
+        // You could have a loading skeleton as the `fallback` too
+        <Suspense>
+          <GamesView />
+        </Suspense>
     )
 }
