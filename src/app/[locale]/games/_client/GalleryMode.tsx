@@ -2,7 +2,7 @@
 
 // Hooks
 import { useSearchParams } from 'next/navigation'
-import { useCallback } from 'react';
+import { useCallback, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import { usePathname } from "next/navigation"
 import {useTranslations} from 'next-intl';
@@ -18,7 +18,7 @@ import ListIcon from '@mui/icons-material/List';
 // Views
 type ViewType = "GRID" | "LIST";
 
-export default function GalleryMode() {
+function ModeSelector() {
 
     const router = useRouter()
     const pathname = usePathname()
@@ -51,5 +51,14 @@ export default function GalleryMode() {
                 <Tab role="tab" id="tab-LIST" aria-selected={viewMode === "LIST"} icon={<ListIcon />} label={labelGenerator("LIST")} value="LIST" />
             </Tabs>
         </div>
+    )
+}
+
+export default function GalleryMode() {
+    return (
+        // You could have a loading skeleton as the `fallback` too
+        <Suspense>
+            <ModeSelector />
+        </Suspense>
     )
 }
