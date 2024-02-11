@@ -2176,5 +2176,18 @@
    "platform": "PS3",
    "availableAt":20250508,
    "endAt":20250523  
+  },
+  {
+   "title": "Ghost Rider",
+   "playlistId": "PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
+   "releaseDate": "16/02/2007",
+   "duration": "3:29:44",
+   "genres":[
+      "Action",
+      "Adventure"
+   ],
+   "platform":"PS2",
+   "availableAt":20250526,
+   "endAt":20250702  
   }
 ]
