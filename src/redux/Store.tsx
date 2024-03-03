@@ -8,6 +8,7 @@ import { planningAPI } from "./services/planningAPI";
 import { seriesAPI } from "./services/seriesAPI";
 import { statsAPI } from "./services/statsAPI";
 import { testsAPI } from "./services/testsAPI";
+import { backlogAPI } from "./services/backlogAPI";
 
 /* eslint-disable no-underscore-dangle */
 const store = configureStore({
@@ -22,6 +23,7 @@ const store = configureStore({
         [seriesAPI.reducerPath]: seriesAPI.reducer,
         [statsAPI.reducerPath]: statsAPI.reducer,
         [testsAPI.reducerPath]: testsAPI.reducer,
+        [backlogAPI.reducerPath]: backlogAPI.reducer,
     },
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.
@@ -30,7 +32,8 @@ const store = configureStore({
         .concat(planningAPI.middleware)
         .concat(seriesAPI.middleware)
         .concat(statsAPI.middleware)
-        .concat(testsAPI.middleware),
+        .concat(testsAPI.middleware)
+        .concat(backlogAPI.middleware),
 })
 export default store;
 // Infer the `RootState` and `AppDispatch` types from the store itself
