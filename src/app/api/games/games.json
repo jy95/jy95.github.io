@@ -2189,5 +2189,18 @@
    "platform":"PS2",
    "availableAt":20250526,
    "endAt":20250702  
+  },
+  {
+   "title": "Sly 3 : Honor Among Thieves",
+   "playlistId": "PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
+   "releaseDate": "07/12/2011",
+   "duration": "9:46:28",
+   "genres": [
+      "Action",
+      "Adventure"
+   ],
+   "platform": "PS3",
+   "availableAt":20250707,
+   "endAt":20250721  
   }
 ]
