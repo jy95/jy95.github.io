@@ -31,7 +31,7 @@ export async function GET() {
     const gamesData = (await import("./backlog.json")).default;
     const games = gamesData.map( (game, idx) => enhanceGameItem(game as RawBacklogEntry, idx) );
 
-    return NextResponse.json(gamesData);
+    return NextResponse.json(games);
 }
 
 // Return an enhanced payload for a single game
