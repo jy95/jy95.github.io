@@ -5,7 +5,8 @@
             "planningKey": "Calendar",
             "testsKey": "Tests",
             "latestVideosKey": "Latest Videos",
-            "stats": "Stats"
+            "stats": "Stats",
+            "backlog": "Backlog"
         },
         "languages": {
             "en": "English version of the site",
@@ -106,6 +107,13 @@
             "endDate": "End Date",
             "status": "Status",
             "platform": "Platform"
+        }
+    },
+    "backlog": {
+        "columns": {
+            "title": "Title",
+            "platform": "Platform",
+            "notes": "Notes"
         }
     },
     "stats": {
