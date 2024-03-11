@@ -33,6 +33,6 @@
     "react-redux": "^9.1.0",
     "recharts": "^2.12.2",
     "sharp": "^0.33.1",
-    "typescript": "5.3.3"
+    "typescript": "5.4.2"
   }
 }
