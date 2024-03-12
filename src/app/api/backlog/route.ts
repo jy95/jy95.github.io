@@ -17,7 +17,8 @@ export type BacklogEntry = {
 }
 
 // Raw entry 
-type RawBacklogEntry = Exclude<BacklogEntry, "id">;
+type RawBacklogEntry = Omit<BacklogEntry, "id">;
+export type RawPayload = RawBacklogEntry[];
 
 // Revalidate at most every day
 // https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate

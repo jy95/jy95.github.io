@@ -69,6 +69,9 @@ export type ResponseBody = {
     page: number
 }
 
+type rawEntry = Omit<BasicGame, "id">;
+export type RawPayload = rawEntry[];
+
 export async function GET(request: Request) {
 
     // Get query parameters
@@ -81,13 +84,13 @@ export async function GET(request: Request) {
     const gamesData = (await import("./games.json")).default;
 
     // generate response
-    const response = generateResponse(params, gamesData as BasicGame[]);
+    const response = generateResponse(params, gamesData as RawPayload);
 
     return NextResponse.json(response);
 }
 
 // Function used by /games & /series endpoints as Next.js can't invoke /games inside /series
-function generateResponse(params : RequestParams, gamesData: BasicGame[]): ResponseBody {
+function generateResponse(params : RequestParams, gamesData: RawPayload): ResponseBody {
 
     // current date as integer (quicker comparaison)
     const currentDate = new Date();
@@ -134,7 +137,7 @@ function generateResponse(params : RequestParams, gamesData: BasicGame[]): Respo
 }
 
 // Return subset and sorted resultset
-function sortedAndFilteredResultset(params : RequestParams, games: BasicGame[]) : BasicGame[] {
+function sortedAndFilteredResultset(params : RequestParams, games: RawPayload) : RawPayload {
 
     // Bound for result
     const [startOffset, endOffset] = (params.includePreviousPagesResult) 
@@ -242,7 +245,7 @@ function extractParameters(params: URLSearchParams): RequestParams {
 }
 
 // Return an enhanced payload for a single game
-function enhanceGameItem(game: BasicGame): EnhancedGame {
+function enhanceGameItem(game: rawEntry): EnhancedGame {
 
     const id = (game as BasicPlaylist).playlistId ?? (game as BasicVideo).videoId;
     const base_url = (

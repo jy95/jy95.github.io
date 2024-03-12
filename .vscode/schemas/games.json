@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RawPayload",
+  "definitions": {
+    "RawPayload": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title of the game, such as \"Beyond Good & Evil\""
+          },
+          "platform": {
+            "$ref": "#/definitions/Platform",
+            "description": "Platform for that game"
+          },
+          "duration": {
+            "type": "string",
+            "description": "Duration of the walkthrough (e.g. \"01:42:13\")"
+          },
+          "genres": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Genre"
+            },
+            "description": "Genres of the game"
+          },
+          "releaseDate": {
+            "type": "string",
+            "description": "When the game was released, such \"01/09/2005\""
+          },
+          "availableAt": {
+            "type": "number",
+            "description": "When to display the game public, such as 20210412 (12/04/2021)"
+          },
+          "endAt": {
+            "type": "number",
+            "description": "When to display the game public, such as 20210420 (20/04/2021)"
+          },
+          "coverFile": {
+            "type": "string",
+            "description": "Name of the main cover file, such as \"cover.webp\""
+          },
+          "videoId": {
+            "type": "string",
+            "description": "Video ID from Youtube - what you see after \"watch?v=\""
+          },
+          "playlistId": {
+            "type": "string",
+            "description": "Playlist ID from Youtube, what you see after \"playlist?list=\""
+          }
+        },
+        "required": [
+          "title",
+          "platform",
+          "genres",
+          "releaseDate",
+          "videoId",
+          "playlistId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "Platform": {
+      "type": "string",
+      "enum": [
+        "PC",
+        "GBA",
+        "PSP",
+        "PS1",
+        "PS2",
+        "PS3"
+      ]
+    },
+    "Genre": {
+      "type": "string",
+      "enum": [
+        "Action",
+        "Adventure",
+        "Arcade",
+        "Board Games",
+        "Card",
+        "Casual",
+        "Educational",
+        "Family",
+        "Fighting",
+        "Indie",
+        "MMORPG",
+        "Platformer",
+        "Puzzle",
+        "RPG",
+        "Racing",
+        "Shooter",
+        "Simulation",
+        "Sports",
+        "Strategy",
+        "Misc"
+      ]
+    }
+  }
+}

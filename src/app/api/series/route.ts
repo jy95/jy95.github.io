@@ -6,6 +6,14 @@ export type serieType = {
     items: EnhancedGame[]
 };
 
+type rawEntry = {
+    /* Name of the series */
+    name: string;
+    /* List of videoId or playlistId for this series */
+    games: string[]
+}
+export type RawPayload = rawEntry[];
+
 // Revalidate at most every day
 // https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
 export const revalidate = 86400;
