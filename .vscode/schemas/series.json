@@ -8,13 +8,15 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of the series"
           },
           "games": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": "List of videoId or playlistId for this series"
           }
         },
         "required": [

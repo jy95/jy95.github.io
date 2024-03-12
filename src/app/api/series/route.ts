@@ -7,9 +7,9 @@ export type serieType = {
 };
 
 type rawEntry = {
-    /* Name of the series */
+    /** @description Name of the series */
     name: string;
-    /* List of videoId or playlistId for this series */
+    /** @description List of videoId or playlistId for this series */
     games: string[]
 }
 export type RawPayload = rawEntry[];
