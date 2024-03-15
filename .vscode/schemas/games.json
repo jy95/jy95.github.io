@@ -55,9 +55,7 @@
           "title",
           "platform",
           "genres",
-          "releaseDate",
-          "videoId",
-          "playlistId"
+          "releaseDate"
         ],
         "additionalProperties": false
       }
