@@ -14,6 +14,9 @@ export type TestsResponse = {
     offset: number
 }
 
+type rawEntry = Omit<BasicGame, "id" | "genres">
+export type RawPayload = rawEntry[];
+
 export async function GET(request: Request) {
 
     // Get query parameters

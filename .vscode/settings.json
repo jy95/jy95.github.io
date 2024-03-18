@@ -1,0 +1,28 @@
+{
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "**/backlog.json"
+            ],
+            "url": "./.vscode/schemas/backlog.json"
+        },
+        {
+            "fileMatch": [
+                "**/games.json"
+            ],
+            "url": "./.vscode/schemas/games.json"
+        },
+        {
+            "fileMatch": [
+                "**/series.json"
+            ],
+            "url": "./.vscode/schemas/series.json"
+        },
+        {
+            "fileMatch": [
+                "**/tests.json"
+            ],
+            "url": "./.vscode/schemas/tests.json"
+        },
+    ]
+}

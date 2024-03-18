@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RawPayload",
+  "definitions": {
+    "RawPayload": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Name of the game"
+          },
+          "platform": {
+            "$ref": "#/definitions/Platform",
+            "description": "Platform for that game"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Extra notes"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "Platform": {
+      "type": "string",
+      "enum": [
+        "PC",
+        "GBA",
+        "PSP",
+        "PS1",
+        "PS2",
+        "PS3"
+      ]
+    }
+  }
+}

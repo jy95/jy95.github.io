@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RawPayload",
+  "definitions": {
+    "RawPayload": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the series"
+          },
+          "games": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of videoId or playlistId for this series"
+          }
+        },
+        "required": [
+          "name",
+          "games"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}
