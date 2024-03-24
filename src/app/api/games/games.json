@@ -2207,12 +2207,13 @@
    "title": "La Planète au Trésor",
    "playlistId": "PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
    "releaseDate": "13/02/2013",
-   "duration": "0:00:00",
+   "duration": "4:54:34",
    "genres": [
       "Action",
       "Platformer"
    ],
    "platform": "PS3",
-   "availableAt":20250725
+   "availableAt":20250725,
+   "endAt":20250905  
   }
 ]
