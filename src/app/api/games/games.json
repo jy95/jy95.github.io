@@ -2215,5 +2215,18 @@
    "platform": "PS3",
    "availableAt":20250725,
    "endAt":20250905  
+  },
+  {
+   "title": "The Warriors",
+   "playlistId": "PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
+   "releaseDate": "20/03/2013",
+   "duration": "6:11:20",
+   "genres":[
+      "Action",
+      "Adventure"
+   ],
+   "platform":"PS3",
+   "availableAt": 20250908,
+   "endAt": 20251001
   }
 ]
