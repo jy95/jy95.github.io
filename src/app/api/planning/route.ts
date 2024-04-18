@@ -10,10 +10,6 @@ export type planningEntry = Omit<BasicGame, "genres" | "videoId" | "playlistId" 
     endDate?: number;
 };
 
-// Revalidate at most every day
-// https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
-export const revalidate = 86400;
-
 export async function GET() {
 
     // current date as integer (quicker comparaison)
