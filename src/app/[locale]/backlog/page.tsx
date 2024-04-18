@@ -22,6 +22,10 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 // Others
 import Tooltip from '@mui/material/Tooltip';
 
+// Revalidate at most every day
+// https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
+export const revalidate = 86400;
+
 export default function BacklogViewer() {
 
     // Using a query hook automatically fetches data and returns query values

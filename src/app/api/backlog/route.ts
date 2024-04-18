@@ -20,12 +20,6 @@ export type BacklogEntry = {
 type RawBacklogEntry = Omit<BacklogEntry, "id">;
 export type RawPayload = RawBacklogEntry[];
 
-// Revalidate at most every day
-// https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
-export const revalidate = 86400;
-
-// An entry in the json file
-
 export async function GET() {
 
     // Game data
