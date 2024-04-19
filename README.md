@@ -6,6 +6,7 @@ Currently, we have the following pages :
 * [`/planning`](https://jy95.github.io/planning) - Upcoming games that will be published on [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) YT channel
 * [`/tests`](https://jy95.github.io/tests) - Games review on [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) YT channel
 * [`/stats`](https://jy95.github.io/stats) - Statistics on [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) YT channel
+* [`/backlog`](https://jy95.github.io/backlog) - Games backlog on [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) YT channel
 
 ## Getting Started
 
