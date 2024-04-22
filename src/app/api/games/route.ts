@@ -86,7 +86,11 @@ export async function GET(request: Request) {
     // generate response
     const response = generateResponse(params, gamesData as RawPayload);
 
-    return NextResponse.json(response);
+    return NextResponse.json(response, {
+        headers: {
+            "Cache-Control": "public, max-age=86400, must-revalidate"
+        }
+    });
 }
 
 // Function used by /games & /series endpoints as Next.js can't invoke /games inside /series

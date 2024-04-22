@@ -118,7 +118,11 @@ export async function GET() {
         }
     });
 
-    return NextResponse.json(stats);
+    return NextResponse.json(stats, {
+        headers: {
+            "Cache-Control": "public, max-age=86400, must-revalidate"
+        }
+    });
 }
 
 // To compute sum of two times
