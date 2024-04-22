@@ -25,10 +25,6 @@ import Tooltip from '@mui/material/Tooltip';
 
 type GameStatus = "RECORDED" | "PENDING";
 
-// Revalidate at most every day
-// https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
-export const revalidate = 86400;
-
 export default function PlanningViewer() {
 
     // Using a query hook automatically fetches data and returns query values

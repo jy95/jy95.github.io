@@ -36,6 +36,10 @@ export async function GET(request: Request) {
         total_items: gamesData.length,
         limit: limit,
         offset: offset
+    }, {
+        headers: {
+            "Cache-Control": "public, max-age=86400, must-revalidate"
+        }
     });
 }
 

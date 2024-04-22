@@ -72,10 +72,6 @@ function sortStats(a : SortableStat, b: SortableStat) : number {
   return 0;
 }
 
-// Revalidate at most every day
-// https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
-export const revalidate = 86400;
-
 export default function StatsPage() {
   const t = useTranslations();
   const currentColor = useAppSelector((state) => state.themeColor.currentColor);

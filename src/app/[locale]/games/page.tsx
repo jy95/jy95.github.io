@@ -28,10 +28,6 @@ function GamesView() {
     )
 }
 
-// Revalidate at most every day
-// https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
-export const revalidate = 86400;
-
 // The gallery component
 export default function GamesPage() {
     return (

@@ -45,7 +45,11 @@ export async function GET() {
         .filter(serie => serie.items.length > 1)
         .sort(sortByNameASC);
 
-    return NextResponse.json(series);
+    return NextResponse.json(series, {
+        headers: {
+            "Cache-Control": "public, max-age=86400, must-revalidate"
+        }
+    });
 }
 
 function generateGamesResponse(gamesData : BasicGame[]) : EnhancedGame[]{

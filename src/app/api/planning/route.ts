@@ -25,7 +25,11 @@ export async function GET() {
     const should_be_displayed = (elem : number, min : number | undefined, max : number | undefined) => (min !== undefined && max === undefined) || (max !== undefined && elem <= max);
     const games = gamesData.filter(game =>  should_be_displayed(integerDate, game.availableAt as number | undefined, game.endAt as number | undefined))
     
-    return NextResponse.json(games.map(game => enhanceGameItem(game as BasicGame)));
+    return NextResponse.json(games.map(game => enhanceGameItem(game as BasicGame)), {
+        headers: {
+            "Cache-Control": "public, max-age=86400, must-revalidate"
+        }
+    });
 }
 
 // Turn "YYYY...MMDD" to int
