@@ -73,7 +73,7 @@ export default function PlanningViewer() {
             headerName: t("columns.releaseDate"),
             headerAlign: 'center',
             type: 'date',
-            valueGetter: (params) => (params.value) ? new Date(params.value) : null,
+            valueGetter: (value) => (value) ? new Date(value) : null,
             width: 220
         },
         {
@@ -81,7 +81,7 @@ export default function PlanningViewer() {
             headerName: t("columns.endDate"),
             headerAlign: 'center',
             type: 'date',
-            valueGetter: (params) => (params.value) ? new Date(params.value) : null,
+            valueGetter: (value) => (value) ? new Date(value) : null,
             width: 220
         },
         {
