@@ -22,7 +22,7 @@ export default function useMuiXDataGridText() : Partial<GridLocaleText> {
                             }
                         }
                     }
-                } = await import("@mui/x-data-grid");
+                } = await import("@mui/x-data-grid/locales");
                 return localeText;
             // English is by default built-in in @mui package, so no need to include
             default:
