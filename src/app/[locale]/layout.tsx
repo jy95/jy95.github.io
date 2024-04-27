@@ -6,6 +6,7 @@ import { SnackbarProvider } from "@/providers/SnackbarProvider"
 
 // Next.js Analytics
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 
 // Workaround
 import {unstable_setRequestLocale} from 'next-intl/server';
@@ -72,6 +73,7 @@ export default async function RootLayout({children, params: {locale}} : Props) {
           </NextIntlClientProvider>
         </ReduxProviders>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   )
