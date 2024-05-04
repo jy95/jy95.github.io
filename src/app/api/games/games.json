@@ -2239,5 +2239,15 @@
    ],
    "platform":"PS3",
    "availableAt": 20251006
+  },
+  {
+   "title": "Contra Operation Galuga",
+   "playlistId": "PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X",
+   "releaseDate": "21/02/2024",
+   "genres":[
+      "Action",
+      "Adventure"
+   ],
+   "platform": "PC"
   }
 ]
