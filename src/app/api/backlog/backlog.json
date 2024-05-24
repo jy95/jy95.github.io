@@ -352,5 +352,76 @@
     {
         "title": "The 3rd Birthday",
         "platform": "PSP"
+    },
+    {
+        "title": "Vanquish"
+    },
+    {
+        "title": "Halo 2",
+        "platform": "PC"
+    },
+    {
+        "title": "Halo 4",
+        "platform": "PC"
+    },
+    {
+        "title": "Halo Reach",
+        "platform": "PC"
+    },
+    {
+        "title": "Grand Theft Auto III"
+    },
+    {
+        "title": "Grand Theft Auto IV"
+    },
+    {
+        "title": "Grand Theft Auto V"
+    },
+    {
+        "title": "Grand Theft Auto : San Andreas"
+    },
+    {
+        "title": "Grand Theft Auto : Vice City"
+    },
+    {
+        "title": "Grand Theft Auto : Liberty City Stories"
+    },
+    {
+        "title": "BioShock",
+        "platform": "PC",
+        "notes": "Bioshock : The Collection"
+    },
+    {
+        "title": "BioShock 2",
+        "platform": "PC",
+        "notes": "Bioshock : The Collection"
+    },
+    {
+        "title": "BioShock Infinite",
+        "platform": "PC",
+        "notes": "Bioshock : The Collection"
+    },
+    {
+        "title": "Dead Space",
+        "notes": "Dead Space (2023)"
+    },
+    {
+        "title": "Dead Space 2"
+    },
+    {
+        "title": "Shadow Of The Tomb Raider",
+        "platform": "PC"
+    },
+    {
+        "title": "Tomb Raider: Anniversary"
+    },
+    {
+        "title": "Tomb Raider",
+        "platform": "PS3",
+        "notes": "2013"
+    },
+    {
+        "title": "Rise Of The Tomb Raider",
+        "platform": "PC"
     }
 ]
