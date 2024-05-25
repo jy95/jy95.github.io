@@ -2246,10 +2246,24 @@
    "title": "Contra Operation Galuga",
    "playlistId": "PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X",
    "releaseDate": "21/02/2024",
+   "duration": "2:04:32",
    "genres":[
       "Action",
       "Adventure"
    ],
    "platform": "PC"
+  },
+  {
+   "title": "Deadpool",
+   "playlistId": "PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
+   "releaseDate": "28/06/2013",
+   "duration": "5:23:02",
+   "genres": [
+      "Action",
+      "Adventure"
+   ],
+   "platform": "PC",
+   "availableAt": 20251031,
+   "endAt": 20251117
   }
 ]
