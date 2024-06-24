@@ -18,7 +18,7 @@
     "@mui/material": "^5.15.20",
     "@mui/x-data-grid": "^7.6.2",
     "@reduxjs/toolkit": "^2.2.5",
-    "@types/node": "^20.14.2",
+    "@types/node": "^20.14.8",
     "@types/react": "^18.3.2",
     "@types/react-dom": "18.3.0",
     "@vercel/analytics": "^1.2.2",
