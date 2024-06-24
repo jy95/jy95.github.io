@@ -45,7 +45,7 @@ const gamesSlice = createSlice({
     reducers: {
         filteringByGenre(state : GamesState, action: PayloadAction<GenreValue[]>) {
             // If empty, remove filter - if not, add it
-            let newFilters = state.activeFilters.filter(s => s.key !== "selected_genres");
+            let newFilters = state.activeFilters.filter(s => s.key !== "selected_genres") as gamesFilters;
             if (action.payload.length !== 0) {
                 newFilters.push({
                     key: "selected_genres",
@@ -56,7 +56,7 @@ const gamesSlice = createSlice({
         },
         filterByTitle(state : GamesState, action: PayloadAction<string>) {
             // If empty, remove filter - if not, add it
-            let newFilters = state.activeFilters.filter(s => s.key !== "selected_title");
+            let newFilters = state.activeFilters.filter(s => s.key !== "selected_title") as gamesFilters;
             if (action.payload.length !== 0) {
                 newFilters.push({
                     key: "selected_title",
@@ -67,7 +67,7 @@ const gamesSlice = createSlice({
         },
         filterByPlatform(state : GamesState, action: PayloadAction<Platform | "">) {
             // If empty, remove filter - if not, add it
-            let newFilters = state.activeFilters.filter(s => s.key !== "selected_platform");
+            let newFilters = state.activeFilters.filter(s => s.key !== "selected_platform") as gamesFilters;
             if (action.payload.length !== 0) {
                 newFilters.push({
                     key: "selected_platform",
