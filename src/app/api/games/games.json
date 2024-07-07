@@ -2270,11 +2270,13 @@
    "title": "Sly Cooper : Voleurs à travers le Temps",
    "playlistId": "PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
    "releaseDate": "27/03/2013",
+   "duration": "8:55:44",  
    "genres": [
       "Action",
       "Adventure"
    ],
    "platform": "PS3",
-   "availableAt": 20251119
+   "availableAt": 20251119,
+   "endAt": 20251212   
   }
 ]
