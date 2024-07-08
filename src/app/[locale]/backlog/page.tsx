@@ -33,14 +33,6 @@ export default function BacklogViewer() {
         return <>Something bad happened</>
     }
 
-    if (isLoading) {
-        return <>Loading</>
-    }
-
-    if (!data) {
-        return null;
-    }
-
     const columns : GridColDef[] = [
         {
             field: "title", 
@@ -101,6 +93,13 @@ export default function BacklogViewer() {
                         slots={{
                             toolbar: GridToolbar
                         }}
+                        slotProps={{
+                            loadingOverlay: {
+                                variant: 'linear-progress',
+                                noRowsVariant: 'skeleton',
+                            }
+                        }}
+                        loading={isLoading}
                         sortingOrder={['asc', 'desc']}
                         initialState={{
                             sorting: {

@@ -35,14 +35,6 @@ export default function PlanningViewer() {
     if (error) {
         return <>Something bad happened</>
     }
-
-    if (isLoading) {
-        return <>Loading</>
-    }
-
-    if (!data) {
-        return null;
-    }
     
     const columns : GridColDef[] = [
         {
@@ -113,6 +105,13 @@ export default function PlanningViewer() {
                             slots={{
                                 toolbar: GridToolbar
                             }}
+                            slotProps={{
+                                loadingOverlay: {
+                                    variant: 'linear-progress',
+                                    noRowsVariant: 'skeleton',
+                                }
+                            }}
+                            loading={isLoading}
                             sortingOrder={['asc', 'desc']}
                             initialState={{
                                 sorting: {
