@@ -2278,5 +2278,16 @@
    "platform": "PS3",
    "availableAt": 20251119,
    "endAt": 20251212   
+  },
+  {
+   "title": "Asura's Wrath",
+   "playlistId": "PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
+   "releaseDate": "24/02/2012",
+   "genres": [
+      "Action",
+      "Adventure"
+   ],
+   "platform": "PS3",
+   "availableAt": 20251215
   }
 ]
