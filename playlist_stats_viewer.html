@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masonry Layout with File Upload</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,39 +39,41 @@
             border-radius: 5px;
             overflow: hidden;
             position: relative;
+            padding: 10px;
+            box-sizing: border-box;
         }
         .grid-item img {
             width: 100%;
             height: auto;
         }
-        .grid-item h3 {
-            margin: 10px;
-            font-size: 16px;
-            text-align: center;
+        .grid-item .stats {
+            margin-top: 10px;
+            font-size: 14px;
             color: #eee;
         }
-        .label {
+        .grid-item .stats .views,
+        .grid-item .stats .watch-time {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .grid-item .stats .icon {
+            margin-right: 5px;
+        }
+        .grid-item .podium-icon {
             position: absolute;
             top: 10px;
             right: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 3px;
-            font-size: 14px;
-            text-align: center;
+            font-size: 24px;
         }
-        .grid-item.gold .label {
-            background: gold;
-            color: #333;
+        .grid-item.gold .podium-icon {
+            color: gold;
         }
-        .grid-item.silver .label {
-            background: silver;
-            color: #333;
+        .grid-item.silver .podium-icon {
+            color: silver;
         }
-        .grid-item.bronze .label {
-            background: #cd7f32;
-            color: #fff;
+        .grid-item.bronze .podium-icon {
+            color: #cd7f32;
         }
     </style>
 </head>
@@ -128,42 +131,44 @@
             img.src = item.imagePath;
             img.alt = item.title;
 
-            // Create title element
-            const title = document.createElement('h3');
-            title.textContent = item.title;
+            // Create stats element
+            const stats = document.createElement('div');
+            stats.classList.add('stats');
+            stats.innerHTML = `
+                <div class="views"><i class="fas fa-eye icon"></i> ${formatNumber(item.views)}</div>
+                <div class="watch-time"><i class="fas fa-clock icon"></i> ${formatWatchTime(item.watchTimeInHours)}</div>
+            `;
 
-            // Create label element
-            const label = document.createElement('div');
-            label.classList.add('label');
-            label.textContent = (index + 1); // Label showing 1, 2, 3, ...
+            // Create podium icon element
+            const podiumIcon = document.createElement('div');
+            podiumIcon.classList.add('podium-icon');
+            if (index === 0) {
+                podiumIcon.innerHTML = '<i class="fas fa-medal"></i>'; // Gold
+            } else if (index === 1) {
+                podiumIcon.innerHTML = '<i class="fas fa-medal"></i>'; // Silver
+            } else if (index === 2) {
+                podiumIcon.innerHTML = '<i class="fas fa-medal"></i>'; // Bronze
+            }
 
-            // Append label, image, and title to grid item
-            gridItem.appendChild(label);
+            // Append podium icon, image, and stats to grid item
+            gridItem.appendChild(podiumIcon);
             gridItem.appendChild(img);
-            gridItem.appendChild(title);
+            gridItem.appendChild(stats);
 
             // Append grid item to grid
             grid.appendChild(gridItem);
         });
+    }
 
-        // Optional: use Intersection Observer for lazy loading images
-        const lazyLoadImages = document.querySelectorAll('.grid-item img');
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.onload = () => img.classList.add('loaded');
-                    observer.unobserve(img);
-                }
-            });
-        });
+    function formatNumber(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Add space for thousands
+    }
 
-        lazyLoadImages.forEach(img => {
-            img.dataset.src = img.src;
-            img.src = ''; // Clear the src attribute to defer loading
-            imageObserver.observe(img);
-        });
+    function formatWatchTime(hours) {
+        const totalMinutes = Math.round(hours * 60);
+        const hoursPart = Math.floor(totalMinutes / 60);
+        const minutesPart = totalMinutes % 60;
+        return `${hoursPart}h ${minutesPart}m`;
     }
 </script>
 

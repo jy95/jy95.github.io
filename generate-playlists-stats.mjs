@@ -14,6 +14,29 @@ const numberOfHeaders = 2;
 // Functions
 const generateImagePath = (playlistId) => resolvePath(`${basePicturesPath}/covers/${playlistId}/cover.webp`);
 
+// Function to parse CSV lines with quotes handling
+function parseCSVLine(line) {
+    const result = [];
+    let inQuotes = false;
+    let field = '';
+
+    for (let char of line) {
+        if (char === '"') {
+            inQuotes = !inQuotes;  // Toggle the quotes flag
+            field += char;  // Add the quote character to the field
+        } else if (char === ',' && !inQuotes) {
+            result.push(field);  // Push the field if not inside quotes
+            field = '';  // Reset field for the next column
+        } else {
+            field += char;  // Add character to the current field
+        }
+    }
+
+    // Push the last field
+    result.push(field);
+    return result.map(f => f.replace(/^"|"$/g, '').replace(/""/g, '"')); // Remove surrounding quotes and double quotes
+}
+
 async function readCSV(filePath) {
     const data = await readFile(filePath, 'utf8');
     const rows = data.split('\n').slice(numberOfHeaders);
@@ -21,7 +44,7 @@ async function readCSV(filePath) {
 
     for(let game of rows) {
         
-        const columns = game.split(',');
+        const columns = parseCSVLine(game);
         // Check if it is a real line or not
         if (columns.length < 4) continue;
 
