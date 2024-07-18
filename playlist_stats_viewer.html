@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masonry Layout with File Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background: #f4f4f4;
+        }
+        .upload-container {
+            margin: 20px;
+        }
+        .upload-container input[type="file"] {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .grid-item {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .grid-item img {
+            width: 100%;
+            height: auto;
+        }
+        .grid-item h3 {
+            margin: 10px;
+            font-size: 16px;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="upload-container">
+    <input type="file" id="fileInput" accept=".json">
+</div>
+
+<div class="grid">
+    <!-- Grid items will be added here dynamically -->
+</div>
+
+<script>
+    document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
+
+    function handleFileSelect(event) {
+        const file = event.target.files[0];
+        if (file && file.type === 'application/json') {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    renderMasonryLayout(data);
+                } catch (err) {
+                    console.error('Error parsing JSON:', err);
+                }
+            };
+            reader.readAsText(file);
+        } else {
+            alert('Please upload a valid JSON file.');
+        }
+    }
+
+    function renderMasonryLayout(data) {
+        const grid = document.querySelector('.grid');
+        grid.innerHTML = ''; // Clear existing content
+
+        data.forEach(item => {
+            // Create grid item
+            const gridItem = document.createElement('div');
+            gridItem.classList.add('grid-item');
+            
+            // Create image element
+            const img = document.createElement('img');
+            img.src = item.imagePath;
+            img.alt = item.title;
+            
+            // Create title element
+            const title = document.createElement('h3');
+            title.textContent = item.title;
+
+            // Append image and title to grid item
+            gridItem.appendChild(img);
+            gridItem.appendChild(title);
+
+            // Append grid item to grid
+            grid.appendChild(gridItem);
+        });
+
+        // Optional: use Intersection Observer for lazy loading images
+        const lazyLoadImages = document.querySelectorAll('.grid-item img');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.onload = () => img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        lazyLoadImages.forEach(img => {
+            img.dataset.src = img.src;
+            img.src = ''; // Clear the src attribute to defer loading
+            imageObserver.observe(img);
+        });
+    }
+</script>
+
+</body>
+</html>
