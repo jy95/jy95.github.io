@@ -35,5 +35,5 @@ yarn-error.log*
 next-env.d.ts
 
 # Files for playlist report
-informations_relatives_aux_tableaux.csv
+Informations relatives aux tableaux.csv
 playlists_stats.json
