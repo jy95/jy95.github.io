@@ -9,7 +9,8 @@
     "lint": "next lint",
     "generate-responsive-images": "node generate-responsive-images.mjs",
     "sample-game": "npm run generate-responsive-images -- singleGame PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8 covers cover.jpg",
-    "generate-json-schemas": "node generate-json-schema.cjs"
+    "generate-json-schemas": "node generate-json-schema.cjs",
+    "generate-playlist-data-report": "node generate-playlists-stats.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
