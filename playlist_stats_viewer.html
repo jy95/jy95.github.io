@@ -13,7 +13,8 @@
             flex-direction: column;
             align-items: center;
             height: 100vh;
-            background: #f4f4f4;
+            background: #333;
+            color: #fff;
         }
         .upload-container {
             margin: 20px;
@@ -21,6 +22,7 @@
         .upload-container input[type="file"] {
             padding: 10px;
             font-size: 16px;
+            color: #333;
         }
         .grid {
             display: grid;
@@ -31,10 +33,11 @@
             margin: 0 auto;
         }
         .grid-item {
-            background: white;
-            border: 1px solid #ddd;
+            background: #444;
+            border: 1px solid #555;
             border-radius: 5px;
             overflow: hidden;
+            position: relative;
         }
         .grid-item img {
             width: 100%;
@@ -44,7 +47,30 @@
             margin: 10px;
             font-size: 16px;
             text-align: center;
+            color: #eee;
+        }
+        .label {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+            text-align: center;
+        }
+        .grid-item.gold .label {
+            background: gold;
             color: #333;
+        }
+        .grid-item.silver .label {
+            background: silver;
+            color: #333;
+        }
+        .grid-item.bronze .label {
+            background: #cd7f32;
+            color: #fff;
         }
     </style>
 </head>
@@ -83,21 +109,36 @@
         const grid = document.querySelector('.grid');
         grid.innerHTML = ''; // Clear existing content
 
-        data.forEach(item => {
+        data.forEach((item, index) => {
             // Create grid item
             const gridItem = document.createElement('div');
             gridItem.classList.add('grid-item');
-            
+
+            // Apply podium effect
+            if (index === 0) {
+                gridItem.classList.add('gold');
+            } else if (index === 1) {
+                gridItem.classList.add('silver');
+            } else if (index === 2) {
+                gridItem.classList.add('bronze');
+            }
+
             // Create image element
             const img = document.createElement('img');
             img.src = item.imagePath;
             img.alt = item.title;
-            
+
             // Create title element
             const title = document.createElement('h3');
             title.textContent = item.title;
 
-            // Append image and title to grid item
+            // Create label element
+            const label = document.createElement('div');
+            label.classList.add('label');
+            label.textContent = (index + 1); // Label showing 1, 2, 3, ...
+
+            // Append label, image, and title to grid item
+            gridItem.appendChild(label);
             gridItem.appendChild(img);
             gridItem.appendChild(title);
 
