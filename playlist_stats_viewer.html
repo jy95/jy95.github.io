@@ -136,7 +136,7 @@
             stats.classList.add('stats');
             stats.innerHTML = `
                 <div class="views"><i class="fas fa-eye icon"></i> ${formatNumber(item.views)}</div>
-                <div class="watch-time"><i class="fas fa-clock icon"></i> ${formatWatchTime(item.watchTimeInHours)}</div>
+                <div class="watch-time"><i class="fas fa-clock icon"></i> ${formatWatchTime(item.watchTimeInMinutes)}</div>
             `;
 
             // Create podium icon element
@@ -164,10 +164,9 @@
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Add space for thousands
     }
 
-    function formatWatchTime(hours) {
-        const totalMinutes = Math.round(hours * 60);
-        const hoursPart = Math.floor(totalMinutes / 60);
-        const minutesPart = totalMinutes % 60;
+    function formatWatchTime(minutes) {
+        const hoursPart = Math.floor(minutes / 60);
+        const minutesPart = minutes % 60;
         return `${hoursPart}h ${minutesPart}m`;
     }
 </script>
