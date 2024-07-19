@@ -5,6 +5,7 @@
  */
 
 import { readFile } from "fs/promises";
+import { createWriteStream } from "fs";
 import { google } from "googleapis";
 import input from '@inquirer/input';
 
@@ -48,19 +49,46 @@ oAuth2Client.getToken(code, (err, token) => {
  * Define and execute the API request.
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
-var callApi = auth => {
+const callApi = async (auth) => {
   const youtubeAnalytics = google.youtubeAnalytics({ version: "v2", auth });
 
-  youtubeAnalytics.reports
-    .query({
+  try {
+    const response = await youtubeAnalytics.reports.query({
       dimensions: "playlist",
       ids: "channel==MINE",
       maxResults: MAX_RESULTS,
       metrics: "views,estimatedMinutesWatched",
       sort: "-estimatedMinutesWatched",
       startDate: START_DATE,
-      endDate: END_DATE,
-    })
-    .then(data => console.log(data.data))
-    .catch(error => console.log("The API returned an error: ", error.errors));
+      endDate: END_DATE
+    });
+
+    const rows = response.data.rows || [];
+
+    if (rows.length > 0) {
+      const filePath = "playlists_stats.csv";
+      const stream = createWriteStream(filePath);
+
+      // Write headers to the stream
+      stream.write("Playlist,Title,Views,WatchTime (minutes)\n");
+
+      for (const row of rows) {
+        const [playListId, views, watchTime] = row;
+        
+        // Write each row to the stream
+        // TODO have to find a way to retrive title of playlist
+        stream.write(`${playListId},"${playListId}",${views},${watchTime}\n`);
+      }
+
+      // Close the stream and indicate completion
+      stream.end(() => {
+        console.log("Data written to playlists_stats.csv successfully.");
+      });
+
+    } else {
+      console.log("No data found.");
+    }
+  } catch (error) {
+    console.log("The API returned an error: ", error.errors);
+  }
 };
