@@ -415,5 +415,45 @@
     {
         "title": "Rise Of The Tomb Raider",
         "platform": "PC"
+    },
+    {
+        "title": "Gangs of London",
+        "platform": "PSP"
+    },
+    {
+        "title": "Spartan : Total Warrior",
+        "platform": "PS2"
+    },
+    {
+        "title": "Crisis Zone",
+        "platform": "PS2"
+    },
+    {
+        "title": "Dead Island",
+        "platform": "PS3"
+    },
+    {
+        "title": "Blacksite",
+        "platform": "PS3"
+    },
+    {
+        "title": "The Club",
+        "platform": "PS3"
+    },
+    {
+        "title": "Bionic Commando",
+        "platform": "PS3"
+    },
+    {
+        "title": "Rogue Warrior",
+        "platform": "PS3"
+    },
+    {
+        "title": "The Darkness",
+        "platform": "PS3"
+    },
+    {
+        "title": "Bionicle Heroes",
+        "notes": "PC vs PS2 ?"
     }
 ]
