@@ -2291,5 +2291,18 @@
    "platform": "PS3",
    "availableAt": 20251215,
    "endAt": 20260123
+  },
+  {
+   "title": "Ratchet & Clank : All 4 One",
+   "playlistId": "PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
+   "releaseDate": "19/10/2011",
+   "genres": [
+      "Action",
+      "Adventure",
+      "Platformer",
+      "Shooter"
+   ],
+   "platform": "PS3",
+   "availableAt": 20260126
   }
 ]
