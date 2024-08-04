@@ -14,11 +14,17 @@ type rawEntry = {
 }
 export type RawPayload = rawEntry[];
 
-export async function GET() {
+export async function GET(request: Request) {
+
+    // Get query parameters
+    const { searchParams } = new URL(request.url);
+
+    // Get wanted date
+    const dateAsInteger = parseInt( searchParams.get("dateAsInteger") || "0");
 
     // Fetch games data
     const gamesData = (await import("@/app/api/games/games.json")).default;
-    const games = generateGamesResponse(gamesData as BasicGame[])
+    const games = generateGamesResponse(gamesData as BasicGame[], dateAsInteger)
 
     // Fetch series data
     const seriesData = (await import("./series.json")).default;
@@ -52,13 +58,7 @@ export async function GET() {
     });
 }
 
-function generateGamesResponse(gamesData : BasicGame[]) : EnhancedGame[]{
-
-    // current date as integer (quicker comparaison)
-    const currentDate = new Date();
-    const integerDate = (currentDate.getFullYear() * 10000) + 
-        ( (currentDate.getMonth() + 1) * 100 ) + 
-        currentDate.getDate();
+function generateGamesResponse(gamesData : BasicGame[], integerDate : number) : EnhancedGame[]{
 
     return gamesData
         .filter(game => {
