@@ -8,7 +8,15 @@ export const seriesAPI = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
     endpoints: (builder) => ({
         getSeries: builder.query<serieType[], void>({
-            query: () => "/series"
+            query: () => {
+
+                const currentDate = new Date();
+                const integerDate = (currentDate.getFullYear() * 10000) + 
+                    ( (currentDate.getMonth() + 1) * 100 ) + 
+                    currentDate.getDate();
+
+                return `/series?dateAsInteger=${integerDate}`
+            }
         })
     })
 });

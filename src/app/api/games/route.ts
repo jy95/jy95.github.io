@@ -49,6 +49,9 @@ type RequestParams = {
     page: number
     // include previous page result ?
     includePreviousPagesResult: boolean
+    // From which date produces the resultset ? 
+    // Format : "YYYYMMDD" , example "20240520"
+    dateAsInteger?: number
 }
 
 export type ResponseBody = {
@@ -96,18 +99,12 @@ export async function GET(request: Request) {
 // Function used by /games & /series endpoints as Next.js can't invoke /games inside /series
 function generateResponse(params : RequestParams, gamesData: RawPayload): ResponseBody {
 
-    // current date as integer (quicker comparaison)
-    const currentDate = new Date();
-    const integerDate = (currentDate.getFullYear() * 10000) + 
-        ( (currentDate.getMonth() + 1) * 100 ) + 
-        currentDate.getDate();
-
     // filter result according to criteria
     const filtered_games = gamesData
         .filter(game => {
             
             // hide not yet public games on channel
-            if (game?.availableAt !== undefined && game?.availableAt > integerDate) {
+            if (game?.availableAt !== undefined && params.dateAsInteger !== undefined && game?.availableAt > params?.dateAsInteger) {
                 return false;
             }
 
@@ -130,7 +127,7 @@ function generateResponse(params : RequestParams, gamesData: RawPayload): Respon
         : new Fuse(filtered_games, {keys: ["title"]}).search(params.filters.title).map(s => s.item)
     
     return {
-        items: sortedAndFilteredResultset(params, results).map(enhanceGameItem),
+        items: sortedAndFilteredResultset(params, results),
         total_items: results.length,
         total_pages: Math.ceil(results.length / params.pageSize),
         page: params.page,
@@ -141,7 +138,7 @@ function generateResponse(params : RequestParams, gamesData: RawPayload): Respon
 }
 
 // Return subset and sorted resultset
-function sortedAndFilteredResultset(params : RequestParams, games: RawPayload) : RawPayload {
+function sortedAndFilteredResultset(params : RequestParams, games: RawPayload) : EnhancedGame[] {
 
     // Bound for result
     const [startOffset, endOffset] = (params.includePreviousPagesResult) 
@@ -150,51 +147,47 @@ function sortedAndFilteredResultset(params : RequestParams, games: RawPayload) :
 
     // No sort criteria, return the filtered list only
     if (params.sorters.length === 0) {
-        return (params.pageSize === -1) ? games : games.slice(startOffset, endOffset);
+        return ((params.pageSize === -1) ? games : games.slice(startOffset, endOffset)).map(enhanceGameItem);
     }
 
     // At least one criteria for sort
     const gamesData = games
-        .map(game => {
-            return {
-                ...game,
-                durationAsInt: (game.duration) ? Number(game.duration.replaceAll(":", "")) : 0,
-                releaseDateAsInt: game.releaseDate
-                    .split("/")
-                    .reduce( (acc : number, curr : string, idx : number) => acc + (parseInt(curr) * Math.pow(100, idx)), 0),
-            }
-        })
-        .sort( (a, b) => {
-            for(let [field, order] of params.sorters) {
-                
-                let comparatorResult = 0;
-                
-                switch(field) {
-                    case "releaseDate":
-                        comparatorResult = (order === "ASC")
-                            ? sortByReleaseDateASC(a.releaseDateAsInt, b.releaseDateAsInt)
-                            : -sortByReleaseDateASC(a.releaseDateAsInt, b.releaseDateAsInt)
-                        break;
-                    case "duration":
-                        comparatorResult = (order === "ASC")
-                            ? sortByDurationASC(a.durationAsInt, b.durationAsInt)
-                            : -sortByDurationASC(a.durationAsInt, b.durationAsInt)
-                        break;
-                    default:
-                        comparatorResult = (order === "ASC") 
-                            ? sortByNameASC(a.title, b.title)
-                            : -sortByNameASC(a.title, b.title)
-                }
-
-                if (comparatorResult !== 0) {
-                    return comparatorResult;
-                }
-            }
-            return 0;
-        })
+        .map(enhanceGameItem)
+        .sort(sortFunction(params));
     
     // filtered resultset ?
     return (params.pageSize === -1) ? gamesData : gamesData.slice(startOffset, endOffset);
+}
+
+function sortFunction(params : RequestParams) {
+    return (a : EnhancedGame, b : EnhancedGame) => {
+        for(let [field, order] of params.sorters) {
+                
+            let comparatorResult = 0;
+            
+            switch(field) {
+                case "releaseDate":
+                    comparatorResult = (order === "ASC")
+                        ? sortByReleaseDateASC(a.releaseDate, b.releaseDate)
+                        : -sortByReleaseDateASC(a.releaseDate, b.releaseDate)
+                    break;
+                case "duration":
+                    comparatorResult = (order === "ASC")
+                        ? sortByDurationASC(a.durationAsInt, b.durationAsInt)
+                        : -sortByDurationASC(a.durationAsInt, b.durationAsInt)
+                    break;
+                default:
+                    comparatorResult = (order === "ASC") 
+                        ? sortByNameASC(a.title, b.title)
+                        : -sortByNameASC(a.title, b.title)
+            }
+
+            if (comparatorResult !== 0) {
+                return comparatorResult;
+            }
+        }
+        return 0;
+    }
 }
 
 // Sort function
@@ -242,6 +235,7 @@ function extractParameters(params: URLSearchParams): RequestParams {
     return {
         page: parseInt(params.get("page") || "1"),
         pageSize: parseInt(params.get("pageSize") || "16"),
+        dateAsInteger: parseInt(params.get("dateAsInteger") || "0"),
         filters: filters,
         sorters: sorters,
         includePreviousPagesResult: (params.has("includePreviousPagesResult")) ? !!params.get("includePreviousPagesResult") : false

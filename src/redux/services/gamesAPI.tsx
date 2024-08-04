@@ -34,7 +34,8 @@ type RequestParams = {
     sortOrder?: string[],
     page: number,
     pageSize: number,
-    includePreviousPagesResult: boolean
+    includePreviousPagesResult: boolean,
+    dateAsInteger: number,
 }
 
 const stringifyObject = (object: any) => {
@@ -59,6 +60,12 @@ export const gamesAPI = createApi({
     endpoints: (builder) => ({
         getGames: builder.query<GamesResponse, Parameters>({
             query: ({ pageSize, page, filters, sorters }) => {
+
+                const currentDate = new Date();
+                const integerDate = (currentDate.getFullYear() * 10000) + 
+                    ( (currentDate.getMonth() + 1) * 100 ) + 
+                    currentDate.getDate();
+
                 let parameters : RequestParams = {
                     // page size
                     pageSize: pageSize,
@@ -66,7 +73,8 @@ export const gamesAPI = createApi({
                     page: page,
                     // Needed for RTK Query to work properly
                     // In the future, I should likely remove that stuff
-                    includePreviousPagesResult: true
+                    includePreviousPagesResult: true,
+                    dateAsInteger: integerDate,
                 };
 
                 // filters parameter
