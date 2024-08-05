@@ -41,7 +41,7 @@
     "typescript": "5.5.4"
   },
   "devDependencies": {
-    "@inquirer/input": "^2.2.4",
+    "@inquirer/input": "^2.2.8",
     "googleapis": "^140.0.1",
     "ts-json-schema-generator": "^2.3.0"
   }
