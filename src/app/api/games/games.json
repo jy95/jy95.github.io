@@ -2296,6 +2296,7 @@
    "title": "Ratchet & Clank : All 4 One",
    "playlistId": "PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
    "releaseDate": "19/10/2011",
+   "duration": "7:56:23",  
    "genres": [
       "Action",
       "Adventure",
@@ -2303,6 +2304,7 @@
       "Shooter"
    ],
    "platform": "PS3",
-   "availableAt": 20260126
+   "availableAt": 20260126,
+   "endAt": 20260216
   }
 ]
