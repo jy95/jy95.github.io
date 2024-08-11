@@ -44,7 +44,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Database
 
-There is a database schema for managing video games, their genres, platforms, series, schedules, and associated video content. The schema consists of several interrelated tables: games, backlog, games_genres, games_schedules, genres, platforms, series, series_games, and tests.
+There is a [database](GamesPassionFR.db) for managing video games, their genres, platforms, series, schedules, and associated video content. The [schema](GamesPassionFR.sqbpro) consists of several interrelated tables: games, backlog, games_genres, games_schedules, genres, platforms, series, series_games, and tests.
 
 ### `games` Table
 
