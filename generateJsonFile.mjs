@@ -11,6 +11,7 @@ const FILES = {
     "TESTS": "src/app/api/tests/tests.json",
     "PLATFORMS": "src/app/api/platforms/platforms.json",
     "GENRES": "src/app/api/genres/genres.json",
+    "PLANNING": "src/app/api/planning/planning.json"
 }
 
 const db = new Database(databasePath, {
@@ -45,3 +46,23 @@ await writeFile(
     JSON.stringify(backlog),
     "utf-8"
 );
+
+// Extract planning
+const extractPlanningStmt = db.prepare("SELECT * FROM games_in_future gif INNER JOIN games g ON g.id == gif.id");
+const planning = extractPlanningStmt.all();
+await writeFile(
+    FILES.PLANNING,
+    JSON.stringify(planning),
+    "utf-8"
+);
+
+// Extract games
+const extractGamesList = db.prepare("SELECT * FROM games_in_present");
+const gamesList = extractGamesList.all();
+await writeFile(
+    FILES.GAMES,
+    JSON.stringify(gamesList),
+    "utf-8"
+);
+
+// Extract series

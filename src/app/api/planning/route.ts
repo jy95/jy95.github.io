@@ -10,20 +10,10 @@ export type planningEntry = Omit<BasicGame, "genres" | "videoId" | "playlistId" 
     endDate?: number;
 };
 
-export async function GET(request: Request) {
-
-    // Get query parameters
-    const { searchParams } = new URL(request.url);
-
-    // Get wanted date
-    const dateAsInteger = parseInt( searchParams.get("dateAsInteger") || "0");
+export async function GET() {
 
     // Game data
-    const gamesData = (await import("../games/games.json")).default;
-
-    // a scheduled game should only be displayed with these specific conditions
-    const should_be_displayed = (elem : number, min : number | undefined, max : number | undefined) => (min !== undefined && max === undefined) || (max !== undefined && elem <= max);
-    const games = gamesData.filter(game =>  should_be_displayed(dateAsInteger, game.availableAt as number | undefined, game.endAt as number | undefined))
+    const games = (await import("./planning.json")).default;
     
     return NextResponse.json(games.map(game => enhanceGameItem(game as BasicGame)), {
         headers: {
