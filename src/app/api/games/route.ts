@@ -3,7 +3,7 @@ import Fuse from 'fuse.js'
 
 import type { 
     BasicGame, 
-    EnhancedGame, 
+    CardGame, 
     BasicVideo, 
     BasicPlaylist, 
     YTUrlType,
@@ -29,19 +29,10 @@ type gamesFilters = {
     genres?: Genre[]
 }
 
-const sortCriterias = ["name", "releaseDate", "duration"] as const;
-type sortCriteria = typeof sortCriterias[number];
-type gamesSorters = [
-    sortCriteria,
-    "ASC" | "DESC"
-][];
-
 // Request parameters
 type RequestParams = {
     // filter criteria
     filters: gamesFilters,
-    // sort results
-    sorters: gamesSorters,
     // page size
     // If equal to -1, it means full result
     pageSize: number
@@ -56,11 +47,9 @@ type RequestParams = {
 
 export type ResponseBody = {
     // the games we are looking for
-    items: EnhancedGame[],
+    items: CardGame[],
     // Filter criteria used
     filters: gamesFilters,
-    // sort results used
-    sorters: gamesSorters,
     // Number of result matching criteria
     total_items: number,
     // Number of page available
@@ -132,13 +121,12 @@ function generateResponse(params : RequestParams, gamesData: RawPayload): Respon
         total_pages: Math.ceil(results.length / params.pageSize),
         page: params.page,
         pageSize: params.pageSize,
-        filters: params.filters,
-        sorters: params.sorters
+        filters: params.filters
     }
 }
 
 // Return subset and sorted resultset
-function sortedAndFilteredResultset(params : RequestParams, games: RawPayload) : EnhancedGame[] {
+function sortedAndFilteredResultset(params : RequestParams, games: RawPayload) : CardGame[] {
 
     // Bound for result
     const [startOffset, endOffset] = (params.includePreviousPagesResult) 
@@ -146,54 +134,8 @@ function sortedAndFilteredResultset(params : RequestParams, games: RawPayload) :
         : [ (params.pageSize - 1) * params.page, params.pageSize * params.page];
 
     // No sort criteria, return the filtered list only
-    if (params.sorters.length === 0) {
-        return ((params.pageSize === -1) ? games : games.slice(startOffset, endOffset)).map(enhanceGameItem);
-    }
-
-    // At least one criteria for sort
-    const gamesData = games
-        .map(enhanceGameItem)
-        .sort(sortFunction(params));
-    
-    // filtered resultset ?
-    return (params.pageSize === -1) ? gamesData : gamesData.slice(startOffset, endOffset);
+    return ((params.pageSize === -1) ? games : games.slice(startOffset, endOffset)).map(enhanceGameItem);
 }
-
-function sortFunction(params : RequestParams) {
-    return (a : EnhancedGame, b : EnhancedGame) => {
-        for(let [field, order] of params.sorters) {
-                
-            let comparatorResult = 0;
-            
-            switch(field) {
-                case "releaseDate":
-                    comparatorResult = (order === "ASC")
-                        ? sortByReleaseDateASC(a.releaseDate, b.releaseDate)
-                        : -sortByReleaseDateASC(a.releaseDate, b.releaseDate)
-                    break;
-                case "duration":
-                    comparatorResult = (order === "ASC")
-                        ? sortByDurationASC(a.durationAsInt, b.durationAsInt)
-                        : -sortByDurationASC(a.durationAsInt, b.durationAsInt)
-                    break;
-                default:
-                    comparatorResult = (order === "ASC") 
-                        ? sortByNameASC(a.title, b.title)
-                        : -sortByNameASC(a.title, b.title)
-            }
-
-            if (comparatorResult !== 0) {
-                return comparatorResult;
-            }
-        }
-        return 0;
-    }
-}
-
-// Sort function
-const sortByNameASC = (a : string, b : string) => new Intl.Collator().compare(a, b);
-const sortByDurationASC = (a : number, b : number) => (a < b) ? -1 : (a > b ? 1 : 0);
-const sortByReleaseDateASC = (a : number, b : number) =>  (a < b) ? -1 : (a > b ? 1 : 0);
 
 // Convert input parameters to my structures
 function extractParameters(params: URLSearchParams): RequestParams {
@@ -216,34 +158,17 @@ function extractParameters(params: URLSearchParams): RequestParams {
         filters["genres"] = params.getAll("selected_genres") as Genre[]
     }
 
-    // sorters
-    let sortCriteria = params.getAll("sortCriteria");
-    let sortOrders = params.getAll("sortOrder");
-
-    let sorters : gamesSorters = sortCriteria
-        .filter(criteria => sortCriterias.includes(criteria as any))
-        .map( (criteria, index) => {
-
-            let order = (index < sortOrders.length) ? sortOrders[index] : undefined;
-
-            return [
-                criteria as sortCriteria,
-                (order === "ASC" || order === "DESC") ? order : "ASC"
-            ]
-        });
-
     return {
         page: parseInt(params.get("page") || "1"),
         pageSize: parseInt(params.get("pageSize") || "16"),
         dateAsInteger: parseInt(params.get("dateAsInteger") || "0"),
         filters: filters,
-        sorters: sorters,
         includePreviousPagesResult: (params.has("includePreviousPagesResult")) ? !!params.get("includePreviousPagesResult") : false
     }
 }
 
 // Return an enhanced payload for a single game
-function enhanceGameItem(game: rawEntry): EnhancedGame {
+function enhanceGameItem(game: rawEntry): CardGame {
 
     const id = (game as BasicPlaylist).playlistId ?? (game as BasicVideo).videoId;
     const base_url = (
@@ -256,13 +181,7 @@ function enhanceGameItem(game: rawEntry): EnhancedGame {
         id,
         imagePath: `/covers/${id}/${ game?.coverFile ?? "cover.webp" }`,
         sizes: SIZES.join(", "),
-        releaseDate: game.releaseDate
-            .split("/")
-            .reduce( (acc : number, curr : string, idx : number) => acc + (parseInt(curr) * Math.pow(100, idx)), 0),
         url: base_url,
-        url_type: ("playlistId" in game) ? "PLAYLIST" : "VIDEO" as YTUrlType,
-        durationAsInt: (game.duration)
-            ? Number(game.duration.replaceAll(":", ""))
-            : 0
+        url_type: ("playlistId" in game) ? "PLAYLIST" : "VIDEO" as YTUrlType
     });
 }

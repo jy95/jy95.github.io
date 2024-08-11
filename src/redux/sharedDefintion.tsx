@@ -73,13 +73,5 @@ interface CardEntry {
     url_type: YTUrlType;
 };
 
-// structured after parsing data/games.json
-export interface EnhancedGame extends Omit<BasicGame, "releaseDate">, CardEntry {
-    /** @description When the game was released (Date(2020, 02, 02).getTime()) */
-    releaseDate: number;
-    /** @description "duration" into something useful for sorting */
-    durationAsInt: number;
-};
-
 // structure used for GameEntry and thus GameDialog
 export interface CardGame extends Omit<BasicGame, "releaseDate" | "genres" | "platform">, CardEntry {};

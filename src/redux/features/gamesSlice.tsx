@@ -6,11 +6,6 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { Platform } from "@/redux/sharedDefintion";
 import type { Genre as GenreValue } from "@/redux/sharedDefintion";
 
-export type gamesSorters = [
-    "name" | "releaseDate" | "duration",
-    "ASC" | "DESC"
-][];
-
 // To compute new filtering function
 //type gamesFilterKeys = "selected_platform" | "selected_title" | "selected_genres";
 export type gamesFilters = ({
@@ -22,18 +17,11 @@ export type gamesFilters = ({
 })[];
 
 export interface GamesState {
-    /** @description  sorting */
-    sorters: gamesSorters,
     /** @description  current filters applied */
     activeFilters: gamesFilters
 }
 
 const initialState: GamesState = {
-    sorters: [
-        ["name", "ASC"],
-        ["releaseDate", "ASC"],
-        ["duration", "ASC"]
-    ],
     activeFilters: []
 };
 

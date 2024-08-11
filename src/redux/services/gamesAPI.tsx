@@ -20,7 +20,6 @@ type gamesFilters = ({
 // parameters for method
 type Parameters = {
     filters: gamesFilters,
-    sorters: gamesSorters,
     page: number,
     pageSize: number,
 }
@@ -30,8 +29,6 @@ type RequestParams = {
     selected_platform?: string,
     selected_title?: string,
     selected_genres?: string[],
-    sortCriteria?: string[],
-    sortOrder?: string[],
     page: number,
     pageSize: number,
     includePreviousPagesResult: boolean,
@@ -59,7 +56,7 @@ export const gamesAPI = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
     endpoints: (builder) => ({
         getGames: builder.query<GamesResponse, Parameters>({
-            query: ({ pageSize, page, filters, sorters }) => {
+            query: ({ pageSize, page, filters }) => {
 
                 const currentDate = new Date();
                 const integerDate = (currentDate.getFullYear() * 10000) + 
@@ -82,12 +79,6 @@ export const gamesAPI = createApi({
                     for(let filter of filters) {
                         parameters[filter.key] = filter.value as any;
                     }
-                }
-
-                // sorters parameter
-                if (sorters.length > 0) {
-                    parameters["sortCriteria"] = sorters.map(s => s[0]);
-                    parameters["sortOrder"] = sorters.map(s => s[1]);
                 }
 
                 return `/games?${stringifyObject(parameters)}`;
