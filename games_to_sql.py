@@ -92,3 +92,9 @@ with open(output_file_path, 'w') as file:
     file.write(final_sql_script)
 
 print(f"SQL script has been saved to {output_file_path}")
+
+#INSERT INTO series_games (serie, game, "order")
+#SELECT s.id, g.id, 5
+#FROM series s
+#JOIN games g ON g.playlistId = 'PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ'
+#WHERE s.name = 'Astérix & Obélix';
