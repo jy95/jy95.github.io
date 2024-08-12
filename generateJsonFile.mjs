@@ -18,7 +18,7 @@ const db = new Database(databasePath, {
     readonly: true
 });
 
-db.pragma('journal_mode = WAL');
+//db.pragma('journal_mode = WAL');
 
 // Helper Functions
 function stringifyJSON(payload) {
@@ -60,6 +60,7 @@ async function extractAndSavePlatforms(db) {
         stringifyJSON(platforms),
         "utf-8"
     );
+    console.log(`${FILES.PLATFORMS} successfully written`);
 }
 
 /**
@@ -74,6 +75,7 @@ async function extractAndSaveGenres(db) {
         stringifyJSON(genres),
         "utf-8"
     );
+    console.log(`${FILES.GENRES} successfully written`);
 }
 
 /**
@@ -88,6 +90,7 @@ async function extractAndSaveBacklog(db) {
         stringifyJSON(backlog),
         "utf-8"
     );
+    console.log(`${FILES.BACKLOG} successfully written`);
 }
 
 /**
@@ -102,6 +105,7 @@ async function extractAndSavePlanning(db) {
         stringifyJSON(planning),
         "utf-8"
     );
+    console.log(`${FILES.PLANNING} successfully written`);
 }
 
 /**
@@ -115,7 +119,8 @@ async function extractAndSaveGames(db) {
         FILES.GAMES,
         stringifyJSON(gamesList),
         "utf-8"
-    );    
+    );
+    console.log(`${FILES.GAMES} successfully written`);    
 }
 
 /**
@@ -130,6 +135,7 @@ async function extractAndSaveSeries(db) {
         stringifyJSON(series),
         "utf-8"
     );
+    console.log(`${FILES.SERIES} successfully written`);
 }
 
 /**
@@ -143,7 +149,8 @@ async function extractAndSaveTests(db) {
         FILES.TESTS,
         stringifyJSON(tests),
         "utf-8"
-    );    
+    );
+    console.log(`${FILES.TESTS} successfully written`);
 }
 
 /**
@@ -179,6 +186,7 @@ async function extractAndSaveStats(db) {
         stringifyJSON(result),
         "utf-8"
     ); 
+    console.log(`${FILES.STATS} successfully written`);
 }
 
 // Operations time

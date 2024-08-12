@@ -1,0 +1,692 @@
+[
+	{
+		"id": 1,
+		"title": "Beyond: Two Souls",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 2,
+		"title": "Super Meat Boy",
+		"platform": null,
+		"notes": null
+	},
+	{
+		"id": 3,
+		"title": "Manhunt",
+		"platform": null,
+		"notes": null
+	},
+	{
+		"id": 4,
+		"title": "Manhunt 2",
+		"platform": null,
+		"notes": null
+	},
+	{
+		"id": 5,
+		"title": "Dead Head Fred",
+		"platform": 3,
+		"notes": null
+	},
+	{
+		"id": 6,
+		"title": "Ty, le tigre de Tasmanie",
+		"platform": 5,
+		"notes": "Original (PS2) VS remake (PC) ?"
+	},
+	{
+		"id": 7,
+		"title": "Ty : Le Tigre de Tasmanie 2 : Opération Sauvetage",
+		"platform": 5,
+		"notes": "Original (PS2) VS remake (PC) ?"
+	},
+	{
+		"id": 8,
+		"title": "Ty, le tigre de Tasmanie 3 : Nuit du Quinkan",
+		"platform": 5,
+		"notes": "Original (PS2) VS remake (PC) ?"
+	},
+	{
+		"id": 9,
+		"title": "Ty, le tigre de Tasmanie 4 : Le retour de Opération Sauvetage",
+		"platform": 5,
+		"notes": "Original (PS2) VS remake (PC) ?"
+	},
+	{
+		"id": 10,
+		"title": "Musashi: Samurai Legend",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 11,
+		"title": "Shadow of the Colossus",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 12,
+		"title": "Okami HD",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 13,
+		"title": "Oni",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 14,
+		"title": "Heavy Rain",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 15,
+		"title": "Crash Twinsanity",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 16,
+		"title": "Crash of the Titans",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 17,
+		"title": "Viewtiful Joe",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 18,
+		"title": "Cold Fear",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 19,
+		"title": "The Suffering : Les Liens qui nous Unissent",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 20,
+		"title": "BloodRayne : Terminal Cut",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 21,
+		"title": "BloodRayne 2 : Terminal Cut",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 22,
+		"title": "Swords of Destiny",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 23,
+		"title": "Burnout Paradise Remastered",
+		"platform": null,
+		"notes": null
+	},
+	{
+		"id": 24,
+		"title": "Trine",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 25,
+		"title": "Trine 2",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 26,
+		"title": "Trine 3 : The Artifacts of Power",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 27,
+		"title": "Trine 4 : Melody of Mystery",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 28,
+		"title": "Trine 5",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 29,
+		"title": "Serious Sam HD: The First Encounter",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 30,
+		"title": "Serious Sam HD: The Second Encounter",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 31,
+		"title": "Serious Sam 3: BFE",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 32,
+		"title": "Serious Sam 4",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 33,
+		"title": "God Hand",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 34,
+		"title": "Dead Rising",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 35,
+		"title": "Dead Rising 2",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 36,
+		"title": "Dead Rising 3",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 37,
+		"title": "Dead Rising 4",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 38,
+		"title": "Psi-Ops : The Mindgate Conspiracy",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 39,
+		"title": "Black",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 40,
+		"title": "Disgaea : Afternoon of Darkness",
+		"platform": 3,
+		"notes": null
+	},
+	{
+		"id": 41,
+		"title": "Disgaea 2 : Dark Hero Days",
+		"platform": 3,
+		"notes": null
+	},
+	{
+		"id": 42,
+		"title": "TimeSplitters : Future Perfect",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 43,
+		"title": "Kane & Lynch : Dead Men",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 44,
+		"title": "Mark of the Ninja",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 45,
+		"title": "The Chronicles of Riddick : Assault on Dark Athena",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 46,
+		"title": "Shadow Complex Remastered",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 47,
+		"title": "Kung Fu Panda : Le jeu",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 48,
+		"title": "Shantae Advance : Risky Revolution",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 49,
+		"title": "Shantae and the Pirate's Curse",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 50,
+		"title": "Shantae and the Seven Sirens",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 51,
+		"title": "Shantae : Half-Genie Hero",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 52,
+		"title": "Shantae : Risky's Revenge",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 53,
+		"title": "Syndicate",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 54,
+		"title": "Wolfenstein",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 55,
+		"title": "Wolfenstein : The New Order",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 56,
+		"title": "Wolfenstein II : The New Colossus",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 57,
+		"title": "Rage",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 58,
+		"title": "Driver 76",
+		"platform": 3,
+		"notes": null
+	},
+	{
+		"id": 59,
+		"title": "Binary Domain",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 60,
+		"title": "The House of the Dead : Overkill - Extended Cut",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 61,
+		"title": "Dark Sector",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 62,
+		"title": "Scarface : The World is Yours",
+		"platform": 1,
+		"notes": "Scarface Remastered Project 1.1"
+	},
+	{
+		"id": 63,
+		"title": "Pizza Tower",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 64,
+		"title": "Stick It to The Man!",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 65,
+		"title": "Child of Eden",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 66,
+		"title": "Persona 5 Royal",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 67,
+		"title": "Yakuza 1 HD",
+		"platform": 6,
+		"notes": "Yakuza 1 & 2 HD Edition"
+	},
+	{
+		"id": 68,
+		"title": "Yakuza 2 HD",
+		"platform": 6,
+		"notes": "Yakuza 1 & 2 HD Edition"
+	},
+	{
+		"id": 69,
+		"title": "Yakuza 3",
+		"platform": 1,
+		"notes": "The Yakuza Remastered Collection"
+	},
+	{
+		"id": 70,
+		"title": "Yakuza 4",
+		"platform": 1,
+		"notes": "The Yakuza Remastered Collection"
+	},
+	{
+		"id": 71,
+		"title": "Yakuza 5",
+		"platform": 1,
+		"notes": "The Yakuza Remastered Collection"
+	},
+	{
+		"id": 72,
+		"title": "Yakuza 6 : The Song of Life",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 73,
+		"title": "Yakuza : Like a Dragon",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 74,
+		"title": "Yakuza Zero : The Place of Oath",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 75,
+		"title": "50 Cent - Bulletproof",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 76,
+		"title": "True Crime - New York City",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 77,
+		"title": "Batman Begins",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 78,
+		"title": "Dead to Rights II",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 79,
+		"title": "Shovel Knight",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 80,
+		"title": "Kingdoms of amalur : reckoning",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 81,
+		"title": "The sopranos road to respect",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 82,
+		"title": "Ratatouille",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 83,
+		"title": "State of Emergency",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 84,
+		"title": "Forbidden siren",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 85,
+		"title": "Enchanted Arms",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 86,
+		"title": "The 3rd Birthday",
+		"platform": 3,
+		"notes": null
+	},
+	{
+		"id": 87,
+		"title": "Vanquish",
+		"platform": null,
+		"notes": null
+	},
+	{
+		"id": 88,
+		"title": "Halo 2",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 89,
+		"title": "Halo 4",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 90,
+		"title": "Halo Reach",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 91,
+		"title": "Grand Theft Auto III",
+		"platform": null,
+		"notes": null
+	},
+	{
+		"id": 92,
+		"title": "Grand Theft Auto IV",
+		"platform": null,
+		"notes": null
+	},
+	{
+		"id": 93,
+		"title": "Grand Theft Auto V",
+		"platform": null,
+		"notes": null
+	},
+	{
+		"id": 94,
+		"title": "Grand Theft Auto : San Andreas",
+		"platform": null,
+		"notes": null
+	},
+	{
+		"id": 95,
+		"title": "Grand Theft Auto : Vice City",
+		"platform": null,
+		"notes": null
+	},
+	{
+		"id": 96,
+		"title": "Grand Theft Auto : Liberty City Stories",
+		"platform": null,
+		"notes": null
+	},
+	{
+		"id": 97,
+		"title": "BioShock",
+		"platform": 1,
+		"notes": "Bioshock : The Collection"
+	},
+	{
+		"id": 98,
+		"title": "BioShock 2",
+		"platform": 1,
+		"notes": "Bioshock : The Collection"
+	},
+	{
+		"id": 99,
+		"title": "BioShock Infinite",
+		"platform": 1,
+		"notes": "Bioshock : The Collection"
+	},
+	{
+		"id": 100,
+		"title": "Dead Space",
+		"platform": null,
+		"notes": "Dead Space (2023)"
+	},
+	{
+		"id": 101,
+		"title": "Dead Space 2",
+		"platform": null,
+		"notes": null
+	},
+	{
+		"id": 102,
+		"title": "Shadow Of The Tomb Raider",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 103,
+		"title": "Tomb Raider: Anniversary",
+		"platform": null,
+		"notes": null
+	},
+	{
+		"id": 104,
+		"title": "Tomb Raider",
+		"platform": 6,
+		"notes": "2013"
+	},
+	{
+		"id": 105,
+		"title": "Rise Of The Tomb Raider",
+		"platform": 1,
+		"notes": null
+	},
+	{
+		"id": 106,
+		"title": "Gangs of London",
+		"platform": 3,
+		"notes": null
+	},
+	{
+		"id": 107,
+		"title": "Spartan : Total Warrior",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 108,
+		"title": "Crisis Zone",
+		"platform": 5,
+		"notes": null
+	},
+	{
+		"id": 109,
+		"title": "Dead Island",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 110,
+		"title": "Blacksite",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 111,
+		"title": "The Club",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 112,
+		"title": "Bionic Commando",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 113,
+		"title": "Rogue Warrior",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 114,
+		"title": "The Darkness",
+		"platform": 6,
+		"notes": null
+	},
+	{
+		"id": 115,
+		"title": "Bionicle Heroes",
+		"platform": null,
+		"notes": "PC vs PS2 ?"
+	}
+]
