@@ -12,7 +12,8 @@
     "generate-json-schemas": "node generate-json-schema.cjs",
     "generate-playlist-data-report": "node generate-playlists-stats.mjs",
     "generate-playlist-csv": "node generate-playlist-csv.mjs",
-    "find-playlist-ids": "node findPlaylists.mjs"
+    "find-playlist-ids": "node findPlaylists.mjs",
+    "generate-api-json-files": "node generateJsonFile.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
