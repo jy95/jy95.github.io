@@ -20,7 +20,32 @@ const db = new Database(databasePath, {
 
 db.pragma('journal_mode = WAL');
 
-const stringifyJSON = (payload) => JSON.stringify(payload, null, "\t");
+// Helper Functions
+function stringifyJSON(payload) {
+    return JSON.stringify(payload, null, "\t")
+}
+function normaliazeDuration(duration) {
+
+    // Turn it into seconds
+    let totalInSeconds = [
+        duration.hours * 3600,
+        duration.minutes * 60,
+        duration.seconds
+    ].reduce( (acc, total) => acc + total, 0);
+
+    // Time to normalize the result
+    let new_hours = Math.floor(totalInSeconds / 3600);
+    totalInSeconds %= 3600;
+    let new_minutes = Math.floor(totalInSeconds / 60);
+    let new_seconds = totalInSeconds % 60;
+
+    return {
+        hours: new_hours,
+        minutes: new_minutes,
+        seconds : new_seconds
+    }
+
+}
 
 // Extract platforms
 const extractPlatformsStmt = db.prepare("SELECT id, name FROM platforms");
@@ -91,11 +116,20 @@ const platformStats = db.prepare("SELECT * FROM platforms_stats").all();
 const games_total_time = db.prepare("SELECT * FROM games_total_time").get();
 const games_total_time_available = db.prepare("SELECT * FROM games_available_time").get();
 const games_total_time_unavailable = db.prepare("SELECT * FROM games_unavailable_time").get();
+const total_games = db.prepare("SELECT COUNT(*) FROM games").get();
+const total_game_available = db.prepare("SELECT COUNT(*) FROM games_in_present").get();
+const total_game_unavailable = db.prepare("SELECT COUNT(*) FROM games_in_future").get();
 
 const result = {
     "platforms": platformStats,
-    "genres": genres,
+    "genres": genresStats,
     "general": {
+        "total": total_games,
+        "total_available": total_game_available,
+        "total_unavailable": total_game_unavailable,
         "channel_start_date": "2014-04-15T17:35:16+00:00",
+        "total_time": normaliazeDuration(games_total_time),
+        "total_time_available": normaliazeDuration(games_total_time_available),
+        "total_time_unavailable": normaliazeDuration(games_total_time_unavailable)
     }
 }
