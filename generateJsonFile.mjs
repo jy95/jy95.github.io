@@ -84,3 +84,18 @@ await writeFile(
     stringifyJSON(tests),
     "utf-8"
 );
+
+// Extract stats
+const genresStats = db.prepare("SELECT * FROM genres_stats").all();
+const platformStats = db.prepare("SELECT * FROM platforms_stats").all();
+const games_total_time = db.prepare("SELECT * FROM games_total_time").get();
+const games_total_time_available = db.prepare("SELECT * FROM games_available_time").get();
+const games_total_time_unavailable = db.prepare("SELECT * FROM games_unavailable_time").get();
+
+const result = {
+    "platforms": platformStats,
+    "genres": genres,
+    "general": {
+        "channel_start_date": "2014-04-15T17:35:16+00:00",
+    }
+}
