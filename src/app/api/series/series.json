@@ -1,114 +1,338 @@
 [
 	{
 		"name": "Astérix & Obélix",
-		"items": "[{\"id\":17,\"title\":\"Astérix & Obélix XXL\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG\",\"duration\":\"06:21:55\"}]"
+		"items": [
+			{
+				"id": 17,
+				"title": "Astérix & Obélix XXL",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
+				"duration": "06:21:55"
+			}
+		]
 	},
 	{
 		"name": "Batman",
-		"items": "[{\"id\":4,\"title\":\"Batman: Arkham Origins\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz\",\"duration\":\"06:48:06\"}]"
+		"items": [
+			{
+				"id": 4,
+				"title": "Batman: Arkham Origins",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz",
+				"duration": "06:48:06"
+			}
+		]
 	},
 	{
 		"name": "Crash Bandicoot",
-		"items": "[{\"id\":79,\"title\":\"Crash Bandicoot 3 : Warped\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE\",\"duration\":\"01:57:55\"}]"
+		"items": [
+			{
+				"id": 79,
+				"title": "Crash Bandicoot 3 : Warped",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
+				"duration": "01:57:55"
+			}
+		]
 	},
 	{
 		"name": "Darksiders",
-		"items": "[{\"id\":42,\"title\":\"Darksiders II\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X\",\"duration\":\"14:35:48\"}]"
+		"items": [
+			{
+				"id": 42,
+				"title": "Darksiders II",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X",
+				"duration": "14:35:48"
+			}
+		]
 	},
 	{
 		"name": "Dead to Rights",
-		"items": "[{\"id\":122,\"title\":\"Dead to Rights\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14\",\"duration\":\"06:19:09\"}]"
+		"items": [
+			{
+				"id": 122,
+				"title": "Dead to Rights",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
+				"duration": "06:19:09"
+			}
+		]
 	},
 	{
 		"name": "Destroy All Humans!",
-		"items": "[{\"id\":3,\"title\":\"Destroy All Humans! - Remake\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr\",\"duration\":\"04:25:44\"}]"
+		"items": [
+			{
+				"id": 3,
+				"title": "Destroy All Humans! - Remake",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr",
+				"duration": "04:25:44"
+			}
+		]
 	},
 	{
 		"name": "Dragon Ball",
-		"items": "[{\"id\":86,\"title\":\"Dragon Ball : Advanced Adventure\",\"videoId\":\"5ZHExfdq9F8\",\"playlistId\":null,\"duration\":\"01:50:53\"}]"
+		"items": [
+			{
+				"id": 86,
+				"title": "Dragon Ball : Advanced Adventure",
+				"videoId": "5ZHExfdq9F8",
+				"playlistId": null,
+				"duration": "01:50:53"
+			}
+		]
 	},
 	{
 		"name": "God of War",
-		"items": "[{\"id\":12,\"title\":\"God Of War II HD\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ6zui2RaBzaZ5zjm768Jzum\",\"duration\":\"06:20:04\"}]"
+		"items": [
+			{
+				"id": 12,
+				"title": "God Of War II HD",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ6zui2RaBzaZ5zjm768Jzum",
+				"duration": "06:20:04"
+			}
+		]
 	},
 	{
 		"name": "Guns Gore & Cannoli",
-		"items": "[{\"id\":5,\"title\":\"Guns Gore & Cannoli\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I\",\"duration\":\"02:10:05\"}]"
+		"items": [
+			{
+				"id": 5,
+				"title": "Guns Gore & Cannoli",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
+				"duration": "02:10:05"
+			}
+		]
 	},
 	{
 		"name": "Harry Potter",
-		"items": "[{\"id\":95,\"title\":\"Harry Potter et la Coupe de Feu\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF\",\"duration\":\"02:17:52\"}]"
+		"items": [
+			{
+				"id": 95,
+				"title": "Harry Potter et la Coupe de Feu",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
+				"duration": "02:17:52"
+			}
+		]
 	},
 	{
 		"name": "Jak and Daxter",
-		"items": "[{\"id\":101,\"title\":\"Jak and Daxter: The Precursor Legacy\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv\",\"duration\":\"05:07:21\"}]"
+		"items": [
+			{
+				"id": 101,
+				"title": "Jak and Daxter: The Precursor Legacy",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
+				"duration": "05:07:21"
+			}
+		]
 	},
 	{
 		"name": "Le Parrain",
-		"items": "[{\"id\":26,\"title\":\"Le Parrain : Edition du Don\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO\",\"duration\":\"15:05:17\"}]"
+		"items": [
+			{
+				"id": 26,
+				"title": "Le Parrain : Edition du Don",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
+				"duration": "15:05:17"
+			}
+		]
 	},
 	{
 		"name": "Les indestructibles",
-		"items": "[{\"id\":30,\"title\":\"Les indestructibles Le Jeu\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi\",\"duration\":\"03:42:26\"}]"
+		"items": [
+			{
+				"id": 30,
+				"title": "Les indestructibles Le Jeu",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
+				"duration": "03:42:26"
+			}
+		]
 	},
 	{
 		"name": "Les Simpson",
-		"items": "[{\"id\":113,\"title\":\"The Simpsons Hit & Run\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV\",\"duration\":\"04:04:20\"}]"
+		"items": [
+			{
+				"id": 113,
+				"title": "The Simpsons Hit & Run",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
+				"duration": "04:04:20"
+			}
+		]
 	},
 	{
 		"name": "Mafia",
-		"items": "[{\"id\":1,\"title\":\"Mafia: Definitive Edition\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv\",\"duration\":\"06:59:14\"}]"
+		"items": [
+			{
+				"id": 1,
+				"title": "Mafia: Definitive Edition",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
+				"duration": "06:59:14"
+			}
+		]
 	},
 	{
 		"name": "Max Payne",
-		"items": "[{\"id\":45,\"title\":\"Max Payne 2 - The Fall of Max Payne\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf\",\"duration\":\"03:35:54\"}]"
+		"items": [
+			{
+				"id": 45,
+				"title": "Max Payne 2 - The Fall of Max Payne",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf",
+				"duration": "03:35:54"
+			}
+		]
 	},
 	{
 		"name": "Prince of Persia",
-		"items": "[{\"id\":10,\"title\":\"Prince of Persia : Les Sables du temps\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO\",\"duration\":\"05:01:34\"}]"
+		"items": [
+			{
+				"id": 10,
+				"title": "Prince of Persia : Les Sables du temps",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO",
+				"duration": "05:01:34"
+			}
+		]
 	},
 	{
 		"name": "Psychonauts",
-		"items": "[{\"id\":63,\"title\":\"Psychonauts\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl\",\"duration\":\"13:35:45\"}]"
+		"items": [
+			{
+				"id": 63,
+				"title": "Psychonauts",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
+				"duration": "13:35:45"
+			}
+		]
 	},
 	{
 		"name": "Pursuit Force",
-		"items": "[{\"id\":140,\"title\":\"Pursuit Force\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB\",\"duration\":\"03:06:59\"}]"
+		"items": [
+			{
+				"id": 140,
+				"title": "Pursuit Force",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB",
+				"duration": "03:06:59"
+			}
+		]
 	},
 	{
 		"name": "Pyjama Sam",
-		"items": "[{\"id\":20,\"title\":\"Sam Pyjam : Héros de la Nuit\",\"videoId\":\"qaIADIQyr0A\",\"playlistId\":null,\"duration\":\"00:44:11\"}]"
+		"items": [
+			{
+				"id": 20,
+				"title": "Sam Pyjam : Héros de la Nuit",
+				"videoId": "qaIADIQyr0A",
+				"playlistId": null,
+				"duration": "00:44:11"
+			}
+		]
 	},
 	{
 		"name": "Ratchet & Clank",
-		"items": "[{\"id\":32,\"title\":\"Secret Agent Clank\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY\",\"duration\":\"06:22:48\"}]"
+		"items": [
+			{
+				"id": 32,
+				"title": "Secret Agent Clank",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY",
+				"duration": "06:22:48"
+			}
+		]
 	},
 	{
 		"name": "Rayman",
-		"items": "[{\"id\":60,\"title\":\"Rayman 2: The Great Escape\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm\",\"duration\":\"04:18:06\"}]"
+		"items": [
+			{
+				"id": 60,
+				"title": "Rayman 2: The Great Escape",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
+				"duration": "04:18:06"
+			}
+		]
 	},
 	{
 		"name": "Saints Row",
-		"items": "[{\"id\":62,\"title\":\"Saints Row IV\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB\",\"duration\":\"20:55:30\"}]"
+		"items": [
+			{
+				"id": 62,
+				"title": "Saints Row IV",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
+				"duration": "20:55:30"
+			}
+		]
 	},
 	{
 		"name": "Shrek",
-		"items": "[{\"id\":19,\"title\":\"Shrek 2 Le Jeu\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j\",\"duration\":\"02:24:35\"}]"
+		"items": [
+			{
+				"id": 19,
+				"title": "Shrek 2 Le Jeu",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
+				"duration": "02:24:35"
+			}
+		]
 	},
 	{
 		"name": "Sonic",
-		"items": "[{\"id\":34,\"title\":\"Sonic Heroes\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx\",\"duration\":\"02:55:04\"}]"
+		"items": [
+			{
+				"id": 34,
+				"title": "Sonic Heroes",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx",
+				"duration": "02:55:04"
+			}
+		]
 	},
 	{
 		"name": "South Park",
-		"items": "[{\"id\":67,\"title\":\"South Park - Le baton de la vérité\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT\",\"duration\":\"09:16:21\"}]"
+		"items": [
+			{
+				"id": 67,
+				"title": "South Park - Le baton de la vérité",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
+				"duration": "09:16:21"
+			}
+		]
 	},
 	{
 		"name": "Splinter Cell",
-		"items": "[{\"id\":9,\"title\":\"Splinter Cell Blacklist\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV\",\"duration\":\"06:34:25\"}]"
+		"items": [
+			{
+				"id": 9,
+				"title": "Splinter Cell Blacklist",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
+				"duration": "06:34:25"
+			}
+		]
 	},
 	{
 		"name": "Spy Fox",
-		"items": "[{\"id\":57,\"title\":\"Spy Fox : Operation Ozone\",\"videoId\":null,\"playlistId\":\"PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A\",\"duration\":\"01:09:17\"}]"
+		"items": [
+			{
+				"id": 57,
+				"title": "Spy Fox : Operation Ozone",
+				"videoId": null,
+				"playlistId": "PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A",
+				"duration": "01:09:17"
+			}
+		]
 	}
 ]

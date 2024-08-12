@@ -22,7 +22,24 @@ const db = new Database(databasePath, {
 
 // Helper Functions
 function stringifyJSON(payload) {
-    return JSON.stringify(payload, null, "\t")
+
+    function parseIfJsonString(value) {
+        if (typeof value === 'string' && (value.startsWith('{') || value.startsWith('['))) {
+            try {
+                return JSON.parse(value);
+            } catch (e) {
+                return value;
+            }
+        }
+        return value;
+    }
+
+    return JSON.stringify(payload, function(key, value) {
+        if (typeof value === 'string') {
+            value = parseIfJsonString(value);
+        }
+        return value;
+    }, "\t");
 }
 function normaliazeDuration(duration) {
 
