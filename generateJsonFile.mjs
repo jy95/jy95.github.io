@@ -20,12 +20,14 @@ const db = new Database(databasePath, {
 
 db.pragma('journal_mode = WAL');
 
+const stringifyJSON = (payload) => JSON.stringify(payload, null, "\t");
+
 // Extract platforms
 const extractPlatformsStmt = db.prepare("SELECT id, name FROM platforms");
 const platforms = extractPlatformsStmt.all();
 await writeFile(
     FILES.PLATFORMS,
-    JSON.stringify(platforms),
+    stringifyJSON(platforms),
     "utf-8"
 );
 
@@ -34,7 +36,7 @@ const extractGenresStmt = db.prepare("SELECT id, name FROM genres");
 const genres = extractGenresStmt.all();
 await writeFile(
     FILES.GENRES,
-    JSON.stringify(genres),
+    stringifyJSON(genres),
     "utf-8"
 );
 
@@ -43,7 +45,7 @@ const extractBacklogStmt = db.prepare("SELECT id, title, platform, notes FROM ba
 const backlog = extractBacklogStmt.all();
 await writeFile(
     FILES.BACKLOG,
-    JSON.stringify(backlog),
+    stringifyJSON(backlog),
     "utf-8"
 );
 
@@ -52,7 +54,7 @@ const extractPlanningStmt = db.prepare("SELECT * FROM games_in_future gif INNER 
 const planning = extractPlanningStmt.all();
 await writeFile(
     FILES.PLANNING,
-    JSON.stringify(planning),
+    stringifyJSON(planning),
     "utf-8"
 );
 
@@ -61,8 +63,24 @@ const extractGamesList = db.prepare("SELECT * FROM games_in_present");
 const gamesList = extractGamesList.all();
 await writeFile(
     FILES.GAMES,
-    JSON.stringify(gamesList),
+    stringifyJSON(gamesList),
     "utf-8"
 );
 
 // Extract series
+const extractSeriesStmt = db.prepare("SELECT * FROM series_as_json");
+const series = extractSeriesStmt.all();
+await writeFile(
+    FILES.SERIES,
+    stringifyJSON(series),
+    "utf-8"
+);
+
+// Extract tests
+const extractTestsStmt = db.prepare("SELECT title, videoId, playlistId FROM tests");
+const tests = extractTestsStmt.all();
+await writeFile(
+    FILES.TESTS,
+    stringifyJSON(tests),
+    "utf-8"
+);

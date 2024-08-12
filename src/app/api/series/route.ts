@@ -1,56 +1,29 @@
 import { NextResponse } from "next/server";
-import type { BasicGame, BasicPlaylist, BasicVideo, EnhancedGame, YTUrlType } from "@/redux/sharedDefintion";
+import type { BasicGame, BasicPlaylist, BasicVideo, CardGame, YTUrlType } from "@/redux/sharedDefintion";
 
 export type serieType = {
     name: string,
-    items: EnhancedGame[]
+    items: CardGame[]
 };
 
 type rawEntry = {
     /** @description Name of the series */
     name: string;
     /** @description List of videoId or playlistId for this series */
-    games: string[]
+    games: BasicVideo[]
 }
 export type RawPayload = rawEntry[];
 
-export async function GET(request: Request) {
-
-    // Get query parameters
-    const { searchParams } = new URL(request.url);
-
-    // Get wanted date
-    const dateAsInteger = parseInt( searchParams.get("dateAsInteger") || "0");
-
-    // Fetch games data
-    const gamesData = (await import("@/app/api/games/games.json")).default;
-    const games = generateGamesResponse(gamesData as BasicGame[], dateAsInteger)
+export async function GET() {
 
     // Fetch series data
-    const seriesData = (await import("./series.json")).default;
+    const seriesData = (await import("./series.json")).default as RawPayload;
 
-    // Convert array to { "id": Game }
-    let games_dictionary = games
-        .reduce( (acc : {[id: string]: EnhancedGame}, game : EnhancedGame) => {
-            acc[game.id] = game;
-            return acc;
-        }, {})
+    const series : serieType[] = seriesData.map(serie => ({
+        name: serie.name,
+        items: fromRawGamesToCardGames(serie.games)
+    }) )
     
-    const sortByNameASC = (a : serieType, b : serieType) => new Intl.Collator().compare(a.name, b.name);
-
-    let series = seriesData
-        .map(serie => {
-            return {
-                "name": serie.name,
-                "items": serie
-                    .games
-                    .map( (gameId) => games_dictionary[gameId])
-                    .filter(game => game !== undefined)
-            }
-        })
-        .filter(serie => serie.items.length > 1)
-        .sort(sortByNameASC);
-
     return NextResponse.json(series, {
         headers: {
             "Cache-Control": "public, max-age=86400, must-revalidate"
@@ -58,19 +31,9 @@ export async function GET(request: Request) {
     });
 }
 
-function generateGamesResponse(gamesData : BasicGame[], integerDate : number) : EnhancedGame[]{
+function fromRawGamesToCardGames(gamesData : BasicGame[]) : CardGame[]{
 
     return gamesData
-        .filter(game => {
-
-            // hide not yet public games on channel
-            if (game?.availableAt !== undefined && game?.availableAt > integerDate) {
-                return false;
-            }
-
-            // Either it is a valid game
-            return true;
-        })
         .map(game => {
 
             const id = (game as BasicPlaylist).playlistId ?? (game as BasicVideo).videoId;
