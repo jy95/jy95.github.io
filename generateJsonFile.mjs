@@ -163,9 +163,9 @@ async function extractAndSaveStats(db) {
     const games_total_time = db.prepare("SELECT * FROM games_total_time").get();
     const games_total_time_available = db.prepare("SELECT * FROM games_available_time").get();
     const games_total_time_unavailable = db.prepare("SELECT * FROM games_unavailable_time").get();
-    const total_games = db.prepare("SELECT COUNT(*) FROM games").get();
-    const total_game_available = db.prepare("SELECT COUNT(*) FROM games_in_present").get();
-    const total_game_unavailable = db.prepare("SELECT COUNT(*) FROM games_in_future").get();
+    const total_games = db.prepare("SELECT COUNT(*) FROM games").pluck().get();
+    const total_game_available = db.prepare("SELECT COUNT(*) FROM games_in_present").pluck().get();
+    const total_game_unavailable = db.prepare("SELECT COUNT(*) FROM games_in_future").pluck().get();
     
     const result = {
         "platforms": platformStats,

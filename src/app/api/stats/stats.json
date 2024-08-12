@@ -186,15 +186,9 @@
 		}
 	],
 	"general": {
-		"total": {
-			"COUNT(*)": 182
-		},
-		"total_available": {
-			"COUNT(*)": 160
-		},
-		"total_unavailable": {
-			"COUNT(*)": 23
-		},
+		"total": 182,
+		"total_available": 160,
+		"total_unavailable": 23,
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"total_time": {
 			"hours": 967,
