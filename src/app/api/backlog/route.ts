@@ -1,9 +1,5 @@
 import { NextResponse } from "next/server";
 
-import type { 
-    Platform
-} from "@/redux/sharedDefintion";
-
 // An entry of backlog
 export type BacklogEntry = {
     /**@description Id */
