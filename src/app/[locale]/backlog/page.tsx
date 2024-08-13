@@ -12,24 +12,10 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import type { GridRenderCellParams, GridColDef } from '@mui/x-data-grid';
 
 // Platform icons
-import iconsSVG from "@/components/GamesView/PlatformIcons";
-
-// Icons
-import SvgIcon from '@mui/material/SvgIcon';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import RenderPlatformIcon from "@/components/GamesView/PlatformIcons";
 
 // Others
 import Tooltip from '@mui/material/Tooltip';
-
-type NumericRange<
-    START extends number,
-    END extends number,
-    ARR extends unknown[] = [],
-    ACC extends number = never
-> = ARR['length'] extends END
-    ? ACC | START | END
-    : NumericRange<START, END, [...ARR, 1], ARR[START] extends undefined ? ACC : ACC | ARR['length']>
-type Platform = NumericRange<1, 6>
 
 export default function BacklogViewer() {
 
@@ -60,15 +46,7 @@ export default function BacklogViewer() {
             field: "platform",
             headerName: t("columns.platform"),
             renderCell: (params: GridRenderCellParams) => {
-                if (params.value !== undefined) {
-                    return (
-                        <SvgIcon titleAccess={params.value}>
-                            {iconsSVG[params.value as Platform]}
-                        </SvgIcon>
-                    );
-                } else {
-                    return <HelpOutlineIcon />;
-                }
+                return (<RenderPlatformIcon identifier={params.value} />)
             },
             width: 160
         },

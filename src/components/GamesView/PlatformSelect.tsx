@@ -9,22 +9,11 @@ import { useGetPlatformsQuery } from "@/redux/services/platformsAPI";
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
-import SvgIcon from '@mui/material/SvgIcon';
 
 // icons
-import iconsSVG from "@/components/GamesView/PlatformIcons";
+import RenderPlatformIcon from "@/components/GamesView/PlatformIcons";
 
 import type { Platform_Entry } from "@/app/api/platforms/route";
-
-type NumericRange<
-    START extends number,
-    END extends number,
-    ARR extends unknown[] = [],
-    ACC extends number = never
-> = ARR['length'] extends END
-    ? ACC | START | END
-    : NumericRange<START, END, [...ARR, 1], ARR[START] extends undefined ? ACC : ACC | ARR['length']>
-type Platform = NumericRange<1, 6>
 
 function PlatformSelect() {
 
@@ -46,9 +35,7 @@ function PlatformSelect() {
             renderInput={(params) => <TextField {...params} label={t("platform") as string} />}
             renderOption={(props, option) => (
                 <li {...props} key={option.id}>
-                    <SvgIcon titleAccess={option.name}>
-                        {iconsSVG[option.id as Platform]}
-                    </SvgIcon>
+                    <RenderPlatformIcon identifier={option.id} label={option.name} />
                     {option.name}
                 </li>
             )}
@@ -58,7 +45,7 @@ function PlatformSelect() {
             }}
             value={
                 selectedPlatform ? {
-                    id: selectedPlatform as Platform,
+                    id: selectedPlatform,
                     name: (data || [] ).find(p => p.id === selectedPlatform)?.name || ""
                 } : null
             }
