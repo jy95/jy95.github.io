@@ -35,10 +35,11 @@ function stringifyJSON(payload) {
     }
 
     return JSON.stringify(payload, function(key, value) {
-        if (typeof value === 'string') {
-            value = parseIfJsonString(value);
+        if (value === null) {
+            // Exclude null values
+            return undefined;
         }
-        return value;
+        return parseIfJsonString(value);
     }, "\t");
 }
 function normaliazeDuration(duration) {
