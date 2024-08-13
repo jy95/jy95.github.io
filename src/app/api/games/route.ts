@@ -7,8 +7,6 @@ import type {
     BasicVideo, 
     BasicPlaylist, 
     YTUrlType,
-    Platform,
-    Genre
 } from "@/redux/sharedDefintion";
 
 // Extract criteria from request into something useful for me
@@ -24,9 +22,9 @@ const SIZES = [
 
 // Types
 type gamesFilters = {
-    platform?: Platform,
+    platform?: number,
     title?: string,
-    genres?: Genre[]
+    genres?: number[]
 }
 
 // Request parameters
@@ -40,9 +38,6 @@ type RequestParams = {
     page: number
     // include previous page result ?
     includePreviousPagesResult: boolean
-    // From which date produces the resultset ? 
-    // Format : "YYYYMMDD" , example "20240520"
-    dateAsInteger?: number
 }
 
 export type ResponseBody = {
@@ -92,11 +87,6 @@ function generateResponse(params : RequestParams, gamesData: RawPayload): Respon
     const filtered_games = gamesData
         .filter(game => {
             
-            // hide not yet public games on channel
-            if (game?.availableAt !== undefined && params.dateAsInteger !== undefined && game?.availableAt > params?.dateAsInteger) {
-                return false;
-            }
-
             // hide not matching platforms
             if (params.filters.platform !== undefined && game.platform !== params.filters.platform) {
                 return false;
@@ -145,23 +135,22 @@ function extractParameters(params: URLSearchParams): RequestParams {
 
     // 1. platform
     if (params.has("selected_platform")) {
-        filters["platform"] = params.get("selected_platform")! as any
+        filters["platform"] = parseInt(params.get("selected_platform") as string);
     }
 
     // 2. title
     if (params.has("selected_title")) {
-        filters["title"] = params.get("selected_title")!
+        filters["title"] = params.get("selected_title") as string;
     }
 
     // 3. genres
     if (params.has("selected_genres")) {
-        filters["genres"] = params.getAll("selected_genres") as Genre[]
+        filters["genres"] = params.getAll("selected_genres").map(parseInt);
     }
 
     return {
         page: parseInt(params.get("page") || "1"),
         pageSize: parseInt(params.get("pageSize") || "16"),
-        dateAsInteger: parseInt(params.get("dateAsInteger") || "0"),
         filters: filters,
         includePreviousPagesResult: (params.has("includePreviousPagesResult")) ? !!params.get("includePreviousPagesResult") : false
     }

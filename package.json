@@ -44,7 +44,6 @@
   "devDependencies": {
     "@inquirer/input": "^2.2.8",
     "better-sqlite3": "^11.1.2",
-    "googleapis": "^140.0.1",
-    "ts-json-schema-generator": "^2.3.0"
+    "googleapis": "^140.0.1"
   }
 }

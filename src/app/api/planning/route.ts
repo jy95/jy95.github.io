@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type { BasicGame, BasicPlaylist, BasicVideo } from "@/redux/sharedDefintion";
 
+type rawEntry = Omit<BasicGame, "genres" | "releaseDate" | "id" >;
 export type planningEntry = Omit<BasicGame, "genres" | "videoId" | "playlistId" | "releaseDate"> & {
     /** @description Still in progress or finished ? */
     status: "RECORDED" | "PENDING";
@@ -15,7 +16,7 @@ export async function GET() {
     // Game data
     const games = (await import("./planning.json")).default;
     
-    return NextResponse.json(games.map(game => enhanceGameItem(game as BasicGame)), {
+    return NextResponse.json(games.map(game => enhanceGameItem(game)), {
         headers: {
             "Cache-Control": "public, max-age=86400, must-revalidate"
         }
@@ -23,18 +24,17 @@ export async function GET() {
 }
 
 // Turn "YYYY...MMDD" to int
-function turnDateToInt(value: number | string | undefined) {
+function turnDateToInt(value: string | undefined) {
     if (value) {
-        const { year, month, day } = (/(?<year>\d{4,})(?<month>\d{2})(?<day>\d{2})/.exec(value.toString()) as any).groups;
         // TODO one day, remove that & let PlanningColumn do the job
-        return new Date(+year, Number(month) - 1, +day).getTime();
+        return new Date(value).getTime();
     } else {
         return undefined;
     }
 }
 
 // Return an enhanced payload for a single game
-function enhanceGameItem(game: BasicGame): planningEntry {
+function enhanceGameItem(game: rawEntry): planningEntry {
     return {
         id: (game as BasicPlaylist).playlistId ?? (game as BasicVideo).videoId,
         title: game.title,

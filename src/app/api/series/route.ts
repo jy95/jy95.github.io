@@ -10,18 +10,18 @@ type rawEntry = {
     /** @description Name of the series */
     name: string;
     /** @description List of videoId or playlistId for this series */
-    games: BasicVideo[]
+    items: BasicVideo[]
 }
 export type RawPayload = rawEntry[];
 
 export async function GET() {
 
     // Fetch series data
-    const seriesData = (await import("./series.json")).default as RawPayload;
+    const seriesData = (await import("./series.json")).default;
 
     const series : serieType[] = seriesData.map(serie => ({
         name: serie.name,
-        items: fromRawGamesToCardGames(serie.games)
+        items: fromRawGamesToCardGames(serie.items)
     }) )
     
     return NextResponse.json(series, {
@@ -49,9 +49,6 @@ function fromRawGamesToCardGames(gamesData : BasicGame[]) : CardGame[]{
                 imagePath: `/covers/${id}/${ game?.coverFile ?? "cover.webp" }`,
                 url: base_url,
                 url_type: ("playlistId" in game) ? "PLAYLIST" : "VIDEO" as YTUrlType,
-                releaseDate: game.releaseDate
-                    .split("/")
-                    .reduce( (acc : number, curr : string, idx : number) => acc + (parseInt(curr) * Math.pow(100, idx)), 0),
                 durationAsInt: (game.duration)
                     ? Number(game.duration.replaceAll(":", ""))
                     : 0
