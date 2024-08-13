@@ -1,50 +1,62 @@
 [
 	{
 		"title": "Nova Drift",
-		"videoId": "RMgDUMubFsM"
+		"videoId": "RMgDUMubFsM",
+		"platform": 1
 	},
 	{
 		"title": "Metal Commando",
-		"videoId": "ip-PjOmBOb4"
+		"videoId": "ip-PjOmBOb4",
+		"platform": 1
 	},
 	{
 		"title": "Foregone",
-		"videoId": "RGsuBcF3W4s"
+		"videoId": "RGsuBcF3W4s",
+		"platform": 1
 	},
 	{
 		"title": "Damsel",
-		"videoId": "ghUYugzShf8"
+		"videoId": "ghUYugzShf8",
+		"platform": 1
 	},
 	{
 		"title": "FURY UNLEASHED",
-		"videoId": "VI5irWqgEZY"
+		"videoId": "VI5irWqgEZY",
+		"platform": 1
 	},
 	{
 		"title": "Libtard: The Satire Game",
-		"videoId": "zR4m0LyTDAY"
+		"videoId": "zR4m0LyTDAY",
+		"platform": 1
 	},
 	{
 		"title": "The Hero Slayer",
-		"videoId": "eY5Ll-E8izg"
+		"videoId": "eY5Ll-E8izg",
+		"platform": 1
 	},
 	{
 		"title": "Spirit Roots",
-		"videoId": "92xWnlnXX7A"
+		"videoId": "92xWnlnXX7A",
+		"platform": 1
 	},
 	{
 		"title": "Demon Pit",
-		"videoId": "2aPqECXPA_E"
+		"videoId": "2aPqECXPA_E",
+		"platform": 1
 	},
 	{
 		"title": "ULTRAGOODNESS 2",
-		"videoId": "D4yPcvrfV2o"
+		"videoId": "D4yPcvrfV2o",
+		"platform": 1
 	},
 	{
 		"title": "GOD’S TRIGGER",
-		"videoId": "cS4AuUMOuiE"
+		"videoId": "cS4AuUMOuiE",
+		"platform": 1
 	},
 	{
 		"title": "Creepy Road",
-		"playlistId": "PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M"
+		"playlistId": "PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M",
+		"platform": 1
 	}
 ]

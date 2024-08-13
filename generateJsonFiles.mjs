@@ -161,7 +161,7 @@ async function extractAndSaveSeries(db) {
  * @param {import('better-sqlite3').Database} db - The database instance
  */
 async function extractAndSaveTests(db) {
-    const extractTestsStmt = db.prepare("SELECT title, videoId, playlistId FROM tests");
+    const extractTestsStmt = db.prepare("SELECT title, videoId, playlistId, platform FROM tests");
     const tests = extractTestsStmt.all();
     await writeFile(
         FILES.TESTS,

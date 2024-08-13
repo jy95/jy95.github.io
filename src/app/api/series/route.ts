@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import type { BasicGame, BasicPlaylist, BasicVideo, CardGame, YTUrlType } from "@/redux/sharedDefintion";
+import type { BasicVideo, CardGame, YTUrlType } from "@/redux/sharedDefintion";
 
-type rawGame = Omit<BasicVideo, "genres">;
+type rawGame = Omit<BasicVideo, "genres" | "id">;
 type rawEntry = {
     /** @description Name of the series */
     name: string;
@@ -22,7 +22,7 @@ export async function GET() {
 
     const series : serieType[] = seriesData.map(serie => ({
         name: serie.name,
-        items: fromRawGamesToCardGames(serie.items)
+        items: fromRawGamesToCardGames(serie.items as rawGame[])
     }) )
     
     return NextResponse.json(series, {
