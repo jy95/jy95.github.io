@@ -24,6 +24,8 @@ body:
       description: What is the game playlist ID or video ID on Youtube ?
       placeholder: >-
         ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY
+    validations:
+      required: true
   - type: input
     id: title
     attributes:

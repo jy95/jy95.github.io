@@ -1,0 +1,28 @@
+name: 🗑️ Delete game
+description: Delete a game from the database
+title: '[DELETE_GAME]'
+labels: 
+  - database
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill in the following fields to delete this game out of database !
+  - type: dropdown
+    id: identifierKind
+    attributes:
+      label: Kind of content
+      description: Is it a playlist or a video ?
+      options:
+        - Playlist (Default)
+        - Video
+      default: 0
+  - type: input
+    id: identifierValue
+    attributes:
+      label: Identifier
+      description: What is the game playlist ID or video ID on Youtube ?
+      placeholder: >-
+        ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY
+    validations:
+      required: true
