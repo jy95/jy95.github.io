@@ -1,10 +1,111 @@
----
 name: Add game
 about: Add a new game into the database
-title: "[ADD_GAME]"
+title: '[ADD_GAME]'
 labels: database
-assignees: ''
-
----
-
-
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill in the following fields to add this game into database !
+  - type: input
+    id: title
+    attributes:
+      label: Name of the game
+      description: What is the game name in the language it was played ?
+      placeholder: ex. Splinter Cell HD
+    validations:
+      required: true
+  - type: input
+    id: releaseDate
+    attributes:
+      label: Release Date
+      description: When was this game published ?
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+  - type: dropdown
+    id: identifierKind
+    attributes:
+      label: Kind of content
+      description: Is it a playlist or a video ?
+      options:
+        - Playlist (Default)
+        - Video
+      default: 0
+    validations:
+      required: true
+  - type: input
+    id: identifierValue
+    attributes:
+      label: Identifier
+      description: What is the game playlist ID or video ID on Youtube ?
+      placeholder: >-
+        ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR (Playlist ID) or dn6QTMujBiY
+        (Video ID)
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: On which platform was the content on ?
+      options:
+        - PC (Default)
+        - GBA
+        - PSP
+        - PS1
+        - PS2
+        - PS3
+      default: 0
+    validations:
+      required: true
+  - type: dropdown
+    id: genres
+    attributes:
+      label: Categories
+      description: 'What are the game genres (Action, Adventure, ...) ?'
+      multiple: true
+      options:
+        - Action
+        - Adventure
+        - Arcade
+        - Board Games
+        - Card
+        - Casual
+        - Educational
+        - Family
+        - Fighting
+        - Indie
+        - MMORPG
+        - Platformer
+        - Puzzle
+        - RPG
+        - Racing
+        - Shooter
+        - Simulation
+        - Sports
+        - Strategy
+        - Misc
+  - type: input
+    id: duration
+    attributes:
+      label: Duration of the game
+      description: >-
+        How long is that game ? Express it with ISO 8601 time notation
+        (HH:MM:SS)
+      placeholder: '02:23:15'
+      value: '00:00:00'
+    validations:
+      required: false
+  - type: input
+    id: availableAt
+    attributes:
+      label: Start Date
+      description: When will this game be released on channel ?
+      placeholder: YYYY-MM-DD
+  - type: input
+    id: endAt
+    attributes:
+      label: End Date
+      description: When will this game be finished on channel ?
+      placeholder: YYYY-MM-DD
