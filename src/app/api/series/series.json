@@ -6,31 +6,36 @@
 				"id": 17,
 				"title": "Astérix & Obélix XXL",
 				"playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
-				"duration": "06:21:55"
+				"duration": "06:21:55",
+				"platform": 5
 			},
 			{
 				"id": 18,
 				"title": "Astérix & Obélix XXL 2",
 				"playlistId": "PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo",
-				"duration": "04:53:56"
+				"duration": "04:53:56",
+				"platform": 1
 			},
 			{
 				"id": 70,
 				"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
 				"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
-				"duration": "04:08:28"
+				"duration": "04:08:28",
+				"platform": 3
 			},
 			{
 				"id": 130,
 				"title": "Astérix & Obélix : Baffez-les Tous !",
 				"playlistId": "PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ",
-				"duration": "05:43:21"
+				"duration": "05:43:21",
+				"platform": 1
 			},
 			{
 				"id": 149,
 				"title": "Astérix aux Jeux olympiques",
 				"playlistId": "PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
-				"duration": "03:23:11"
+				"duration": "03:23:11",
+				"platform": 5
 			}
 		]
 	},
@@ -41,49 +46,57 @@
 				"id": 4,
 				"title": "Batman: Arkham Origins",
 				"playlistId": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz",
-				"duration": "06:48:06"
+				"duration": "06:48:06",
+				"platform": 1
 			},
 			{
 				"id": 6,
 				"title": "Batman: Arkham Asylum",
 				"playlistId": "PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
-				"duration": "05:59:51"
+				"duration": "05:59:51",
+				"platform": 1
 			},
 			{
 				"id": 7,
 				"title": "Batman: Arkham Knight",
 				"playlistId": "PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg",
-				"duration": "08:33:35"
+				"duration": "08:33:35",
+				"platform": 1
 			},
 			{
 				"id": 8,
 				"title": "Batman Arkham City",
 				"playlistId": "PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
-				"duration": "06:47:41"
+				"duration": "06:47:41",
+				"platform": 1
 			},
 			{
 				"id": 31,
 				"title": "Batman: Rise of Sin Tzu",
 				"playlistId": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
-				"duration": "04:25:24"
+				"duration": "04:25:24",
+				"platform": 5
 			},
 			{
 				"id": 117,
 				"title": "Batman Vengeance",
 				"playlistId": "PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
-				"duration": "02:32:02"
+				"duration": "02:32:02",
+				"platform": 5
 			},
 			{
 				"id": 153,
 				"title": "Batman The Telltale Series",
 				"playlistId": "PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
-				"duration": "07:08:15"
+				"duration": "07:08:15",
+				"platform": 1
 			},
 			{
 				"id": 170,
 				"title": "Batman The Enemy Within",
 				"playlistId": "PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
-				"duration": "08:10:21"
+				"duration": "08:10:21",
+				"platform": 1
 			}
 		]
 	},
@@ -94,25 +107,29 @@
 				"id": 79,
 				"title": "Crash Bandicoot 3 : Warped",
 				"playlistId": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
-				"duration": "01:57:55"
+				"duration": "01:57:55",
+				"platform": 1
 			},
 			{
 				"id": 80,
 				"title": "Crash Bandicoot",
 				"playlistId": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
-				"duration": "01:48:31"
+				"duration": "01:48:31",
+				"platform": 1
 			},
 			{
 				"id": 81,
 				"title": "Crash Bandicoot 2 : Cortex Strikes Back",
 				"playlistId": "PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao",
-				"duration": "02:13:19"
+				"duration": "02:13:19",
+				"platform": 1
 			},
 			{
 				"id": 106,
 				"title": "Crash Bandicoot 4: It's About Time",
 				"playlistId": "PLRfhDHeBTBJ6AGIBxZa5zvykgQBKSHzd5",
-				"duration": "05:34:31"
+				"duration": "05:34:31",
+				"platform": 1
 			}
 		]
 	},
@@ -123,13 +140,15 @@
 				"id": 42,
 				"title": "Darksiders II",
 				"playlistId": "PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X",
-				"duration": "14:35:48"
+				"duration": "14:35:48",
+				"platform": 6
 			},
 			{
 				"id": 50,
 				"title": "Darksiders I",
 				"playlistId": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
-				"duration": "11:59:57"
+				"duration": "11:59:57",
+				"platform": 1
 			}
 		]
 	},
@@ -140,13 +159,15 @@
 				"id": 122,
 				"title": "Dead to Rights",
 				"playlistId": "PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
-				"duration": "06:19:09"
+				"duration": "06:19:09",
+				"platform": 1
 			},
 			{
 				"id": 124,
 				"title": "Dead to Rights : Retribution",
 				"playlistId": "PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
-				"duration": "05:50:51"
+				"duration": "05:50:51",
+				"platform": 6
 			}
 		]
 	},
@@ -157,19 +178,22 @@
 				"id": 3,
 				"title": "Destroy All Humans! - Remake",
 				"playlistId": "PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr",
-				"duration": "04:25:44"
+				"duration": "04:25:44",
+				"platform": 1
 			},
 			{
 				"id": 15,
 				"title": "Destroy All Humans! 2",
 				"playlistId": "PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy",
-				"duration": "11:22:25"
+				"duration": "11:22:25",
+				"platform": 5
 			},
 			{
 				"id": 98,
 				"title": "Destroy All Humans! En route vers Paname !",
 				"playlistId": "PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
-				"duration": "06:44:54"
+				"duration": "06:44:54",
+				"platform": 6
 			}
 		]
 	},
@@ -180,19 +204,22 @@
 				"id": 86,
 				"title": "Dragon Ball : Advanced Adventure",
 				"videoId": "5ZHExfdq9F8",
-				"duration": "01:50:53"
+				"duration": "01:50:53",
+				"platform": 2
 			},
 			{
 				"id": 107,
 				"title": "Dragon Ball Z : L'Héritage de Goku 2",
 				"playlistId": "PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem",
-				"duration": "04:38:54"
+				"duration": "04:38:54",
+				"platform": 2
 			},
 			{
 				"id": 131,
 				"title": "Dragon Ball Z : Buu's Fury",
 				"playlistId": "PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz",
-				"duration": "04:36:11"
+				"duration": "04:36:11",
+				"platform": 2
 			}
 		]
 	},
@@ -203,55 +230,64 @@
 				"id": 12,
 				"title": "God Of War II HD",
 				"playlistId": "PLRfhDHeBTBJ6zui2RaBzaZ5zjm768Jzum",
-				"duration": "06:20:04"
+				"duration": "06:20:04",
+				"platform": 6
 			},
 			{
 				"id": 40,
 				"title": "God of War Ascension",
 				"playlistId": "PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
-				"duration": "06:20:52"
+				"duration": "06:20:52",
+				"platform": 6
 			},
 			{
 				"id": 41,
 				"title": "God of War III",
 				"playlistId": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
-				"duration": "06:46:19"
+				"duration": "06:46:19",
+				"platform": 6
 			},
 			{
 				"id": 51,
 				"title": "God of War: Chains of Olympus",
 				"playlistId": "PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf",
-				"duration": "03:34:18"
+				"duration": "03:34:18",
+				"platform": 3
 			},
 			{
 				"id": 52,
 				"title": "God of War: Ghost of Sparta",
 				"playlistId": "PLRfhDHeBTBJ7VH9EyPcKvQSCo6FbMUE6g",
-				"duration": "04:53:25"
+				"duration": "04:53:25",
+				"platform": 3
 			},
 			{
 				"id": 53,
 				"title": "God of War I",
 				"playlistId": "PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj",
-				"duration": "07:02:42"
+				"duration": "07:02:42",
+				"platform": 5
 			},
 			{
 				"id": 125,
 				"title": "God of War (2018)",
 				"playlistId": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
-				"duration": "17:41:07"
+				"duration": "17:41:07",
+				"platform": 1
 			},
 			{
 				"id": 147,
 				"title": "God of War: Chains of Olympus HD",
 				"playlistId": "PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX",
-				"duration": "03:20:24"
+				"duration": "03:20:24",
+				"platform": 6
 			},
 			{
 				"id": 148,
 				"title": "God of War I HD",
 				"playlistId": "PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc",
-				"duration": "06:48:04"
+				"duration": "06:48:04",
+				"platform": 6
 			}
 		]
 	},
@@ -262,13 +298,15 @@
 				"id": 5,
 				"title": "Guns Gore & Cannoli",
 				"playlistId": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
-				"duration": "02:10:05"
+				"duration": "02:10:05",
+				"platform": 1
 			},
 			{
 				"id": 43,
 				"title": "Guns Gore and Cannoli 2",
 				"playlistId": "PLRfhDHeBTBJ4ivg1J2leFzeuABXobVFNO",
-				"duration": "02:31:53"
+				"duration": "02:31:53",
+				"platform": 1
 			}
 		]
 	},
@@ -279,25 +317,29 @@
 				"id": 95,
 				"title": "Harry Potter et la Coupe de Feu",
 				"playlistId": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
-				"duration": "02:17:52"
+				"duration": "02:17:52",
+				"platform": 1
 			},
 			{
 				"id": 119,
 				"title": "Harry Potter à l'Ecole des Sorciers",
 				"playlistId": "PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7",
-				"duration": "03:36:33"
+				"duration": "03:36:33",
+				"platform": 1
 			},
 			{
 				"id": 120,
 				"title": "Harry Potter et la Chambre des Secrets",
 				"playlistId": "PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
-				"duration": "04:06:59"
+				"duration": "04:06:59",
+				"platform": 1
 			},
 			{
 				"id": 123,
 				"title": "Harry Potter et le Prisonnier d'Azkaban",
 				"videoId": "IOog6QKck6o",
-				"duration": "03:01:32"
+				"duration": "03:01:32",
+				"platform": 1
 			}
 		]
 	},
@@ -308,25 +350,29 @@
 				"id": 101,
 				"title": "Jak and Daxter: The Precursor Legacy",
 				"playlistId": "PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
-				"duration": "05:07:21"
+				"duration": "05:07:21",
+				"platform": 6
 			},
 			{
 				"id": 103,
 				"title": "Jak II : Hors la Loi",
 				"playlistId": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
-				"duration": "06:25:22"
+				"duration": "06:25:22",
+				"platform": 6
 			},
 			{
 				"id": 105,
 				"title": "Jak 3",
 				"playlistId": "PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
-				"duration": "06:27:02"
+				"duration": "06:27:02",
+				"platform": 6
 			},
 			{
 				"id": 152,
 				"title": "Jak and Daxter: The Lost Frontier",
 				"playlistId": "PLRfhDHeBTBJ5yE1da-5kvYirmxBd7sLEX",
-				"duration": "05:16:27"
+				"duration": "05:16:27",
+				"platform": 3
 			}
 		]
 	},
@@ -337,13 +383,15 @@
 				"id": 26,
 				"title": "Le Parrain : Edition du Don",
 				"playlistId": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-				"duration": "15:05:17"
+				"duration": "15:05:17",
+				"platform": 6
 			},
 			{
 				"id": 55,
 				"title": "Le parrain II",
 				"playlistId": "PLRfhDHeBTBJ6ho33uahEjHiIyL5nSi_3O",
-				"duration": "08:24:01"
+				"duration": "08:24:01",
+				"platform": 1
 			}
 		]
 	},
@@ -354,13 +402,15 @@
 				"id": 30,
 				"title": "Les indestructibles Le Jeu",
 				"playlistId": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
-				"duration": "03:42:26"
+				"duration": "03:42:26",
+				"platform": 1
 			},
 			{
 				"id": 36,
 				"title": "Les Indestructibles : La Terrible Attaque du Démolisseur",
 				"playlistId": "PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
-				"duration": "02:11:24"
+				"duration": "02:11:24",
+				"platform": 1
 			}
 		]
 	},
@@ -371,13 +421,15 @@
 				"id": 113,
 				"title": "The Simpsons Hit & Run",
 				"playlistId": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-				"duration": "04:04:20"
+				"duration": "04:04:20",
+				"platform": 1
 			},
 			{
 				"id": 134,
 				"title": "Les Simpson : Le Jeu",
 				"playlistId": "PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh",
-				"duration": "04:05:46"
+				"duration": "04:05:46",
+				"platform": 6
 			}
 		]
 	},
@@ -388,19 +440,22 @@
 				"id": 1,
 				"title": "Mafia: Definitive Edition",
 				"playlistId": "PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
-				"duration": "06:59:14"
+				"duration": "06:59:14",
+				"platform": 1
 			},
 			{
 				"id": 25,
 				"title": "Mafia II",
 				"playlistId": "PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg",
-				"duration": "07:56:28"
+				"duration": "07:56:28",
+				"platform": 6
 			},
 			{
 				"id": 27,
 				"title": "Mafia 1",
 				"playlistId": "PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP",
-				"duration": "09:00:04"
+				"duration": "09:00:04",
+				"platform": 5
 			}
 		]
 	},
@@ -411,19 +466,22 @@
 				"id": 45,
 				"title": "Max Payne 2 - The Fall of Max Payne",
 				"playlistId": "PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf",
-				"duration": "03:35:54"
+				"duration": "03:35:54",
+				"platform": 1
 			},
 			{
 				"id": 46,
 				"title": "Max Payne I",
 				"playlistId": "PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
-				"duration": "04:10:57"
+				"duration": "04:10:57",
+				"platform": 1
 			},
 			{
 				"id": 82,
 				"title": "Max Payne 3",
 				"playlistId": "PLRfhDHeBTBJ6qxm-Yidg-RNG6ICJuvll2",
-				"duration": "07:01:05"
+				"duration": "07:01:05",
+				"platform": 1
 			}
 		]
 	},
@@ -434,43 +492,50 @@
 				"id": 10,
 				"title": "Prince of Persia : Les Sables du temps",
 				"playlistId": "PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO",
-				"duration": "05:01:34"
+				"duration": "05:01:34",
+				"platform": 6
 			},
 			{
 				"id": 11,
 				"title": "Prince of Persia : Les Deux Royaumes",
 				"playlistId": "PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg",
-				"duration": "04:39:35"
+				"duration": "04:39:35",
+				"platform": 6
 			},
 			{
 				"id": 13,
 				"title": "Prince of Persia Epilogue",
 				"playlistId": "PLRfhDHeBTBJ4hCgXVdIqLpBkTKS9q1JN6",
-				"duration": "01:24:13"
+				"duration": "01:24:13",
+				"platform": 6
 			},
 			{
 				"id": 24,
 				"title": "Prince of Persia : L'Ame du guerrier",
 				"playlistId": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
-				"duration": "05:52:06"
+				"duration": "05:52:06",
+				"platform": 6
 			},
 			{
 				"id": 61,
 				"title": "Prince of Persia : Les sables oubliés",
 				"playlistId": "PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb",
-				"duration": "05:16:11"
+				"duration": "05:16:11",
+				"platform": 1
 			},
 			{
 				"id": 68,
 				"title": "Prince of Persia 2008",
 				"playlistId": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
-				"duration": "10:18:10"
+				"duration": "10:18:10",
+				"platform": 1
 			},
 			{
 				"id": 89,
 				"title": "Prince of Persia : Les sables oubliés",
 				"videoId": "lYIH7XkENSw",
-				"duration": "03:23:14"
+				"duration": "03:23:14",
+				"platform": 3
 			}
 		]
 	},
@@ -481,13 +546,15 @@
 				"id": 63,
 				"title": "Psychonauts",
 				"playlistId": "PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
-				"duration": "13:35:45"
+				"duration": "13:35:45",
+				"platform": 1
 			},
 			{
 				"id": 112,
 				"title": "Psychonauts 2",
 				"playlistId": "PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ",
-				"duration": "10:59:44"
+				"duration": "10:59:44",
+				"platform": 1
 			}
 		]
 	},
@@ -498,13 +565,15 @@
 				"id": 140,
 				"title": "Pursuit Force",
 				"playlistId": "PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB",
-				"duration": "03:06:59"
+				"duration": "03:06:59",
+				"platform": 3
 			},
 			{
 				"id": 146,
 				"title": "Pursuit Force: Extreme Justice",
 				"playlistId": "PLRfhDHeBTBJ72gRyZBPf23ZfxSlG5h8Em",
-				"duration": "04:35:22"
+				"duration": "04:35:22",
+				"platform": 3
 			}
 		]
 	},
@@ -515,19 +584,22 @@
 				"id": 20,
 				"title": "Sam Pyjam : Héros de la Nuit",
 				"videoId": "qaIADIQyr0A",
-				"duration": "00:44:11"
+				"duration": "00:44:11",
+				"platform": 1
 			},
 			{
 				"id": 21,
 				"title": "Pyjama Sam 2 : Héros Météo",
 				"videoId": "We7-JHU7D7I",
-				"duration": "00:53:45"
+				"duration": "00:53:45",
+				"platform": 1
 			},
 			{
 				"id": 22,
 				"title": "Pyjama Sam : Héros du Goûter",
 				"videoId": "Qsq_q65MwhU",
-				"duration": "01:07:54"
+				"duration": "01:07:54",
+				"platform": 1
 			}
 		]
 	},
@@ -538,67 +610,78 @@
 				"id": 32,
 				"title": "Secret Agent Clank",
 				"playlistId": "PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY",
-				"duration": "06:22:48"
+				"duration": "06:22:48",
+				"platform": 3
 			},
 			{
 				"id": 33,
 				"title": "Ratchet & Clank : La Taille, Ca Compte",
 				"playlistId": "PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s",
-				"duration": "04:05:03"
+				"duration": "04:05:03",
+				"platform": 3
 			},
 			{
 				"id": 35,
 				"title": "Ratchet & Clank 3",
 				"playlistId": "PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu",
-				"duration": "06:55:09"
+				"duration": "06:55:09",
+				"platform": 6
 			},
 			{
 				"id": 37,
 				"title": "Ratchet & Clank 2",
 				"playlistId": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
-				"duration": "07:48:33"
+				"duration": "07:48:33",
+				"platform": 6
 			},
 			{
 				"id": 38,
 				"title": "Ratchet & Clank",
 				"playlistId": "PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo",
-				"duration": "07:03:58"
+				"duration": "07:03:58",
+				"platform": 6
 			},
 			{
 				"id": 39,
 				"title": "Ratchet : Gladiator",
 				"playlistId": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
-				"duration": "06:07:43"
+				"duration": "06:07:43",
+				"platform": 6
 			},
 			{
 				"id": 94,
 				"title": "Ratchet & Clank : Opération Destruction",
 				"playlistId": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
-				"duration": "06:49:19"
+				"duration": "06:49:19",
+				"platform": 6
 			},
 			{
 				"id": 114,
 				"title": "Ratchet & Clank : A Crack in Time",
 				"playlistId": "PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
-				"duration": "05:45:00"
+				"duration": "05:45:00",
+				"platform": 6
 			},
 			{
 				"id": 162,
 				"title": "Ratchet & Clank : Quest for Booty",
 				"playlistId": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
-				"duration": "01:48:22"
+				"duration": "01:48:22",
+				"platform": 6
 			},
 			{
 				"id": 163,
 				"title": "Ratchet & Clank Nexus",
 				"playlistId": "PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
-				"duration": "03:39:10"
+				"duration": "03:39:10",
+				"platform": 6
 			},
 			{
 				"id": 182,
 				"title": "Ratchet & Clank : All 4 One",
 				"playlistId": "PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
-				"duration": "07:56:23"
+				"duration": "07:56:23",
+				"platform": 6
 			}
 		]
 	},
@@ -609,37 +692,43 @@
 				"id": 60,
 				"title": "Rayman 2: The Great Escape",
 				"playlistId": "PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
-				"duration": "04:18:06"
+				"duration": "04:18:06",
+				"platform": 4
 			},
 			{
 				"id": 73,
 				"title": "Rayman 2 : Revolution",
 				"playlistId": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
-				"duration": "04:59:15"
+				"duration": "04:59:15",
+				"platform": 5
 			},
 			{
 				"id": 75,
 				"title": "Rayman contre les Lapins Crétins",
 				"playlistId": "PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
-				"duration": "03:05:12"
+				"duration": "03:05:12",
+				"platform": 1
 			},
 			{
 				"id": 92,
 				"title": "Rayman Origins",
 				"playlistId": "PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
-				"duration": "04:40:15"
+				"duration": "04:40:15",
+				"platform": 1
 			},
 			{
 				"id": 116,
 				"title": "Rayman 3 : Hoodlum Havoc HD",
 				"playlistId": "PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ",
-				"duration": "05:27:54"
+				"duration": "05:27:54",
+				"platform": 6
 			},
 			{
 				"id": 136,
 				"title": "Rayman Legends",
 				"playlistId": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-				"duration": "04:41:01"
+				"duration": "04:41:01",
+				"platform": 6
 			}
 		]
 	},
@@ -650,19 +739,22 @@
 				"id": 62,
 				"title": "Saints Row IV",
 				"playlistId": "PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
-				"duration": "20:55:30"
+				"duration": "20:55:30",
+				"platform": 1
 			},
 			{
 				"id": 64,
 				"title": "Saints Row Gat out of Hell",
 				"playlistId": "PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO",
-				"duration": "05:45:04"
+				"duration": "05:45:04",
+				"platform": 1
 			},
 			{
 				"id": 66,
 				"title": "Saints Row The Third",
 				"playlistId": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
-				"duration": "13:53:03"
+				"duration": "13:53:03",
+				"platform": 1
 			}
 		]
 	},
@@ -673,13 +765,15 @@
 				"id": 19,
 				"title": "Shrek 2 Le Jeu",
 				"playlistId": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
-				"duration": "02:24:35"
+				"duration": "02:24:35",
+				"platform": 1
 			},
 			{
 				"id": 90,
 				"title": "Shrek Super Slam",
 				"videoId": "AVwWGO0Zocs",
-				"duration": "00:31:13"
+				"duration": "00:31:13",
+				"platform": 5
 			}
 		]
 	},
@@ -690,19 +784,22 @@
 				"id": 34,
 				"title": "Sonic Heroes",
 				"playlistId": "PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx",
-				"duration": "02:55:04"
+				"duration": "02:55:04",
+				"platform": 5
 			},
 			{
 				"id": 118,
 				"title": "Sonic Adventure DX: Director's Cut",
 				"playlistId": "PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
-				"duration": "06:25:57"
+				"duration": "06:25:57",
+				"platform": 1
 			},
 			{
 				"id": 121,
 				"title": "Sonic Adventure 2",
 				"videoId": "a0mr0A8VM9A",
-				"duration": "03:50:39"
+				"duration": "03:50:39",
+				"platform": 1
 			}
 		]
 	},
@@ -713,13 +810,15 @@
 				"id": 67,
 				"title": "South Park - Le baton de la vérité",
 				"playlistId": "PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
-				"duration": "09:16:21"
+				"duration": "09:16:21",
+				"platform": 1
 			},
 			{
 				"id": 72,
 				"title": "South Park : L'Annale du Destin",
 				"playlistId": "PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU",
-				"duration": "12:25:40"
+				"duration": "12:25:40",
+				"platform": 1
 			}
 		]
 	},
@@ -730,37 +829,43 @@
 				"id": 9,
 				"title": "Splinter Cell Blacklist",
 				"playlistId": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
-				"duration": "06:34:25"
+				"duration": "06:34:25",
+				"platform": 1
 			},
 			{
 				"id": 78,
 				"title": "Splinter Cell Conviction",
 				"playlistId": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
-				"duration": "04:02:12"
+				"duration": "04:02:12",
+				"platform": 1
 			},
 			{
 				"id": 102,
 				"title": "Splinter Cell Chaos Theory HD",
 				"playlistId": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
-				"duration": "05:22:51"
+				"duration": "05:22:51",
+				"platform": 6
 			},
 			{
 				"id": 104,
 				"title": "Splinter Cell: Pandora Tomorrow",
 				"playlistId": "PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH",
-				"duration": "03:11:52"
+				"duration": "03:11:52",
+				"platform": 6
 			},
 			{
 				"id": 154,
 				"title": "Splinter Cell HD",
 				"playlistId": "PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
-				"duration": "04:40:45"
+				"duration": "04:40:45",
+				"platform": 6
 			},
 			{
 				"id": 167,
 				"title": "Splinter Cell Double Agent HD",
 				"playlistId": "PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
-				"duration": "04:06:45"
+				"duration": "04:06:45",
+				"platform": 6
 			}
 		]
 	},
@@ -771,19 +876,22 @@
 				"id": 57,
 				"title": "Spy Fox : Operation Ozone",
 				"playlistId": "PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A",
-				"duration": "01:09:17"
+				"duration": "01:09:17",
+				"platform": 1
 			},
 			{
 				"id": 58,
 				"title": "Spy Fox : Opération Robot Expo",
 				"playlistId": "PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx",
-				"duration": "01:12:15"
+				"duration": "01:12:15",
+				"platform": 1
 			},
 			{
 				"id": 69,
 				"title": "Spy fox : Opération Milkshake",
 				"playlistId": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
-				"duration": "01:17:20"
+				"duration": "01:17:20",
+				"platform": 1
 			}
 		]
 	},
@@ -794,25 +902,29 @@
 				"id": 165,
 				"title": "Sly Raccoon",
 				"playlistId": "PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
-				"duration": "04:05:13"
+				"duration": "04:05:13",
+				"platform": 6
 			},
 			{
 				"id": 169,
 				"title": "Sly 2 : Association de voleurs",
 				"playlistId": "PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
-				"duration": "11:26:08"
+				"duration": "11:26:08",
+				"platform": 6
 			},
 			{
 				"id": 174,
 				"title": "Sly 3 : Honor Among Thieves",
 				"playlistId": "PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
-				"duration": "09:46:28"
+				"duration": "09:46:28",
+				"platform": 6
 			},
 			{
 				"id": 180,
 				"title": "Sly Cooper : Voleurs à travers le Temps",
 				"playlistId": "PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
-				"duration": "08:55:44"
+				"duration": "08:55:44",
+				"platform": 6
 			}
 		]
 	}

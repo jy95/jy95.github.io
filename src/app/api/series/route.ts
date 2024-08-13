@@ -1,18 +1,19 @@
 import { NextResponse } from "next/server";
 import type { BasicGame, BasicPlaylist, BasicVideo, CardGame, YTUrlType } from "@/redux/sharedDefintion";
 
-export type serieType = {
-    name: string,
-    items: CardGame[]
-};
-
+type rawGame = Omit<BasicVideo, "genres">;
 type rawEntry = {
     /** @description Name of the series */
     name: string;
     /** @description List of videoId or playlistId for this series */
-    items: BasicVideo[]
+    items: rawGame[]
 }
 export type RawPayload = rawEntry[];
+
+export type serieType = {
+    name: string,
+    items: CardGame[]
+};
 
 export async function GET() {
 
@@ -31,12 +32,12 @@ export async function GET() {
     });
 }
 
-function fromRawGamesToCardGames(gamesData : BasicGame[]) : CardGame[]{
+function fromRawGamesToCardGames(gamesData : rawGame[]) : CardGame[]{
 
     return gamesData
         .map(game => {
 
-            const id = (game as BasicPlaylist).playlistId ?? (game as BasicVideo).videoId;
+            const id = (game as any).playlistId as string ?? (game as any).videoId as string;
             const base_url = (
                 ("playlistId" in game) 
                     ? "https://www.youtube.com/playlist?list=" 
@@ -46,12 +47,10 @@ function fromRawGamesToCardGames(gamesData : BasicGame[]) : CardGame[]{
             return {
                 ...game,
                 id,
-                imagePath: `/covers/${id}/${ game?.coverFile ?? "cover.webp" }`,
+                genres: [],
+                imagePath: `/covers/${id}/cover.webp`,
                 url: base_url,
                 url_type: ("playlistId" in game) ? "PLAYLIST" : "VIDEO" as YTUrlType,
-                durationAsInt: (game.duration)
-                    ? Number(game.duration.replaceAll(":", ""))
-                    : 0
             }
         });
 }
