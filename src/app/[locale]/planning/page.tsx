@@ -18,12 +18,19 @@ import SvgIcon from '@mui/material/SvgIcon';
 
 // Platform icons
 import iconsSVG from "@/components/GamesView/PlatformIcons";
-import type { Platform } from '@/redux/sharedDefintion';
-
 // Others
 import Tooltip from '@mui/material/Tooltip';
 
 type GameStatus = "RECORDED" | "PENDING";
+type NumericRange<
+    START extends number,
+    END extends number,
+    ARR extends unknown[] = [],
+    ACC extends number = never
+> = ARR['length'] extends END
+    ? ACC | START | END
+    : NumericRange<START, END, [...ARR, 1], ARR[START] extends undefined ? ACC : ACC | ARR['length']>
+type Platform = NumericRange<1, 6>
 
 export default function PlanningViewer() {
 

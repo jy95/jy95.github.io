@@ -15,12 +15,6 @@ type contentDuration = {
     seconds: number
 }
 
-let defaultDuration : contentDuration = {
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-}
-
 // For extraneous properties in "general"
 type statsGeneral = statsEntry & {
     // Info can be found in Youtube RSS feed

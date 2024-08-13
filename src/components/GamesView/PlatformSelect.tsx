@@ -12,21 +12,21 @@ import SvgIcon from '@mui/material/SvgIcon';
 
 // icons
 import iconsSVG from "@/components/GamesView/PlatformIcons";
-import type { Platform } from "@/redux/sharedDefintion";
-
-const PLATFORMS = [
-    "GBA",
-    "PC",
-    "PS1",
-    "PS2",
-    "PS3",
-    "PSP"
-];
 
 type Platform_Entry = {
     label: string;
-    id: Platform;
+    id: number;
 }
+
+type NumericRange<
+    START extends number,
+    END extends number,
+    ARR extends unknown[] = [],
+    ACC extends number = never
+> = ARR['length'] extends END
+    ? ACC | START | END
+    : NumericRange<START, END, [...ARR, 1], ARR[START] extends undefined ? ACC : ACC | ARR['length']>
+type Platform = NumericRange<1, 6>
 
 function PlatformSelect() {
 
@@ -35,12 +35,6 @@ function PlatformSelect() {
     const selectedPlatform = useAppSelector(
         (state) => selectSelectedPlatform(state)
     )
-
-    const options = PLATFORMS
-        .map(platform => ({
-            label: platform,
-            id: platform as Platform
-        }))
 
     return (
         <Autocomplete<Platform_Entry, false>
