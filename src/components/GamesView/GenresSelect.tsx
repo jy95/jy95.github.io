@@ -27,7 +27,7 @@ function GenresSelect() {
 
     const genre_options : Genre[] = (data || [])
         .map(genre => ({
-            name: t(`gamesGenres.${genre.name}` as any),
+            name: t(`gamesGenres.${genre.id}` as any),
             id: genre.id
         }))
         .sort( 

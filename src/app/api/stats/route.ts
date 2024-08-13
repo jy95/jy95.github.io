@@ -24,11 +24,21 @@ type statsGeneral = statsEntry & {
     "total_time_unavailable": contentDuration,
 }
 
+// For specifc stats
+type platformStats = statsEntry & {
+    id: number,
+    platform: string
+}
+type genreStats = statsEntry & {
+    id: number,
+    genre: string
+}
+
 export type statsProperty = {
     /** @description  Stats about platforms covered */
-    platforms: statsEntry[],
+    platforms: platformStats[],
     /** @description  Stats about genres covered */
-    genres: statsEntry[],
+    genres: genreStats[],
     /** @description  General stats */
     general: statsGeneral
 };

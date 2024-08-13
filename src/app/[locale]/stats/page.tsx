@@ -85,26 +85,22 @@ export default function StatsPage() {
   }
 
   // for genre chart
-  const genresData = Object
-    .entries(data.genres)
-    .map( ([key, value]) => ({
-      key: key,
-      category: t(`gamesLibrary.gamesGenres.${key as GenreValue}`),
-      ...value
-    }))
-    .sort(sortStats);
+  const genresData = data.genres.map(genre => ({
+    key: genre.id,
+    category: t(`gamesLibrary.gamesGenres.${genre.id}` as any),
+    ...genre
+  }))
 
   // StackedAreaChart : https://recharts.org/en-US/examples/StackedAreaChart
   // StackedBarChart : https://recharts.org/en-US/examples/StackedBarChart
 
   // for platform chart
-  const platformsData = Object
-    .entries(data.platforms)
-    .map( ([key, value]) => ({
-      key: key,
-      ...value
-    }))
-    .sort(sortStats);
+  const platformsData = 
+    data.platforms
+    .map(platform => ({
+      key: platform.platform,
+      ...platform
+    }));
 
   // for generals line
   const generalStats = data.general;
