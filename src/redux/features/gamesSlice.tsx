@@ -94,7 +94,7 @@ export const selectSelectedPlatform = createSelector(
     (filters) => {
         let entry = filters.find(s => s.key === "selected_platform");
         if (!entry) {
-            return "";
+            return undefined;
         } else {
             return entry.value as number
         }

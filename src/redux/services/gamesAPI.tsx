@@ -1,21 +1,9 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+
+// Types
 import type { ResponseBody as GamesResponse } from "@/app/api/games/route";
-
-type gamesSorters = [
-    "name" | "releaseDate" | "duration",
-    "ASC" | "DESC"
-][];
-
-// To compute new filtering function
-//type gamesFilterKeys = "selected_platform" | "selected_title" | "selected_genres";
-type gamesFilters = ({
-    value: string,
-    key: "selected_platform" | "selected_title"
-} | {
-    value: string[],
-    key: "selected_genres"
-})[];
+import type { gamesFilters } from "@/redux/features/gamesSlice"
 
 // parameters for method
 type Parameters = {

@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
 
-export type PlatformsResponse = {
+export type Platform_Entry = {
     // Identifier
     id: number;
     // Database name, not translated by default
     name: string;
-}[]
+}
+export type PlatformsResponse = Platform_Entry[];
 
 export async function GET() {
 

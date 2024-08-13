@@ -4,6 +4,7 @@
 import { useTranslations } from "next-intl";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { filterByPlatform, selectSelectedPlatform } from "@/redux/features/gamesSlice";
+import { useGetPlatformsQuery } from "@/redux/services/platformsAPI";
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
@@ -13,10 +14,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 // icons
 import iconsSVG from "@/components/GamesView/PlatformIcons";
 
-type Platform_Entry = {
-    label: string;
-    id: number;
-}
+import type { Platform_Entry } from "@/app/api/platforms/route";
 
 type NumericRange<
     START extends number,
@@ -32,6 +30,7 @@ function PlatformSelect() {
 
     const t = useTranslations("gamesLibrary.filtersLabels")
     const dispatch = useAppDispatch();
+    const { data, isFetching } = useGetPlatformsQuery();
     const selectedPlatform = useAppSelector(
         (state) => selectSelectedPlatform(state)
     )
@@ -40,26 +39,27 @@ function PlatformSelect() {
         <Autocomplete<Platform_Entry, false>
             id="select-game-platform"
             openOnFocus
-            options={options}
-            getOptionLabel={(option) => option.label}
+            options={data || []}
+            loading={isFetching}
+            getOptionLabel={(option) => option.name}
             isOptionEqualToValue={(option, value) => value.id === option.id}
             renderInput={(params) => <TextField {...params} label={t("platform") as string} />}
             renderOption={(props, option) => (
                 <li {...props} key={option.id}>
-                    <SvgIcon titleAccess={option.label}>
+                    <SvgIcon titleAccess={option.name}>
                         {iconsSVG[option.id as Platform]}
                     </SvgIcon>
-                    {option.label}
+                    {option.name}
                 </li>
             )}
             onChange={(_event, value) => {
-                const platform = (value) ? value.id : "";
+                const platform = (value) ? value.id : undefined;
                 dispatch(filterByPlatform(platform));
             }}
             value={
                 selectedPlatform ? {
                     id: selectedPlatform as Platform,
-                    label: selectedPlatform
+                    name: (data || [] ).find(p => p.id === selectedPlatform)?.name || ""
                 } : null
             }
         />
