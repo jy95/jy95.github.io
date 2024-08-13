@@ -1,29 +1,13 @@
-name: 🆕 Add game
-description: Add a new game into the database
-title: '[ADD_GAME]'
+name: 🔄 Update game
+description: Update a existing game fields into the database
+title: '[UPDATE_GAME]'
 labels: 
   - database
 body:
   - type: markdown
     attributes:
       value: |
-        Please fill in the following fields to add this game into database !
-  - type: input
-    id: title
-    attributes:
-      label: Name of the game
-      description: What is the game name in the language it was played ?
-      placeholder: ex. Splinter Cell HD
-    validations:
-      required: true
-  - type: input
-    id: releaseDate
-    attributes:
-      label: Release Date
-      description: When was this game published ?
-      placeholder: YYYY-MM-DD
-    validations:
-      required: true
+        Please fill in the following fields to update this game into database !
   - type: dropdown
     id: identifierKind
     attributes:
@@ -33,8 +17,6 @@ body:
         - Playlist (Default)
         - Video
       default: 0
-    validations:
-      required: true
   - type: input
     id: identifierValue
     attributes:
@@ -42,8 +24,18 @@ body:
       description: What is the game playlist ID or video ID on Youtube ?
       placeholder: >-
         ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY
-    validations:
-      required: true
+  - type: input
+    id: title
+    attributes:
+      label: Name of the game
+      description: What is the game name in the language it was played ?
+      placeholder: ex. Splinter Cell HD
+  - type: input
+    id: releaseDate
+    attributes:
+      label: Release Date
+      description: When was this game published ?
+      placeholder: YYYY-MM-DD
   - type: dropdown
     id: platform
     attributes:
@@ -56,9 +48,6 @@ body:
         - PS1
         - PS2
         - PS3
-      default: 0
-    validations:
-      required: true
   - type: dropdown
     id: genres
     attributes:
@@ -95,8 +84,6 @@ body:
         (HH:MM:SS)
       placeholder: '02:23:15'
       value: '00:00:00'
-    validations:
-      required: false
   - type: input
     id: availableAt
     attributes:
