@@ -60,7 +60,7 @@ async function generateSqlScript() {
         const sqlWithComments = [];
 
         data.forEach((game, index) => {
-            const gameId = index + 1; // Assuming this is the auto-increment ID
+            const gameId = "__YOUR_ID_"; // Assuming this is the auto-increment ID
             const title = game.title;
             const videoId = game.videoId || null;
             const playlistId = game.playlistId || null;
@@ -71,8 +71,8 @@ async function generateSqlScript() {
             // Insert into games table with comments
             sqlWithComments.push(
                 `-- Insert data for the game '${title}'\n` +
-                `INSERT INTO games (id, videoId, playlistId, title, releaseDate, duration, platform) ` +
-                `VALUES (${gameId}, "${videoId}", "${playlistId}", "${title}", "${releaseDate}", "${duration}", ${platformId});\n`
+                `INSERT INTO games (videoId, playlistId, title, releaseDate, duration, platform) ` +
+                `VALUES ("${videoId}", "${playlistId}", "${title}", "${releaseDate}", "${duration}", ${platformId}); RETURNING id\n`
             );
 
             // Insert into games_genres table with comments
@@ -88,8 +88,8 @@ async function generateSqlScript() {
 
             // Insert into games_schedules table with comments (if available)
             const availableAt = game.availableAt;
-            const endAt = game.endAt;
-            if (availableAt && endAt) {
+            const endAt = game.endAt || null;
+            if (availableAt) {
                 sqlWithComments.push(
                     `-- Set the availability for the game '${title}'\n` +
                     `INSERT INTO games_schedules (id, availableAt, endAt) ` +
