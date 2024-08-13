@@ -44,7 +44,7 @@ body:
       label: Platform
       description: On which platform was the content on ?
       options:
-        - PC (Default)
+        - PC
         - GBA
         - PSP
         - PS1

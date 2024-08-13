@@ -1,0 +1,35 @@
+name: ⏳ Add backlog entry
+description: Add a new backlog entry into the database
+title: '[ADD_BACKLOG]'
+labels: 
+  - database
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill in the following fields to add this game into database !
+  - type: input
+    id: title
+    attributes:
+      label: Name of the game
+      description: What is the game name in the language it was played ?
+      placeholder: ex. Splinter Cell HD
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: On which platform was the content on ?
+      options:
+        - PC
+        - GBA
+        - PSP
+        - PS1
+        - PS2
+        - PS3
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Additional notes or comments about the game
