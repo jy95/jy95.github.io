@@ -12,12 +12,7 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import type { GridRenderCellParams, GridColDef } from '@mui/x-data-grid';
 
 // Platform icons
-import iconsSVG from "@/components/GamesView/PlatformIcons";
-import type { Platform } from '@/redux/sharedDefintion';
-
-// Icons
-import SvgIcon from '@mui/material/SvgIcon';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import RenderPlatformIcon from "@/components/GamesView/PlatformIcons";
 
 // Others
 import Tooltip from '@mui/material/Tooltip';
@@ -51,15 +46,7 @@ export default function BacklogViewer() {
             field: "platform",
             headerName: t("columns.platform"),
             renderCell: (params: GridRenderCellParams) => {
-                if (params.value !== undefined) {
-                    return (
-                        <SvgIcon titleAccess={params.value}>
-                            {iconsSVG[params.value as Platform]}
-                        </SvgIcon>
-                    );
-                } else {
-                    return <HelpOutlineIcon />;
-                }
+                return (<RenderPlatformIcon identifier={params.value} />)
             },
             width: 160
         },

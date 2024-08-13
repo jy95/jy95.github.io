@@ -15,21 +15,19 @@ import CardEntry from "@/components/GamesView/CardEntry";
 import GamesFilters from "./GamesFilters";
 
 // Types
-import type { EnhancedGame } from "@/redux/sharedDefintion";
-import { gamesSorters, gamesFilters } from '@/redux/features/gamesSlice';
+import type { gamesFilters } from '@/redux/features/gamesSlice';
+import type { CardGame } from "@/redux/sharedDefintion";
 
 // To force reset of page when filters / sorters criteria changes
 type InnerProps = {
     activeFilters: gamesFilters,
-    activeSorters: gamesSorters,
 }
 
 // To help react detect change in filters / sorters
-function generateKey({activeFilters, activeSorters} : InnerProps) : string {
+function generateKey({activeFilters} : InnerProps) : string {
     return Object
         .entries({
-            activeFilters,
-            activeSorters
+            activeFilters
         })
         .toString();
 }
@@ -41,25 +39,19 @@ export default function GamesGalleryGrid() {
         (state) => state.games.activeFilters
     );
 
-    // Active sorters
-    const activeSorters = useAppSelector(
-        (state) => state.games.sorters
-    );
-
     return (
         <div>
             <GamesFilters />
             <GamesGalleryGridInner 
                 activeFilters={activeFilters}
-                activeSorters={activeSorters}
-                key={generateKey({activeFilters, activeSorters})}
+                key={generateKey({activeFilters})}
             />
         </div>
     )
 }
 
 // To force reset of page when filters / sorters criteria changes
-function GamesGalleryGridInner({ activeFilters, activeSorters } : InnerProps) {
+function GamesGalleryGridInner({ activeFilters } : InnerProps) {
 
     // Current page
     const [page, setPage] = useState(1);
@@ -71,13 +63,12 @@ function GamesGalleryGridInner({ activeFilters, activeSorters } : InnerProps) {
     const LIMIT_PAGE = 16;
     const { data, isFetching } = useGetGamesQuery({
         filters: activeFilters,
-        sorters: activeSorters,
         pageSize : LIMIT_PAGE,
         page: page
     });
 
     // render row
-    const renderRow = (game : EnhancedGame) =>
+    const renderRow = (game : CardGame) =>
         <Grid 
             key={game.id}
             item

@@ -44,34 +44,6 @@ import {
   Legend,
 } from "recharts";
 
-// type
-import type { Genre as GenreValue } from "@/redux/sharedDefintion";
-
-// type
-type SortableStat = {
-  total: number;
-  total_available: number;
-  total_unavailable: number;
-}
-
-// To sort stats according their 
-function sortStats(a : SortableStat, b: SortableStat) : number {
-  // Sort by total first
-  if (a.total > b.total) return -1;
-  if (a.total < b.total) return 1;
-
-  // Then sort by total available
-  if (a.total_available > b.total_available) return -1;
-  if (a.total_available < b.total_available) return 1;
-
-  // Then sort by total not yet available
-  if (a.total_unavailable > b.total_unavailable) return -1;
-  if (a.total_unavailable < b.total_unavailable) return 1;                
-
-  // Default case
-  return 0;
-}
-
 export default function StatsPage() {
   const t = useTranslations();
   const currentColor = useAppSelector((state) => state.themeColor.currentColor);
@@ -113,26 +85,22 @@ export default function StatsPage() {
   }
 
   // for genre chart
-  const genresData = Object
-    .entries(data.genres)
-    .map( ([key, value]) => ({
-      key: key,
-      category: t(`gamesLibrary.gamesGenres.${key as GenreValue}`),
-      ...value
-    }))
-    .sort(sortStats);
+  const genresData = data.genres.map(genre => ({
+    key: genre.id,
+    category: t(`gamesLibrary.gamesGenres.${genre.id}` as any),
+    ...genre
+  }))
 
   // StackedAreaChart : https://recharts.org/en-US/examples/StackedAreaChart
   // StackedBarChart : https://recharts.org/en-US/examples/StackedBarChart
 
   // for platform chart
-  const platformsData = Object
-    .entries(data.platforms)
-    .map( ([key, value]) => ({
-      key: key,
-      ...value
-    }))
-    .sort(sortStats);
+  const platformsData = 
+    data.platforms
+    .map(platform => ({
+      key: platform.platform,
+      ...platform
+    }));
 
   // for generals line
   const generalStats = data.general;

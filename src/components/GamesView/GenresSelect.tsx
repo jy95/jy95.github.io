@@ -8,17 +8,12 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 
+// actions
 import { filteringByGenre, selectSelectedGenres } from "@/redux/features/gamesSlice";
-
-import type { Genre as GenreValue } from "@/redux/sharedDefintion";
-// Each one is also a key for translation
-import { genre_list as GENRES } from "@/redux/sharedDefintion";
+import { useGetGenresQuery } from "@/redux/services/genresAPI"
 
 // Generate list of values for game genre
-type Genre = {
-    label: string,
-    id: GenreValue
-};
+import type { Genre } from "@/app/api/genres/route"
 
 // Genres filter of GamesGallery
 function GenresSelect() {
@@ -27,15 +22,16 @@ function GenresSelect() {
     const selectedGenres = useAppSelector(
         (state) => selectSelectedGenres(state)
     )
+    const { data, isFetching } = useGetGenresQuery();
     const t = useTranslations("gamesLibrary")
 
-    const genre_options : Genre[] = GENRES
+    const genre_options : Genre[] = (data || [])
         .map(genre => ({
-            label: t(`gamesGenres.${genre}` as const),
-            id: genre
+            name: t(`gamesGenres.${genre.id}` as any),
+            id: genre.id
         }))
         .sort( 
-            (a, b) => (a.label < b.label) ? -1 : (a.label > b.label ? 1 : 0) 
+            (a, b) => (a.name < b.name) ? -1 : (a.name > b.name ? 1 : 0) 
         );
 
     return <>
@@ -45,14 +41,15 @@ function GenresSelect() {
             filterSelectedOptions 
             id="select-game-genre"
             limitTags={3}
+            loading={isFetching}
             options={genre_options}
-            getOptionLabel={(option) => option.label}
+            getOptionLabel={(option) => option.name}
             isOptionEqualToValue={(option, value) => 
                 Array.isArray(value) ? value.some(v => v.id === option.id) : value.id === option.id
             }
             value={selectedGenres.map(genre => ({
-                label: t(`gamesGenres.${genre as GenreValue}` as const),
-                id: genre as GenreValue
+                name: t(`gamesGenres.${genre}` as any),
+                id: genre
             }))}
             renderInput={(params) => <TextField {...params} label={t("filtersLabels.genres") as string} />}
             onChange={(_event, value) => {

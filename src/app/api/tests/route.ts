@@ -32,7 +32,7 @@ export async function GET(request: Request) {
 
     // Returns results
     return NextResponse.json({
-        items: games.map(game => enhanceGameItem(game as BasicGame)),
+        items: games.map(game => enhanceGameItem(game)),
         total_items: gamesData.length,
         limit: limit,
         offset: offset
@@ -53,7 +53,7 @@ const SIZES = [
 ]
 
 // Return an enhanced payload for a single game
-function enhanceGameItem(game: BasicGame): CardGame {
+function enhanceGameItem(game: rawEntry): CardGame {
 
     const id = (game as BasicPlaylist).playlistId ?? (game as BasicVideo).videoId;
     const base_url = (
@@ -66,13 +66,7 @@ function enhanceGameItem(game: BasicGame): CardGame {
         id,
         imagePath: `/testscovers/${id}/${ game?.coverFile ?? "cover.webp" }`,
         sizes: SIZES.join(", "),
-        releaseDate: game.releaseDate
-            .split("/")
-            .reduce( (acc : number, curr : string, idx : number) => acc + (parseInt(curr) * Math.pow(100, idx)), 0),
         url: base_url,
-        url_type: ("playlistId" in game) ? "PLAYLIST" : "VIDEO" as YTUrlType,
-        durationAsInt: (game.duration)
-            ? Number(game.duration.replaceAll(":", ""))
-            : 0
+        url_type: ("playlistId" in game) ? "PLAYLIST" : "VIDEO" as YTUrlType
     });
 }

@@ -1,0 +1,82 @@
+[
+	{
+		"id": 1,
+		"name": "Action"
+	},
+	{
+		"id": 2,
+		"name": "Adventure"
+	},
+	{
+		"id": 3,
+		"name": "Arcade"
+	},
+	{
+		"id": 4,
+		"name": "Board Games"
+	},
+	{
+		"id": 5,
+		"name": "Card"
+	},
+	{
+		"id": 6,
+		"name": "Casual"
+	},
+	{
+		"id": 7,
+		"name": "Educational"
+	},
+	{
+		"id": 8,
+		"name": "Family"
+	},
+	{
+		"id": 9,
+		"name": "Fighting"
+	},
+	{
+		"id": 10,
+		"name": "Indie"
+	},
+	{
+		"id": 11,
+		"name": "MMORPG"
+	},
+	{
+		"id": 12,
+		"name": "Platformer"
+	},
+	{
+		"id": 13,
+		"name": "Puzzle"
+	},
+	{
+		"id": 14,
+		"name": "RPG"
+	},
+	{
+		"id": 15,
+		"name": "Racing"
+	},
+	{
+		"id": 16,
+		"name": "Shooter"
+	},
+	{
+		"id": 17,
+		"name": "Simulation"
+	},
+	{
+		"id": 18,
+		"name": "Sports"
+	},
+	{
+		"id": 19,
+		"name": "Strategy"
+	},
+	{
+		"id": 20,
+		"name": "Misc"
+	}
+]

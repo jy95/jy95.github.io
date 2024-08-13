@@ -1,0 +1,209 @@
+{
+	"platforms": [
+		{
+			"id": 1,
+			"platform": "PC",
+			"total": 78,
+			"total_available": 76,
+			"total_unavailable": 2
+		},
+		{
+			"id": 6,
+			"platform": "PS3",
+			"total": 55,
+			"total_available": 37,
+			"total_unavailable": 19
+		},
+		{
+			"id": 5,
+			"platform": "PS2",
+			"total": 21,
+			"total_available": 19,
+			"total_unavailable": 2
+		},
+		{
+			"id": 3,
+			"platform": "PSP",
+			"total": 14,
+			"total_available": 14,
+			"total_unavailable": 0
+		},
+		{
+			"id": 2,
+			"platform": "GBA",
+			"total": 10,
+			"total_available": 10,
+			"total_unavailable": 0
+		},
+		{
+			"id": 4,
+			"platform": "PS1",
+			"total": 4,
+			"total_available": 4,
+			"total_unavailable": 0
+		}
+	],
+	"genres": [
+		{
+			"id": 1,
+			"genre": "Action",
+			"total": 159,
+			"total_available": 137,
+			"total_unavailable": 23
+		},
+		{
+			"id": 2,
+			"genre": "Adventure",
+			"total": 138,
+			"total_available": 119,
+			"total_unavailable": 20
+		},
+		{
+			"id": 12,
+			"genre": "Platformer",
+			"total": 66,
+			"total_available": 60,
+			"total_unavailable": 7
+		},
+		{
+			"id": 16,
+			"genre": "Shooter",
+			"total": 42,
+			"total_available": 38,
+			"total_unavailable": 4
+		},
+		{
+			"id": 14,
+			"genre": "RPG",
+			"total": 16,
+			"total_available": 15,
+			"total_unavailable": 1
+		},
+		{
+			"id": 13,
+			"genre": "Puzzle",
+			"total": 8,
+			"total_available": 8,
+			"total_unavailable": 0
+		},
+		{
+			"id": 7,
+			"genre": "Educational",
+			"total": 7,
+			"total_available": 7,
+			"total_unavailable": 0
+		},
+		{
+			"id": 6,
+			"genre": "Casual",
+			"total": 6,
+			"total_available": 6,
+			"total_unavailable": 0
+		},
+		{
+			"id": 9,
+			"genre": "Fighting",
+			"total": 6,
+			"total_available": 6,
+			"total_unavailable": 0
+		},
+		{
+			"id": 3,
+			"genre": "Arcade",
+			"total": 5,
+			"total_available": 5,
+			"total_unavailable": 0
+		},
+		{
+			"id": 15,
+			"genre": "Racing",
+			"total": 4,
+			"total_available": 4,
+			"total_unavailable": 0
+		},
+		{
+			"id": 10,
+			"genre": "Indie",
+			"total": 3,
+			"total_available": 3,
+			"total_unavailable": 0
+		},
+		{
+			"id": 5,
+			"genre": "Card",
+			"total": 2,
+			"total_available": 2,
+			"total_unavailable": 0
+		},
+		{
+			"id": 8,
+			"genre": "Family",
+			"total": 1,
+			"total_available": 1,
+			"total_unavailable": 0
+		},
+		{
+			"id": 19,
+			"genre": "Strategy",
+			"total": 1,
+			"total_available": 1,
+			"total_unavailable": 0
+		},
+		{
+			"id": 4,
+			"genre": "Board Games",
+			"total": 0,
+			"total_available": 0,
+			"total_unavailable": 0
+		},
+		{
+			"id": 11,
+			"genre": "MMORPG",
+			"total": 0,
+			"total_available": 0,
+			"total_unavailable": 0
+		},
+		{
+			"id": 17,
+			"genre": "Simulation",
+			"total": 0,
+			"total_available": 0,
+			"total_unavailable": 0
+		},
+		{
+			"id": 18,
+			"genre": "Sports",
+			"total": 0,
+			"total_available": 0,
+			"total_unavailable": 0
+		},
+		{
+			"id": 20,
+			"genre": "Misc",
+			"total": 0,
+			"total_available": 0,
+			"total_unavailable": 0
+		}
+	],
+	"general": {
+		"total": 182,
+		"total_available": 160,
+		"total_unavailable": 23,
+		"channel_start_date": "2014-04-15T17:35:16+00:00",
+		"total_time": {
+			"hours": 967,
+			"minutes": 40,
+			"seconds": 36
+		},
+		"total_time_available": {
+			"hours": 841,
+			"minutes": 14,
+			"seconds": 12
+		},
+		"total_time_unavailable": {
+			"hours": 135,
+			"minutes": 33,
+			"seconds": 16
+		}
+	}
+}

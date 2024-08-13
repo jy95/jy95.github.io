@@ -3,37 +3,26 @@ import { createSlice, createSelector } from '@reduxjs/toolkit';
 // Types
 import type { RootState } from "../Store"
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { Platform } from "@/redux/sharedDefintion";
-import type { Genre as GenreValue } from "@/redux/sharedDefintion";
-
-export type gamesSorters = [
-    "name" | "releaseDate" | "duration",
-    "ASC" | "DESC"
-][];
 
 // To compute new filtering function
 //type gamesFilterKeys = "selected_platform" | "selected_title" | "selected_genres";
 export type gamesFilters = ({
     value: string,
-    key: "selected_platform" | "selected_title"
+    key: "selected_title"
 } | {
-    value: string[],
+    value: number[],
     key: "selected_genres"
+} | {
+    value: number,
+    key: "selected_platform"
 })[];
 
 export interface GamesState {
-    /** @description  sorting */
-    sorters: gamesSorters,
     /** @description  current filters applied */
     activeFilters: gamesFilters
 }
 
 const initialState: GamesState = {
-    sorters: [
-        ["name", "ASC"],
-        ["releaseDate", "ASC"],
-        ["duration", "ASC"]
-    ],
     activeFilters: []
 };
 
@@ -43,7 +32,7 @@ const gamesSlice = createSlice({
 // Redux Toolkit allows us to write "mutating" logic in reducers. It
 // doesn't actually mutate the state because it uses the Immer library
     reducers: {
-        filteringByGenre(state : GamesState, action: PayloadAction<GenreValue[]>) {
+        filteringByGenre(state : GamesState, action: PayloadAction<number[]>) {
             // If empty, remove filter - if not, add it
             let newFilters = state.activeFilters.filter(s => s.key !== "selected_genres") as gamesFilters;
             if (action.payload.length !== 0) {
@@ -65,10 +54,10 @@ const gamesSlice = createSlice({
             }
             state.activeFilters = newFilters;
         },
-        filterByPlatform(state : GamesState, action: PayloadAction<Platform | "">) {
+        filterByPlatform(state : GamesState, action: PayloadAction<number | undefined>) {
             // If empty, remove filter - if not, add it
             let newFilters = state.activeFilters.filter(s => s.key !== "selected_platform") as gamesFilters;
-            if (action.payload.length !== 0) {
+            if (action.payload !== undefined) {
                 newFilters.push({
                     key: "selected_platform",
                     value: action.payload
@@ -92,7 +81,7 @@ export const selectSelectedGenres = createSelector(
         if (!entry) {
             return [];
         } else {
-            return entry.value as string[]
+            return entry.value as number[]
         }
     }
 );
@@ -105,9 +94,9 @@ export const selectSelectedPlatform = createSelector(
     (filters) => {
         let entry = filters.find(s => s.key === "selected_platform");
         if (!entry) {
-            return "";
+            return undefined;
         } else {
-            return entry.value as string
+            return entry.value as number
         }
     }
 );

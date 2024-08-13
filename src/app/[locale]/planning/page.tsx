@@ -17,8 +17,7 @@ import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import SvgIcon from '@mui/material/SvgIcon';
 
 // Platform icons
-import iconsSVG from "@/components/GamesView/PlatformIcons";
-import type { Platform } from '@/redux/sharedDefintion';
+import RenderPlatformIcon from "@/components/GamesView/PlatformIcons";
 
 // Others
 import Tooltip from '@mui/material/Tooltip';
@@ -54,9 +53,7 @@ export default function PlanningViewer() {
             field: "platform",
             headerName: t("columns.platform"),
             renderCell: (params : GridRenderCellParams) => (
-                <SvgIcon titleAccess={params.value}>
-                    {iconsSVG[params.value as Platform]}
-                </SvgIcon>
+                <RenderPlatformIcon identifier={params.value} />
             ),
             width: 160
         },

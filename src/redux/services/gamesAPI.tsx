@@ -1,26 +1,13 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+
+// Types
 import type { ResponseBody as GamesResponse } from "@/app/api/games/route";
-
-type gamesSorters = [
-    "name" | "releaseDate" | "duration",
-    "ASC" | "DESC"
-][];
-
-// To compute new filtering function
-//type gamesFilterKeys = "selected_platform" | "selected_title" | "selected_genres";
-type gamesFilters = ({
-    value: string,
-    key: "selected_platform" | "selected_title"
-} | {
-    value: string[],
-    key: "selected_genres"
-})[];
+import type { gamesFilters } from "@/redux/features/gamesSlice"
 
 // parameters for method
 type Parameters = {
     filters: gamesFilters,
-    sorters: gamesSorters,
     page: number,
     pageSize: number,
 }
@@ -30,12 +17,9 @@ type RequestParams = {
     selected_platform?: string,
     selected_title?: string,
     selected_genres?: string[],
-    sortCriteria?: string[],
-    sortOrder?: string[],
     page: number,
     pageSize: number,
     includePreviousPagesResult: boolean,
-    dateAsInteger: number,
 }
 
 const stringifyObject = (object: any) => {
@@ -59,12 +43,8 @@ export const gamesAPI = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
     endpoints: (builder) => ({
         getGames: builder.query<GamesResponse, Parameters>({
-            query: ({ pageSize, page, filters, sorters }) => {
+            query: ({ pageSize, page, filters }) => {
 
-                const currentDate = new Date();
-                const integerDate = (currentDate.getFullYear() * 10000) + 
-                    ( (currentDate.getMonth() + 1) * 100 ) + 
-                    currentDate.getDate();
 
                 let parameters : RequestParams = {
                     // page size
@@ -74,7 +54,6 @@ export const gamesAPI = createApi({
                     // Needed for RTK Query to work properly
                     // In the future, I should likely remove that stuff
                     includePreviousPagesResult: true,
-                    dateAsInteger: integerDate,
                 };
 
                 // filters parameter
@@ -82,12 +61,6 @@ export const gamesAPI = createApi({
                     for(let filter of filters) {
                         parameters[filter.key] = filter.value as any;
                     }
-                }
-
-                // sorters parameter
-                if (sorters.length > 0) {
-                    parameters["sortCriteria"] = sorters.map(s => s[0]);
-                    parameters["sortOrder"] = sorters.map(s => s[1]);
                 }
 
                 return `/games?${stringifyObject(parameters)}`;

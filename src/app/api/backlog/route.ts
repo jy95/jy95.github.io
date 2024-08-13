@@ -1,9 +1,5 @@
 import { NextResponse } from "next/server";
 
-import type { 
-    Platform
-} from "@/redux/sharedDefintion";
-
 // An entry of backlog
 export type BacklogEntry = {
     /**@description Id */
@@ -11,7 +7,7 @@ export type BacklogEntry = {
     /** @description Name of the game */
     "title": string,
     /** @description Platform for that game */
-    "platform"?: Platform,
+    "platform"?: number,
     /** @description Extra notes */
     "notes"?: string
 }
@@ -24,7 +20,7 @@ export async function GET() {
 
     // Game data
     const gamesData = (await import("./backlog.json")).default;
-    const games = gamesData.map( (game, idx) => enhanceGameItem(game as RawBacklogEntry, idx) );
+    const games = gamesData.map( (game, idx) => enhanceGameItem(game, idx) );
 
     return NextResponse.json(games, {
         headers: {

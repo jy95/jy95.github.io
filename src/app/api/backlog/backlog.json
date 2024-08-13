@@ -1,459 +1,578 @@
 [
-    {
-        "title": "Beyond: Two Souls",
-        "platform": "PC"
-    },
-    {
-        "title": "Super Meat Boy"
-    },
-    {
-        "title": "Manhunt"
-    },
-    {
-        "title": "Manhunt 2"
-    },
-    {
-        "title": "Dead Head Fred",
-        "platform": "PSP"
-    },
-    {
-        "title": "Ty, le tigre de Tasmanie",
-        "notes": "Original (PS2) VS remake (PC) ?"
-    },
-    {
-        "title": "Ty : Le Tigre de Tasmanie 2 : Opération Sauvetage",
-        "notes": "Original (PS2) VS remake (PC) ?"
-    },
-    {
-        "title": "Ty, le tigre de Tasmanie 3 : Nuit du Quinkan",
-        "notes": "Original (PS2) VS remake (PC) ?"
-    },
-    {
-        "title": "Ty, le tigre de Tasmanie 4 : Le retour de Opération Sauvetage",
-        "notes": "Original (PS2) VS remake (PC) ?"
-    },
-    {
-        "title": "Musashi: Samurai Legend",
-        "platform": "PS2"
-    },
-    {
-        "title": "Shadow of the Colossus",
-        "platform": "PS3"
-    },
-    {
-        "title": "Okami HD",
-        "platform": "PS3"
-    },
-    {
-        "title": "Oni",
-        "platform": "PS3"
-    },
-    {
-        "title": "Heavy Rain",
-        "platform": "PS3"
-    },
-    {
-        "title": "Crash Twinsanity",
-        "platform": "PS2"
-    },
-    {
-        "title": "Crash of the Titans",
-        "platform": "PS2"
-    },
-    {
-        "title": "Viewtiful Joe",
-        "platform": "PS2"
-    },
-    {
-        "title": "Cold Fear",
-        "platform": "PS2"
-    },
-    {
-        "title": "The Suffering : Les Liens qui nous Unissent",
-        "platform": "PS2"
-    },
-    {
-        "title": "BloodRayne : Terminal Cut",
-        "platform": "PC"
-    },
-    {
-        "title": "BloodRayne 2 : Terminal Cut",
-        "platform": "PC"
-    },
-    {
-        "title": "Swords of Destiny",
-        "platform": "PS3"
-    },
-    {
-        "title": "Burnout Paradise Remastered"
-    },
-    {
-        "title": "Trine",
-        "platform": "PS3"
-    },
-    {
-        "title": "Trine 2",
-        "platform": "PS3"
-    },
-    {
-        "title": "Trine 3 : The Artifacts of Power",
-        "platform": "PC"
-    },
-    {
-        "title": "Trine 4 : Melody of Mystery",
-        "platform": "PC"
-    },
-    {
-        "title": "Trine 5",
-        "platform": "PC"
-    },
-    {
-        "title": "Serious Sam HD: The First Encounter",
-        "platform": "PC"
-    },
-    {
-        "title": "Serious Sam HD: The Second Encounter",
-        "platform": "PC"
-    },
-    {
-        "title": "Serious Sam 3: BFE",
-        "platform": "PC"
-    },
-    {
-        "title": "Serious Sam 4",
-        "platform": "PC"
-    },
-    {
-        "title": "God Hand",
-        "platform": "PS3"
-    },
-    {
-        "title": "Dead Rising",
-        "platform": "PC"
-    },
-    {
-        "title": "Dead Rising 2",
-        "platform": "PS3"
-    },
-    {
-        "title": "Dead Rising 3",
-        "platform": "PS3"
-    },
-    {
-        "title": "Dead Rising 4",
-        "platform": "PC"
-    },
-    {
-        "title": "Psi-Ops : The Mindgate Conspiracy",
-        "platform": "PS2"
-    },
-    {
-        "title": "Black",
-        "platform": "PS2"
-    },
-    {
-        "title": "Disgaea : Afternoon of Darkness",
-        "platform": "PSP"
-    },
-    {
-        "title": "Disgaea 2 : Dark Hero Days",
-        "platform": "PSP"
-    },
-    {
-        "title": "TimeSplitters : Future Perfect",
-        "platform": "PS2"
-    },
-    {
-        "title": "Kane & Lynch : Dead Men",
-        "platform": "PS3"
-    },
-    {
-        "title": "Mark of the Ninja",
-        "platform": "PC"
-    },
-    {
-        "title": "The Chronicles of Riddick : Assault on Dark Athena",
-        "platform": "PS3"
-    },
-    {
-        "title": "Shadow Complex Remastered",
-        "platform": "PC"
-    },
-    {
-        "title": "Kung Fu Panda : Le jeu",
-        "platform": "PS3"
-    },
-    {
-        "title": "Shantae Advance : Risky Revolution",
-        "platform": "PC"
-    },
-    {
-        "title": "Shantae and the Pirate's Curse",
-        "platform": "PC"
-    },
-    {
-        "title": "Shantae and the Seven Sirens",
-        "platform": "PC"
-    },
-    {
-        "title": "Shantae : Half-Genie Hero",
-        "platform": "PC"
-    },
-    {
-        "title": "Shantae : Risky's Revenge",
-        "platform": "PC"
-    },
-    {
-        "title": "Syndicate",
-        "platform": "PS3"
-    },
-    {
-        "title": "Wolfenstein",
-        "platform": "PS3"
-    },
-    {
-        "title": "Wolfenstein : The New Order",
-        "platform": "PS3"
-    },
-    {
-        "title": "Wolfenstein II : The New Colossus",
-        "platform": "PC"
-    },
-    {
-        "title": "Rage",
-        "platform": "PS3"
-    },
-    {
-        "title": "Driver 76",
-        "platform": "PSP"
-    },
-    {
-        "title": "Binary Domain",
-        "platform": "PS3"
-    },
-    {
-        "title": "The House of the Dead : Overkill - Extended Cut",
-        "platform": "PS3"
-    },
-    {
-        "title": "Dark Sector",
-        "platform": "PS3"
-    },
-    {
-        "title": "Scarface : The World is Yours",
-        "platform": "PC",
-        "notes": "Scarface Remastered Project 1.1"
-    },
-    {
-        "title": "Pizza Tower",
-        "platform": "PC"
-    },
-    {
-        "title": "Stick It to The Man!",
-        "platform": "PS3"
-    },
-    {
-        "title": "Child of Eden",
-        "platform": "PS3"
-    },
-    {
-        "title": "Persona 5 Royal",
-        "platform": "PC"
-    },
-    {
-        "title": "Yakuza 1 HD",
-        "platform": "PS3",
-        "notes": "Yakuza 1 & 2 HD Edition"
-    },
-    {
-        "title": "Yakuza 2 HD",
-        "platform": "PS3",
-        "notes": "Yakuza 1 & 2 HD Edition"
-    },
-    {
-        "title": "Yakuza 3",
-        "platform": "PC",
-        "notes": "The Yakuza Remastered Collection"
-    },
-    {
-        "title": "Yakuza 4",
-        "platform": "PC",
-        "notes": "The Yakuza Remastered Collection"
-    },
-    {
-        "title": "Yakuza 5",
-        "platform": "PC",
-        "notes": "The Yakuza Remastered Collection"
-    },
-    {
-        "title": "Yakuza 6 : The Song of Life",
-        "platform": "PC"
-    },
-    {
-        "title": "Yakuza : Like a Dragon",
-        "platform": "PC"
-    },
-    {
-        "title": "Yakuza Zero : The Place of Oath",
-        "platform": "PS3"
-    },
-    {
-        "title": "50 Cent - Bulletproof",
-        "platform": "PS2"
-    },
-    {
-        "title": "True Crime - New York City",
-        "platform": "PS2"
-    },
-    {
-        "title": "Batman Begins",
-        "platform": "PS2"
-    },
-    {
-        "title": "Dead to Rights II",
-        "platform": "PS2"
-    },
-    {
-        "title": "Shovel Knight",
-        "platform": "PS3"
-    },
-    {
-        "title": "Kingdoms of amalur : reckoning",
-        "platform": "PS3"
-    },
-    {
-        "title": "The sopranos road to respect",
-        "platform": "PS2"
-    },
-    {
-        "title": "Ratatouille",
-        "platform": "PS3"
-    },
-    {
-        "title": "State of Emergency",
-        "platform": "PS2"
-    },
-    {
-        "title": "Forbidden siren",
-        "platform": "PS2"
-    },
-    {
-        "title": "Enchanted Arms",
-        "platform": "PS3"
-    },
-    {
-        "title": "The 3rd Birthday",
-        "platform": "PSP"
-    },
-    {
-        "title": "Vanquish"
-    },
-    {
-        "title": "Halo 2",
-        "platform": "PC"
-    },
-    {
-        "title": "Halo 4",
-        "platform": "PC"
-    },
-    {
-        "title": "Halo Reach",
-        "platform": "PC"
-    },
-    {
-        "title": "Grand Theft Auto III"
-    },
-    {
-        "title": "Grand Theft Auto IV"
-    },
-    {
-        "title": "Grand Theft Auto V"
-    },
-    {
-        "title": "Grand Theft Auto : San Andreas"
-    },
-    {
-        "title": "Grand Theft Auto : Vice City"
-    },
-    {
-        "title": "Grand Theft Auto : Liberty City Stories"
-    },
-    {
-        "title": "BioShock",
-        "platform": "PC",
-        "notes": "Bioshock : The Collection"
-    },
-    {
-        "title": "BioShock 2",
-        "platform": "PC",
-        "notes": "Bioshock : The Collection"
-    },
-    {
-        "title": "BioShock Infinite",
-        "platform": "PC",
-        "notes": "Bioshock : The Collection"
-    },
-    {
-        "title": "Dead Space",
-        "notes": "Dead Space (2023)"
-    },
-    {
-        "title": "Dead Space 2"
-    },
-    {
-        "title": "Shadow Of The Tomb Raider",
-        "platform": "PC"
-    },
-    {
-        "title": "Tomb Raider: Anniversary"
-    },
-    {
-        "title": "Tomb Raider",
-        "platform": "PS3",
-        "notes": "2013"
-    },
-    {
-        "title": "Rise Of The Tomb Raider",
-        "platform": "PC"
-    },
-    {
-        "title": "Gangs of London",
-        "platform": "PSP"
-    },
-    {
-        "title": "Spartan : Total Warrior",
-        "platform": "PS2"
-    },
-    {
-        "title": "Crisis Zone",
-        "platform": "PS2"
-    },
-    {
-        "title": "Dead Island",
-        "platform": "PS3"
-    },
-    {
-        "title": "Blacksite",
-        "platform": "PS3"
-    },
-    {
-        "title": "The Club",
-        "platform": "PS3"
-    },
-    {
-        "title": "Bionic Commando",
-        "platform": "PS3"
-    },
-    {
-        "title": "Rogue Warrior",
-        "platform": "PS3"
-    },
-    {
-        "title": "The Darkness",
-        "platform": "PS3"
-    },
-    {
-        "title": "Bionicle Heroes",
-        "notes": "PC vs PS2 ?"
-    }
+	{
+		"id": 1,
+		"title": "Beyond: Two Souls",
+		"platform": 1
+	},
+	{
+		"id": 2,
+		"title": "Super Meat Boy"
+	},
+	{
+		"id": 3,
+		"title": "Manhunt"
+	},
+	{
+		"id": 4,
+		"title": "Manhunt 2"
+	},
+	{
+		"id": 5,
+		"title": "Dead Head Fred",
+		"platform": 3
+	},
+	{
+		"id": 6,
+		"title": "Ty, le tigre de Tasmanie",
+		"platform": 5,
+		"notes": "Original (PS2) VS remake (PC) ?"
+	},
+	{
+		"id": 7,
+		"title": "Ty : Le Tigre de Tasmanie 2 : Opération Sauvetage",
+		"platform": 5,
+		"notes": "Original (PS2) VS remake (PC) ?"
+	},
+	{
+		"id": 8,
+		"title": "Ty, le tigre de Tasmanie 3 : Nuit du Quinkan",
+		"platform": 5,
+		"notes": "Original (PS2) VS remake (PC) ?"
+	},
+	{
+		"id": 9,
+		"title": "Ty, le tigre de Tasmanie 4 : Le retour de Opération Sauvetage",
+		"platform": 5,
+		"notes": "Original (PS2) VS remake (PC) ?"
+	},
+	{
+		"id": 10,
+		"title": "Musashi: Samurai Legend",
+		"platform": 5
+	},
+	{
+		"id": 11,
+		"title": "Shadow of the Colossus",
+		"platform": 6
+	},
+	{
+		"id": 12,
+		"title": "Okami HD",
+		"platform": 6
+	},
+	{
+		"id": 13,
+		"title": "Oni",
+		"platform": 6
+	},
+	{
+		"id": 14,
+		"title": "Heavy Rain",
+		"platform": 6
+	},
+	{
+		"id": 15,
+		"title": "Crash Twinsanity",
+		"platform": 5
+	},
+	{
+		"id": 16,
+		"title": "Crash of the Titans",
+		"platform": 5
+	},
+	{
+		"id": 17,
+		"title": "Viewtiful Joe",
+		"platform": 5
+	},
+	{
+		"id": 18,
+		"title": "Cold Fear",
+		"platform": 5
+	},
+	{
+		"id": 19,
+		"title": "The Suffering : Les Liens qui nous Unissent",
+		"platform": 5
+	},
+	{
+		"id": 20,
+		"title": "BloodRayne : Terminal Cut",
+		"platform": 1
+	},
+	{
+		"id": 21,
+		"title": "BloodRayne 2 : Terminal Cut",
+		"platform": 1
+	},
+	{
+		"id": 22,
+		"title": "Swords of Destiny",
+		"platform": 6
+	},
+	{
+		"id": 23,
+		"title": "Burnout Paradise Remastered"
+	},
+	{
+		"id": 24,
+		"title": "Trine",
+		"platform": 6
+	},
+	{
+		"id": 25,
+		"title": "Trine 2",
+		"platform": 6
+	},
+	{
+		"id": 26,
+		"title": "Trine 3 : The Artifacts of Power",
+		"platform": 1
+	},
+	{
+		"id": 27,
+		"title": "Trine 4 : Melody of Mystery",
+		"platform": 1
+	},
+	{
+		"id": 28,
+		"title": "Trine 5",
+		"platform": 1
+	},
+	{
+		"id": 29,
+		"title": "Serious Sam HD: The First Encounter",
+		"platform": 1
+	},
+	{
+		"id": 30,
+		"title": "Serious Sam HD: The Second Encounter",
+		"platform": 1
+	},
+	{
+		"id": 31,
+		"title": "Serious Sam 3: BFE",
+		"platform": 1
+	},
+	{
+		"id": 32,
+		"title": "Serious Sam 4",
+		"platform": 1
+	},
+	{
+		"id": 33,
+		"title": "God Hand",
+		"platform": 6
+	},
+	{
+		"id": 34,
+		"title": "Dead Rising",
+		"platform": 1
+	},
+	{
+		"id": 35,
+		"title": "Dead Rising 2",
+		"platform": 6
+	},
+	{
+		"id": 36,
+		"title": "Dead Rising 3",
+		"platform": 6
+	},
+	{
+		"id": 37,
+		"title": "Dead Rising 4",
+		"platform": 1
+	},
+	{
+		"id": 38,
+		"title": "Psi-Ops : The Mindgate Conspiracy",
+		"platform": 5
+	},
+	{
+		"id": 39,
+		"title": "Black",
+		"platform": 5
+	},
+	{
+		"id": 40,
+		"title": "Disgaea : Afternoon of Darkness",
+		"platform": 3
+	},
+	{
+		"id": 41,
+		"title": "Disgaea 2 : Dark Hero Days",
+		"platform": 3
+	},
+	{
+		"id": 42,
+		"title": "TimeSplitters : Future Perfect",
+		"platform": 5
+	},
+	{
+		"id": 43,
+		"title": "Kane & Lynch : Dead Men",
+		"platform": 6
+	},
+	{
+		"id": 44,
+		"title": "Mark of the Ninja",
+		"platform": 1
+	},
+	{
+		"id": 45,
+		"title": "The Chronicles of Riddick : Assault on Dark Athena",
+		"platform": 6
+	},
+	{
+		"id": 46,
+		"title": "Shadow Complex Remastered",
+		"platform": 1
+	},
+	{
+		"id": 47,
+		"title": "Kung Fu Panda : Le jeu",
+		"platform": 6
+	},
+	{
+		"id": 48,
+		"title": "Shantae Advance : Risky Revolution",
+		"platform": 1
+	},
+	{
+		"id": 49,
+		"title": "Shantae and the Pirate's Curse",
+		"platform": 1
+	},
+	{
+		"id": 50,
+		"title": "Shantae and the Seven Sirens",
+		"platform": 1
+	},
+	{
+		"id": 51,
+		"title": "Shantae : Half-Genie Hero",
+		"platform": 1
+	},
+	{
+		"id": 52,
+		"title": "Shantae : Risky's Revenge",
+		"platform": 1
+	},
+	{
+		"id": 53,
+		"title": "Syndicate",
+		"platform": 6
+	},
+	{
+		"id": 54,
+		"title": "Wolfenstein",
+		"platform": 6
+	},
+	{
+		"id": 55,
+		"title": "Wolfenstein : The New Order",
+		"platform": 6
+	},
+	{
+		"id": 56,
+		"title": "Wolfenstein II : The New Colossus",
+		"platform": 1
+	},
+	{
+		"id": 57,
+		"title": "Rage",
+		"platform": 6
+	},
+	{
+		"id": 58,
+		"title": "Driver 76",
+		"platform": 3
+	},
+	{
+		"id": 59,
+		"title": "Binary Domain",
+		"platform": 6
+	},
+	{
+		"id": 60,
+		"title": "The House of the Dead : Overkill - Extended Cut",
+		"platform": 6
+	},
+	{
+		"id": 61,
+		"title": "Dark Sector",
+		"platform": 6
+	},
+	{
+		"id": 62,
+		"title": "Scarface : The World is Yours",
+		"platform": 1,
+		"notes": "Scarface Remastered Project 1.1"
+	},
+	{
+		"id": 63,
+		"title": "Pizza Tower",
+		"platform": 1
+	},
+	{
+		"id": 64,
+		"title": "Stick It to The Man!",
+		"platform": 6
+	},
+	{
+		"id": 65,
+		"title": "Child of Eden",
+		"platform": 6
+	},
+	{
+		"id": 66,
+		"title": "Persona 5 Royal",
+		"platform": 1
+	},
+	{
+		"id": 67,
+		"title": "Yakuza 1 HD",
+		"platform": 6,
+		"notes": "Yakuza 1 & 2 HD Edition"
+	},
+	{
+		"id": 68,
+		"title": "Yakuza 2 HD",
+		"platform": 6,
+		"notes": "Yakuza 1 & 2 HD Edition"
+	},
+	{
+		"id": 69,
+		"title": "Yakuza 3",
+		"platform": 1,
+		"notes": "The Yakuza Remastered Collection"
+	},
+	{
+		"id": 70,
+		"title": "Yakuza 4",
+		"platform": 1,
+		"notes": "The Yakuza Remastered Collection"
+	},
+	{
+		"id": 71,
+		"title": "Yakuza 5",
+		"platform": 1,
+		"notes": "The Yakuza Remastered Collection"
+	},
+	{
+		"id": 72,
+		"title": "Yakuza 6 : The Song of Life",
+		"platform": 1
+	},
+	{
+		"id": 73,
+		"title": "Yakuza : Like a Dragon",
+		"platform": 1
+	},
+	{
+		"id": 74,
+		"title": "Yakuza Zero : The Place of Oath",
+		"platform": 6
+	},
+	{
+		"id": 75,
+		"title": "50 Cent - Bulletproof",
+		"platform": 5
+	},
+	{
+		"id": 76,
+		"title": "True Crime - New York City",
+		"platform": 5
+	},
+	{
+		"id": 77,
+		"title": "Batman Begins",
+		"platform": 5
+	},
+	{
+		"id": 78,
+		"title": "Dead to Rights II",
+		"platform": 5
+	},
+	{
+		"id": 79,
+		"title": "Shovel Knight",
+		"platform": 6
+	},
+	{
+		"id": 80,
+		"title": "Kingdoms of amalur : reckoning",
+		"platform": 6
+	},
+	{
+		"id": 81,
+		"title": "The sopranos road to respect",
+		"platform": 5
+	},
+	{
+		"id": 82,
+		"title": "Ratatouille",
+		"platform": 6
+	},
+	{
+		"id": 83,
+		"title": "State of Emergency",
+		"platform": 5
+	},
+	{
+		"id": 84,
+		"title": "Forbidden siren",
+		"platform": 5
+	},
+	{
+		"id": 85,
+		"title": "Enchanted Arms",
+		"platform": 6
+	},
+	{
+		"id": 86,
+		"title": "The 3rd Birthday",
+		"platform": 3
+	},
+	{
+		"id": 87,
+		"title": "Vanquish"
+	},
+	{
+		"id": 88,
+		"title": "Halo 2",
+		"platform": 1
+	},
+	{
+		"id": 89,
+		"title": "Halo 4",
+		"platform": 1
+	},
+	{
+		"id": 90,
+		"title": "Halo Reach",
+		"platform": 1
+	},
+	{
+		"id": 91,
+		"title": "Grand Theft Auto III"
+	},
+	{
+		"id": 92,
+		"title": "Grand Theft Auto IV"
+	},
+	{
+		"id": 93,
+		"title": "Grand Theft Auto V"
+	},
+	{
+		"id": 94,
+		"title": "Grand Theft Auto : San Andreas"
+	},
+	{
+		"id": 95,
+		"title": "Grand Theft Auto : Vice City"
+	},
+	{
+		"id": 96,
+		"title": "Grand Theft Auto : Liberty City Stories"
+	},
+	{
+		"id": 97,
+		"title": "BioShock",
+		"platform": 1,
+		"notes": "Bioshock : The Collection"
+	},
+	{
+		"id": 98,
+		"title": "BioShock 2",
+		"platform": 1,
+		"notes": "Bioshock : The Collection"
+	},
+	{
+		"id": 99,
+		"title": "BioShock Infinite",
+		"platform": 1,
+		"notes": "Bioshock : The Collection"
+	},
+	{
+		"id": 100,
+		"title": "Dead Space",
+		"notes": "Dead Space (2023)"
+	},
+	{
+		"id": 101,
+		"title": "Dead Space 2"
+	},
+	{
+		"id": 102,
+		"title": "Shadow Of The Tomb Raider",
+		"platform": 1
+	},
+	{
+		"id": 103,
+		"title": "Tomb Raider: Anniversary"
+	},
+	{
+		"id": 104,
+		"title": "Tomb Raider",
+		"platform": 6,
+		"notes": "2013"
+	},
+	{
+		"id": 105,
+		"title": "Rise Of The Tomb Raider",
+		"platform": 1
+	},
+	{
+		"id": 106,
+		"title": "Gangs of London",
+		"platform": 3
+	},
+	{
+		"id": 107,
+		"title": "Spartan : Total Warrior",
+		"platform": 5
+	},
+	{
+		"id": 108,
+		"title": "Crisis Zone",
+		"platform": 5
+	},
+	{
+		"id": 109,
+		"title": "Dead Island",
+		"platform": 6
+	},
+	{
+		"id": 110,
+		"title": "Blacksite",
+		"platform": 6
+	},
+	{
+		"id": 111,
+		"title": "The Club",
+		"platform": 6
+	},
+	{
+		"id": 112,
+		"title": "Bionic Commando",
+		"platform": 6
+	},
+	{
+		"id": 113,
+		"title": "Rogue Warrior",
+		"platform": 6
+	},
+	{
+		"id": 114,
+		"title": "The Darkness",
+		"platform": 6
+	},
+	{
+		"id": 115,
+		"title": "Bionicle Heroes",
+		"notes": "PC vs PS2 ?"
+	}
 ]
