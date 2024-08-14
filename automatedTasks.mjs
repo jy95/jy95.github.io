@@ -131,7 +131,7 @@ async function addGameToDatabase(db, payload) {
 }
 
 /**
- * Add game into the database
+ * Update game fields
  * @param {import('better-sqlite3').Database} db - The database instance
  * @param {Object} payload - The game details
  * @param {string} [payload.title] - The title of the game
@@ -210,6 +210,29 @@ async function updateGameInDatabase(db, payload) {
     });
 }
 
+/**
+ * Update game fields
+ * @param {import('better-sqlite3').Database} db - The database instance
+ * @param {Object} payload - The game details
+ * @param {IdentifierKind} payload.identifierKind - The identifier kind (0 for Playlist, 1 for Video)
+ * @param {string} payload.identifierValue - The identifier value (ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY)
+ * 
+ */
+async function deleteGameFromDatabase(db, payload) {
+    // Fields
+    const keyField = payload.identifierKind === 1 ? "videoId" : "playlistId";
+    const youtubeIdentifier = payload.identifierValue;
+
+    // Statments
+    const findGameIdStmt = db.prepare(`SELECT id from games WHERE ${keyField} = ?`);
+    const deleteGameStmt = db.prepare("DELETE FROM games WHERE id = ?");
+
+    // Find game id
+    const gameId = findGameIdStmt.pluck().get(youtubeIdentifier);
+    // Delete game and everything related, thanks to the CASCADE DELETE
+    deleteGameStmt.run(gameId);
+}
+
 switch(taskType) {
     case "ADD_GAME":
         await addGameToDatabase(db, taskPayload);
@@ -218,6 +241,7 @@ switch(taskType) {
         await updateGameInDatabase(db, taskPayload);
         break;
     case "DELETE_GAME":
+        await deleteGameFromDatabase(db, taskPayload);
         break;
     case "ADD_BACKLOG":
         break;
