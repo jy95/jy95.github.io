@@ -233,6 +233,30 @@ async function deleteGameFromDatabase(db, payload) {
     deleteGameStmt.run(gameId);
 }
 
+/**
+ * Add a backlog entry into database
+ * @param {import('better-sqlite3').Database} db - The database instance
+ * @param {Object} payload - The game details
+ * @param {string} payload.title - The title of the game
+ * @param {Platform} [payload.platform] - The platform of the game
+ * @param {string} [payload.notes] - Additional notes about this game
+ * 
+ */
+async function addBacklogToDatabase(db, payload) {
+    // fields
+    const backlogToInsert = {
+        title: payload.title,
+        platform: (payload.platform !== undefined) ? platformToInt(payload.platform) : null,
+        notes: payload.notes || null
+    }
+
+    // statments
+    const insertStmt = db.prepare("INSERT INTO backlog (title, platform, notes) VALUES (@title, @platform, @notes)");
+
+    // Execution time
+    insertStmt.run(backlogToInsert);
+}
+
 switch(taskType) {
     case "ADD_GAME":
         await addGameToDatabase(db, taskPayload);
@@ -244,6 +268,7 @@ switch(taskType) {
         await deleteGameFromDatabase(db, taskPayload);
         break;
     case "ADD_BACKLOG":
+        await addBacklogToDatabase(db, taskPayload);
         break;
     case "DELETE_BACKLOG":
         break;
