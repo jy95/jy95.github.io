@@ -14,7 +14,7 @@ body:
       label: Kind of content
       description: Is it a playlist or a video ?
       options:
-        - Playlist (Default)
+        - Playlist
         - Video
       default: 0
   - type: input
