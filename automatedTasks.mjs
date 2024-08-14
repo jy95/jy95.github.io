@@ -56,6 +56,23 @@ const taskPayload = JSON.parse(taskPayloadAsString);
  */
 
 /**
+ * Turn the response platform to database ID
+ * @param {Platform} platform 
+ */
+function platformToInt(platform) {
+    return platform + 1;
+}
+
+/**
+ * Turn the response genre to database ID
+ * @param {GameGenre} genre 
+ * @returns 
+ */
+function genreToInt(genre) {
+    return genre + 1;
+}
+
+/**
  * Add game into the database
  * @param {import('better-sqlite3').Database} db - The database instance
  * @param {Object} payload - The game details
@@ -80,10 +97,10 @@ async function addGameToDatabase(db, payload) {
         title: payload.title,
         releaseDate: payload.releaseDate,
         duration: payload.duration || "00:00:00",
-        platform: payload.platform + 1
+        platform: platformToInt(payload.platform)
     }
 
-    const genres = (payload.genres || []).map(g => g + 1);
+    const genres = (payload.genres || []).map(genreToInt);
 
     const period = (payload.availableAt) ? {
         availableAt: payload.availableAt,
@@ -113,11 +130,92 @@ async function addGameToDatabase(db, payload) {
     });
 }
 
+/**
+ * Add game into the database
+ * @param {import('better-sqlite3').Database} db - The database instance
+ * @param {Object} payload - The game details
+ * @param {string} [payload.title] - The title of the game
+ * @param {string} [payload.releaseDate] - The release date of the game (YYYY-MM-DD)
+ * @param {IdentifierKind} payload.identifierKind - The identifier kind (0 for Playlist, 1 for Video)
+ * @param {string} payload.identifierValue - The identifier value (ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY)
+ * @param {Platform} [payload.platform] - The game platform (PC, ...)
+ * @param {GameGenre[]} [payload.genres] - The game genres (Action, Adventure, ...)
+ * @param {string} [payload.duration] - The game duration (HH:MM:SS)
+ * @param {string} [payload.availableAt] - The game start date on the channel (YYYY-MM-DD)
+ * @param {string} [payload.endAt] - The game end date on the channel (YYYY-MM-DD)
+ * 
+ */
+async function updateGameInDatabase(db, payload) {
+    const keyField = payload.identifierKind === 1 ? "videoId" : "playlistId";
+    const youtubeIdentifier = payload.identifierValue;
+    const genres = (payload.genres || []).map(genreToInt);
+    
+    // Statments
+    const findGameIdStmt = db.prepare(`SELECT id from games WHERE ${keyField} = ?`);
+    const updateTitleStmt = db.prepare("UPDATE games SET title = ? WHERE id = ?");
+    const updateReleaseDateStmt = db.prepare("UPDATE games SET releaseDate = ? WHERE id = ?");
+    const updatePlatformStmt = db.prepare("UPDATE games SET platform = ? WHERE id = ?");
+    const updateDurationStmt = db.prepare("UPDATE games SET duration = ? WHERE id = ?");
+    const updateAvailableAtStmt = db.prepare("UPDATE games_schedules SET availableAt = ? WHERE id = ?");
+    const updateEndAtStmt = db.prepare("UPDATE games_schedules SET endAt = ? WHERE id = ?");
+    const deleteGenreStmt = db.prepare("DELETE FROM games_genres WHERE game = ?");
+    const insertGenresWithGameStmt = db.prepare("INSERT INTO games_genres (game, genre) VALUES (?, ?)");
+
+    // Execution time
+    db.transaction(() => {
+        // Find game id
+        const gameId = findGameIdStmt.pluck().get(youtubeIdentifier);
+
+        // Update title
+        if (payload.title !== undefined) {
+            updateTitleStmt.run(payload.title, gameId);
+        }
+
+        // Update release date
+        if (payload.releaseDate !== undefined) {
+            updateReleaseDateStmt.run(payload.releaseDate, gameId);
+        }
+
+        // Update platform
+        if (payload.platform !== undefined) {
+            const platform = platformToInt(payload.platform);
+            updatePlatformStmt.run(platform, gameId);
+        }
+
+        // Update duration
+        if (payload.duration !== undefined) {
+            updateDurationStmt.run(payload.duration, gameId);
+        }
+
+        // Update available at
+        if (payload.availableAt !== undefined) {
+            updateAvailableAtStmt.run(payload.availableAt, gameId);
+        }
+
+        // Update end at
+        if (payload.endAt !== undefined) {
+            updateEndAtStmt.run(payload.endAt, gameId);
+        }
+
+        // update genres
+        if (genres.length > 0) {
+            // Delete existing genres
+            deleteGenreStmt.run(gameId);
+
+            // Insert each new genre
+            for(const genre of genres) {
+                insertGenresWithGameStmt.run(gameId, genre);
+            }
+        }
+    });
+}
+
 switch(taskType) {
     case "ADD_GAME":
         await addGameToDatabase(db, taskPayload);
         break;
     case "UPDATE_GAME":
+        await updateGameInDatabase(db, taskPayload);
         break;
     case "DELETE_GAME":
         break;
