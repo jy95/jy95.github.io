@@ -52,4 +52,17 @@ jobs:
                 node automatedTasks.mjs "$TEMPLATE" "$REQUEST"
           - name: 🤖 Update JSON files after this change
             run: npm run generate-api-json-files
-# TODO put the create merge request here
+          - name: 💅 Create Pull Request
+            uses: peter-evans/create-pull-request@v6
+            with:
+              title: "🤖 [Automated Task] Workflow: ${{ needs.check_issue.outputs.issue_template }}"
+              body: |
+                ### Automated Change Details
+
+                The following changes were made to the JSON files based on the issue template :
+
+                ```json  
+                ${{ toJson(fromJson(needs.check_issue.outputs.issue_json)) }}
+                ```
+
+                Please review the changes.

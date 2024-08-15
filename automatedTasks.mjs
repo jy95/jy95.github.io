@@ -5,6 +5,9 @@ const db = new Database(databasePath);
 
 // Parse positional arguments
 const [taskType, taskPayloadAsString] = process.argv.slice(2);
+console.log("Parameters");
+console.log("Task type :", taskType);
+console.log("Payload as string :", taskPayloadAsString);
 const taskPayload = JSON.parse(taskPayloadAsString);
 
 /**
@@ -286,5 +289,5 @@ switch(taskType) {
         await deleteBacklogFromDatabase(db, taskPayload);
         break;
     default:
-        console.log(`Bip bip - unknwon task : ${taskType}`)
+        console.log(`Bip bip - Nothing was done as unexpected task`)
 }
