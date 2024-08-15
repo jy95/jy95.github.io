@@ -257,6 +257,18 @@ async function addBacklogToDatabase(db, payload) {
     insertStmt.run(backlogToInsert);
 }
 
+/**
+ * Delete a backlog entry from database
+ * @param {import('better-sqlite3').Database} db - The database instance
+ * @param {Object} payload - The game details
+ * @param {string} payload.title - The title of the game
+ * 
+ */
+async function deleteBacklogFromDatabase(db, payload) {
+    const deleteBacklogStmt = db.prepare("DELETE FROM backlog WHERE title = ?");
+    deleteBacklogStmt.run(payload.title);
+}
+
 switch(taskType) {
     case "ADD_GAME":
         await addGameToDatabase(db, taskPayload);
@@ -271,6 +283,7 @@ switch(taskType) {
         await addBacklogToDatabase(db, taskPayload);
         break;
     case "DELETE_BACKLOG":
+        await deleteBacklogFromDatabase(db, taskPayload);
         break;
     default:
         console.log(`Bip bip - unknwon task : ${taskType}`)
