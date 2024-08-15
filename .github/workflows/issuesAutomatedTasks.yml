@@ -80,11 +80,13 @@ jobs:
         - name: 💾 Save result into a json file
           run: |
             echo "${{ steps.parse-issue.outputs.json }}" > original_answers.json
-# echo "$(cat template-keys.json)"
 # https://til.codeinthehole.com/posts/about-jqs-slurp-option/
         - name: 🔃 Prepare template keys file
           run: |
             jq -s '[.[] | {key: (.label | ascii_downcase | gsub("[^a-z0-9]"; "_") | sub("^_+|_+$"; "") | gsub("_+"; "_")), value: .id}]' template-keys.jsonl > transformed_keys.json
+        - name: Debug
+          run: |
+            echo "$(cat transformed_keys.json)"
         - name: 🏭 Replace Form keys by our keys
           run: |
             jq 'reduce inputs as $item ({}; .[$item.key] = .[$item.key | tostring] | del(.[$item.key]))' original_answers.json transformed_keys.json > output.json
