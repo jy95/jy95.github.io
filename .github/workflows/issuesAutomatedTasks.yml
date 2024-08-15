@@ -63,8 +63,9 @@ jobs:
       steps:
         - name: 🛎️ Checkout
           uses: actions/checkout@v4
-# To generate an array of all fields id and labels
+# To generate an array of all fields id and labels - example : 
 # [ { "id": "name", "label": "The Name of the Thing" }, { "id": "nickname", "label": "The Nickname of the Thing" }, // ... other fields ]
+# Warning, yq follows JSONL specs ( https://jsonlines.org/ ) so we don't have exactly an array here
         - uses: mikefarah/yq@v4.44.3
           name: 📰 Parse YML file to extract id and labels
           with:
@@ -79,12 +80,11 @@ jobs:
         - name: 💾 Save result into a json file
           run: |
             echo "${{ steps.parse-issue.outputs.json }}" > original_answers.json
-        - name: Test
-          run:
-            echo "$(cat template-keys.json)"
+# echo "$(cat template-keys.json)"
+# https://til.codeinthehole.com/posts/about-jqs-slurp-option/
         - name: 🔃 Prepare template keys file
           run: |
-            jq -r '.[] | {key: (.label | ascii_downcase | gsub("[^a-z0-9]"; "_") | sub("^_+|_+$"; "") | gsub("_+"; "_")), value: .id}' template-keys.json > transformed_keys.json
+            jq -s '[.[] | {key: (.label | ascii_downcase | gsub("[^a-z0-9]"; "_") | sub("^_+|_+$"; "") | gsub("_+"; "_")), value: .id}]' template-keys.jsonl > transformed_keys.json
         - name: 🏭 Replace Form keys by our keys
           run: |
             jq 'reduce inputs as $item ({}; .[$item.key] = .[$item.key | tostring] | del(.[$item.key]))' original_answers.json transformed_keys.json > output.json
