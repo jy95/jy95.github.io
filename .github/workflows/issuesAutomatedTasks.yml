@@ -83,11 +83,15 @@ jobs:
 # https://til.codeinthehole.com/posts/about-jqs-slurp-option/
         - name: 🔃 Prepare template keys file
           run: |
-            jq -s '[.[] | {key: (.label | ascii_downcase | gsub("[^a-z0-9]"; "_") | sub("^_+|_+$"; "") | gsub("_+"; "_")), value: .id}]' template-keys.jsonl > transformed_keys.json
+            jq -s '[.[] | {key: (.label | ascii_downcase | gsub("[^a-z0-9]"; "_") | sub("^_+|_+$"; "") | gsub("_+"; "_")), value: .id}]' template-keys.jsonl > transformed_keys.json  
+            jq 'reduce .[] as $item ({}; . + {($item.key): $item.value})' transformed_keys.json > keys_map.json
 # echo "$(cat transformed_keys.json)"
+        - name: Debug
+          run: |
+            echo "$(cat keys_map.json)"
         - name: 🏭 Replace Form keys by our keys
           run: |
-            jq 'reduce inputs as $item (.; .[$item.value] = .[$item.key] | del(.[$item.key]))' original_answers.json transformed_keys.json > output.json
+            jq -s 'add | (.[0] | with_entries(.key |= $map[.] // .))' original_answers.json keys_map.json > output.json
         - name: 📥 Sent result to github outputs
           id: processed
           run: |
