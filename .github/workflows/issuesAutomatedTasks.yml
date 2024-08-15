@@ -61,6 +61,8 @@ jobs:
         ISSUE_TYPE: ${{ needs.check_issue.outputs.issue_type }}
         TEMPLATE_FILE: ${{ needs.check_issue.outputs.template_file }}
       steps:
+        - name: 🛎️ Checkout
+          uses: actions/checkout@v4
 # To generate an array of all fields id and labels
 # [ { "id": "name", "label": "The Name of the Thing" }, { "id": "nickname", "label": "The Nickname of the Thing" }, // ... other fields ]
         - uses: mikefarah/yq@v4.44.3
