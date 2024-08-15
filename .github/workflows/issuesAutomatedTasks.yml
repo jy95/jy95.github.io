@@ -9,7 +9,7 @@ jobs:
       outputs:
         issue_type: ${{ steps.detect_issue_type.outputs.issue_type }}
         template_file: ${{ steps.set_template_file.outputs.template_file }}
-        issue_json: ${{ steps.parse-issue.outputs.json }}
+        issue_json: ${{ steps.fix-json.outputs.transformed_json }}
       steps:
         - id: detect_issue_type
           run: |
