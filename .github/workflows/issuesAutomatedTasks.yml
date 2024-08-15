@@ -76,10 +76,12 @@ jobs:
           with:
             issue-form-template: ${{ env.TEMPLATE_FILE }}
             body: ${{ github.event.issue.body }}
-# Issue here I think : encoding of json ?
         - name: 💾 Save result into a json file
           run: |
             echo "${{ steps.parse-issue.outputs.json }}" > original_answers.json
+        - name: Test
+          run:
+            echo "${cat template-keys.json}"
         - name: 🔃 Prepare template keys file
           run: |
             jq -r '.[] | {key: (.label | ascii_downcase | gsub("[^a-z0-9]"; "_") | sub("^_+|_+$"; "") | gsub("_+"; "_")), value: .id}' template-keys.json > transformed_keys.json
