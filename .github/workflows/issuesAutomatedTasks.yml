@@ -11,6 +11,8 @@ jobs:
         template_file: ${{ steps.set_template_file.outputs.template_file }}
         issue_json: ${{ steps.fix-json.outputs.transformed_json }}
       steps:
+        - name: Checkout 🛎️
+          uses: actions/checkout@v4
         - id: detect_issue_type
           run: |
             issue_title="${{ github.event.issue.title }}"
