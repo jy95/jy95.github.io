@@ -29,9 +29,7 @@ jobs:
                 echo "issue_type=UNKNOWN" >> $GITHUB_OUTPUT
             fi
         - id: set_template_file
-          if: ${{ steps.detect_issue_type.outputs.issue_type != 'UNKNOWN' }}
           run: |
-            # Set template file based on the issue type determined in the previous step
             case "${{ steps.detect_issue_type.outputs.issue_type }}" in
               ADD_GAME)
                 echo "template_file=01-add-game.yml" >> $GITHUB_OUTPUT
