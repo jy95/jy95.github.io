@@ -54,7 +54,7 @@ jobs:
           uses: mikefarah/yq@v4.44.3
           with:
             cmd: > 
-              yq eval '.body[] | {"id": .id, "label": .attributes.label})' .github/ISSUE_TEMPLATE/${{ steps.set_template_file.outputs.template_file }} > template-keys.json
+              yq eval '.body[] | select(.type != "markdown") | {"id": .id, "label": .attributes.label})' .github/ISSUE_TEMPLATE/${{ steps.set_template_file.outputs.template_file }} > template-keys.json
 # Extract responses given template
         - id: parse-issue
           name: IssueOps Form Parser
