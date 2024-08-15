@@ -3,6 +3,38 @@ import Database from 'better-sqlite3';
 const databasePath = 'GamesPassionFR.db';
 const db = new Database(databasePath);
 
+// Constantes
+const PLATFORMS_MAP = {
+    'PC': 1,
+    'GBA': 2,
+    'PSP': 3,
+    'PS1': 4,
+    'PS2': 5,
+    'PS3': 6
+}
+const GENRES_MAP = {
+    'Action': 1,
+    'Adventure': 2,
+    'Arcade': 3,
+    'Board Games': 4,
+    'Card': 5,
+    'Casual': 6,
+    'Educational': 7,
+    'Family': 8,
+    'Fighting': 9,
+    'Indie': 10,
+    'MMORPG': 11,
+    'Platformer': 12,
+    'Puzzle': 13,
+    'RPG': 14,
+    'Racing': 15,
+    'Shooter': 16,
+    'Simulation': 17,
+    'Sports': 18,
+    'Strategy': 19,
+    'Misc': 20
+};
+
 // Parse positional arguments
 const [taskType, taskPayloadAsString] = process.argv.slice(2);
 console.log("Parameters");
@@ -19,43 +51,45 @@ const taskPayload = JSON.parse(taskPayloadAsString);
  */
 
 /**
- * @typedef {0 | 1 | 2 | 3 | 4 | 5} Platform
- * @description Beware that in database, you must do a +1 to this value !!!
+ * @typedef {('PC' | 'GBA' | 'PSP' | 'PS1' | 'PS2' | 'PS3')} Platform
+ * @description Represents different gaming platforms. 
+ * Note: In the database, you must map these values to numbers for storage.
  * 
  * @enum {Platform}
- * @property {number} 0 - PC
- * @property {number} 1 - GBA
- * @property {number} 2 - PSP
- * @property {number} 3 - PS1
- * @property {number} 4 - PS2
- * @property {number} 5 - PS3
+ * @property {'PC'} PC - PC
+ * @property {'GBA'} GBA - Game Boy Advance
+ * @property {'PSP'} PSP - PlayStation Portable
+ * @property {'PS1'} PS1 - PlayStation 1
+ * @property {'PS2'} PS2 - PlayStation 2
+ * @property {'PS3'} PS3 - PlayStation 3
  */
 
 /**
- * @typedef {0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19} GameGenre
- * @description Beware that in database, you must do a +1 to this value !!!
+ * @typedef {('Action' | 'Adventure' | 'Arcade' | 'Board Games' | 'Card' | 'Casual' | 'Educational' | 'Family' | 'Fighting' | 'Indie' | 'MMORPG' | 'Platformer' | 'Puzzle' | 'RPG' | 'Racing' | 'Shooter' | 'Simulation' | 'Sports' | 'Strategy' | 'Misc')} GameGenre
+ * @description Represents different game genres. 
+ * Note: In the database, you must map these values to numbers for storage.
  * 
  * @enum {GameGenre}
- * @property {number} 0 - Action
- * @property {number} 1 - Adventure
- * @property {number} 2 - Arcade
- * @property {number} 3 - Board Games
- * @property {number} 4 - Card
- * @property {number} 5 - Casual
- * @property {number} 6 - Educational
- * @property {number} 7 - Family
- * @property {number} 8 - Fighting
- * @property {number} 9 - Indie
- * @property {number} 10 - MMORPG
- * @property {number} 11 - Platformer
- * @property {number} 12 - Puzzle
- * @property {number} 13 - RPG
- * @property {number} 14 - Racing
- * @property {number} 15 - Shooter
- * @property {number} 16 - Simulation
- * @property {number} 17 - Sports
- * @property {number} 18 - Strategy
- * @property {number} 19 - Misc
+ * @property {'Action'} Action - Action genre
+ * @property {'Adventure'} Adventure - Adventure genre
+ * @property {'Arcade'} Arcade - Arcade genre
+ * @property {'Board Games'} Board Games - Board Games genre
+ * @property {'Card'} Card - Card genre
+ * @property {'Casual'} Casual - Casual genre
+ * @property {'Educational'} Educational - Educational genre
+ * @property {'Family'} Family - Family genre
+ * @property {'Fighting'} Fighting - Fighting genre
+ * @property {'Indie'} Indie - Indie genre
+ * @property {'MMORPG'} MMORPG - MMORPG genre
+ * @property {'Platformer'} Platformer - Platformer genre
+ * @property {'Puzzle'} Puzzle - Puzzle genre
+ * @property {'RPG'} RPG - RPG genre
+ * @property {'Racing'} Racing - Racing genre
+ * @property {'Shooter'} Shooter - Shooter genre
+ * @property {'Simulation'} Simulation - Simulation genre
+ * @property {'Sports'} Sports - Sports genre
+ * @property {'Strategy'} Strategy - Strategy genre
+ * @property {'Misc'} Misc - Miscellaneous genre
  */
 
 /**
@@ -63,7 +97,7 @@ const taskPayload = JSON.parse(taskPayloadAsString);
  * @param {Platform} platform 
  */
 function platformToInt(platform) {
-    return platform + 1;
+    return PLATFORMS_MAP[platform] || 0;
 }
 
 /**
@@ -72,7 +106,7 @@ function platformToInt(platform) {
  * @returns 
  */
 function genreToInt(genre) {
-    return genre + 1;
+    return GENRES_MAP[genre] || 0;
 }
 
 /**
