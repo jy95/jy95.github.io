@@ -43,11 +43,11 @@ console.log("Payload as string :", taskPayloadAsString);
 const taskPayload = JSON.parse(taskPayloadAsString);
 
 /**
- * @typedef {0 | 1} IdentifierKind
+ * @typedef {'Playlist' | 'Video'} IdentifierKind
  * 
  * @enum {IdentifierKind}
- * @property {number} 0 - Playlist
- * @property {number} 1 - Video
+ * @property {'Playlist'} Playlist - Represents Playlist
+ * @property {'Video'} Video - Represents Video
  */
 
 /**
@@ -110,12 +110,21 @@ function genreToInt(genre) {
 }
 
 /**
+ * Turn the response kind to database field
+ * @param {IdentifierKind} identifierKind
+ * @returns
+ */
+function identifierKindToDatabaseField(identifierKind) {
+    return identifierKind.includes("Video") ? "videoId" : "playlistId";
+}
+
+/**
  * Add game into the database
  * @param {import('better-sqlite3').Database} db - The database instance
  * @param {Object} payload - The game details
  * @param {string} payload.title - The title of the game
  * @param {string} payload.releaseDate - The release date of the game (YYYY-MM-DD)
- * @param {IdentifierKind} payload.identifierKind - The identifier kind (0 for Playlist, 1 for Video)
+ * @param {IdentifierKind} payload.identifierKind - The identifier kind (Playlist, Video)
  * @param {string} payload.identifierValue - The identifier value (ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY)
  * @param {Platform} payload.platform - The game platform (PC, ...)
  * @param {GameGenre[]} [payload.genres] - The game genres (Action, Adventure, ...)
@@ -128,7 +137,7 @@ async function addGameToDatabase(db, payload) {
     
     // Prepare fields
 
-    const keyField = payload.identifierKind === 1 ? "videoId" : "playlistId";
+    const keyField = identifierKindToDatabaseField(payload.identifierKind);
     const gameToInsert = {
         identifier: payload.identifierValue,
         title: payload.title,
@@ -173,7 +182,7 @@ async function addGameToDatabase(db, payload) {
  * @param {Object} payload - The game details
  * @param {string} [payload.title] - The title of the game
  * @param {string} [payload.releaseDate] - The release date of the game (YYYY-MM-DD)
- * @param {IdentifierKind} payload.identifierKind - The identifier kind (0 for Playlist, 1 for Video)
+ * @param {IdentifierKind} payload.identifierKind - The identifier kind (Playlist, Video)
  * @param {string} payload.identifierValue - The identifier value (ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY)
  * @param {Platform} [payload.platform] - The game platform (PC, ...)
  * @param {GameGenre[]} [payload.genres] - The game genres (Action, Adventure, ...)
@@ -183,7 +192,7 @@ async function addGameToDatabase(db, payload) {
  * 
  */
 async function updateGameInDatabase(db, payload) {
-    const keyField = payload.identifierKind === 1 ? "videoId" : "playlistId";
+    const keyField = identifierKindToDatabaseField(payload.identifierKind);
     const youtubeIdentifier = payload.identifierValue;
     const genres = (payload.genres || []).map(genreToInt);
     
@@ -251,13 +260,13 @@ async function updateGameInDatabase(db, payload) {
  * Update game fields
  * @param {import('better-sqlite3').Database} db - The database instance
  * @param {Object} payload - The game details
- * @param {IdentifierKind} payload.identifierKind - The identifier kind (0 for Playlist, 1 for Video)
+ * @param {IdentifierKind} payload.identifierKind - The identifier kind (Playlist, Video)
  * @param {string} payload.identifierValue - The identifier value (ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY)
  * 
  */
 async function deleteGameFromDatabase(db, payload) {
     // Fields
-    const keyField = payload.identifierKind === 1 ? "videoId" : "playlistId";
+    const keyField = identifierKindToDatabaseField(payload.identifierKind);
     const youtubeIdentifier = payload.identifierValue;
 
     // Statments
