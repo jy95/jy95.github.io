@@ -15,15 +15,15 @@ jobs:
           run: |
             issue_title="${{ github.event.issue.title }}"
             
-            if [[ "$issue_title" == "[ADD_GAME]*" ]]; then
+            if [[ "$issue_title" =~ ^\[ADD_GAME\] ]]; then
                 echo "issue_type=ADD_GAME" >> $GITHUB_OUTPUT
-            elif [[ "$issue_title" == "[UPDATE_GAME]*" ]]; then
+            elif [[ "$issue_title" =~ ^\[UPDATE_GAME\] ]]; then
                 echo "issue_type=UPDATE_GAME" >> $GITHUB_OUTPUT
-            elif [[ "$issue_title" == "[DELETE_GAME]*" ]]; then
+            elif [[ "$issue_title" =~ ^\[DELETE_GAME\] ]]; then
                 echo "issue_type=DELETE_GAME" >> $GITHUB_OUTPUT
-            elif [[ "$issue_title" == "[ADD_BACKLOG]*" ]]; then
+            elif [[ "$issue_title" =~ ^\[ADD_BACKLOG\] ]]; then
                 echo "issue_type=ADD_BACKLOG" >> $GITHUB_OUTPUT
-            elif [[ "$issue_title" == "[DELETE_BACKLOG]*" ]]; then
+            elif [[ "$issue_title" =~ ^\[DELETE_BACKLOG\] ]]; then
                 echo "issue_type=DELETE_BACKLOG" >> $GITHUB_OUTPUT
             else
                 echo "issue_type=UNKNOWN" >> $GITHUB_OUTPUT
