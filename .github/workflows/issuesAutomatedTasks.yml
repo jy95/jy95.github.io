@@ -7,31 +7,60 @@ jobs:
     check_issue:
       runs-on: ubuntu-latest
       outputs:
-        issue_template: ${{ steps.template.outputs.issue_template }}
+        issue_type: ${{ steps.detect_issue_type.outputs.issue_type }}
+        template_file: ${{ steps.set_template_file.outputs.template_file }}
         issue_json: ${{ steps.parse-issue.outputs.json }}
       steps:
-        - id: template
+        - id: detect_issue_type
           run: |
-            if [[ "${{ github.event.issue.title }}" == "[ADD_GAME]*" ]]; then
-                echo "issue_template=ADD_GAME" >> $GITHUB_OUTPUT
-            elif [[ "${{ github.event.issue.title }}" == "[UPDATE_GAME]*" ]]; then
-                echo "issue_template=UPDATE_GAME" >> $GITHUB_OUTPUT
-            elif [[ "${{ github.event.issue.title }}" == "[DELETE_GAME]*" ]]; then
-                echo "issue_template=DELETE_GAME" >> $GITHUB_OUTPUT
-            elif [[ "${{ github.event.issue.title }}" == "[ADD_BACKLOG]*" ]]; then
-                echo "issue_template=ADD_BACKLOG" >> $GITHUB_OUTPUT
-            elif [[ "${{ github.event.issue.title }}" == "[DELETE_BACKLOG]*" ]]; then
-                echo "issue_template=DELETE_BACKLOG" >> $GITHUB_OUTPUT
+            issue_title="${{ github.event.issue.title }}"
+            
+            if [[ "$issue_title" == "[ADD_GAME]*" ]]; then
+                echo "issue_type=ADD_GAME" >> $GITHUB_OUTPUT
+            elif [[ "$issue_title" == "[UPDATE_GAME]*" ]]; then
+                echo "issue_type=UPDATE_GAME" >> $GITHUB_OUTPUT
+            elif [[ "$issue_title" == "[DELETE_GAME]*" ]]; then
+                echo "issue_type=DELETE_GAME" >> $GITHUB_OUTPUT
+            elif [[ "$issue_title" == "[ADD_BACKLOG]*" ]]; then
+                echo "issue_type=ADD_BACKLOG" >> $GITHUB_OUTPUT
+            elif [[ "$issue_title" == "[DELETE_BACKLOG]*" ]]; then
+                echo "issue_type=DELETE_BACKLOG" >> $GITHUB_OUTPUT
             else
-                echo "issue_template=UNKNOWN" >> $GITHUB_OUTPUT
+                echo "issue_type=UNKNOWN" >> $GITHUB_OUTPUT
             fi
+        - id: set_template_file
+          if: ${{ steps.detect_issue_type.outputs.issue_type != 'UNKNOWN' }}
+          run: |
+            # Set template file based on the issue type determined in the previous step
+            case "${{ steps.detect_issue_type.outputs.issue_type }}" in
+              ADD_GAME)
+                echo "template_file=01-add-game.yml" >> $GITHUB_OUTPUT
+                ;;
+              UPDATE_GAME)
+                echo "template_file=02-update-game.yml" >> $GITHUB_OUTPUT
+                ;;
+              DELETE_GAME)
+                echo "template_file=03-delete-game.yml" >> $GITHUB_OUTPUT
+                ;;
+              ADD_BACKLOG)
+                echo "template_file=04-add-backlog.yml" >> $GITHUB_OUTPUT
+                ;;
+              DELETE_BACKLOG)
+                echo "template_file=05-delete-backlog.yml" >> $GITHUB_OUTPUT
+                ;;
+            esac
         - id: parse-issue
-          name: Parse Issue
-          uses: GrantBirki/issue-template-parser@v7.0.3
+          name: IssueOps Form Parser
+          uses: issue-ops/parser@v2.0.0
+          if: ${{ steps.detect_issue_type.outputs.issue_type != 'UNKNOWN' }}
+          with:
+            issue-form-template: ${{ steps.set_template_file.outputs.template_file }}
+            body: ${{ github.event.issue.body }}
+
     magic_time:
         needs: check_issue
         runs-on: ubuntu-latest
-        if: ${{ needs.check_issue.outputs.issue_template != 'UNKNOWN' }}
+        if: ${{ needs.check_issue.outputs.issue_type != 'UNKNOWN' }}
         permissions:
             contents: write
             pull-requests: write
@@ -46,7 +75,7 @@ jobs:
             run: npm install better-sqlite3 --no-save
           - name: Run Node.js program
             env:
-              TEMPLATE: ${{ needs.check_issue.outputs.issue_template }}
+              TEMPLATE: ${{ needs.check_issue.outputs.issue_type }}
               REQUEST: ${{ needs.check_issue.outputs.issue_json }}
             run: |
                 node automatedTasks.mjs "$TEMPLATE" "$REQUEST"
@@ -55,7 +84,7 @@ jobs:
           - name: 💅 Create Pull Request
             uses: peter-evans/create-pull-request@v6
             with:
-              title: "🤖 [Automated Task] Workflow: ${{ needs.check_issue.outputs.issue_template }}"
+              title: "🤖 [Automated Task] Workflow: ${{ needs.check_issue.outputs.issue_type }}"
               body: |
                 ### Automated Change Details
 
