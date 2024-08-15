@@ -47,6 +47,13 @@ jobs:
                 echo "template_file=05-delete-backlog.yml" >> $GITHUB_OUTPUT
                 ;;
             esac
+# To generate an array of all fields id and labels
+# [ { "id": "name", "label": "The Name of the Thing" }, { "id": "nickname", "label": "The Nickname of the Thing" }, // ... other fields ]
+        - id: parse-template
+          if: ${{ steps.detect_issue_type.outputs.issue_type != 'UNKNOWN' }}
+          uses: mikefarah/yq@v4.44.3
+          with:
+            cmd: "yq eval '.body[] | {id: .id, label: .attributes.label}' .github/ISSUE_TEMPLATE/${{ steps.set_template_file.outputs.template_file }} > template-keys.json"
         - id: parse-issue
           name: IssueOps Form Parser
           uses: issue-ops/parser@v2.0.0
@@ -54,7 +61,14 @@ jobs:
           with:
             issue-form-template: ${{ steps.set_template_file.outputs.template_file }}
             body: ${{ github.event.issue.body }}
-
+        - id: fix-json
+          name: Transform JSON
+          if: ${{ steps.detect_issue_type.outputs.issue_type != 'UNKNOWN' }}
+          run: |
+            echo "${{ steps.parse-issue.outputs.json }}" > original_answers.json  
+            jq -r '.[] | {key: (.label | ascii_downcase | gsub("[^a-z0-9]"; "_") | sub("^_+|_+$"; "") | gsub("_+"; "_")), value: .id}' template-keys.json > transformed_keys.json  
+            jq 'reduce inputs as $item ({}; .[$item.key] = .[$item.key | tostring] | del(.[$item.key]))' original_answers.json transformed_keys.json > output.json  
+            echo "transformed_json=$(cat output.json)" >> $GITHUB_OUTPUT
     magic_time:
         needs: check_issue
         runs-on: ubuntu-latest
