@@ -34,13 +34,20 @@ const GENRES_MAP = {
     'Strategy': 19,
     'Misc': 20
 };
+// For the json parse reviver
+// Library to parse forms answers considers them as multiple whereas it isn't
+const keysToTransform = ["identifierKind", "platform"];
 
 // Parse positional arguments
 const [taskType, taskPayloadAsString] = process.argv.slice(2);
 console.log("Parameters");
 console.log("Task type :", taskType);
 console.log("Payload as string :", taskPayloadAsString);
-const taskPayload = JSON.parse(taskPayloadAsString);
+const taskPayload = JSON.parse(taskPayloadAsString, (key, value) => {
+    const shouldTransform =
+      keysToTransform.includes(key) && Array.isArray(value) && value.length === 1;
+    return shouldTransform ? value[0] : value;
+  });
 
 /**
  * @typedef {'Playlist' | 'Video'} IdentifierKind

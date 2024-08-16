@@ -103,7 +103,8 @@ jobs:
         - name: 📥 Sent result to github outputs
           id: processed
           run: |
-            echo "json=$(cat output.json)" >> $GITHUB_OUTPUT
+            json_content=$(cat output.json | jq -c)  
+            echo "json=$json_content" >> $GITHUB_OUTPUT
     magic_time:
         needs: process_issue
         runs-on: ubuntu-latest
