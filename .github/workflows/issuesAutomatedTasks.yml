@@ -97,6 +97,9 @@ jobs:
               # Apply the mapping to rename keys
               $data | with_entries(.key |= ($mapping[.] // .))
             ' original_answers.json keys_map.json > output.json
+        - name: 👀 Show result
+          run: |
+            echo "$(cat output.json)"
         - name: 📥 Sent result to github outputs
           id: processed
           run: |
