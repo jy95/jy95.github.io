@@ -3,16 +3,16 @@
 		{
 			"id": 1,
 			"platform": "PC",
-			"total": 78,
+			"total": 79,
 			"total_available": 76,
-			"total_unavailable": 2
+			"total_unavailable": 3
 		},
 		{
 			"id": 6,
 			"platform": "PS3",
-			"total": 55,
-			"total_available": 37,
-			"total_unavailable": 19
+			"total": 54,
+			"total_available": 36,
+			"total_unavailable": 18
 		},
 		{
 			"id": 5,
@@ -47,23 +47,23 @@
 		{
 			"id": 1,
 			"genre": "Action",
-			"total": 159,
-			"total_available": 137,
-			"total_unavailable": 23
+			"total": 158,
+			"total_available": 136,
+			"total_unavailable": 22
 		},
 		{
 			"id": 2,
 			"genre": "Adventure",
-			"total": 138,
-			"total_available": 119,
-			"total_unavailable": 20
+			"total": 137,
+			"total_available": 118,
+			"total_unavailable": 19
 		},
 		{
 			"id": 12,
 			"genre": "Platformer",
-			"total": 66,
-			"total_available": 60,
-			"total_unavailable": 7
+			"total": 65,
+			"total_available": 59,
+			"total_unavailable": 6
 		},
 		{
 			"id": 16,
@@ -96,9 +96,9 @@
 		{
 			"id": 6,
 			"genre": "Casual",
-			"total": 6,
+			"total": 7,
 			"total_available": 6,
-			"total_unavailable": 0
+			"total_unavailable": 1
 		},
 		{
 			"id": 9,
@@ -131,9 +131,9 @@
 		{
 			"id": 5,
 			"genre": "Card",
-			"total": 2,
+			"total": 3,
 			"total_available": 2,
-			"total_unavailable": 0
+			"total_unavailable": 1
 		},
 		{
 			"id": 8,
@@ -187,23 +187,23 @@
 	],
 	"general": {
 		"total": 182,
-		"total_available": 160,
+		"total_available": 159,
 		"total_unavailable": 23,
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"total_time": {
-			"hours": 967,
-			"minutes": 40,
-			"seconds": 36
+			"hours": 965,
+			"minutes": 43,
+			"seconds": 44
 		},
 		"total_time_available": {
-			"hours": 841,
-			"minutes": 14,
-			"seconds": 12
+			"hours": 832,
+			"minutes": 7,
+			"seconds": 20
 		},
 		"total_time_unavailable": {
-			"hours": 135,
-			"minutes": 33,
-			"seconds": 16
+			"hours": 133,
+			"minutes": 36,
+			"seconds": 24
 		}
 	}
 }
