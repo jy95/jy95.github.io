@@ -1,7 +1,7 @@
 import Database from 'better-sqlite3';
 
 const databasePath = 'GamesPassionFR.db';
-const db = new Database(databasePath);
+const db = new Database(databasePath, { verbose: console.log });
 
 // Constantes
 const PLATFORMS_MAP = {

@@ -123,7 +123,7 @@ jobs:
                 node-version: "lts/*"
           - name: 💻 Install npm packages
             run: npm install better-sqlite3 --no-save
-          - name: Run Node.js program
+          - name: 💿 Do actions in database
             run: |
                 node automatedTasks.mjs "$OPERATION" "$REQUEST"
           - name: 🤖 Update JSON files after this change
