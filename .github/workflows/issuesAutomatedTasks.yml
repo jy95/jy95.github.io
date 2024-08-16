@@ -85,13 +85,18 @@ jobs:
           run: |
             jq -s '[.[] | {key: (.label | ascii_downcase | gsub("[^a-z0-9]"; "_") | sub("^_+|_+$"; "") | gsub("_+"; "_")), value: .id}]' template-keys.jsonl > transformed_keys.json  
             jq 'reduce .[] as $item ({}; . + {($item.key): $item.value})' transformed_keys.json > keys_map.json
-# echo "$(cat transformed_keys.json)"
-        - name: Debug
+        - name: 👀 Show keys mappings
           run: |
             echo "$(cat keys_map.json)"
         - name: 🏭 Replace Form keys by our keys
           run: |
-            jq -s 'add | (.[0] | with_entries(.key |= $map[.] // .))' original_answers.json keys_map.json > output.json
+            jq -s '
+              # Load both JSON files as an array, with the first being the data and the second being the mapping
+              .[0] as $data |
+              .[1] as $mapping |
+              # Apply the mapping to rename keys
+              $data | with_entries(.key |= ($mapping[.] // .))
+            ' original_answers.json keys_map.json > output.json
         - name: 📥 Sent result to github outputs
           id: processed
           run: |
