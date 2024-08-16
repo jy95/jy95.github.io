@@ -44,9 +44,23 @@ console.log("Parameters");
 console.log("Task type :", taskType);
 console.log("Payload as string :", taskPayloadAsString);
 const taskPayload = JSON.parse(taskPayloadAsString, (key, value) => {
-    const shouldTransform =
-      keysToTransform.includes(key) && Array.isArray(value) && value.length === 1;
-    return shouldTransform ? value[0] : value;
+    // Determine if the key is in the transform list
+    const isKeyToTransform = keysToTransform.includes(key);
+
+    // Check if the value is an array and if it should be transformed
+    const shouldTransform = isKeyToTransform && Array.isArray(value);
+
+    // Return undefined for empty arrays, the first element for single-element arrays, and the original value otherwise
+    if (shouldTransform) {
+        if (value.length === 0) {
+            return undefined;
+        } else if (value.length === 1) {
+            return value[0];
+        }
+    }
+
+    // Return the original value if no transformation is needed
+    return value;
   });
 
 /**
