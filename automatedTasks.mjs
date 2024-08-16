@@ -167,7 +167,7 @@ async function addGameToDatabase(db, payload) {
     const insertAvailabilityStmt = db.prepare("INSERT INTO games_schedules (id, availableAt, endAt) VALUES (?, ?, ?) ")
 
     // Execution time
-    db.transaction(() => {
+    const insertOneGame = db.transaction(() => {
         // Insert basic information about game
         insertGameStmt.run(gameToInsert);
         // retrieve it id in database
@@ -181,6 +181,8 @@ async function addGameToDatabase(db, payload) {
             insertAvailabilityStmt.run(gameId, period.availableAt, period.endAt);
         }
     });
+
+    return insertOneGame();
 }
 
 /**
@@ -215,7 +217,7 @@ async function updateGameInDatabase(db, payload) {
     const insertGenresWithGameStmt = db.prepare("INSERT INTO games_genres (game, genre) VALUES (?, ?)");
 
     // Execution time
-    db.transaction(() => {
+    const updateGame = db.transaction(() => {
         // Find game id
         const gameId = findGameIdStmt.pluck().get(youtubeIdentifier);
 
@@ -261,6 +263,8 @@ async function updateGameInDatabase(db, payload) {
             }
         }
     });
+
+    return updateGame();
 }
 
 /**
