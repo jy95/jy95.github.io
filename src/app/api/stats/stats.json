@@ -3,9 +3,9 @@
 		{
 			"id": 1,
 			"platform": "PC",
-			"total": 78,
-			"total_available": 76,
-			"total_unavailable": 2
+			"total": 79,
+			"total_available": 77,
+			"total_unavailable": 3
 		},
 		{
 			"id": 6,
@@ -47,16 +47,16 @@
 		{
 			"id": 1,
 			"genre": "Action",
-			"total": 159,
-			"total_available": 137,
-			"total_unavailable": 23
+			"total": 160,
+			"total_available": 138,
+			"total_unavailable": 24
 		},
 		{
 			"id": 2,
 			"genre": "Adventure",
-			"total": 138,
-			"total_available": 119,
-			"total_unavailable": 20
+			"total": 139,
+			"total_available": 120,
+			"total_unavailable": 21
 		},
 		{
 			"id": 12,
@@ -186,24 +186,24 @@
 		}
 	],
 	"general": {
-		"total": 182,
-		"total_available": 160,
-		"total_unavailable": 23,
+		"total": 183,
+		"total_available": 161,
+		"total_unavailable": 24,
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"total_time": {
-			"hours": 967,
-			"minutes": 40,
-			"seconds": 36
+			"hours": 970,
+			"minutes": 10,
+			"seconds": 46
 		},
 		"total_time_available": {
-			"hours": 841,
-			"minutes": 14,
-			"seconds": 12
+			"hours": 843,
+			"minutes": 44,
+			"seconds": 22
 		},
 		"total_time_unavailable": {
-			"hours": 135,
-			"minutes": 33,
-			"seconds": 16
+			"hours": 138,
+			"minutes": 3,
+			"seconds": 26
 		}
 	}
 }
