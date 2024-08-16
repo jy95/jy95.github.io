@@ -173,7 +173,7 @@ async function addGameToDatabase(db, payload) {
         // retrieve it id in database
         const gameId = findInsertedId.pluck().get(payload.title);
         // insert genre(s)
-        for(const genreId in genres) {
+        for(const genreId of genres) {
             insertGenresWithGameStmt.run(gameId, genreId);
         }
         // If period isn't null, we have an extra row to add in database
