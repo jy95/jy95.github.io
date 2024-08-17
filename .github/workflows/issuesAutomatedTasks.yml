@@ -111,6 +111,7 @@ jobs:
         permissions:
             contents: write
             pull-requests: write
+            issues: write
         env:
           OPERATION: ${{ needs.process_issue.outputs.issue_type }}
           REQUEST: ${{ needs.process_issue.outputs.issue_json }}
