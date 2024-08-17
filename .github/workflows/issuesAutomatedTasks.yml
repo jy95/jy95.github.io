@@ -143,7 +143,7 @@ jobs:
                 ${{ toJson(fromJson(env.REQUEST)) }}
                 ```
 
-                Please review the changes.
+                Please review the changes. Closes #${{ github.event.issue.number }}
           - name: 💬 Create comment with PR Link
             if: ${{ steps.cpr.outputs.pull-request-number }}
             uses: peter-evans/create-or-update-comment@v4
@@ -154,7 +154,7 @@ jobs:
 
                 **PR Title**: 🤖 ${{ github.event.issue.title }}
 
-                **Link**: [View Pull Request](${{ steps.cpr.outputs.pull-request-url }})
+                **Link**: ${{ steps.cpr.outputs.pull-request-url }}
 
                 Please review the changes and provide your feedback.
               reactions: rocket
