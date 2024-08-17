@@ -318,7 +318,7 @@ async function addBacklogToDatabase(db, payload) {
     const backlogToInsert = {
         title: payload.title,
         platform: (payload.platform !== undefined) ? platformToInt(payload.platform) : null,
-        notes: payload.notes || null
+        notes: (payload.notes) ? payload.notes : null
     }
 
     // statments
