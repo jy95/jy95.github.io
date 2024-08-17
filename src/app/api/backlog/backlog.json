@@ -436,10 +436,6 @@
 		"platform": 3
 	},
 	{
-		"id": 87,
-		"title": "Vanquish"
-	},
-	{
 		"id": 88,
 		"title": "Halo 2",
 		"platform": 1
@@ -574,10 +570,5 @@
 		"id": 115,
 		"title": "Bionicle Heroes",
 		"notes": "PC vs PS2 ?"
-	},
-	{
-		"id": 116,
-		"title": "Vanquish",
-		"notes": "PS3 vs PC ?"
 	}
 ]
