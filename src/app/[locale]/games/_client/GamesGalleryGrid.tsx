@@ -1,10 +1,8 @@
-"use client";
-
 // Hooks
-import { useState } from 'react';
-import { useGetGamesQuery } from "@/redux/services/gamesAPI";
+import { useState, useEffect } from 'react';
+import { useLazyGetGamesQuery } from "@/redux/services/gamesAPI";
 import { useAppSelector } from "@/redux/hooks";
-import {useTranslations} from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 // Style
 import Grid from "@mui/material/Grid";
@@ -15,60 +13,63 @@ import CardEntry from "@/components/GamesView/CardEntry";
 import GamesFilters from "./GamesFilters";
 
 // Types
-import type { gamesFilters } from '@/redux/features/gamesSlice';
 import type { CardGame } from "@/redux/sharedDefintion";
 
-// To force reset of page when filters / sorters criteria changes
-type InnerProps = {
-    activeFilters: gamesFilters,
-}
-
-// To help react detect change in filters / sorters
-function generateKey({activeFilters} : InnerProps) : string {
-    return Object
-        .entries({
-            activeFilters
-        })
-        .toString();
-}
-
 export default function GamesGalleryGrid() {
-
-    // Active filters
-    const activeFilters = useAppSelector(
-        (state) => state.games.activeFilters
-    );
-
     return (
         <div>
             <GamesFilters />
-            <GamesGalleryGridInner 
-                activeFilters={activeFilters}
-                key={generateKey({activeFilters})}
-            />
+            <GamesGalleryGridInner />
         </div>
-    )
+    );
 }
 
-// To force reset of page when filters / sorters criteria changes
-function GamesGalleryGridInner({ activeFilters } : InnerProps) {
+function GamesGalleryGridInner() {
+    
+    // Active filters
+    const activeFilters = useAppSelector((state) => state.games.activeFilters);
 
-    // Current page
     const [page, setPage] = useState(1);
-
-    //
+    const [allGames, setAllGames] = useState<CardGame[]>([]);
     const t = useTranslations('common');
 
-    // Lazy load from now ; later I can reconsider it if data source changes
     const LIMIT_PAGE = 16;
-    const { data, isFetching } = useGetGamesQuery({
-        filters: activeFilters,
-        pageSize : LIMIT_PAGE,
-        page: page
-    });
+    const filtersAsString = JSON.stringify(activeFilters);
 
-    // render row
-    const renderRow = (game : CardGame) =>
+    // Lazy query setup
+    const [triggerGetGames, { data, isFetching }] = useLazyGetGamesQuery();
+
+    // Trigger the query when the page changes
+    useEffect(() => {
+            triggerGetGames({
+                filters: activeFilters,
+                pageSize: LIMIT_PAGE,
+                page: page,
+            });
+        },
+        // eslint-disable-next-line
+        [page]
+    );
+
+    // Update the accumulated results when new data arrives
+    useEffect(() => {
+        if (data?.items) {
+            setAllGames((prevGames) => [...prevGames, ...data.items]);
+        }
+    }, [data?.items]);
+
+    // Reset the games list and page if filters change
+    useEffect(() => {
+        setAllGames([]);
+        setPage(1);
+        triggerGetGames({
+            filters: activeFilters,
+            pageSize: LIMIT_PAGE,
+            page: 1
+        });
+    }, [filtersAsString]);
+
+    const renderRow = (game: CardGame) => (
         <Grid 
             key={game.id}
             item
@@ -77,22 +78,17 @@ function GamesGalleryGridInner({ activeFilters } : InnerProps) {
             lg={1.5}
         >
             <CardEntry game={game}/>
-    </Grid>;
-
-    const games = data?.items ?? [];
+        </Grid>
+    );
 
     return (
         <>
             <Grid 
                 container 
                 spacing={1}
-                style={
-                    {
-                        rowGap: "15px"
-                    }
-                }
+                style={{ rowGap: "15px" }}
             >
-                {games.map(renderRow)}
+                {allGames.map(renderRow)}
             </Grid>
             <div style={{
                 justifyContent: "center",
@@ -102,14 +98,11 @@ function GamesGalleryGridInner({ activeFilters } : InnerProps) {
                 <LoadingButton
                     loading={isFetching}
                     disabled={ page >= (data?.total_pages || 1) }
-                    onClick={() => {
-                        // Reminder : https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state
-                        setPage( (prev) => prev + 1 );
-                    }}
+                    onClick={() => setPage((prev) => prev + 1)}
                 >
                     <span>{t('loadMore')}</span>
                 </LoadingButton>
             </div> 
         </>
-    )
+    );
 }

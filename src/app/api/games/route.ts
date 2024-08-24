@@ -36,8 +36,6 @@ type RequestParams = {
     pageSize: number
     // requested page
     page: number
-    // include previous page result ?
-    includePreviousPagesResult: boolean
 }
 
 export type ResponseBody = {
@@ -119,9 +117,8 @@ function generateResponse(params : RequestParams, gamesData: RawPayload): Respon
 function sortedAndFilteredResultset(params : RequestParams, games: RawPayload) : CardGame[] {
 
     // Bound for result
-    const [startOffset, endOffset] = (params.includePreviousPagesResult) 
-        ? [0, params.pageSize * params.page]
-        : [ (params.pageSize - 1) * params.page, params.pageSize * params.page];
+    const startOffset = params.pageSize * (params.page - 1);
+    const endOffset = params.pageSize * params.page
 
     // No sort criteria, return the filtered list only
     return ((params.pageSize === -1) ? games : games.slice(startOffset, endOffset)).map(enhanceGameItem);
@@ -152,7 +149,6 @@ function extractParameters(params: URLSearchParams): RequestParams {
         page: parseInt(params.get("page") || "1"),
         pageSize: parseInt(params.get("pageSize") || "16"),
         filters: filters,
-        includePreviousPagesResult: (params.has("includePreviousPagesResult")) ? !!params.get("includePreviousPagesResult") : false
     }
 }
 
