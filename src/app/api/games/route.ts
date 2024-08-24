@@ -123,12 +123,10 @@ function generateResponse(params : RequestParams, gamesData: RawPayload): Respon
 // Return subset and sorted resultset
 function sortedAndFilteredResultset(params : RequestParams, games: RawPayload) : CardGame[] {
 
-    // Bound for result
-    const pageSize = params.pageSize;
-
-    // No pageSize
-    const startOffset = (pageSize) ? ( pageSize * (params.page - 1) ) : 0;
-    const endOffset = (pageSize) ? (pageSize * params.page) : games.length;
+    // Calculate pagination offsets
+    const pageSize = params.pageSize || games.length;
+    const startOffset = (params.page - 1) * pageSize;
+    const endOffset = startOffset + pageSize;
 
     // No sort criteria, return the filtered list only
     return games.slice(startOffset, endOffset).map(enhanceGameItem);
