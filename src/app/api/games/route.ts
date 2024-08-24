@@ -30,10 +30,9 @@ type gamesFilters = {
 // Request parameters
 type RequestParams = {
     // filter criteria
-    filters: gamesFilters,
+    filters?: gamesFilters,
     // page size
-    // If equal to -1, it means full result
-    pageSize: number
+    pageSize?: number
     // requested page
     page: number
 }
@@ -42,7 +41,7 @@ export type ResponseBody = {
     // the games we are looking for
     items: CardGame[],
     // Filter criteria used
-    filters: gamesFilters,
+    filters?: gamesFilters,
     // Number of result matching criteria
     total_items: number,
     // Number of page available
@@ -82,33 +81,41 @@ export async function GET(request: Request) {
 function generateResponse(params : RequestParams, gamesData: RawPayload): ResponseBody {
 
     // filter result according to criteria
-    const filtered_games = gamesData
-        .filter(game => {
+    const filters = params.filters;
+
+    const filtered_games = 
+        (filters === undefined) 
+            ? gamesData 
+            : gamesData.filter(game => {
             
-            // hide not matching platforms
-            if (params.filters.platform !== undefined && game.platform !== params.filters.platform) {
-                return false;
-            }
+                // hide not matching platforms
+                if (filters.platform !== undefined && game.platform !== filters.platform) {
+                    return false;
+                }
+    
+                // hide not matching genres
+                if (filters.genres !== undefined && !filters.genres.some(v => game.genres.includes(v)) ) {
+                    return false;
+                }
+    
+                // Either it is a valid game
+                return true;
+            });
 
-            // hide not matching genres
-            if (params.filters.genres !== undefined && !params.filters.genres.some(v => game.genres.includes(v)) ) {
-                return false;
-            }
-
-            // Either it is a valid game
-            return true;
-        });
-
-    const results = (params.filters.title === undefined) 
+    const results = (filters?.title === undefined) 
         ? filtered_games
-        : new Fuse(filtered_games, {keys: ["title"]}).search(params.filters.title).map(s => s.item)
+        : new Fuse(filtered_games, {keys: ["title"]}).search(filters.title).map(s => s.item);
+
+    // page info
+    const total_pages = (params.pageSize) ? Math.ceil(results.length / params.pageSize) : 1;
+    const pageSize = params.pageSize || -1;
     
     return {
         items: sortedAndFilteredResultset(params, results),
         total_items: results.length,
-        total_pages: Math.ceil(results.length / params.pageSize),
+        total_pages: total_pages,
         page: params.page,
-        pageSize: params.pageSize,
+        pageSize: pageSize,
         filters: params.filters
     }
 }
@@ -117,39 +124,49 @@ function generateResponse(params : RequestParams, gamesData: RawPayload): Respon
 function sortedAndFilteredResultset(params : RequestParams, games: RawPayload) : CardGame[] {
 
     // Bound for result
-    const startOffset = params.pageSize * (params.page - 1);
-    const endOffset = params.pageSize * params.page
+    const pageSize = params.pageSize;
+
+    // No pageSize
+    const startOffset = (pageSize) ? ( pageSize * (params.page - 1) ) : 0;
+    const endOffset = (pageSize) ? (pageSize * params.page) : games.length;
 
     // No sort criteria, return the filtered list only
-    return ((params.pageSize === -1) ? games : games.slice(startOffset, endOffset)).map(enhanceGameItem);
+    return games.slice(startOffset, endOffset).map(enhanceGameItem);
 }
 
 // Convert input parameters to my structures
 function extractParameters(params: URLSearchParams): RequestParams {
     
-    // filters
-    let filters : gamesFilters = {};
+    let result : RequestParams = {
+        page: parseInt(params.get("page") || "1")
+    };
 
-    // 1. platform
-    if (params.has("selected_platform")) {
-        filters["platform"] = parseInt(params.get("selected_platform") as string);
+    // Extract parameters
+    const pageSize = params.get("pageSize");
+    const selected_platform = params.get("selected_platform");
+    const selected_title = params.get("selected_title");
+    const selected_genres = params.getAll("selected_genres");
+
+    if (pageSize !== null) {
+        result.pageSize = parseInt(pageSize);
     }
 
-    // 2. title
-    if (params.has("selected_title")) {
-        filters["title"] = params.get("selected_title") as string;
+    if (selected_platform !== null) {
+        result.filters = {};
+        result.filters.platform = parseInt(selected_platform);
     }
 
-    // 3. genres
-    if (params.has("selected_genres")) {
-        filters["genres"] = params.getAll("selected_genres").map(parseInt);
+    if (selected_title !== null) {
+        result.filters = result.filters || {};
+        result.filters.title = selected_title;
     }
 
-    return {
-        page: parseInt(params.get("page") || "1"),
-        pageSize: parseInt(params.get("pageSize") || "16"),
-        filters: filters,
+    if (selected_genres.length > 0) {
+        result.filters = result.filters || {};
+        result.filters.genres = selected_genres.map(parseInt);
     }
+
+    return result;
 }
 
 // Return an enhanced payload for a single game
