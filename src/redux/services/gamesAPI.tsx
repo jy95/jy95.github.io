@@ -19,7 +19,6 @@ type RequestParams = {
     selected_genres?: string[],
     page: number,
     pageSize: number,
-    includePreviousPagesResult: boolean,
 }
 
 const stringifyObject = (object: any) => {
@@ -51,9 +50,6 @@ export const gamesAPI = createApi({
                     pageSize: pageSize,
                     // asked page
                     page: page,
-                    // Needed for RTK Query to work properly
-                    // In the future, I should likely remove that stuff
-                    includePreviousPagesResult: true,
                 };
 
                 // filters parameter
@@ -83,4 +79,4 @@ export const gamesAPI = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetGamesQuery } = gamesAPI;
+export const { useLazyGetGamesQuery } = gamesAPI;

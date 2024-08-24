@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Fuse from 'fuse.js'
+import Fuse from 'fuse.js';
 
 import type { 
     BasicGame, 
@@ -10,14 +10,10 @@ import type {
 } from "@/redux/sharedDefintion";
 
 // Extract criteria from request into something useful for me
-
 const SIZES = [
-    // Mobile view : 2 entries per row 
-    "(max-width: 600px) 50vw",
-    // Tablet view : 4 entries
-    "(max-width: 1280px) 25vw",
-    // Desktop view (Default size) : 8 entries per row 
-    "12.50vw"
+    "(max-width: 600px) 50vw",  // Mobile view (2 entries per row)
+    "(max-width: 1280px) 25vw", // Tablet view (4 entries per row)
+    "12.50vw"                   // Desktop view (8 entries per row)
 ];
 
 // Types
@@ -25,52 +21,38 @@ type gamesFilters = {
     platform?: number,
     title?: string,
     genres?: number[]
-}
+};
 
 // Request parameters
 type RequestParams = {
-    // filter criteria
-    filters: gamesFilters,
-    // page size
-    // If equal to -1, it means full result
-    pageSize: number
-    // requested page
+    filters?: gamesFilters,
+    pageSize?: number,
     page: number
-    // include previous page result ?
-    includePreviousPagesResult: boolean
-}
+};
 
 export type ResponseBody = {
-    // the games we are looking for
     items: CardGame[],
-    // Filter criteria used
-    filters: gamesFilters,
-    // Number of result matching criteria
+    filters?: gamesFilters,
     total_items: number,
-    // Number of page available
     total_pages: number,
-    // Page size used
-    // If equal to -1, it means full result
     pageSize: number,
-    // Current page
     page: number
-}
+};
 
 type rawEntry = Omit<BasicGame, "id">;
 export type RawPayload = rawEntry[];
 
 export async function GET(request: Request) {
-
     // Get query parameters
     const { searchParams } = new URL(request.url);
 
     // Convert them into a utility object
     const params = extractParameters(searchParams);
 
-    // Fetch original json
+    // Fetch original JSON
     const gamesData = (await import("./games.json")).default;
 
-    // generate response
+    // Generate response
     const response = generateResponse(params, gamesData as RawPayload);
 
     return NextResponse.json(response, {
@@ -80,97 +62,93 @@ export async function GET(request: Request) {
     });
 }
 
-// Function used by /games & /series endpoints as Next.js can't invoke /games inside /series
-function generateResponse(params : RequestParams, gamesData: RawPayload): ResponseBody {
-
-    // filter result according to criteria
-    const filtered_games = gamesData
-        .filter(game => {
-            
-            // hide not matching platforms
-            if (params.filters.platform !== undefined && game.platform !== params.filters.platform) {
+function generateResponse(params: RequestParams, gamesData: RawPayload): ResponseBody {
+    // Apply filters
+    const filters = params.filters;
+    const filtered_games = (filters === undefined) 
+        ? gamesData 
+        : gamesData.filter(game => {
+            if (filters.platform !== undefined && game.platform !== filters.platform) {
                 return false;
             }
-
-            // hide not matching genres
-            if (params.filters.genres !== undefined && !params.filters.genres.some(v => game.genres.includes(v)) ) {
+            if (filters.genres !== undefined && !filters.genres.some(v => game.genres.includes(v))) {
                 return false;
             }
-
-            // Either it is a valid game
             return true;
         });
 
-    const results = (params.filters.title === undefined) 
+    // Apply search if title is specified
+    const results = (filters?.title === undefined) 
         ? filtered_games
-        : new Fuse(filtered_games, {keys: ["title"]}).search(params.filters.title).map(s => s.item)
-    
+        : new Fuse(filtered_games, { keys: ["title"] }).search(filters.title).map(s => s.item);
+
+    // Calculate pagination details
+    const pageSize = params.pageSize || results.length;  // Use results length as fallback
+    const total_items = results.length;
+    const total_pages = pageSize > 0 ? Math.ceil(total_items / pageSize) : 1;
+    const startOffset = (params.page - 1) * pageSize;
+    const endOffset = startOffset + pageSize;
+
+    // Return the response
     return {
-        items: sortedAndFilteredResultset(params, results),
-        total_items: results.length,
-        total_pages: Math.ceil(results.length / params.pageSize),
+        items: sortedAndFilteredResultset(startOffset, endOffset, results),
+        total_items,
+        total_pages,
+        pageSize,
         page: params.page,
-        pageSize: params.pageSize,
         filters: params.filters
-    }
+    };
 }
 
-// Return subset and sorted resultset
-function sortedAndFilteredResultset(params : RequestParams, games: RawPayload) : CardGame[] {
-
-    // Bound for result
-    const [startOffset, endOffset] = (params.includePreviousPagesResult) 
-        ? [0, params.pageSize * params.page]
-        : [ (params.pageSize - 1) * params.page, params.pageSize * params.page];
-
-    // No sort criteria, return the filtered list only
-    return ((params.pageSize === -1) ? games : games.slice(startOffset, endOffset)).map(enhanceGameItem);
+// Return subset of result set based on pagination
+function sortedAndFilteredResultset(startOffset: number, endOffset: number, games: RawPayload): CardGame[] {
+    return games.slice(startOffset, endOffset).map(enhanceGameItem);
 }
 
 // Convert input parameters to my structures
 function extractParameters(params: URLSearchParams): RequestParams {
-    
-    // filters
-    let filters : gamesFilters = {};
+    let result: RequestParams = {
+        page: parseInt(params.get("page") || "1", 10)
+    };
 
-    // 1. platform
-    if (params.has("selected_platform")) {
-        filters["platform"] = parseInt(params.get("selected_platform") as string);
+    // Extract parameters
+    const pageSize = params.get("pageSize");
+    const selected_platform = params.get("selected_platform");
+    const selected_title = params.get("selected_title");
+    const selected_genres = params.getAll("selected_genres");
+
+    if (pageSize !== null) {
+        result.pageSize = parseInt(pageSize, 10);
     }
 
-    // 2. title
-    if (params.has("selected_title")) {
-        filters["title"] = params.get("selected_title") as string;
+    if (selected_platform !== null) {
+        result.filters = { ...result.filters, platform: parseInt(selected_platform, 10) };
     }
 
-    // 3. genres
-    if (params.has("selected_genres")) {
-        filters["genres"] = params.getAll("selected_genres").map(parseInt);
+    if (selected_title !== null) {
+        result.filters = { ...result.filters, title: selected_title };
     }
 
-    return {
-        page: parseInt(params.get("page") || "1"),
-        pageSize: parseInt(params.get("pageSize") || "16"),
-        filters: filters,
-        includePreviousPagesResult: (params.has("includePreviousPagesResult")) ? !!params.get("includePreviousPagesResult") : false
+    if (selected_genres.length > 0) {
+        result.filters = { ...result.filters, genres: selected_genres.map(v => parseInt(v, 10)) };
     }
+
+    return result;
 }
 
 // Return an enhanced payload for a single game
 function enhanceGameItem(game: rawEntry): CardGame {
-
     const id = (game as BasicPlaylist).playlistId ?? (game as BasicVideo).videoId;
-    const base_url = (
-        ("playlistId" in game) 
-            ? "https://www.youtube.com/playlist?list=" 
-            :  "https://www.youtube.com/watch?v="
-    ) + id ;
+    const base_url = ("playlistId" in game)
+        ? `https://www.youtube.com/playlist?list=${id}`
+        : `https://www.youtube.com/watch?v=${id}`;
 
-    return Object.assign({}, game, {
+    return {
+        ...game,
         id,
-        imagePath: `/covers/${id}/${ game?.coverFile ?? "cover.webp" }`,
+        imagePath: `/covers/${id}/${game.coverFile ?? "cover.webp"}`,
         sizes: SIZES.join(", "),
         url: base_url,
         url_type: ("playlistId" in game) ? "PLAYLIST" : "VIDEO" as YTUrlType
-    });
+    };
 }
