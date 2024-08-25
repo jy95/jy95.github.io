@@ -19,11 +19,14 @@ export type gamesFilters = ({
 
 export interface GamesState {
     /** @description  current filters applied */
-    activeFilters: gamesFilters
+    activeFilters: gamesFilters,
+    /** @description current page loaded */
+    page: number
 }
 
 const initialState: GamesState = {
-    activeFilters: []
+    activeFilters: [],
+    page: 1
 };
 
 const gamesSlice = createSlice({
@@ -42,6 +45,7 @@ const gamesSlice = createSlice({
                 });
             }
             state.activeFilters = newFilters;
+            state.page = 1;
         },
         filterByTitle(state : GamesState, action: PayloadAction<string>) {
             // If empty, remove filter - if not, add it
@@ -53,6 +57,7 @@ const gamesSlice = createSlice({
                 });
             }
             state.activeFilters = newFilters;
+            state.page = 1;
         },
         filterByPlatform(state : GamesState, action: PayloadAction<number | undefined>) {
             // If empty, remove filter - if not, add it
@@ -64,6 +69,10 @@ const gamesSlice = createSlice({
                 });
             }
             state.activeFilters = newFilters;
+            state.page = 1;
+        },
+        nextPage(state: GamesState) {
+            state.page = state.page + 1;
         }
     }
 });
@@ -117,5 +126,5 @@ export const selectSelectedTitle = createSelector(
 )
 
 // Action creators are generated for each case reducer function
-export const { filteringByGenre, filterByTitle, filterByPlatform } = gamesSlice.actions;
+export const { filteringByGenre, filterByTitle, filterByPlatform, nextPage } = gamesSlice.actions;
 export default gamesSlice.reducer;

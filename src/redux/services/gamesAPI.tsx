@@ -62,7 +62,7 @@ export const gamesAPI = createApi({
                 return `/games?${stringifyObject(parameters)}`;
             },
             forceRefetch: ({ currentArg, previousArg }) => {
-                return currentArg !== previousArg;
+                return JSON.stringify(currentArg) !== JSON.stringify(previousArg);
             },
             // Custom key for cache
             serializeQueryArgs: ({ endpointName }) => endpointName,
@@ -72,10 +72,9 @@ export const gamesAPI = createApi({
                 let currentParams = { filters: currentCache.filters, pageSize: currentCache.pageSize };
                 let newParams = { filters: newItems.filters, pageSize: newItems.pageSize };
                 let notSameParams = JSON.stringify(currentParams) !== JSON.stringify(newParams);
-                let samePageAsked = currentCache.page === newItems.page;
 
-                // If not same parameters (or same page), it means we have to replace by newest answer
-                if (notSameParams || samePageAsked) {
+                // If not same parameters, it means we have to replace by newest answer
+                if (notSameParams) {
                     return newItems;
                 }
 
@@ -83,6 +82,7 @@ export const gamesAPI = createApi({
                 return {
                     ...currentCache,
                     items: [...currentCache.items, ...newItems.items],
+                    page: newItems.page
                 };
             },
         })
