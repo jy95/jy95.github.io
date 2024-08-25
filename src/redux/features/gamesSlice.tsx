@@ -73,9 +73,6 @@ const gamesSlice = createSlice({
         },
         nextPage(state: GamesState) {
             state.page = state.page + 1;
-        },
-        resetPage(state: GamesState) {
-            state.page = 1;
         }
     }
 });
@@ -129,5 +126,5 @@ export const selectSelectedTitle = createSelector(
 )
 
 // Action creators are generated for each case reducer function
-export const { filteringByGenre, filterByTitle, filterByPlatform, nextPage, resetPage } = gamesSlice.actions;
+export const { filteringByGenre, filterByTitle, filterByPlatform, nextPage } = gamesSlice.actions;
 export default gamesSlice.reducer;

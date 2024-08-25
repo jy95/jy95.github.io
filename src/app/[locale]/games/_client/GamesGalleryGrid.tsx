@@ -1,7 +1,7 @@
 // Hooks
 import { useGetGamesQuery } from "@/redux/services/gamesAPI";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import { nextPage, resetPage } from "@/redux/features/gamesSlice";
+import { nextPage } from "@/redux/features/gamesSlice";
 import { useTranslations } from 'next-intl';
 
 // Style
