@@ -61,22 +61,34 @@ export const gamesAPI = createApi({
 
                 return `/games?${stringifyObject(parameters)}`;
             },
-            // Force refresh when offset change
             forceRefetch: ({ currentArg, previousArg }) => {
                 return currentArg !== previousArg;
             },
             // Custom key for cache
             serializeQueryArgs: ({ endpointName }) => endpointName,
             // merge incoming data to the cache entry when possible
-            merge: (_currentCache, newItems) => {
-                // API is returning all the results, so need to put advanced strategy here
-                // Maybe one day fix that behavior
-                return newItems;
-            }
+            merge: (currentCache, newItems) => {
+                
+                let currentParams = { filters: currentCache.filters, pageSize: currentCache.pageSize };
+                let newParams = { filters: newItems.filters, pageSize: newItems.pageSize };
+                let notSameParams = JSON.stringify(currentParams) !== JSON.stringify(newParams);
+                let samePageAsked = currentCache.page === newItems.page;
+
+                // If not same parameters (or same page), it means we have to replace by newest answer
+                if (notSameParams || samePageAsked) {
+                    return newItems;
+                }
+
+                // If same parameters, it means we have to merge them
+                return {
+                    ...currentCache,
+                    items: [...currentCache.items, ...newItems.items],
+                };
+            },
         })
     })
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useLazyGetGamesQuery } = gamesAPI;
+export const { useGetGamesQuery } = gamesAPI;

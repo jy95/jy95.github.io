@@ -1,6 +1,6 @@
 // Hooks
-import { useState, useEffect } from 'react';
-import { useLazyGetGamesQuery } from "@/redux/services/gamesAPI";
+import { useState } from 'react';
+import { useGetGamesQuery } from "@/redux/services/gamesAPI";
 import { useAppSelector } from "@/redux/hooks";
 import { useTranslations } from 'next-intl';
 
@@ -30,44 +30,22 @@ function GamesGalleryGridInner() {
     const activeFilters = useAppSelector((state) => state.games.activeFilters);
 
     const [page, setPage] = useState(1);
-    const [allGames, setAllGames] = useState<CardGame[]>([]);
     const t = useTranslations('common');
 
     const LIMIT_PAGE = 16;
-    const filtersAsString = JSON.stringify(activeFilters);
 
     // Lazy query setup
-    const [triggerGetGames, { data, isFetching }] = useLazyGetGamesQuery();
-
-    // Trigger the query when the page changes
-    useEffect(() => {
-            triggerGetGames({
-                filters: activeFilters,
-                pageSize: LIMIT_PAGE,
-                page: page,
-            });
-        },
-        // eslint-disable-next-line
-        [page]
-    );
-
-    // Update the accumulated results when new data arrives
-    useEffect(() => {
-        if (data?.items) {
-            setAllGames((prevGames) => [...prevGames, ...data.items]);
-        }
-    }, [data?.items]);
-
-    // Reset the games list and page if filters change
-    useEffect(() => {
-        setAllGames([]);
-        setPage(1);
-        triggerGetGames({
+    const { data, isFetching } = useGetGamesQuery(
+        {
             filters: activeFilters,
-            pageSize: LIMIT_PAGE,
-            page: 1
-        });
-    }, [filtersAsString]);
+            pageSize : LIMIT_PAGE,
+            page: page
+        },
+        {
+            refetchOnMountOrArgChange: true
+        }
+    );
+    const allGames = data?.items ?? [];
 
     const renderRow = (game: CardGame) => (
         <Grid 
