@@ -1,7 +1,7 @@
 // Hooks
-import { useState } from 'react';
 import { useGetGamesQuery } from "@/redux/services/gamesAPI";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { nextPage, resetPage } from "@/redux/features/gamesSlice";
 import { useTranslations } from 'next-intl';
 
 // Style
@@ -28,9 +28,10 @@ function GamesGalleryGridInner() {
     
     // Active filters
     const activeFilters = useAppSelector((state) => state.games.activeFilters);
-
-    const [page, setPage] = useState(1);
+    // Current page
+    const page = useAppSelector((state) => state.games.page);
     const t = useTranslations('common');
+    const dispatch = useAppDispatch();
 
     const LIMIT_PAGE = 16;
 
@@ -40,9 +41,6 @@ function GamesGalleryGridInner() {
             filters: activeFilters,
             pageSize : LIMIT_PAGE,
             page: page
-        },
-        {
-            refetchOnMountOrArgChange: true
         }
     );
     const allGames = data?.items ?? [];
@@ -76,7 +74,7 @@ function GamesGalleryGridInner() {
                 <LoadingButton
                     loading={isFetching}
                     disabled={ page >= (data?.total_pages || 1) }
-                    onClick={() => setPage((prev) => prev + 1)}
+                    onClick={() => dispatch(nextPage())}
                 >
                     <span>{t('loadMore')}</span>
                 </LoadingButton>
