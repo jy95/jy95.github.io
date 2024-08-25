@@ -72,9 +72,10 @@ export const gamesAPI = createApi({
                 let currentParams = { filters: currentCache.filters, pageSize: currentCache.pageSize };
                 let newParams = { filters: newItems.filters, pageSize: newItems.pageSize };
                 let notSameParams = JSON.stringify(currentParams) !== JSON.stringify(newParams);
+                let samePageAsked = currentCache.page === newItems.page;
 
-                // If not same parameters, it means we have to replace by newest answer
-                if (notSameParams) {
+                // If not same parameters (or same page), it means we have to replace by newest answer
+                if (notSameParams || samePageAsked) {
                     return newItems;
                 }
 
