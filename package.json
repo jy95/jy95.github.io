@@ -30,7 +30,7 @@
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.5",
     "fuse.js": "^7.0.0",
-    "next": "14.2.5",
+    "next": "14.2.6",
     "next-intl": "^3.17.2",
     "notistack": "^3.0.1",
     "react": "18.3.1",
