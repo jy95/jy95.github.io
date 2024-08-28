@@ -1,8 +1,7 @@
 name: 🔄 Update game
 description: Update a existing game fields into the database
-title: '[UPDATE_GAME]'
-labels: 
-  - database
+title: '[UPDATE_GAME] '
+labels: ["database","[UPDATE_GAME]"]
 body:
   - type: markdown
     attributes:
