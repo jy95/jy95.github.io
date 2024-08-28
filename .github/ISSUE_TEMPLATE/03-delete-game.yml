@@ -1,8 +1,7 @@
 name: 🗑️ Delete game
 description: Delete a game from the database
-title: '[DELETE_GAME]'
-labels: 
-  - database
+title: '[DELETE_GAME] '
+labels: ["database","[DELETE_GAME]"]
 body:
   - type: markdown
     attributes:
