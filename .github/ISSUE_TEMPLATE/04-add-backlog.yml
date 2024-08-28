@@ -1,8 +1,7 @@
 name: ⏳ Add backlog entry
 description: Add a new backlog entry into the database
-title: '[ADD_BACKLOG]'
-labels: 
-  - database
+title: '[ADD_BACKLOG] '
+labels: ["database","[ADD_BACKLOG]"]
 body:
   - type: markdown
     attributes:
