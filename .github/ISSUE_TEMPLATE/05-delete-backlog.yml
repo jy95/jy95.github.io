@@ -1,8 +1,7 @@
 name: 🧹 Delete backlog entry
 description: Delete a backlog entry from the database
-title: '[DELETE_BACKLOG]'
-labels: 
-  - database
+title: '[DELETE_BACKLOG] '
+labels: ["database","[DELETE_BACKLOG]"]
 body:
   - type: markdown
     attributes:
