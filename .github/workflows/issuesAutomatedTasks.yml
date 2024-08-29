@@ -14,22 +14,15 @@ jobs:
           uses: actions/checkout@v4
         - id: detect_issue_type
           name: 🔍 Scan issue type
-          run: |
-            issue_title="${{ github.event.issue.title }}"
-            
-            if [[ "$issue_title" =~ ^\[ADD_GAME\] ]]; then
-                echo "issue_type=ADD_GAME" >> $GITHUB_OUTPUT
-            elif [[ "$issue_title" =~ ^\[UPDATE_GAME\] ]]; then
-                echo "issue_type=UPDATE_GAME" >> $GITHUB_OUTPUT
-            elif [[ "$issue_title" =~ ^\[DELETE_GAME\] ]]; then
-                echo "issue_type=DELETE_GAME" >> $GITHUB_OUTPUT
-            elif [[ "$issue_title" =~ ^\[ADD_BACKLOG\] ]]; then
-                echo "issue_type=ADD_BACKLOG" >> $GITHUB_OUTPUT
-            elif [[ "$issue_title" =~ ^\[DELETE_BACKLOG\] ]]; then
-                echo "issue_type=DELETE_BACKLOG" >> $GITHUB_OUTPUT
-            else
-                echo "issue_type=UNKNOWN" >> $GITHUB_OUTPUT
-            fi
+          env:
+            ISSUE_TYPE: ${{ 
+                contains(github.event.issue.labels.*.name, 'ADD_GAME') && 'ADD_GAME' || 
+                contains(github.event.issue.labels.*.name, 'UPDATE_GAME') && 'UPDATE_GAME' || 
+                contains(github.event.issue.labels.*.name, 'DELETE_GAME') && 'DELETE_GAME' || 
+                contains(github.event.issue.labels.*.name, 'ADD_BACKLOG') && 'ADD_BACKLOG' || 
+                contains(github.event.issue.labels.*.name, 'DELETE_BACKLOG') && 'DELETE_BACKLOG' || 
+                'UNKNOWN' }}
+          run: echo "issue_type=${{ env.ISSUE_TYPE }}" >> $GITHUB_OUTPUT
         - id: set_template_file
           name: 👉 Select the correct template for this issue
           run: |
