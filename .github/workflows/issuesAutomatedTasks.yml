@@ -16,11 +16,11 @@ jobs:
           name: 🔍 Scan issue type
           env:
             ISSUE_TYPE: ${{ 
-                contains(github.event.issue.labels.*.name, 'ADD_GAME') && 'ADD_GAME' || 
-                contains(github.event.issue.labels.*.name, 'UPDATE_GAME') && 'UPDATE_GAME' || 
-                contains(github.event.issue.labels.*.name, 'DELETE_GAME') && 'DELETE_GAME' || 
-                contains(github.event.issue.labels.*.name, 'ADD_BACKLOG') && 'ADD_BACKLOG' || 
-                contains(github.event.issue.labels.*.name, 'DELETE_BACKLOG') && 'DELETE_BACKLOG' || 
+                contains(github.event.issue.labels.*.name, '[ADD_GAME]') && 'ADD_GAME' || 
+                contains(github.event.issue.labels.*.name, '[UPDATE_GAME]') && 'UPDATE_GAME' || 
+                contains(github.event.issue.labels.*.name, '[DELETE_GAME]') && 'DELETE_GAME' || 
+                contains(github.event.issue.labels.*.name, '[ADD_BACKLOG]') && 'ADD_BACKLOG' || 
+                contains(github.event.issue.labels.*.name, '[DELETE_BACKLOG]') && 'DELETE_BACKLOG' || 
                 'UNKNOWN' }}
           run: echo "issue_type=${{ env.ISSUE_TYPE }}" >> $GITHUB_OUTPUT
         - id: set_template_file
