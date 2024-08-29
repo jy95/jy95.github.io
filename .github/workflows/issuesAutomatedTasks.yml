@@ -56,47 +56,19 @@ jobs:
       steps:
         - name: 🛎️ Checkout
           uses: actions/checkout@v4
-# To generate an array of all fields id and labels - example : 
-# [ { "id": "name", "label": "The Name of the Thing" }, { "id": "nickname", "label": "The Nickname of the Thing" }, // ... other fields ]
-# Warning, yq follows JSONL specs ( https://jsonlines.org/ ) so we don't have exactly an array here
-        - uses: mikefarah/yq@v4.44.3
-          name: 📰 Parse YML file to extract id and labels
-          with:
-            cmd: |  
-              yq -o=json -I=0 '.body[] | select(.type != "markdown") | {"id": .id, "label": .attributes.label}' .github/ISSUE_TEMPLATE/${{ env.TEMPLATE_FILE }} > template-keys.jsonl
         - id: parse-issue
           name: 📝 IssueOps Form Parser
-          uses: issue-ops/parser@v2.0.0
+          uses: issue-ops/parser@v3.0.0
           with:
             issue-form-template: ${{ env.TEMPLATE_FILE }}
             body: ${{ github.event.issue.body }}
         - name: 💾 Save result into a json file
           run: |
             echo '${{ steps.parse-issue.outputs.json }}' | jq '.' > original_answers.json
-# https://til.codeinthehole.com/posts/about-jqs-slurp-option/
-        - name: 🔃 Prepare template keys file
-          run: |
-            jq -s '[.[] | {key: (.label | ascii_downcase | gsub("[^a-z0-9]"; "_") | sub("^_+|_+$"; "") | gsub("_+"; "_")), value: .id}]' template-keys.jsonl > transformed_keys.json  
-            jq 'reduce .[] as $item ({}; . + {($item.key): $item.value})' transformed_keys.json > keys_map.json
-        - name: 👀 Show keys mappings
-          run: |
-            echo "$(cat keys_map.json)"
-        - name: 🏭 Replace Form keys by our keys
-          run: |
-            jq -s '
-              # Load both JSON files as an array, with the first being the data and the second being the mapping
-              .[0] as $data |
-              .[1] as $mapping |
-              # Apply the mapping to rename keys
-              $data | with_entries(.key |= ($mapping[.] // .))
-            ' original_answers.json keys_map.json > output.json
-        - name: 👀 Show result
-          run: |
-            echo "$(cat output.json)"
         - name: 📥 Sent result to github outputs
           id: processed
           run: |
-            json_content=$(cat output.json | jq -c)  
+            json_content=$(cat original_answers.json | jq -c)  
             echo "json=$json_content" >> $GITHUB_OUTPUT
     magic_time:
         needs: process_issue
