@@ -378,6 +378,18 @@
 		]
 	},
 	{
+		"id": 160,
+		"title": "Dante's Inferno",
+		"playlistId": "PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP",
+		"releaseDate": "2010-10-04",
+		"duration": "05:48:59",
+		"platform": 6,
+		"genres": [
+			1,
+			2
+		]
+	},
+	{
 		"id": 50,
 		"title": "Darksiders I",
 		"playlistId": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
