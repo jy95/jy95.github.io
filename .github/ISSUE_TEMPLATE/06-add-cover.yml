@@ -1,0 +1,35 @@
+name: 📕 Add cover game
+description: Add to a existing game its cover
+title: '[ADD_COVER] '
+labels: ["[ADD_COVER]"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill in the following fields to add this game cover !
+  - type: input
+    id: identifierValue
+    attributes:
+      label: Identifier
+      description: What is the game playlist ID or video ID on Youtube ?
+      placeholder: >-
+        ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY
+    validations:
+      required: true
+  - type: input
+    id: imageURL
+    attributes:
+      label: Image URL
+      description: Put a public link accessible without authentification here
+      placeholder: https://image.jeuxvideo.com/images-sm/pc/a/x/axxlpc0f.jpg
+    validations:
+      required: true
+  - type: dropdown
+    id: folder
+    attributes:
+      label: Folder ?
+      description: What is the public folder
+      options:
+        - covers
+        - testscovers
+      default: 0

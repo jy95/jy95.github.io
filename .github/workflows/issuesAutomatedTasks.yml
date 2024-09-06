@@ -21,6 +21,7 @@ jobs:
                 contains(github.event.issue.labels.*.name, '[DELETE_GAME]') && 'DELETE_GAME' || 
                 contains(github.event.issue.labels.*.name, '[ADD_BACKLOG]') && 'ADD_BACKLOG' || 
                 contains(github.event.issue.labels.*.name, '[DELETE_BACKLOG]') && 'DELETE_BACKLOG' || 
+                contains(github.event.issue.labels.*.name, '[ADD_COVER]') && 'ADD_COVER' || 
                 'UNKNOWN' }}
           run: echo "issue_type=${{ env.ISSUE_TYPE }}" >> $GITHUB_OUTPUT
         - id: set_template_file
@@ -41,6 +42,9 @@ jobs:
                 ;;
               DELETE_BACKLOG)
                 echo "template_file=05-delete-backlog.yml" >> $GITHUB_OUTPUT
+                ;;
+              ADD_COVER)
+                echo "template_file=06-add-cover.yml" >> $GITHUB_OUTPUT
                 ;;
             esac
     process_issue:
@@ -89,6 +93,28 @@ jobs:
                 node-version: "lts/*"
           - name: 💻 Install npm packages
             run: npm install better-sqlite3 --no-save
+          - name: 📕 Add cover
+            if: ${{ env.OPERATION == 'ADD_COVER' }}
+            run: |
+              # Extract URL and folder path from the JSON environment variable
+              REQUEST_URL=$(echo $REQUEST | jq -r '.imageURL')
+              REQUEST_FOLDER=$(echo $REQUEST | jq -r '.folder')
+              REQUEST_ID=$(echo $REQUEST | jq -r '.identifierValue')
+
+              # Define the folder path variable
+              FOLDER_PATH="/public/$REQUEST_FOLDER/$REQUEST_ID"
+
+              # Create the target folder if it doesn't exist
+              mkdir -p "$FOLDER_PATH"
+
+              # Download the image without worrying about the extension
+              curl -L -o image_file "$REQUEST_URL"
+
+              # Resize the image and convert to WebP format using npx sharp-cli
+              npx --yes sharp-cli -i ./image_file -o "$FOLDER_PATH/cover.webp" -f webp resize 250 250 --fit inside
+
+              # Clean up the original file
+              rm image_file
           - name: 💿 Do actions in database
             run: |
                 node automatedTasks.mjs "$OPERATION" "$REQUEST"
