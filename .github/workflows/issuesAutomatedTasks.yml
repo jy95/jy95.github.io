@@ -105,7 +105,7 @@ jobs:
               FOLDER_PATH="./public/$REQUEST_FOLDER/$REQUEST_ID"
 
               # Create the target folder if it doesn't exist
-              mkdir -p "$FOLDER_PATH"
+              sudo mkdir -p "$FOLDER_PATH"
 
               # Download the image without worrying about the extension
               curl -L -o image_file "$REQUEST_URL"
