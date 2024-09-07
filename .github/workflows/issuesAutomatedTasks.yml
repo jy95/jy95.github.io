@@ -102,7 +102,7 @@ jobs:
               REQUEST_ID=$(echo $REQUEST | jq -r '.identifierValue')
 
               # Define the folder path variable
-              FOLDER_PATH="/public/$REQUEST_FOLDER/$REQUEST_ID"
+              FOLDER_PATH="./public/$REQUEST_FOLDER/$REQUEST_ID"
 
               # Create the target folder if it doesn't exist
               mkdir -p "$FOLDER_PATH"
