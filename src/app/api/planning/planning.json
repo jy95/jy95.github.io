@@ -218,5 +218,14 @@
 		"releaseDate": "2011-10-19",
 		"duration": "07:56:23",
 		"platform": 6
+	},
+	{
+		"id": 183,
+		"availableAt": "2026-02-18",
+		"playlistId": "PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
+		"title": "Vanquish",
+		"releaseDate": "2010-10-22",
+		"duration": "00:00:00",
+		"platform": 6
 	}
 ]
