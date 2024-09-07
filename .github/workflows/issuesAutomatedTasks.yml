@@ -111,10 +111,10 @@ jobs:
               curl -L -o image_file "$REQUEST_URL"
 
               # Resize the image and convert to WebP format using npx sharp-cli
-              npx --yes sharp-cli -i ./image_file -o "$FOLDER_PATH/cover.webp" -f webp resize 250 250 --fit inside
+              sudo npx --yes sharp-cli -i ./image_file -o "$FOLDER_PATH/cover.webp" -f webp resize 250 250 --fit inside
 
               # Clean up the original file
-              rm image_file
+              sudo rm image_file
           - name: 💿 Do actions in database
             run: |
                 node automatedTasks.mjs "$OPERATION" "$REQUEST"
