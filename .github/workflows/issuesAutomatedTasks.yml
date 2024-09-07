@@ -98,7 +98,7 @@ jobs:
             run: |
               # Extract URL and folder path from the JSON environment variable
               REQUEST_URL=$(echo $REQUEST | jq -r '.imageURL')
-              REQUEST_FOLDER=$(echo $REQUEST | jq -r '.folder')
+              REQUEST_FOLDER=$(echo $REQUEST | jq -r '.folder[0]')
               REQUEST_ID=$(echo $REQUEST | jq -r '.identifierValue')
 
               # Define the folder path variable
