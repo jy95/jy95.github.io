@@ -10,9 +10,9 @@
 		{
 			"id": 6,
 			"platform": "PS3",
-			"total": 56,
+			"total": 55,
 			"total_available": 38,
-			"total_unavailable": 19
+			"total_unavailable": 18
 		},
 		{
 			"id": 5,
@@ -68,9 +68,9 @@
 		{
 			"id": 16,
 			"genre": "Shooter",
-			"total": 43,
+			"total": 42,
 			"total_available": 38,
-			"total_unavailable": 5
+			"total_unavailable": 4
 		},
 		{
 			"id": 14,
@@ -94,15 +94,15 @@
 			"total_unavailable": 0
 		},
 		{
-			"id": 9,
-			"genre": "Fighting",
-			"total": 7,
-			"total_available": 6,
-			"total_unavailable": 1
-		},
-		{
 			"id": 6,
 			"genre": "Casual",
+			"total": 6,
+			"total_available": 6,
+			"total_unavailable": 0
+		},
+		{
+			"id": 9,
+			"genre": "Fighting",
 			"total": 6,
 			"total_available": 6,
 			"total_unavailable": 0
@@ -186,9 +186,9 @@
 		}
 	],
 	"general": {
-		"total": 183,
+		"total": 182,
 		"total_available": 161,
-		"total_unavailable": 23,
+		"total_unavailable": 22,
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"total_time": {
 			"hours": 967,
