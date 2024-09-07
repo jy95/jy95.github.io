@@ -125,7 +125,7 @@ jobs:
             run: npm run generate-api-json-files
           - name: 💅 Create Pull Request
             id: cpr
-            uses: peter-evans/create-pull-request@v6
+            uses: peter-evans/create-pull-request@v7.0.1
             with:
               title: "🤖 ${{ github.event.issue.title }}"
               body: |
