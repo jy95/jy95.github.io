@@ -113,6 +113,9 @@ jobs:
               # Resize the image and convert to WebP format using npx sharp-cli
               sudo npx --yes sharp-cli -i ./image_file -o "$FOLDER_PATH/cover.webp" -f webp resize 250 250 --fit inside
 
+              # Change the permissions to allow read and execute access by everyone
+              sudo chmod a+rx "$FOLDER_PATH/cover.webp"
+
               # Clean up the original file
               sudo rm image_file
           - name: 💿 Do actions in database
