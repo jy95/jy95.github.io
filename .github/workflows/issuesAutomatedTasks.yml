@@ -119,6 +119,17 @@ jobs:
 
               # Clean up the original file
               sudo rm image_file
+          - name: ✂️ Delete cover
+            if: ${{ env.OPERATION == 'DELETE_GAME' }}
+            run: |
+              # Extract folder name from the JSON environment variable
+              REQUEST_ID=$(echo $REQUEST | jq -r '.identifierValue')
+
+              # Define the folder path variable
+              FOLDER_PATH="./public/covers/$REQUEST_ID"
+
+              # Clean up the original file
+              sudo rm -rf "$FOLDER_PATH"
           - name: 💿 Do actions in database
             run: |
                 node automatedTasks.mjs "$OPERATION" "$REQUEST"
