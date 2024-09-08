@@ -8,7 +8,7 @@ type Duration = {
     seconds: number;
 };
 
-export function pretty_duration(contentDuration: Duration) {
+export function usePrettyDuration(contentDuration: Duration) {
 
     const t = useTranslations();
 
@@ -21,7 +21,7 @@ export function pretty_duration(contentDuration: Duration) {
 
     // Inspired by https://blog.bitsrc.io/calculate-the-difference-between-two-2-dates-e1d76737c05a
   // My version includes some improvements in the codebase & changes to fit my needs
-  export function calcDate(date1: string) {
+  export function useCalcDate(date1: string) {
 
     const t = useTranslations();
 

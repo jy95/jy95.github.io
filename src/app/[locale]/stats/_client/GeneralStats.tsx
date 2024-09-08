@@ -25,7 +25,7 @@ import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 
 // Utils
-import { calcDate, pretty_duration } from "./utils";
+import { useCalcDate, usePrettyDuration } from "./utils";
 
 // Types
 import type { statsProperty } from "@/app/api/stats/route";
@@ -36,8 +36,14 @@ type Props = {
 
 export default function GeneralStats ({stats}: Props) {
 
-    const t = useTranslations();
-    const generalStats = stats.general;
+  const t = useTranslations();
+  const generalStats = stats.general;
+
+  // hooks calls
+  const total_duration = usePrettyDuration(generalStats.total_time);
+  const total_duration_available = usePrettyDuration(generalStats.total_time_available);
+  const total_duration_unavailable = usePrettyDuration(generalStats.total_time_unavailable);
+  const how_long_since_channel_start = useCalcDate(generalStats.channel_start_date).result;
 
   return (
     <Grid item xs={12} md={12} lg={12}>
@@ -109,7 +115,7 @@ export default function GeneralStats ({stats}: Props) {
               </ListItemAvatar>
               <ListItemText
                 primary={t("stats.generalStats.total_duration")}
-                secondary={pretty_duration(generalStats.total_time)}
+                secondary={total_duration}
               />
             </AccordionSummary>
             <Suspense fallback={null}>
@@ -122,7 +128,7 @@ export default function GeneralStats ({stats}: Props) {
                   </ListItemAvatar>
                   <ListItemText
                     primary={t("stats.generalStats.total_duration_available")}
-                    secondary={pretty_duration(generalStats.total_time_available)}
+                    secondary={total_duration_available}
                   />
                 </ListItem>
                 <ListItem>
@@ -133,7 +139,7 @@ export default function GeneralStats ({stats}: Props) {
                   </ListItemAvatar>
                   <ListItemText
                     primary={t("stats.generalStats.total_duration_unavailable")}
-                    secondary={pretty_duration(generalStats.total_time_unavailable)}
+                    secondary={total_duration_unavailable}
                   />
                 </ListItem>
               </List>
@@ -152,7 +158,7 @@ export default function GeneralStats ({stats}: Props) {
                 generalStats.channel_start_date,
               ).toLocaleDateString()} ${t(
                 "stats.generalStats.channel_start_date_details",
-                { value: calcDate(generalStats.channel_start_date).result },
+                { value: how_long_since_channel_start },
               )}`}
             />
           </ListItem>
