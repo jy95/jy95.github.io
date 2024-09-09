@@ -25,7 +25,7 @@ jobs:
             - name: 🤖 Do the thing
               run: npm run generate-api-json-files
             - name: 💅 Create Pull Request
-              uses: peter-evans/create-pull-request@v6
+              uses: peter-evans/create-pull-request@v7
               with:
                 title: "[auto-updater] Updated JSON files"
                 body: |
