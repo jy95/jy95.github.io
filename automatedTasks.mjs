@@ -236,12 +236,12 @@ async function updateGameInDatabase(db, payload) {
         const gameId = findGameIdStmt.pluck().get(youtubeIdentifier);
 
         // Update title
-        if (payload.title !== undefined) {
+        if (payload.title !== undefined && payload.title.length > 0) {
             updateTitleStmt.run(payload.title, gameId);
         }
 
         // Update release date
-        if (payload.releaseDate !== undefined) {
+        if (payload.releaseDate !== undefined && payload.releaseDate.length > 0) {
             updateReleaseDateStmt.run(payload.releaseDate, gameId);
         }
 
@@ -252,17 +252,17 @@ async function updateGameInDatabase(db, payload) {
         }
 
         // Update duration
-        if (payload.duration !== undefined) {
+        if (payload.duration !== undefined && payload.duration.length > 0) {
             updateDurationStmt.run(payload.duration, gameId);
         }
 
         // Update available at
-        if (payload.availableAt !== undefined) {
+        if (payload.availableAt !== undefined && payload.availableAt.length > 0) {
             updateAvailableAtStmt.run(payload.availableAt, gameId);
         }
 
         // Update end at
-        if (payload.endAt !== undefined) {
+        if (payload.endAt !== undefined && payload.endAt.length > 0) {
             updateEndAtStmt.run(payload.endAt, gameId);
         }
 
