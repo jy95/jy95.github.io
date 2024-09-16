@@ -11,11 +11,9 @@ import { useGetBacklogQuery } from "@/redux/services/backlogAPI";
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import type { GridRenderCellParams, GridColDef } from '@mui/x-data-grid';
 
-// Platform icons
-import RenderPlatformIcon from "@/components/GamesView/PlatformIcons";
-
 // Others
 import Tooltip from '@mui/material/Tooltip';
+import PlatformColumn from "@/components/tableColumns/platforms";
 
 export default function BacklogViewer() {
 
@@ -45,10 +43,7 @@ export default function BacklogViewer() {
         {
             field: "platform",
             headerName: t("columns.platform"),
-            renderCell: (params: GridRenderCellParams) => {
-                return (<RenderPlatformIcon identifier={params.value} />)
-            },
-            width: 160
+            ...PlatformColumn
         },
         {
             field: "notes", 
@@ -74,7 +69,7 @@ export default function BacklogViewer() {
                         columns={columns} 
                         disableRowSelectionOnClick 
                         //disableExtendRowFullWidth // No needed for now
-                        disableColumnFilter // or filterable: false in each column
+                        //disableColumnFilter // or filterable: false in each column
                         autoHeight  
                         localeText={customLocaleText}
                         slots={{

@@ -14,19 +14,18 @@ import type { GridRenderCellParams, GridColDef } from '@mui/x-data-grid';
 // Icons
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
-import SvgIcon from '@mui/material/SvgIcon';
-
-// Platform icons
-import RenderPlatformIcon from "@/components/GamesView/PlatformIcons";
 
 // Others
 import Tooltip from '@mui/material/Tooltip';
+import Box from '@mui/material/Box';
+import PlatformColumn from "@/components/tableColumns/platforms";
 
 type GameStatus = "RECORDED" | "PENDING";
 
 export default function PlanningViewer() {
 
     // Using a query hook automatically fetches data and returns query values
+
     const { data, error, isLoading } = useGetPlanningQuery();
     const customLocaleText = useMuiXDataGridText();
     const t = useTranslations("planning");
@@ -52,10 +51,7 @@ export default function PlanningViewer() {
         {
             field: "platform",
             headerName: t("columns.platform"),
-            renderCell: (params : GridRenderCellParams) => (
-                <RenderPlatformIcon identifier={params.value} />
-            ),
-            width: 160
+            ...PlatformColumn
         },
         {
             field: "releaseDate", 
@@ -76,6 +72,25 @@ export default function PlanningViewer() {
         {
             field: "status",
             headerName: t("columns.status"),
+            type: "singleSelect",
+            valueOptions: [
+                { 
+                    value: "RECORDED", 
+                    label: (
+                        <Box display="flex" alignItems="center">
+                            <CheckCircleIcon />
+                        </Box>
+                    ) 
+                },
+                { 
+                    value: 'PENDING', 
+                    label: (
+                        <Box display="flex" alignItems="center">
+                            <HourglassEmptyIcon />
+                        </Box>
+                    )
+                }
+            ] satisfies { value: GameStatus; label: JSX.Element }[],
             renderCell: (params : GridRenderCellParams) => (
                 <Tooltip title={t(`states.${params.value as GameStatus}`as const)} aria-label={params.value}>
                     { 
@@ -96,7 +111,7 @@ export default function PlanningViewer() {
                             columns={columns} 
                             disableRowSelectionOnClick 
                             //disableExtendRowFullWidth // No needed for now
-                            disableColumnFilter // or filterable: false in each column
+                            //disableColumnFilter // or filterable: false in each column
                             autoHeight  
                             localeText={customLocaleText}
                             slots={{
