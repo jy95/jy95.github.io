@@ -301,7 +301,7 @@ async function deleteGameFromDatabase(db, payload) {
     // Find game id
     const gameId = findGameIdStmt.pluck().get(youtubeIdentifier);
     // Delete game and everything related, thanks to the CASCADE DELETE
-    deleteGameStmt.run(gameId);
+    return deleteGameStmt.run(gameId);
 }
 
 /**
@@ -325,7 +325,7 @@ async function addBacklogToDatabase(db, payload) {
     const insertStmt = db.prepare("INSERT INTO backlog (title, platform, notes) VALUES (@title, @platform, @notes)");
 
     // Execution time
-    insertStmt.run(backlogToInsert);
+    return insertStmt.run(backlogToInsert);
 }
 
 /**
@@ -337,7 +337,7 @@ async function addBacklogToDatabase(db, payload) {
  */
 async function deleteBacklogFromDatabase(db, payload) {
     const deleteBacklogStmt = db.prepare("DELETE FROM backlog WHERE title = ?");
-    deleteBacklogStmt.run(payload.title);
+    return deleteBacklogStmt.run(payload.title);
 }
 
 switch(taskType) {
