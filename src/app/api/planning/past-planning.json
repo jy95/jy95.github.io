@@ -4,10 +4,6 @@
 		"playlistId": "PLRfhDHeBTBJ4hCgXVdIqLpBkTKS9q1JN6"
 	},
 	{
-		"title": "Destroy All Humans! 2",
-		"playlistId": "PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy"
-	},
-	{
 		"title": "Da Vinci Code",
 		"playlistId": "PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5"
 	},
@@ -258,6 +254,12 @@
 	{
 		"title": "Dr. Fetus' Mean Meat Machine",
 		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
+	},
+	{
+		"title": "Destroy All Humans! 2",
+		"playlistId": "PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy",
+		"availableAt": "2019-08-13",
+		"endAt": "2019-12-18"
 	},
 	{
 		"title": "Def Jam: Fight for NY",
