@@ -131,11 +131,13 @@ jobs:
                 node automatedTasks.mjs "$OPERATION" "$REQUEST"
           - name: 🤖 Update JSON files after this change
             run: npm run generate-api-json-files
-          - name: 🐛 Fix permissionss to make creation of pull request possible
+          - name: 🐛 Fix corner cases to make creation of pull request possible
             run: |
               # Change the permissions to make creation of pull request possible
               # Check https://github.com/peter-evans/create-pull-request/issues/783
-              sudo chown -R $USER:$USER .
+              sudo chown -R $USER:$USER .  
+              # Force addition of database in any case
+              git add -f GamesPassionFR.db
           - name: 💅 Create Pull Request
             id: cpr
             uses: peter-evans/create-pull-request@v7.0.3
