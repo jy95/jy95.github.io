@@ -11,7 +11,8 @@ const FILES = {
     "PLATFORMS": "src/app/api/platforms/platforms.json",
     "GENRES": "src/app/api/genres/genres.json",
     "PLANNING": "src/app/api/planning/planning.json",
-    "STATS": "src/app/api/stats/stats.json"
+    "STATS": "src/app/api/stats/stats.json",
+    "PAST_GAMES": "src/app/api/planning/past-planning.json",
 }
 
 const db = new Database(databasePath, {
@@ -207,6 +208,21 @@ async function extractAndSaveStats(db) {
     console.log(`${FILES.STATS} successfully written`);
 }
 
+/**
+ * Extracts games from the database and saves them to a file.
+ * @param {import('better-sqlite3').Database} db - The database instance
+ */
+async function extractAndSavePastGames(db) {
+    const extractGamesList = db.prepare("SELECT * FROM games_in_past");
+    const gamesList = extractGamesList.all();
+    await writeFile(
+        FILES.PAST_GAMES,
+        stringifyJSON(gamesList),
+        "utf-8"
+    );
+    console.log(`${FILES.GAMES} successfully written`);    
+}
+
 // Operations time
 await extractAndSavePlatforms(db)
 await extractAndSaveGenres(db)
@@ -216,3 +232,4 @@ await extractAndSaveGames(db)
 await extractAndSaveSeries(db)
 await extractAndSaveTests(db)
 await extractAndSaveStats(db)
+await extractAndSavePastGames(db);
