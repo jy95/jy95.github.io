@@ -1,9 +1,5 @@
 [
 	{
-		"title": "God Of War II HD",
-		"playlistId": "PLRfhDHeBTBJ6zui2RaBzaZ5zjm768Jzum"
-	},
-	{
 		"title": "Prince of Persia Epilogue",
 		"playlistId": "PLRfhDHeBTBJ4hCgXVdIqLpBkTKS9q1JN6"
 	},
@@ -266,6 +262,12 @@
 	{
 		"title": "Dr. Fetus' Mean Meat Machine",
 		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
+	},
+	{
+		"title": "God Of War II HD",
+		"playlistId": "PLRfhDHeBTBJ6zui2RaBzaZ5zjm768Jzum",
+		"availableAt": "2020-01-01",
+		"endAt": "2020-03-07"
 	},
 	{
 		"title": "Prince of Persia : Les Deux Royaumes",
