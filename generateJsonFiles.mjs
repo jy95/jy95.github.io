@@ -220,7 +220,7 @@ async function extractAndSavePastGames(db) {
         stringifyJSON(gamesList),
         "utf-8"
     );
-    console.log(`${FILES.GAMES} successfully written`);    
+    console.log(`${FILES.PAST_GAMES} successfully written`);    
 }
 
 // Operations time
