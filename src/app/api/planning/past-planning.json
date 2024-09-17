@@ -1,9 +1,5 @@
 [
 	{
-		"title": "Guns Gore & Cannoli",
-		"playlistId": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I"
-	},
-	{
 		"title": "Batman: Arkham Asylum",
 		"playlistId": "PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv"
 	},
@@ -294,6 +290,12 @@
 	{
 		"title": "Dr. Fetus' Mean Meat Machine",
 		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
+	},
+	{
+		"title": "Guns Gore & Cannoli",
+		"playlistId": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
+		"availableAt": "2020-03-29",
+		"endAt": "2020-06-21"
 	},
 	{
 		"title": "Batman: Arkham Origins",
