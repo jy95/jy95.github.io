@@ -39,5 +39,6 @@ jobs:
                   - platforms.json
                   - genres.json
                   - planning.json
-                  - stats.json
+                  - stats.json  
+                  - past-planning.json
                 draft: false
