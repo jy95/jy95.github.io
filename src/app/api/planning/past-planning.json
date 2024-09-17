@@ -1,9 +1,5 @@
 [
 	{
-		"title": "Batman: Arkham Asylum",
-		"playlistId": "PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv"
-	},
-	{
 		"title": "Batman: Arkham Knight",
 		"playlistId": "PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg"
 	},
@@ -290,6 +286,12 @@
 	{
 		"title": "Dr. Fetus' Mean Meat Machine",
 		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
+	},
+	{
+		"title": "Batman: Arkham Asylum",
+		"playlistId": "PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
+		"availableAt": "2020-03-17",
+		"endAt": "2020-04-28"
 	},
 	{
 		"title": "Guns Gore & Cannoli",
