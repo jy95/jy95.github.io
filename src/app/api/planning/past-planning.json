@@ -1,9 +1,5 @@
 [
 	{
-		"title": "Batman: Arkham Origins",
-		"playlistId": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz"
-	},
-	{
 		"title": "Guns Gore & Cannoli",
 		"playlistId": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I"
 	},
@@ -298,6 +294,12 @@
 	{
 		"title": "Dr. Fetus' Mean Meat Machine",
 		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
+	},
+	{
+		"title": "Batman: Arkham Origins",
+		"playlistId": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz",
+		"availableAt": "2020-05-05",
+		"endAt": "2020-07-16"
 	},
 	{
 		"title": "Destroy All Humans! - Remake",
