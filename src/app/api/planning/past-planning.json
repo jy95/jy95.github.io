@@ -4,10 +4,6 @@
 		"playlistId": "PLRfhDHeBTBJ4hCgXVdIqLpBkTKS9q1JN6"
 	},
 	{
-		"title": "Def Jam: Fight for NY",
-		"playlistId": "PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO"
-	},
-	{
 		"title": "Destroy All Humans! 2",
 		"playlistId": "PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy"
 	},
@@ -262,6 +258,12 @@
 	{
 		"title": "Dr. Fetus' Mean Meat Machine",
 		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
+	},
+	{
+		"title": "Def Jam: Fight for NY",
+		"playlistId": "PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
+		"availableAt": "2019-09-05",
+		"endAt": "2019-11-28"
 	},
 	{
 		"title": "God Of War II HD",
