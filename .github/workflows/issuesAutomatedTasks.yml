@@ -92,7 +92,7 @@ jobs:
             with:
                 node-version: "lts/*"
           - name: 💻 Install npm packages
-            run: npm install better-sqlite3 --no-save
+            run: npm ci
           - name: 📕 Add cover
             if: ${{ env.OPERATION == 'ADD_COVER' }}
             run: |
