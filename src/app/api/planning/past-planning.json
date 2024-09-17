@@ -1,9 +1,5 @@
 [
 	{
-		"title": "Mafia: Definitive Edition",
-		"playlistId": "PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv"
-	},
-	{
 		"title": "Samurai Jack: Battle Through Time",
 		"playlistId": "PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC"
 	},
@@ -314,6 +310,12 @@
 	{
 		"title": "Contra Operation Galuga",
 		"playlistId": "PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X"
+	},
+	{
+		"title": "Mafia: Definitive Edition",
+		"playlistId": "PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
+		"availableAt": "2020-10-27",
+		"endAt": "2020-12-01"
 	},
 	{
 		"title": "Ryse : Son of Rome",
