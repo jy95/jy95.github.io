@@ -1,9 +1,5 @@
 [
 	{
-		"title": "Samurai Jack: Battle Through Time",
-		"playlistId": "PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC"
-	},
-	{
 		"title": "Destroy All Humans! - Remake",
 		"playlistId": "PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr"
 	},
@@ -306,6 +302,12 @@
 	{
 		"title": "Dr. Fetus' Mean Meat Machine",
 		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
+	},
+	{
+		"title": "Samurai Jack: Battle Through Time",
+		"playlistId": "PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC",
+		"availableAt": "2020-08-22",
+		"endAt": "2020-08-24"
 	},
 	{
 		"title": "Mafia: Definitive Edition",
