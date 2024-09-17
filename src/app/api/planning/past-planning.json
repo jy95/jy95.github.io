@@ -1,9 +1,5 @@
 [
 	{
-		"title": "Prince of Persia : Les Sables du temps",
-		"playlistId": "PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO"
-	},
-	{
 		"title": "Prince of Persia : Les Deux Royaumes",
 		"playlistId": "PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg"
 	},
@@ -286,6 +282,12 @@
 		"playlistId": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
 		"availableAt": "2020-03-29",
 		"endAt": "2020-06-21"
+	},
+	{
+		"title": "Prince of Persia : Les Sables du temps",
+		"playlistId": "PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO",
+		"availableAt": "2020-05-04",
+		"endAt": "2020-06-30"
 	},
 	{
 		"title": "Batman: Arkham Origins",
