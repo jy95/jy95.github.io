@@ -308,10 +308,6 @@
 		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
 	},
 	{
-		"title": "Contra Operation Galuga",
-		"playlistId": "PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X"
-	},
-	{
 		"title": "Mafia: Definitive Edition",
 		"playlistId": "PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
 		"availableAt": "2020-10-27",
@@ -778,6 +774,12 @@
 		"playlistId": "PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
 		"availableAt": "2024-04-10",
 		"endAt": "2024-05-01"
+	},
+	{
+		"title": "Contra Operation Galuga",
+		"playlistId": "PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X",
+		"availableAt": "2024-04-27",
+		"endAt": "2024-05-09"
 	},
 	{
 		"title": "Daxter",
