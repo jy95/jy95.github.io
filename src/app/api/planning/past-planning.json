@@ -1,9 +1,5 @@
 [
 	{
-		"title": "Splinter Cell Blacklist",
-		"playlistId": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV"
-	},
-	{
 		"title": "Prince of Persia : Les Sables du temps",
 		"playlistId": "PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO"
 	},
@@ -296,6 +292,12 @@
 		"playlistId": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz",
 		"availableAt": "2020-05-05",
 		"endAt": "2020-07-16"
+	},
+	{
+		"title": "Splinter Cell Blacklist",
+		"playlistId": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
+		"availableAt": "2020-06-01",
+		"endAt": "2020-06-24"
 	},
 	{
 		"title": "Destroy All Humans! - Remake",
