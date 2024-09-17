@@ -226,7 +226,7 @@ async function updateGameInDatabase(db, payload) {
     const updatePlatformStmt = db.prepare("UPDATE games SET platform = ? WHERE id = ?");
     const updateDurationStmt = db.prepare("UPDATE games SET duration = ? WHERE id = ?");
     const hasScheduleStmt = db.prepare("SELECT 1 FROM games_schedules WHERE id = ?");
-    const insertScheduleStmt = dn.prepare("INSERT INTO games_schedules (id) VALUES (?) ");
+    const insertScheduleStmt = db.prepare("INSERT INTO games_schedules (id) VALUES (?) ");
     const updateAvailableAtStmt = db.prepare("UPDATE games_schedules SET availableAt = ? WHERE id = ?");
     const updateEndAtStmt = db.prepare("UPDATE games_schedules SET endAt = ? WHERE id = ?");
     const deleteGenreStmt = db.prepare("DELETE FROM games_genres WHERE game = ?");
