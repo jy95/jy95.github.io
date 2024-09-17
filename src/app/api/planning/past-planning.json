@@ -1,9 +1,5 @@
 [
 	{
-		"title": "Batman: Arkham Knight",
-		"playlistId": "PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg"
-	},
-	{
 		"title": "Batman Arkham City",
 		"playlistId": "PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw"
 	},
@@ -316,6 +312,12 @@
 		"playlistId": "PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC",
 		"availableAt": "2020-08-22",
 		"endAt": "2020-08-24"
+	},
+	{
+		"title": "Batman: Arkham Knight",
+		"playlistId": "PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg",
+		"availableAt": "2020-10-02",
+		"endAt": "2020-11-18"
 	},
 	{
 		"title": "Mafia: Definitive Edition",
