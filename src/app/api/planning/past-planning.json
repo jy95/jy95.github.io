@@ -4,10 +4,6 @@
 		"playlistId": "PLRfhDHeBTBJ4hCgXVdIqLpBkTKS9q1JN6"
 	},
 	{
-		"title": "Da Vinci Code",
-		"playlistId": "PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5"
-	},
-	{
 		"title": "Astérix & Obélix XXL",
 		"playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG"
 	},
@@ -254,6 +250,12 @@
 	{
 		"title": "Dr. Fetus' Mean Meat Machine",
 		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
+	},
+	{
+		"title": "Da Vinci Code",
+		"playlistId": "PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5",
+		"availableAt": "2019-07-25",
+		"endAt": "2019-10-13"
 	},
 	{
 		"title": "Destroy All Humans! 2",
