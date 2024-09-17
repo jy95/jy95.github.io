@@ -1,9 +1,5 @@
 [
 	{
-		"title": "Batman Arkham City",
-		"playlistId": "PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw"
-	},
-	{
 		"title": "Splinter Cell Blacklist",
 		"playlistId": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV"
 	},
@@ -306,6 +302,12 @@
 		"playlistId": "PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr",
 		"availableAt": "2020-08-02",
 		"endAt": "2020-08-16"
+	},
+	{
+		"title": "Batman Arkham City",
+		"playlistId": "PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
+		"availableAt": "2020-08-14",
+		"endAt": "2020-09-30"
 	},
 	{
 		"title": "Samurai Jack: Battle Through Time",
