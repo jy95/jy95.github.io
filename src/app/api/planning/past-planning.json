@@ -1,9 +1,5 @@
 [
 	{
-		"title": "Destroy All Humans! - Remake",
-		"playlistId": "PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr"
-	},
-	{
 		"title": "Batman: Arkham Origins",
 		"playlistId": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz"
 	},
@@ -302,6 +298,12 @@
 	{
 		"title": "Dr. Fetus' Mean Meat Machine",
 		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
+	},
+	{
+		"title": "Destroy All Humans! - Remake",
+		"playlistId": "PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr",
+		"availableAt": "2020-08-02",
+		"endAt": "2020-08-16"
 	},
 	{
 		"title": "Samurai Jack: Battle Through Time",
