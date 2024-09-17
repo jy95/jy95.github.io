@@ -137,7 +137,8 @@ jobs:
               # Check https://github.com/peter-evans/create-pull-request/issues/783
               sudo chown -R $USER:$USER .  
               # Force addition of database in any case
-              git add -f GamesPassionFR.db
+              git add -f GamesPassionFR.db  
+              git commit -m "chore: update database"
           - name: 💅 Create Pull Request
             id: cpr
             uses: peter-evans/create-pull-request@v7.0.3
