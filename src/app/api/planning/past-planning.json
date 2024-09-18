@@ -20,10 +20,6 @@
 		"videoId": "Z-hI2U2g_j0"
 	},
 	{
-		"title": "Hot Pixel",
-		"videoId": "6UzzEQjYA9c"
-	},
-	{
 		"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
 		"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
 		"availableAt": "2014-10-04",
@@ -214,6 +210,12 @@
 		"playlistId": "PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
 		"availableAt": "2018-06-26",
 		"endAt": "2018-06-29"
+	},
+	{
+		"title": "Hot Pixel",
+		"videoId": "6UzzEQjYA9c",
+		"availableAt": "2018-07-13",
+		"endAt": "2018-07-13"
 	},
 	{
 		"title": "Les indestructibles Le Jeu",
