@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "Mafia 1",
-		"playlistId": "PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP"
-	},
-	{
 		"title": "Batman: Rise of Sin Tzu",
 		"playlistId": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb"
 	},
@@ -220,6 +216,12 @@
 		"playlistId": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
 		"availableAt": "2018-08-15",
 		"endAt": "2018-08-18"
+	},
+	{
+		"title": "Mafia 1",
+		"playlistId": "PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP",
+		"availableAt": "2018-08-15",
+		"endAt": "2019-01-16"
 	},
 	{
 		"title": "Dishonored",
