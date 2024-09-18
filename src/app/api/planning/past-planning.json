@@ -1,9 +1,5 @@
 [
 	{
-		"title": "Prince of Persia Epilogue",
-		"playlistId": "PLRfhDHeBTBJ4hCgXVdIqLpBkTKS9q1JN6"
-	},
-	{
 		"title": "Sam Pyjam : Héros de la Nuit",
 		"videoId": "qaIADIQyr0A"
 	},
@@ -342,6 +338,12 @@
 		"playlistId": "PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
 		"availableAt": "2019-09-05",
 		"endAt": "2019-11-28"
+	},
+	{
+		"title": "Prince of Persia Epilogue",
+		"playlistId": "PLRfhDHeBTBJ4hCgXVdIqLpBkTKS9q1JN6",
+		"availableAt": "2019-09-13",
+		"endAt": "2019-09-13"
 	},
 	{
 		"title": "Batman: Rise of Sin Tzu",
