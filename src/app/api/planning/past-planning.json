@@ -144,10 +144,6 @@
 		"videoId": "Z-hI2U2g_j0"
 	},
 	{
-		"title": "Beyond Good & Evil",
-		"playlistId": "PLRfhDHeBTBJ7GRN3EnqBEvfki5uAKiw5Z"
-	},
-	{
 		"title": "Hot Pixel",
 		"videoId": "6UzzEQjYA9c"
 	},
@@ -208,6 +204,12 @@
 		"playlistId": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
 		"availableAt": "2018-07-30",
 		"endAt": "2018-08-05"
+	},
+	{
+		"title": "Beyond Good & Evil",
+		"playlistId": "PLRfhDHeBTBJ7GRN3EnqBEvfki5uAKiw5Z",
+		"availableAt": "2018-08-10",
+		"endAt": "2018-10-29"
 	},
 	{
 		"title": "Le Parrain : Edition du Don",
