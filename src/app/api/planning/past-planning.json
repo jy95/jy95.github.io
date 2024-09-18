@@ -1,9 +1,5 @@
 [
 	{
-		"title": "Sam Pyjam : Héros de la Nuit",
-		"videoId": "qaIADIQyr0A"
-	},
-	{
 		"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
 		"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
 		"availableAt": "2014-10-04",
@@ -254,6 +250,12 @@
 		"playlistId": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
 		"availableAt": "2019-01-01",
 		"endAt": "2019-02-28"
+	},
+	{
+		"title": "Sam Pyjam : Héros de la Nuit",
+		"videoId": "qaIADIQyr0A",
+		"availableAt": "2019-02-03",
+		"endAt": "2019-02-03"
 	},
 	{
 		"title": "Pyjama Sam 2 : Héros Météo",
