@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "Secret Agent Clank",
-		"playlistId": "PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY"
-	},
-	{
 		"title": "Ratchet & Clank : La Taille, Ca Compte",
 		"playlistId": "PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s"
 	},
@@ -254,6 +250,12 @@
 		"playlistId": "PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5",
 		"availableAt": "2019-07-25",
 		"endAt": "2019-10-13"
+	},
+	{
+		"title": "Secret Agent Clank",
+		"playlistId": "PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY",
+		"availableAt": "2019-08-04",
+		"endAt": "2019-09-16"
 	},
 	{
 		"title": "Destroy All Humans! 2",
