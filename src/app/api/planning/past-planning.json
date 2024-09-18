@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "God of War Ascension",
-		"playlistId": "PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6"
-	},
-	{
 		"title": "God of War III",
 		"playlistId": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO"
 	},
@@ -200,6 +196,12 @@
 		"playlistId": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
 		"availableAt": "2018-07-30",
 		"endAt": "2018-08-05"
+	},
+	{
+		"title": "God of War Ascension",
+		"playlistId": "PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
+		"availableAt": "2018-08-03",
+		"endAt": "2018-09-12"
 	},
 	{
 		"title": "Beyond Good & Evil",
