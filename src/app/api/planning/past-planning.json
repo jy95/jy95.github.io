@@ -60,10 +60,6 @@
 		"playlistId": "PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf"
 	},
 	{
-		"title": "Max Payne I",
-		"playlistId": "PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J"
-	},
-	{
 		"title": "Pokémon Uranium",
 		"playlistId": "PLRfhDHeBTBJ6nITizlIWkG5aiqeF8iJeh"
 	},
@@ -182,6 +178,12 @@
 		"playlistId": "PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
 		"availableAt": "2015-02-08",
 		"endAt": "2015-05-20"
+	},
+	{
+		"title": "Max Payne I",
+		"playlistId": "PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
+		"availableAt": "2016-09-16",
+		"endAt": "2016-11-27"
 	},
 	{
 		"title": "Les Indestructibles : La Terrible Attaque du Démolisseur",
