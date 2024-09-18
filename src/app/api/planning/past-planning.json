@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "Spy Fox : Opération Robot Expo",
-		"playlistId": "PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx"
-	},
-	{
 		"title": "Sigi - Un Pet Pour Mélusina",
 		"videoId": "odnIJiLjqCY"
 	},
@@ -106,6 +102,12 @@
 		"playlistId": "PLRfhDHeBTBJ6KR3qS-DYwgEsMsP3hJmoU",
 		"availableAt": "2015-08-16",
 		"endAt": "2015-08-24"
+	},
+	{
+		"title": "Spy Fox : Opération Robot Expo",
+		"playlistId": "PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx",
+		"availableAt": "2015-09-11",
+		"endAt": "2015-09-11"
 	},
 	{
 		"title": "Spy Fox : Operation Ozone",
