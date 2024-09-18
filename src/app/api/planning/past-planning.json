@@ -4,10 +4,6 @@
 		"videoId": "qaIADIQyr0A"
 	},
 	{
-		"title": "Pyjama Sam 2 : Héros Météo",
-		"videoId": "We7-JHU7D7I"
-	},
-	{
 		"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
 		"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
 		"availableAt": "2014-10-04",
@@ -258,6 +254,12 @@
 		"playlistId": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
 		"availableAt": "2019-01-01",
 		"endAt": "2019-02-28"
+	},
+	{
+		"title": "Pyjama Sam 2 : Héros Météo",
+		"videoId": "We7-JHU7D7I",
+		"availableAt": "2019-02-07",
+		"endAt": "2019-02-07"
 	},
 	{
 		"title": "Pyjama Sam : Héros du Goûter",
