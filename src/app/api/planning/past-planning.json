@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "Mafia II",
-		"playlistId": "PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg"
-	},
-	{
 		"title": "Le Parrain : Edition du Don",
 		"playlistId": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO"
 	},
@@ -218,6 +214,12 @@
 	{
 		"title": "Shrek Super Slam",
 		"videoId": "AVwWGO0Zocs"
+	},
+	{
+		"title": "Mafia II",
+		"playlistId": "PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg",
+		"availableAt": "2019-02-12",
+		"endAt": "2019-05-21"
 	},
 	{
 		"title": "Shrek 2 Le Jeu",
