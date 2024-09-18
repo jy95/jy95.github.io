@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "Ratchet & Clank 2",
-		"playlistId": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu"
-	},
-	{
 		"title": "Ratchet & Clank",
 		"playlistId": "PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo"
 	},
@@ -230,6 +226,12 @@
 		"playlistId": "PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0",
 		"availableAt": "2018-08-17",
 		"endAt": "2018-11-30"
+	},
+	{
+		"title": "Ratchet & Clank 2",
+		"playlistId": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
+		"availableAt": "2019-01-01",
+		"endAt": "2019-02-28"
 	},
 	{
 		"title": "Mafia II",
