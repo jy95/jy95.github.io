@@ -60,10 +60,6 @@
 		"playlistId": "PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf"
 	},
 	{
-		"title": "Darksiders I",
-		"playlistId": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs"
-	},
-	{
 		"title": "God of War: Chains of Olympus",
 		"playlistId": "PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf"
 	},
@@ -170,6 +166,12 @@
 		"playlistId": "PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
 		"availableAt": "2015-12-17",
 		"endAt": "2015-12-21"
+	},
+	{
+		"title": "Darksiders I",
+		"playlistId": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
+		"availableAt": "2016-06-08",
+		"endAt": "2016-07-05"
 	},
 	{
 		"title": "Splinter Cell",
