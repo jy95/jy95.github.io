@@ -4,10 +4,6 @@
 		"playlistId": "PLRfhDHeBTBJ4hCgXVdIqLpBkTKS9q1JN6"
 	},
 	{
-		"title": "Astérix & Obélix XXL",
-		"playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG"
-	},
-	{
 		"title": "Astérix & Obélix XXL 2",
 		"playlistId": "PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo"
 	},
@@ -250,6 +246,12 @@
 	{
 		"title": "Dr. Fetus' Mean Meat Machine",
 		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
+	},
+	{
+		"title": "Astérix & Obélix XXL",
+		"playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
+		"availableAt": "2019-04-25",
+		"endAt": "2019-10-03"
 	},
 	{
 		"title": "Da Vinci Code",
