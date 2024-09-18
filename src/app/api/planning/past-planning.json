@@ -120,10 +120,6 @@
 		"playlistId": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b"
 	},
 	{
-		"title": "South Park - Le baton de la vérité",
-		"playlistId": "PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT"
-	},
-	{
 		"title": "Prince of Persia 2008",
 		"playlistId": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc"
 	},
@@ -152,6 +148,12 @@
 		"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
 		"availableAt": "2014-10-04",
 		"endAt": "2014-10-25"
+	},
+	{
+		"title": "South Park - Le baton de la vérité",
+		"playlistId": "PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
+		"availableAt": "2014-12-22",
+		"endAt": "2014-12-25"
 	},
 	{
 		"title": "XIII - le jeu",
