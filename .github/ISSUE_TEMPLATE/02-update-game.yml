@@ -84,7 +84,6 @@ body:
         How long is that game ? Express it with ISO 8601 time notation
         (HH:MM:SS)
       placeholder: '02:23:15'
-      value: '00:00:00'
   - type: input
     id: availableAt
     attributes:
