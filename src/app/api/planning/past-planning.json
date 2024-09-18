@@ -56,10 +56,6 @@
 		"playlistId": "PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO"
 	},
 	{
-		"title": "Spy fox : Opération Milkshake",
-		"playlistId": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525"
-	},
-	{
 		"title": "Sigi - Un Pet Pour Mélusina",
 		"videoId": "odnIJiLjqCY"
 	},
@@ -80,6 +76,12 @@
 		"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
 		"availableAt": "2014-10-04",
 		"endAt": "2014-10-25"
+	},
+	{
+		"title": "Spy fox : Opération Milkshake",
+		"playlistId": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
+		"availableAt": "2014-11-02",
+		"endAt": "2014-11-02"
 	},
 	{
 		"title": "Prince of Persia 2008",
