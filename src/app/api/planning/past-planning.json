@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "Max Payne 2 - The Fall of Max Payne",
-		"playlistId": "PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf"
-	},
-	{
 		"title": "God of War: Chains of Olympus",
 		"playlistId": "PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf"
 	},
@@ -166,6 +162,12 @@
 		"playlistId": "PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
 		"availableAt": "2016-09-16",
 		"endAt": "2016-11-27"
+	},
+	{
+		"title": "Max Payne 2 - The Fall of Max Payne",
+		"playlistId": "PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf",
+		"availableAt": "2017-02-18",
+		"endAt": "2017-07-22"
 	},
 	{
 		"title": "Bully : Scholarship Edition",
