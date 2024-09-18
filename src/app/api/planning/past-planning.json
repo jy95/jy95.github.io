@@ -28,10 +28,6 @@
 		"playlistId": "PLRfhDHeBTBJ6KR3qS-DYwgEsMsP3hJmoU"
 	},
 	{
-		"title": "Rayman 2: The Great Escape",
-		"playlistId": "PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm"
-	},
-	{
 		"title": "Prince of Persia : Les sables oubliés",
 		"playlistId": "PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb"
 	},
@@ -100,6 +96,12 @@
 		"playlistId": "PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
 		"availableAt": "2015-02-08",
 		"endAt": "2015-05-20"
+	},
+	{
+		"title": "Rayman 2: The Great Escape",
+		"playlistId": "PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
+		"availableAt": "2015-06-22",
+		"endAt": "2015-06-25"
 	},
 	{
 		"title": "Chicken Invaders 5 - Cluck of the dark side",
