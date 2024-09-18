@@ -76,10 +76,6 @@
 		"playlistId": "PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj"
 	},
 	{
-		"title": "Total Overdose",
-		"playlistId": "PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij"
-	},
-	{
 		"title": "Chicken Invaders 5 - Cluck of the dark side",
 		"playlistId": "PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B"
 	},
@@ -168,6 +164,12 @@
 		"playlistId": "PLRfhDHeBTBJ6ho33uahEjHiIyL5nSi_3O",
 		"availableAt": "2015-11-05",
 		"endAt": "2015-11-14"
+	},
+	{
+		"title": "Total Overdose",
+		"playlistId": "PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
+		"availableAt": "2015-12-17",
+		"endAt": "2015-12-21"
 	},
 	{
 		"title": "Splinter Cell",
