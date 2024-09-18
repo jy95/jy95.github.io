@@ -172,10 +172,6 @@
 		"playlistId": "PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO"
 	},
 	{
-		"title": "XIII - le jeu",
-		"playlistId": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8"
-	},
-	{
 		"title": "Saints Row The Third",
 		"playlistId": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b"
 	},
@@ -214,6 +210,12 @@
 	{
 		"title": "Shrek Super Slam",
 		"videoId": "AVwWGO0Zocs"
+	},
+	{
+		"title": "XIII - le jeu",
+		"playlistId": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
+		"availableAt": "2015-01-24",
+		"endAt": "2015-01-24"
 	},
 	{
 		"title": "Mafia II",
