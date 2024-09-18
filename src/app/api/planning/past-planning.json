@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "Sonic Heroes",
-		"playlistId": "PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx"
-	},
-	{
 		"title": "Ratchet & Clank 3",
 		"playlistId": "PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu"
 	},
@@ -262,6 +258,12 @@
 		"playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
 		"availableAt": "2019-04-25",
 		"endAt": "2019-10-03"
+	},
+	{
+		"title": "Sonic Heroes",
+		"playlistId": "PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx",
+		"availableAt": "2019-05-08",
+		"endAt": "2019-06-09"
 	},
 	{
 		"title": "Ratchet & Clank : La Taille, Ca Compte",
