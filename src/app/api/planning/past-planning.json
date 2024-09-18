@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "Remember Me",
-		"playlistId": "PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO"
-	},
-	{
 		"title": "Prince of Persia : L'Ame du guerrier",
 		"playlistId": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr"
 	},
@@ -274,6 +270,12 @@
 		"playlistId": "PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
 		"availableAt": "2019-09-05",
 		"endAt": "2019-11-28"
+	},
+	{
+		"title": "Remember Me",
+		"playlistId": "PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO",
+		"availableAt": "2019-11-13",
+		"endAt": "2019-11-27"
 	},
 	{
 		"title": "God Of War II HD",
