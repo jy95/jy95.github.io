@@ -224,10 +224,6 @@
 		"playlistId": "PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ"
 	},
 	{
-		"title": "Dr. Fetus' Mean Meat Machine",
-		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
-	},
-	{
 		"title": "Shrek 2 Le Jeu",
 		"playlistId": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
 		"availableAt": "2019-02-14",
@@ -700,6 +696,12 @@
 		"videoId": "Drz_YdmE-yQ",
 		"availableAt": "2023-06-28",
 		"endAt": "2023-06-28"
+	},
+	{
+		"title": "Dr. Fetus' Mean Meat Machine",
+		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD",
+		"availableAt": "2023-06-29",
+		"endAt": "2023-07-11"
 	},
 	{
 		"title": "Rayman Legends",
