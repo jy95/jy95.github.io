@@ -220,10 +220,6 @@
 		"videoId": "AVwWGO0Zocs"
 	},
 	{
-		"title": "Psychonauts 2",
-		"playlistId": "PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ"
-	},
-	{
 		"title": "Shrek 2 Le Jeu",
 		"playlistId": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
 		"availableAt": "2019-02-14",
@@ -456,6 +452,12 @@
 		"playlistId": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
 		"availableAt": "2021-08-03",
 		"endAt": "2021-09-08"
+	},
+	{
+		"title": "Psychonauts 2",
+		"playlistId": "PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ",
+		"availableAt": "2021-08-27",
+		"endAt": "2021-09-07"
 	},
 	{
 		"title": "Harry Potter et la Coupe de Feu",
