@@ -56,10 +56,6 @@
 		"playlistId": "PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO"
 	},
 	{
-		"title": "Saints Row The Third",
-		"playlistId": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b"
-	},
-	{
 		"title": "Prince of Persia 2008",
 		"playlistId": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc"
 	},
@@ -94,6 +90,12 @@
 		"playlistId": "PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
 		"availableAt": "2014-12-22",
 		"endAt": "2014-12-25"
+	},
+	{
+		"title": "Saints Row The Third",
+		"playlistId": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
+		"availableAt": "2014-12-29",
+		"endAt": "2014-01-17"
 	},
 	{
 		"title": "XIII - le jeu",
