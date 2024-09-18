@@ -24,10 +24,6 @@
 		"playlistId": "PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx"
 	},
 	{
-		"title": "Splinter Cell Double Agent",
-		"playlistId": "PLRfhDHeBTBJ6KR3qS-DYwgEsMsP3hJmoU"
-	},
-	{
 		"title": "Sigi - Un Pet Pour Mélusina",
 		"videoId": "odnIJiLjqCY"
 	},
@@ -108,6 +104,12 @@
 		"playlistId": "PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
 		"availableAt": "2015-06-22",
 		"endAt": "2015-06-25"
+	},
+	{
+		"title": "Splinter Cell Double Agent",
+		"playlistId": "PLRfhDHeBTBJ6KR3qS-DYwgEsMsP3hJmoU",
+		"availableAt": "2015-08-16",
+		"endAt": "2015-08-24"
 	},
 	{
 		"title": "Chicken Invaders 5 - Cluck of the dark side",
