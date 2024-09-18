@@ -16,10 +16,6 @@
 		"videoId": "odnIJiLjqCY"
 	},
 	{
-		"title": "Hercule",
-		"videoId": "Z-hI2U2g_j0"
-	},
-	{
 		"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
 		"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
 		"availableAt": "2014-10-04",
@@ -408,6 +404,12 @@
 		"playlistId": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
 		"availableAt": "2020-06-01",
 		"endAt": "2020-06-24"
+	},
+	{
+		"title": "Hercule",
+		"videoId": "Z-hI2U2g_j0",
+		"availableAt": "2020-07-17",
+		"endAt": "2020-07-17"
 	},
 	{
 		"title": "Destroy All Humans! - Remake",
