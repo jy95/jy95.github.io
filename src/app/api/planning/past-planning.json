@@ -132,10 +132,6 @@
 		"playlistId": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525"
 	},
 	{
-		"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
-		"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq"
-	},
-	{
 		"title": "Sigi - Un Pet Pour Mélusina",
 		"videoId": "odnIJiLjqCY"
 	},
@@ -150,6 +146,12 @@
 	{
 		"title": "Shrek Super Slam",
 		"videoId": "AVwWGO0Zocs"
+	},
+	{
+		"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
+		"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
+		"availableAt": "2014-10-04",
+		"endAt": "2014-10-25"
 	},
 	{
 		"title": "XIII - le jeu",
