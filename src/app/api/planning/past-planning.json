@@ -20,10 +20,6 @@
 		"playlistId": "PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP"
 	},
 	{
-		"title": "Dishonored",
-		"playlistId": "PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0"
-	},
-	{
 		"title": "Les indestructibles Le Jeu",
 		"playlistId": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi"
 	},
@@ -222,6 +218,12 @@
 		"playlistId": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
 		"availableAt": "2018-08-15",
 		"endAt": "2018-08-18"
+	},
+	{
+		"title": "Dishonored",
+		"playlistId": "PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0",
+		"availableAt": "2018-08-17",
+		"endAt": "2018-11-30"
 	},
 	{
 		"title": "Mafia II",
