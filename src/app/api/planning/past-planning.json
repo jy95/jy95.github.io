@@ -56,10 +56,6 @@
 		"playlistId": "PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO"
 	},
 	{
-		"title": "Prince of Persia 2008",
-		"playlistId": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc"
-	},
-	{
 		"title": "Spy fox : Opération Milkshake",
 		"playlistId": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525"
 	},
@@ -84,6 +80,12 @@
 		"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
 		"availableAt": "2014-10-04",
 		"endAt": "2014-10-25"
+	},
+	{
+		"title": "Prince of Persia 2008",
+		"playlistId": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
+		"availableAt": "2014-11-19",
+		"endAt": "2014-12-19"
 	},
 	{
 		"title": "South Park - Le baton de la vérité",
