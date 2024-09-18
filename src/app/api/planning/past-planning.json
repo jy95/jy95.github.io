@@ -12,10 +12,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "Sigi - Un Pet Pour Mélusina",
-		"videoId": "odnIJiLjqCY"
-	},
-	{
 		"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
 		"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
 		"availableAt": "2014-10-04",
@@ -446,6 +442,12 @@
 		"playlistId": "PLRfhDHeBTBJ6cs6uc2X0dzBvaNuF-n49i",
 		"availableAt": "2020-11-20",
 		"endAt": "2020-12-08"
+	},
+	{
+		"title": "Sigi - Un Pet Pour Mélusina",
+		"videoId": "odnIJiLjqCY",
+		"availableAt": "2020-11-21",
+		"endAt": "2020-11-21"
 	},
 	{
 		"title": "South Park : L'Annale du Destin",
