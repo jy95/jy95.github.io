@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "God of War I",
-		"playlistId": "PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj"
-	},
-	{
 		"title": "Spy Fox : Operation Ozone",
 		"playlistId": "PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A"
 	},
@@ -122,6 +118,12 @@
 		"playlistId": "PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
 		"availableAt": "2015-12-17",
 		"endAt": "2015-12-21"
+	},
+	{
+		"title": "God of War I",
+		"playlistId": "PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj",
+		"availableAt": "2016-01-25",
+		"endAt": "2016-01-30"
 	},
 	{
 		"title": "God of War: Ghost of Sparta",
