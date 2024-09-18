@@ -28,10 +28,6 @@
 		"playlistId": "PLRfhDHeBTBJ6KR3qS-DYwgEsMsP3hJmoU"
 	},
 	{
-		"title": "Psychonauts",
-		"playlistId": "PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl"
-	},
-	{
 		"title": "Saints Row Gat out of Hell",
 		"playlistId": "PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO"
 	},
@@ -86,6 +82,12 @@
 		"playlistId": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
 		"availableAt": "2015-01-24",
 		"endAt": "2015-01-24"
+	},
+	{
+		"title": "Psychonauts",
+		"playlistId": "PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
+		"availableAt": "2015-02-06",
+		"endAt": "2015-03-08"
 	},
 	{
 		"title": "Saints Row IV",
