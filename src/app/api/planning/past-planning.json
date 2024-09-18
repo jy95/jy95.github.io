@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "Batman: Rise of Sin Tzu",
-		"playlistId": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb"
-	},
-	{
 		"title": "Secret Agent Clank",
 		"playlistId": "PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY"
 	},
@@ -270,6 +266,12 @@
 		"playlistId": "PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
 		"availableAt": "2019-09-05",
 		"endAt": "2019-11-28"
+	},
+	{
+		"title": "Batman: Rise of Sin Tzu",
+		"playlistId": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
+		"availableAt": "2019-09-18",
+		"endAt": "2019-10-15"
 	},
 	{
 		"title": "Prince of Persia : L'Ame du guerrier",
