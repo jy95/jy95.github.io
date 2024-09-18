@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "God of War: Chains of Olympus",
-		"playlistId": "PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf"
-	},
-	{
 		"title": "God of War I",
 		"playlistId": "PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj"
 	},
@@ -132,6 +128,12 @@
 		"playlistId": "PLRfhDHeBTBJ7VH9EyPcKvQSCo6FbMUE6g",
 		"availableAt": "2016-02-28",
 		"endAt": "2016-03-08"
+	},
+	{
+		"title": "God of War: Chains of Olympus",
+		"playlistId": "PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf",
+		"availableAt": "2016-03-27",
+		"endAt": "2016-04-06"
 	},
 	{
 		"title": "Darksiders I",
