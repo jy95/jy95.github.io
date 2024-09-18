@@ -4,10 +4,6 @@
 		"playlistId": "PLRfhDHeBTBJ4hCgXVdIqLpBkTKS9q1JN6"
 	},
 	{
-		"title": "Shrek 2 Le Jeu",
-		"playlistId": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j"
-	},
-	{
 		"title": "Sam Pyjam : Héros de la Nuit",
 		"videoId": "qaIADIQyr0A"
 	},
@@ -242,6 +238,12 @@
 	{
 		"title": "Dr. Fetus' Mean Meat Machine",
 		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
+	},
+	{
+		"title": "Shrek 2 Le Jeu",
+		"playlistId": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
+		"availableAt": "2019-02-14",
+		"endAt": "2019-04-18"
 	},
 	{
 		"title": "Astérix & Obélix XXL 2",
