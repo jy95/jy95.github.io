@@ -224,10 +224,6 @@
 		"playlistId": "PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ"
 	},
 	{
-		"title": "God of War (2018)",
-		"playlistId": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm"
-	},
-	{
 		"title": "Dr. Fetus' Mean Meat Machine",
 		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
 	},
@@ -518,6 +514,12 @@
 		"playlistId": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
 		"availableAt": "2022-01-05",
 		"endAt": "2022-01-28"
+	},
+	{
+		"title": "God of War (2018)",
+		"playlistId": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
+		"availableAt": "2022-01-15",
+		"endAt": "2022-02-10"
 	},
 	{
 		"title": "Splinter Cell: Pandora Tomorrow",
