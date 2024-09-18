@@ -8,10 +8,6 @@
 		"videoId": "We7-JHU7D7I"
 	},
 	{
-		"title": "Pyjama Sam : Héros du Goûter",
-		"videoId": "Qsq_q65MwhU"
-	},
-	{
 		"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
 		"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
 		"availableAt": "2014-10-04",
@@ -262,6 +258,12 @@
 		"playlistId": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
 		"availableAt": "2019-01-01",
 		"endAt": "2019-02-28"
+	},
+	{
+		"title": "Pyjama Sam : Héros du Goûter",
+		"videoId": "Qsq_q65MwhU",
+		"availableAt": "2019-02-07",
+		"endAt": "2019-02-07"
 	},
 	{
 		"title": "Mafia II",
