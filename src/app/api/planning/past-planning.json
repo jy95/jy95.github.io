@@ -28,10 +28,6 @@
 		"playlistId": "PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj"
 	},
 	{
-		"title": "Chicken Invaders 5 - Cluck of the dark side",
-		"playlistId": "PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B"
-	},
-	{
 		"title": "Spy Fox : Operation Ozone",
 		"playlistId": "PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A"
 	},
@@ -110,6 +106,12 @@
 		"playlistId": "PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
 		"availableAt": "2015-02-08",
 		"endAt": "2015-05-20"
+	},
+	{
+		"title": "Chicken Invaders 5 - Cluck of the dark side",
+		"playlistId": "PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B",
+		"availableAt": "2015-11-02",
+		"endAt": "2015-11-05"
 	},
 	{
 		"title": "Le parrain II",
