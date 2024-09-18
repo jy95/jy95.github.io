@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "Spy Fox : Operation Ozone",
-		"playlistId": "PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A"
-	},
-	{
 		"title": "Spy Fox : Opération Robot Expo",
 		"playlistId": "PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx"
 	},
@@ -110,6 +106,12 @@
 		"playlistId": "PLRfhDHeBTBJ6KR3qS-DYwgEsMsP3hJmoU",
 		"availableAt": "2015-08-16",
 		"endAt": "2015-08-24"
+	},
+	{
+		"title": "Spy Fox : Operation Ozone",
+		"playlistId": "PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A",
+		"availableAt": "2015-09-13",
+		"endAt": "2015-09-13"
 	},
 	{
 		"title": "Chicken Invaders 5 - Cluck of the dark side",
