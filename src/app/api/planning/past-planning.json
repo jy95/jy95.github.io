@@ -4,10 +4,6 @@
 		"playlistId": "PLRfhDHeBTBJ4hCgXVdIqLpBkTKS9q1JN6"
 	},
 	{
-		"title": "Astérix & Obélix XXL 2",
-		"playlistId": "PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo"
-	},
-	{
 		"title": "Shrek 2 Le Jeu",
 		"playlistId": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j"
 	},
@@ -246,6 +242,12 @@
 	{
 		"title": "Dr. Fetus' Mean Meat Machine",
 		"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD"
+	},
+	{
+		"title": "Astérix & Obélix XXL 2",
+		"playlistId": "PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo",
+		"availableAt": "2019-03-19",
+		"endAt": "2019-04-17"
 	},
 	{
 		"title": "Astérix & Obélix XXL",
