@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "Ratchet & Clank : La Taille, Ca Compte",
-		"playlistId": "PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s"
-	},
-	{
 		"title": "Sonic Heroes",
 		"playlistId": "PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx"
 	},
@@ -244,6 +240,12 @@
 		"playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
 		"availableAt": "2019-04-25",
 		"endAt": "2019-10-03"
+	},
+	{
+		"title": "Ratchet & Clank : La Taille, Ca Compte",
+		"playlistId": "PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s",
+		"availableAt": "2019-07-05",
+		"endAt": "2019-08-02"
 	},
 	{
 		"title": "Da Vinci Code",
