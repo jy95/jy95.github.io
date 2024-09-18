@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "Ratchet & Clank",
-		"playlistId": "PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo"
-	},
-	{
 		"title": "Ratchet : Gladiator",
 		"playlistId": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA"
 	},
@@ -226,6 +222,12 @@
 		"playlistId": "PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0",
 		"availableAt": "2018-08-17",
 		"endAt": "2018-11-30"
+	},
+	{
+		"title": "Ratchet & Clank",
+		"playlistId": "PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo",
+		"availableAt": "2018-10-31",
+		"endAt": "2018-12-30"
 	},
 	{
 		"title": "Ratchet & Clank 2",
