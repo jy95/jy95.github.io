@@ -16,10 +16,6 @@
 		"videoId": "Qsq_q65MwhU"
 	},
 	{
-		"title": "Ratchet & Clank 3",
-		"playlistId": "PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu"
-	},
-	{
 		"title": "Ratchet & Clank 2",
 		"playlistId": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu"
 	},
@@ -246,6 +242,12 @@
 		"playlistId": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
 		"availableAt": "2019-02-14",
 		"endAt": "2019-04-18"
+	},
+	{
+		"title": "Ratchet & Clank 3",
+		"playlistId": "PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu",
+		"availableAt": "2019-03-01",
+		"endAt": "2019-05-06"
 	},
 	{
 		"title": "Astérix & Obélix XXL 2",
