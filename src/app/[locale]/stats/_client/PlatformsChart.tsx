@@ -66,6 +66,7 @@ export default function PlatformsChart({ stats }: Props) {
             <Area
               type="monotone"
               dataKey="total_available"
+              name={t("stats.genresChart.total_available")}
               stroke="#1fa134"
               fill="#1fa134"
               fillOpacity={0.6}
@@ -75,6 +76,7 @@ export default function PlatformsChart({ stats }: Props) {
               dataKey="total_unavailable"
               stroke="#8884d8"
               fill="#8884d8"
+              name={t("stats.genresChart.total_unavailable")}
               fillOpacity={0.6}
             />
           </AreaChart>
