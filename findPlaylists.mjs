@@ -11,27 +11,37 @@ function findMatchingPlaylists() {
         // Open the database connection
         const db = new Database(dbPath, { readonly: true });
 
-        // SQL query with placeholders
+        // SQL query with placeholders to fetch both playlistId and game title
         const stmt = db.prepare(`
-            SELECT g.playlistId
+            SELECT g.playlistId, g.title
             FROM games_schedules gs
             JOIN games g ON g.id = gs.id
             WHERE (strftime('%Y', gs.availableAt) = ? OR strftime('%Y', gs.endAt) = ?)
               AND g.playlistId IS NOT NULL
         `);
 
-        // Collect playlist IDs for each year in yearsToMatch
-        const matchingPlaylistIds = [];
+        // Create an array to store games with their title and playlistId
+        const gamesWithPlaylists = [];
 
-        // Execute the query for each year
+        // Execute the query for each year and store results in an array
         for (const year of yearsToMatch) {
             const rows = stmt.all(year, year);
-            matchingPlaylistIds.push(...rows.map(row => row.playlistId));
+            rows.forEach(row => {
+                gamesWithPlaylists.push({
+                    title: row.title,
+                    playlistId: row.playlistId
+                });
+            });
         }
 
-        // Output the matching playlist IDs
-        console.log(JSON.stringify(matchingPlaylistIds, null, "\t"));
+        // Now format and print all at once
+        const output = gamesWithPlaylists.map(game => {
+            return `\n\t// ${game.title}\n\t"${game.playlistId}"`;
+        });
 
+        // Output the array in the desired format
+        console.log('[', output.join(',\n'), '\n]');
+        
         // Close the database connection
         db.close();
         
