@@ -218,5 +218,15 @@
 		"releaseDate": "2010-10-22",
 		"duration": "06:26:37",
 		"platform": 6
+	},
+	{
+		"id": 184,
+		"availableAt": "2026-03-22",
+		"endAt": "2026-03-29",
+		"playlistId": "PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
+		"title": "Child of Eden",
+		"releaseDate": "2011-09-27",
+		"duration": "01:18:06",
+		"platform": 6
 	}
 ]
