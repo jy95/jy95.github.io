@@ -228,5 +228,15 @@
 		"releaseDate": "2011-09-27",
 		"duration": "01:18:06",
 		"platform": 6
+	},
+	{
+		"id": 185,
+		"availableAt": "2026-03-30",
+		"endAt": "2026-04-03",
+		"playlistId": "PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
+		"title": "Ratchet & Clank : QForce",
+		"releaseDate": "2012-11-28",
+		"duration": "00:00:00",
+		"platform": 6
 	}
 ]
