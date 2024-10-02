@@ -68,7 +68,7 @@ jobs:
             body: ${{ github.event.issue.body }}
         - name: 💾 Save result into a json file
           run: |
-            echo '${{ toJson(steps.parse-issue.outputs.json) }}' | jq '.' > original_answers.json
+            echo ${{ toJson(steps.parse-issue.outputs.json) }} | jq '.' > original_answers.json
         - name: 📥 Sent result to github outputs
           id: processed
           run: |
