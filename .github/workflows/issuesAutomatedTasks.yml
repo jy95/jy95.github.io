@@ -105,7 +105,10 @@ jobs:
               FOLDER_PATH="./public/$REQUEST_FOLDER/$REQUEST_ID"  
               FILE_PATH="$FOLDER_PATH/cover.webp"
 
-              # Create the target folder if it doesn't exist
+              # Delete the target folder (if existing)
+              sudo rm -rf "$FOLDER_PATH"
+
+              # Create the target folder
               sudo mkdir -p "$FOLDER_PATH"
 
               # Download the image without worrying about the extension
