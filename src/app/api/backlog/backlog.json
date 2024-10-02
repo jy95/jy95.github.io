@@ -598,5 +598,10 @@
 		"title": "Maximo Ghost To Glory",
 		"platform": 5,
 		"notes": "Available on PS3 as well"
+	},
+	{
+		"id": 123,
+		"title": "nail'd",
+		"platform": 6
 	}
 ]
