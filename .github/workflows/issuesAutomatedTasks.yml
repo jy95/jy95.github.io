@@ -102,7 +102,8 @@ jobs:
               REQUEST_ID=$(echo $REQUEST | jq -r '.identifierValue')
 
               # Define the folder path variable
-              FOLDER_PATH="./public/$REQUEST_FOLDER/$REQUEST_ID"
+              FOLDER_PATH="./public/$REQUEST_FOLDER/$REQUEST_ID"  
+              FILE_PATH="$FOLDER_PATH/cover.webp"
 
               # Create the target folder if it doesn't exist
               sudo mkdir -p "$FOLDER_PATH"
@@ -111,7 +112,7 @@ jobs:
               curl -L -o image_file "$REQUEST_URL"
 
               # Resize the image and convert to WebP format using npx sharp-cli
-              sudo npx --yes sharp-cli -i ./image_file -o "$FOLDER_PATH/cover.webp" -f webp resize 250 250 --fit inside
+              sudo npx --yes sharp-cli -i ./image_file -o "$FILE_PATH" -f webp resize 250 250 --fit inside
 
               # Clean up the original file
               sudo rm image_file
