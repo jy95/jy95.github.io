@@ -141,6 +141,7 @@ jobs:
             uses: peter-evans/create-pull-request@v7.0.3
             with:
               title: "🤖 ${{ github.event.issue.title }}"
+              branch: "automated/${{ env.OPERATION }}-issue-${{ github.event.issue.number }}"
               body: |
                 ### Automated ${{ env.OPERATION }} Change Details
 
