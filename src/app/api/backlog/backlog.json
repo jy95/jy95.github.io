@@ -592,5 +592,11 @@
 		"id": 121,
 		"title": "Sonic Rivals 2",
 		"platform": 3
+	},
+	{
+		"id": 122,
+		"title": "Maximo Ghost To Glory",
+		"platform": 5,
+		"notes": "Available on PS3 as well"
 	}
 ]
