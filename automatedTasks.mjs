@@ -365,6 +365,72 @@ async function deleteBacklogFromDatabase(db, payload) {
     return deleteBacklogStmt.run(payload.title);
 }
 
+/**
+ * Add a serie into database
+ * @param {import('better-sqlite3').Database} db - The database instance
+ * @param {Object} payload - The details
+ * @param {string} payload.title - The title of the serie
+ * 
+ */
+async function addSerieToDatabase(db, payload) {
+    // fields
+    const serieToInsert = {
+        name: payload.title
+    }
+
+    // statments
+    const insertStmt = db.prepare("INSERT INTO series (name) VALUES (@name)");
+
+    // Execution time
+    return insertStmt.run(serieToInsert);
+}
+
+/**
+ * Manage a serie in database
+ * @param {import('better-sqlite3').Database} db - The database instance
+ * @param {Object} payload - The details
+ * @param {string} payload.title - The title of the serie
+ * @param {string} payload.games_textarea - The games of this serie (as textarea)
+ * 
+ */
+async function manageSerieInDatabase(db, payload) {
+
+    // Fetch games ID
+    const games = payload.games_textarea
+        .split("\n")
+        .map(s => s.trim())
+        .filter(s => s.length > 0);
+
+    // Statements
+    const findSerieIdStmt = db.prepare('SELECT id FROM series WHERE name = ?');
+    const deleteSeriesGamesStmt = db.prepare('DELETE FROM series_games WHERE serie = ?');
+    const fetchGameByIdStmt = db.prepare('SELECT id FROM games WHERE videoId = @id OR playlistId = @id');
+    const insertGameToSerieStmt = db.prepare('INSERT INTO series_games (serie, game, `order`) VALUES (?, ?, ?)');
+
+    // Execution time
+    const serieId = findSerieIdStmt.pluck().get(payload.title);
+    await deleteSeriesGamesStmt.run(serieId);
+
+    const updateSerieItems = db.transaction(() => {
+
+        let idx = 1;
+        for(const gameIdentifier of games) {
+
+            // Fetch game id
+            const gameId = fetchGameByIdStmt.pluck().get({ id: gameIdentifier });
+
+            // Insert the game's order in the series
+            insertGameToSerieStmt.run(serieId, gameId, idx);
+
+            // Next iteration
+            idx++;
+        }
+
+    });
+
+    return updateSerieItems();
+}
+
 switch(taskType) {
     case "ADD_GAME":
         await addGameToDatabase(db, taskPayload);
@@ -380,6 +446,12 @@ switch(taskType) {
         break;
     case "DELETE_BACKLOG":
         await deleteBacklogFromDatabase(db, taskPayload);
+        break;
+    case "ADD_SERIE":
+        await addSerieToDatabase(db, taskPayload);
+        break;
+    case "MANAGE_SERIE":
+        await manageSerieInDatabase(db, taskPayload);
         break;
     default:
         console.log(`Bip bip - Nothing was done as unexpected task`)
