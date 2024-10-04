@@ -365,6 +365,26 @@ async function deleteBacklogFromDatabase(db, payload) {
     return deleteBacklogStmt.run(payload.title);
 }
 
+/**
+ * Add a serie into database
+ * @param {import('better-sqlite3').Database} db - The database instance
+ * @param {Object} payload - The game details
+ * @param {string} payload.title - The title of the serie
+ * 
+ */
+async function addSerieToDatabase(db, payload) {
+    // fields
+    const serieToInsert = {
+        name: payload.title
+    }
+
+    // statments
+    const insertStmt = db.prepare("INSERT INTO series (name) VALUES (@name)");
+
+    // Execution time
+    return insertStmt.run(serieToInsert);
+}
+
 switch(taskType) {
     case "ADD_GAME":
         await addGameToDatabase(db, taskPayload);
@@ -380,6 +400,9 @@ switch(taskType) {
         break;
     case "DELETE_BACKLOG":
         await deleteBacklogFromDatabase(db, taskPayload);
+        break;
+    case "ADD_SERIE":
+        await addSerieToDatabase(db, taskPayload);
         break;
     default:
         console.log(`Bip bip - Nothing was done as unexpected task`)

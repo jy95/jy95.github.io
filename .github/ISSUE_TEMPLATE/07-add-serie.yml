@@ -1,0 +1,17 @@
+name: 🪐 Add serie
+description: Add a new serie into the database
+title: '[ADD_SERIE] '
+labels: ["database","[ADD_SERIE]"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill in the following fields to add this serie into database !
+  - type: input
+    id: title
+    attributes:
+      label: Name of the serie
+      description: What is the serie name in the language it was played ?
+      placeholder: ex. Splinter Cell
+    validations:
+      required: true
