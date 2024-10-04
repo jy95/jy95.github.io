@@ -1,0 +1,29 @@
+name: 🧱 Manage serie
+description: Manage a serie into the database
+title: '[MANAGE_SERIE] '
+labels: ["database","[MANAGE_SERIE]"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill in the following fields to manage this serie into database !
+  - type: input
+    id: title
+    attributes:
+      label: Name of the serie
+      description: What is the serie name in the language it was played ?
+      placeholder: ex. Splinter Cell
+    validations:
+      required: true
+  - type: textarea
+    id: games_textarea
+    attributes:
+      label: Games
+      description: Put the ID of each game (playlistId or videoId) in the order you want them to be in this serie
+      placeholder: |
+        ID_1
+        ID_2
+        ID_3
+        ...
+    validations:
+      required: true

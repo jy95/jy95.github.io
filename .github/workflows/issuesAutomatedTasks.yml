@@ -23,6 +23,7 @@ jobs:
                 contains(github.event.issue.labels.*.name, '[DELETE_BACKLOG]') && 'DELETE_BACKLOG' || 
                 contains(github.event.issue.labels.*.name, '[ADD_COVER]') && 'ADD_COVER' || 
                 contains(github.event.issue.labels.*.name, '[ADD_SERIE]') && 'ADD_SERIE' || 
+                contains(github.event.issue.labels.*.name, '[MANAGE_SERIE]') && 'MANAGE_SERIE' || 
                 'UNKNOWN' }}
           run: echo "issue_type=${{ env.ISSUE_TYPE }}" >> $GITHUB_OUTPUT
         - id: set_template_file
@@ -49,6 +50,9 @@ jobs:
                 ;;
               ADD_SERIE)
                 echo "template_file=07-add-serie.yml" >> $GITHUB_OUTPUT
+                ;;
+              MANAGE_SERIE)
+                echo "template_file=08-manage-serie.yml" >> $GITHUB_OUTPUT
                 ;;
             esac
     process_issue:
