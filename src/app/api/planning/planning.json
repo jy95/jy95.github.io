@@ -238,5 +238,14 @@
 		"releaseDate": "2012-11-28",
 		"duration": "02:44:35",
 		"platform": 6
+	},
+	{
+		"id": 186,
+		"availableAt": "2026-04-06",
+		"playlistId": "PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
+		"title": "Operation Flashpoint : Red River",
+		"releaseDate": "2011-04-21",
+		"duration": "00:00:00",
+		"platform": 6
 	}
 ]
