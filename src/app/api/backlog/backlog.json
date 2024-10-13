@@ -618,5 +618,11 @@
 		"id": 126,
 		"title": "Gori: Cuddly Carnage",
 		"platform": 1
+	},
+	{
+		"id": 127,
+		"title": "Deus Ex : Human Revolution",
+		"platform": 6,
+		"notes": "VS \"Deus Ex : Human Revolution Director's Cut\" ?"
 	}
 ]
