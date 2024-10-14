@@ -21,7 +21,7 @@
     "@mui/icons-material": "^5.16.6",
     "@mui/material": "^5.16.7",
     "@mui/x-data-grid": "^7.20.0",
-    "@reduxjs/toolkit": "^2.2.7",
+    "@reduxjs/toolkit": "^2.2.8",
     "@types/node": "^22.7.5",
     "@types/react": "^18.3.11",
     "@types/react-dom": "18.3.1",
