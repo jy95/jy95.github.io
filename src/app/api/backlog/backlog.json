@@ -624,5 +624,10 @@
 		"title": "Deus Ex : Human Revolution",
 		"platform": 6,
 		"notes": "VS \"Deus Ex : Human Revolution Director's Cut\" ?"
+	},
+	{
+		"id": 128,
+		"title": "Killer is Dead",
+		"platform": 6
 	}
 ]
