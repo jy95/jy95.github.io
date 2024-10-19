@@ -639,5 +639,11 @@
 		"id": 130,
 		"title": "Burnout Legends",
 		"platform": 3
+	},
+	{
+		"id": 131,
+		"title": "Burnout Dominator",
+		"platform": 5,
+		"notes": "PS2 vs PSP ?"
 	}
 ]
