@@ -645,5 +645,10 @@
 		"title": "Burnout Dominator",
 		"platform": 5,
 		"notes": "PS2 vs PSP ?"
+	},
+	{
+		"id": 132,
+		"title": "Shank",
+		"platform": 6
 	}
 ]
