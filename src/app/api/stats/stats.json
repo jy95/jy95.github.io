@@ -191,9 +191,9 @@
 		"total_unavailable": 25,
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"total_time": {
-			"hours": 988,
-			"minutes": 35,
-			"seconds": 12
+			"hours": 990,
+			"minutes": 14,
+			"seconds": 6
 		},
 		"total_time_available": {
 			"hours": 853,
@@ -201,9 +201,9 @@
 			"seconds": 18
 		},
 		"total_time_unavailable": {
-			"hours": 137,
-			"minutes": 5,
-			"seconds": 16
+			"hours": 138,
+			"minutes": 44,
+			"seconds": 10
 		}
 	}
 }
