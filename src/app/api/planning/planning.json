@@ -248,5 +248,14 @@
 		"releaseDate": "2011-11-25",
 		"duration": "01:38:54",
 		"platform": 6
+	},
+	{
+		"id": 188,
+		"availableAt": "2026-04-20",
+		"playlistId": "PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
+		"title": "Shank",
+		"releaseDate": "2010-08-24",
+		"duration": "00:00:00",
+		"platform": 6
 	}
 ]
