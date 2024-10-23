@@ -28,16 +28,25 @@ export const metadata: Metadata = {
 
 type Props = {
   children: React.ReactNode,
-  params: {
+  params: Promise<{
     locale: "en" | "fr"
-  }
+  }>
 }
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));
 }
 
-export default async function RootLayout({children, params: {locale}} : Props) {
+export default async function RootLayout(props: Props) {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
+  const {
+    children
+  } = props;
 
   // To catch with stuff that aren't a locale
   let resolvedLocale = (routing.locales.includes(locale)) ? locale : "fr";
