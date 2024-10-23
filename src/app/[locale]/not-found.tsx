@@ -6,7 +6,7 @@
 import {useTranslations} from 'next-intl';
 
 // https://next-intl-docs.vercel.app/docs/routing/navigation
-import { Link } from '@/navigation';
+import { Link } from '@/i18n/routing';
 
 // Components
 import Box from '@mui/material/Box';

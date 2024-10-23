@@ -1,7 +1,7 @@
 "use client";
 
 // Navigation
-import { Link, usePathname } from '@/navigation';
+import { Link, usePathname } from '@/i18n/routing';
 
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
