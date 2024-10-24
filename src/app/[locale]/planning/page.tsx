@@ -20,6 +20,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 import PlatformColumn from "@/components/tableColumns/platforms";
 
+import type { JSX } from 'react'
 type GameStatus = "RECORDED" | "PENDING";
 
 export default function PlanningViewer() {
