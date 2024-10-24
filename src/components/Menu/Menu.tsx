@@ -36,6 +36,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 // Links props
 import type { LinkBaseProps as MuiProps } from "@mui/material"
+import type { JSX } from 'react'
 
 type menuEntryTranslationKey = 'gamesKey' | 'planningKey' | 'testsKey' | 'latestVideosKey' | 'stats' | 'backlog';
 type MUILinkProps = MuiProps & any;

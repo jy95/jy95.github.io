@@ -3,7 +3,7 @@
 import { lazy } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from 'next/navigation';
-import type { MouseEventHandler } from "react";
+import type { MouseEventHandler, JSX } from "react";
 
 // For full screen Dialog 
 import useMediaQuery from '@mui/material/useMediaQuery';
