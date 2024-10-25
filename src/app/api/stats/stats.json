@@ -10,9 +10,9 @@
 		{
 			"id": 6,
 			"platform": "PS3",
-			"total": 61,
+			"total": 62,
 			"total_available": 41,
-			"total_unavailable": 21
+			"total_unavailable": 22
 		},
 		{
 			"id": 5,
@@ -47,9 +47,9 @@
 		{
 			"id": 1,
 			"genre": "Action",
-			"total": 162,
+			"total": 163,
 			"total_available": 141,
-			"total_unavailable": 22
+			"total_unavailable": 23
 		},
 		{
 			"id": 2,
@@ -80,18 +80,18 @@
 			"total_unavailable": 0
 		},
 		{
+			"id": 9,
+			"genre": "Fighting",
+			"total": 9,
+			"total_available": 6,
+			"total_unavailable": 3
+		},
+		{
 			"id": 13,
 			"genre": "Puzzle",
 			"total": 8,
 			"total_available": 8,
 			"total_unavailable": 0
-		},
-		{
-			"id": 9,
-			"genre": "Fighting",
-			"total": 8,
-			"total_available": 6,
-			"total_unavailable": 2
 		},
 		{
 			"id": 7,
@@ -101,6 +101,13 @@
 			"total_unavailable": 0
 		},
 		{
+			"id": 3,
+			"genre": "Arcade",
+			"total": 7,
+			"total_available": 5,
+			"total_unavailable": 2
+		},
+		{
 			"id": 6,
 			"genre": "Casual",
 			"total": 6,
@@ -108,11 +115,11 @@
 			"total_unavailable": 0
 		},
 		{
-			"id": 3,
-			"genre": "Arcade",
-			"total": 6,
-			"total_available": 5,
-			"total_unavailable": 1
+			"id": 10,
+			"genre": "Indie",
+			"total": 5,
+			"total_available": 3,
+			"total_unavailable": 2
 		},
 		{
 			"id": 15,
@@ -120,13 +127,6 @@
 			"total": 4,
 			"total_available": 4,
 			"total_unavailable": 0
-		},
-		{
-			"id": 10,
-			"genre": "Indie",
-			"total": 4,
-			"total_available": 3,
-			"total_unavailable": 1
 		},
 		{
 			"id": 5,
@@ -186,9 +186,9 @@
 		}
 	],
 	"general": {
-		"total": 188,
+		"total": 189,
 		"total_available": 164,
-		"total_unavailable": 25,
+		"total_unavailable": 26,
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"total_time": {
 			"hours": 992,

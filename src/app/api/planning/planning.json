@@ -248,5 +248,14 @@
 		"releaseDate": "2010-08-24",
 		"duration": "02:07:05",
 		"platform": 6
+	},
+	{
+		"id": 189,
+		"availableAt": "2026-05-05",
+		"playlistId": "PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
+		"title": "Shank 2",
+		"releaseDate": "2012-02-08",
+		"duration": "00:00:00",
+		"platform": 6
 	}
 ]
