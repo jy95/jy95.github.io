@@ -26,7 +26,7 @@
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vercel/analytics": "^1.2.2",
-    "@vercel/speed-insights": "^1.0.13",
+    "@vercel/speed-insights": "^1.0.14",
     "eslint": "8.57.0",
     "eslint-config-next": "15.0.1",
     "fuse.js": "^7.0.0",
