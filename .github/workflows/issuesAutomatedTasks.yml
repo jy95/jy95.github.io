@@ -99,6 +99,7 @@ jobs:
             uses: actions/setup-node@v4.0.2
             with:
                 node-version: "lts/*"
+                check-latest: true
           - name: 💻 Install npm packages
             run: npm ci
           - name: 📕 Add cover
