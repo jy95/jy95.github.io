@@ -252,10 +252,11 @@
 	{
 		"id": 189,
 		"availableAt": "2026-05-05",
+		"endAt": "2026-05-15",
 		"playlistId": "PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
 		"title": "Shank 2",
 		"releaseDate": "2012-02-08",
-		"duration": "00:00:00",
+		"duration": "02:04:10",
 		"platform": 6
 	}
 ]
