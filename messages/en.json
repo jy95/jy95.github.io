@@ -6,7 +6,8 @@
             "testsKey": "Tests",
             "latestVideosKey": "Latest Videos",
             "stats": "Stats",
-            "backlog": "Backlog"
+            "backlog": "Backlog",
+            "links": "Links"
         },
         "languages": {
             "en": "English version of the site",

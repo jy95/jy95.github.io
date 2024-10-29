@@ -14,7 +14,8 @@ export const routing = defineRouting({
     '/games': '/games',
     '/planning': '/planning',
     '/tests': '/tests',
-    '/stats': '/stats'
+    '/stats': '/stats',
+    '/links': '/links'
   }
 });
  
