@@ -25,6 +25,7 @@ import ExtensionIcon from '@mui/icons-material/Extension';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+import LinkIcon from '@mui/icons-material/Link';
 
 // Styled components
 import { Drawer, DrawerHeader } from "./Drawer";
@@ -38,7 +39,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import type { LinkBaseProps as MuiProps } from "@mui/material"
 import type { JSX } from 'react'
 
-type menuEntryTranslationKey = 'gamesKey' | 'planningKey' | 'testsKey' | 'latestVideosKey' | 'stats' | 'backlog';
+type menuEntryTranslationKey = 'gamesKey' | 'planningKey' | 'testsKey' | 'latestVideosKey' | 'stats' | 'backlog' | "links";
 type MUILinkProps = MuiProps & any;
 
 // List Item
@@ -106,6 +107,11 @@ const ENTRIES : {
         icon: <HourglassEmptyIcon />,
         primary: "backlog",
         path: "/backlog"
+    },
+    {
+        icon: <LinkIcon />,
+        primary: "links",
+        path: "/links"
     }
 ]
 

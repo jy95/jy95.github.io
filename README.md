@@ -1,12 +1,12 @@
-#  [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) Gaming Catalog
+#  [GamesPassionFR][YoutubeChannel] Gaming Catalog
 
-Online catalog to have a clear view of the [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) channel.  
+Online catalog to have a clear view of the [GamesPassionFR][YoutubeChannel] channel.  
 Currently, we have the following pages :
-* [`/games`](https://jy95.github.io/games) - List of games & series published on [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) YT channel
-* [`/planning`](https://jy95.github.io/planning) - Upcoming games that will be published on [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) YT channel
-* [`/tests`](https://jy95.github.io/tests) - Games review on [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) YT channel
-* [`/stats`](https://jy95.github.io/stats) - Statistics on [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) YT channel
-* [`/backlog`](https://jy95.github.io/backlog) - Games backlog on [GamesPassionFR](https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ) YT channel
+* [`/games`](https://jy95.github.io/games) - List of games & series published on [GamesPassionFR][YoutubeChannel] YT channel
+* [`/planning`](https://jy95.github.io/planning) - Upcoming games that will be published on [GamesPassionFR][YoutubeChannel] YT channel
+* [`/tests`](https://jy95.github.io/tests) - Games review on [GamesPassionFR][YoutubeChannel] YT channel
+* [`/stats`](https://jy95.github.io/stats) - Statistics on [GamesPassionFR][YoutubeChannel] YT channel
+* [`/backlog`](https://jy95.github.io/backlog) - Games backlog on [GamesPassionFR][YoutubeChannel] YT channel
 
 ## Getting Started
 
@@ -122,3 +122,5 @@ There is a [database](GamesPassionFR.db) for managing video games, their genres,
 | `releaseDate`| The release date of the test.                         | Required          | `2023-01-01`         |
 | `platform`   | Foreign key referencing the `platforms` table.        | Required          | `2`                  |
 | `duration`   | The duration of the test or video content.            | Optional          | `00:30:00`           |
+
+[YoutubeChannel]: https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ
