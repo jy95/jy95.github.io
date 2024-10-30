@@ -7,6 +7,7 @@ Currently, we have the following pages :
 * [`/tests`](https://jy95.github.io/tests) - Games review on [GamesPassionFR][YoutubeChannel] YT channel
 * [`/stats`](https://jy95.github.io/stats) - Statistics on [GamesPassionFR][YoutubeChannel] YT channel
 * [`/backlog`](https://jy95.github.io/backlog) - Games backlog on [GamesPassionFR][YoutubeChannel] YT channel
+* [`/links`](https://jy95.github.io/links) - Links related to [GamesPassionFR][YoutubeChannel] YT channel
 
 ## Getting Started
 
