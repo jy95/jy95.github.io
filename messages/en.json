@@ -41,7 +41,8 @@
         "sortButtonLabel": "Sorts",
         "tabs": {
             "grid": "Games",
-            "list": "Series"
+            "list": "Series",
+            "dlc": "DLCS"
         },
         "sortForm": {
             "firstSort": "Sort by",

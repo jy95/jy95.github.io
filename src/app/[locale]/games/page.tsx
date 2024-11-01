@@ -9,20 +9,32 @@ import dynamic from 'next/dynamic'
 import GalleryMode from './_client/GalleryMode';
 const GamesGalleryGrid = dynamic(() => import('./_client/GamesGalleryGrid'), { ssr: false })
 const GamesGalleryList = dynamic(() => import('./_client/GamesGalleryList'), { ssr: false })
+const GamesGalleryDlc = dynamic(() => import('./_client/GamesGalleryDLC'), { ssr: false })
 
-type ViewType = "GRID" | "LIST";
+const MODES = ["GRID", "LIST", "DLC"] as const;
+type ViewType = typeof MODES[number];
 
 // The gallery component
 function GamesView() {
 
     const searchParams = useSearchParams()
-    const viewMode : ViewType = searchParams.get("mode") === "LIST" ? "LIST" : "GRID";
+    const userMode = searchParams.get("mode");
+    const viewMode : ViewType = MODES.includes(userMode as any) ? userMode as ViewType : "GRID";
 
     return (
         <>
             <GalleryMode />
             <div role="tabpanel" aria-label={"games"} style={{paddingTop: "5px"}}>
-                { (viewMode === "GRID") ? <GamesGalleryGrid /> : <GamesGalleryList /> }
+                {(() => {
+                        switch (viewMode) {
+                            case "GRID":
+                                return <GamesGalleryGrid />;
+                            case "LIST":
+                                return <GamesGalleryList />;
+                            case "DLC":
+                                return <GamesGalleryDlc />;
+                        }
+                })()}
             </div>
         </>
     )

@@ -83,6 +83,14 @@ There is a [database](GamesPassionFR.db) for managing video games, their genres,
 | `availableAt`| Date (and time) when the game becomes available.     | Optional          | `2023-08-01 10:00:00`|
 | `endAt`      | Date (and time) when the game is no longer available.| Optional          | `2023-12-31 23:59:59`|
 
+## `games_dlcs` Table
+
+| Field   | Description                                           | Required/Optional | Example              |
+|---------|-------------------------------------------------------|-------------------|----------------------|
+| `game`  | Foreign key referencing the `games` table.            | Required          | `2`                  |
+| `dlc`   | Foreign key referencing the `games` table.            | Required          | `21`                 |
+| `order` | The order of the dlc, in the game.                    | Optional          | `1`                  |
+
 ### `genres` Table
 
 | Field    | Description                                     | Required/Optional | Example              |

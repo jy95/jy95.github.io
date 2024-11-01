@@ -40,5 +40,6 @@ jobs:
                   - genres.json
                   - planning.json
                   - stats.json  
-                  - past-planning.json
+                  - past-planning.json  
+                  - dlcs.json
                 draft: false

@@ -13,6 +13,7 @@ const FILES = {
     "PLANNING": "src/app/api/planning/planning.json",
     "STATS": "src/app/api/stats/stats.json",
     "PAST_GAMES": "src/app/api/planning/past-planning.json",
+    "DLCS": "src/app/api/dlcs/dlcs.json",
 }
 
 const db = new Database(databasePath, {
@@ -223,6 +224,21 @@ async function extractAndSavePastGames(db) {
     console.log(`${FILES.PAST_GAMES} successfully written`);    
 }
 
+/**
+ * Extracts dlcs from the database and saves them to a file.
+ * @param {import('better-sqlite3').Database} db - The database instance
+ */
+async function extractAndSaveDLCS(db) {
+    const extractDLCSStmt = db.prepare("SELECT * FROM dlcs_as_json");
+    const dlcs = extractDLCSStmt.all();
+    await writeFile(
+        FILES.DLCS,
+        stringifyJSON(dlcs),
+        "utf-8"
+    );
+    console.log(`${FILES.DLCS} successfully written`);
+}
+
 // Operations time
 await extractAndSavePlatforms(db)
 await extractAndSaveGenres(db)
@@ -233,3 +249,4 @@ await extractAndSaveSeries(db)
 await extractAndSaveTests(db)
 await extractAndSaveStats(db)
 await extractAndSavePastGames(db);
+await extractAndSaveDLCS(db);
