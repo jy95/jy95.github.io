@@ -109,5 +109,24 @@
 				"platform": 6
 			}
 		]
+	},
+	{
+		"game_title": "South Park : L'Annale du Destin",
+		"dlcs": [
+			{
+				"id": 204,
+				"title": "South Park: The Fractured But Whole - From Dusk Till Casa Bonita",
+				"videoId": "YyUSdoL6y5Q",
+				"duration": "01:28:57",
+				"platform": 1
+			},
+			{
+				"id": 205,
+				"title": "South Park: The Fractured But Whole - Bring The Crunch",
+				"videoId": "t-Tu3OW97x0",
+				"duration": "00:34:17",
+				"platform": 1
+			}
+		]
 	}
 ]
