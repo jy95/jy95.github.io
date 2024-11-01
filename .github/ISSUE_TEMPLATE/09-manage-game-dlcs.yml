@@ -8,7 +8,7 @@ body:
       value: |
         Please fill in the following fields to manage dlcs about a given game into the database !
   - type: input
-    id: title
+    id: gameID
     attributes:
       label: ID of the game
       description: What is the ID of the game (playlistId or videoId) ?

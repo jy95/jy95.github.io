@@ -431,6 +431,51 @@ async function manageSerieInDatabase(db, payload) {
     return updateSerieItems();
 }
 
+/**
+ * Manage dlcs in database
+ * @param {import('better-sqlite3').Database} db - The database instance
+ * @param {Object} payload - The details
+ * @param {string} payload.gameID - The ID of the game (videoId or playlistId)
+ * @param {string} payload.dlcs_textarea - The dlc of this game (as textarea)
+ * 
+ */
+async function manageDlcsInDatabase(db, payload) {
+
+    // Fetch games ID
+    const dlcs = payload.dlcs_textarea
+        .split("\n")
+        .map(s => s.trim())
+        .filter(s => s.length > 0);
+
+    // Statements
+    const fetchGameByIdStmt = db.prepare('SELECT id FROM games WHERE videoId = @id OR playlistId = @id');
+    const deleteGameDLCsStmt = db.prepare('DELETE FROM games_dlcs WHERE game = ?');
+    const insertDLCToGameStmt = db.prepare('INSERT INTO games_dlcs (game, dlc, `order`) VALUES (?, ?, ?)');
+
+    // Execution time
+    const gameID = fetchGameByIdStmt.pluck().get({ id: payload.gameID });
+    await deleteGameDLCsStmt.run(gameID);
+
+    const updateDLCSItems = db.transaction(() => {
+
+        let idx = 1;
+        for(const gameIdentifier of dlcs) {
+
+            // Fetch game id
+            const dlcID = fetchGameByIdStmt.pluck().get({ id: gameIdentifier });
+
+            // Insert the dlc's order in the game
+            insertDLCToGameStmt.run(gameID, dlcID, idx);
+
+            // Next iteration
+            idx++;
+        }
+
+    });
+
+    return updateDLCSItems();
+}
+
 switch(taskType) {
     case "ADD_GAME":
         await addGameToDatabase(db, taskPayload);
@@ -452,6 +497,9 @@ switch(taskType) {
         break;
     case "MANAGE_SERIE":
         await manageSerieInDatabase(db, taskPayload);
+        break;
+    case "MANAGE_DLCS":
+        await manageDlcsInDatabase(db, taskPayload);
         break;
     default:
         console.log(`Bip bip - Nothing was done as unexpected task`)
