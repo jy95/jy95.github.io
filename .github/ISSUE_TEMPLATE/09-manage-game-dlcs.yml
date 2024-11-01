@@ -1,0 +1,29 @@
+name: 🧩 Manage dlcs
+description: Manage dlcs about a given game into the database
+title: '[MANAGE_DLCS] '
+labels: ["database","[MANAGE_DLCS]"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill in the following fields to manage dlcs about a given game into the database !
+  - type: input
+    id: title
+    attributes:
+      label: ID of the game
+      description: What is the ID of the game (playlistId or videoId) ?
+      placeholder: ex. PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg
+    validations:
+      required: true
+  - type: textarea
+    id: dlcs_textarea
+    attributes:
+      label: Dlcs
+      description: Put the ID of each dlc (playlistId or videoId) in the order you want them to be
+      placeholder: |
+        ID_1
+        ID_2
+        ID_3
+        ...
+    validations:
+      required: true
