@@ -3,8 +3,8 @@
 		{
 			"id": 1,
 			"platform": "PC",
-			"total": 79,
-			"total_available": 77,
+			"total": 80,
+			"total_available": 78,
 			"total_unavailable": 2
 		},
 		{
@@ -186,18 +186,18 @@
 		}
 	],
 	"general": {
-		"total": 190,
-		"total_available": 165,
+		"total": 191,
+		"total_available": 166,
 		"total_unavailable": 27,
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"total_time": {
-			"hours": 996,
-			"minutes": 45,
+			"hours": 997,
+			"minutes": 0,
 			"seconds": 48
 		},
 		"total_time_available": {
 			"hours": 867,
-			"minutes": 37,
+			"minutes": 52,
 			"seconds": 3
 		},
 		"total_time_unavailable": {
