@@ -37,7 +37,7 @@
     "react-dom": "rc",
     "react-player": "^2.16.0",
     "react-redux": "^9.1.2",
-    "recharts": "^2.13.0",
+    "recharts": "^2.13.2",
     "sharp": "^0.33.5",
     "typescript": "5.6.3"
   },
