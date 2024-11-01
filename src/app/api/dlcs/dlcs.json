@@ -1,5 +1,17 @@
 [
 	{
+		"game_title": "Batman Arkham City",
+		"dlcs": [
+			{
+				"id": 203,
+				"title": "Batman Arkham City: Harley Quinn's Revenge",
+				"videoId": "XGEgNG67oXA",
+				"duration": "01:12:35",
+				"platform": 1
+			}
+		]
+	},
+	{
 		"game_title": "Batman: Arkham Knight",
 		"dlcs": [
 			{
