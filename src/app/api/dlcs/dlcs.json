@@ -75,6 +75,18 @@
 		]
 	},
 	{
+		"game_title": "Batman: Arkham Origins",
+		"dlcs": [
+			{
+				"id": 202,
+				"title": "Batman: Arkham Origins - Cold, Cold Heart",
+				"videoId": "xq7VqOwVOcE",
+				"duration": "01:52:22",
+				"platform": 1
+			}
+		]
+	},
+	{
 		"game_title": "Prince of Persia 2008",
 		"dlcs": [
 			{
