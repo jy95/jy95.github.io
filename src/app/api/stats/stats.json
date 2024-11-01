@@ -10,9 +10,9 @@
 		{
 			"id": 6,
 			"platform": "PS3",
-			"total": 64,
-			"total_available": 42,
-			"total_unavailable": 24
+			"total": 62,
+			"total_available": 41,
+			"total_unavailable": 23
 		},
 		{
 			"id": 5,
@@ -186,9 +186,9 @@
 		}
 	],
 	"general": {
-		"total": 191,
-		"total_available": 165,
-		"total_unavailable": 28,
+		"total": 189,
+		"total_available": 164,
+		"total_unavailable": 27,
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"total_time": {
 			"hours": 996,
