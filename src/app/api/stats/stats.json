@@ -3,8 +3,8 @@
 		{
 			"id": 1,
 			"platform": "PC",
-			"total": 88,
-			"total_available": 86,
+			"total": 78,
+			"total_available": 76,
 			"total_unavailable": 2
 		},
 		{
@@ -186,8 +186,8 @@
 		}
 	],
 	"general": {
-		"total": 199,
-		"total_available": 174,
+		"total": 189,
+		"total_available": 164,
 		"total_unavailable": 27,
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"total_time": {

@@ -1,5 +1,80 @@
 [
 	{
+		"game_title": "Batman: Arkham Knight",
+		"dlcs": [
+			{
+				"id": 193,
+				"title": "Batman: Arkham Knight - Harley Quinn Story Pack",
+				"videoId": "ln_Pnp1zOQw",
+				"duration": "00:15:00",
+				"platform": 1
+			},
+			{
+				"id": 192,
+				"title": "Batman: Arkham Knight - Red Hood Story Pack",
+				"videoId": "FO8cYct2Bkw",
+				"duration": "00:14:17",
+				"platform": 1
+			},
+			{
+				"id": 197,
+				"title": "Batman: Arkham Knight - A Matter of Family",
+				"videoId": "eLrB7e_YZVY",
+				"duration": "00:51:45",
+				"platform": 1
+			},
+			{
+				"id": 194,
+				"title": "Batman: Arkham Knight - GCPD Lockdown",
+				"videoId": "D6VzVqJ_mVY",
+				"duration": "00:14:54",
+				"platform": 1
+			},
+			{
+				"id": 195,
+				"title": "Batman: Arkham Knight - Catwoman's Revenge",
+				"videoId": "xIauiKHhmyc",
+				"duration": "00:15:43",
+				"platform": 1
+			},
+			{
+				"id": 196,
+				"title": "Batman: Arkham Knight - A Flip of a Coin",
+				"videoId": "mu3quLXf9qI",
+				"duration": "00:16:06",
+				"platform": 1
+			},
+			{
+				"id": 201,
+				"title": "Batman: Arkham Knight - DLC : Un doux réveil",
+				"videoId": "EgjsB1yKP78",
+				"duration": "00:25:37",
+				"platform": 1
+			},
+			{
+				"id": 200,
+				"title": "Batman: Arkham Knight - DLC : Pays Des Merveilles",
+				"videoId": "f9Wbtz7QkaA",
+				"duration": "00:18:59",
+				"platform": 1
+			},
+			{
+				"id": 199,
+				"title": "Batman: Arkham Knight - DLC : La guerre des ombres",
+				"videoId": "iwCa1cg64xM",
+				"duration": "00:41:18",
+				"platform": 1
+			},
+			{
+				"id": 198,
+				"title": "Batman: Arkham Knight - DLC : Sous la surface",
+				"videoId": "Vp0sgyaiDAg",
+				"duration": "00:25:14",
+				"platform": 1
+			}
+		]
+	},
+	{
 		"game_title": "Prince of Persia 2008",
 		"dlcs": [
 			{
