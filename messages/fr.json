@@ -41,7 +41,8 @@
         "sortButtonLabel": "Tris",
         "tabs": {
             "grid": "Jeux",
-            "list": "Séries"
+            "list": "Séries",
+            "dlc": "DLCS"
         },
         "sortLabels": {
             "name": "Nom",

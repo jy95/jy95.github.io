@@ -14,9 +14,11 @@ import Tab from '@mui/material/Tab';
 // Icons
 import AppsIcon from '@mui/icons-material/Apps';
 import ListIcon from '@mui/icons-material/List';
+import ExtensionIcon from '@mui/icons-material/Extension';
 
 // Views
-type ViewType = "GRID" | "LIST";
+const MODES = ["GRID", "LIST", "DLC"] as const;
+type ViewType = typeof MODES[number];
 
 function ModeSelector() {
 
@@ -24,7 +26,8 @@ function ModeSelector() {
     const pathname = usePathname()
     const searchParams = useSearchParams()
     const t = useTranslations("gamesLibrary.tabs");
-    const viewMode : ViewType = searchParams.get("mode") === "LIST" ? "LIST" : "GRID";
+    const userMode = searchParams.get("mode");
+    const viewMode : ViewType = MODES.includes(userMode as any) ? userMode as ViewType : "GRID";
 
     // Get a new searchParams string by merging the current
     // searchParams with a provided key/value pair
@@ -42,13 +45,12 @@ function ModeSelector() {
         router.push(pathname + '?' + createQueryString('mode', newValue))
     };
 
-    const labelGenerator = (value : 'GRID' | 'LIST') => value === "GRID" ? t("grid") : t("list");
-
     return (
         <div style={{display: "flex", justifyContent: "center"}}>
             <Tabs value={viewMode} onChange={handleChange} aria-label="icon label tabs" centered>
-                <Tab role="tab" id="tab-GRID" aria-selected={viewMode === "GRID"} icon={<AppsIcon />} label={labelGenerator("GRID")} value="GRID" />
-                <Tab role="tab" id="tab-LIST" aria-selected={viewMode === "LIST"} icon={<ListIcon />} label={labelGenerator("LIST")} value="LIST" />
+                <Tab role="tab" id="tab-GRID" aria-selected={viewMode === "GRID"} icon={<AppsIcon />} label={t("grid")} value="GRID" />
+                <Tab role="tab" id="tab-LIST" aria-selected={viewMode === "LIST"} icon={<ListIcon />} label={t("list")} value="LIST" />
+                <Tab role="tab" id="tab-LIST" aria-selected={viewMode === "LIST"} icon={<ExtensionIcon />} label={t("dlc")} value="DLC" />
             </Tabs>
         </div>
     )
