@@ -133,7 +133,8 @@ async function extractAndSavePlanning(db) {
  * @param {import('better-sqlite3').Database} db - The database instance
  */
 async function extractAndSaveGames(db) {
-    const extractGamesList = db.prepare("SELECT * FROM games_in_present");
+    // WHERE condition needed to not display DLCS and games together
+    const extractGamesList = db.prepare("SELECT * FROM games_in_present WHERE id NOT IN (SELECT dlc FROM games_dlcs)");
     const gamesList = extractGamesList.all();
     await writeFile(
         FILES.GAMES,
