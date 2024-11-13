@@ -94,6 +94,11 @@ const ENTRIES : {
         path: "/planning"
     },
     {
+        icon: <HourglassEmptyIcon />,
+        primary: "backlog",
+        path: "/backlog"
+    },
+    {
         icon: <ExtensionIcon />,
         primary: "testsKey",
         path: "/tests"  
@@ -102,11 +107,6 @@ const ENTRIES : {
         icon: <QueryStatsIcon />,
         primary: "stats",
         path: "/stats"
-    },
-    {
-        icon: <HourglassEmptyIcon />,
-        primary: "backlog",
-        path: "/backlog"
     },
     {
         icon: <LinkIcon />,
