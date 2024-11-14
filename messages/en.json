@@ -38,6 +38,7 @@
         }
     },
     "gamesLibrary": {
+        "randomButtonLabel": "Click to unveil a new game !",
         "sortButtonLabel": "Sorts",
         "tabs": {
             "grid": "Games",
