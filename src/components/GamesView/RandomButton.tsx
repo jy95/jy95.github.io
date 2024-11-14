@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import { useSnackbar } from 'notistack';
 
 // Components
-import Tooltip from '@mui/material/Tooltip';
 import Fab from '@mui/material/Fab';
 import CasinoIcon from '@mui/icons-material/Casino';
 
@@ -39,10 +38,11 @@ export default function() {
     }
 
     return (
-        <Tooltip title={t("randomButtonLabel")} >
-            <Fab onClick={fetchRandomGame}>
-                <CasinoIcon />
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+            <Fab variant="extended" onClick={fetchRandomGame}>
+                <CasinoIcon sx={{ mr: 1 }} />
+                { t("randomButtonLabel") }
             </Fab>
-        </Tooltip>
+        </div>
     )
 }

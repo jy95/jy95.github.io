@@ -16,7 +16,7 @@ export default function Player({type, identifier} : Params) {
             url={url}
             playing={true}
             width='100%'
-            height='80vh'
+            height='75vh'
         />
     );
 }
