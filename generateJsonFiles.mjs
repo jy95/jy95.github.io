@@ -14,6 +14,7 @@ const FILES = {
     "STATS": "src/app/api/stats/stats.json",
     "PAST_GAMES": "src/app/api/planning/past-planning.json",
     "DLCS": "src/app/api/dlcs/dlcs.json",
+    "IDENTIFIERS": "src/app/api/random/identifiers.json"
 }
 
 const db = new Database(databasePath, {
@@ -241,6 +242,22 @@ async function extractAndSaveDLCS(db) {
     console.log(`${FILES.DLCS} successfully written`);
 }
 
+/**
+ * Extracts game identifiers from the database and saves them to a file.
+ * @param {import('better-sqlite3').Database} db - The database instance
+ */
+async function extractAndSaveRandomList(db) {
+    // We can pick up also DLC to have a complete list
+    const extractGamesList = db.prepare("SELECT videoId, playlistId FROM games_in_present");
+    const games = extractGamesList.all();
+    await writeFile(
+        FILES.IDENTIFIERS,
+        stringifyJSON(games),
+        "utf-8"
+    );
+    console.log(`${FILES.IDENTIFIERS} successfully written`);
+}
+
 // Operations time
 await extractAndSavePlatforms(db)
 await extractAndSaveGenres(db)
@@ -252,3 +269,4 @@ await extractAndSaveTests(db)
 await extractAndSaveStats(db)
 await extractAndSavePastGames(db);
 await extractAndSaveDLCS(db);
+await extractAndSaveRandomList(db);

@@ -2,6 +2,7 @@
 
 import { useParams } from 'next/navigation'
 import YTPlayer from "@/components/YTPlayer/Player";
+import RandomButton from '@/components/GamesView/RandomButton';
 
 export default function PlaylistPage() {
 
@@ -9,6 +10,9 @@ export default function PlaylistPage() {
     const identifier = id as string;
 
     return (
-        <YTPlayer type="PLAYLIST" identifier={identifier}/>
+        <>
+            <YTPlayer type="PLAYLIST" identifier={identifier}/>
+            <RandomButton />
+        </>
     )
 }

@@ -41,5 +41,6 @@ jobs:
                   - planning.json
                   - stats.json  
                   - past-planning.json  
-                  - dlcs.json
+                  - dlcs.json  
+                  - identifiers.json
                 draft: false
