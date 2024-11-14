@@ -12,7 +12,7 @@ import CasinoIcon from '@mui/icons-material/Casino';
 // Types
 import type { RandomAnswer } from "@/app/api/random/route";
 
-export default function() {
+export default function RandomButton() {
 
     const router = useRouter();
     const { enqueueSnackbar } = useSnackbar();
