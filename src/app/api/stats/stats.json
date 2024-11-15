@@ -10,9 +10,9 @@
 		{
 			"id": 6,
 			"platform": "PS3",
-			"total": 63,
+			"total": 64,
 			"total_available": 42,
-			"total_unavailable": 23
+			"total_unavailable": 24
 		},
 		{
 			"id": 5,
@@ -47,9 +47,9 @@
 		{
 			"id": 1,
 			"genre": "Action",
-			"total": 165,
+			"total": 166,
 			"total_available": 142,
-			"total_unavailable": 24
+			"total_unavailable": 25
 		},
 		{
 			"id": 2,
@@ -117,9 +117,9 @@
 		{
 			"id": 15,
 			"genre": "Racing",
-			"total": 5,
+			"total": 6,
 			"total_available": 4,
-			"total_unavailable": 1
+			"total_unavailable": 2
 		},
 		{
 			"id": 10,
@@ -186,9 +186,9 @@
 		}
 	],
 	"general": {
-		"total": 190,
+		"total": 191,
 		"total_available": 165,
-		"total_unavailable": 27,
+		"total_unavailable": 28,
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"total_time": {
 			"hours": 1017,
