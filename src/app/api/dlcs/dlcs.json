@@ -99,6 +99,18 @@
 		]
 	},
 	{
+		"game_title": "DmC: Devil May Cry",
+		"dlcs": [
+			{
+				"id": 110,
+				"title": "DmC Devil May Cry : La Chute de Vergil",
+				"playlistId": "PLRfhDHeBTBJ7U7XHzOSTBvaVkkd0dOAE8",
+				"duration": "01:20:40",
+				"platform": 1
+			}
+		]
+	},
+	{
 		"game_title": "Prince of Persia 2008",
 		"dlcs": [
 			{
