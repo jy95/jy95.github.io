@@ -650,5 +650,11 @@
 		"id": 136,
 		"title": "Berserk Boy",
 		"platform": 1
+	},
+	{
+		"id": 137,
+		"title": "MotorStorm",
+		"platform": 6,
+		"notes": "Complete edition"
 	}
 ]
