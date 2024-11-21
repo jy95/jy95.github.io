@@ -34,18 +34,142 @@ type Props = {
   stats: statsProperty
 }
 
-export default function GeneralStats ({stats}: Props) {
+function GamesStats({stats}: Props) {
 
   const t = useTranslations();
-  const generalStats = stats.general;
-  const gamesStats = generalStats.games;
-  const durationStats = generalStats.duration;
+  const gamesStats = stats.general.games;
+
+  return (
+    <Accordion key={"total_games"}>
+    <AccordionSummary
+      expandIcon={<ExpandMoreIcon />}
+      aria-controls={"panel-content_total_games"}
+      id={"panel-header_total_games"}
+    >
+      <ListItemAvatar>
+        <Avatar>
+          <SportsEsportsIcon />
+        </Avatar>
+      </ListItemAvatar>
+      <ListItemText
+        primary={t("stats.generalStats.total_games")}
+        secondary={gamesStats.total}
+      />
+    </AccordionSummary>
+    <Suspense fallback={null}>
+      <List>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <SportsEsportsIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText
+            primary={t("stats.generalStats.total_games_available")}
+            secondary={gamesStats.total_available}
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <SportsEsportsIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText
+            primary={t("stats.generalStats.total_games_unavailable")}
+            secondary={gamesStats.total_unavailable}
+          />
+        </ListItem>
+      </List>
+    </Suspense>
+  </Accordion>
+  );
+}
+
+function DurationStats({stats}: Props) {
+
+  const t = useTranslations();
+  const durationStats = stats.general.duration;
 
   // hooks calls
   const total_duration = usePrettyDuration(durationStats.total);
   const total_duration_available = usePrettyDuration(durationStats.total_available);
   const total_duration_unavailable = usePrettyDuration(durationStats.total_unavailable);
-  const how_long_since_channel_start = useCalcDate(generalStats.channel_start_date).result;
+
+  return (
+    <Accordion key={"total_duration"}>
+    <AccordionSummary
+      expandIcon={<ExpandMoreIcon />}
+      aria-controls={"panel-content_total_duration"}
+      id={"panel-header_total_duration"}
+    >
+      <ListItemAvatar>
+        <Avatar>
+          <HourglassFullIcon />
+        </Avatar>
+      </ListItemAvatar>
+      <ListItemText
+        primary={t("stats.generalStats.total_duration")}
+        secondary={total_duration}
+      />
+    </AccordionSummary>
+    <Suspense fallback={null}>
+      <List>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <HourglassBottomIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText
+            primary={t("stats.generalStats.total_duration_available")}
+            secondary={total_duration_available}
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <HourglassTopIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText
+            primary={t("stats.generalStats.total_duration_unavailable")}
+            secondary={total_duration_unavailable}
+          />
+        </ListItem>
+      </List>
+    </Suspense>
+  </Accordion>
+  );
+}
+
+function ChannelCreation({stats}: Props) {
+  
+  const t = useTranslations();
+  const channel_start_date = stats.general.channel_start_date;
+  const how_long_since_channel_start = useCalcDate(channel_start_date).result;
+  const localDateString = new Date(channel_start_date).toLocaleDateString();
+  const how_long_string = t("stats.generalStats.channel_start_date_details", { value: how_long_since_channel_start });
+  const human_string = `${localDateString} ${how_long_string}`;
+
+  return (
+    <ListItem>
+    <ListItemAvatar>
+      <Avatar>
+        <YouTubeIcon />
+      </Avatar>
+    </ListItemAvatar>
+    <ListItemText
+      primary={t("stats.generalStats.channel_start_date")}
+      secondary={human_string}
+    />
+  </ListItem>
+  )
+}
+
+export default function GeneralStats ({stats}: Props) {
+
+  const t = useTranslations();
 
   return (
     <Grid item xs={12} md={12} lg={12}>
@@ -60,110 +184,9 @@ export default function GeneralStats ({stats}: Props) {
           {t("stats.generalStats.title")}
         </Typography>
         <List>
-          <Accordion key={"total_games"}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls={"panel-content_total_games"}
-              id={"panel-header_total_games"}
-            >
-              <ListItemAvatar>
-                <Avatar>
-                  <SportsEsportsIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary={t("stats.generalStats.total_games")}
-                secondary={gamesStats.total}
-              />
-            </AccordionSummary>
-            <Suspense fallback={null}>
-              <List>
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <SportsEsportsIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={t("stats.generalStats.total_games_available")}
-                    secondary={gamesStats.total_available}
-                  />
-                </ListItem>
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <SportsEsportsIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={t("stats.generalStats.total_games_unavailable")}
-                    secondary={gamesStats.total_unavailable}
-                  />
-                </ListItem>
-              </List>
-            </Suspense>
-          </Accordion>
-
-          <Accordion key={"total_duration"}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls={"panel-content_total_duration"}
-              id={"panel-header_total_duration"}
-            >
-              <ListItemAvatar>
-                <Avatar>
-                  <HourglassFullIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary={t("stats.generalStats.total_duration")}
-                secondary={total_duration}
-              />
-            </AccordionSummary>
-            <Suspense fallback={null}>
-              <List>
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <HourglassBottomIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={t("stats.generalStats.total_duration_available")}
-                    secondary={total_duration_available}
-                  />
-                </ListItem>
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <HourglassTopIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={t("stats.generalStats.total_duration_unavailable")}
-                    secondary={total_duration_unavailable}
-                  />
-                </ListItem>
-              </List>
-            </Suspense>
-          </Accordion>
-
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar>
-                <YouTubeIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={t("stats.generalStats.channel_start_date")}
-              secondary={`${new Date(
-                generalStats.channel_start_date,
-              ).toLocaleDateString()} ${t(
-                "stats.generalStats.channel_start_date_details",
-                { value: how_long_since_channel_start },
-              )}`}
-            />
-          </ListItem>
+          <GamesStats stats={stats} key={"total_games"} />
+          <DurationStats stats={stats} key={"total_duration"} />
+          <ChannelCreation stats={stats} key={"channel_creation"} />
         </List>
       </Paper>
     </Grid>
