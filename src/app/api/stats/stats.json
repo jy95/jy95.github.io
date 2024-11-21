@@ -186,24 +186,33 @@
 		}
 	],
 	"general": {
-		"total": 191,
-		"total_available": 164,
-		"total_unavailable": 28,
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
-		"total_time": {
-			"hours": 1022,
-			"minutes": 10,
-			"seconds": 44
+		"games": {
+			"total": 191,
+			"total_available": 164,
+			"total_unavailable": 28
 		},
-		"total_time_available": {
-			"hours": 879,
-			"minutes": 3,
-			"seconds": 10
+		"dlcs": {
+			"total": 17,
+			"total_available": 16,
+			"total_unavailable": 1
 		},
-		"total_time_unavailable": {
-			"hours": 153,
-			"minutes": 32,
-			"seconds": 52
+		"duration": {
+			"total": {
+				"hours": 1022,
+				"minutes": 10,
+				"seconds": 44
+			},
+			"total_available": {
+				"hours": 879,
+				"minutes": 3,
+				"seconds": 10
+			},
+			"total_unavailable": {
+				"hours": 153,
+				"minutes": 32,
+				"seconds": 52
+			}
 		}
 	}
 }

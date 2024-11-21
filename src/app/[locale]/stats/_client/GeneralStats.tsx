@@ -38,11 +38,13 @@ export default function GeneralStats ({stats}: Props) {
 
   const t = useTranslations();
   const generalStats = stats.general;
+  const gamesStats = generalStats.games;
+  const durationStats = generalStats.duration;
 
   // hooks calls
-  const total_duration = usePrettyDuration(generalStats.total_time);
-  const total_duration_available = usePrettyDuration(generalStats.total_time_available);
-  const total_duration_unavailable = usePrettyDuration(generalStats.total_time_unavailable);
+  const total_duration = usePrettyDuration(durationStats.total);
+  const total_duration_available = usePrettyDuration(durationStats.total_available);
+  const total_duration_unavailable = usePrettyDuration(durationStats.total_unavailable);
   const how_long_since_channel_start = useCalcDate(generalStats.channel_start_date).result;
 
   return (
@@ -71,7 +73,7 @@ export default function GeneralStats ({stats}: Props) {
               </ListItemAvatar>
               <ListItemText
                 primary={t("stats.generalStats.total_games")}
-                secondary={generalStats.total}
+                secondary={gamesStats.total}
               />
             </AccordionSummary>
             <Suspense fallback={null}>
@@ -84,7 +86,7 @@ export default function GeneralStats ({stats}: Props) {
                   </ListItemAvatar>
                   <ListItemText
                     primary={t("stats.generalStats.total_games_available")}
-                    secondary={generalStats.total_available}
+                    secondary={gamesStats.total_available}
                   />
                 </ListItem>
                 <ListItem>
@@ -95,7 +97,7 @@ export default function GeneralStats ({stats}: Props) {
                   </ListItemAvatar>
                   <ListItemText
                     primary={t("stats.generalStats.total_games_unavailable")}
-                    secondary={generalStats.total_unavailable}
+                    secondary={gamesStats.total_unavailable}
                   />
                 </ListItem>
               </List>
