@@ -278,5 +278,14 @@
 		"releaseDate": "2009-03-27",
 		"duration": "05:06:21",
 		"platform": 6
+	},
+	{
+		"id": 208,
+		"availableAt": "2026-08-05",
+		"playlistId": "PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
+		"title": "Killer Is Dead",
+		"releaseDate": "2013-08-30",
+		"duration": "00:00:00",
+		"platform": 6
 	}
 ]
