@@ -21,7 +21,7 @@ import ListItemText from '@mui/material/ListItemText';
 // icons
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import ScheduleIcon from '@mui/icons-material/Schedule';
-import ExtensionIcon from '@mui/icons-material/Extension';
+import ScienceIcon from '@mui/icons-material/Science';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
@@ -99,7 +99,7 @@ const ENTRIES : {
         path: "/backlog"
     },
     {
-        icon: <ExtensionIcon />,
+        icon: <ScienceIcon />,
         primary: "testsKey",
         path: "/tests"  
     },
