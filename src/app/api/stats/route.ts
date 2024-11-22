@@ -16,12 +16,19 @@ type contentDuration = {
 }
 
 // For extraneous properties in "general"
-type statsGeneral = statsEntry & {
+type statsGeneral = {
     // Info can be found in Youtube RSS feed
     "channel_start_date": string,
-    "total_time": contentDuration,
-    "total_time_available": contentDuration,
-    "total_time_unavailable": contentDuration,
+    // Number of games
+    "games": statsEntry,
+    // Number of dlc
+    "dlcs": statsEntry,
+    // duration of content (games / dlc)
+    "duration": {
+        "total": contentDuration,
+        "total_available": contentDuration,
+        "total_unavailable": contentDuration,
+    }
 }
 
 // For specifc stats
