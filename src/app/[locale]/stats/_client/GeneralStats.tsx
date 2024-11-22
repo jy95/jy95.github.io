@@ -23,6 +23,7 @@ import HourglassFullIcon from "@mui/icons-material/HourglassFull";
 import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import ExtensionIcon from '@mui/icons-material/Extension';
 
 // Utils
 import { useCalcDate, usePrettyDuration } from "./utils";
@@ -41,48 +42,48 @@ function GamesStats({stats}: Props) {
 
   return (
     <Accordion key={"total_games"}>
-    <AccordionSummary
-      expandIcon={<ExpandMoreIcon />}
-      aria-controls={"panel-content_total_games"}
-      id={"panel-header_total_games"}
-    >
-      <ListItemAvatar>
-        <Avatar>
-          <SportsEsportsIcon />
-        </Avatar>
-      </ListItemAvatar>
-      <ListItemText
-        primary={t("stats.generalStats.total_games")}
-        secondary={gamesStats.total}
-      />
-    </AccordionSummary>
-    <Suspense fallback={null}>
-      <List>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <SportsEsportsIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText
-            primary={t("stats.generalStats.total_games_available")}
-            secondary={gamesStats.total_available}
-          />
-        </ListItem>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <SportsEsportsIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText
-            primary={t("stats.generalStats.total_games_unavailable")}
-            secondary={gamesStats.total_unavailable}
-          />
-        </ListItem>
-      </List>
-    </Suspense>
-  </Accordion>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls={"panel-content_total_games"}
+        id={"panel-header_total_games"}
+      >
+        <ListItemAvatar>
+          <Avatar>
+            <SportsEsportsIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText
+          primary={t("stats.generalStats.total_games")}
+          secondary={gamesStats.total}
+        />
+      </AccordionSummary>
+      <Suspense fallback={null}>
+        <List>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar>
+                <SportsEsportsIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary={t("stats.generalStats.total_games_available")}
+              secondary={gamesStats.total_available}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar>
+                <SportsEsportsIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary={t("stats.generalStats.total_games_unavailable")}
+              secondary={gamesStats.total_unavailable}
+            />
+          </ListItem>
+        </List>
+      </Suspense>
+    </Accordion>
   );
 }
 
@@ -167,6 +168,58 @@ function ChannelCreation({stats}: Props) {
   )
 }
 
+function DlcsStats({stats}: Props) {
+
+  const t = useTranslations();
+  const dlcs = stats.general.dlcs;
+  
+  return (
+    <Accordion key={"total_dlcs"}>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls={"panel-content_total_dlcs"}
+        id={"panel-header_total_dlcs"}
+      >
+        <ListItemAvatar>
+          <Avatar>
+            <ExtensionIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText
+          primary={t("stats.generalStats.total_dlcs")}
+          secondary={dlcs.total}
+        />
+      </AccordionSummary>
+      <Suspense fallback={null}>
+        <List>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar>
+                <ExtensionIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary={t("stats.generalStats.total_dlcs_available")}
+              secondary={dlcs.total_available}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar>
+                <ExtensionIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary={t("stats.generalStats.total_dlcs_unavailable")}
+              secondary={dlcs.total_unavailable}
+            />
+          </ListItem>
+        </List>
+      </Suspense>
+    </Accordion>
+  );
+}
+
 export default function GeneralStats ({stats}: Props) {
 
   const t = useTranslations();
@@ -185,6 +238,7 @@ export default function GeneralStats ({stats}: Props) {
         </Typography>
         <List>
           <GamesStats stats={stats} key={"total_games"} />
+          <DlcsStats stats={stats} key={"total_dlcs"} />
           <DurationStats stats={stats} key={"total_duration"} />
           <ChannelCreation stats={stats} key={"channel_creation"} />
         </List>
