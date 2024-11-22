@@ -39,11 +39,13 @@ type Props = {
 function StatAccordion({
   id,
   title,
+  generalText,
   defaultIcon,
   items,
 }: {
   id: string;
   title: string;
+  generalText: string | number,
   defaultIcon: JSX.Element;
   items: { label: string; value: string | number; icon?: JSX.Element }[];
 }) {
@@ -57,7 +59,7 @@ function StatAccordion({
         <ListItemAvatar>
           <Avatar>{defaultIcon}</Avatar>
         </ListItemAvatar>
-        <ListItemText primary={title} secondary={items[0]?.value} />
+        <ListItemText primary={title} secondary={generalText} />
       </AccordionSummary>
       <Suspense fallback={null}>
         <List>
@@ -83,6 +85,7 @@ function GamesStats({ stats }: Props) {
     <StatAccordion
       id="total_games"
       title={t("stats.generalStats.total_games")}
+      generalText={games.total}
       defaultIcon={<SportsEsportsIcon />}
       items={[
         { label: t("stats.generalStats.total_games_available"), value: games.total_available },
@@ -100,6 +103,7 @@ function DurationStats({ stats }: Props) {
     <StatAccordion
       id="total_duration"
       title={t("stats.generalStats.total_duration")}
+      generalText={usePrettyDuration(duration.total)}
       defaultIcon={<HourglassFullIcon />}
       items={[
         {
@@ -149,6 +153,7 @@ function DlcsStats({ stats }: Props) {
     <StatAccordion
       id="total_dlcs"
       title={t("stats.generalStats.total_dlcs")}
+      generalText={dlcs.total}
       defaultIcon={<ExtensionIcon />}
       items={[
         { label: t("stats.generalStats.total_dlcs_available"), value: dlcs.total_available },
