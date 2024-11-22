@@ -12,7 +12,7 @@
 			"platform": "PS3",
 			"total": 65,
 			"total_available": 42,
-			"total_unavailable": 24
+			"total_unavailable": 23
 		},
 		{
 			"id": 5,
@@ -70,7 +70,7 @@
 			"genre": "Shooter",
 			"total": 47,
 			"total_available": 42,
-			"total_unavailable": 6
+			"total_unavailable": 5
 		},
 		{
 			"id": 14,
@@ -190,7 +190,7 @@
 		"games": {
 			"total": 191,
 			"total_available": 164,
-			"total_unavailable": 28
+			"total_unavailable": 27
 		},
 		"dlcs": {
 			"total": 17,
@@ -209,9 +209,9 @@
 				"seconds": 10
 			},
 			"total_unavailable": {
-				"hours": 153,
-				"minutes": 32,
-				"seconds": 52
+				"hours": 143,
+				"minutes": 7,
+				"seconds": 34
 			}
 		}
 	}
