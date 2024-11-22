@@ -30,117 +30,90 @@ import { useCalcDate, usePrettyDuration } from "./utils";
 
 // Types
 import type { statsProperty } from "@/app/api/stats/route";
+import type { JSX } from 'react'
 
 type Props = {
   stats: statsProperty
 }
 
-function GamesStats({stats}: Props) {
-
-  const t = useTranslations();
-  const gamesStats = stats.general.games;
-
+function StatAccordion({
+  id,
+  title,
+  defaultIcon,
+  items,
+}: {
+  id: string;
+  title: string;
+  defaultIcon: JSX.Element;
+  items: { label: string; value: string | number; icon?: JSX.Element }[];
+}) {
   return (
-    <Accordion key={"total_games"}>
+    <Accordion key={id}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
-        aria-controls={"panel-content_total_games"}
-        id={"panel-header_total_games"}
+        aria-controls={`panel-content_${id}`}
+        id={`panel-header_${id}`}
       >
         <ListItemAvatar>
-          <Avatar>
-            <SportsEsportsIcon />
-          </Avatar>
+          <Avatar>{defaultIcon}</Avatar>
         </ListItemAvatar>
-        <ListItemText
-          primary={t("stats.generalStats.total_games")}
-          secondary={gamesStats.total}
-        />
+        <ListItemText primary={title} secondary={items[0]?.value} />
       </AccordionSummary>
       <Suspense fallback={null}>
         <List>
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar>
-                <SportsEsportsIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={t("stats.generalStats.total_games_available")}
-              secondary={gamesStats.total_available}
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar>
-                <SportsEsportsIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={t("stats.generalStats.total_games_unavailable")}
-              secondary={gamesStats.total_unavailable}
-            />
-          </ListItem>
+          {items.map((item, index) => (
+            <ListItem key={`${id}_item_${index}`}>
+              <ListItemAvatar>
+                <Avatar>{item.icon || defaultIcon}</Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={item.label} secondary={item.value} />
+            </ListItem>
+          ))}
         </List>
       </Suspense>
     </Accordion>
   );
 }
 
-function DurationStats({stats}: Props) {
-
+function GamesStats({ stats }: Props) {
   const t = useTranslations();
-  const durationStats = stats.general.duration;
-
-  // hooks calls
-  const total_duration = usePrettyDuration(durationStats.total);
-  const total_duration_available = usePrettyDuration(durationStats.total_available);
-  const total_duration_unavailable = usePrettyDuration(durationStats.total_unavailable);
+  const games = stats.general.games;
 
   return (
-    <Accordion key={"total_duration"}>
-    <AccordionSummary
-      expandIcon={<ExpandMoreIcon />}
-      aria-controls={"panel-content_total_duration"}
-      id={"panel-header_total_duration"}
-    >
-      <ListItemAvatar>
-        <Avatar>
-          <HourglassFullIcon />
-        </Avatar>
-      </ListItemAvatar>
-      <ListItemText
-        primary={t("stats.generalStats.total_duration")}
-        secondary={total_duration}
-      />
-    </AccordionSummary>
-    <Suspense fallback={null}>
-      <List>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <HourglassBottomIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText
-            primary={t("stats.generalStats.total_duration_available")}
-            secondary={total_duration_available}
-          />
-        </ListItem>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <HourglassTopIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText
-            primary={t("stats.generalStats.total_duration_unavailable")}
-            secondary={total_duration_unavailable}
-          />
-        </ListItem>
-      </List>
-    </Suspense>
-  </Accordion>
+    <StatAccordion
+      id="total_games"
+      title={t("stats.generalStats.total_games")}
+      defaultIcon={<SportsEsportsIcon />}
+      items={[
+        { label: t("stats.generalStats.total_games_available"), value: games.total_available },
+        { label: t("stats.generalStats.total_games_unavailable"), value: games.total_unavailable },
+      ]}
+    />
+  );
+}
+
+function DurationStats({ stats }: Props) {
+  const t = useTranslations();
+  const duration = stats.general.duration;
+
+  return (
+    <StatAccordion
+      id="total_duration"
+      title={t("stats.generalStats.total_duration")}
+      defaultIcon={<HourglassFullIcon />}
+      items={[
+        {
+          label: t("stats.generalStats.total_duration_available"),
+          value: usePrettyDuration(duration.total_available),
+          icon: <HourglassBottomIcon />, // Specific icon for this item
+        },
+        {
+          label: t("stats.generalStats.total_duration_unavailable"),
+          value: usePrettyDuration(duration.total_unavailable),
+          icon: <HourglassTopIcon />, // Specific icon for this item
+        },
+      ]}
+    />
   );
 }
 
@@ -168,55 +141,20 @@ function ChannelCreation({stats}: Props) {
   )
 }
 
-function DlcsStats({stats}: Props) {
-
+function DlcsStats({ stats }: Props) {
   const t = useTranslations();
   const dlcs = stats.general.dlcs;
-  
+
   return (
-    <Accordion key={"total_dlcs"}>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
-        aria-controls={"panel-content_total_dlcs"}
-        id={"panel-header_total_dlcs"}
-      >
-        <ListItemAvatar>
-          <Avatar>
-            <ExtensionIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText
-          primary={t("stats.generalStats.total_dlcs")}
-          secondary={dlcs.total}
-        />
-      </AccordionSummary>
-      <Suspense fallback={null}>
-        <List>
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar>
-                <ExtensionIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={t("stats.generalStats.total_dlcs_available")}
-              secondary={dlcs.total_available}
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar>
-                <ExtensionIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={t("stats.generalStats.total_dlcs_unavailable")}
-              secondary={dlcs.total_unavailable}
-            />
-          </ListItem>
-        </List>
-      </Suspense>
-    </Accordion>
+    <StatAccordion
+      id="total_dlcs"
+      title={t("stats.generalStats.total_dlcs")}
+      defaultIcon={<ExtensionIcon />}
+      items={[
+        { label: t("stats.generalStats.total_dlcs_available"), value: dlcs.total_available },
+        { label: t("stats.generalStats.total_dlcs_unavailable"), value: dlcs.total_unavailable },
+      ]}
+    />
   );
 }
 
