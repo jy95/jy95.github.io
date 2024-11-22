@@ -20,7 +20,7 @@
     "@emotion/styled": "^11.13.5",
     "@mui/icons-material": "^5.16.6",
     "@mui/material": "^5.16.7",
-    "@mui/x-data-grid": "^7.22.2",
+    "@mui/x-data-grid": "^7.22.3",
     "@reduxjs/toolkit": "^2.3.0",
     "@types/node": "^22.9.1",
     "@types/react": "npm:types-react@rc",
