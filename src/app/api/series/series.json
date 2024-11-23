@@ -771,6 +771,18 @@
 		]
 	},
 	{
+		"name": "Sly Cooper",
+		"items": [
+			{
+				"id": 165,
+				"title": "Sly Raccoon",
+				"playlistId": "PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
+				"duration": "04:05:13",
+				"platform": 6
+			}
+		]
+	},
+	{
 		"name": "Sonic",
 		"items": [
 			{
