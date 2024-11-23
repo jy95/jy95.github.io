@@ -12,7 +12,7 @@
 			"platform": "PS3",
 			"total": 65,
 			"total_available": 43,
-			"total_unavailable": 23
+			"total_unavailable": 22
 		},
 		{
 			"id": 5,
@@ -49,14 +49,14 @@
 			"genre": "Action",
 			"total": 167,
 			"total_available": 143,
-			"total_unavailable": 25
+			"total_unavailable": 24
 		},
 		{
 			"id": 2,
 			"genre": "Adventure",
 			"total": 139,
 			"total_available": 125,
-			"total_unavailable": 15
+			"total_unavailable": 14
 		},
 		{
 			"id": 12,
