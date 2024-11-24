@@ -21,6 +21,7 @@ const DialogTitle = lazy(() => import("@mui/material/DialogTitle"));
 // For a custom contextMenu (nice for UI)
 const List = lazy(() => import("@mui/material/List"));
 const ListItem = lazy(() => import("@mui/material/ListItem"));
+const ListItemButton = lazy(() => import("@mui/material/ListItemButton"));
 const ListItemIcon = lazy(() => import("@mui/material/ListItemIcon"));
 const ListItemText = lazy(() => import("@mui/material/ListItemText"));
 const Button = lazy(() => import("@mui/material/Button"));
@@ -152,10 +153,12 @@ function CardDialog(props : {
                                 divider={option.divider || false}
                                 key={option.key}
                             >
-                                <ListItemIcon>
-                                    {option.icon}
-                                </ListItemIcon>
-                                <ListItemText primary={option.text} />
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        {option.icon}
+                                    </ListItemIcon>
+                                    <ListItemText primary={option.text} />
+                                </ListItemButton>
                             </ListItem>
                         )  
                     }
