@@ -1,6 +1,5 @@
 // MUI
 import Grid from "@mui/material/Grid";
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 // Custom
 import GenresSelect from "@/components/GamesView/GenresSelect";
@@ -9,28 +8,17 @@ import TitleFilter from "@/components/GamesView/TitleFilter";
 
 export default function GamesFilters() {
 
-    // Tweak display of filters according screen size
-    const onSmallScreen = useMediaQuery( (theme : any) => theme.breakpoints.down('md'));
-
     return (
-        <Grid
-            container
-            sx={{
-                display: "flex",
-                flexDirection: (onSmallScreen) ? "column" : "row",
-                rowGap: (onSmallScreen) ? "8px" : undefined,
-                justifyContent: (onSmallScreen) ? "flex-end" : undefined
-            }}
-        >
-            <Grid item xs={12} md={4}>
+        <Grid container spacing={1}>
+            <Grid item xs={12} md={6} lg={4}>
                 <TitleFilter />
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={6} lg={4}>
                 <PlatformSelect />
             </Grid>
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} md={12} lg={4}>
                 <GenresSelect />
             </Grid>
-        </Grid>
+      </Grid>
     )
 }
