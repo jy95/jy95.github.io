@@ -22,14 +22,14 @@ export default function GamesFilters() {
                 justifyContent: (onSmallScreen) ? "flex-end" : undefined
             }}
         >
+            <Grid item xs={12} md={4}>
+                <TitleFilter />
+            </Grid>
             <Grid item xs={12} md={3}>
                 <PlatformSelect />
             </Grid>
             <Grid item xs={12} md={5}>
                 <GenresSelect />
-            </Grid>
-            <Grid item xs={12} md={4}>
-                <TitleFilter />
             </Grid>
         </Grid>
     )
