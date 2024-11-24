@@ -13,6 +13,7 @@ export const routing = defineRouting({
     '/': '/',
     '/games': '/games',
     '/planning': '/planning',
+    '/backlog': '/backlog',
     '/tests': '/tests',
     '/stats': '/stats',
     '/links': '/links'
