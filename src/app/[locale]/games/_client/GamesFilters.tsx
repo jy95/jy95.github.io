@@ -10,13 +10,13 @@ export default function GamesFilters() {
 
     return (
         <Grid container spacing={1}>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={5}>
                 <TitleFilter />
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={3}>
                 <PlatformSelect />
             </Grid>
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={4}>
                 <GenresSelect />
             </Grid>
       </Grid>
