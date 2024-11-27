@@ -2,23 +2,13 @@
 
 // hooks
 import { useTranslations } from "next-intl";
-import { useAppSelector } from "@/redux/hooks";
 
 // MUI component
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
-// Recharts components
-import {
-    BarChart,
-    Bar,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    ResponsiveContainer,
-} from "recharts";
+import { BarChart } from '@mui/x-charts/BarChart';
 
 // Types
 import type { statsProperty } from "@/app/api/stats/route";
@@ -30,15 +20,9 @@ type Props = {
 export default function GenresChart({stats}: Props) {
 
     const t = useTranslations();
-    const currentColor = useAppSelector((state) => state.themeColor.currentColor);
 
-    const strokeColor = currentColor === "dark" ? "white" : "dark";
-      // for genre chart
-    const genresData = stats.genres.map(genre => ({
-        key: genre.id,
-        category: t(`gamesLibrary.gamesGenres.${genre.id}` as any),
-        ...genre
-    }));
+    // for genre chart
+    const genresData = stats.genres;
 
     if (genresData.length === 0) {
         return <></>;
@@ -62,30 +46,29 @@ export default function GenresChart({stats}: Props) {
             >
               {t("stats.genresChart.title")}
             </Typography>
-            <ResponsiveContainer>
-              <BarChart data={genresData}>
-                <CartesianGrid strokeDasharray="2 2" />
-                <XAxis dataKey="category" stroke={strokeColor} />
-                <YAxis stroke={strokeColor} />
-                <Tooltip contentStyle={{ backgroundColor: currentColor }} />
-                <Bar
-                  type="monotone"
-                  dataKey="total_available"
-                  stackId="1"
-                  stroke="#82ca9d"
-                  fill="#82ca9d"
-                  name={t("stats.genresChart.total_available")}
-                />
-                <Bar
-                  type="monotone"
-                  dataKey="total_unavailable"
-                  stackId="1"
-                  stroke="#8884d8"
-                  fill="#8884d8"
-                  name={t("stats.genresChart.total_unavailable")}
-                />
-              </BarChart>
-            </ResponsiveContainer>
+            <BarChart 
+              dataset={genresData}
+              series={[
+                {
+                  dataKey: "total_available",
+                  stack: 'availablility',
+                  label: t("stats.genresChart.total_available")
+                },
+                {
+                  dataKey: "total_unavailable",
+                  stack: 'availablility',
+                  label: t("stats.genresChart.total_unavailable")
+                }
+              ]}
+              xAxis={[
+                {
+                  scaleType: 'band',
+                  dataKey: "id",
+                  valueFormatter: (id) => t(`gamesLibrary.gamesGenres.${id}` as any)
+                }
+              ]}
+              hideLegend
+            />
           </Paper>
         </Grid>
     );
