@@ -9,7 +9,7 @@ import { useGetBacklogQuery } from "@/redux/services/backlogAPI";
 
 // Material UI
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import type { GridRenderCellParams, GridColDef } from '@mui/x-data-grid';
+import type { GridColDef } from '@mui/x-data-grid';
 
 // Others
 import Tooltip from '@mui/material/Tooltip';
@@ -58,34 +58,34 @@ export default function BacklogViewer() {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <DataGrid 
-                rows={data} 
-                columns={columns} 
-                disableRowSelectionOnClick 
-                localeText={customLocaleText}
-                slots={{
-                    toolbar: GridToolbar
-                }}
-                slotProps={{
-                    loadingOverlay: {
-                        variant: 'linear-progress',
-                        noRowsVariant: 'skeleton',
-                    }
-                }}
-                loading={isLoading}
-                sortingOrder={['asc', 'desc']}
-                initialState={{
-                    sorting: {
-                        sortModel: [{ field: 'title', sort: 'asc' }],
-                    },
-                    columns: {
-                        columnVisibilityModel: {
-                            // Hide columns notes, the other columns will remain visible
-                            notes: false
-                        }
-                    }
-                }}
-            />
+          <DataGrid 
+              rows={data} 
+              columns={columns} 
+              disableRowSelectionOnClick 
+              localeText={customLocaleText}
+              slots={{
+                  toolbar: GridToolbar
+              }}
+              slotProps={{
+                  loadingOverlay: {
+                      variant: 'linear-progress',
+                      noRowsVariant: 'skeleton',
+                  }
+              }}
+              loading={isLoading}
+              sortingOrder={['asc', 'desc']}
+              initialState={{
+                  sorting: {
+                      sortModel: [{ field: 'title', sort: 'asc' }],
+                  },
+                  columns: {
+                      columnVisibilityModel: {
+                          // Hide columns notes, the other columns will remain visible
+                          notes: false
+                      }
+                  }
+              }}
+          />
         </div>
     )
 

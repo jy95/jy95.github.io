@@ -9,7 +9,7 @@ import { useGetPlanningQuery } from "@/redux/services/planningAPI";
 
 // Material UI
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import type { GridRenderCellParams, GridColDef } from '@mui/x-data-grid';
+import type { GridColDef } from '@mui/x-data-grid';
 
 // Icons
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -40,10 +40,10 @@ export default function PlanningViewer() {
             field: "title", 
             headerName: t("columns.title"),
             headerAlign: 'center',
-            renderCell: (params : GridRenderCellParams) => (
-                <Tooltip title={params.value} aria-label={params.value}>
+            renderCell: ({value}) => (
+                <Tooltip title={value} aria-label={value}>
                     <div>
-                        {params.value}
+                        {value}
                     </div>
                 </Tooltip>
             ),
@@ -92,10 +92,10 @@ export default function PlanningViewer() {
                     )
                 }
             ] satisfies { value: GameStatus; label: JSX.Element }[],
-            renderCell: (params : GridRenderCellParams) => (
-                <Tooltip title={t(`states.${params.value as GameStatus}`as const)} aria-label={params.value}>
+            renderCell: ({value}) => (
+                <Tooltip title={t(`states.${value as GameStatus}`as const)} aria-label={value}>
                     { 
-                        (params.value === "RECORDED") ? <CheckCircleIcon /> : <HourglassEmptyIcon />
+                        (value === "RECORDED") ? <CheckCircleIcon /> : <HourglassEmptyIcon />
                     }
                 </Tooltip>
             ),
@@ -104,42 +104,35 @@ export default function PlanningViewer() {
     ];
 
     return (
-            <div style={{ height: 450, width: '100%' }}>
-                <div style={{ display: 'flex', height: '100%' }}>
-                    <div style={{ flexGrow: 1 }}>
-                        <DataGrid 
-                            rows={data} 
-                            columns={columns} 
-                            disableRowSelectionOnClick 
-                            //disableExtendRowFullWidth // No needed for now
-                            //disableColumnFilter // or filterable: false in each column
-                            autoHeight  
-                            localeText={customLocaleText}
-                            slots={{
-                                toolbar: GridToolbar
-                            }}
-                            slotProps={{
-                                loadingOverlay: {
-                                    variant: 'linear-progress',
-                                    noRowsVariant: 'skeleton',
-                                }
-                            }}
-                            loading={isLoading}
-                            sortingOrder={['asc', 'desc']}
-                            initialState={{
-                                sorting: {
-                                  sortModel: [{ field: 'releaseDate', sort: 'asc' }],
-                                },
-                                columns: {
-                                    columnVisibilityModel: {
-                                        // Hide columns endDate, the other columns will remain visible
-                                        endDate: false
-                                    }
-                                }
-                            }}
-                        />
-                    </div>
-                </div>
-            </div>
-        )
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <DataGrid 
+                rows={data} 
+                columns={columns} 
+                disableRowSelectionOnClick 
+                localeText={customLocaleText}
+                slots={{
+                    toolbar: GridToolbar
+                }}
+                slotProps={{
+                    loadingOverlay: {
+                        variant: 'linear-progress',
+                        noRowsVariant: 'skeleton',
+                    }
+                }}
+                loading={isLoading}
+                sortingOrder={['asc', 'desc']}
+                initialState={{
+                    sorting: {
+                        sortModel: [{ field: 'releaseDate', sort: 'asc' }],
+                    },
+                    columns: {
+                        columnVisibilityModel: {
+                            // Hide columns endDate, the other columns will remain visible
+                            endDate: false
+                        }
+                    }
+                }}
+            />
+        </div>
+    )
 }
