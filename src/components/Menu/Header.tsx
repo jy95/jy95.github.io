@@ -6,6 +6,7 @@ import { Link, usePathname } from '@/i18n/routing';
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {useTranslations} from 'next-intl';
+import { useColorScheme } from '@mui/material/styles';
 
 // React Material UI
 import {CssBaseline, IconButton, Toolbar} from "@mui/material";
@@ -27,7 +28,6 @@ import languages_with_icons from "./HeaderLanguages";
 
 // Redux
 import { drawerOpen } from "@/redux/features/miscellaneousSlice";
-import { themeColor } from "@/redux/features/themeColorSlice";
 
 // styled AppBar
 const drawerWidth = 240;
@@ -58,7 +58,7 @@ function Header() {
     const pathname = usePathname()
     const dispatch = useAppDispatch();
     const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
-    const currentColor = useAppSelector((state) => state.themeColor.currentColor);
+    const { mode, setMode } = useColorScheme();
 
     const handleDrawerOpen = () => {
         dispatch(drawerOpen(true));
@@ -66,7 +66,7 @@ function Header() {
 
     const handleDarkMode = (event : any) => {
         const color = (event.target.checked) ? "dark" : "light";
-        dispatch(themeColor({color, mode: "manual"}));
+        setMode(color);
     }
 
     return (
@@ -91,7 +91,7 @@ function Header() {
                         <MenuIcon/>
                     </IconButton>
                     <Switch 
-                        checked={currentColor === "dark"}
+                        checked={mode === "dark"}
                         onChange={handleDarkMode}
                         checkedIcon={<Brightness4Icon color="action" />}
                         icon={<Brightness5Icon style={{ color: '#ffeb3b' }}/>}
