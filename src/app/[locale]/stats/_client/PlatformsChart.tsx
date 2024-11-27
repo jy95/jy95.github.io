@@ -20,11 +20,7 @@ type Props = {
 export default function PlatformsChart({ stats }: Props) {
   const t = useTranslations();
 
-  const platformsData = stats.platforms.map((platform) => ({
-    key: platform.platform,
-    total_available: platform.total_available,
-    total_unavailable: platform.total_unavailable,
-  }));
+  const platformsData = stats.platforms;
 
   if (platformsData.length === 0) {
     return <></>; // return nothing if data is empty
@@ -48,8 +44,8 @@ export default function PlatformsChart({ stats }: Props) {
           xAxis={[
             {
               id: 'Platform',
-              dataKey: 'key',
-              scaleType: 'linear',
+              dataKey: 'platform',
+              scaleType: 'band',
               valueFormatter: (platform) => platform
             }
           ]}
