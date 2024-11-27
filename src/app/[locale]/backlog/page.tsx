@@ -9,7 +9,7 @@ import { useGetBacklogQuery } from "@/redux/services/backlogAPI";
 
 // Material UI
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import type { GridRenderCellParams, GridColDef } from '@mui/x-data-grid';
+import type { GridColDef } from '@mui/x-data-grid';
 
 // Others
 import Tooltip from '@mui/material/Tooltip';
@@ -28,75 +28,64 @@ export default function BacklogViewer() {
 
     const columns : GridColDef[] = [
         {
-            field: "title", 
+            field: "title",
             headerName: t("columns.title"),
             headerAlign: 'center',
-            renderCell: (params : GridRenderCellParams) => (
-                <Tooltip title={params.value} aria-label={params.value}>
-                    <div>
-                        {params.value}
-                    </div>
-                </Tooltip>
+            renderCell: ({ value }) => (
+              <Tooltip title={value} aria-label={value}>
+                <div>{value}</div>
+              </Tooltip>
             ),
             width: 270
-        },
-        {
+          },
+          {
             field: "platform",
             headerName: t("columns.platform"),
             ...PlatformColumn
-        },
-        {
-            field: "notes", 
+          },
+          {
+            field: "notes",
             headerName: t("columns.notes"),
             headerAlign: 'center',
-            renderCell: (params : GridRenderCellParams) => (
-                <Tooltip title={params.value || ""} aria-label={params.value || ""}>
-                    <div>
-                        {params.value || ""}
-                    </div>
-                </Tooltip>
+            renderCell: ({ value }) => (
+              <Tooltip title={value || ""} aria-label={value || ""}>
+                <div>{value || ""}</div>
+              </Tooltip>
             ),
             width: 270
-        },
+          },
     ];
 
     return (
-        <div style={{ height: 450, width: '100%' }}>
-            <div style={{ display: 'flex', height: '100%' }}>
-                <div style={{ flexGrow: 1 }}>
-                    <DataGrid 
-                        rows={data} 
-                        columns={columns} 
-                        disableRowSelectionOnClick 
-                        //disableExtendRowFullWidth // No needed for now
-                        //disableColumnFilter // or filterable: false in each column
-                        autoHeight  
-                        localeText={customLocaleText}
-                        slots={{
-                            toolbar: GridToolbar
-                        }}
-                        slotProps={{
-                            loadingOverlay: {
-                                variant: 'linear-progress',
-                                noRowsVariant: 'skeleton',
-                            }
-                        }}
-                        loading={isLoading}
-                        sortingOrder={['asc', 'desc']}
-                        initialState={{
-                            sorting: {
-                              sortModel: [{ field: 'title', sort: 'asc' }],
-                            },
-                            columns: {
-                                columnVisibilityModel: {
-                                    // Hide columns notes, the other columns will remain visible
-                                    notes: false
-                                }
-                            }
-                        }}
-                    />
-                </div>
-            </div>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <DataGrid 
+              rows={data} 
+              columns={columns} 
+              disableRowSelectionOnClick 
+              localeText={customLocaleText}
+              slots={{
+                  toolbar: GridToolbar
+              }}
+              slotProps={{
+                  loadingOverlay: {
+                      variant: 'linear-progress',
+                      noRowsVariant: 'skeleton',
+                  }
+              }}
+              loading={isLoading}
+              sortingOrder={['asc', 'desc']}
+              initialState={{
+                  sorting: {
+                      sortModel: [{ field: 'title', sort: 'asc' }],
+                  },
+                  columns: {
+                      columnVisibilityModel: {
+                          // Hide columns notes, the other columns will remain visible
+                          notes: false
+                      }
+                  }
+              }}
+          />
         </div>
     )
 
