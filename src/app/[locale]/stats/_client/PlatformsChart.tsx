@@ -67,6 +67,7 @@ export default function PlatformsChart({ stats }: Props) {
               showMark: false
             },
           ]}
+          hideLegend
         />
       </Paper>
     </Grid>
