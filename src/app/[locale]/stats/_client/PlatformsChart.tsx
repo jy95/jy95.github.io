@@ -2,24 +2,13 @@
 
 // hooks
 import { useTranslations } from "next-intl";
-import { useAppSelector } from "@/redux/hooks";
 
 // MUI component
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
-// Recharts components
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { LineChart } from '@mui/x-charts/LineChart';
 
 // Types
 import type { statsProperty } from "@/app/api/stats/route";
@@ -30,14 +19,8 @@ type Props = {
 
 export default function PlatformsChart({ stats }: Props) {
   const t = useTranslations();
-  const currentColor = useAppSelector((state) => state.themeColor.currentColor);
 
-  const strokeColor = currentColor === "dark" ? "white" : "dark";
-  const platformsData = stats.platforms.map((platform) => ({
-    key: platform.platform,
-    total_available: platform.total_available,
-    total_unavailable: platform.total_unavailable,
-  }));
+  const platformsData = stats.platforms;
 
   if (platformsData.length === 0) {
     return <></>; // return nothing if data is empty
@@ -56,31 +39,36 @@ export default function PlatformsChart({ stats }: Props) {
         <Typography component="h2" variant="h6" color="primary" gutterBottom>
           {t("stats.platformsChart.title")}
         </Typography>
-        <ResponsiveContainer>
-          <AreaChart data={platformsData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="key" stroke={strokeColor} />
-            <YAxis />
-            <Tooltip contentStyle={{ backgroundColor: currentColor }} />
-            <Legend />
-            <Area
-              type="monotone"
-              dataKey="total_available"
-              name={t("stats.genresChart.total_available")}
-              stroke="#1fa134"
-              fill="#1fa134"
-              fillOpacity={0.6}
-            />
-            <Area
-              type="monotone"
-              dataKey="total_unavailable"
-              stroke="#8884d8"
-              fill="#8884d8"
-              name={t("stats.genresChart.total_unavailable")}
-              fillOpacity={0.6}
-            />
-          </AreaChart>
-        </ResponsiveContainer>
+        <LineChart 
+          dataset={platformsData}
+          xAxis={[
+            {
+              id: 'Platform',
+              dataKey: 'platform',
+              scaleType: 'band',
+              valueFormatter: (platform) => platform
+            }
+          ]}
+          series={[
+            {
+              id: 'total_available',
+              label: t("stats.genresChart.total_available"),
+              dataKey: "total_available",
+              stack: 'total',
+              area: true,
+              showMark: false
+            },
+            {
+              id: 'total_unavailable',
+              label: t("stats.genresChart.total_unavailable"),
+              dataKey: "total_unavailable",
+              stack: 'total',
+              area: true,
+              showMark: false
+            },
+          ]}
+          hideLegend
+        />
       </Paper>
     </Grid>
   );

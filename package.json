@@ -20,6 +20,7 @@
     "@emotion/styled": "^11.13.5",
     "@mui/icons-material": "^5.16.6",
     "@mui/material": "^5.16.7",
+    "@mui/x-charts": "^8.0.0-alpha.1",
     "@mui/x-data-grid": "^7.22.3",
     "@reduxjs/toolkit": "^2.3.0",
     "@types/node": "^22.10.0",
@@ -37,7 +38,6 @@
     "react-dom": "rc",
     "react-player": "^2.16.0",
     "react-redux": "^9.1.2",
-    "recharts": "^2.13.3",
     "sharp": "^0.33.5",
     "typescript": "5.7.2"
   },
