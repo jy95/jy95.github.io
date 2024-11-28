@@ -1,3 +1,5 @@
+"use client";
+
 // Hooks
 import { useTranslations } from "next-intl";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";

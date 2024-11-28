@@ -1,3 +1,5 @@
+"use client";
+
 import { lazy } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from 'next/navigation';
