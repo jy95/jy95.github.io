@@ -1,5 +1,3 @@
-"use client";
-
 import { Suspense, useState, lazy } from "react";
 import { useRouter } from 'next/navigation';
 

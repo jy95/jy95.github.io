@@ -15,7 +15,7 @@ import {routing} from '@/i18n/routing';
 import MainRoot from '@/components/Main/MainRoot';
 import Menu from "@/components/Menu/Menu";
 import Header from "@/components/Menu/Header";
-import Box from "@/components/Main/Box";
+import Box from '@mui/material-pigment-css/Box';
 
 // Types
 import type { Metadata } from 'next/types';

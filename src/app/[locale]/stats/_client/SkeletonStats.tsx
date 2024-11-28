@@ -1,5 +1,3 @@
-"use client";
-
 // MUI component
 import Grid from '@mui/material-pigment-css/Grid';
 import Paper from "@mui/material/Paper";

@@ -1,5 +1,3 @@
-"use client";
-
 // hooks
 import { Suspense } from "react";
 import { useTranslations } from "next-intl";

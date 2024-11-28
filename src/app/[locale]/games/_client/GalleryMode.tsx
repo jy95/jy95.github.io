@@ -1,5 +1,3 @@
-"use client";
-
 // Hooks
 import { useSearchParams } from 'next/navigation'
 import { useCallback, Suspense } from 'react';

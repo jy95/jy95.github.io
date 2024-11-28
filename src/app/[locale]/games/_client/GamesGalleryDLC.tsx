@@ -1,5 +1,3 @@
-"use client";
-
 // Next js
 import dynamic from 'next/dynamic'
 

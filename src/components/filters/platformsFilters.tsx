@@ -2,7 +2,7 @@
 import RenderPlatformIcon from "@/components/GamesView/PlatformIcons";
 
 // Others
-import Box from '@mui/material/Box';
+import Box from '@mui/material-pigment-css/Box';
 
 // Types
 import type { ValueOptions } from "@mui/x-data-grid"

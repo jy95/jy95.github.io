@@ -1,5 +1,3 @@
-"use client";
-
 // hooks
 import { useTranslations } from "next-intl";
 

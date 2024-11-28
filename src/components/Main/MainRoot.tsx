@@ -1,5 +1,3 @@
-"use client";
-
 import { DrawerHeader, Main } from '@/components/Menu/Drawer';
 
 import { useAppSelector } from "@/redux/hooks";

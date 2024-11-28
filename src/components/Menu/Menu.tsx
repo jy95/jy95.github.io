@@ -1,5 +1,3 @@
-"use client";
-
 // Router
 import { forwardRef, useMemo } from "react";
 

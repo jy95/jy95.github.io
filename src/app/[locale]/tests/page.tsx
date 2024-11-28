@@ -1,5 +1,3 @@
-"use client";
-
 // hooks
 import { useGetTestsQuery } from "@/redux/services/testsAPI";
 

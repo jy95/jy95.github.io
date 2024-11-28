@@ -1,7 +1,5 @@
-"use client";
-
 // Components
-import Box from "@mui/material/Box";
+import Box from "@mui/material-pigment-css/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";

@@ -1,5 +1,3 @@
-"use client";
-
 // Hooks
 import { useTranslations } from 'next-intl';
 import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
@@ -17,7 +15,7 @@ import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 
 // Others
 import Tooltip from '@mui/material/Tooltip';
-import Box from '@mui/material/Box';
+import Box from '@mui/material-pigment-css/Box';
 import PlatformColumn from "@/components/tableColumns/platforms";
 
 import type { JSX } from 'react'

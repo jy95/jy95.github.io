@@ -1,5 +1,3 @@
-"use client";
-
 // https://next-intl-docs.vercel.app/docs/environments/error-files#not-foundjs
 
 // Hooks
@@ -9,7 +7,7 @@ import {useTranslations} from 'next-intl';
 import { Link } from '@/i18n/routing';
 
 // Components
-import Box from '@mui/material/Box';
+import Box from '@mui/material-pigment-css/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
