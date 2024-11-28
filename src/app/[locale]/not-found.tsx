@@ -20,12 +20,13 @@ export default function NotFoundPage() {
 
     return (
         <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            height="80vh"
-        >
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "80vh"
+            }}>
             <Typography variant="h4" gutterBottom>{t('title')}</Typography>
             <Link href="/">
                 <Button variant="contained" color="primary">
@@ -33,5 +34,5 @@ export default function NotFoundPage() {
                 </Button>
             </Link>
         </Box>
-    )
+    );
 }

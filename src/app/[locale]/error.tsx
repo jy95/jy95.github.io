@@ -26,12 +26,13 @@ export default function Error({
 
     return (
         <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            height="80vh"
-        >
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "80vh"
+            }}>
             <Typography variant="h4" gutterBottom>{t('title')}</Typography>
             <Button variant="contained" color="primary" onClick={reset}>{t('retry')}</Button>
         </Box>
