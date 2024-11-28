@@ -1,3 +1,5 @@
+"use client";
+
 // Navigation
 import { Link, usePathname } from '@/i18n/routing';
 
