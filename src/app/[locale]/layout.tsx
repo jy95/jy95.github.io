@@ -12,10 +12,9 @@ import {getMessages} from 'next-intl/server';
 import {routing} from '@/i18n/routing';
 
 // components
-import MainRoot from '@/components/Main/MainRoot';
-import Menu from "@/components/Menu/Menu";
-import Header from "@/components/Menu/Header";
-import Box from '@mui/material-pigment-css/Box';
+import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+import DashboardAppProvider from "@/components/dashboard/DashboardAppProvider";
+import Grid from '@mui/material-pigment-css/Grid';
 
 // Types
 import type { Metadata } from 'next/types';
@@ -68,13 +67,13 @@ export default async function RootLayout(props: Props) {
                 horizontal: 'right',
               }}
             >
-              <Header />
-              <Box sx={{ display: 'flex' }}>
-                <Menu />
-                <MainRoot>
-                  {children}
-                </MainRoot>
-              </Box>
+              <DashboardAppProvider>
+                <DashboardLayout defaultSidebarCollapsed>
+                  <Grid container spacing={1}>
+                    {children}
+                  </Grid>
+                </DashboardLayout>
+              </DashboardAppProvider>
             </SnackbarProvider>
           </NextIntlClientProvider>
         </ReduxProviders>
