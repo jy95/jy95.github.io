@@ -15,7 +15,7 @@ import LinkIcon from '@mui/icons-material/Link';
 // Types
 import type { Navigation } from '@toolpad/core/AppProvider';
 
-export default async function DashboardAppProvider({
+export default function DashboardAppProvider({
     children,
   }: {
     children: React.ReactNode
