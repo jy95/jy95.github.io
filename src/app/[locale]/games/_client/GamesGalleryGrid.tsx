@@ -5,7 +5,7 @@ import { nextPage } from "@/redux/features/gamesSlice";
 import { useTranslations } from 'next-intl';
 
 // Style
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material-pigment-css/Grid';
 import LoadingButton from './LoadingButton';
 
 // Custom
@@ -48,10 +48,11 @@ function GamesGalleryGridInner() {
     const renderRow = (game: CardGame) => (
         <Grid 
             key={game.id}
-            item
-            xs={6}
-            md={4}
-            lg={1.5}
+            size={{
+                xs: 6,
+                md: 4,
+                lg: 1.5
+            }}
         >
             <CardEntry game={game}/>
         </Grid>

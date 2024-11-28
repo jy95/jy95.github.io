@@ -5,7 +5,7 @@ import { useGetTestsQuery } from "@/redux/services/testsAPI";
 
 // Components
 import CardEntry from "@/components/GamesView/CardEntry";
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material-pigment-css/Grid';
 
 export default function TestsPage() {
 
@@ -41,12 +41,13 @@ export default function TestsPage() {
                         .map(game => 
                                 <Grid 
                                     key={game.id}
-                                    item 
-                                    xs={12}
-                                    sm={6}
-                                    md={3}
-                                    // 5 items for this screen size
-                                    lg={2.4}
+                                    size={{
+                                        xs: 12,
+                                        sm: 6,
+                                        md: 3,
+                                        // 5 items for this screen size
+                                        lg: 2.4
+                                    }}
                                 >
                                     <CardEntry game={game}/>
                                 </Grid>

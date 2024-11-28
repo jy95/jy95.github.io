@@ -1,6 +1,5 @@
 // Providers
 import { Providers as ReduxProviders } from "@/redux/provider";
-import { ThemeProvider } from "@/providers/ThemeProvider";
 import { SnackbarProvider } from "@/providers/SnackbarProvider"
 
 // Next.js Analytics
@@ -33,6 +32,8 @@ type Props = {
   }>
 }
 
+import '@mui/material-pigment-css/styles.css';
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));
 }
@@ -60,23 +61,21 @@ export default async function RootLayout(props: Props) {
       <body>
         <ReduxProviders>
           <NextIntlClientProvider locale={resolvedLocale} messages={messages}>
-            <ThemeProvider lng={resolvedLocale}>
-              <SnackbarProvider 
-                maxSnack={3}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-              >
-                <Header />
-                <Box sx={{ display: 'flex' }}>
-                  <Menu />
-                  <MainRoot>
-                    {children}
-                  </MainRoot>
-                </Box>
-              </SnackbarProvider>
-            </ThemeProvider>
+            <SnackbarProvider 
+              maxSnack={3}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}
+            >
+              <Header />
+              <Box sx={{ display: 'flex' }}>
+                <Menu />
+                <MainRoot>
+                  {children}
+                </MainRoot>
+              </Box>
+            </SnackbarProvider>
           </NextIntlClientProvider>
         </ReduxProviders>
         <SpeedInsights />

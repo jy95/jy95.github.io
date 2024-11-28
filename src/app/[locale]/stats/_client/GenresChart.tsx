@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 
 // MUI component
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material-pigment-css/Grid';
 import Paper from "@mui/material/Paper";
 
 import { BarChart } from '@mui/x-charts/BarChart';
@@ -29,7 +29,12 @@ export default function GenresChart({stats}: Props) {
     }
 
     return (
-        <Grid item xs={12} md={8} lg={8}>
+        <Grid 
+          size={{
+            xs: 12,
+            md: 8
+          }}
+        >
           <Paper
             sx={{
               p: 2,

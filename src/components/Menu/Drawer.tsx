@@ -1,16 +1,16 @@
 "use client";
 
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material-pigment-css';
 import MuiDrawer from '@mui/material/Drawer';
 
 // For typings
-import type { Theme } from '@mui/material/styles';
+import type { ExtendTheme as Theme } from "@mui/material-pigment-css"
 
 // drawerWidth
 export const drawerWidth = 240;
 
 // styled drawer header
-export const DrawerHeader = styled('div')(({ theme }: any) => ({
+export const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -43,6 +43,7 @@ export const closedMixin = (theme : Theme) => ({
 
 // styled Drawer
 export const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  // @ts-ignore : open does exist in MUI
   ({ theme, open }) => ({
     width: drawerWidth,
     flexShrink: 0,

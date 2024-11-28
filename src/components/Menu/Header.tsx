@@ -11,7 +11,7 @@ import {useTranslations} from 'next-intl';
 import {CssBaseline, IconButton, Toolbar} from "@mui/material";
 import MuiAppBar from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material-pigment-css';
 
 // Icons for languages
 import SvgIcon from '@mui/material/SvgIcon';

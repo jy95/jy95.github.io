@@ -1,7 +1,22 @@
 import createNextIntlPlugin from 'next-intl/plugin';
-const withNextIntl = createNextIntlPlugin();
+import { withPigment } from '@pigment-css/nextjs-plugin';
 
+// Types
 import type { NextConfig } from 'next'
+import type { PigmentOptions } from "@pigment-css/nextjs-plugin"
+
+// Rest
+import { createTheme } from '@mui/material';
+
+// Set up
+const withNextIntl = createNextIntlPlugin();
+const pigmentConfig: PigmentOptions = {
+    transformLibraries: ['@mui/material'],
+    theme: createTheme({
+        cssVariables: true,
+        colorSchemes: { dark: true },
+    })
+};
 
 const nextConfig: NextConfig = {
     /* config options here */
@@ -16,4 +31,4 @@ const nextConfig: NextConfig = {
     }
   }
    
-  export default withNextIntl(nextConfig);
+  export default withPigment(withNextIntl(nextConfig), pigmentConfig);
