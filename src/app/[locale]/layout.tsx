@@ -59,21 +59,23 @@ export default async function RootLayout(props: Props) {
       <body>
         <ReduxProviders>
           <NextIntlClientProvider locale={resolvedLocale} messages={messages}>
-            <SnackbarProvider 
-              maxSnack={3}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
-            >
-              <DashboardAppProvider>
-                <DashboardLayout defaultSidebarCollapsed>
-                  <Grid container spacing={1}>
-                    {children}
-                  </Grid>
-                </DashboardLayout>
-              </DashboardAppProvider>
-            </SnackbarProvider>
+            <ThemeProvider lng={resolvedLocale}>
+              <SnackbarProvider 
+                maxSnack={3}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+              >
+                <DashboardAppProvider>
+                  <DashboardLayout defaultSidebarCollapsed>
+                    <Grid container spacing={1}>
+                      {children}
+                    </Grid>
+                  </DashboardLayout>
+                </DashboardAppProvider>
+              </SnackbarProvider>
+            </ThemeProvider>
           </NextIntlClientProvider>
         </ReduxProviders>
         <SpeedInsights />
