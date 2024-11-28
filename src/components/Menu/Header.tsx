@@ -6,18 +6,12 @@ import { Link, usePathname } from '@/i18n/routing';
 // Hooks
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {useTranslations} from 'next-intl';
-import { useColorScheme } from '@mui/material/styles';
 
 // React Material UI
 import {CssBaseline, IconButton, Toolbar} from "@mui/material";
 import MuiAppBar from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
-import Switch from '@mui/material/Switch';
 import { styled } from '@mui/material/styles';
-
-// Icons for switch
-import Brightness5Icon from '@mui/icons-material/Brightness5'; // sun
-import Brightness4Icon from '@mui/icons-material/Brightness4'; // moon
 
 // Icons for languages
 import SvgIcon from '@mui/material/SvgIcon';
@@ -58,16 +52,10 @@ function Header() {
     const pathname = usePathname()
     const dispatch = useAppDispatch();
     const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
-    const { mode, setMode } = useColorScheme();
 
     const handleDrawerOpen = () => {
         dispatch(drawerOpen(true));
     };
-
-    const handleDarkMode = (event : any) => {
-        const color = (event.target.checked) ? "dark" : "light";
-        setMode(color);
-    }
 
     return (
         <>
@@ -90,14 +78,6 @@ function Header() {
                     >
                         <MenuIcon/>
                     </IconButton>
-                    <Switch 
-                        checked={mode === "dark"}
-                        onChange={handleDarkMode}
-                        checkedIcon={<Brightness4Icon color="action" />}
-                        icon={<Brightness5Icon style={{ color: '#ffeb3b' }}/>}
-                        inputProps={{ 'aria-label': 'Mode' }}
-                        color="default"
-                    />
                     <div style={{flexGrow: 1}}/>
                     <div>
                         {
