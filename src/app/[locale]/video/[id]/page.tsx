@@ -1,3 +1,5 @@
+"use client";
+
 import { useParams } from 'next/navigation'
 import YTPlayer from "@/components/YTPlayer/Player";
 import RandomButton from '@/components/GamesView/RandomButton';

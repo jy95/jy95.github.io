@@ -1,3 +1,5 @@
+"use client";
+
 // hooks
 import { useGetStatsQuery } from "@/redux/services/statsAPI";
 

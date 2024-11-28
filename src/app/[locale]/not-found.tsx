@@ -1,3 +1,5 @@
+"use client";
+
 // https://next-intl-docs.vercel.app/docs/environments/error-files#not-foundjs
 
 // Hooks
