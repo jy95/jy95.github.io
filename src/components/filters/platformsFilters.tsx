@@ -14,7 +14,11 @@ type Props = {
 function RenderEntry(props: Props) {
     const {idx} = props;
     return (
-        <Box display="flex" alignItems="center">
+        <Box
+            sx={{
+                display: "flex",
+                alignItems: "center"
+            }}>
             <RenderPlatformIcon identifier={idx} />
         </Box>
     );

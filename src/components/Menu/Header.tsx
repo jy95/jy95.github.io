@@ -11,12 +11,7 @@ import {useTranslations} from 'next-intl';
 import {CssBaseline, IconButton, Toolbar} from "@mui/material";
 import MuiAppBar from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
-import Switch from '@mui/material/Switch';
 import { styled } from '@mui/material/styles';
-
-// Icons for switch
-import Brightness5Icon from '@mui/icons-material/Brightness5'; // sun
-import Brightness4Icon from '@mui/icons-material/Brightness4'; // moon
 
 // Icons for languages
 import SvgIcon from '@mui/material/SvgIcon';
@@ -27,7 +22,6 @@ import languages_with_icons from "./HeaderLanguages";
 
 // Redux
 import { drawerOpen } from "@/redux/features/miscellaneousSlice";
-import { themeColor } from "@/redux/features/themeColorSlice";
 
 // styled AppBar
 const drawerWidth = 240;
@@ -58,16 +52,10 @@ function Header() {
     const pathname = usePathname()
     const dispatch = useAppDispatch();
     const isdrawerOpen = useAppSelector((state) => state.miscellaneous.drawerOpen);
-    const currentColor = useAppSelector((state) => state.themeColor.currentColor);
 
     const handleDrawerOpen = () => {
         dispatch(drawerOpen(true));
     };
-
-    const handleDarkMode = (event : any) => {
-        const color = (event.target.checked) ? "dark" : "light";
-        dispatch(themeColor({color, mode: "manual"}));
-    }
 
     return (
         <>
@@ -90,14 +78,6 @@ function Header() {
                     >
                         <MenuIcon/>
                     </IconButton>
-                    <Switch 
-                        checked={currentColor === "dark"}
-                        onChange={handleDarkMode}
-                        checkedIcon={<Brightness4Icon color="action" />}
-                        icon={<Brightness5Icon style={{ color: '#ffeb3b' }}/>}
-                        inputProps={{ 'aria-label': 'Mode' }}
-                        color="default"
-                    />
                     <div style={{flexGrow: 1}}/>
                     <div>
                         {

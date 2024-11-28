@@ -78,7 +78,11 @@ export default function PlanningViewer() {
                 { 
                     value: "RECORDED", 
                     label: (
-                        <Box display="flex" alignItems="center">
+                        <Box
+                            sx={{
+                                display: "flex",
+                                alignItems: "center"
+                            }}>
                             <CheckCircleIcon />
                         </Box>
                     ) 
@@ -86,7 +90,11 @@ export default function PlanningViewer() {
                 { 
                     value: 'PENDING', 
                     label: (
-                        <Box display="flex" alignItems="center">
+                        <Box
+                            sx={{
+                                display: "flex",
+                                alignItems: "center"
+                            }}>
                             <HourglassEmptyIcon />
                         </Box>
                     )

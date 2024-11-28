@@ -39,7 +39,7 @@ export default function RandomButton() {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
-            <Fab variant="extended" onClick={fetchRandomGame}>
+            <Fab color="primary" variant="extended" onClick={fetchRandomGame}>
                 <CasinoIcon sx={{ mr: 1 }} />
                 { t("randomButtonLabel") }
             </Fab>
