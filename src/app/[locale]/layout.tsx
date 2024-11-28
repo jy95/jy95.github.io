@@ -1,5 +1,5 @@
 // Providers
-import { Providers as ReduxProviders } from "@/redux/provider";
+import ReduxProviders from "@/providers/StoreProvider";
 import { SnackbarProvider } from "@/providers/SnackbarProvider"
 
 // Next.js Analytics
