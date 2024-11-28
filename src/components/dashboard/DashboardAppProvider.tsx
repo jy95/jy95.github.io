@@ -1,5 +1,6 @@
 // Providers
 import { AppProvider } from '@toolpad/core/nextjs';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 // Hooks
 import {useTranslations} from 'next-intl';
@@ -59,13 +60,15 @@ export default function DashboardAppProvider({
     ];
 
     return (
-        <AppProvider 
-            navigation={NAVIGATION}
-            branding={{
-                title: "GamesPassionFR"
-            }}
-        >
-            {children}
-        </AppProvider>
-    )
+        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+            <AppProvider 
+                navigation={NAVIGATION}
+                branding={{
+                    title: "GamesPassionFR"
+                }}
+            >
+                {children}
+            </AppProvider>
+        </AppRouterCacheProvider>
+    );
 }
