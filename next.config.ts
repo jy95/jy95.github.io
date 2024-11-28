@@ -29,6 +29,6 @@ const nextConfig: NextConfig = {
             }
         ]
     }
-  }
-   
-  export default withPigment(withNextIntl(nextConfig), pigmentConfig);
+}
+
+export default withNextIntl(withPigment(nextConfig, pigmentConfig));
