@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import games from "./features/gamesSlice";
-import miscellaneous from "./features/miscellaneousSlice";
 import { gamesAPI } from "./services/gamesAPI";
 import { planningAPI } from "./services/planningAPI";
 import { seriesAPI } from "./services/seriesAPI";
@@ -17,7 +16,6 @@ const store = configureStore({
     reducer: {
         // common reducers
         games,
-        miscellaneous,
         // API calls
         [gamesAPI.reducerPath]: gamesAPI.reducer,
         [planningAPI.reducerPath]: planningAPI.reducer,

@@ -13,10 +13,9 @@ import {getMessages} from 'next-intl/server';
 import {routing} from '@/i18n/routing';
 
 // components
-import MainRoot from '@/components/Main/MainRoot';
-import Menu from "@/components/Menu/Menu";
-import Header from "@/components/Menu/Header";
-import Box from "@/components/Main/Box";
+import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+import DashboardAppProvider from "@/components/dashboard/DashboardAppProvider";
+import Grid from "@mui/material/Grid";
 
 // Types
 import type { Metadata } from 'next/types';
@@ -60,23 +59,21 @@ export default async function RootLayout(props: Props) {
       <body>
         <ReduxProviders>
           <NextIntlClientProvider locale={resolvedLocale} messages={messages}>
-            <ThemeProvider lng={resolvedLocale}>
-              <SnackbarProvider 
-                maxSnack={3}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-              >
-                <Header />
-                <Box sx={{ display: 'flex' }}>
-                  <Menu />
-                  <MainRoot>
+            <SnackbarProvider 
+              maxSnack={3}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}
+            >
+              <DashboardAppProvider>
+                <DashboardLayout defaultSidebarCollapsed>
+                  <Grid container spacing={1}>
                     {children}
-                  </MainRoot>
-                </Box>
-              </SnackbarProvider>
-            </ThemeProvider>
+                  </Grid>
+                </DashboardLayout>
+              </DashboardAppProvider>
+            </SnackbarProvider>
           </NextIntlClientProvider>
         </ReduxProviders>
         <SpeedInsights />
