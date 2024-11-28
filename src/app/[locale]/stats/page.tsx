@@ -4,7 +4,7 @@
 import { useGetStatsQuery } from "@/redux/services/statsAPI";
 
 // MUI component
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid2';
 
 // Components
 import SkeletonStats from "./_client/SkeletonStats";

@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic'
 import { useGetDLCsQuery } from "@/redux/services/dlcsAPI";
 
 // MUI component
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid2';
 import Skeleton from '@mui/material/Skeleton';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -71,10 +71,11 @@ function GamesGalleryList() {
                                         .map(dlc => 
                                                 <Grid 
                                                     key={dlc.id}
-                                                    item 
-                                                    xs={6}
-                                                    md={4}
-                                                    lg={1.5}
+                                                    size={{
+                                                        xs: 6,
+                                                        md: 4,
+                                                        lg: 1.5
+                                                    }}
                                                 >
                                                     <CardEntry game={dlc}/>
                                                 </Grid>

@@ -15,7 +15,7 @@ import {routing} from '@/i18n/routing';
 // components
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import DashboardAppProvider from "@/components/dashboard/DashboardAppProvider";
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid2';
 
 // Types
 import type { Metadata } from 'next/types';

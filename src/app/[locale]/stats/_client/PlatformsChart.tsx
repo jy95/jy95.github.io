@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 
 // MUI component
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid2';
 import Paper from "@mui/material/Paper";
 
 import { LineChart } from '@mui/x-charts/LineChart';
@@ -27,7 +27,12 @@ export default function PlatformsChart({ stats }: Props) {
   }
 
   return (
-    <Grid item xs={12} md={4} lg={4}>
+    <Grid 
+      size={{
+        xs: 12,
+        md: 4
+      }}
+    >
       <Paper
         sx={{
           p: 2,
