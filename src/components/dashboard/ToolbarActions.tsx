@@ -8,14 +8,14 @@ import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
 
 // Components
-import Drawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
+const Drawer = dynamic(() => import('@mui/material/Drawer'));
+const Box = dynamic(() => import('@mui/material/Box'));
 import IconButton from '@mui/material/IconButton';
 import Typography from "@mui/material/Typography";
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import ToggleButton from '@mui/material/ToggleButton';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
+const ToggleButtonGroup = dynamic(() => import('@mui/material/ToggleButtonGroup'));
+const ToggleButton = dynamic(() => import('@mui/material/ToggleButton'));
+const Button = dynamic(() => import('@mui/material/Button'));
+const ButtonGroup = dynamic(() => import('@mui/material/ButtonGroup'));
 
 // Icons
 import SettingsIcon from '@mui/icons-material/Settings';
