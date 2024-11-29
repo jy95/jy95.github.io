@@ -28,9 +28,10 @@ function CardEntry(props : {
     // consts
     const {
         title: gameTitle,
-        url: gameURL
+        url_type,
+        id: gameId
     } = game;
-    const local_path = game.url_type === "PLAYLIST" ? "/playlist/" + game.id : "/video/" + game.id;
+    const local_path = url_type === "PLAYLIST" ? "/playlist/" + gameId : "/video/" + gameId;
 
     function watchGame() {
         router.push(`${local_path}`);

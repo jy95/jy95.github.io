@@ -84,7 +84,7 @@ export default function DashboardAppProvider({
                 navigation={NAVIGATION}
                 branding={{
                     title: "GamesPassionFR",
-                    logo: <img src="https://yt3.googleusercontent.com/TvR4JrmxStsFvuKRim36CnxGVBYVMS8IZXno0OFkQjvu1LfsM3jrKzlMg96A9Ikx-vouRhAZ2A=s160-c-k-c0x00ffffff-no-rj" alt="GamesPassionFR logo" />,
+                    logo: <></>
                 }}
             >
                 {children}
