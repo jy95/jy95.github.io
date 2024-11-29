@@ -14,11 +14,21 @@
                 "dlc": "DLCS"
             }
         },
-        "languages": {
-            "en": "English version of the site",
-            "fr": "French version of the site"
-        },
         "description": "Your prime destination for exciting gaming experiences !"
+    },
+    "toolbar": {
+        "settings": "Settings",
+        "modes": {
+            "title": "Mode",
+            "light": "Light",
+            "dark": "Dark",
+            "system": "System"
+        },
+        "languages": {
+            "title": "Language",
+            "en": "English",
+            "fr": "French"
+        }
     },
     "error": {
         "title": "Something went wrong !",

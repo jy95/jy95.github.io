@@ -14,8 +14,9 @@ import {routing} from '@/i18n/routing';
 
 // components
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-import DashboardAppProvider from "@/components/dashboard/DashboardAppProvider";
 import Box from '@mui/material/Box';
+import DashboardAppProvider from "@/components/dashboard/DashboardAppProvider";
+import ToolbarActions from "@/components/dashboard/ToolbarActions";
 
 // Types
 import type { Metadata } from 'next/types';
@@ -68,7 +69,12 @@ export default async function RootLayout(props: Props) {
                 }}
               >
                 <DashboardAppProvider>
-                  <DashboardLayout defaultSidebarCollapsed>
+                  <DashboardLayout 
+                    defaultSidebarCollapsed 
+                    slots={{
+                      toolbarActions: ToolbarActions
+                    }}
+                  >
                     <Box
                       sx={{
                         py: 1,
