@@ -7,7 +7,12 @@
             "latestVideosKey": "Latest Videos",
             "stats": "Stats",
             "backlog": "Backlog",
-            "links": "Links"
+            "links": "Links",
+            "gamesTabs": {
+                "grid": "Games",
+                "list": "Series",
+                "dlc": "DLCS"
+            }
         },
         "languages": {
             "en": "English version of the site",
@@ -40,11 +45,6 @@
     "gamesLibrary": {
         "randomButtonLabel": "Click to unveil a new game !",
         "sortButtonLabel": "Sorts",
-        "tabs": {
-            "grid": "Games",
-            "list": "Series",
-            "dlc": "DLCS"
-        },
         "sortForm": {
             "firstSort": "Sort by",
             "nextSort": "Then by",

@@ -7,7 +7,12 @@
             "latestVideosKey": "Dernières vidéos",
             "stats": "Statistiques",
             "backlog": "En attente",
-            "links": "Liens"
+            "links": "Liens",
+            "gamesTabs": {
+                "grid": "Jeux",
+                "list": "Séries",
+                "dlc": "DLCS"
+            }
         },
         "languages": {
             "en": "Version anglaise du site",
@@ -40,11 +45,6 @@
     "gamesLibrary": {
         "randomButtonLabel": "Cliquez pour découvrir un nouveau jeu !",
         "sortButtonLabel": "Tris",
-        "tabs": {
-            "grid": "Jeux",
-            "list": "Séries",
-            "dlc": "DLCS"
-        },
         "sortLabels": {
             "name": "Nom",
             "releaseDate": "Date de sortie",
