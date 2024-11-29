@@ -22,18 +22,6 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 
-// rest
-import { styled } from '@mui/material/styles';
-
-const IconToggleButton = styled(ToggleButton)({
-    display: 'flex',
-    justifyContent: 'center',
-    width: '100%',
-    '& > *': {
-      marginRight: '8px',
-    },
-});
-
 // https://mui.com/toolpad/core/react-dashboard-layout/#slots
 // https://mui.com/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually
 
@@ -45,7 +33,7 @@ export default function ToolbarActions(){
     const t = useTranslations("toolbar");
 
     const toggleMenu = useCallback(
-        (event: any) => {
+        () => {
             setIsMenuOpen((previousIsMenuOpen) => !previousIsMenuOpen);
         },
         [isMenuOpen]
@@ -82,29 +70,29 @@ export default function ToolbarActions(){
                         fullWidth
                     >
 
-                        <IconToggleButton
+                        <ToggleButton
                             value="light"
                             aria-label={t('modes.light')}
                         >
                             <LightModeIcon fontSize="small" />
                             {t('modes.light')}
-                        </IconToggleButton>
+                        </ToggleButton>
 
-                        <IconToggleButton
+                        <ToggleButton
                             value="system"
                             aria-label={t('modes.system')}
                         >
                             <SettingsBrightnessIcon fontSize="small" />
                             {t('modes.system')}
-                        </IconToggleButton>
+                        </ToggleButton>
 
-                        <IconToggleButton
+                        <ToggleButton
                             value="dark"
                             aria-label={t('modes.dark')}
                         >
                             <DarkModeOutlinedIcon fontSize="small" />
                             {t('modes.dark')}
-                        </IconToggleButton>
+                        </ToggleButton>
 
                     </ToggleButtonGroup>
 
