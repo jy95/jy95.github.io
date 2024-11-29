@@ -25,7 +25,7 @@ export function ThemeProvider({ children, lng }: { children: React.ReactNode, ln
             createTheme({
                 colorSchemes: { light: true, dark: true },
                 cssVariables: {
-                    colorSchemeSelector: 'class'
+                    colorSchemeSelector: 'data-toolpad-color-scheme',
                 }
             }, muiLanguage),
         [muiLanguage],
