@@ -1,0 +1,39 @@
+name: Lighthouse Compare Action
+on: [pull_request]
+jobs:
+
+    getPreviewUrl:
+        runs-on: ubuntu-latest
+        outputs:
+          preview_url: ${{ steps.fetcher.outputs.preview_url }}
+        steps:
+          - uses: actions/checkout@v4
+          - uses: vercel/actions/deploy@v12
+            id: fetcher
+            with:
+              token: ${{ secrets.VERCEL_TOKEN }}
+              org: your-org-name
+              project: your-project-name
+              commit-sha: ${{ github.sha }}
+              wait-for-build: true
+          - run: |
+                PREVIEW_URL=$(npx vercel inspect --token=${{ secrets.VERCEL_TOKEN }} --instance-id=$(npx vercel instances list --token=${{ secrets.VERCEL_TOKEN }} --filter=preview --json | jq -r '.[].instanceId' | head -n 1))
+                echo "::set-output name=preview_url::$PREVIEW_URL"
+
+    lighthouse:
+        needs: getPreviewUrl
+        runs-on: ubuntu-latest
+        env:
+            # Subpaths to investigate
+            SUBPATHS: "/games,games/series,games/dlcs,/planning,/backlog,/tests,/stats,/links"
+        steps:
+          - uses: actions/checkout@v4
+          - name: Construct URLs
+            id: urls
+            run: |
+                URL_LIST=$(echo "${{ env.SUBPATHS }}" | tr ',' '\n' | sed 's/^/${{ needs.getPreviewUrl.outputs.preview_url }}\//g' | tr '\n' ', ')
+                echo "::set-output name=url_list::$URL_LIST"
+          - uses: foo-software/lighthouse-check-action@master
+            with:
+              urls: ${{ steps.urls.outputs.url_list }}
+              prCommentEnabled: true
