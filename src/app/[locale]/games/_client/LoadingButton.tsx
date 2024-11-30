@@ -19,14 +19,13 @@ const LoadingButton = ({ onClick, disabled, loading, children } : LoadingButtonP
   };
 
   return (
-    <Button
+    <Button 
+      variant="outlined" 
       onClick={handleClick}
       disabled={disabled || loading}
-      variant="outlined"
-      style={{
-        margin: '4px',
-        cursor: disabled || loading ? 'not-allowed' : 'pointer',
-        position: 'relative',
+      sx={{
+        margin: 1,
+        position: "relative"
       }}
     >
       {loading && (
