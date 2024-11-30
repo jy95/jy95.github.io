@@ -12,8 +12,8 @@ function KeyNumberSkeleton() {
                 xs: 12
             }}
         >
-            <Paper style={{ padding: 16 }}>
-                <Skeleton variant="text" animation="wave" width="28%" style={{ marginBottom: 16 }} />
+            <Paper sx={{ padding: 16 }}>
+                <Skeleton variant="text" animation="wave" width="28%" sx={{ mb: 16 }} />
                 <Skeleton variant="rectangular" animation="wave" width="100%" height={150} />
             </Paper>
       </Grid>
@@ -28,8 +28,8 @@ function GenresSkeleton() {
                 md: 8
             }}
         >
-            <Paper style={{ padding: 16 }}>
-                <Skeleton variant="text" animation="wave" width="40%" style={{ marginBottom: 16 }} />
+            <Paper sx={{ padding: 16 }}>
+                <Skeleton variant="text" animation="wave" width="40%" sx={{ mb: 16 }} />
                 <Skeleton variant="rectangular" animation="wave" width="100%" height={250} />
             </Paper>
       </Grid>
@@ -44,8 +44,8 @@ function PlatformsSkeleton() {
                 md: 4
             }}
         >
-            <Paper style={{ padding: 16 }}>
-                <Skeleton variant="text" animation="wave" width="40%" style={{ marginBottom: 16 }} />
+            <Paper sx={{ padding: 16 }}>
+                <Skeleton variant="text" animation="wave" width="40%" sx={{ mb: 16 }} />
                 <Skeleton variant="rectangular" animation="wave" width="100%" height={250} />
             </Paper>
       </Grid>

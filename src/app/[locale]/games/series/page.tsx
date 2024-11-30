@@ -59,11 +59,7 @@ function GamesGalleryList() {
                             <Grid
                                 container
                                 spacing={1}
-                                style={
-                                    {
-                                        rowGap: "15px"
-                                    }
-                                }
+                                rowSpacing={1}
                             >
                                 {
                                     serie
