@@ -29,6 +29,11 @@ jobs:
   lighthouse:
     needs: getPreviewUrl
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
+      issues: write
     env:
       # Subpaths to investigate
       SUBPATHS: "/games,/games/series,/games/dlcs,/planning,/backlog,/tests,/stats,/links"
@@ -43,3 +48,4 @@ jobs:
         with:
           urls: ${{ steps.construct_urls.outputs.url_list }}
           prCommentEnabled: true
+          gitHubAccessToken: ${{ secrets.GITHUB_TOKEN }}
