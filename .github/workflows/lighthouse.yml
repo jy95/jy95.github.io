@@ -43,8 +43,11 @@ jobs:
       - name: Construct URLs
         id: construct_urls
         run: |
-          URL_LIST=$(echo "${{ env.SUBPATHS }}" | tr ',' '\n' | sed "s|^|${{ needs.getPreviewUrl.outputs.preview_url }}|g" | tr '\n' ', ')
+          URL_LIST=$(echo "${{ env.SUBPATHS }}" | tr ',' '\n' | sed "s|^|${{ needs.getPreviewUrl.outputs.preview_url }}|g" | tr '\n' ',' | sed 's|,$||')
           echo "url_list=$URL_LIST" >> $GITHUB_OUTPUT
+      - name: Debug URLs
+        run: |
+          echo "Constructed URLs: ${{ steps.construct_urls.outputs.url_list }}"
       - uses: foo-software/lighthouse-check-action@master
         with:
           urls: ${{ steps.construct_urls.outputs.url_list }}
