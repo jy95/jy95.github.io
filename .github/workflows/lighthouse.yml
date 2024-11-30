@@ -39,6 +39,7 @@ jobs:
       SUBPATHS: "/games,/games/series,/games/dlcs,/planning,/backlog,/tests,/stats,/links"
     steps:
       - uses: actions/checkout@v4
+      - run: mkdir -p ${{ github.workspace }}/tmp/artifacts
       - name: Construct URLs
         id: construct_urls
         run: |
@@ -49,3 +50,10 @@ jobs:
           urls: ${{ steps.construct_urls.outputs.url_list }}
           prCommentEnabled: true
           gitHubAccessToken: ${{ secrets.GITHUB_TOKEN }}
+          outputDirectory: ${{ github.workspace }}/tmp/artifacts
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: Lighthouse reports
+          path: ${{ github.workspace }}/tmp/artifacts
+          retention-days: 1
