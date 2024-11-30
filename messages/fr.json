@@ -68,9 +68,6 @@
             "cancelButton": "Annuler",
             "sortButton": "Trier"
         },
-        "snackbarsMessages": {
-            "copiedLink": "Lien de {gameName} copié"
-        },
         "actionsButton": {
             "watchHere": "Regarder {gameName}",
             "watchOnYt": "Regarder {gameName} sur Youtube",

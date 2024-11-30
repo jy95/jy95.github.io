@@ -3,7 +3,6 @@
 // Hooks
 import { useRouter } from 'next/navigation';
 import { useTranslations } from "next-intl";
-import { useSnackbar } from 'notistack';
 
 // Components
 import Fab from '@mui/material/Fab';
@@ -15,7 +14,6 @@ import type { RandomAnswer } from "@/app/api/random/route";
 export default function RandomButton() {
 
     const router = useRouter();
-    const { enqueueSnackbar } = useSnackbar();
     const t = useTranslations("gamesLibrary");
     const errorLabels = useTranslations("error");
 
@@ -27,13 +25,7 @@ export default function RandomButton() {
             const local_path = base_path + data.identifier;
             router.push(`${local_path}`);
         } catch (err) {
-            enqueueSnackbar(
-                errorLabels("title") + " " + errorLabels("retry"),
-                {
-                    variant: "error",
-                    "autoHideDuration": 2500
-                }
-            )
+            alert(errorLabels("title") + " " + errorLabels("retry"));
         }
     }
 

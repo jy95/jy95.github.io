@@ -68,9 +68,6 @@
             "releaseDate": "Release date",
             "duration": "Duration"
         },
-        "snackbarsMessages": {
-            "copiedLink": "Link of {gameName} copied"
-        },
         "actionsButton": {
             "watchHere": "Watch {gameName}",
             "watchOnYt": "Watch {gameName} on Youtube",

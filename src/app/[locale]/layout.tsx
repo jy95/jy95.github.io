@@ -1,7 +1,6 @@
 // Providers
 import { Providers as ReduxProviders } from "@/redux/provider";
 import { ThemeProvider } from "@/providers/ThemeProvider";
-import { SnackbarProvider } from "@/providers/SnackbarProvider"
 
 // Next.js Analytics
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -61,32 +60,24 @@ export default async function RootLayout(props: Props) {
         <ReduxProviders>
           <NextIntlClientProvider locale={resolvedLocale} messages={messages}>
             <ThemeProvider lng={resolvedLocale}>
-              <SnackbarProvider 
-                maxSnack={3}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-              >
-                <DashboardAppProvider>
-                  <DashboardLayout 
-                    defaultSidebarCollapsed 
-                    slots={{
-                      toolbarActions: ToolbarActions
+              <DashboardAppProvider>
+                <DashboardLayout 
+                  defaultSidebarCollapsed 
+                  slots={{
+                    toolbarActions: ToolbarActions
+                  }}
+                >
+                  <Box
+                    sx={{
+                      py: 1,
+                      display: 'flex',
+                      flexDirection: 'column'
                     }}
                   >
-                    <Box
-                      sx={{
-                        py: 1,
-                        display: 'flex',
-                        flexDirection: 'column'
-                      }}
-                    >
-                      {children}
-                    </Box>
-                  </DashboardLayout>
-                </DashboardAppProvider>
-              </SnackbarProvider>
+                    {children}
+                  </Box>
+                </DashboardLayout>
+              </DashboardAppProvider>
             </ThemeProvider>
           </NextIntlClientProvider>
         </ReduxProviders>
