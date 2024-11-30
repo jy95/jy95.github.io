@@ -20,6 +20,15 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         with:
             vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Await for Vercel deployment
+        uses: UnlyEd/github-action-await-vercel@v2.0
+        id: await-vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+          deployment-url: ${{ steps.vercel_preview_url.outputs.preview_url }}
+          timeout: 300
+          poll-interval: 5
       - name: Combine Prefix "https://"
         id: add_prefix
         run: echo "full_url=https://${{ steps.vercel_preview_url.outputs.preview_url }}" >> $GITHUB_OUTPUT
@@ -51,6 +60,7 @@ jobs:
       - uses: foo-software/lighthouse-check-action@master
         with:
           urls: ${{ steps.construct_urls.outputs.url_list }}
+          device: all
           prCommentEnabled: true
           gitHubAccessToken: ${{ secrets.GITHUB_TOKEN }}
           outputDirectory: ${{ github.workspace }}/tmp/artifacts
