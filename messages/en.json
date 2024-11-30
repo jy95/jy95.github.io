@@ -7,13 +7,28 @@
             "latestVideosKey": "Latest Videos",
             "stats": "Stats",
             "backlog": "Backlog",
-            "links": "Links"
-        },
-        "languages": {
-            "en": "English version of the site",
-            "fr": "French version of the site"
+            "links": "Links",
+            "gamesTabs": {
+                "grid": "Games",
+                "list": "Series",
+                "dlc": "DLCS"
+            }
         },
         "description": "Your prime destination for exciting gaming experiences !"
+    },
+    "toolbar": {
+        "settings": "Settings",
+        "modes": {
+            "title": "Mode",
+            "light": "Light",
+            "dark": "Dark",
+            "system": "System"
+        },
+        "languages": {
+            "title": "Language",
+            "en": "English",
+            "fr": "French"
+        }
     },
     "error": {
         "title": "Something went wrong !",
@@ -40,11 +55,6 @@
     "gamesLibrary": {
         "randomButtonLabel": "Click to unveil a new game !",
         "sortButtonLabel": "Sorts",
-        "tabs": {
-            "grid": "Games",
-            "list": "Series",
-            "dlc": "DLCS"
-        },
         "sortForm": {
             "firstSort": "Sort by",
             "nextSort": "Then by",
@@ -57,9 +67,6 @@
             "name": "Name",
             "releaseDate": "Release date",
             "duration": "Duration"
-        },
-        "snackbarsMessages": {
-            "copiedLink": "Link of {gameName} copied"
         },
         "actionsButton": {
             "watchHere": "Watch {gameName}",

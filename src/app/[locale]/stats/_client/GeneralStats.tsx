@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import { useTranslations } from "next-intl";
 
 // MUI component
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid2';
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Accordion from "@mui/material/Accordion";
@@ -168,7 +168,11 @@ export default function GeneralStats ({stats}: Props) {
   const t = useTranslations();
 
   return (
-    <Grid item xs={12} md={12} lg={12}>
+    <Grid 
+      size={{
+        xs: 12
+      }}
+    >
       <Paper
           sx={{
             p: 2,

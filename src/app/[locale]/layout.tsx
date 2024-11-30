@@ -1,7 +1,6 @@
 // Providers
 import { Providers as ReduxProviders } from "@/redux/provider";
 import { ThemeProvider } from "@/providers/ThemeProvider";
-import { SnackbarProvider } from "@/providers/SnackbarProvider"
 
 // Next.js Analytics
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -13,10 +12,10 @@ import {getMessages} from 'next-intl/server';
 import {routing} from '@/i18n/routing';
 
 // components
-import MainRoot from '@/components/Main/MainRoot';
-import Menu from "@/components/Menu/Menu";
-import Header from "@/components/Menu/Header";
-import Box from "@/components/Main/Box";
+import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+import Box from '@mui/material/Box';
+import DashboardAppProvider from "@/components/dashboard/DashboardAppProvider";
+import ToolbarActions from "@/components/dashboard/ToolbarActions";
 
 // Types
 import type { Metadata } from 'next/types';
@@ -61,21 +60,24 @@ export default async function RootLayout(props: Props) {
         <ReduxProviders>
           <NextIntlClientProvider locale={resolvedLocale} messages={messages}>
             <ThemeProvider lng={resolvedLocale}>
-              <SnackbarProvider 
-                maxSnack={3}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-              >
-                <Header />
-                <Box sx={{ display: 'flex' }}>
-                  <Menu />
-                  <MainRoot>
+              <DashboardAppProvider>
+                <DashboardLayout 
+                  defaultSidebarCollapsed 
+                  slots={{
+                    toolbarActions: ToolbarActions
+                  }}
+                >
+                  <Box
+                    sx={{
+                      py: 1,
+                      display: 'flex',
+                      flexDirection: 'column'
+                    }}
+                  >
                     {children}
-                  </MainRoot>
-                </Box>
-              </SnackbarProvider>
+                  </Box>
+                </DashboardLayout>
+              </DashboardAppProvider>
             </ThemeProvider>
           </NextIntlClientProvider>
         </ReduxProviders>

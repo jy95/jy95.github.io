@@ -23,8 +23,10 @@ export function ThemeProvider({ children, lng }: { children: React.ReactNode, ln
     const theme = useMemo(
         () =>
             createTheme({
-                colorSchemes: { dark: true },
-                cssVariables: true
+                colorSchemes: { light: true, dark: true },
+                cssVariables: {
+                    colorSchemeSelector: 'data-toolpad-color-scheme',
+                }
             }, muiLanguage),
         [muiLanguage],
     );

@@ -8,8 +8,6 @@ import type { MouseEventHandler, JSX } from "react";
 // For full screen Dialog 
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-// For snackbars
-import { useSnackbar } from 'notistack';
 import type { CardGame } from "@/redux/sharedDefintion";
 
 // For Dialog
@@ -43,7 +41,6 @@ function CardDialog(props : {
     const router = useRouter();
     const t = useTranslations("gamesLibrary");
     const fullScreen = useMediaQuery( (theme : any) => theme.breakpoints.down('md'));
-    const { enqueueSnackbar } = useSnackbar();
 
     // props
     const {game, contextMenuState: [contextMenuOpen,setContextMenuOpen]} = props;
@@ -91,13 +88,6 @@ function CardDialog(props : {
             onClick: async () => {
                 if (navigator.clipboard !== undefined) {
                     await navigator.clipboard.writeText(gameURL);
-                    enqueueSnackbar(
-                        t("snackbarsMessages.copiedLink", { "gameName": gameTitle }),
-                        {
-                            "variant": "success",
-                            "autoHideDuration": 2500
-                        }
-                    )
                     setContextMenuOpen(false);
                 }
             }

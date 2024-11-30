@@ -1,51 +1,87 @@
 "use client";
 
 // Hooks
-import { useSearchParams } from 'next/navigation'
-import { Suspense } from 'react'
-import dynamic from 'next/dynamic'
+import { useGetGamesQuery } from "@/redux/services/gamesAPI";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { nextPage } from "@/redux/features/gamesSlice";
+import { useTranslations } from 'next-intl';
 
-// Client components
-import GalleryMode from './_client/GalleryMode';
-const GamesGalleryGrid = dynamic(() => import('./_client/GamesGalleryGrid'), { ssr: false })
-const GamesGalleryList = dynamic(() => import('./_client/GamesGalleryList'), { ssr: false })
-const GamesGalleryDlc = dynamic(() => import('./_client/GamesGalleryDLC'), { ssr: false })
+// Style
+import Grid from '@mui/material/Grid2';
+import LoadingButton from './_client/LoadingButton';
 
-const MODES = ["GRID", "LIST", "DLC"] as const;
-type ViewType = typeof MODES[number];
+// Custom
+import CardEntry from "@/components/GamesView/CardEntry";
+import GamesFilters from "./_client/GamesFilters";
 
-// The gallery component
-function GamesView() {
+// Types
+import type { CardGame } from "@/redux/sharedDefintion";
 
-    const searchParams = useSearchParams()
-    const userMode = searchParams.get("mode");
-    const viewMode : ViewType = MODES.includes(userMode as any) ? userMode as ViewType : "GRID";
+export default function GamesGalleryGrid() {
+    return (
+        <div>
+            <GamesFilters />
+            <GamesGalleryGridInner />
+        </div>
+    );
+}
+
+function GamesGalleryGridInner() {
+    
+    // Active filters
+    const activeFilters = useAppSelector((state) => state.games.activeFilters);
+    // Current page
+    const page = useAppSelector((state) => state.games.page);
+    const t = useTranslations('common');
+    const dispatch = useAppDispatch();
+
+    const LIMIT_PAGE = 16;
+
+    // Lazy query setup
+    const { data, isFetching } = useGetGamesQuery(
+        {
+            filters: activeFilters,
+            pageSize : LIMIT_PAGE,
+            page: page
+        }
+    );
+    const allGames = data?.items ?? [];
+
+    const renderRow = (game: CardGame) => (
+        <Grid 
+            key={game.id}
+            size={{
+                xs: 6,
+                md: 4,
+                lg: 1.5
+            }}
+        >
+            <CardEntry game={game}/>
+        </Grid>
+    );
 
     return (
         <>
-            <GalleryMode />
-            <div role="tabpanel" aria-label={"games"} style={{paddingTop: "5px"}}>
-                {(() => {
-                        switch (viewMode) {
-                            case "GRID":
-                                return <GamesGalleryGrid />;
-                            case "LIST":
-                                return <GamesGalleryList />;
-                            case "DLC":
-                                return <GamesGalleryDlc />;
-                        }
-                })()}
-            </div>
+            <Grid 
+                container 
+                spacing={1}
+                rowSpacing={1}
+            >
+                {allGames.map(renderRow)}
+            </Grid>
+            <div style={{
+                justifyContent: "center",
+                display: "flex",
+                marginTop: "15px"
+            }}>
+                <LoadingButton
+                    loading={isFetching}
+                    disabled={ page >= (data?.total_pages || 1) }
+                    onClick={() => dispatch(nextPage())}
+                >
+                    <span>{t('loadMore')}</span>
+                </LoadingButton>
+            </div> 
         </>
-    )
-}
-
-// The gallery component
-export default function GamesPage() {
-    return (
-        // You could have a loading skeleton as the `fallback` too
-        <Suspense>
-          <GamesView />
-        </Suspense>
-    )
+    );
 }

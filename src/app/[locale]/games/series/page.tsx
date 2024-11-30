@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic'
 import { useGetSeriesQuery } from "@/redux/services/seriesAPI";
 
 // MUI component
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid2';
 import Skeleton from '@mui/material/Skeleton';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -59,11 +59,7 @@ function GamesGalleryList() {
                             <Grid
                                 container
                                 spacing={1}
-                                style={
-                                    {
-                                        rowGap: "15px"
-                                    }
-                                }
+                                rowSpacing={1}
                             >
                                 {
                                     serie
@@ -71,10 +67,11 @@ function GamesGalleryList() {
                                         .map(game => 
                                                 <Grid 
                                                     key={game.id}
-                                                    item 
-                                                    xs={6}
-                                                    md={4}
-                                                    lg={1.5}
+                                                    size={{
+                                                        xs: 6,
+                                                        md: 4,
+                                                        lg: 1.5
+                                                    }}
                                                 >
                                                     <CardEntry game={game}/>
                                                 </Grid>
