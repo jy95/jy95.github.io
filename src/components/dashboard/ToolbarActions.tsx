@@ -2,7 +2,7 @@
 
 // Hooks
 import dynamic from 'next/dynamic'
-import { useState, useCallback, Suspense } from "react";
+import { useState, Suspense } from "react";
 import { useColorScheme } from '@mui/material/styles';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
@@ -33,12 +33,7 @@ export default function ToolbarActions(){
     const pathname = usePathname();
     const t = useTranslations("toolbar");
 
-    const toggleMenu = useCallback(
-        () => {
-            setIsMenuOpen((previousIsMenuOpen) => !previousIsMenuOpen);
-        },
-        [isMenuOpen]
-    );
+    const toggleMenu = () => setIsMenuOpen((previousIsMenuOpen) => !previousIsMenuOpen);
 
     const handleChangeThemeMode = (event : any, paletteMode : any) => {
         if (paletteMode === null) {
