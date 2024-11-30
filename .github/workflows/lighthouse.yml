@@ -6,20 +6,25 @@ jobs:
   getPreviewUrl:
     runs-on: ubuntu-latest
     outputs:
-      preview_url: ${{ steps.branch-preview-url.outputs.url }}
+      preview_url: ${{ steps.add_prefix.outputs.full_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Generate branch preview URL
-        id: branch-preview-url
-        uses: PenfoldTechnology/vercel-branch-preview-url-action@v2.0.0
+# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#masking-a-value-in-a-log
+# https://kinsta.com/blog/github-actions-secret/
+      - name: Add Mask on vercel token
+        run: echo "::add-mask::${{ secrets.VERCEL_TOKEN }}"
+      - name: Get Vercel Preview URL
+        id: vercel_preview_url
+        uses: zentered/vercel-preview-url@v1.1.9
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         with:
-          git-branch-name: ${{ github.head_ref || github.ref_name }}
-          vercel-project-name: gpfr
-          vercel-team-id: jy95s-projects
+            vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Combine Prefix "https://"
+        id: add_prefix
+        run: echo "full_url=https://${{ steps.vercel_preview_url.outputs.preview_url }}" >> $GITHUB_OUTPUT
       - name: Print URL
-        run: echo "${{ steps.branch-preview-url.outputs.url }}"
-      #- name: Wait for preview url to be ready
-        
+        run: echo "${{ steps.add_prefix.outputs.full_url }}"
 
   lighthouse:
     needs: getPreviewUrl
