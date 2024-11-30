@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
+
+// Types
+import type { ReactNode } from "react";
 
 interface LoadingButtonProps {
     onClick: () => void;
     disabled?: boolean;
     loading?: boolean;
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 const LoadingButton = ({ onClick, disabled, loading, children } : LoadingButtonProps) => {
