@@ -6,22 +6,20 @@ jobs:
   getPreviewUrl:
     runs-on: ubuntu-latest
     outputs:
-      preview_url: ${{ steps.fetcher.outputs.preview_url }}
+      preview_url: ${{ steps.branch-preview-url.outputs.url }}
     steps:
       - uses: actions/checkout@v4
-      - uses: vercel/actions/deploy@v12
-        id: fetcher
+      - name: Generate branch preview URL
+        id: branch-preview-url
+        uses: PenfoldTechnology/vercel-branch-preview-url-action@v2.0.0
         with:
-          token: ${{ secrets.VERCEL_TOKEN }}
-          org: your-org-name
-          project: your-project-name
-          commit-sha: ${{ github.sha }}
-          wait-for-build: true
-      - name: Fetch Preview URL
-        id: fetch_preview
-        run: |
-          PREVIEW_URL=$(npx vercel inspect --token=${{ secrets.VERCEL_TOKEN }} --instance-id=$(npx vercel instances list --token=${{ secrets.VERCEL_TOKEN }} --filter=preview --json | jq -r '.[].instanceId' | head -n 1))
-          echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+          git-branch-name: ${{ github.head_ref || github.ref_name }}
+          vercel-project-name: gpfr
+          vercel-team-id: jy95s-projects
+      - name: Print URL
+        run: echo "${{ steps.branch-preview-url.outputs.url }}"
+      #- name: Wait for preview url to be ready
+        
 
   lighthouse:
     needs: getPreviewUrl
