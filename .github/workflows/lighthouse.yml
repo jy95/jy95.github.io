@@ -1,0 +1,72 @@
+name: Lighthouse Compare Action
+on:
+  pull_request:
+
+jobs:
+  getPreviewUrl:
+    runs-on: ubuntu-latest
+    outputs:
+      preview_url: ${{ steps.add_prefix.outputs.full_url }}
+    steps:
+      - uses: actions/checkout@v4
+# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#masking-a-value-in-a-log
+# https://kinsta.com/blog/github-actions-secret/
+      - name: Add Mask on vercel token
+        run: echo "::add-mask::${{ secrets.VERCEL_TOKEN }}"
+      - name: Get Vercel Preview URL
+        id: vercel_preview_url
+        uses: zentered/vercel-preview-url@v1.1.9
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+            vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Await for Vercel deployment
+        uses: UnlyEd/github-action-await-vercel@v2.0
+        id: await-vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+          deployment-url: ${{ steps.vercel_preview_url.outputs.preview_url }}
+          timeout: 300
+          poll-interval: 5
+      - name: Combine Prefix "https://"
+        id: add_prefix
+        run: echo "full_url=https://${{ steps.vercel_preview_url.outputs.preview_url }}" >> $GITHUB_OUTPUT
+      - name: Print URL
+        run: echo "${{ steps.add_prefix.outputs.full_url }}"
+
+  lighthouse:
+    needs: getPreviewUrl
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
+      issues: write
+    env:
+      # Subpaths to investigate
+      SUBPATHS: "/games,/games/series,/games/dlcs,/planning,/backlog,/tests,/stats,/links"
+    steps:
+      - uses: actions/checkout@v4
+      - run: mkdir -p ${{ github.workspace }}/tmp/artifacts
+      - name: Construct URLs
+        id: construct_urls
+        run: |
+          URL_LIST=$(echo "${{ env.SUBPATHS }}" | tr ',' '\n' | sed "s|^|${{ needs.getPreviewUrl.outputs.preview_url }}|g" | tr '\n' ',' | sed 's|,$||')
+          echo "url_list=$URL_LIST" >> $GITHUB_OUTPUT
+      - name: Debug URLs
+        run: |
+          echo "Constructed URLs: ${{ steps.construct_urls.outputs.url_list }}"
+      - uses: foo-software/lighthouse-check-action@master
+        with:
+          urls: ${{ steps.construct_urls.outputs.url_list }}
+          device: all
+          prCommentEnabled: true
+          gitHubAccessToken: ${{ secrets.GITHUB_TOKEN }}
+          outputDirectory: ${{ github.workspace }}/tmp/artifacts
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: Lighthouse reports
+          path: ${{ github.workspace }}/tmp/artifacts
+          retention-days: 1
