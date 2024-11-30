@@ -29,16 +29,7 @@ const LoadingButton = ({ onClick, disabled, loading, children } : LoadingButtonP
       }}
     >
       {loading && (
-        <CircularProgress
-          size={24}
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            marginTop: -12,
-            marginLeft: -12,
-          }}
-        />
+        <CircularProgress size={24}/>
       )}
       {loading ? 'Loading...' : children}
     </Button>
