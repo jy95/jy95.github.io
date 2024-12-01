@@ -33,7 +33,7 @@ export default function BacklogViewer() {
             headerAlign: 'center',
             renderCell: ({ value }) => (
               <Tooltip title={value} aria-label={value}>
-                <div>{value}</div>
+                {value}
               </Tooltip>
             ),
             width: 270
@@ -49,7 +49,7 @@ export default function BacklogViewer() {
             headerAlign: 'center',
             renderCell: ({ value }) => (
               <Tooltip title={value || ""} aria-label={value || ""}>
-                <div>{value || ""}</div>
+                {value || ""}
               </Tooltip>
             ),
             width: 270

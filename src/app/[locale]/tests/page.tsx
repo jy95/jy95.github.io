@@ -25,31 +25,29 @@ export default function TestsPage() {
     }
 
     return (
-        <div>    
-            <Grid
-                container
-                spacing={1}
-                rowSpacing={1}
-            >
-                {
-                    data
-                        .items
-                        .map(game => 
-                                <Grid 
-                                    key={game.id}
-                                    size={{
-                                        xs: 12,
-                                        sm: 6,
-                                        md: 3,
-                                        // 5 items for this screen size
-                                        lg: 2.4
-                                    }}
-                                >
-                                    <CardEntry game={game}/>
-                                </Grid>
-                        )
-                }
-            </Grid>
-        </div>
+        <Grid
+            container
+            spacing={1}
+            rowSpacing={1}
+        >
+            {
+                data
+                    .items
+                    .map(game => 
+                            <Grid 
+                                key={game.id}
+                                size={{
+                                    xs: 12,
+                                    sm: 6,
+                                    md: 3,
+                                    // 5 items for this screen size
+                                    lg: 2.4
+                                }}
+                            >
+                                <CardEntry game={game}/>
+                            </Grid>
+                    )
+            }
+        </Grid>
     )
 }
