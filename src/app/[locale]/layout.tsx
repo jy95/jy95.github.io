@@ -1,6 +1,6 @@
 // Providers
-import { Providers as ReduxProviders } from "@/redux/provider";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import StoreProvider from "@/providers/StoreProvider";
 
 // Next.js Analytics
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -57,7 +57,7 @@ export default async function RootLayout(props: Props) {
   return (
     <html lang={resolvedLocale}>
       <body>
-        <ReduxProviders>
+        <StoreProvider>
           <NextIntlClientProvider locale={resolvedLocale} messages={messages}>
             <ThemeProvider lng={resolvedLocale}>
               <DashboardAppProvider>
@@ -80,7 +80,7 @@ export default async function RootLayout(props: Props) {
               </DashboardAppProvider>
             </ThemeProvider>
           </NextIntlClientProvider>
-        </ReduxProviders>
+        </StoreProvider>
         <SpeedInsights />
         <Analytics />
       </body>
