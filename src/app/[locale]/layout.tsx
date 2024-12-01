@@ -19,6 +19,7 @@ import ToolbarActions from "@/components/dashboard/ToolbarActions";
 
 // Types
 import type { Metadata } from 'next/types';
+import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: 'GamesPassionFR',
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
 }
 
 type Props = {
-  children: React.ReactNode,
+  children: ReactNode,
   params: Promise<{
     locale: "en" | "fr"
   }>

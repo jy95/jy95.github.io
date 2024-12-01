@@ -5,8 +5,9 @@ import { createTheme, ThemeProvider as MUIThemeProvider } from '@mui/material/st
 import { useMemo } from 'react';
 import { useAsyncMemo } from '@/hooks/useAsyncMemo';
 
+import type { ReactNode } from "react";
 
-export function ThemeProvider({ children, lng }: { children: React.ReactNode, lng : string }) {
+export function ThemeProvider({ children, lng }: { children: ReactNode, lng : string }) {
 
     // Prepare theme for possible darkmode
     const muiLanguage = useAsyncMemo(async () => {
