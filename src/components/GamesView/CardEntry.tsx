@@ -58,7 +58,6 @@ function CardEntry(props : {
                         <Image 
                             fill
                             src={game.imagePath}
-                            sizes={game.sizes ? game.sizes : "100vw"}
                             alt={gameTitle}
                             objectFit="fill"
                         />

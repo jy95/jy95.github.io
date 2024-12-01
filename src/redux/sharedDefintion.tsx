@@ -39,8 +39,6 @@ export type YTUrlType = 'PLAYLIST' | 'VIDEO';
 interface CardEntry {
     /** @description Link to the picture for the card component */
     imagePath: string;
-    /** @description Responsive sizes */
-    sizes?: string;
     /** @description Link to Youtube */
     url: string;
     /** @description Type of Youtube link */

@@ -9,13 +9,6 @@ import type {
     YTUrlType,
 } from "@/redux/sharedDefintion";
 
-// Extract criteria from request into something useful for me
-const SIZES = [
-    "(max-width: 600px) 50vw",  // Mobile view (2 entries per row)
-    "(max-width: 1280px) 25vw", // Tablet view (4 entries per row)
-    "12.50vw"                   // Desktop view (8 entries per row)
-];
-
 // Types
 type gamesFilters = {
     platform?: number,
@@ -147,7 +140,6 @@ function enhanceGameItem(game: rawEntry): CardGame {
         ...game,
         id,
         imagePath: `/covers/${id}/${game.coverFile ?? "cover.webp"}`,
-        sizes: SIZES.join(", "),
         url: base_url,
         url_type: ("playlistId" in game) ? "PLAYLIST" : "VIDEO" as YTUrlType
     };
