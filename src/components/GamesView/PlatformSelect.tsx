@@ -10,9 +10,6 @@ import { useGetPlatformsQuery } from "@/redux/services/platformsAPI";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from '@mui/material/TextField';
 
-// icons
-import RenderPlatformIcon from "@/components/GamesView/PlatformIcons";
-
 import type { Platform_Entry } from "@/app/api/platforms/route";
 
 function PlatformSelect() {
@@ -35,7 +32,6 @@ function PlatformSelect() {
             renderInput={(params) => <TextField {...params} label={t("platform") as string} />}
             renderOption={(props, option) => (
                 <li {...props} key={option.name}>
-                    <RenderPlatformIcon identifier={option.id} label={option.name} />
                     {option.name}
                 </li>
             )}
