@@ -69,11 +69,10 @@ function GamesGalleryGridInner() {
             >
                 {allGames.map(renderRow)}
             </Grid>
-            <div style={{
-                justifyContent: "center",
-                display: "flex",
-                marginTop: "15px"
-            }}>
+            <Grid 
+                container 
+                justifyContent="center"
+            >
                 <LoadingButton
                     loading={isFetching}
                     disabled={ page >= (data?.total_pages || 1) }
@@ -81,7 +80,7 @@ function GamesGalleryGridInner() {
                 >
                     <span>{t('loadMore')}</span>
                 </LoadingButton>
-            </div> 
+            </Grid>
         </>
     );
 }
