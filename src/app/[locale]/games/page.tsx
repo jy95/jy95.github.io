@@ -19,10 +19,10 @@ import type { CardGame } from "@/redux/sharedDefintion";
 
 export default function GamesGalleryGrid() {
     return (
-        <div>
+        <>
             <GamesFilters />
             <GamesGalleryGridInner />
-        </div>
+        </>
     );
 }
 
