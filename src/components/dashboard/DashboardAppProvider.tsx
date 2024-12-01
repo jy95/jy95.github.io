@@ -18,11 +18,12 @@ import ExtensionIcon from '@mui/icons-material/Extension';
 
 // Types
 import type { Navigation } from '@toolpad/core/AppProvider';
+import type { ReactNode } from "react";
 
 export default function DashboardAppProvider({
     children,
   }: {
-    children: React.ReactNode
+    children: ReactNode
   }) {
 
     // Fetch labels
