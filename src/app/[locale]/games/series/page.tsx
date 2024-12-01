@@ -44,7 +44,7 @@ function GamesGalleryList() {
     }
 
     return (
-        <div>
+        <>
             {
                 data.map(serie => 
                     <Accordion key={serie.name}>
@@ -82,7 +82,7 @@ function GamesGalleryList() {
                     </Accordion>
                 )
             }
-        </div>
+        </>
     )
 }
 
