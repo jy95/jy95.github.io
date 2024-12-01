@@ -43,15 +43,6 @@ export async function GET(request: Request) {
     });
 }
 
-const SIZES = [
-    // Mobile view (small) : 1 entry per row 
-    "(max-width: 600px) 100vw",
-    // Mobile view : 2 entry per row 
-    "(max-width: 600px) 100vw",
-    // (Default size) : 4 entries per row 
-    "25vw"
-]
-
 // Return an enhanced payload for a single game
 function enhanceGameItem(game: rawEntry): CardGame {
 
@@ -65,7 +56,6 @@ function enhanceGameItem(game: rawEntry): CardGame {
     return Object.assign({}, game, {
         id,
         imagePath: `/testscovers/${id}/${ game?.coverFile ?? "cover.webp" }`,
-        sizes: SIZES.join(", "),
         url: base_url,
         url_type: ("playlistId" in game) ? "PLAYLIST" : "VIDEO" as YTUrlType
     });

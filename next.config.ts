@@ -4,7 +4,6 @@ const withNextIntl = createNextIntlPlugin();
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-    /* config options here */
     redirects: async () => {
         return [
             {
@@ -13,6 +12,11 @@ const nextConfig: NextConfig = {
                 permanent: false
             }
         ]
+    },
+    images: {
+        // https://nextjs.org/docs/app/api-reference/components/image#devicesizes
+        // https://mui.com/material-ui/customization/breakpoints/
+        deviceSizes: [600, 900, 1200]
     }
   }
    
