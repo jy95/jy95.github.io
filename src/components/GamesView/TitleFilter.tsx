@@ -12,6 +12,9 @@ from "@/redux/features/gamesSlice";
 // React Material UI
 import TextField from '@mui/material/TextField';
 
+// Types
+import type { ChangeEvent } from "react";
+
 function TitleFilter() {
 
     const t = useTranslations("gamesLibrary.filtersLabels")
@@ -26,7 +29,7 @@ function TitleFilter() {
             label={t("title")}
             fullWidth
             value={title}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 dispatch(filterByTitle(event.target.value));
             }}
         />
