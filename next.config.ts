@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
     images: {
         // https://nextjs.org/docs/app/api-reference/components/image#devicesizes
         // https://mui.com/material-ui/customization/breakpoints/
-        deviceSizes: [600, 900, 1200, 1536]
+        deviceSizes: [600, 900, 1200]
     }
   }
    
