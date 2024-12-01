@@ -2,6 +2,10 @@ name: Lighthouse Compare Action
 on:
   pull_request:
 
+env:
+  # Subpaths to investigate
+  SUBPATHS: "/games,/games/series,/games/dlcs,/planning,/backlog,/tests,/stats,/links"
+
 jobs:
   getPreviewUrl:
     runs-on: ubuntu-latest
@@ -35,7 +39,7 @@ jobs:
       - name: Print URL
         run: echo "${{ steps.add_prefix.outputs.full_url }}"
 
-  lighthouse:
+  lighthouse_mobile:
     needs: getPreviewUrl
     runs-on: ubuntu-latest
     permissions:
@@ -43,9 +47,6 @@ jobs:
       contents: write
       pull-requests: write
       issues: write
-    env:
-      # Subpaths to investigate
-      SUBPATHS: "/games,/games/series,/games/dlcs,/planning,/backlog,/tests,/stats,/links"
     steps:
       - uses: actions/checkout@v4
       - run: mkdir -p ${{ github.workspace }}/tmp/artifacts
@@ -60,13 +61,46 @@ jobs:
       - uses: foo-software/lighthouse-check-action@master
         with:
           urls: ${{ steps.construct_urls.outputs.url_list }}
-          device: all
+          device: mobile
           prCommentEnabled: true
           gitHubAccessToken: ${{ secrets.GITHUB_TOKEN }}
           outputDirectory: ${{ github.workspace }}/tmp/artifacts
       - name: Upload artifacts
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: Lighthouse reports
+          name: Lighthouse mobile reports
+          path: ${{ github.workspace }}/tmp/artifacts
+          retention-days: 1
+
+  lighthouse_desktop:
+    needs: getPreviewUrl
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - run: mkdir -p ${{ github.workspace }}/tmp/artifacts
+      - name: Construct URLs
+        id: construct_urls
+        run: |
+          URL_LIST=$(echo "${{ env.SUBPATHS }}" | tr ',' '\n' | sed "s|^|${{ needs.getPreviewUrl.outputs.preview_url }}|g" | tr '\n' ',' | sed 's|,$||')
+          echo "url_list=$URL_LIST" >> $GITHUB_OUTPUT
+      - name: Debug URLs
+        run: |
+          echo "Constructed URLs: ${{ steps.construct_urls.outputs.url_list }}"
+      - uses: foo-software/lighthouse-check-action@master
+        with:
+          urls: ${{ steps.construct_urls.outputs.url_list }}
+          device: desktop
+          prCommentEnabled: true
+          gitHubAccessToken: ${{ secrets.GITHUB_TOKEN }}
+          outputDirectory: ${{ github.workspace }}/tmp/artifacts
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: Lighthouse desktop reports
           path: ${{ github.workspace }}/tmp/artifacts
           retention-days: 1
