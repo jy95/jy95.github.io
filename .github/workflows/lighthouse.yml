@@ -1,9 +1,11 @@
 name: Lighthouse Compare Action
 on:
   pull_request:
+    branches-ignore:
+      - "dependabot/**"
 
 jobs:
-  
+
   getPreviewUrl:
     runs-on: ubuntu-latest
     outputs:
