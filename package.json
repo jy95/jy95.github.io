@@ -52,5 +52,14 @@
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "react-is": "rc"
-  }
+  },
+  "browserslist": [
+    ">0.3%",
+    "edge >= 121",
+    "firefox >= 115",
+    "chrome >= 109",
+    "safari >= 15.4",
+    "ios_saf >= 15.4",
+    "not dead"
+  ]
 }
