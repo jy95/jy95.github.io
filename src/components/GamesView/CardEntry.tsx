@@ -60,7 +60,7 @@ function CardEntry(props : {
                             src={game.imagePath}
                             alt={gameTitle}
                             objectFit="fill"
-                            sizes="(max-width: 600px) 45vw, (max-width: 960px) 30vw, 15vw"
+                            sizes="(max-width: 600px) 45vw, (max-width: 960px) 30vw, 12.5vw"
                         />
                     </div>
                 </CardMedia>
