@@ -1,5 +1,5 @@
 {
-    "header": {
+    "dashboard": {
         "menuEntries": {
             "gamesKey": "Games",
             "planningKey": "Calendar",
@@ -14,25 +14,20 @@
                 "dlc": "DLCS"
             }
         },
-        "description": "Your prime destination for exciting gaming experiences !"
-    },
-    "toolbar": {
-        "settings": "Settings",
-        "modes": {
-            "title": "Mode",
-            "light": "Light",
-            "dark": "Dark",
-            "system": "System"
-        },
-        "languages": {
-            "title": "Language",
-            "en": "English",
-            "fr": "French"
+        "toolbar": {
+            "settings": "Settings",
+            "modes": {
+                "title": "Mode",
+                "light": "Light",
+                "dark": "Dark",
+                "system": "System"
+            },
+            "languages": {
+                "title": "Language",
+                "en": "English",
+                "fr": "French"
+            }
         }
-    },
-    "error": {
-        "title": "Something went wrong !",
-        "retry": "Try Again"
     },
     "notFound": {
         "title": "We couldn't find that page",

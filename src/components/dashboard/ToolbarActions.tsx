@@ -4,7 +4,6 @@
 import dynamic from 'next/dynamic'
 import { useState, Suspense } from "react";
 import { useColorScheme } from '@mui/material/styles';
-import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
 
 // Components
@@ -26,12 +25,23 @@ const SettingsBrightnessIcon = dynamic(() => import('@mui/icons-material/Setting
 // https://mui.com/toolpad/core/react-dashboard-layout/#slots
 // https://mui.com/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually
 
-export default function ToolbarActions(){
+// Labels
+type Props = {
+    settingsLabel: string,
+    modeTitle: string,
+    lightLabel: string,
+    darkLabel: string,
+    systemLabel: string,
+    languageTitle: string,
+    frenchLabel: string,
+    englishLabel: string
+}
+
+export default function ToolbarActions(props: Props){
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { mode, setMode } = useColorScheme();
     const pathname = usePathname();
-    const t = useTranslations("toolbar");
 
     const toggleMenu = () => setIsMenuOpen((previousIsMenuOpen) => !previousIsMenuOpen);
 
@@ -44,7 +54,7 @@ export default function ToolbarActions(){
 
     return (
         <>
-            <IconButton aria-label={t("settings")} onClick={toggleMenu}>
+            <IconButton aria-label={props.settingsLabel} onClick={toggleMenu}>
                 <SettingsIcon />
             </IconButton>
             <Suspense fallback={null}>
@@ -56,7 +66,7 @@ export default function ToolbarActions(){
                     <Box sx={{ pl: 2, pr: 2, py: 10 }}>
 
                         <Typography variant="body1" gutterBottom id="settings-mode">
-                            {t("modes.title")}
+                            {props.modeTitle}
                         </Typography>
                         <ToggleButtonGroup
                             exclusive
@@ -69,39 +79,39 @@ export default function ToolbarActions(){
 
                             <ToggleButton
                                 value="light"
-                                aria-label={t('modes.light')}
+                                aria-label={props.lightLabel}
                             >
                                 <LightModeIcon fontSize="small" />
-                                {t('modes.light')}
+                                {props.lightLabel}
                             </ToggleButton>
 
                             <ToggleButton
                                 value="system"
-                                aria-label={t('modes.system')}
+                                aria-label={props.systemLabel}
                             >
                                 <SettingsBrightnessIcon fontSize="small" />
-                                {t('modes.system')}
+                                {props.systemLabel}
                             </ToggleButton>
 
                             <ToggleButton
                                 value="dark"
-                                aria-label={t('modes.dark')}
+                                aria-label={props.darkLabel}
                             >
                                 <DarkModeOutlinedIcon fontSize="small" />
-                                {t('modes.dark')}
+                                {props.darkLabel}
                             </ToggleButton>
 
                         </ToggleButtonGroup>
 
                         <Typography variant="body1" gutterBottom id="settings-language">
-                            {t("languages.title")}
+                            {props.languageTitle}
                         </Typography>
-                        <ButtonGroup variant="outlined" aria-label={t("languages.title")}>
+                        <ButtonGroup variant="outlined" aria-label={props.languageTitle}>
                             <Link href={pathname} locale={"fr"}>
-                                <Button>{t("languages.fr")}</Button>
+                                <Button>{props.frenchLabel}</Button>
                             </Link>
                             <Link href={pathname} locale={"en"}>
-                                <Button>{t("languages.en")}</Button>
+                                <Button>{props.englishLabel}</Button>
                             </Link>
                         </ButtonGroup>
                     </Box>

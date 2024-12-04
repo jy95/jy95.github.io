@@ -3,81 +3,43 @@ import { AppProvider } from '@toolpad/core/nextjs';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 // Hooks
+import {setRequestLocale} from 'next-intl/server';
 import {useTranslations} from 'next-intl';
 
-// Icons
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import ScheduleIcon from '@mui/icons-material/Schedule';
-import ScienceIcon from '@mui/icons-material/Science';
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
-import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
-import LinkIcon from '@mui/icons-material/Link';
-import AppsIcon from '@mui/icons-material/Apps';
-import ListIcon from '@mui/icons-material/List';
-import ExtensionIcon from '@mui/icons-material/Extension';
+// components
+import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+import ToolbarActions from "@/components/dashboard/ToolbarActions";
+
+type Props = {
+    children: ReactNode,
+    locale: "en" | "fr"
+}
+
+import NavigationMenu from "./MenuEntries";
 
 // Types
-import type { Navigation } from '@toolpad/core/AppProvider';
 import type { ReactNode } from "react";
 
-export default function DashboardAppProvider({
-    children,
-  }: {
-    children: ReactNode
-  }) {
+export default function DashboardAppProvider({children, locale} : Props) {
+
+    // Enable static rendering
+    setRequestLocale(locale);
 
     // Fetch labels
-    const t = useTranslations('header.menuEntries');
+    const t = useTranslations('dashboard');
 
     // Generate navigation
-    const NAVIGATION: Navigation = [
-        {
-            icon: <SportsEsportsIcon />,
-            title: t("gamesKey"),
-            segment: "games",
-            children: [
-                {
-                    icon: <AppsIcon />,
-                    title: t("gamesTabs.grid")
-                },
-                {
-                    segment: "series",
-                    icon: <ListIcon />,
-                    title: t("gamesTabs.list")
-                },
-                {
-                    segment: "dlcs",
-                    icon: <ExtensionIcon />,
-                    title: t("gamesTabs.dlc")
-                }
-            ]
-        },
-        {
-            icon: <ScheduleIcon />,
-            title: t("planningKey"),
-            segment: "planning"
-        },
-        {
-            icon: <HourglassEmptyIcon />,
-            title: t("backlog"),
-            segment: "backlog"
-        },
-        {
-            icon: <ScienceIcon />,
-            title: t("testsKey"),
-            segment: "tests"
-        },
-        {
-            icon: <QueryStatsIcon />,
-            title: t("stats"),
-            segment: "stats"
-        },
-        {
-            icon: <LinkIcon />,
-            title: t("links"),
-            segment: "links"
-        },
-    ];
+    const NAVIGATION = NavigationMenu({
+        backlog: t("menuEntries.backlog"),
+        dlcsView: t("menuEntries.gamesTabs.dlc"),
+        gamesCategoy: t("menuEntries.gamesKey"),
+        gamesView: t("menuEntries.gamesTabs.grid"),
+        links: t("menuEntries.links"),
+        planned: t("menuEntries.planningKey"),
+        seriesView: t("menuEntries.gamesTabs.list"),
+        stats: t("menuEntries.stats"),
+        tests: t("menuEntries.testsKey")
+    });
 
     return (
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
@@ -88,7 +50,27 @@ export default function DashboardAppProvider({
                     logo: <>&nbsp;</>
                 }}
             >
+              <DashboardLayout 
+                defaultSidebarCollapsed 
+                slots={{
+                    // @ts-ignore Type not accurate, will report it to MUI later
+                    toolbarActions: ToolbarActions
+                }}
+                slotProps={{
+                    toolbarActions: {
+                        settingsLabel: t("toolbar.settings"),
+                        darkLabel: t("toolbar.modes.dark"),
+                        englishLabel: t("toolbar.languages.en"),
+                        frenchLabel: t("toolbar.languages.fr"),
+                        languageTitle: t("toolbar.languages.title"),
+                        lightLabel: t("toolbar.modes.light"),
+                        modeTitle: t("toolbar.modes.title"),
+                        systemLabel: t("toolbar.modes.system")
+                    }
+                }}
+              >
                 {children}
+              </DashboardLayout>
             </AppProvider>
         </AppRouterCacheProvider>
     );

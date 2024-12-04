@@ -1,7 +1,6 @@
 'use client'; // Error components must be Client Components
 
 // Hooks
-import {useTranslations} from 'next-intl';
 import { useEffect } from 'react'
 
 // Components
@@ -17,8 +16,6 @@ export default function Error({
     reset: () => void
 }) {
   
-    const t = useTranslations('error');
- 
     useEffect(() => {
         // Log the error to an error reporting service
         console.error(error)
@@ -33,8 +30,8 @@ export default function Error({
                 justifyContent: "center",
                 height: "80vh"
             }}>
-            <Typography variant="h4" gutterBottom>{t('title')}</Typography>
-            <Button variant="contained" color="primary" onClick={reset}>{t('retry')}</Button>
+            <Typography variant="h4" gutterBottom>{"Something went wrong !"}</Typography>
+            <Button variant="contained" color="primary" onClick={reset}>{"Try Again"}</Button>
         </Box>
     );
 }

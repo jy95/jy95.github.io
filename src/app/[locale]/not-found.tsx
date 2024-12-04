@@ -1,8 +1,7 @@
-"use client";
-
 // https://next-intl-docs.vercel.app/docs/environments/error-files#not-foundjs
 
 // Hooks
+import {setRequestLocale} from 'next-intl/server';
 import {useTranslations} from 'next-intl';
 
 // https://next-intl-docs.vercel.app/docs/routing/navigation
@@ -13,8 +12,18 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+type Props = {
+    params: Promise<{
+      locale: "en" | "fr"
+    }>
+  }
 
-export default function NotFoundPage() {
+export default async function NotFoundPage({ params }: Props) {
+
+    const locale = (await params).locale;
+
+    // Enable static rendering
+    setRequestLocale(locale);
 
     const t = useTranslations('notFound');
 
