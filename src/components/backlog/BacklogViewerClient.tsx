@@ -4,29 +4,26 @@
 import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
 
 // Redux
-import { useGetPlanningQuery } from "@/redux/services/planningAPI";
+import { useGetBacklogQuery } from "@/redux/services/backlogAPI";
 
-// Material UI
+// Components
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import generateColumns from "./tableColumns";
 
-// columns
-import generateColumns from "@/components/planning/tableColumns";
+// Types
+import type { Props as PropsTable } from "./tableColumns";
+type Props = {} & PropsTable;
 
-import type { Props as PropsColumns } from "@/components/planning/tableColumns";
-
-type Props = {} & PropsColumns;
-
-export default function PlanningViewer(props: Props) {
+export default function BacklogViewerClient(props : Props) {
 
     // Using a query hook automatically fetches data and returns query values
-
-    const { data, error, isLoading } = useGetPlanningQuery();
+    const { data, error, isLoading } = useGetBacklogQuery();
     const customLocaleText = useMuiXDataGridText();
 
     if (error) {
         return <>Something bad happened</>
     }
-    
+
     const columns = generateColumns(props);
 
     return (
@@ -48,15 +45,15 @@ export default function PlanningViewer(props: Props) {
             sortingOrder={['asc', 'desc']}
             initialState={{
                 sorting: {
-                    sortModel: [{ field: 'releaseDate', sort: 'asc' }],
+                    sortModel: [{ field: 'title', sort: 'asc' }],
                 },
                 columns: {
                     columnVisibilityModel: {
-                        // Hide columns endDate, the other columns will remain visible
-                        endDate: false
+                        // Hide columns notes, the other columns will remain visible
+                        notes: false
                     }
                 }
             }}
         />
-    )
+    );
 }
