@@ -29,10 +29,6 @@
             }
         }
     },
-    "notFound": {
-        "title": "We couldn't find that page",
-        "goGome": "Return home"
-    },
     "common": {
         "reload": "Reload",
         "loadMore": "Load more",

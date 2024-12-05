@@ -29,10 +29,6 @@
             }
         }
     },
-    "notFound": {
-        "title": "Cette page n’existe pas (plus)",
-        "goGome": "Retour à l'accueil"
-    },
     "common": {
         "reload": "Recharger",
         "loadMore": "Charger plus",
