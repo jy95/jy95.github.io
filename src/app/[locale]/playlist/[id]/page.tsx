@@ -17,7 +17,8 @@ import RandomButton from '@/components/GamesView/RandomButton';
 
 export default async function PlaylistPage({ params } : Props) {
 
-    const id = (await params).id
+    const parameters = await params;
+    const { id } = parameters
     const identifier = id as string;
 
     return (

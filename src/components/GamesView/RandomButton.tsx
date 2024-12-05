@@ -15,18 +15,13 @@ export default function RandomButton() {
 
     const router = useRouter();
     const t = useTranslations("gamesLibrary");
-    const errorLabels = useTranslations("error");
 
     const fetchRandomGame = async () => {
         const response = await fetch('/api/random');
-        try {
-            const data = await response.json() as RandomAnswer;
-            const base_path = data.type === "PLAYLIST" ? "/playlist/" : "/video/";
-            const local_path = base_path + data.identifier;
-            router.push(`${local_path}`);
-        } catch (err) {
-            alert(errorLabels("title") + " " + errorLabels("retry"));
-        }
+        const data = await response.json() as RandomAnswer;
+        const base_path = data.type === "PLAYLIST" ? "/playlist/" : "/video/";
+        const local_path = base_path + data.identifier;
+        router.push(`${local_path}`);
     }
 
     return (
