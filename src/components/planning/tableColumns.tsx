@@ -15,7 +15,7 @@ import type { GridColDef } from '@mui/x-data-grid';
 
 type GameStatus = "RECORDED" | "PENDING";
 
-type Props = {
+export type Props = {
     titleLabel: string,
     platformLabel: string,
     releaseDateLabel: string,

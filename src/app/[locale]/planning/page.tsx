@@ -1,31 +1,27 @@
-"use client";
+import PlanningViewerClient from "@/components/planning/PlanningViewerClient";
 
 // Hooks
-import { useTranslations } from 'next-intl';
-import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
+import {setRequestLocale , getTranslations} from 'next-intl/server';
 
-// Redux
-import { useGetPlanningQuery } from "@/redux/services/planningAPI";
+type Props = {
+    params: Promise<{
+        locale: "en" | "fr"
+    }>
+}
 
-// Material UI
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+export default async function PlanningViewer(props : Props) {
 
-// columns
-import generateColumns from "@/components/planning/tableColumns";
+    // retrieve locale
+    const params = await props.params;
+    const locale = params.locale;
 
-export default function PlanningViewer() {
+    // Enable static rendering
+    setRequestLocale(locale);
 
-    // Using a query hook automatically fetches data and returns query values
-
-    const { data, error, isLoading } = useGetPlanningQuery();
-    const customLocaleText = useMuiXDataGridText();
-    const t = useTranslations("planning");
-
-    if (error) {
-        return <>Something bad happened</>
-    }
+    // Retrieve translation
+    const t = await getTranslations("planning");
     
-    const columns = generateColumns({
+    const propsClient = {
         endDateLabel: t("columns.endDate"),
         platformLabel: t("columns.platform"),
         releaseDateLabel: t("columns.releaseDate"),
@@ -35,38 +31,11 @@ export default function PlanningViewer() {
             PENDING: t("states.PENDING"),
             RECORDED: t("states.RECORDED")
         }
-    });
+    };
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <DataGrid 
-                rows={data} 
-                columns={columns} 
-                disableRowSelectionOnClick 
-                localeText={customLocaleText}
-                slots={{
-                    toolbar: GridToolbar
-                }}
-                slotProps={{
-                    loadingOverlay: {
-                        variant: 'linear-progress',
-                        noRowsVariant: 'skeleton',
-                    }
-                }}
-                loading={isLoading}
-                sortingOrder={['asc', 'desc']}
-                initialState={{
-                    sorting: {
-                        sortModel: [{ field: 'releaseDate', sort: 'asc' }],
-                    },
-                    columns: {
-                        columnVisibilityModel: {
-                            // Hide columns endDate, the other columns will remain visible
-                            endDate: false
-                        }
-                    }
-                }}
-            />
+            <PlanningViewerClient {...propsClient} />
         </div>
     )
 }
