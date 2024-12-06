@@ -2,7 +2,7 @@
 
 import { lazy } from "react";
 import { useTranslations } from "next-intl";
-import { useRouter } from 'next/navigation';
+import {useRouter} from '@/i18n/routing';
 import type { MouseEventHandler, JSX } from "react";
 
 // For full screen Dialog 
@@ -48,7 +48,6 @@ function CardDialog(props : {
         title: gameTitle,
         url: gameURL
     } = game;
-    const local_path = game.url_type === "PLAYLIST" ? "/playlist/" + game.id : "/video/" + game.id;
 
     // dialog options
     const dialog_options : {
@@ -66,7 +65,10 @@ function CardDialog(props : {
             onClick: (event) => {
                 event.preventDefault();
                 setContextMenuOpen(false);
-                router.push(`${local_path}`);
+                router.push({
+                    pathname: game.url_type === "PLAYLIST" ? "/playlist/[id]" : "/video/[id]",
+                    params: { id: game.id }
+                })
             }
         },
         // watch on Youtube

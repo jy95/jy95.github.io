@@ -6,7 +6,7 @@
 import { Suspense } from 'react'
 
 // Hooks
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/routing';
 import { useTranslations } from "next-intl";
 
 // Components
@@ -32,9 +32,10 @@ export function RandomButtonInner() {
     const fetchRandomGame = async () => {
         const response = await fetch('/api/random');
         const data = await response.json() as RandomAnswer;
-        const base_path = data.type === "PLAYLIST" ? "/playlist/" : "/video/";
-        const local_path = base_path + data.identifier;
-        router.push(`${local_path}`);
+        router.push({
+            pathname: data.type === "PLAYLIST" ? "/playlist/[id]" : "/video/[id]",
+            params: { id: data.identifier }
+        });
     }
 
     return (
