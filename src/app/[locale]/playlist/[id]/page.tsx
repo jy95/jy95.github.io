@@ -1,3 +1,6 @@
+// Needed because of https://nextjs.org/docs/app/api-reference/functions/use-search-params#behavior
+import { Suspense } from 'react'
+
 // https://nextjs.org/docs/app/api-reference/file-conventions/page#props
 type Props = {
     params: Promise<{ id: string }>
@@ -24,7 +27,9 @@ export default async function PlaylistPage({ params } : Props) {
     return (
         <>
             <YTPlayer type="PLAYLIST" identifier={identifier}/>
-            <RandomButton />
+            <Suspense fallback={null}>
+                <RandomButton />
+            </Suspense>
         </>
     )
 }
