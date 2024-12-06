@@ -1,5 +1,10 @@
 "use client";
 
+// Needed because of 
+// https://nextjs.org/docs/app/api-reference/functions/use-search-params#behavior
+// https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+import { Suspense } from 'react'
+
 // Hooks
 import { useRouter } from 'next/navigation';
 import { useTranslations } from "next-intl";
@@ -12,6 +17,14 @@ import CasinoIcon from '@mui/icons-material/Casino';
 import type { RandomAnswer } from "@/app/api/random/route";
 
 export default function RandomButton() {
+    return (
+        <Suspense fallback={null}>
+            <RandomButtonInner />
+        </Suspense>
+    );
+}
+
+export function RandomButtonInner() {
 
     const router = useRouter();
     const t = useTranslations("gamesLibrary");
