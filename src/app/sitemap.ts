@@ -8,9 +8,14 @@ type AvailableRoutes = keyof pathnames;
 // Adapt this as necessary
 const host = 'https://jy95.github.io';
 
+function isStaticPath(path: AvailableRoutes): path is Exclude<AvailableRoutes, `${string}[${string}]`> {
+  return !/\[.+\]/.test(path);
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
     const paths = Object.keys(routing.pathnames) as AvailableRoutes[];
-    return paths.map(getEntry);
+    const staticPaths: Exclude<AvailableRoutes, `${string}[${string}]`>[] = paths.filter(isStaticPath);
+    return staticPaths.map(getEntry);
 }
 
 function getEntry(href: Href): MetadataRoute.Sitemap[number] {
