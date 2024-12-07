@@ -16,7 +16,10 @@ export const routing = defineRouting({
     '/backlog': '/backlog',
     '/tests': '/tests',
     '/stats': '/stats',
-    '/links': '/links'
+    '/links': '/links',
+    // Dynamic params are supported via square brackets
+    '/playlist/[id]': '/playlist/[id]',
+    '/video/[id]': '/video/[id]'
   }
 });
  

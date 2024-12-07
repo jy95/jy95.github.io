@@ -1,5 +1,5 @@
 {
-    "header": {
+    "dashboard": {
         "menuEntries": {
             "gamesKey": "Jeux",
             "planningKey": "Planning",
@@ -14,29 +14,20 @@
                 "dlc": "DLCS"
             }
         },
-        "description": "Votre destination privilégiée pour des expériences de jeu passionnantes !"
-    },
-    "toolbar": {
-        "settings": "Paramètres",
-        "modes": {
-            "title": "Mode",
-            "light": "Clair",
-            "dark": "Sombre",
-            "system": "Système"
-        },
-        "languages": {
-            "title": "Langue",
-            "en": "English",
-            "fr": "French"
+        "toolbar": {
+            "settings": "Paramètres",
+            "modes": {
+                "title": "Mode",
+                "light": "Clair",
+                "dark": "Sombre",
+                "system": "Système"
+            },
+            "languages": {
+                "title": "Langue",
+                "en": "English",
+                "fr": "French"
+            }
         }
-    },
-    "error": {
-        "title": "Quelque chose s'est mal passé !",
-        "retry": "Réessayer"
-    },
-    "notFound": {
-        "title": "Cette page n’existe pas (plus)",
-        "goGome": "Retour à l'accueil"
     },
     "common": {
         "reload": "Recharger",

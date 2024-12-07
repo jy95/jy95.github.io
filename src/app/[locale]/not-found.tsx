@@ -1,9 +1,4 @@
-"use client";
-
 // https://next-intl-docs.vercel.app/docs/environments/error-files#not-foundjs
-
-// Hooks
-import {useTranslations} from 'next-intl';
 
 // https://next-intl-docs.vercel.app/docs/routing/navigation
 import { Link } from '@/i18n/routing';
@@ -13,10 +8,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-
-export default function NotFoundPage() {
-
-    const t = useTranslations('notFound');
+export default async function NotFoundPage() {
 
     return (
         <Box
@@ -27,10 +19,10 @@ export default function NotFoundPage() {
                 justifyContent: "center",
                 height: "80vh"
             }}>
-            <Typography variant="h4" gutterBottom>{t('title')}</Typography>
+            <Typography variant="h4" gutterBottom>{"We couldn't find that page"}</Typography>
             <Link href="/">
                 <Button variant="contained" color="primary">
-                    {t('goGome')}
+                    {"Return home"}
                 </Button>
             </Link>
         </Box>

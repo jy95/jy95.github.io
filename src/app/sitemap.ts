@@ -4,13 +4,19 @@ import {routing, getPathname} from '@/i18n/routing';
 type Href = Parameters<typeof getPathname>[0]['href'];
 type pathnames = typeof routing.pathnames;
 type AvailableRoutes = keyof pathnames;
+type StaticRoute = Exclude<AvailableRoutes, `${string}[${string}]`>;
 
 // Adapt this as necessary
 const host = 'https://jy95.github.io';
 
+function isStaticPath(path: AvailableRoutes): path is Exclude<AvailableRoutes, `${string}[${string}]`> {
+  return !/\[.+\]/.test(path);
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
     const paths = Object.keys(routing.pathnames) as AvailableRoutes[];
-    return paths.map(getEntry);
+    const staticPaths: StaticRoute[] = paths.filter(isStaticPath);
+    return staticPaths.map(getEntry);
 }
 
 function getEntry(href: Href): MetadataRoute.Sitemap[number] {

@@ -1,92 +1,36 @@
-"use client";
-
 // Hooks
-import { useTranslations } from 'next-intl';
-import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
+import {setRequestLocale , getTranslations} from 'next-intl/server';
 
-// Redux
-import { useGetBacklogQuery } from "@/redux/services/backlogAPI";
+import BacklogViewerClient from '@/components/backlog/BacklogViewerClient';
 
-// Material UI
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import type { GridColDef } from '@mui/x-data-grid';
+type Props = {
+  params: Promise<{
+      locale: "en" | "fr"
+  }>
+}
 
-// Others
-import Tooltip from '@mui/material/Tooltip';
-import PlatformColumn from "@/components/tableColumns/platforms";
+export default async function BacklogViewer(props : Props) {
 
-export default function BacklogViewer() {
+    // retrieve locale
+    const params = await props.params;
+    const locale = params.locale;
+
+    // Enable static rendering
+    setRequestLocale(locale);
 
     // Using a query hook automatically fetches data and returns query values
-    const { data, error, isLoading } = useGetBacklogQuery();
-    const customLocaleText = useMuiXDataGridText();
-    const t = useTranslations("backlog");
+    const t = await getTranslations("backlog");
 
-    if (error) {
-        return <>Something bad happened</>
+    const propsClient = {
+      titleLabel: t("columns.title"),
+      platformLabel: t("columns.platform"),
+      notesLabel: t("columns.notes")
     }
 
-    const columns : GridColDef[] = [
-        {
-            field: "title",
-            headerName: t("columns.title"),
-            headerAlign: 'center',
-            renderCell: ({ value }) => (
-              <Tooltip title={value} aria-label={value}>
-                {value}
-              </Tooltip>
-            ),
-            width: 270
-          },
-          {
-            field: "platform",
-            headerName: t("columns.platform"),
-            ...PlatformColumn
-          },
-          {
-            field: "notes",
-            headerName: t("columns.notes"),
-            headerAlign: 'center',
-            renderCell: ({ value }) => (
-              <Tooltip title={value || ""} aria-label={value || ""}>
-                {value || ""}
-              </Tooltip>
-            ),
-            width: 270
-          },
-    ];
-
     return (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <DataGrid 
-              rows={data} 
-              columns={columns} 
-              disableRowSelectionOnClick 
-              localeText={customLocaleText}
-              slots={{
-                  toolbar: GridToolbar
-              }}
-              slotProps={{
-                  loadingOverlay: {
-                      variant: 'linear-progress',
-                      noRowsVariant: 'skeleton',
-                  }
-              }}
-              loading={isLoading}
-              sortingOrder={['asc', 'desc']}
-              initialState={{
-                  sorting: {
-                      sortModel: [{ field: 'title', sort: 'asc' }],
-                  },
-                  columns: {
-                      columnVisibilityModel: {
-                          // Hide columns notes, the other columns will remain visible
-                          notes: false
-                      }
-                  }
-              }}
-          />
-        </div>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <BacklogViewerClient {...propsClient} />
+      </div>
     )
 
 }

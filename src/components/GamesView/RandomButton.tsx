@@ -1,7 +1,12 @@
 "use client";
 
+// Needed because of 
+// https://nextjs.org/docs/app/api-reference/functions/use-search-params#behavior
+// https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+import { Suspense } from 'react'
+
 // Hooks
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/routing';
 import { useTranslations } from "next-intl";
 
 // Components
@@ -12,21 +17,25 @@ import CasinoIcon from '@mui/icons-material/Casino';
 import type { RandomAnswer } from "@/app/api/random/route";
 
 export default function RandomButton() {
+    return (
+        <Suspense fallback={null}>
+            <RandomButtonInner />
+        </Suspense>
+    );
+}
+
+export function RandomButtonInner() {
 
     const router = useRouter();
     const t = useTranslations("gamesLibrary");
-    const errorLabels = useTranslations("error");
 
     const fetchRandomGame = async () => {
         const response = await fetch('/api/random');
-        try {
-            const data = await response.json() as RandomAnswer;
-            const base_path = data.type === "PLAYLIST" ? "/playlist/" : "/video/";
-            const local_path = base_path + data.identifier;
-            router.push(`${local_path}`);
-        } catch (err) {
-            alert(errorLabels("title") + " " + errorLabels("retry"));
-        }
+        const data = await response.json() as RandomAnswer;
+        router.push({
+            pathname: data.type === "PLAYLIST" ? "/playlist/[id]" : "/video/[id]",
+            params: { id: data.identifier }
+        });
     }
 
     return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useState, lazy } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/routing';
 
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -31,10 +31,12 @@ function CardEntry(props : {
         url_type,
         id: gameId
     } = game;
-    const local_path = url_type === "PLAYLIST" ? "/playlist/" + gameId : "/video/" + gameId;
 
     function watchGame() {
-        router.push(`${local_path}`);
+        router.push({
+            pathname: url_type === "PLAYLIST" ? "/playlist/[id]" : "/video/[id]",
+            params: { id: gameId }
+        });
     }
 
     return (

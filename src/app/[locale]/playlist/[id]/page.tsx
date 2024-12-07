@@ -1,12 +1,24 @@
-"use client";
+// https://nextjs.org/docs/app/api-reference/file-conventions/page#props
+type Props = {
+    params: Promise<{ id: string }>
+}
 
-import { useParams } from 'next/navigation'
+export async function generateStaticParams() {
+    const identifiers = (await import("@/app/api/random/identifiers.json")).default;
+    const playlists = identifiers.filter(i => i.playlistId !== undefined);
+
+    return playlists.map((pl) => ({
+        id: pl.playlistId,
+    }));
+}
+
 import YTPlayer from "@/components/YTPlayer/Player";
 import RandomButton from '@/components/GamesView/RandomButton';
 
-export default function PlaylistPage() {
+export default async function PlaylistPage({ params } : Props) {
 
-    const { id } = useParams();
+    const parameters = await params;
+    const { id } = parameters
     const identifier = id as string;
 
     return (
