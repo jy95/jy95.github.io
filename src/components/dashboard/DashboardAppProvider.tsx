@@ -7,6 +7,7 @@ import {setRequestLocale} from 'next-intl/server';
 import {useTranslations} from 'next-intl';
 
 // components
+import { Suspense } from 'react';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import ToolbarActions from "@/components/dashboard/ToolbarActions";
 
@@ -43,35 +44,37 @@ export default function DashboardAppProvider({children, locale} : Props) {
 
     return (
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-            <AppProvider 
-                navigation={NAVIGATION}
-                branding={{
-                    title: "GamesPassionFR",
-                    logo: <>&nbsp;</>
-                }}
-            >
-              <DashboardLayout 
-                defaultSidebarCollapsed 
-                slots={{
-                    // @ts-ignore Type not accurate, will report it to MUI later
-                    toolbarActions: ToolbarActions
-                }}
-                slotProps={{
-                    toolbarActions: {
-                        settingsLabel: t("toolbar.settings"),
-                        darkLabel: t("toolbar.modes.dark"),
-                        englishLabel: t("toolbar.languages.en"),
-                        frenchLabel: t("toolbar.languages.fr"),
-                        languageTitle: t("toolbar.languages.title"),
-                        lightLabel: t("toolbar.modes.light"),
-                        modeTitle: t("toolbar.modes.title"),
-                        systemLabel: t("toolbar.modes.system")
-                    }
-                }}
-              >
-                {children}
-              </DashboardLayout>
-            </AppProvider>
+            <Suspense fallback={<></>}>
+                <AppProvider 
+                    navigation={NAVIGATION}
+                    branding={{
+                        title: "GamesPassionFR",
+                        logo: <>&nbsp;</>
+                    }}
+                >
+                <DashboardLayout 
+                    defaultSidebarCollapsed 
+                    slots={{
+                        // @ts-ignore Type not accurate, will report it to MUI later
+                        toolbarActions: ToolbarActions
+                    }}
+                    slotProps={{
+                        toolbarActions: {
+                            settingsLabel: t("toolbar.settings"),
+                            darkLabel: t("toolbar.modes.dark"),
+                            englishLabel: t("toolbar.languages.en"),
+                            frenchLabel: t("toolbar.languages.fr"),
+                            languageTitle: t("toolbar.languages.title"),
+                            lightLabel: t("toolbar.modes.light"),
+                            modeTitle: t("toolbar.modes.title"),
+                            systemLabel: t("toolbar.modes.system")
+                        }
+                    }}
+                >
+                    {children}
+                </DashboardLayout>
+                </AppProvider>
+            </Suspense>
         </AppRouterCacheProvider>
     );
 }
