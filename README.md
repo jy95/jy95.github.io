@@ -132,4 +132,6 @@ There is a [database](GamesPassionFR.db) for managing video games, their genres,
 | `platform`   | Foreign key referencing the `platforms` table.        | Required          | `2`                  |
 | `duration`   | The duration of the test or video content.            | Optional          | `00:30:00`           |
 
+This project is tested with BrowserStack
+
 [YoutubeChannel]: https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ
