@@ -23,7 +23,6 @@ export default async function PlaylistPage({ params } : Props) {
     const { id, locale } = parameters
     const identifier = id as string;
 
-    console.log(locale)
     // Enable static rendering
     setRequestLocale(locale);
 
