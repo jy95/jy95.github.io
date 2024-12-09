@@ -1,6 +1,5 @@
 "use client";
 
-import { Suspense, useState, lazy } from "react";
 import { useRouter } from '@/i18n/routing';
 
 import Card from "@mui/material/Card";
@@ -8,8 +7,9 @@ import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from '@mui/material/CardActionArea';
 
 import Image from 'next/image'
+
+// Types
 import type { CardGame } from "@/redux/sharedDefintion";
-const CardDialog = lazy(() => import("./CardDialog"));
 
 function CardEntry(props : {
     game: CardGame;
@@ -21,9 +21,6 @@ function CardEntry(props : {
 
     // props
     const {game} = props;
-
-    // state of context menu
-    const [contextMenuOpen,setContextMenuOpen] = useState(false);
     
     // consts
     const {
@@ -43,10 +40,6 @@ function CardEntry(props : {
         <Card sx={{ position: "relative" }}>
             <CardActionArea 
                 onClick={watchGame}
-                onContextMenu={(event) => {
-                    event.preventDefault();
-                    setContextMenuOpen(true);
-                }}
                 sx={{ height: "inherit", zIndex: 1 }}
             >
                 <CardMedia
@@ -66,11 +59,7 @@ function CardEntry(props : {
                         />
                     </div>
                 </CardMedia>
-
             </CardActionArea>
-            <Suspense fallback={null}>
-                <CardDialog game={game} contextMenuState={[contextMenuOpen,setContextMenuOpen]} />
-            </Suspense>
         </Card>
     );
 }
