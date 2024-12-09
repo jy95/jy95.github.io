@@ -77,9 +77,8 @@ function GamesGalleryGridInner() {
                     loading={isFetching}
                     disabled={ page >= (data?.total_pages || 1) }
                     onClick={() => dispatch(nextPage())}
-                >
-                    <span>{t('loadMore')}</span>
-                </LoadingButton>
+                    label={t('loadMore')}
+                />
             </Grid>
         </>
     );
