@@ -1,17 +1,14 @@
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 
-// Types
-import type { ReactNode } from "react";
-
 interface LoadingButtonProps {
     onClick: () => void;
     disabled?: boolean;
     loading?: boolean;
-    children: ReactNode;
+    label: string
 }
 
-const LoadingButton = ({ onClick, disabled, loading, children } : LoadingButtonProps) => {
+const LoadingButton = ({ onClick, disabled, loading, label } : LoadingButtonProps) => {
 
 
   const handleClick = async () => {
@@ -31,7 +28,9 @@ const LoadingButton = ({ onClick, disabled, loading, children } : LoadingButtonP
       {loading && (
         <CircularProgress size={24}/>
       )}
-      {loading ? 'Loading...' : children}
+      {!loading && (
+        <span>{label}</span>
+      )}
     </Button>
   );
 };
