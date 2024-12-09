@@ -7,7 +7,6 @@ import { Suspense } from 'react'
 
 // Hooks
 import { useRouter } from '@/i18n/routing';
-import { useTranslations } from "next-intl";
 
 // Components
 import Fab from '@mui/material/Fab';
@@ -16,18 +15,21 @@ import CasinoIcon from '@mui/icons-material/Casino';
 // Types
 import type { RandomAnswer } from "@/app/api/random/route";
 
-export default function RandomButton() {
+export default function RandomButton(props: Props) {
     return (
         <Suspense fallback={null}>
-            <RandomButtonInner />
+            <RandomButtonInner {...props} />
         </Suspense>
     );
 }
 
-export function RandomButtonInner() {
+type Props = {
+    label: string
+}
+
+export function RandomButtonInner(props: Props) {
 
     const router = useRouter();
-    const t = useTranslations("gamesLibrary");
 
     const fetchRandomGame = async () => {
         const response = await fetch('/api/random');
@@ -42,7 +44,7 @@ export function RandomButtonInner() {
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
             <Fab color="primary" variant="extended" onClick={fetchRandomGame}>
                 <CasinoIcon sx={{ mr: 1 }} />
-                { t("randomButtonLabel") }
+                { props.label }
             </Fab>
         </div>
     )
