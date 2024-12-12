@@ -100,33 +100,32 @@ function sortedAndFilteredResultset(startOffset: number, endOffset: number, game
 
 // Convert input parameters to my structures
 function extractParameters(params: URLSearchParams): RequestParams {
-    let result: RequestParams = {
-        page: parseInt(params.get("page") || "1", 10)
-    };
 
     // Extract parameters
-    const pageSize = params.get("pageSize");
+    const page = parseInt(params.get("page") || "1", 10);
+    const pageSizeParam = params.get("pageSize");
+    const pageSize = (pageSizeParam) ? parseInt(pageSizeParam, 10) : undefined;
+
+    // Extract filters
     const selected_platform = params.get("selected_platform");
-    const selected_title = params.get("selected_title");
-    const selected_genres = params.getAll("selected_genres");
+    const selected_genres = params.get("selected_genres") || "";
+    const title = params.get("selected_title") || undefined;
+    const genres = selected_genres.split(",").map(v => parseInt(v, 10));
 
-    if (pageSize !== null) {
-        result.pageSize = parseInt(pageSize, 10);
+    // Apply filters
+    const filters: gamesFilters = {
+        platform: selected_platform ? parseInt(selected_platform, 10) : undefined,
+        genres: genres.length > 0 ? genres : undefined,
+        title,
+    };
+    const hasDefinedValues = Object.values(filters).some(value => value !== undefined);
+
+    // Return result
+    return {
+        page,
+        pageSize,
+        filters: hasDefinedValues ? filters : undefined
     }
-
-    if (selected_platform !== null) {
-        result.filters = { ...result.filters, platform: parseInt(selected_platform, 10) };
-    }
-
-    if (selected_title !== null) {
-        result.filters = { ...result.filters, title: selected_title };
-    }
-
-    if (selected_genres.length > 0) {
-        result.filters = { ...result.filters, genres: selected_genres.map(v => parseInt(v, 10)) };
-    }
-
-    return result;
 }
 
 // Return an enhanced payload for a single game
