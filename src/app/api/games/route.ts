@@ -108,9 +108,9 @@ function extractParameters(params: URLSearchParams): RequestParams {
 
     // Extract filters
     const selected_platform = params.get("selected_platform");
-    const selected_genres = params.get("selected_genres") || "";
+    const selected_genres = params.get("selected_genres");
     const title = params.get("selected_title") || undefined;
-    const genres = selected_genres.split(",").map(v => parseInt(v, 10));
+    const genres = selected_genres ? selected_genres.split(",").map(v => parseInt(v, 10)) : [];
 
     // Apply filters
     const filters: gamesFilters = {
