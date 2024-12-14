@@ -21,21 +21,6 @@ type RequestParams = {
     pageSize: number,
 }
 
-const stringifyObject = (object: any) => {
-    const queryStr = Object.keys(object)
-      .map((key) => {
-        const values = object[key];
-        if (Array.isArray(values)) {
-          return values.map((value) => `${key}=${value}`).join("&");
-        } else {
-          return `${key}=${object[key]}`;
-        }
-      })
-      .join("&");
-  
-    return queryStr;
-};
-
 // Define a service using a base URL and expected endpoints
 export const gamesAPI = createApi({
     reducerPath: 'gamesApi',
@@ -59,7 +44,8 @@ export const gamesAPI = createApi({
                     }
                 }
 
-                return `/games?${stringifyObject(parameters)}`;
+                let query = new URLSearchParams(parameters as any);
+                return `/games?${query.toString()}`;
             },
             forceRefetch: ({ currentArg, previousArg }) => {
                 return JSON.stringify(currentArg) !== JSON.stringify(previousArg);
