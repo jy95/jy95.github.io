@@ -104,7 +104,8 @@ jobs:
             with:
                 node-version: "latest"
           - name: 💻 Install npm packages
-            run: npm ci
+            #run: npm ci
+            run: npm install --legacy-peer-deps
           - name: 📕 Add cover
             if: ${{ env.OPERATION == 'ADD_COVER' }}
             run: |
