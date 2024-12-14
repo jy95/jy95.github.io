@@ -8,21 +8,6 @@ type Parameters = {
     offset?: number
 }
 
-const stringifyObject = (object: any) => {
-    const queryStr = Object.keys(object)
-      .map((key) => {
-        const values = object[key];
-        if (Array.isArray(values)) {
-          return values.map((value) => `${key}=${value}`).join("&");
-        } else {
-          return `${key}=${object[key]}`;
-        }
-      })
-      .join("&");
-  
-    return queryStr;
-};
-
 // Define a service using a base URL and expected endpoints
 export const testsAPI = createApi({
     reducerPath: 'testApi',
@@ -30,11 +15,8 @@ export const testsAPI = createApi({
     endpoints: (builder) => ({
         getTests: builder.query<TestsResponse, Parameters>({
             query: (params) => {
-                if (Object.keys(params).length > 0) {
-                    return `/tests?${stringifyObject(params)}`;
-                } else {
-                    return `/tests`;
-                }
+                let query = new URLSearchParams(params as any);
+                return `/tests?${query.toString()}`;
             }
         })
     })

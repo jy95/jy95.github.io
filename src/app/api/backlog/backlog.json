@@ -656,5 +656,11 @@
 		"id": 138,
 		"title": "Nikoderiko: The Magical World",
 		"platform": 1
+	},
+	{
+		"id": 139,
+		"title": "Panzer Dragoon",
+		"platform": 5,
+		"notes": "\"Sega Ages 2500 Series Vol. 27: Panzer Dragoon\" - VS \"Panzer Dragoon: Remake\" ?"
 	}
 ]
