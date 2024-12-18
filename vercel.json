@@ -15,5 +15,6 @@
     "deploymentEnabled": {
       "gh-pages": false
     }
-  }
+  },
+  "installCommand": "npm install --legacy-peer-deps"
 }
