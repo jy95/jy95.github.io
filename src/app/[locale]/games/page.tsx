@@ -35,7 +35,7 @@ function GamesGalleryGridInner() {
     const t = useTranslations('common');
     const dispatch = useAppDispatch();
 
-    const LIMIT_PAGE = 16;
+    const LIMIT_PAGE = 12;
 
     // Lazy query setup
     const { data, isFetching } = useGetGamesQuery(
@@ -53,7 +53,7 @@ function GamesGalleryGridInner() {
             size={{
                 xs: 6,
                 md: 4,
-                lg: 1.5
+                lg: 2
             }}
         >
             <CardEntry game={game}/>
