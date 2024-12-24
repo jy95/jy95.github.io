@@ -19,9 +19,9 @@
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^6.2.1",
-    "@mui/material": "^6.2.1",
-    "@mui/material-nextjs": "^6.2.1",
+    "@mui/icons-material": "^6.3.0",
+    "@mui/material": "^6.3.0",
+    "@mui/material-nextjs": "^6.3.0",
     "@mui/x-charts": "^8.0.0-alpha.5",
     "@mui/x-data-grid": "^8.0.0-alpha.5",
     "@reduxjs/toolkit": "^2.5.0",
@@ -44,7 +44,7 @@
     "typescript": "5.7.2"
   },
   "devDependencies": {
-    "@inquirer/input": "^4.1.0",
+    "@inquirer/input": "^4.1.1",
     "better-sqlite3": "^11.7.0",
     "googleapis": "^144.0.0"
   }
