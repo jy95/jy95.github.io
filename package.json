@@ -35,7 +35,7 @@
     "eslint-config-next": "15.0.4",
     "fuse.js": "^7.0.0",
     "next": "15.0.4",
-    "next-intl": "^3.26.0",
+    "next-intl": "^3.26.3",
     "react": "rc",
     "react-dom": "rc",
     "react-player": "^2.16.0",
