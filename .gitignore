@@ -38,3 +38,4 @@ next-env.d.ts
 playlists_stats.csv
 playlists_stats.json
 YOUR_CLIENT_SECRET_FILE.json
+.idea/
