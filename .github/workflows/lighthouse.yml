@@ -1,13 +1,29 @@
 name: Lighthouse Compare Action
 on:
   pull_request:
-    branches-ignore:
-      - "dependabot/**"
+# Doesn't work, so commented
+#    branches-ignore:
+#      - "dependabot/**"
 
 jobs:
 
+  checkActor:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check_actor.outputs.should_run }}
+    steps:
+      - name: Check if Actor is Dependabot
+        id: check_actor
+        run: |
+          if [[ "${{ github.actor }}" == "dependabot[bot]" ]]; then
+            echo "should_run=false" >> $GITHUB_OUTPUT
+          else
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          fi
+
   getPreviewUrl:
     runs-on: ubuntu-latest
+    if: ${{ needs.checkActor.outputs.should_run == 'true' }}
     outputs:
       preview_url: ${{ steps.add_prefix.outputs.full_url }}
     steps:
@@ -40,6 +56,7 @@ jobs:
 
   constructUrls:
     needs: getPreviewUrl
+    if: ${{ needs.checkActor.outputs.should_run == 'true' }}
     runs-on: ubuntu-latest
     env:
       # Subpaths to investigate
