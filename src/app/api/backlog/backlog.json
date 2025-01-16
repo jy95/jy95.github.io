@@ -662,5 +662,10 @@
 		"title": "Panzer Dragoon",
 		"platform": 5,
 		"notes": "\"Sega Ages 2500 Series Vol. 27: Panzer Dragoon\" - VS \"Panzer Dragoon: Remake\" ?"
+	},
+	{
+		"id": 140,
+		"title": "A la Croisée des Mondes : La Boussole d'Or",
+		"platform": 6
 	}
 ]
