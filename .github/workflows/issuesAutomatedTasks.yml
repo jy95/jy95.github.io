@@ -74,7 +74,7 @@ jobs:
           uses: actions/checkout@v4
         - id: parse-issue
           name: 📝 IssueOps Form Parser
-          uses: issue-ops/parser@v4.0.0
+          uses: issue-ops/parser@v4.1.0
           with:
             issue-form-template: ${{ env.TEMPLATE_FILE }}
             body: ${{ github.event.issue.body }}
