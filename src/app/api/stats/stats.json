@@ -194,8 +194,8 @@
 		},
 		"dlcs": {
 			"total": 17,
-			"total_available": 16,
-			"total_unavailable": 1
+			"total_available": 17,
+			"total_unavailable": 0
 		},
 		"duration": {
 			"total": {
@@ -204,14 +204,14 @@
 				"seconds": 4
 			},
 			"total_available": {
-				"hours": 896,
-				"minutes": 19,
-				"seconds": 42
+				"hours": 898,
+				"minutes": 25,
+				"seconds": 52
 			},
 			"total_unavailable": {
-				"hours": 130,
-				"minutes": 49,
-				"seconds": 22
+				"hours": 128,
+				"minutes": 43,
+				"seconds": 12
 			}
 		}
 	}
