@@ -111,6 +111,18 @@
 		]
 	},
 	{
+		"game_title": "Enslaved Odyssey to the West",
+		"dlcs": [
+			{
+				"id": 191,
+				"title": "Enslaved Odyssey to the West - Pigsy's Perfect 10 DLC",
+				"videoId": "ZTfstKEM4Ko",
+				"duration": "02:06:10",
+				"platform": 6
+			}
+		]
+	},
+	{
 		"game_title": "Prince of Persia 2008",
 		"dlcs": [
 			{
