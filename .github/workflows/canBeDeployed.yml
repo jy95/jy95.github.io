@@ -12,7 +12,7 @@ jobs:
         with:
           node-version: "lts/*"
       - name: Cache
-        uses: actions/cache@v4.2.0
+        uses: actions/cache@v4.2.1
         with: 
            # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
            path: |
