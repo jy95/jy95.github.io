@@ -7,7 +7,7 @@ import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
 import { useGetPlanningQuery } from "@/redux/services/planningAPI";
 
 // Material UI
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 
 // columns
 import generateColumns from "@/components/planning/tableColumns";
@@ -31,13 +31,11 @@ export default function PlanningViewer(props: Props) {
 
     return (
         <DataGrid 
+            showToolbar
             rows={data} 
             columns={columns} 
             disableRowSelectionOnClick 
             localeText={customLocaleText}
-            slots={{
-                toolbar: GridToolbar
-            }}
             slotProps={{
                 loadingOverlay: {
                     variant: 'linear-progress',
