@@ -7,7 +7,7 @@ import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
 import { useGetBacklogQuery } from "@/redux/services/backlogAPI";
 
 // Components
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 import generateColumns from "./tableColumns";
 
 // Types
@@ -28,13 +28,11 @@ export default function BacklogViewerClient(props : Props) {
 
     return (
         <DataGrid 
+            showToolbar
             rows={data} 
             columns={columns} 
             disableRowSelectionOnClick 
             localeText={customLocaleText}
-            slots={{
-                toolbar: GridToolbar
-            }}
             slotProps={{
                 loadingOverlay: {
                     variant: 'linear-progress',

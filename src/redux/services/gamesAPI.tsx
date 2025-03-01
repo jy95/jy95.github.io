@@ -21,21 +21,32 @@ type RequestParams = {
     pageSize: number,
 }
 
+type FrontendParams = Omit<Parameters, "page">;
+
 // Define a service using a base URL and expected endpoints
 export const gamesAPI = createApi({
     reducerPath: 'gamesApi',
     baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
     endpoints: (builder) => ({
-        getGames: builder.query<GamesResponse, Parameters>({
-            query: ({ pageSize, page, filters }) => {
-
-
+        getGames: builder.infiniteQuery<GamesResponse, FrontendParams, number>({
+            infiniteQueryOptions: {
+                // Must provide a default initial page param value
+                initialPageParam: 1,
+                // Must provide a `getNextPageParam` function
+                getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) =>  lastPageParam <lastPage.total_pages 
+                    ? lastPageParam + 1 
+                    : lastPageParam,
+            },
+            // The `query` function receives `{queryArg, pageParam}` as its argument
+            query({ queryArg, pageParam }) {
                 let parameters : RequestParams = {
                     // page size
-                    pageSize: pageSize,
+                    pageSize: queryArg.pageSize,
                     // asked page
-                    page: page,
+                    page: pageParam,
                 };
+                // filters parameter
+                let filters = queryArg.filters;
 
                 // filters parameter
                 if (filters.length > 0) {
@@ -46,35 +57,11 @@ export const gamesAPI = createApi({
 
                 let query = new URLSearchParams(parameters as any);
                 return `/games?${query.toString()}`;
-            },
-            forceRefetch: ({ currentArg, previousArg }) => {
-                return JSON.stringify(currentArg) !== JSON.stringify(previousArg);
-            },
-            // Custom key for cache
-            serializeQueryArgs: ({ endpointName }) => endpointName,
-            // merge incoming data to the cache entry when possible
-            merge: (currentCache, newItems) => {
-                
-                let currentParams = { filters: currentCache.filters, pageSize: currentCache.pageSize };
-                let newParams = { filters: newItems.filters, pageSize: newItems.pageSize };
-                let notSameParams = JSON.stringify(currentParams) !== JSON.stringify(newParams);
-
-                // If not same parameters, it means we have to replace by newest answer
-                if (notSameParams) {
-                    return newItems;
-                }
-
-                // If same parameters, it means we have to merge them
-                return {
-                    ...currentCache,
-                    items: [...currentCache.items, ...newItems.items],
-                    page: newItems.page
-                };
-            },
+            }
         })
     })
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetGamesQuery } = gamesAPI;
+export const { useGetGamesInfiniteQuery } = gamesAPI;

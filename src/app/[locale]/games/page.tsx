@@ -1,9 +1,8 @@
 "use client";
 
 // Hooks
-import { useGetGamesQuery } from "@/redux/services/gamesAPI";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import { nextPage } from "@/redux/features/gamesSlice";
+import { useGetGamesInfiniteQuery } from "@/redux/services/gamesAPI";
+import { useAppSelector } from "@/redux/hooks";
 import { useTranslations } from 'next-intl';
 
 // Style
@@ -30,22 +29,28 @@ function GamesGalleryGridInner() {
     
     // Active filters
     const activeFilters = useAppSelector((state) => state.games.activeFilters);
-    // Current page
-    const page = useAppSelector((state) => state.games.page);
     const t = useTranslations('common');
-    const dispatch = useAppDispatch();
 
     const LIMIT_PAGE = 12;
 
     // Lazy query setup
-    const { data, isFetching } = useGetGamesQuery(
+    const { 
+        hasNextPage,
+        fetchNextPage,
+        data, 
+        isFetching 
+    } = useGetGamesInfiniteQuery(
         {
             filters: activeFilters,
-            pageSize : LIMIT_PAGE,
-            page: page
+            pageSize : LIMIT_PAGE
         }
     );
-    const allGames = data?.items ?? [];
+
+    const handleNextPage = async () => {
+        await fetchNextPage()
+    }
+
+    const allGames = data?.pages.map(result => result.items).flat() ?? [];
 
     const renderRow = (game: CardGame) => (
         <Grid 
@@ -75,8 +80,8 @@ function GamesGalleryGridInner() {
             >
                 <LoadingButton
                     loading={isFetching}
-                    disabled={ page >= (data?.total_pages || 1) }
-                    onClick={() => dispatch(nextPage())}
+                    disabled={!hasNextPage}
+                    onClick={handleNextPage}
                     label={t('loadMore')}
                 />
             </Grid>
