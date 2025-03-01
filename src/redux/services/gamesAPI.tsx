@@ -35,7 +35,7 @@ export const gamesAPI = createApi({
                 // Must provide a `getNextPageParam` function
                 getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) =>  lastPageParam <lastPage.total_pages 
                     ? lastPageParam + 1 
-                    : lastPageParam,
+                    : undefined,
             },
             // The `query` function receives `{queryArg, pageParam}` as its argument
             query({ queryArg, pageParam }) {
