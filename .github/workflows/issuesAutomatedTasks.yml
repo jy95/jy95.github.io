@@ -25,6 +25,7 @@ jobs:
                 contains(github.event.issue.labels.*.name, '[ADD_SERIE]') && 'ADD_SERIE' || 
                 contains(github.event.issue.labels.*.name, '[MANAGE_SERIE]') && 'MANAGE_SERIE' || 
                 contains(github.event.issue.labels.*.name, '[MANAGE_DLCS]') && 'MANAGE_DLCS' || 
+                contains(github.event.issue.labels.*.name, '[CLEAN_BACKLOG]') && 'CLEAN_BACKLOG' || 
                 'UNKNOWN' }}
           run: echo "issue_type=${{ env.ISSUE_TYPE }}" >> $GITHUB_OUTPUT
         - id: set_template_file
@@ -57,6 +58,9 @@ jobs:
                 ;;
               MANAGE_DLCS)
                 echo "template_file=09-manage-game-dlcs.yml" >> $GITHUB_OUTPUT
+                ;;
+              CLEAN_BACKLOG)
+                echo "template_file=10-clean-backlog.yml" >> $GITHUB_OUTPUT
                 ;;
             esac
     process_issue:

@@ -1,0 +1,9 @@
+name: 🗑️ Clear completed games from backlog 
+description: Delete backlog entries already covered from the database
+title: '[CLEAN_BACKLOG] '
+labels: ["database","[CLEAN_BACKLOG]"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Just create the issue to trigger an automatic cleaning of the backlog !
