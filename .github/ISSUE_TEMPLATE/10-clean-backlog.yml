@@ -1,4 +1,4 @@
-name: 🗑️ Clear completed games from backlog 
+name: 🧼 Clear completed games from backlog 
 description: Delete backlog entries already covered from the database
 title: '[CLEAN_BACKLOG] '
 labels: ["database","[CLEAN_BACKLOG]"]
