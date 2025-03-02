@@ -476,6 +476,16 @@ async function manageDlcsInDatabase(db, payload) {
     return updateDLCSItems();
 }
 
+/**
+ * Clear completed games from backlog 
+ * @param {import('better-sqlite3').Database} db - The database instance
+ * 
+ */
+async function cleanBacklog(db) {
+    const deleteBacklogStmt = db.prepare("DELETE FROM backlog WHERE title IN (SELECT title FROM games)");
+    return deleteBacklogStmt.run();
+}
+
 switch(taskType) {
     case "ADD_GAME":
         await addGameToDatabase(db, taskPayload);
@@ -500,6 +510,9 @@ switch(taskType) {
         break;
     case "MANAGE_DLCS":
         await manageDlcsInDatabase(db, taskPayload);
+        break;
+    case "CLEAN_BACKLOG":
+        await cleanBacklog(db);
         break;
     default:
         console.log(`Bip bip - Nothing was done as unexpected task`)
