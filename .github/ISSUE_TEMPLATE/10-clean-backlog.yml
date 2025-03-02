@@ -7,3 +7,10 @@ body:
     attributes:
       value: |
         Just create the issue to trigger an automatic cleaning of the backlog !
+  - type: checkboxes
+    id: confirm-clean
+    attributes:
+      label: "Confirm: Clear completed games from backlog."
+      options:
+        - label: "Yes, proceed."
+          required: true
