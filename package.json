@@ -41,7 +41,7 @@
     "react-player": "^2.16.0",
     "react-redux": "^9.2.0",
     "sharp": "^0.33.5",
-    "typescript": "5.7.3"
+    "typescript": "5.8.2"
   },
   "devDependencies": {
     "@inquirer/input": "^4.1.6",
