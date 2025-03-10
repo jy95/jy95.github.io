@@ -2,6 +2,7 @@
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 // Hooks
+import {useCallback} from 'react';
 import {setRequestLocale} from 'next-intl/server';
 import {useTranslations} from 'next-intl';
 
@@ -37,17 +38,19 @@ export default function DashboardAppProvider({children, locale} : Props) {
         systemLabel: t("modes.system")
     }
 
+    // https://github.com/mui/toolpad/issues/4512
+    const ToolbarComponent = useCallback(
+        () => <ToolbarActions {...toolbarActionsProps} />, 
+        [toolbarActionsProps]
+    );
+
     return (
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
             <AppProviderCustom>
                 <DashboardLayout 
                     defaultSidebarCollapsed 
                     slots={{
-                        // @ts-ignore Type not accurate, will report it to MUI later
-                        toolbarActions: ToolbarActions
-                    }}
-                    slotProps={{
-                        toolbarActions: toolbarActionsProps
+                        toolbarActions: ToolbarComponent
                     }}
                 >
                     {children}
