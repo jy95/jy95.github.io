@@ -6,10 +6,10 @@ import { useState, Suspense } from "react";
 
 // Components
 import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
 const ThemeMode = dynamic(() => import("./ThemeModeToggle"));
 const LanguageToggle = dynamic(() => import("./LanguageToggle")); 
 const Drawer = dynamic(() => import('@mui/material/Drawer'));
-const Box = dynamic(() => import('@mui/material/Box'));
 
 // Icons
 import SettingsIcon from '@mui/icons-material/Settings';
