@@ -29,7 +29,7 @@ function PlatformSelect() {
             loading={isFetching}
             getOptionLabel={(option) => option.name}
             isOptionEqualToValue={(option, value) => value.id === option.id}
-            renderInput={(params) => <TextField {...params} label={t("platform") as string} />}
+            renderInput={(params) => <TextField {...params.InputProps} label={t("platform") as string} />}
             renderOption={(props, option) => (
                 <li {...props} key={option.name}>
                     {option.name}

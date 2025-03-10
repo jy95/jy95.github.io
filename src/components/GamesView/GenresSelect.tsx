@@ -51,7 +51,7 @@ function GenresSelect() {
                 name: t(`gamesGenres.${genre}` as any),
                 id: genre
             }))}
-            renderInput={(params) => <TextField {...params} label={t("filtersLabels.genres") as string} />}
+            renderInput={(params) => <TextField {...params.InputProps} label={t("filtersLabels.genres") as string} />}
             onChange={(_event, value) => {
                 dispatch(filteringByGenre(value.map(v => v.id)));
             }}
