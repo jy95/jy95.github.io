@@ -42,8 +42,7 @@ function RenderPlatformIcon(props: Props) {
 
     // If part of mapping, return dedicated icon
     if (identifier in platformsMappings) {
-        // @ts-ignore: Typescript is mad here ^^
-        const elem = platformsMappings[identifier];
+        const elem = platformsMappings[identifier as keyof typeof platformsMappings];
         return (
             <SvgIcon titleAccess={label}>
                 {elem}
