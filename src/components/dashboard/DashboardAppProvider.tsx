@@ -2,7 +2,6 @@
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 // Hooks
-import {useCallback, useMemo} from 'react';
 import {setRequestLocale} from 'next-intl/server';
 import {useTranslations} from 'next-intl';
 
@@ -28,7 +27,7 @@ export default function DashboardAppProvider({children, locale} : Props) {
     // Fetch labels
     const t = useTranslations('dashboard.toolbar');
 
-    const toolbarActionsProps = useMemo(() => ({
+    const toolbarActionsProps = {
         settingsLabel: t("settings"),
         darkLabel: t("modes.dark"),
         englishLabel: t("languages.en"),
@@ -37,13 +36,7 @@ export default function DashboardAppProvider({children, locale} : Props) {
         lightLabel: t("modes.light"),
         modeTitle: t("modes.title"),
         systemLabel: t("modes.system")
-    }), [t]);
-
-    // https://github.com/mui/toolpad/issues/4512
-    const ToolbarComponent = useCallback(
-        () => <ToolbarActions {...toolbarActionsProps} />, 
-        [toolbarActionsProps]
-    );
+    }
 
     return (
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
@@ -51,7 +44,11 @@ export default function DashboardAppProvider({children, locale} : Props) {
                 <DashboardLayout 
                     defaultSidebarCollapsed 
                     slots={{
-                        toolbarActions: ToolbarComponent
+                        // @ts-ignore Type not accurate, will report it to MUI later
+                        toolbarActions: ToolbarActions
+                    }}
+                    slotProps={{
+                        toolbarActions: toolbarActionsProps
                     }}
                 >
                     {children}
