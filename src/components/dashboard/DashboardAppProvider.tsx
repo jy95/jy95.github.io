@@ -10,13 +10,14 @@ import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import AppProviderCustom from "@/components/dashboard/AppProviderCustom";
 import ToolbarActions from "@/components/dashboard/ToolbarActions";
 
+// Types
+import type {Locale} from 'next-intl';
+import type { ReactNode } from "react";
+
 type Props = {
     children: ReactNode,
-    locale: "en" | "fr"
+    locale: Locale
 }
-
-// Types
-import type { ReactNode } from "react";
 
 export default function DashboardAppProvider({children, locale} : Props) {
 

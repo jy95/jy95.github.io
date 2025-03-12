@@ -15,6 +15,7 @@ import Box from '@mui/material/Box';
 import DashboardAppProvider from "@/components/dashboard/DashboardAppProvider";
 
 // Types
+import type {Locale} from 'next-intl';
 import type { Metadata } from 'next/types';
 import type { ReactNode } from "react";
 
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
 type Props = {
   children: ReactNode,
   params: Promise<{
-    locale: "en" | "fr"
+    locale: Locale
   }>
 }
 

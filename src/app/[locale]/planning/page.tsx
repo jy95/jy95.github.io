@@ -3,9 +3,11 @@ import PlanningViewerClient from "@/components/planning/PlanningViewerClient";
 // Hooks
 import {setRequestLocale , getTranslations} from 'next-intl/server';
 
+import type {Locale} from 'next-intl';
+
 type Props = {
     params: Promise<{
-        locale: "en" | "fr"
+        locale: Locale
     }>
 }
 

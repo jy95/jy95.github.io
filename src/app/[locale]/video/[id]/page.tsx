@@ -3,9 +3,11 @@ import {getTranslations} from 'next-intl/server';
 import YTPlayer from "@/components/YTPlayer/Player";
 import RandomButton from '@/components/GamesView/RandomButton';
 
+import type {Locale} from 'next-intl';
+
 // https://nextjs.org/docs/app/api-reference/file-conventions/page#props
 type Props = {
-    params: Promise<{ id: string, locale: "en" | "fr" }>
+    params: Promise<{ id: string, locale: Locale }>
 }
 
 export async function generateStaticParams() {

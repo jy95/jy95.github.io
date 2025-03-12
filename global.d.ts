@@ -1,3 +1,14 @@
 // Use type safe message keys with `next-intl`
-type Messages = typeof import('./messages/en.json');
-declare interface IntlMessages extends Messages {}
+// https://next-intl.dev/docs/workflows/typescript
+ 
+import {formats} from '@/i18n/request';
+import {routing} from '@/i18n/routing';
+import en from './messages/en.json';
+ 
+declare module 'next-intl' {
+  interface AppConfig {
+    Messages: typeof en;
+    Formats: typeof formats;
+    Locale: (typeof routing.locales)[number];
+  }
+}
