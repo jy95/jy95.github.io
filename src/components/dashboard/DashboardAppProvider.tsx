@@ -1,4 +1,5 @@
 // Providers
+import {NextIntlClientProvider} from 'next-intl';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 // Hooks
@@ -10,13 +11,14 @@ import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import AppProviderCustom from "@/components/dashboard/AppProviderCustom";
 import ToolbarActions from "@/components/dashboard/ToolbarActions";
 
+// Types
+import type {Locale} from 'next-intl';
+import type { ReactNode } from "react";
+
 type Props = {
     children: ReactNode,
-    locale: "en" | "fr"
+    locale: Locale
 }
-
-// Types
-import type { ReactNode } from "react";
 
 export default function DashboardAppProvider({children, locale} : Props) {
 
@@ -40,18 +42,20 @@ export default function DashboardAppProvider({children, locale} : Props) {
     return (
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
             <AppProviderCustom>
-                <DashboardLayout 
-                    defaultSidebarCollapsed 
-                    slots={{
-                        // @ts-ignore Type not accurate, will report it to MUI later
-                        toolbarActions: ToolbarActions
-                    }}
-                    slotProps={{
-                        toolbarActions: toolbarActionsProps
-                    }}
-                >
-                    {children}
-                </DashboardLayout>
+                <NextIntlClientProvider>
+                    <DashboardLayout 
+                        defaultSidebarCollapsed 
+                        slots={{
+                            // @ts-ignore Type not accurate, will report it to MUI later
+                            toolbarActions: ToolbarActions
+                        }}
+                        slotProps={{
+                            toolbarActions: toolbarActionsProps
+                        }}
+                    >
+                        {children}
+                    </DashboardLayout>
+                </NextIntlClientProvider>
             </AppProviderCustom>
         </AppRouterCacheProvider>
     );
