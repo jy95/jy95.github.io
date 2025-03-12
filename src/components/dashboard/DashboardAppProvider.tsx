@@ -1,4 +1,5 @@
 // Providers
+import {NextIntlClientProvider} from 'next-intl';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 // Hooks
@@ -41,18 +42,20 @@ export default function DashboardAppProvider({children, locale} : Props) {
     return (
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
             <AppProviderCustom>
-                <DashboardLayout 
-                    defaultSidebarCollapsed 
-                    slots={{
-                        // @ts-ignore Type not accurate, will report it to MUI later
-                        toolbarActions: ToolbarActions
-                    }}
-                    slotProps={{
-                        toolbarActions: toolbarActionsProps
-                    }}
-                >
-                    {children}
-                </DashboardLayout>
+                <NextIntlClientProvider>
+                    <DashboardLayout 
+                        defaultSidebarCollapsed 
+                        slots={{
+                            // @ts-ignore Type not accurate, will report it to MUI later
+                            toolbarActions: ToolbarActions
+                        }}
+                        slotProps={{
+                            toolbarActions: toolbarActionsProps
+                        }}
+                    >
+                        {children}
+                    </DashboardLayout>
+                </NextIntlClientProvider>
             </AppProviderCustom>
         </AppRouterCacheProvider>
     );
