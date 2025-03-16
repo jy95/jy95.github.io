@@ -45,7 +45,7 @@ const LINKS : {
 
 // Channel props
 const CHANNEL_NAME = "GamesPassionFR";
-const CHANNEL_ICON_URL = "https://yt3.googleusercontent.com/TvR4JrmxStsFvuKRim36CnxGVBYVMS8IZXno0OFkQjvu1LfsM3jrKzlMg96A9Ikx-vouRhAZ2A=s160-c-k-c0x00ffffff-no-rj";
+const CHANNEL_ICON_URL = "https://yt3.googleusercontent.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s160-c-k-c0x00ffffff-no-rj";
 
 export default function LinksViewer() {
     return (
