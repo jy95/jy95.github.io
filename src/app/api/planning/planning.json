@@ -248,5 +248,14 @@
 		"releaseDate": "2024-02-12",
 		"duration": "07:21:57",
 		"platform": 6
+	},
+	{
+		"id": 212,
+		"availableAt": "2026-11-16",
+		"playlistId": "PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m",
+		"title": "The Club",
+		"releaseDate": "2008-02-08",
+		"duration": "00:00:00",
+		"platform": 6
 	}
 ]
