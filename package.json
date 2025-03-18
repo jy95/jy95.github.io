@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@inquirer/input": "^4.1.8",
-    "better-sqlite3": "^11.9.0",
+    "better-sqlite3": "^11.9.1",
     "googleapis": "^146.0.0"
   }
 }
