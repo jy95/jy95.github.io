@@ -4,8 +4,8 @@
 			"id": 1,
 			"platform": "PC",
 			"total": 77,
-			"total_available": 75,
-			"total_unavailable": 2
+			"total_available": 76,
+			"total_unavailable": 1
 		},
 		{
 			"id": 6,
@@ -48,15 +48,15 @@
 			"id": 1,
 			"genre": "Action",
 			"total": 169,
-			"total_available": 147,
-			"total_unavailable": 22
+			"total_available": 148,
+			"total_unavailable": 21
 		},
 		{
 			"id": 2,
 			"genre": "Adventure",
 			"total": 139,
-			"total_available": 128,
-			"total_unavailable": 11
+			"total_available": 129,
+			"total_unavailable": 10
 		},
 		{
 			"id": 12,
@@ -189,7 +189,7 @@
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"games": {
 			"total": 195,
-			"total_available": 169,
+			"total_available": 170,
 			"total_unavailable": 26
 		},
 		"dlcs": {
@@ -204,9 +204,9 @@
 				"seconds": 57
 			},
 			"total_available": {
-				"hours": 909,
-				"minutes": 52,
-				"seconds": 0
+				"hours": 918,
+				"minutes": 2,
+				"seconds": 21
 			},
 			"total_unavailable": {
 				"hours": 135,
