@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 
 // MUI component
 import Typography from "@mui/material/Typography";
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Paper from "@mui/material/Paper";
 
 import { LineChart } from '@mui/x-charts/LineChart';

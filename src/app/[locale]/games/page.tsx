@@ -6,7 +6,7 @@ import { useAppSelector } from "@/redux/hooks";
 import { useTranslations } from 'next-intl';
 
 // Style
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import LoadingButton from './_client/LoadingButton';
 
 // Custom
