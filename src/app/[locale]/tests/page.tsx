@@ -5,7 +5,7 @@ import { useGetTestsQuery } from "@/redux/services/testsAPI";
 
 // Components
 import CardEntry from "@/components/GamesView/CardEntry";
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 
 export default function TestsPage() {
 

@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic'
 import { useGetSeriesQuery } from "@/redux/services/seriesAPI";
 
 // MUI component
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Skeleton from '@mui/material/Skeleton';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
