@@ -18,8 +18,8 @@
 			"id": 5,
 			"platform": "PS2",
 			"total": 21,
-			"total_available": 19,
-			"total_unavailable": 2
+			"total_available": 20,
+			"total_unavailable": 1
 		},
 		{
 			"id": 3,
@@ -48,8 +48,8 @@
 			"id": 1,
 			"genre": "Action",
 			"total": 169,
-			"total_available": 148,
-			"total_unavailable": 21
+			"total_available": 149,
+			"total_unavailable": 20
 		},
 		{
 			"id": 2,
@@ -189,7 +189,7 @@
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"games": {
 			"total": 195,
-			"total_available": 170,
+			"total_available": 171,
 			"total_unavailable": 25
 		},
 		"dlcs": {
@@ -204,9 +204,9 @@
 				"seconds": 57
 			},
 			"total_available": {
-				"hours": 918,
-				"minutes": 2,
-				"seconds": 21
+				"hours": 923,
+				"minutes": 40,
+				"seconds": 58
 			},
 			"total_unavailable": {
 				"hours": 127,
