@@ -10,9 +10,9 @@
 		{
 			"id": 6,
 			"platform": "PS3",
-			"total": 69,
+			"total": 70,
 			"total_available": 47,
-			"total_unavailable": 22
+			"total_unavailable": 23
 		},
 		{
 			"id": 5,
@@ -61,9 +61,9 @@
 		{
 			"id": 12,
 			"genre": "Platformer",
-			"total": 67,
+			"total": 68,
 			"total_available": 64,
-			"total_unavailable": 3
+			"total_unavailable": 4
 		},
 		{
 			"id": 16,
@@ -80,18 +80,18 @@
 			"total_unavailable": 0
 		},
 		{
+			"id": 13,
+			"genre": "Puzzle",
+			"total": 9,
+			"total_available": 8,
+			"total_unavailable": 1
+		},
+		{
 			"id": 9,
 			"genre": "Fighting",
 			"total": 9,
 			"total_available": 6,
 			"total_unavailable": 3
-		},
-		{
-			"id": 13,
-			"genre": "Puzzle",
-			"total": 8,
-			"total_available": 8,
-			"total_unavailable": 0
 		},
 		{
 			"id": 7,
@@ -188,9 +188,9 @@
 	"general": {
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"games": {
-			"total": 195,
+			"total": 196,
 			"total_available": 171,
-			"total_unavailable": 25
+			"total_unavailable": 26
 		},
 		"dlcs": {
 			"total": 17,
@@ -199,9 +199,9 @@
 		},
 		"duration": {
 			"total": {
-				"hours": 1045,
-				"minutes": 21,
-				"seconds": 57
+				"hours": 1046,
+				"minutes": 58,
+				"seconds": 50
 			},
 			"total_available": {
 				"hours": 923,
@@ -209,9 +209,9 @@
 				"seconds": 58
 			},
 			"total_unavailable": {
-				"hours": 127,
-				"minutes": 19,
-				"seconds": 36
+				"hours": 128,
+				"minutes": 56,
+				"seconds": 29
 			}
 		}
 	}
