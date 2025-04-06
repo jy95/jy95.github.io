@@ -17,9 +17,9 @@
 		{
 			"id": 5,
 			"platform": "PS2",
-			"total": 21,
+			"total": 22,
 			"total_available": 20,
-			"total_unavailable": 1
+			"total_unavailable": 2
 		},
 		{
 			"id": 3,
@@ -68,9 +68,9 @@
 		{
 			"id": 16,
 			"genre": "Shooter",
-			"total": 49,
+			"total": 50,
 			"total_available": 42,
-			"total_unavailable": 7
+			"total_unavailable": 8
 		},
 		{
 			"id": 14,
@@ -188,9 +188,9 @@
 	"general": {
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"games": {
-			"total": 196,
+			"total": 197,
 			"total_available": 171,
-			"total_unavailable": 26
+			"total_unavailable": 27
 		},
 		"dlcs": {
 			"total": 17,
