@@ -261,10 +261,11 @@
 	{
 		"id": 214,
 		"availableAt": "2026-12-07",
+		"endAt": "2027-01-15",
 		"playlistId": "PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
 		"title": "Half-Life",
 		"releaseDate": "2001-11-30",
-		"duration": "00:00:00",
+		"duration": "05:44:19",
 		"platform": 5
 	}
 ]
