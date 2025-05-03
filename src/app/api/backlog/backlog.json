@@ -666,5 +666,10 @@
 	{
 		"id": 144,
 		"title": "Grim Fandango Remastered"
+	},
+	{
+		"id": 145,
+		"title": "Journey",
+		"platform": 6
 	}
 ]
