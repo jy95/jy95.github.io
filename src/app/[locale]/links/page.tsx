@@ -43,7 +43,7 @@ const LINKS : {
         icon: <TwitterIcon />
     },
     {
-        primary: "Github",
+        primary: "GitHub",
         path: "https://github.com/jy95/jy95.github.io",
         icon: <GitHubIcon />
     }
