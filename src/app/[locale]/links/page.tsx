@@ -9,6 +9,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import GroupsIcon from '@mui/icons-material/Groups';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 // Types
 import type { JSX } from 'react'
@@ -40,6 +41,11 @@ const LINKS : {
         primary: "Twitter / X",
         path: "https://x.com/GamesPassion_FR",
         icon: <TwitterIcon />
+    },
+    {
+        primary: "GitHub",
+        path: "https://github.com/jy95/jy95.github.io",
+        icon: <GitHubIcon />
     }
 ]
 
