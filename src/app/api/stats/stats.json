@@ -10,9 +10,9 @@
 		{
 			"id": 6,
 			"platform": "PS3",
-			"total": 71,
+			"total": 72,
 			"total_available": 47,
-			"total_unavailable": 24
+			"total_unavailable": 25
 		},
 		{
 			"id": 5,
@@ -124,9 +124,9 @@
 		{
 			"id": 10,
 			"genre": "Indie",
-			"total": 5,
+			"total": 6,
 			"total_available": 3,
-			"total_unavailable": 2
+			"total_unavailable": 3
 		},
 		{
 			"id": 5,
@@ -188,9 +188,9 @@
 	"general": {
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"games": {
-			"total": 198,
+			"total": 199,
 			"total_available": 171,
-			"total_unavailable": 28
+			"total_unavailable": 29
 		},
 		"dlcs": {
 			"total": 17,
@@ -199,9 +199,9 @@
 		},
 		"duration": {
 			"total": {
-				"hours": 1055,
-				"minutes": 36,
-				"seconds": 22
+				"hours": 1057,
+				"minutes": 8,
+				"seconds": 32
 			},
 			"total_available": {
 				"hours": 923,
@@ -209,9 +209,9 @@
 				"seconds": 58
 			},
 			"total_unavailable": {
-				"hours": 137,
-				"minutes": 34,
-				"seconds": 1
+				"hours": 139,
+				"minutes": 6,
+				"seconds": 11
 			}
 		}
 	}
