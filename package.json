@@ -24,7 +24,7 @@
     "@mui/material-nextjs": "^7.0.0",
     "@mui/x-charts": "^8.0.0",
     "@mui/x-data-grid": "^8.0.0",
-    "@reduxjs/toolkit": "^2.7.0",
+    "@reduxjs/toolkit": "^2.8.1",
     "@toolpad/core": "^0.14.0",
     "@types/node": "^22.15.3",
     "@types/react": "^19.1.2",
