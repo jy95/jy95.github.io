@@ -671,5 +671,10 @@
 		"id": 146,
 		"title": "I-Ninja",
 		"platform": 5
+	},
+	{
+		"id": 147,
+		"title": "X-Blades",
+		"platform": 6
 	}
 ]
