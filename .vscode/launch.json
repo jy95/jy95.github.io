@@ -1,32 +1,62 @@
 {
+  // VS Code Debug Configurations for Next.js Projects
   "version": "0.2.0",
   "configurations": [
+    // 1. Debug Next.js Server (API routes, getServerSideProps, etc.)
     {
-      "name": "Next.js: debug server-side",
-      "type": "node-terminal",
+      "name": "Next.js: Debug Server-Side (Node.js)",
+      "type": "pwa-node",
       "request": "launch",
-      "command": "npm run dev"
-    },
-    {
-      "name": "Next.js: debug client-side",
-      "type": "chrome",
-      "request": "launch",
-      "url": "http://localhost:3000"
-    },
-    {
-      "name": "Next.js: debug full stack",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/node_modules/.bin/next",
-      "runtimeArgs": ["--inspect"],
-      "skipFiles": ["<node_internals>/**"],
-      "serverReadyAction": {
-        "action": "debugWithEdge",
-        "killOnServerStop": true,
-        "pattern": "- Local:.+(https?://.+)",
-        "uriFormat": "%s",
-        "webRoot": "${workspaceFolder}"
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "${workspaceFolder}",
+      "skipFiles": ["<node_internals>/**", "node_modules/**"],
+      "console": "integratedTerminal",
+      "port": 9229, // Enable debugging on 9229, standard for Node
+      "env": {
+        "NODE_OPTIONS": "--inspect"
       }
+    },
+
+    // 2. Debug Next.js Client (Browser: Chrome)
+    {
+      "name": "Next.js: Debug Client-Side (Chrome)",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "trace": true
+    },
+
+    // 3. Full Stack Debug (Attach to Node + Browser with serverReadyAction)
+    {
+      "name": "Next.js: Debug Full Stack (Node + Browser)",
+      "type": "pwa-node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "${workspaceFolder}",
+      "skipFiles": ["<node_internals>/**", "node_modules/**"],
+      "env": {
+        "NODE_OPTIONS": "--inspect"
+      },
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "started server.*(https?://localhost:\\d+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome"
+      }
+    }
+  ],
+  // Optional: Compound to run server + client debug together
+  "compounds": [
+    {
+      "name": "Next.js: Debug Full Stack Compound",
+      "configurations": [
+        "Next.js: Debug Server-Side (Node.js)",
+        "Next.js: Debug Client-Side (Chrome)"
+      ]
     }
   ]
 }
