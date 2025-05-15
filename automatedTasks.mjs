@@ -307,7 +307,7 @@ async function updateGameInDatabase(db, payload) {
 }
 
 /**
- * Update game fields
+ * Delete game from database
  * @param {import('better-sqlite3').Database} db - The database instance
  * @param {Object} payload - The game details
  * @param {IdentifierKind} payload.identifierKind - The identifier kind (Playlist, Video)
@@ -486,6 +486,123 @@ async function cleanBacklog(db) {
     return deleteBacklogStmt.run();
 }
 
+/**
+ * Add a test into the database
+ * @param {import('better-sqlite3').Database} db - The database instance
+ * @param {Object} payload - The test details
+ * @param {string} payload.title - The title of the test
+ * @param {string} payload.releaseDate - The release date of the test (YYYY-MM-DD)
+ * @param {IdentifierKind} payload.identifierKind - The identifier kind (Playlist, Video)
+ * @param {string} payload.identifierValue - The identifier value (ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY)
+ * @param {Platform} payload.platform - The test platform (PC, ...)
+ * @param {string} [payload.duration] - The test duration (HH:MM:SS)
+ */
+async function addTestToDatabase(db, payload) {
+    // Prepare fields
+
+    const keyField = identifierKindToDatabaseField(payload.identifierKind);
+    const testToInsert = {
+        identifier: payload.identifierValue,
+        title: payload.title,
+        releaseDate: payload.releaseDate,
+        duration: payload.duration || "00:00:00",
+        platform: platformToInt(payload.platform)
+    }
+
+    // Statement
+    const insertStmt = db.prepare(`INSERT INTO tests (${keyField}, title, releaseDate, duration, platform) VALUES (@identifier, @title, @releaseDate, @duration, @platform)`);
+    return insertStmt.run(testToInsert);
+}
+
+/**
+ * Update test fields
+ * @param {import('better-sqlite3').Database} db - The database instance
+ * @param {Object} payload - The test details
+ * @param {string} [payload.title] - The title of the test
+ * @param {string} [payload.releaseDate] - The release date of the test (YYYY-MM-DD)
+ * @param {IdentifierKind} payload.identifierKind - The identifier kind (Playlist, Video)
+ * @param {string} payload.identifierValue - The identifier value (ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY)
+ * @param {Platform} [payload.platform] - The test platform (PC, ...)
+ * @param {string} [payload.duration] - The game duration (HH:MM:SS)
+ * 
+ */
+async function updateTestInDatabase(db, payload) {
+    const keyField = identifierKindToDatabaseField(payload.identifierKind);
+    const youtubeIdentifier = payload.identifierValue;
+    
+    // Statments
+    const findGameIdStmt = db.prepare(`SELECT id from tests WHERE ${keyField} = ?`);
+    const updateTitleStmt = db.prepare("UPDATE tests SET title = ? WHERE id = ?");
+    const updateReleaseDateStmt = db.prepare("UPDATE tests SET releaseDate = ? WHERE id = ?");
+    const updatePlatformStmt = db.prepare("UPDATE tests SET platform = ? WHERE id = ?");
+    const updateDurationStmt = db.prepare("UPDATE tests SET duration = ? WHERE id = ?");
+
+    /**
+     * Check if the given key is a valid key in the payload object and its value is not an empty string.
+     * 
+     * @param {keyof typeof payload} key - The key to check in the payload.
+     * @returns {boolean} - Returns `true` if the value of the key in the payload is defined and non-empty, otherwise `false`.
+     */
+    const notEmptyString = (key) => payload[key] !== undefined && payload[key].length > 0;
+
+    // has attributes
+    const hasTitle = notEmptyString("title");
+    const hasReleaseDate = notEmptyString("releaseDate");
+    const hasDuration = notEmptyString("duration");
+
+    // Execution time
+    const updateGame = db.transaction(() => {
+        // Find game id
+        const gameId = findGameIdStmt.pluck().get(youtubeIdentifier);
+
+        // Update title
+        if (hasTitle) {
+            updateTitleStmt.run(payload.title, gameId);
+        }
+
+        // Update release date
+        if (hasReleaseDate) {
+            updateReleaseDateStmt.run(payload.releaseDate.trim(), gameId);
+        }
+
+        // Update platform
+        if (payload.platform !== undefined) {
+            const platform = platformToInt(payload.platform);
+            updatePlatformStmt.run(platform, gameId);
+        }
+
+        // Update duration
+        if (hasDuration) {
+            updateDurationStmt.run(payload.duration, gameId);
+        }
+
+    });
+
+    return updateGame();
+}
+
+/**
+ * Remove a test from the database
+ * @param {import('better-sqlite3').Database} db - The database instance
+ * @param {Object} payload - The test details
+ * @param {IdentifierKind} payload.identifierKind - The identifier kind (Playlist, Video)
+ * @param {string} payload.identifierValue - The identifier value (ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY)
+ */
+async function deleteTestFromDatabase(db, payload) {
+    // Fields
+    const keyField = identifierKindToDatabaseField(payload.identifierKind);
+    const youtubeIdentifier = payload.identifierValue;
+
+    // Statments
+    const findGameIdStmt = db.prepare(`SELECT id from tests WHERE ${keyField} = ?`);
+    const deleteTestStmt = db.prepare("DELETE FROM tests WHERE id = ?");
+
+    // Find game id
+    const gameId = findGameIdStmt.pluck().get(youtubeIdentifier);
+    // Delete game and everything related, thanks to the CASCADE DELETE
+    return deleteTestStmt.run(gameId);
+}
+
 switch(taskType) {
     case "ADD_GAME":
         await addGameToDatabase(db, taskPayload);
@@ -513,6 +630,15 @@ switch(taskType) {
         break;
     case "CLEAN_BACKLOG":
         await cleanBacklog(db);
+        break;
+    case "ADD_TEST":
+        await addTestToDatabase(db, taskPayload);
+        break;
+    case "DELETE_TEST":
+        await deleteTestFromDatabase(db, taskPayload);
+        break;
+    case "UPDATE_TEST":
+        await updateTestInDatabase(db, taskPayload);
         break;
     default:
         console.log(`Bip bip - Nothing was done as unexpected task`)

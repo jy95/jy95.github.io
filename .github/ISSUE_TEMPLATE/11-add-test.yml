@@ -1,0 +1,71 @@
+name: 📝 Add test
+description: Add a new test into the database
+title: '[ADD_TEST] '
+labels: ["database","[ADD_TEST]"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill in the following fields to add this test into database !
+  - type: input
+    id: title
+    attributes:
+      label: Name of the test
+      description: What is the test name in the language it was played ?
+      placeholder: ex. Splinter Cell HD
+    validations:
+      required: true
+  - type: input
+    id: releaseDate
+    attributes:
+      label: Release Date
+      description: When was this game published ?
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+  - type: dropdown
+    id: identifierKind
+    attributes:
+      label: Kind of content
+      description: Is it a playlist or a video ?
+      options:
+        - Playlist
+        - Video
+      default: 0
+    validations:
+      required: true
+  - type: input
+    id: identifierValue
+    attributes:
+      label: Identifier
+      description: What is the test playlist ID or video ID on Youtube ?
+      placeholder: >-
+        ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: On which platform was the content on ?
+      options:
+        - PC
+        - GBA
+        - PSP
+        - PS1
+        - PS2
+        - PS3
+      default: 0
+    validations:
+      required: true
+  - type: input
+    id: duration
+    attributes:
+      label: Duration of the test
+      description: >-
+        How long is that test ? Express it with ISO 8601 time notation
+        (HH:MM:SS)
+      placeholder: '02:23:15'
+      value: '00:00:00'
+    validations:
+      required: false

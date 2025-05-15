@@ -26,6 +26,9 @@ jobs:
                 contains(github.event.issue.labels.*.name, '[MANAGE_SERIE]') && 'MANAGE_SERIE' || 
                 contains(github.event.issue.labels.*.name, '[MANAGE_DLCS]') && 'MANAGE_DLCS' || 
                 contains(github.event.issue.labels.*.name, '[CLEAN_BACKLOG]') && 'CLEAN_BACKLOG' || 
+                contains(github.event.issue.labels.*.name, '[ADD_TEST]') && 'ADD_TEST' || 
+                contains(github.event.issue.labels.*.name, '[UPDATE_TEST]') && 'UPDATE_TEST' || 
+                contains(github.event.issue.labels.*.name, '[DELETE_TEST]') && 'DELETE_TEST' || 
                 'UNKNOWN' }}
           run: echo "issue_type=${{ env.ISSUE_TYPE }}" >> $GITHUB_OUTPUT
         - id: set_template_file
@@ -61,6 +64,15 @@ jobs:
                 ;;
               CLEAN_BACKLOG)
                 echo "template_file=10-clean-backlog.yml" >> $GITHUB_OUTPUT
+                ;;
+              ADD_TEST)
+                echo "template_file=11-add-test.yml" >> $GITHUB_OUTPUT
+                ;;
+              UPDATE_TEST)
+                echo "template_file=12-update-test.yml" >> $GITHUB_OUTPUT
+                ;;
+              DELETE_TEST)
+                echo "template_file=13-delete-test.yml" >> $GITHUB_OUTPUT
                 ;;
             esac
     process_issue:
