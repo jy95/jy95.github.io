@@ -501,10 +501,14 @@ async function addTestToDatabase(db, payload) {
     // Prepare fields
 
     const keyField = identifierKindToDatabaseField(payload.identifierKind);
+
+    const today = new Date();
+    const formattedToday = today.toISOString().slice(0, 10);
+
     const testToInsert = {
         identifier: payload.identifierValue,
         title: payload.title,
-        releaseDate: payload.releaseDate || null,
+        releaseDate: payload.releaseDate || formattedToday,
         duration: payload.duration || "00:00:00",
         platform: platformToInt(payload.platform)
     }
