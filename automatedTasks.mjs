@@ -491,7 +491,7 @@ async function cleanBacklog(db) {
  * @param {import('better-sqlite3').Database} db - The database instance
  * @param {Object} payload - The test details
  * @param {string} payload.title - The title of the test
- * @param {string} payload.releaseDate - The release date of the test (YYYY-MM-DD)
+ * @param {string} [payload.releaseDate] - The release date of the test (YYYY-MM-DD)
  * @param {IdentifierKind} payload.identifierKind - The identifier kind (Playlist, Video)
  * @param {string} payload.identifierValue - The identifier value (ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY)
  * @param {Platform} payload.platform - The test platform (PC, ...)
@@ -504,7 +504,7 @@ async function addTestToDatabase(db, payload) {
     const testToInsert = {
         identifier: payload.identifierValue,
         title: payload.title,
-        releaseDate: payload.releaseDate,
+        releaseDate: payload.releaseDate || null,
         duration: payload.duration || "00:00:00",
         platform: platformToInt(payload.platform)
     }

@@ -22,7 +22,7 @@ body:
       description: When was this game published ?
       placeholder: YYYY-MM-DD
     validations:
-      required: true
+      required: false
   - type: dropdown
     id: identifierKind
     attributes:
