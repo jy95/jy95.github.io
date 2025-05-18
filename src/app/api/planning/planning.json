@@ -282,10 +282,11 @@
 	{
 		"id": 217,
 		"availableAt": "2027-03-01",
+		"endAt": "2027-03-19",
 		"playlistId": "PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX",
 		"title": "Portal 2",
 		"releaseDate": "2011-04-21",
-		"duration": "00:00:00",
+		"duration": "04:34:28",
 		"platform": 6
 	}
 ]
