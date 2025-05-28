@@ -10,9 +10,9 @@
 		{
 			"id": 6,
 			"platform": "PS3",
-			"total": 73,
+			"total": 74,
 			"total_available": 48,
-			"total_unavailable": 25
+			"total_unavailable": 26
 		},
 		{
 			"id": 5,
@@ -68,9 +68,9 @@
 		{
 			"id": 16,
 			"genre": "Shooter",
-			"total": 50,
+			"total": 51,
 			"total_available": 42,
-			"total_unavailable": 8
+			"total_unavailable": 9
 		},
 		{
 			"id": 14,
@@ -188,9 +188,9 @@
 	"general": {
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"games": {
-			"total": 200,
+			"total": 201,
 			"total_available": 173,
-			"total_unavailable": 28
+			"total_unavailable": 29
 		},
 		"dlcs": {
 			"total": 17,
