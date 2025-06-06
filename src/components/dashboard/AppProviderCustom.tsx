@@ -34,6 +34,7 @@ function AppProviderCustomInner(props: Props) {
         dlcsView: t("menuEntries.gamesTabs.dlc"),
         gamesCategoy: t("menuEntries.gamesKey"),
         gamesView: t("menuEntries.gamesTabs.grid"),
+        randomView: t("menuEntries.gamesTabs.random"),
         links: t("menuEntries.links"),
         planned: t("menuEntries.planningKey"),
         seriesView: t("menuEntries.gamesTabs.list"),
