@@ -8,6 +8,7 @@ import LinkIcon from '@mui/icons-material/Link';
 import AppsIcon from '@mui/icons-material/Apps';
 import ListIcon from '@mui/icons-material/List';
 import ExtensionIcon from '@mui/icons-material/Extension';
+import CasinoIcon from '@mui/icons-material/Casino';
 
 // Types
 import type { Navigation } from '@toolpad/core/AppProvider';
@@ -16,6 +17,7 @@ type Props = {
     gamesView: string,
     seriesView: string,
     dlcsView: string,
+    randomView: string,
     planned: string,
     backlog: string,
     tests: string,
@@ -43,6 +45,11 @@ export default function NavigationMenu(props: Props) : Navigation {
                     segment: "dlcs",
                     icon: <ExtensionIcon />,
                     title: props.dlcsView
+                },
+                {
+                    segment: "random",
+                    icon: <CasinoIcon />,
+                    title: props.randomView
                 }
             ]
         },

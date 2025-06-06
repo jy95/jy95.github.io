@@ -11,7 +11,8 @@
             "gamesTabs": {
                 "grid": "Jeux",
                 "list": "Séries",
-                "dlc": "DLCS"
+                "dlc": "DLCS",
+                "random": "Au hasard"
             }
         },
         "toolbar": {
