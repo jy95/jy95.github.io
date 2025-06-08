@@ -20,6 +20,7 @@ jobs:
               uses: actions/setup-node@v4.0.2
               with:
                 node-version: "lts/*"
+                cache: 'npm'
             - name: 💻 Install npm packages
               run: npm install better-sqlite3 --no-save
             - name: 🤖 Do the thing
