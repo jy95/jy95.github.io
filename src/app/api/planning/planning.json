@@ -292,10 +292,11 @@
 	{
 		"id": 219,
 		"availableAt": "2027-04-23",
+		"endAt": "2027-05-03",
 		"playlistId": "PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-",
 		"title": "Half-Life 2: Episode One",
 		"releaseDate": "2006-06-01",
-		"duration": "00:00:00",
+		"duration": "02:45:11",
 		"platform": 6
 	}
 ]
