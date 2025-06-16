@@ -25,7 +25,7 @@
     "@mui/x-charts": "^8.5.0",
     "@mui/x-data-grid": "^8.5.0",
     "@reduxjs/toolkit": "^2.8.2",
-    "@toolpad/core": "^0.15.0",
+    "@toolpad/core": "^0.16.0",
     "@types/node": "^22.15.29",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.6",
