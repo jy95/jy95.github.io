@@ -17,9 +17,9 @@
 		{
 			"id": 5,
 			"platform": "PS2",
-			"total": 22,
+			"total": 23,
 			"total_available": 21,
-			"total_unavailable": 1
+			"total_unavailable": 2
 		},
 		{
 			"id": 3,
@@ -54,16 +54,16 @@
 		{
 			"id": 2,
 			"genre": "Adventure",
-			"total": 139,
+			"total": 140,
 			"total_available": 131,
-			"total_unavailable": 8
+			"total_unavailable": 9
 		},
 		{
 			"id": 12,
 			"genre": "Platformer",
-			"total": 70,
+			"total": 71,
 			"total_available": 64,
-			"total_unavailable": 6
+			"total_unavailable": 7
 		},
 		{
 			"id": 16,
@@ -188,9 +188,9 @@
 	"general": {
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"games": {
-			"total": 202,
+			"total": 203,
 			"total_available": 173,
-			"total_unavailable": 30
+			"total_unavailable": 31
 		},
 		"dlcs": {
 			"total": 17,
