@@ -302,10 +302,11 @@
 	{
 		"id": 220,
 		"availableAt": "2027-05-05",
+		"endAt": "2027-05-28",
 		"playlistId": "PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
 		"title": "Shrek 2",
 		"releaseDate": "2004-06-18",
-		"duration": "00:00:00",
+		"duration": "03:52:28",
 		"platform": 5
 	}
 ]
