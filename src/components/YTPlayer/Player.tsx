@@ -13,7 +13,6 @@ export default function Player({type, identifier} : Params) {
         <ReactPlayer
             controls={true}
             src={url}
-            playing={true}
             width='100%'
             height='75vh'
         />
