@@ -312,10 +312,11 @@
 	{
 		"id": 221,
 		"availableAt": "2027-05-31",
+		"endAt": "2027-06-14",
 		"playlistId": "PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB",
 		"title": "Half-Life 2: Episode Two",
 		"releaseDate": "2027-10-07",
-		"duration": "00:00:00",
+		"duration": "04:02:36",
 		"platform": 6
 	}
 ]
