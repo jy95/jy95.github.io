@@ -1,7 +1,6 @@
 "use client";
 
-import { lazy } from 'react'
-const ReactPlayer = lazy(() => import("react-player/youtube"));
+import ReactPlayer from 'react-player';
 
 type Params = {type: "PLAYLIST" | "VIDEO", identifier : string}
 
@@ -13,7 +12,7 @@ export default function Player({type, identifier} : Params) {
     return (
         <ReactPlayer
             controls={true}
-            url={url}
+            src={url}
             playing={true}
             width='100%'
             height='75vh'
