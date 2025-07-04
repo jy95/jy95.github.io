@@ -688,5 +688,10 @@
 		"title": "Burnout Paradise",
 		"platform": 6,
 		"notes": "+ DLCS ( Big Surf Island Pack, ...)"
+	},
+	{
+		"id": 151,
+		"title": "PAIN",
+		"platform": 6
 	}
 ]
