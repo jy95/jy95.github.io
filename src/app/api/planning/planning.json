@@ -308,5 +308,14 @@
 		"releaseDate": "2007-10-07",
 		"duration": "04:02:36",
 		"platform": 6
+	},
+	{
+		"id": 222,
+		"availableAt": "2027-06-16",
+		"playlistId": "PLRfhDHeBTBJ4DAQ8BmgRZFLB8hutraIoU",
+		"title": "Bionic Commando",
+		"releaseDate": "2009-05-22",
+		"duration": "00:00:00",
+		"platform": 6
 	}
 ]
