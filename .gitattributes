@@ -1,0 +1,2 @@
+# Inspired by https://gist.github.com/peteristhegreat/a028bc3b588baaea09ff67f405af2909
+*.db diff=sqlite3

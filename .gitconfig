@@ -1,0 +1,2 @@
+[diff "sqlite3"]
+    textconv = "f(){ sqlite3 "$1" .dump; }; f"
