@@ -318,5 +318,14 @@
 		"releaseDate": "2009-05-22",
 		"duration": "04:28:41",
 		"platform": 6
+	},
+	{
+		"id": 223,
+		"availableAt": "2027-06-25",
+		"playlistId": "PLRfhDHeBTBJ7W7XcSZIOukj-hyjckT5Ca",
+		"title": "Bayonetta",
+		"releaseDate": "2010-01-08",
+		"duration": "00:00:00",
+		"platform": 6
 	}
 ]

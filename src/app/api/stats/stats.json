@@ -1,18 +1,18 @@
 {
 	"platforms": [
 		{
+			"id": 6,
+			"platform": "PS3",
+			"total": 78,
+			"total_available": 49,
+			"total_unavailable": 29
+		},
+		{
 			"id": 1,
 			"platform": "PC",
 			"total": 77,
 			"total_available": 76,
 			"total_unavailable": 1
-		},
-		{
-			"id": 6,
-			"platform": "PS3",
-			"total": 77,
-			"total_available": 49,
-			"total_unavailable": 28
 		},
 		{
 			"id": 5,
@@ -47,9 +47,9 @@
 		{
 			"id": 1,
 			"genre": "Action",
-			"total": 169,
+			"total": 170,
 			"total_available": 152,
-			"total_unavailable": 17
+			"total_unavailable": 18
 		},
 		{
 			"id": 2,
@@ -80,18 +80,18 @@
 			"total_unavailable": 0
 		},
 		{
+			"id": 9,
+			"genre": "Fighting",
+			"total": 10,
+			"total_available": 6,
+			"total_unavailable": 4
+		},
+		{
 			"id": 13,
 			"genre": "Puzzle",
 			"total": 9,
 			"total_available": 8,
 			"total_unavailable": 1
-		},
-		{
-			"id": 9,
-			"genre": "Fighting",
-			"total": 9,
-			"total_available": 6,
-			"total_unavailable": 3
 		},
 		{
 			"id": 7,
@@ -188,9 +188,9 @@
 	"general": {
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"games": {
-			"total": 205,
+			"total": 206,
 			"total_available": 174,
-			"total_unavailable": 32
+			"total_unavailable": 33
 		},
 		"dlcs": {
 			"total": 17,
