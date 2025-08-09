@@ -199,9 +199,9 @@
 		},
 		"duration": {
 			"total": {
-				"hours": 1088,
-				"minutes": 2,
-				"seconds": 34
+				"hours": 1097,
+				"minutes": 16,
+				"seconds": 41
 			},
 			"total_available": {
 				"hours": 947,
@@ -209,9 +209,9 @@
 				"seconds": 47
 			},
 			"total_unavailable": {
-				"hours": 145,
-				"minutes": 6,
-				"seconds": 21
+				"hours": 154,
+				"minutes": 20,
+				"seconds": 28
 			}
 		}
 	}

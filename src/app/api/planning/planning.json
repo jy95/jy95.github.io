@@ -312,10 +312,11 @@
 	{
 		"id": 223,
 		"availableAt": "2027-06-25",
+		"endAt": "2027-08-06",
 		"playlistId": "PLRfhDHeBTBJ7W7XcSZIOukj-hyjckT5Ca",
 		"title": "Bayonetta",
 		"releaseDate": "2010-01-08",
-		"duration": "00:00:00",
+		"duration": "09:14:07",
 		"platform": 6
 	}
 ]
