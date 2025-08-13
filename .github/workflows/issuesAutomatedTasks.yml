@@ -11,7 +11,7 @@ jobs:
         template_file: ${{ steps.set_template_file.outputs.template_file }}
       steps:
         - name: 🛎️ Checkout
-          uses: actions/checkout@v4
+          uses: actions/checkout@v5
         - id: detect_issue_type
           name: 🔍 Scan issue type
           env:
@@ -87,7 +87,7 @@ jobs:
         TEMPLATE_FILE: ${{ needs.check_issue.outputs.template_file }}
       steps:
         - name: 🛎️ Checkout
-          uses: actions/checkout@v4
+          uses: actions/checkout@v5
         - id: parse-issue
           name: 📝 IssueOps Form Parser
           uses: issue-ops/parser@v4.2.0
@@ -114,7 +114,7 @@ jobs:
           REQUEST: ${{ needs.process_issue.outputs.issue_json }}
         steps:
           - name: 🛎️ Checkout
-            uses: actions/checkout@v4
+            uses: actions/checkout@v5
           - name: Setup Node.js ✨
             uses: actions/setup-node@v4.0.2
             with:
