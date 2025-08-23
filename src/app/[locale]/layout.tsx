@@ -47,7 +47,7 @@ export default async function RootLayout(props: Props) {
   } = props;
 
   // To catch with stuff that aren't a locale
-  let resolvedLocale : Locale = (routing.locales.includes(locale)) ? locale as Locale : "fr";
+  let resolvedLocale : Locale = (routing.locales.includes(locale as Locale)) ? locale as Locale : "fr";
 
   // Enable static rendering
   setRequestLocale(resolvedLocale);
