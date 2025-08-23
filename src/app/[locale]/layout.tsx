@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 type Props = {
   children: ReactNode,
   params: Promise<{
-    locale: Locale
+    locale: string
   }>
 }
 
@@ -47,7 +47,7 @@ export default async function RootLayout(props: Props) {
   } = props;
 
   // To catch with stuff that aren't a locale
-  let resolvedLocale = (routing.locales.includes(locale)) ? locale : "fr";
+  let resolvedLocale : Locale = (routing.locales.includes(locale as Locale)) ? locale as Locale : "fr";
 
   // Enable static rendering
   setRequestLocale(resolvedLocale);
