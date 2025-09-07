@@ -705,5 +705,10 @@
 	{
 		"id": 155,
 		"title": "Shinobi: Art of Vengeance"
+	},
+	{
+		"id": 156,
+		"title": "Hollow Knight",
+		"platform": 1
 	}
 ]
