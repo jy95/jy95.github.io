@@ -2097,6 +2097,18 @@
 		]
 	},
 	{
+		"id": 176,
+		"title": "The Warriors",
+		"playlistId": "PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
+		"releaseDate": "2013-03-20",
+		"duration": "06:11:20",
+		"platform": 6,
+		"genres": [
+			1,
+			2
+		]
+	},
+	{
 		"id": 100,
 		"title": "Titeuf : Méga-Compet'",
 		"playlistId": "PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
