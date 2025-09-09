@@ -4,8 +4,8 @@
 			"id": 6,
 			"platform": "PS3",
 			"total": 79,
-			"total_available": 50,
-			"total_unavailable": 29
+			"total_available": 51,
+			"total_unavailable": 28
 		},
 		{
 			"id": 1,
@@ -48,15 +48,15 @@
 			"id": 1,
 			"genre": "Action",
 			"total": 170,
-			"total_available": 153,
-			"total_unavailable": 17
+			"total_available": 154,
+			"total_unavailable": 16
 		},
 		{
 			"id": 2,
 			"genre": "Adventure",
 			"total": 140,
-			"total_available": 132,
-			"total_unavailable": 8
+			"total_available": 133,
+			"total_unavailable": 7
 		},
 		{
 			"id": 12,
@@ -189,7 +189,7 @@
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"games": {
 			"total": 207,
-			"total_available": 175,
+			"total_available": 176,
 			"total_unavailable": 32
 		},
 		"dlcs": {
@@ -204,9 +204,9 @@
 				"seconds": 41
 			},
 			"total_available": {
-				"hours": 947,
-				"minutes": 50,
-				"seconds": 47
+				"hours": 954,
+				"minutes": 2,
+				"seconds": 7
 			},
 			"total_unavailable": {
 				"hours": 149,
