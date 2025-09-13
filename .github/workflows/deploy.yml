@@ -1,4 +1,4 @@
-name: Deploy on Github Pages
+name: Deploy Github Page
 on:
   push:
     branches:
@@ -11,15 +11,21 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v5
-      - name: Set up Node.js ✨
-        uses: actions/setup-node@v5
-        with:
-          node-version: "lts/*"
-          cache: 'npm'
-      - name: Install and Build 🔧
-        run: |
-          npm install
-          npm run build
+# Not needed as Next.js isn't used to build the site statically atm because of missing features: 
+# https://nextjs.org/docs/app/guides/static-exports#unsupported-features
+#      - name: Set up Node.js ✨
+#        uses: actions/setup-node@v5
+#        with:
+#          node-version: "lts/*"
+#          cache: 'npm'
+#      - name: Install and Build 🔧
+#        run: |
+#          npm install
+#          npm run build
+      - name: Copy RSS file 📄
+        run: cp public/rss.xml gh-pages-out/
+      - name: Copy favicon file 📄
+        run: cp src/app/icon.svg gh-pages-out/
       - name: Deploy 🚀
         uses: peaceiris/actions-gh-pages@v4
         with:
