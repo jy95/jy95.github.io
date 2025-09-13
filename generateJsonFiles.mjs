@@ -1,4 +1,5 @@
 import { writeFile } from "fs/promises";
+import { Feed } from "feed";
 import Database from 'better-sqlite3';
 
 // Params
@@ -14,7 +15,8 @@ const FILES = {
     "STATS": "src/app/api/stats/stats.json",
     "PAST_GAMES": "src/app/api/planning/past-planning.json",
     "DLCS": "src/app/api/dlcs/dlcs.json",
-    "IDENTIFIERS": "src/app/api/random/identifiers.json"
+    "IDENTIFIERS": "src/app/api/random/identifiers.json",
+    "RSS": "public/rss.xml"
 }
 
 const db = new Database(databasePath, {
@@ -273,6 +275,59 @@ async function extractAndSaveRandomList(db) {
     console.log(`${FILES.IDENTIFIERS} successfully written`);
 }
 
+/**
+ * Extracts latest games from the database and saves them to a file.
+ * @param {import('better-sqlite3').Database} db - The database instance
+ */
+async function extractAndSavePastGamesToRSS(db) {
+    const extractGamesList = db.prepare("SELECT * FROM games_in_past ORDER BY availableAt DESC, endAt DESC LIMIT 15");
+    const gamesList = extractGamesList.all();
+
+    // Create RSS feed
+    const feed = new Feed({
+        id: "yt:channel:G0N7IV-C43AM9psxslejCQ",
+        title: "GamesPassionFR - Nouveaux jeux",
+        description: "Flux RSS des nouveaux jeux présentés sur la chaîne YouTube GamesPassionFR",
+        link: "https://www.youtube.com/@GPFR1",
+        language: "fr",
+        image: "https://yt3.ggpht.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s176-c-k-c0x00ffffff-no-rj",
+        author: {
+            name: "GamesPassionFR",
+            link: "http://jy95.github.io/"
+        }
+    });
+
+    // Add YouTube RSS feed url
+    feed.addExtension({
+        name: 'yt:rssFeed',
+        objects: "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ"
+    })
+
+    // Create entries
+    for (const game of gamesList) {
+        const identifier = game.playlistId ?? game.videoId;
+        const url = game.playlistId 
+            ? `https://www.youtube.com/playlist?list=${game.playlistId}` 
+            : `https://www.youtube.com/watch?v=${game.videoId}`;
+        const image = `https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/${identifier}/cover.webp`;
+
+        feed.addItem({
+            title: game.title,
+            id: `yt:${identifier}`,
+            link: url,
+            image: image,
+            date: new Date(game.availableAt)
+        });
+    }
+
+    await writeFile(
+        FILES.RSS,
+        feed.rss2(),
+        "utf-8"
+    );
+    console.log(`${FILES.RSS} successfully written`);    
+}
+
 // Operations time
 await extractAndSavePlatforms(db)
 await extractAndSaveGenres(db)
@@ -285,3 +340,4 @@ await extractAndSaveStats(db)
 await extractAndSavePastGames(db);
 await extractAndSaveDLCS(db);
 await extractAndSaveRandomList(db);
+await extractAndSavePastGamesToRSS(db);
