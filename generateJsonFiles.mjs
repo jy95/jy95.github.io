@@ -286,20 +286,23 @@ async function extractAndSavePastGamesToRSS(db) {
     // Create RSS feed
     const feed = new Feed({
         id: "yt:channel:G0N7IV-C43AM9psxslejCQ",
-        title: "GamesPassionFR - Nouveaux jeux",
-        description: "Flux RSS des nouveaux jeux présentés sur la chaîne YouTube GamesPassionFR",
+        title: "GamesPassionFR - New Games",
+        description: "RSS feed for new games featured on the GamesPassionFR YouTube channel",
         link: "https://www.youtube.com/@GPFR1",
-        language: "fr",
+        language: "en",
         image: "https://yt3.ggpht.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s176-c-k-c0x00ffffff-no-rj",
         author: {
             name: "GamesPassionFR",
             link: "http://jy95.github.io/"
+        },
+        feedLinks: {
+            atom: "https://raw.githubusercontent.com/jy95/jy95.github.io/master/public/rss.xml"
         }
     });
 
     // Add YouTube RSS feed url
     feed.addExtension({
-        name: 'yt:rssFeed',
+        name: 'rssFeed',
         objects: "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ"
     })
 
@@ -316,6 +319,7 @@ async function extractAndSavePastGamesToRSS(db) {
             id: `yt:${identifier}`,
             link: url,
             image: image,
+            content: url,
             date: new Date(game.availableAt)
         });
     }
