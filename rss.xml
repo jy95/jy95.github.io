@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>GamesPassionFR - New Games</title>
+        <link>https://www.youtube.com/@GPFR1</link>
+        <description>RSS feed for new games featured on the GamesPassionFR YouTube channel</description>
+        <lastBuildDate>Sat, 13 Sep 2025 12:51:15 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <image>
+            <title>GamesPassionFR - New Games</title>
+            <url>https://yt3.ggpht.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s176-c-k-c0x00ffffff-no-rj</url>
+            <link>https://www.youtube.com/@GPFR1</link>
+        </image>
+        <item>
+            <title><![CDATA[The Warriors]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t</guid>
+            <pubDate>Mon, 08 Sep 2025 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[La Planète au Trésor]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl</guid>
+            <pubDate>Fri, 25 Jul 2025 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Sly 3 : Honor Among Thieves]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb</guid>
+            <pubDate>Mon, 07 Jul 2025 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Ghost Rider]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8</guid>
+            <pubDate>Mon, 26 May 2025 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Metal Gear Rising Revengeance]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP</guid>
+            <pubDate>Thu, 08 May 2025 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Fahrenheit Indigo Prophecy]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2</guid>
+            <pubDate>Fri, 28 Mar 2025 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Batman The Enemy Within]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG</guid>
+            <pubDate>Mon, 17 Mar 2025 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Sly 2 : Association de voleurs]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361</guid>
+            <pubDate>Fri, 21 Feb 2025 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Enslaved Odyssey to the West - Pigsy's Perfect 10 DLC]]></title>
+            <link>https://www.youtube.com/watch?v=ZTfstKEM4Ko</link>
+            <guid isPermaLink="false">yt:ZTfstKEM4Ko</guid>
+            <pubDate>Wed, 19 Feb 2025 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/watch?v=ZTfstKEM4Ko]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/ZTfstKEM4Ko/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Enslaved Odyssey to the West]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn</guid>
+            <pubDate>Fri, 17 Jan 2025 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Splinter Cell Double Agent HD]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4DjOEslvP3es_dby3reani</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ4DjOEslvP3es_dby3reani</guid>
+            <pubDate>Wed, 25 Dec 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4DjOEslvP3es_dby3reani]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4DjOEslvP3es_dby3reani/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[DuckTales Remastered]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO</guid>
+            <pubDate>Mon, 09 Dec 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Sly Raccoon]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x</guid>
+            <pubDate>Fri, 22 Nov 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[La Légende de Korra]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4</guid>
+            <pubDate>Wed, 06 Nov 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Operation Flashpoint : Red River]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7</guid>
+            <pubDate>Thu, 31 Oct 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7/cover.webp" length="0" type="image/webp"/>
+        </item>
+        <rssFeed>https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ</rssFeed>
+    </channel>
+</rss>
