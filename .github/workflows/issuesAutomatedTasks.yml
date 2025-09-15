@@ -177,6 +177,8 @@ jobs:
               title: "🤖 ${{ github.event.issue.title }}"
               token: ${{ secrets.PAT }}
               branch: "automated/${{ env.OPERATION }}-issue-${{ github.event.issue.number }}"
+              labels: |
+                automerge
               body: |
                 ### Automated ${{ env.OPERATION }} Change Details
 
