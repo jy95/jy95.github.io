@@ -30,3 +30,5 @@ jobs:
           token: ${{ secrets.PAT }}
           body: |
             This PR updates npm packages by removing package-lock.json files and reinstalling dependencies.
+
+            @coderabbitai ignore
