@@ -29,6 +29,7 @@ jobs:
               uses: peter-evans/create-pull-request@v7
               with:
                 title: "[auto-updater] Updated static files"
+                token: ${{ secrets.PAT }}
                 body: |
                   This is an automated update of static files based on the latest data in the database.
                   
