@@ -187,6 +187,8 @@ jobs:
                 ```
 
                 Please review the changes. Closes #${{ github.event.issue.number }}
+
+                @coderabbitai ignore
           - name: 💬 Create comment with PR Link
             if: ${{ steps.cpr.outputs.pull-request-number }}
             uses: peter-evans/create-or-update-comment@v4
