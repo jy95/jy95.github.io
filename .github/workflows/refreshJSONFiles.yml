@@ -1,4 +1,4 @@
-name: Refresh API JSON files
+name: Refresh static files
 
 on:
     schedule:
@@ -28,9 +28,9 @@ jobs:
             - name: 💅 Create Pull Request
               uses: peter-evans/create-pull-request@v7
               with:
-                title: "[auto-updater] Updated JSON files"
+                title: "[auto-updater] Updated static files"
                 body: |
-                  This is an automated update of JSON files based on the latest data in the database.
+                  This is an automated update of static files based on the latest data in the database.
                   
                   Updated files:
                   - backlog.json
@@ -44,4 +44,5 @@ jobs:
                   - past-planning.json  
                   - dlcs.json  
                   - identifiers.json
+                  - rss.xml
                 draft: false
