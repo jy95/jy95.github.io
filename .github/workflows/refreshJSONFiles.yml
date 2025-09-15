@@ -46,4 +46,6 @@ jobs:
                   - dlcs.json  
                   - identifiers.json
                   - rss.xml
+
+                  @coderabbitai ignore
                 draft: false
