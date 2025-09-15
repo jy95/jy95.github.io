@@ -9,9 +9,9 @@ permissions:
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'automerge')
     steps:
-      - name: Auto merge PRs by github-actions[bot]
-        if: github.actor == 'github-actions[bot]'
+      - name: Auto merge PRs
         uses: peter-evans/enable-pull-request-automerge@v3.0.0
         with:
           pull-request-number: ${{ github.event.pull_request.number }}
