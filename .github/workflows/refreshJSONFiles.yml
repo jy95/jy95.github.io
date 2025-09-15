@@ -30,6 +30,8 @@ jobs:
               with:
                 title: "[auto-updater] Updated static files"
                 token: ${{ secrets.PAT }}
+                labels: |
+                  automerge
                 body: |
                   This is an automated update of static files based on the latest data in the database.
                   
