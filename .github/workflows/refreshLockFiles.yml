@@ -27,5 +27,6 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           title: Update npm packages
+          token: ${{ secrets.PAT }}
           body: |
             This PR updates npm packages by removing package-lock.json files and reinstalling dependencies.
