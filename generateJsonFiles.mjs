@@ -288,7 +288,7 @@ async function extractAndSavePastGamesToRSS(db) {
     const feed = new Feed({
         id: "yt:channel:G0N7IV-C43AM9psxslejCQ",
         title: "GamesPassionFR - New Games",
-        description: "RSS feed for new games featured on the GamesPassionFR YouTube channel",
+        description: "Feed for new games featured on the GamesPassionFR YouTube channel",
         link: "https://www.youtube.com/@GPFR1",
         language: "en",
         image: "https://yt3.ggpht.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s176-c-k-c0x00ffffff-no-rj",
