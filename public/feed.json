@@ -1,0 +1,135 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "GamesPassionFR - New Games",
+    "home_page_url": "https://www.youtube.com/@GPFR1",
+    "feed_url": "https://jy95.github.io/feed.json",
+    "description": "RSS feed for new games featured on the GamesPassionFR YouTube channel",
+    "icon": "https://yt3.ggpht.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s176-c-k-c0x00ffffff-no-rj",
+    "author": {
+        "name": "GamesPassionFR",
+        "url": "http://jy95.github.io/"
+    },
+    "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
+    "items": [
+        {
+            "id": "yt:PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
+            "title": "The Warriors",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t/cover.webp",
+            "date_modified": "2025-09-08T00:00:00.000Z"
+        },
+        {
+            "id": "yt:PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
+            "title": "La Planète au Trésor",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl/cover.webp",
+            "date_modified": "2025-07-25T00:00:00.000Z"
+        },
+        {
+            "id": "yt:PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
+            "title": "Sly 3 : Honor Among Thieves",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb/cover.webp",
+            "date_modified": "2025-07-07T00:00:00.000Z"
+        },
+        {
+            "id": "yt:PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
+            "title": "Ghost Rider",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8/cover.webp",
+            "date_modified": "2025-05-26T00:00:00.000Z"
+        },
+        {
+            "id": "yt:PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
+            "title": "Metal Gear Rising Revengeance",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP/cover.webp",
+            "date_modified": "2025-05-08T00:00:00.000Z"
+        },
+        {
+            "id": "yt:PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
+            "title": "Fahrenheit Indigo Prophecy",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2/cover.webp",
+            "date_modified": "2025-03-28T00:00:00.000Z"
+        },
+        {
+            "id": "yt:PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
+            "title": "Batman The Enemy Within",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG/cover.webp",
+            "date_modified": "2025-03-17T00:00:00.000Z"
+        },
+        {
+            "id": "yt:PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
+            "title": "Sly 2 : Association de voleurs",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361/cover.webp",
+            "date_modified": "2025-02-21T00:00:00.000Z"
+        },
+        {
+            "id": "yt:ZTfstKEM4Ko",
+            "content_html": "https://www.youtube.com/watch?v=ZTfstKEM4Ko",
+            "url": "https://www.youtube.com/watch?v=ZTfstKEM4Ko",
+            "title": "Enslaved Odyssey to the West - Pigsy's Perfect 10 DLC",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/ZTfstKEM4Ko/cover.webp",
+            "date_modified": "2025-02-19T00:00:00.000Z"
+        },
+        {
+            "id": "yt:PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+            "title": "Enslaved Odyssey to the West",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
+            "date_modified": "2025-01-17T00:00:00.000Z"
+        },
+        {
+            "id": "yt:PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
+            "title": "Splinter Cell Double Agent HD",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4DjOEslvP3es_dby3reani/cover.webp",
+            "date_modified": "2024-12-25T00:00:00.000Z"
+        },
+        {
+            "id": "yt:PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
+            "title": "DuckTales Remastered",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO/cover.webp",
+            "date_modified": "2024-12-09T00:00:00.000Z"
+        },
+        {
+            "id": "yt:PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
+            "title": "Sly Raccoon",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x/cover.webp",
+            "date_modified": "2024-11-22T00:00:00.000Z"
+        },
+        {
+            "id": "yt:PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
+            "title": "La Légende de Korra",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4/cover.webp",
+            "date_modified": "2024-11-06T00:00:00.000Z"
+        },
+        {
+            "id": "yt:PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
+            "title": "Operation Flashpoint : Red River",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7/cover.webp",
+            "date_modified": "2024-10-31T00:00:00.000Z"
+        }
+    ]
+}
