@@ -24,6 +24,8 @@ jobs:
 #          npm run build
       - name: Copy RSS file 📄
         run: cp public/rss.xml gh-pages-out/
+      - name: Copy JSON Feed file 📄
+        run: cp public/feed.json gh-pages-out/
       - name: Copy favicon file 📄
         run: cp src/app/icon.svg gh-pages-out/
       - name: Copy vercel config file 📄

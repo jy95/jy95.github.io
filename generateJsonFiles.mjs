@@ -16,7 +16,8 @@ const FILES = {
     "PAST_GAMES": "src/app/api/planning/past-planning.json",
     "DLCS": "src/app/api/dlcs/dlcs.json",
     "IDENTIFIERS": "src/app/api/random/identifiers.json",
-    "RSS": "public/rss.xml"
+    "RSS": "public/rss.xml",
+    "JSON_FEED": "public/feed.json"
 }
 
 const db = new Database(databasePath, {
@@ -296,7 +297,8 @@ async function extractAndSavePastGamesToRSS(db) {
             link: "http://jy95.github.io/"
         },
         feedLinks: {
-            atom: "https://jy95.github.io/rss.xml"
+            atom: "https://jy95.github.io/rss.xml",
+            json: "https://jy95.github.io/feed.json"
         }
     });
 
@@ -329,7 +331,14 @@ async function extractAndSavePastGamesToRSS(db) {
         feed.rss2(),
         "utf-8"
     );
-    console.log(`${FILES.RSS} successfully written`);    
+    console.log(`${FILES.RSS} successfully written`);
+
+    await writeFile(
+        FILES.JSON_FEED,
+        feed.json1(),
+        "utf-8"
+    );
+    console.log(`${FILES.JSON_FEED} successfully written`);
 }
 
 // Operations time
