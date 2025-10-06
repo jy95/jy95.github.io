@@ -2,8 +2,8 @@ name: Refresh static files
 
 on:
     schedule:
-        # Each day at 5:00PM
-        - cron: '0 17 * * *'
+        # Each day at 13:00 Brussels (11:00 UTC)
+        - cron: '0 11 * * *'
     # Allows you to run this workflow manually from the Actions tab
     workflow_dispatch:
 
