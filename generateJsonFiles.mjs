@@ -296,7 +296,7 @@ async function extractAndSavePastGamesToRSS(db) {
             link: "http://jy95.github.io/"
         },
         feedLinks: {
-            atom: "https://raw.githubusercontent.com/jy95/jy95.github.io/master/public/rss.xml"
+            atom: "https://jy95.github.io/rss.xml"
         }
     });
 
