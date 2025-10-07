@@ -3,7 +3,7 @@
     "title": "GamesPassionFR - New Games",
     "home_page_url": "https://www.youtube.com/@GPFR1",
     "feed_url": "https://jy95.github.io/feed.json",
-    "description": "RSS feed for new games featured on the GamesPassionFR YouTube channel",
+    "description": "Feed for new games featured on the GamesPassionFR YouTube channel",
     "icon": "https://yt3.ggpht.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s176-c-k-c0x00ffffff-no-rj",
     "author": {
         "name": "GamesPassionFR",
@@ -11,6 +11,14 @@
     },
     "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
     "items": [
+        {
+            "id": "yt:PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
+            "title": "WET",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV/cover.webp",
+            "date_modified": "2025-10-06T00:00:00.000Z"
+        },
         {
             "id": "yt:PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
@@ -122,14 +130,6 @@
             "title": "La Légende de Korra",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4/cover.webp",
             "date_modified": "2024-11-06T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
-            "title": "Operation Flashpoint : Red River",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7/cover.webp",
-            "date_modified": "2024-10-31T00:00:00.000Z"
         }
     ]
 }
