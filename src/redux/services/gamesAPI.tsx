@@ -33,29 +33,29 @@ export const gamesAPI = createApi({
                 // Must provide a default initial page param value
                 initialPageParam: 1,
                 // Must provide a `getNextPageParam` function
-                getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) =>  lastPageParam <lastPage.total_pages 
+                getNextPageParam: (lastPage, _, lastPageParam) =>  lastPageParam <lastPage.total_pages 
                     ? lastPageParam + 1 
                     : undefined,
             },
             // The `query` function receives `{queryArg, pageParam}` as its argument
             query({ queryArg, pageParam }) {
-                let parameters : RequestParams = {
+                const parameters : RequestParams = {
                     // page size
                     pageSize: queryArg.pageSize,
                     // asked page
                     page: pageParam,
                 };
                 // filters parameter
-                let filters = queryArg.filters;
+                const filters = queryArg.filters;
 
                 // filters parameter
                 if (filters.length > 0) {
-                    for(let filter of filters) {
+                    for(const filter of filters) {
                         parameters[filter.key] = filter.value as any;
                     }
                 }
 
-                let query = new URLSearchParams(parameters as any);
+                const query = new URLSearchParams(parameters as any);
                 return `/games?${query.toString()}`;
             }
         })

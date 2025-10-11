@@ -15,7 +15,7 @@ export const testsAPI = createApi({
     endpoints: (builder) => ({
         getTests: builder.query<TestsResponse, Parameters>({
             query: (params) => {
-                let query = new URLSearchParams(params as any);
+                const query = new URLSearchParams(params as any);
                 return `/tests?${query.toString()}`;
             }
         })
