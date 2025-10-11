@@ -16,7 +16,7 @@ const MAX_RESULTS = 500;
 
 // See "Statistics for a specific playlist"
 // https://developers.google.com/youtube/analytics/sample-requests
-const generateFilters = (playListIds) => `playlist==${playListIds.join(",")}`;
+//const generateFilters = (playListIds) => `playlist==${playListIds.join(",")}`;
 /*
 const FILTERS = [
   "PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",

@@ -46,7 +46,7 @@ export default function DashboardAppProvider({children, locale} : Props) {
                     <DashboardLayout 
                         defaultSidebarCollapsed 
                         slots={{
-                            // @ts-ignore Type not accurate, will report it to MUI later
+                            // @ts-expect-error Type not accurate, will report it to MUI later
                             toolbarActions: ToolbarActions
                         }}
                         slotProps={{
