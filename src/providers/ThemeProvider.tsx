@@ -19,7 +19,7 @@ export function ThemeProvider({ children, lng }: { children: ReactNode, lng : st
             default:
                 return {};
         }
-    }, [lng], {} as any);
+    }, [lng], {});
 
     const theme = useMemo(
         () =>
