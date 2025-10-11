@@ -29,8 +29,10 @@ function PlatformSelect() {
             loading={isFetching}
             getOptionLabel={(option) => option.name}
             isOptionEqualToValue={(option, value) => value.id === option.id}
+            /* eslint-disable */
             // @ts-ignore Type not accurate, will report it to MUI later
             renderInput={(params) => <TextField {...params} label={t("platform") as string} />}
+            /* eslint-enable */
             renderOption={(props, option) => (
                 <li {...props} key={option.name}>
                     {option.name}
