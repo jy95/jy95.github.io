@@ -32,6 +32,9 @@ export type BasicPlaylist = BasicEntry & {
 
 // structure used in data/games.json
 export type BasicGame = BasicVideo | BasicPlaylist;
+// structure used in data/dlcs.json & data/tests.json
+export type RawGame = Omit<BasicGame, "genres" | "id">;
+
 // Type of Youtube link 
 export type YTUrlType = 'PLAYLIST' | 'VIDEO';
 
@@ -47,3 +50,27 @@ interface CardEntry {
 
 // structure used for GameEntry and thus GameDialog
 export interface CardGame extends Omit<BasicGame, "releaseDate" | "genres" | "platform">, CardEntry {};
+
+interface GameProps {
+    id: string;
+    url: string;
+    url_type: YTUrlType;
+}
+
+// 🎯 User-Defined Type Guard
+function isPlaylist(game: RawGame): game is Omit<BasicPlaylist, "genres" | "id"> {
+    return 'playlistId' in game;
+}
+
+export function extractGameCardProps(game: RawGame): GameProps {
+    
+    const isPlaylistType = isPlaylist(game);
+    const url_type: YTUrlType = isPlaylistType ? "PLAYLIST" : "VIDEO";
+    const id: string = isPlaylist(game) ? game.playlistId : (game as Omit<BasicVideo, "genres" | "id">).videoId;
+
+    return {
+        id,
+        url: isPlaylistType ? `https://www.youtube.com/playlist?list=${id}` : `https://www.youtube.com/watch?v=${id}`,
+        url_type
+    }
+}
