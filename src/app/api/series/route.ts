@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import type { BasicVideo, CardGame, YTUrlType } from "@/redux/sharedDefintion";
+import { extractGameCardProps } from "@/redux/sharedDefintion";
+import type { RawGame, CardGame } from "@/redux/sharedDefintion";
 
-type rawGame = Omit<BasicVideo, "genres" | "id">;
 type rawEntry = {
     /** @description Name of the series */
     name: string;
     /** @description List of videoId or playlistId for this series */
-    items: rawGame[]
+    items: RawGame[]
 }
 export type RawPayload = rawEntry[];
 
@@ -22,7 +22,7 @@ export async function GET() {
 
     const series : serieType[] = seriesData.map(serie => ({
         name: serie.name,
-        items: fromRawGamesToCardGames(serie.items as rawGame[])
+        items: fromRawGamesToCardGames(serie.items as RawGame[])
     }) )
     
     return NextResponse.json(series, {
@@ -32,25 +32,21 @@ export async function GET() {
     });
 }
 
-function fromRawGamesToCardGames(gamesData : rawGame[]) : CardGame[]{
+function fromRawGamesToCardGames(gamesData : RawGame[]) : CardGame[]{
 
     return gamesData
         .map(game => {
 
-            const id = (game as any).playlistId as string ?? (game as any).videoId as string;
-            const base_url = (
-                ("playlistId" in game) 
-                    ? "https://www.youtube.com/playlist?list=" 
-                    :  "https://www.youtube.com/watch?v="
-            ) + id ;
-    
+            // 🚀 Extracted Logic: Call the helper function to get the derived properties
+            const { id, url, url_type } = extractGameCardProps(game);
+
             return {
                 ...game,
                 id,
                 genres: [],
                 imagePath: `/covers/${id}/cover.webp`,
-                url: base_url,
-                url_type: ("playlistId" in game) ? "PLAYLIST" : "VIDEO" as YTUrlType,
+                url,
+                url_type
             }
         });
 }

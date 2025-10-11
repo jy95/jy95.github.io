@@ -12,15 +12,6 @@ type Parameters = {
     pageSize: number,
 }
 
-// Parameters for API
-type RequestParams = {
-    selected_platform?: string,
-    selected_title?: string,
-    selected_genres?: string[],
-    page: number,
-    pageSize: number,
-}
-
 type FrontendParams = Omit<Parameters, "page">;
 
 // Define a service using a base URL and expected endpoints
@@ -33,30 +24,38 @@ export const gamesAPI = createApi({
                 // Must provide a default initial page param value
                 initialPageParam: 1,
                 // Must provide a `getNextPageParam` function
-                getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) =>  lastPageParam <lastPage.total_pages 
+                getNextPageParam: (lastPage, _, lastPageParam) =>  lastPageParam <lastPage.total_pages 
                     ? lastPageParam + 1 
                     : undefined,
             },
             // The `query` function receives `{queryArg, pageParam}` as its argument
             query({ queryArg, pageParam }) {
-                let parameters : RequestParams = {
-                    // page size
-                    pageSize: queryArg.pageSize,
-                    // asked page
-                    page: pageParam,
-                };
+
+                const searchParams = new URLSearchParams();
+                searchParams.append("page", pageParam.toString());
+                searchParams.append("pageSize", queryArg.pageSize.toString());
+
                 // filters parameter
-                let filters = queryArg.filters;
+                const filters = queryArg.filters;
 
                 // filters parameter
                 if (filters.length > 0) {
-                    for(let filter of filters) {
-                        parameters[filter.key] = filter.value as any;
+                    for(const filter of filters) {
+                        switch(filter.key) {
+                            case "selected_genres":
+                                for(const genre of filter.value) {
+                                    searchParams.append(filter.key, genre.toString());
+                                }
+                                break;
+                            default:
+                                // Append other filters directly
+                                searchParams.append(filter.key, filter.value.toString());
+                        }
                     }
                 }
 
-                let query = new URLSearchParams(parameters as any);
-                return `/games?${query.toString()}`;
+                const query = searchParams.toString();
+                return `/games?${query}`;
             }
         })
     })

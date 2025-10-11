@@ -13,7 +13,6 @@ import type { CardGame } from "@/redux/sharedDefintion";
 
 function CardEntry(props : {
     game: CardGame;
-    [key: string | number | symbol] : any;
 }) {
 
     // hooks

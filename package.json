@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "generate-responsive-images": "node generate-responsive-images.mjs",
     "sample-game": "npm run generate-responsive-images -- singleGame PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8 covers cover.jpg",
     "generate-json-schemas": "node generate-json-schema.cjs",
@@ -44,6 +44,7 @@
     "typescript": "5.9.3"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "@inquirer/input": "^4.2.4",
     "better-sqlite3": "^12.4.1",
     "feed": "^5.1.0",

@@ -18,6 +18,7 @@ const LoadingButton = ({ onClick, disabled, loading, label } : LoadingButtonProp
   return (
     <Button 
       variant="outlined" 
+      size="large" 
       onClick={handleClick}
       disabled={disabled || loading}
       sx={{

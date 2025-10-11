@@ -90,6 +90,7 @@ async function resizePicturesInFolder() {
                 console.log(`${game.title} - finished`);
             } catch (error) {
                 console.error(`${folderKey} - Cannot generate responsive images for ${gameId} - ${game.title}`);
+                console.error(error);
             }
         }
     }
@@ -104,6 +105,7 @@ async function resizePicturesInSingleFolder(folder, game, icon) {
         console.log(`${game} - finished`);
     } catch (error) {
         console.error(`Cannot generate responsive images for ${game}`);
+        console.error(error);
     }
 }
 
@@ -112,7 +114,7 @@ const args = process.argv.slice(2);
 switch (args[0]) {
     case 'singleGame':
         console.log("Resize single game");
-        const [_, gameId, folder = "covers", icon = "cover.jpg", ...rest] = args;
+        const [, gameId, folder = "covers", icon = "cover.jpg"] = args;
         resizePicturesInSingleFolder(folder, gameId, icon);
         break;
     default:

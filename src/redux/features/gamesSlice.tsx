@@ -34,7 +34,7 @@ const gamesSlice = createSlice({
     reducers: {
         filteringByGenre(state : GamesState, action: PayloadAction<number[]>) {
             // If empty, remove filter - if not, add it
-            let newFilters = state.activeFilters.filter(s => s.key !== "selected_genres") as gamesFilters;
+            const newFilters = state.activeFilters.filter(s => s.key !== "selected_genres") as gamesFilters;
             if (action.payload.length !== 0) {
                 newFilters.push({
                     key: "selected_genres",
@@ -45,7 +45,7 @@ const gamesSlice = createSlice({
         },
         filterByTitle(state : GamesState, action: PayloadAction<string>) {
             // If empty, remove filter - if not, add it
-            let newFilters = state.activeFilters.filter(s => s.key !== "selected_title") as gamesFilters;
+            const newFilters = state.activeFilters.filter(s => s.key !== "selected_title") as gamesFilters;
             if (action.payload.length !== 0) {
                 newFilters.push({
                     key: "selected_title",
@@ -56,7 +56,7 @@ const gamesSlice = createSlice({
         },
         filterByPlatform(state : GamesState, action: PayloadAction<number | undefined>) {
             // If empty, remove filter - if not, add it
-            let newFilters = state.activeFilters.filter(s => s.key !== "selected_platform") as gamesFilters;
+            const newFilters = state.activeFilters.filter(s => s.key !== "selected_platform") as gamesFilters;
             if (action.payload !== undefined) {
                 newFilters.push({
                     key: "selected_platform",
@@ -77,7 +77,7 @@ export const selectSelectedGenres = createSelector(
         selectActiveFilters,
     ],
     (filters) => {
-        let entry = filters.find(s => s.key === "selected_genres");
+        const entry = filters.find(s => s.key === "selected_genres");
         if (!entry) {
             return [];
         } else {
@@ -92,7 +92,7 @@ export const selectSelectedPlatform = createSelector(
         selectActiveFilters,
     ],
     (filters) => {
-        let entry = filters.find(s => s.key === "selected_platform");
+        const entry = filters.find(s => s.key === "selected_platform");
         if (!entry) {
             return undefined;
         } else {
@@ -107,7 +107,7 @@ export const selectSelectedTitle = createSelector(
         selectActiveFilters,
     ],
     (filters) => {
-        let entry = filters.find(s => s.key === "selected_title");
+        const entry = filters.find(s => s.key === "selected_title");
         if (!entry) {
             return "";
         } else {

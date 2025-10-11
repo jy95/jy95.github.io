@@ -23,12 +23,14 @@ export default function ThemeMode(props: Props) {
 
     const { mode, setMode } = useColorScheme();
 
+    /* eslint-disable */
     const handleChangeThemeMode = (_event : MouseEvent<HTMLElement>, paletteMode : any) => {
         if (paletteMode === null) {
           return;
         }
         setMode(paletteMode);
     };
+    /* eslint-enable */
 
     return (
         <>
