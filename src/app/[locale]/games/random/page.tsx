@@ -2,7 +2,7 @@
 
 // Hooks
 import { useRouter } from '@/i18n/routing';
-import { useEffect } from 'react'
+import { useEffectEvent } from 'react'
 
 export default function Random() {
     const router = useRouter();
@@ -16,9 +16,11 @@ export default function Random() {
         });
     }
 
-    useEffect(() => {
+    const onLoad = useEffectEvent(() => {
         fetchRandomGame();
-    }, []);
+    });
+
+    onLoad();
 
     return (<></>);
 }
