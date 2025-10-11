@@ -15,6 +15,17 @@ import { useGetGenresQuery } from "@/redux/services/genresAPI"
 // Generate list of values for game genre
 import type { Genre } from "@/app/api/genres/route"
 
+import type { AppConfig } from 'next-intl';
+
+/**
+ * Accesses the keys of the 'gamesGenres' object defined within
+ * the 'Messages' type of next-intl's augmented AppConfig.
+ */
+type GamesLibraryMessages = AppConfig['Messages']['gamesLibrary'];
+
+// 🔑 This is the direct type you want:
+export type GameGenreId = keyof GamesLibraryMessages['gamesGenres'];
+
 // Genres filter of GamesGallery
 function GenresSelect() {
 
@@ -25,9 +36,13 @@ function GenresSelect() {
     const { data, isFetching } = useGetGenresQuery();
     const t = useTranslations("gamesLibrary")
 
+    function idToName(genreId: GameGenreId) {
+        return t(`gamesGenres.${genreId}`);
+    }
+
     const genre_options : Genre[] = (data || [])
         .map(genre => ({
-            name: t(`gamesGenres.${genre.id}` as any),
+            name: idToName(genre.id.toString() as GameGenreId),
             id: genre.id
         }))
         .sort( 
@@ -48,7 +63,7 @@ function GenresSelect() {
                 Array.isArray(value) ? value.some(v => v.id === option.id) : value.id === option.id
             }
             value={selectedGenres.map(genre => ({
-                name: t(`gamesGenres.${genre}` as any),
+                name: idToName(genre.toString() as GameGenreId),
                 id: genre
             }))}
             // @ts-ignore Type not accurate, will report it to MUI later
