@@ -48,6 +48,6 @@
     "@inquirer/input": "^4.2.5",
     "better-sqlite3": "^12.4.1",
     "feed": "^5.1.0",
-    "googleapis": "^162.0.0"
+    "googleapis": "^164.0.0"
   }
 }
