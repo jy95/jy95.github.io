@@ -52,6 +52,12 @@
   },
   "overrides": {
     "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.2"
+    "@types/react-dom": "19.2.2",
+    "@mui/material-nextjs": {
+      "next": "16.0.1"
+    },
+    "@toolpad/core": {
+      "next": "16.0.1"
+    }
   }
 }
