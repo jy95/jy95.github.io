@@ -4,7 +4,7 @@
         <title>GamesPassionFR - New Games</title>
         <link>https://www.youtube.com/@GPFR1</link>
         <description>Feed for new games featured on the GamesPassionFR YouTube channel</description>
-        <lastBuildDate>Fri, 31 Oct 2025 11:17:41 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 01 Nov 2025 11:15:36 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -13,6 +13,14 @@
             <url>https://yt3.ggpht.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s176-c-k-c0x00ffffff-no-rj</url>
             <link>https://www.youtube.com/@GPFR1</link>
         </image>
+        <item>
+            <title><![CDATA[Deadpool]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI</guid>
+            <pubDate>Fri, 31 Oct 2025 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI/cover.webp" length="0" type="image/webp"/>
+        </item>
         <item>
             <title><![CDATA[WET]]></title>
             <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV</link>
@@ -124,14 +132,6 @@
             <pubDate>Fri, 22 Nov 2024 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x]]></content:encoded>
             <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x/cover.webp" length="0" type="image/webp"/>
-        </item>
-        <item>
-            <title><![CDATA[La Légende de Korra]]></title>
-            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4</link>
-            <guid isPermaLink="false">yt:PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4</guid>
-            <pubDate>Wed, 06 Nov 2024 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4]]></content:encoded>
-            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4/cover.webp" length="0" type="image/webp"/>
         </item>
         <rssFeed>https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ</rssFeed>
     </channel>

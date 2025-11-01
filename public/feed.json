@@ -12,6 +12,14 @@
     "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
+            "title": "Deadpool",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI/cover.webp",
+            "date_modified": "2025-10-31T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
@@ -122,14 +130,6 @@
             "title": "Sly Raccoon",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x/cover.webp",
             "date_modified": "2024-11-22T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
-            "title": "La Légende de Korra",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4/cover.webp",
-            "date_modified": "2024-11-06T00:00:00.000Z"
         }
     ]
 }
