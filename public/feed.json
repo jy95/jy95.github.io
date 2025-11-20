@@ -12,6 +12,14 @@
     "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
+            "title": "Sly Cooper : Voleurs à travers le Temps",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL/cover.webp",
+            "date_modified": "2025-11-19T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
@@ -122,14 +130,6 @@
             "title": "DuckTales Remastered",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO/cover.webp",
             "date_modified": "2024-12-09T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
-            "title": "Sly Raccoon",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x/cover.webp",
-            "date_modified": "2024-11-22T00:00:00.000Z"
         }
     ]
 }
