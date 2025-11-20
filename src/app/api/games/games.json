@@ -1820,6 +1820,18 @@
 		]
 	},
 	{
+		"id": 180,
+		"title": "Sly Cooper : Voleurs à travers le Temps",
+		"playlistId": "PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
+		"releaseDate": "2013-03-27",
+		"duration": "08:55:44",
+		"platform": 6,
+		"genres": [
+			1,
+			2
+		]
+	},
+	{
 		"id": 165,
 		"title": "Sly Raccoon",
 		"playlistId": "PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
