@@ -27,7 +27,7 @@ jobs:
     outputs:
       preview_url: ${{ steps.add_prefix.outputs.full_url }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 # https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#masking-a-value-in-a-log
 # https://kinsta.com/blog/github-actions-secret/
       - name: Add Mask on vercel token
@@ -64,7 +64,7 @@ jobs:
     outputs:
       url_list: ${{ steps.construct_url_list.outputs.url_list }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Construct URLs
         id: construct_url_list
         run: |
@@ -83,7 +83,7 @@ jobs:
       pull-requests: write
       issues: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: mkdir -p ${{ github.workspace }}/tmp/artifacts
       - uses: foo-software/lighthouse-check-action@master
         with:
@@ -108,7 +108,7 @@ jobs:
       pull-requests: write
       issues: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: mkdir -p ${{ github.workspace }}/tmp/artifacts
       - uses: foo-software/lighthouse-check-action@master
         with:
