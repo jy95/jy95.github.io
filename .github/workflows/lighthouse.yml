@@ -93,7 +93,7 @@ jobs:
           gitHubAccessToken: ${{ secrets.GITHUB_TOKEN }}
           outputDirectory: ${{ github.workspace }}/tmp/artifacts
       - name: Upload artifacts
-        uses: actions/upload-artifact@v5.0.0
+        uses: actions/upload-artifact@v6.0.0
         with:
           name: Lighthouse mobile reports
           path: ${{ github.workspace }}/tmp/artifacts
@@ -118,7 +118,7 @@ jobs:
           gitHubAccessToken: ${{ secrets.GITHUB_TOKEN }}
           outputDirectory: ${{ github.workspace }}/tmp/artifacts
       - name: Upload artifacts
-        uses: actions/upload-artifact@v5.0.0
+        uses: actions/upload-artifact@v6.0.0
         with:
           name: Lighthouse desktop reports
           path: ${{ github.workspace }}/tmp/artifacts
