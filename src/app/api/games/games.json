@@ -126,6 +126,18 @@
 		]
 	},
 	{
+		"id": 181,
+		"title": "Asura's Wrath",
+		"playlistId": "PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
+		"releaseDate": "2012-02-24",
+		"duration": "08:49:28",
+		"platform": 6,
+		"genres": [
+			1,
+			2
+		]
+	},
+	{
 		"id": 87,
 		"title": "Avatar : Le Dernier Maître de l'Air",
 		"videoId": "L7R_LBBOPEk",

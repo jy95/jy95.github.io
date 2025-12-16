@@ -4,7 +4,7 @@
         <title>GamesPassionFR - New Games</title>
         <link>https://www.youtube.com/@GPFR1</link>
         <description>Feed for new games featured on the GamesPassionFR YouTube channel</description>
-        <lastBuildDate>Mon, 15 Dec 2025 11:20:36 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 16 Dec 2025 11:21:27 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -13,6 +13,14 @@
             <url>https://yt3.ggpht.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s176-c-k-c0x00ffffff-no-rj</url>
             <link>https://www.youtube.com/@GPFR1</link>
         </image>
+        <item>
+            <title><![CDATA[Asura's Wrath]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ</guid>
+            <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ/cover.webp" length="0" type="image/webp"/>
+        </item>
         <item>
             <title><![CDATA[Sly Cooper : Voleurs à travers le Temps]]></title>
             <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL</link>
@@ -124,14 +132,6 @@
             <pubDate>Wed, 25 Dec 2024 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4DjOEslvP3es_dby3reani]]></content:encoded>
             <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4DjOEslvP3es_dby3reani/cover.webp" length="0" type="image/webp"/>
-        </item>
-        <item>
-            <title><![CDATA[DuckTales Remastered]]></title>
-            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO</link>
-            <guid isPermaLink="false">yt:PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO</guid>
-            <pubDate>Mon, 09 Dec 2024 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO]]></content:encoded>
-            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO/cover.webp" length="0" type="image/webp"/>
         </item>
         <rssFeed>https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ</rssFeed>
     </channel>
