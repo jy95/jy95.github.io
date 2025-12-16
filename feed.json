@@ -12,6 +12,14 @@
     "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
+            "title": "Asura's Wrath",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ/cover.webp",
+            "date_modified": "2025-12-15T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
@@ -122,14 +130,6 @@
             "title": "Splinter Cell Double Agent HD",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4DjOEslvP3es_dby3reani/cover.webp",
             "date_modified": "2024-12-25T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
-            "title": "DuckTales Remastered",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO/cover.webp",
-            "date_modified": "2024-12-09T00:00:00.000Z"
         }
     ]
 }
