@@ -740,5 +740,10 @@
 		"id": 162,
 		"title": "Blast Brigade vs. the Evil Legion of Dr. Cread",
 		"platform": 1
+	},
+	{
+		"id": 163,
+		"title": "Splatterhouse",
+		"platform": 6
 	}
 ]
