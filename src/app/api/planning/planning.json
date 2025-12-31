@@ -291,10 +291,11 @@
 	{
 		"id": 226,
 		"availableAt": "2027-10-22",
+		"endAt": "2027-11-24",
 		"playlistId": "PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb",
 		"title": "Dead Space 2",
 		"releaseDate": "2011-01-27",
-		"duration": "00:00:00",
+		"duration": "06:54:25",
 		"platform": 6
 	}
 ]
