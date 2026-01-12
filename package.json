@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
-    "@inquirer/input": "^5.0.3",
+    "@inquirer/input": "^5.0.4",
     "better-sqlite3": "^12.5.0",
     "feed": "^5.2.0",
     "googleapis": "^170.0.0"
