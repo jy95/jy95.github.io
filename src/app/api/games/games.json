@@ -1500,6 +1500,20 @@
 		]
 	},
 	{
+		"id": 182,
+		"title": "Ratchet & Clank : All 4 One",
+		"playlistId": "PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
+		"releaseDate": "2011-10-19",
+		"duration": "07:56:23",
+		"platform": 6,
+		"genres": [
+			1,
+			2,
+			12,
+			16
+		]
+	},
+	{
 		"id": 33,
 		"title": "Ratchet & Clank : La Taille, Ca Compte",
 		"playlistId": "PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s",

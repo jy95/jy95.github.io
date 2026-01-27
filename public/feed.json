@@ -12,6 +12,14 @@
     "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
+            "title": "Ratchet & Clank : All 4 One",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M/cover.webp",
+            "date_modified": "2026-01-26T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
@@ -122,14 +130,6 @@
             "title": "Enslaved Odyssey to the West",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
             "date_modified": "2025-01-17T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
-            "title": "Splinter Cell Double Agent HD",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4DjOEslvP3es_dby3reani/cover.webp",
-            "date_modified": "2024-12-25T00:00:00.000Z"
         }
     ]
 }
