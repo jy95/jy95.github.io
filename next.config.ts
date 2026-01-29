@@ -1,5 +1,14 @@
 import createNextIntlPlugin from 'next-intl/plugin';
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin({
+  messages: {
+    path: './messages',
+    locales: 'infer',
+    format: 'json',
+ 
+    // Enable precompilation
+    precompile: true
+  }
+});
 
 import type { NextConfig } from 'next'
 
