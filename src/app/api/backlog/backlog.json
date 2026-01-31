@@ -479,10 +479,6 @@
 		"notes": "Dead Space (2023)"
 	},
 	{
-		"id": 101,
-		"title": "Dead Space 2"
-	},
-	{
 		"id": 102,
 		"title": "Shadow Of The Tomb Raider",
 		"platform": 1
@@ -643,11 +639,6 @@
 		"id": 141,
 		"title": "Rule of Rose",
 		"platform": 5
-	},
-	{
-		"id": 142,
-		"title": "Spec Ops: The Line",
-		"platform": 6
 	},
 	{
 		"id": 143,
