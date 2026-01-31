@@ -3,9 +3,9 @@
 		{
 			"id": 6,
 			"platform": "PS3",
-			"total": 81,
+			"total": 82,
 			"total_available": 55,
-			"total_unavailable": 26
+			"total_unavailable": 27
 		},
 		{
 			"id": 1,
@@ -82,9 +82,9 @@
 		{
 			"id": 9,
 			"genre": "Fighting",
-			"total": 10,
+			"total": 11,
 			"total_available": 6,
-			"total_unavailable": 4
+			"total_unavailable": 5
 		},
 		{
 			"id": 13,
@@ -188,9 +188,9 @@
 	"general": {
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"games": {
-			"total": 208,
+			"total": 209,
 			"total_available": 180,
-			"total_unavailable": 29
+			"total_unavailable": 30
 		},
 		"dlcs": {
 			"total": 17,
