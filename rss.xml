@@ -4,7 +4,7 @@
         <title>GamesPassionFR - New Games</title>
         <link>https://www.youtube.com/@GPFR1</link>
         <description>Feed for new games featured on the GamesPassionFR YouTube channel</description>
-        <lastBuildDate>Wed, 18 Feb 2026 11:39:18 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 19 Feb 2026 11:39:36 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -13,6 +13,14 @@
             <url>https://yt3.ggpht.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s176-c-k-c0x00ffffff-no-rj</url>
             <link>https://www.youtube.com/@GPFR1</link>
         </image>
+        <item>
+            <title><![CDATA[Vanquish]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3</guid>
+            <pubDate>Wed, 18 Feb 2026 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3/cover.webp" length="0" type="image/webp"/>
+        </item>
         <item>
             <title><![CDATA[Ratchet & Clank : All 4 One]]></title>
             <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M</link>
@@ -124,14 +132,6 @@
             <pubDate>Wed, 19 Feb 2025 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[https://www.youtube.com/watch?v=ZTfstKEM4Ko]]></content:encoded>
             <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/ZTfstKEM4Ko/cover.webp" length="0" type="image/webp"/>
-        </item>
-        <item>
-            <title><![CDATA[Enslaved Odyssey to the West]]></title>
-            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn</link>
-            <guid isPermaLink="false">yt:PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn</guid>
-            <pubDate>Fri, 17 Jan 2025 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn]]></content:encoded>
-            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp" length="0" type="image/webp"/>
         </item>
         <rssFeed>https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ</rssFeed>
     </channel>
