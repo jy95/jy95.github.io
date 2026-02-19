@@ -12,6 +12,14 @@
     "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
+            "title": "Vanquish",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3/cover.webp",
+            "date_modified": "2026-02-18T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
@@ -122,14 +130,6 @@
             "title": "Enslaved Odyssey to the West - Pigsy's Perfect 10 DLC",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/ZTfstKEM4Ko/cover.webp",
             "date_modified": "2025-02-19T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-            "title": "Enslaved Odyssey to the West",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
-            "date_modified": "2025-01-17T00:00:00.000Z"
         }
     ]
 }
