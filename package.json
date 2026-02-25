@@ -44,7 +44,7 @@
     "typescript": "5.9.3"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.3",
+    "@eslint/eslintrc": "^3.3.4",
     "@inquirer/input": "^5.0.8",
     "better-sqlite3": "^12.6.2",
     "feed": "^5.2.0",
