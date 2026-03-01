@@ -90,7 +90,7 @@ function GameDetailView(props : {
                 <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} alignItems="flex-start">
 
                     {/* --- Game cover --- */}
-                    <Box sx={{ position: 'relative' }}>
+                    <Box sx={{ position: 'relative', width: 300, height: 400 }}>
                         <Paper elevation={3} sx={{ borderRadius: 2, overflow: 'hidden', mb: 2 }}>
                             <Image
                                 fill
