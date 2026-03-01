@@ -38,6 +38,7 @@ function enhanceGameItem(game: rawEntry): planningEntry {
         availableAt: game.availableAt,
         endAt: game.endAt,
         releaseDate: game.releaseDate,
+        duration: game.duration,
         url: metadata.url,
         url_type: metadata.url_type
     }

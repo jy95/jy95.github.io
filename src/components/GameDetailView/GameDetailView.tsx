@@ -121,8 +121,8 @@ function GameDetailView(props : {
                         <Divider sx={{ mb: 3 }} />
 
                         <Stack spacing={3}>
-                            <InfoRow label="RELEASED AT" value={formatDate(game.releaseDate)} icon={<CalendarTodayIcon fontSize="small" />} />
-                            <InfoRow label="DURATION" value={game.duration || "00:00:00"} icon={<AccessTimeIcon fontSize="small" />} />
+                            <InfoRow label={t("gameDetail.releaseDate")} value={formatDate(game.releaseDate)} icon={<CalendarTodayIcon fontSize="small" />} />
+                            <InfoRow label={t("gameDetail.duration")} value={game.duration || "00:00:00"} icon={<AccessTimeIcon fontSize="small" />} />
                         </Stack>
                     </Box>
 
