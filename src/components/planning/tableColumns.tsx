@@ -45,19 +45,19 @@ export default function tableColumns(props: Props) : GridColDef[]{
             ...PlatformColumn
         },
         {
-            field: "releaseDate", 
+            field: "availableAt", 
             headerName: props.releaseDateLabel,
             headerAlign: 'center',
             type: 'date',
-            valueGetter: (value) => (value) ? new Date(value) : null,
+            valueGetter: (value) => value && new Date(value),
             width: 220
         },
         {
-            field: "endDate", 
+            field: "endAt", 
             headerName: props.endDateLabel,
             headerAlign: 'center',
             type: 'date',
-            valueGetter: (value) => (value) ? new Date(value) : null,
+            valueGetter: (value) => value && new Date(value),
             width: 220
         },
         {

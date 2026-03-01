@@ -39,7 +39,7 @@ export type RawGame = Omit<BasicGame, "genres" | "id">;
 export type YTUrlType = 'PLAYLIST' | 'VIDEO';
 
 // structure for Card entry
-interface CardEntry {
+export interface CardEntry {
     /** @description Link to the picture for the card component */
     imagePath: string;
     /** @description Link to Youtube */

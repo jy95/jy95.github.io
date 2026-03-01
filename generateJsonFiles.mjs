@@ -138,7 +138,18 @@ async function extractAndSaveBacklog(db) {
  * @param {import('better-sqlite3').Database} db - The database instance
  */
 async function extractAndSavePlanning(db) {
-    const extractPlanningStmt = db.prepare("SELECT * FROM games_in_future gif INNER JOIN games g ON g.id == gif.id");
+    const extractPlanningStmt = db.prepare(`
+        SELECT 
+            gif.*, 
+            g.*,
+            COALESCE(
+                (SELECT json_group_array(genre) 
+                 FROM games_genres 
+                 WHERE game = g.id), 
+            '[]') as genres
+        FROM games_in_future gif 
+        INNER JOIN games g ON g.id = gif.id
+    `);
     const planning = extractPlanningStmt.all();
     await writeFile(
         FILES.PLANNING,

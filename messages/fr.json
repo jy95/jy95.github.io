@@ -144,5 +144,9 @@
             "total_duration_available": "Durée totale du contenu (disponible)",
             "total_duration_unavailable": "Durée totale du contenu (pas encore disponible)"
         }
-    }
+    },
+    "gameDetail": {
+        "releaseDate": "Date de sortie",
+        "duration": "Durée"
+     }
 }
