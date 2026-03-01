@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { extractGameCardProps } from "@/redux/sharedDefintion";
 import type { BasicGame, CardEntry } from "@/redux/sharedDefintion";
 
-type rawEntry = Omit<BasicGame, "genres" | "id" >;
-export type planningEntry = Omit<BasicGame, "genres" | "videoId" | "playlistId"> & {
+type rawEntry = Omit<BasicGame, "id" >;
+export type planningEntry = Omit<BasicGame, "videoId" | "playlistId"> & {
     /** @description Still in progress or finished ? */
     status: "RECORDED" | "PENDING";
     /** @description When to display the game public, such as 20210412 (12/04/2021) */
@@ -39,6 +39,7 @@ function enhanceGameItem(game: rawEntry): planningEntry {
         endAt: game.endAt,
         releaseDate: game.releaseDate,
         duration: game.duration,
+        genres: game.genres,
         url: metadata.url,
         url_type: metadata.url_type
     }
