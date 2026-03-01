@@ -1,7 +1,6 @@
 "use client";
 
 // Hooks
-import { useRouter } from '@/i18n/routing';
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
@@ -12,7 +11,6 @@ import Image from 'next/image';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import Divider from '@mui/material/Divider';
 
@@ -22,7 +20,6 @@ import InfoRow from "./InfoRow";
 import GameGenres from './GameGenres';
 
 // Icons
-import YouTubeIcon from '@mui/icons-material/YouTube';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
@@ -43,19 +40,11 @@ function GameDetailView(props : {
 }) {
 
     // hooks
-    const router = useRouter();
     const [open, setOpen] = useState(true);
     const t = useTranslations();
 
     // props
     const {game} = props;
-
-    function watchGame() {
-        router.push({
-            pathname: game.url_type === "PLAYLIST" ? "/playlist/[id]" : "/video/[id]",
-            params: { id: game.id }
-        });
-    }
 
     function handleClose() {
         setOpen(false);
@@ -81,7 +70,7 @@ function GameDetailView(props : {
         >
             {/* --- Toolbar --- */}
             <GameToolbar 
-                gameTitle={game.title}
+                game={game}
                 onClose={() => handleClose()}
             />
 
@@ -99,18 +88,6 @@ function GameDetailView(props : {
                                 alt={game.title}
                             />
                         </Paper>
-
-                        {isPublic() && (
-                            <Button 
-                                variant="contained"
-                                startIcon={<YouTubeIcon />} 
-                                onClick={watchGame}
-                                color='error'
-                            >
-                                Youtube
-                            </Button>
-                        )}
-
                     </Box>
 
                     {/* --- Game details --- */}
