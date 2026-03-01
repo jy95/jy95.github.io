@@ -59,12 +59,12 @@ export default function PlanningViewer(props: Props) {
                 sortingOrder={['asc', 'desc']}
                 initialState={{
                     sorting: {
-                        sortModel: [{ field: 'releaseDate', sort: 'asc' }],
+                        sortModel: [{ field: 'availableAt', sort: 'asc' }],
                     },
                     columns: {
                         columnVisibilityModel: {
-                            // Hide columns endDate, the other columns will remain visible
-                            endDate: false
+                            // Hide columns endAt, the other columns will remain visible
+                            endAt: false
                         }
                     }
                 }}
