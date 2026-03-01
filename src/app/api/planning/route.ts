@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
 import { extractGameCardProps } from "@/redux/sharedDefintion";
-import type { BasicGame, BasicPlaylist, BasicVideo, CardEntry, YTUrlType } from "@/redux/sharedDefintion";
+import type { BasicGame, CardEntry } from "@/redux/sharedDefintion";
 
-type rawEntry = Omit<BasicGame, "genres" | "releaseDate" | "id" >;
-export type planningEntry = Omit<BasicGame, "genres" | "videoId" | "playlistId" | "releaseDate"> & {
+type rawEntry = Omit<BasicGame, "genres" | "id" >;
+export type planningEntry = Omit<BasicGame, "genres" | "videoId" | "playlistId"> & {
     /** @description Still in progress or finished ? */
     status: "RECORDED" | "PENDING";
     /** @description When to display the game public, such as 20210412 (12/04/2021) */
-    releaseDate?: number;
+    startAt?: number;
     /** @description When to display the game public, such as 20210420 (20/04/2021) */
-    endDate?: number;
+    finishAt?: number;
 } & CardEntry;
 
 export async function GET() {
@@ -24,16 +24,6 @@ export async function GET() {
     });
 }
 
-// Turn "YYYY...MMDD" to int
-function turnDateToInt(value: string | undefined) {
-    if (value) {
-        // TODO one day, maybe remove that & let PlanningColumn do the job
-        return new Date(value).getTime();
-    } else {
-        return undefined;
-    }
-}
-
 // Return an enhanced payload for a single game
 function enhanceGameItem(game: rawEntry): planningEntry {
 
@@ -45,8 +35,9 @@ function enhanceGameItem(game: rawEntry): planningEntry {
         platform: game.platform,
         status:  (game.hasOwnProperty("endAt") ? "RECORDED" : "PENDING"),
         imagePath: `/covers/${metadata.id}/${game.coverFile ?? "cover.webp"}`,
-        releaseDate: turnDateToInt(game?.availableAt),
-        endDate: turnDateToInt(game?.endAt),
+        availableAt: game.availableAt,
+        endAt: game.endAt,
+        releaseDate: game.releaseDate,
         url: metadata.url,
         url_type: metadata.url_type
     }

@@ -28,7 +28,6 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 // Types
 import type { CardGame } from "@/redux/sharedDefintion";
-import type { AppConfig } from 'next-intl';
 
 // Extra properties that are not in CardGame but we might want to display in GameDetailView
 type ExtraGameProperties = {
@@ -50,8 +49,6 @@ function GameDetailView(props : {
 
     // props
     const {game} = props;
-
-    console.log(game);
 
     function watchGame() {
         router.push({
