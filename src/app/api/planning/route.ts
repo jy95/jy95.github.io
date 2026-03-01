@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import type { BasicGame, BasicPlaylist, BasicVideo } from "@/redux/sharedDefintion";
+import { extractGameCardProps } from "@/redux/sharedDefintion";
+import type { BasicGame, BasicPlaylist, BasicVideo, CardEntry, YTUrlType } from "@/redux/sharedDefintion";
 
 type rawEntry = Omit<BasicGame, "genres" | "releaseDate" | "id" >;
 export type planningEntry = Omit<BasicGame, "genres" | "videoId" | "playlistId" | "releaseDate"> & {
@@ -9,7 +10,7 @@ export type planningEntry = Omit<BasicGame, "genres" | "videoId" | "playlistId" 
     releaseDate?: number;
     /** @description When to display the game public, such as 20210420 (20/04/2021) */
     endDate?: number;
-};
+} & CardEntry;
 
 export async function GET() {
 
@@ -35,12 +36,18 @@ function turnDateToInt(value: string | undefined) {
 
 // Return an enhanced payload for a single game
 function enhanceGameItem(game: rawEntry): planningEntry {
+
+    const metadata = extractGameCardProps(game);
+
     return {
-        id: (game as BasicPlaylist).playlistId ?? (game as BasicVideo).videoId,
+        id: metadata.id,
         title: game.title,
         platform: game.platform,
         status:  (game.hasOwnProperty("endAt") ? "RECORDED" : "PENDING"),
+        imagePath: `/covers/${metadata.id}/${game.coverFile ?? "cover.webp"}`,
         releaseDate: turnDateToInt(game?.availableAt),
-        endDate: turnDateToInt(game?.endAt)
+        endDate: turnDateToInt(game?.endAt),
+        url: metadata.url,
+        url_type: metadata.url_type
     }
 }

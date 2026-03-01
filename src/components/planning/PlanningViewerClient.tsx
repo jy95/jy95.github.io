@@ -13,6 +13,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import generateColumns from "@/components/planning/tableColumns";
 
 import type { Props as PropsColumns } from "@/components/planning/tableColumns";
+import type { GridEventListener } from '@mui/x-data-grid';
 
 type Props = {} & PropsColumns;
 
@@ -29,11 +30,16 @@ export default function PlanningViewer(props: Props) {
     
     const columns = generateColumns(props);
 
+    const handleRowClick: GridEventListener<'rowClick'> = (params) => {
+        console.log(params.row);
+    };
+
     return (
         <DataGrid 
             showToolbar
             rows={data} 
             columns={columns} 
+            onRowClick={handleRowClick}
             disableRowSelectionOnClick 
             localeText={customLocaleText}
             slotProps={{
