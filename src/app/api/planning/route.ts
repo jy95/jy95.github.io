@@ -27,7 +27,7 @@ export async function GET() {
 // Turn "YYYY...MMDD" to int
 function turnDateToInt(value: string | undefined) {
     if (value) {
-        // TODO one day, remove that & let PlanningColumn do the job
+        // TODO one day, maybe remove that & let PlanningColumn do the job
         return new Date(value).getTime();
     } else {
         return undefined;
