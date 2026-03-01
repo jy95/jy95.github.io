@@ -38,8 +38,15 @@ function hasGenres(game: CardGame & ExtraGameProperties): game is CardGame & Ext
     return game.genres !== undefined && game.genres.length > 0;
 }
 
-const formatDate = (dateStr?: string) => {
-    if (!dateStr) return "TBA";
+function hasDuration(game: CardGame & ExtraGameProperties): game is CardGame & ExtraGameProperties & { duration: string } {
+    return game.duration !== undefined && game.duration !== "00:00:00";
+}
+
+function hasReleaseDate(game: CardGame & ExtraGameProperties): game is CardGame & ExtraGameProperties & { releaseDate: string } {
+    return game.releaseDate !== undefined;
+}
+
+const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString();
 }
 
@@ -96,8 +103,8 @@ function GameDetailView(props : {
                         <Divider sx={{ mb: 3 }} />
 
                         <Stack spacing={3}>
-                            <InfoRow label={t("gameDetail.releaseDate")} value={formatDate(game.releaseDate)} icon={<CalendarTodayIcon fontSize="small" />} />
-                            <InfoRow label={t("gameDetail.duration")} value={game.duration || "00:00:00"} icon={<AccessTimeIcon fontSize="small" />} />
+                            {hasReleaseDate(game) && <InfoRow label={t("gameDetail.releaseDate")} value={formatDate(game.releaseDate)} icon={<CalendarTodayIcon fontSize="small" />} />}
+                            {hasDuration(game) && <InfoRow label={t("gameDetail.duration")} value={game.duration} icon={<AccessTimeIcon fontSize="small" />} />}
                         </Stack>
                     </Box>
 
