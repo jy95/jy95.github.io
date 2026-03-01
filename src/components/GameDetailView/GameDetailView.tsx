@@ -34,6 +34,15 @@ type ExtraGameProperties = {
     genres?: number[];
 }
 
+function hasGenres(game: CardGame & ExtraGameProperties): game is CardGame & ExtraGameProperties & { genres: number[] } {
+    return game.genres !== undefined && game.genres.length > 0;
+}
+
+const formatDate = (dateStr?: string) => {
+    if (!dateStr) return "TBA";
+    return new Date(dateStr).toLocaleDateString();
+}
+
 function GameDetailView(props : {
     game: CardGame & ExtraGameProperties;
     onClose: () => void;
@@ -49,17 +58,6 @@ function GameDetailView(props : {
     function handleClose() {
         setOpen(false);
         props.onClose();
-    }
-
-    function isPublic() {
-        // if no release date, consider it private
-        //if (!game.availableAt) return false;
-        return true;
-    }
-
-    const formatDate = (dateStr?: string) => {
-        if (!dateStr) return "TBA";
-        return new Date(dateStr).toLocaleDateString();
     }
 
     return (
@@ -93,7 +91,7 @@ function GameDetailView(props : {
                     {/* --- Game details --- */}
                     <Box sx={{ flex: 1 }}>
 
-                        {game.genres && <GameGenres genreIds={game.genres} />}
+                        {hasGenres(game) && <GameGenres genreIds={game.genres} />}
 
                         <Divider sx={{ mb: 3 }} />
 
