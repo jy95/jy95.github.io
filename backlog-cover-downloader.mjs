@@ -3,6 +3,7 @@ import path from 'path';
 import axios from 'axios';
 import { GOOGLE_IMG_SCRAP, GOOGLE_QUERY } from 'google-img-scrap';
 
+
 // --- CONFIGURATION ---
 const JSON_FILE = './src/app/api/backlog/backlog.json';
 const OUTPUT_ROOT = './public/backlogcovers';
