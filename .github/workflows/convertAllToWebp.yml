@@ -1,5 +1,6 @@
 name: Convert all pictures to Webp
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - '**.jpg'
