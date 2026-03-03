@@ -28,7 +28,7 @@ const MIME_MAP = {
 
 async function downloadImage(url, gameId) {
     const gameDir = path.join(OUTPUT_ROOT, String(gameId));
-    
+
     if (!fs.existsSync(gameDir)) {
         fs.mkdirSync(gameDir, { recursive: true });
     }
@@ -39,8 +39,8 @@ async function downloadImage(url, gameId) {
             method: 'GET',
             responseType: 'stream',
             timeout: 10000,
-            headers: { 
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36' 
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
             }
         });
 
@@ -52,13 +52,27 @@ async function downloadImage(url, gameId) {
         const extension = MIME_MAP[contentType] || 'jpg'; // jpg par défaut si inconnu
         const fileName = `cover.${extension}`;
         const filePath = path.join(gameDir, fileName);
+        const tmpPath = `${filePath}.tmp`;
 
-        const writer = fs.createWriteStream(filePath);
+        const writer = fs.createWriteStream(tmpPath);
         response.data.pipe(writer);
 
         return new Promise((resolve, reject) => {
-            writer.on('finish', () => resolve(fileName));
-            writer.on('error', reject);
+            const cleanup = () => {
+                if (fs.existsSync(tmpPath)) fs.unlinkSync(tmpPath);
+            };
+            writer.on('finish', () => {
+                fs.renameSync(tmpPath, filePath);
+                resolve(fileName);
+            });
+            writer.on('error', (err) => {
+                cleanup();
+                reject(err);
+            });
+            response.data.on('error', (err) => {
+                cleanup();
+                reject(err);
+            });
         });
     } catch (error) {
         console.error(`      ❌ Erreur de téléchargement : ${error.message}`);
@@ -98,7 +112,7 @@ async function run() {
             if (results && results.length > 0) {
                 const imageUrl = results[0].url;
                 console.log(`   🔗 Image trouvée : ${imageUrl.substring(0, 50)}...`);
-                
+
                 const savedName = await downloadImage(imageUrl, game.id);
                 if (savedName) {
                     console.log(`   ✅ Sauvegardé : ${game.id}/${savedName}`);
