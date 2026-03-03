@@ -40,5 +40,5 @@ jobs:
             
             - Generated via `google-img-scrap`
             - Targets: `public/backlogcovers/`
-          base: main
+          base: master
           delete-branch: true
