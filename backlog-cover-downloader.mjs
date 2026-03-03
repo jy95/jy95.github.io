@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
-import { googleImg } from 'google-img-scrap';
+import { GOOGLE_IMG_SCRAP, GOOGLE_QUERY } from 'google-img-scrap';
 
 // --- CONFIGURATION ---
 const JSON_FILE = './src/app/api/backlog/backlog.json';
@@ -107,7 +107,12 @@ async function run() {
         console.log(`🔍 Recherche : "${query}"`);
 
         try {
-            const results = await googleImg(query);
+            const request = await GOOGLE_IMG_SCRAP({
+                search: query,
+                limit: 5
+            });
+
+            const results = request.result;
 
             if (results && results.length > 0) {
                 const imageUrl = results[0].url;
