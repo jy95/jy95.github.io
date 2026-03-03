@@ -45,7 +45,10 @@ async function downloadImage(url, gameId) {
         });
 
         // Détection de l'extension via le Content-Type
-        const contentType = response.headers['content-type'];
+        const contentType = (response.headers['content-type'] || '')
+            .split(';')[0]
+            .trim()
+            .toLowerCase();
         const extension = MIME_MAP[contentType] || 'jpg'; // jpg par défaut si inconnu
         const fileName = `cover.${extension}`;
         const filePath = path.join(gameDir, fileName);
