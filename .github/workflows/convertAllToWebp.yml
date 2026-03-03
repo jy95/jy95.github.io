@@ -29,6 +29,19 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             ignorePaths: 'node_modules/**,build'
             compressOnly: true
-        - if: always()
-          name: Commit changes into PR
-          uses: stefanzweifel/git-auto-commit-action@v7
+        - name: Create Pull Request 🤖
+          if: always()
+          uses: peter-evans/create-pull-request@v8
+          with:
+            token: ${{ secrets.PAT }}
+            commit-message: "chore: convert images to webp and optimize"
+            branch: auto-webp-optimization
+            title: "Optimize Images: Convert to WebP"
+            body: |
+              ## Image Optimization Report 🚀
+              This PR was automatically generated to:
+              * Convert `.jpg`, `.png`, and `.jpeg` files to `.webp`.
+              * Replace internal references in `src` and `public`.
+              * Apply compression using `calibreapp/image-actions`.
+  
+              @coderabbitai ignore
