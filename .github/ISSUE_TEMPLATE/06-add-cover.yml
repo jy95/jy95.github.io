@@ -1,5 +1,5 @@
 name: 📕 Add cover game
-description: Add to a existing game its cover
+description: Add to a (existing) game its cover
 title: '[ADD_COVER] '
 labels: ["[ADD_COVER]"]
 body:
@@ -11,7 +11,7 @@ body:
     id: identifierValue
     attributes:
       label: Identifier
-      description: What is the game playlist ID or video ID on Youtube ?
+      description: What is the game's main identifier (YouTube playlist/video ID or database ID)?
       placeholder: >-
         ex. PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR or dn6QTMujBiY
     validations:
@@ -32,4 +32,5 @@ body:
       options:
         - covers
         - testscovers
+        - backlogcovers
       default: 0

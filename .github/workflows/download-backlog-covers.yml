@@ -1,0 +1,44 @@
+name: Download Backlog Covers
+
+on:
+  workflow_dispatch: # Permet de lancer le script manuellement depuis l'onglet Actions
+  push:
+    paths:
+      - 'src/app/api/backlog/backlog.json' # Se lance si tu mets à jour ta liste
+
+jobs:
+  update_covers:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: 🛎️ Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js ✨
+        uses: actions/setup-node@v6
+        with:
+          node-version: "lts/*"
+
+      - name: 💻 Install dependencies
+        run: npm install --no-save google-img-scrap axios
+
+      - name: 🤖 Run downloader script
+        run: node backlog-cover-downloader.mjs
+
+      - name: 🚀 Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update game covers"
+          title: "Update Game Backlog Covers"
+          branch: "feat/update-covers"
+          body: |
+            This PR automatically fetches missing game covers for your backlog.
+            
+            - Generated via `google-img-scrap`
+            - Targets: `public/backlogcovers/`
+          base: master
+          delete-branch: true
