@@ -116,7 +116,7 @@ async function run() {
 
             if (results && results.length > 0) {
                 const imageUrl = results[0].url;
-                console.log(`   🔗 Image trouvée : ${imageUrl.substring(0, 50)}...`);
+                console.log(`   🔗 Image trouvée : ${imageUrl}`);
 
                 const savedName = await downloadImage(imageUrl, game.id);
                 if (savedName) {
