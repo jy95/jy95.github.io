@@ -23,7 +23,7 @@ jobs:
           node-version: "lts/*"
 
       - name: 💻 Install dependencies
-        run: npm install google-img-scrap axios
+        run: npm install --no-save google-img-scrap axios
 
       - name: 🤖 Run downloader script
         run: node backlog-cover-downloader.mjs
