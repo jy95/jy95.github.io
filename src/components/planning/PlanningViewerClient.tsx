@@ -16,9 +16,10 @@ import GameDetailView from '@/components/GameDetailView/GameDetailView';
 // columns
 import generateColumns from "@/components/planning/tableColumns";
 
+// Types
+import type { planningEntry } from "@/app/api/planning/route";
 import type { Props as PropsColumns } from "@/components/planning/tableColumns";
 import type { GridEventListener } from '@mui/x-data-grid';
-import type { CardGame } from '@/redux/sharedDefintion';
 
 type Props = {} & PropsColumns;
 
@@ -28,7 +29,7 @@ export default function PlanningViewer(props: Props) {
 
     const { data, error, isLoading } = useGetPlanningQuery();
     const customLocaleText = useMuiXDataGridText();
-    const [selectedGame, setSelectedGame] = useState<CardGame | null>(null);
+    const [selectedGame, setSelectedGame] = useState<planningEntry | null>(null);
 
     if (error) {
         return <>Something bad happened</>
@@ -37,7 +38,7 @@ export default function PlanningViewer(props: Props) {
     const columns = generateColumns(props);
 
     const handleRowClick: GridEventListener<'rowClick'> = (params) => {
-        setSelectedGame(params.row as CardGame);
+        setSelectedGame(params.row as planningEntry);
     };
 
     return (
