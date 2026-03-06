@@ -37,6 +37,8 @@ jobs:
             commit-message: "chore: convert images to webp and optimize"
             branch: auto-webp-optimization
             title: "Optimize Images: Convert to WebP"
+            labels: |
+             automerge
             body: |
               ## Image Optimization Report 🚀
               This PR was automatically generated to:
