@@ -69,7 +69,7 @@ There is a [database](GamesPassionFR.db) for managing video games, their genres,
 | `notes`    | Additional notes or comments about the game.               | Optional          | `Play this first.`   |
 | `hltb_main`| Duration to beat the main story of this game               | Optional          | `02:30:00`           |
 | `hltb_extra`| Duration for main story + side quests                     | Optional          | `06:30:00`           |
-| `hltb_completionist`| Duration for main story + side quests             | Optional          | `09:30:00`           |
+| `hltb_completionist`| Duration for for 100% completion                  | Optional          | `09:30:00`           |
 
 ### `games_genres` Table
 
