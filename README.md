@@ -61,12 +61,15 @@ There is a [database](GamesPassionFR.db) for managing video games, their genres,
 
 ### `backlog` Table
 
-| Field     | Description                                               | Required/Optional | Example              |
-|-----------|-----------------------------------------------------------|-------------------|----------------------|
-| `id`      | Unique identifier for each backlog entry (Primary Key).    | Required          | `1`                  |
-| `title`   | The title of the game.                                     | Required          | `Batman Begins`      |
-| `platform`| Foreign key referencing the `platforms` table.             | Optional          | `2`                  |
-| `notes`   | Additional notes or comments about the game.               | Optional          | `Play this first.`   |
+| Field      | Description                                                | Required/Optional | Example              |
+|------------|------------------------------------------------------------|-------------------|----------------------|
+| `id`       | Unique identifier for each backlog entry (Primary Key).    | Required          | `1`                  |
+| `title`    | The title of the game.                                     | Required          | `Batman Begins`      |
+| `platform` | Foreign key referencing the `platforms` table.             | Optional          | `2`                  |
+| `notes`    | Additional notes or comments about the game.               | Optional          | `Play this first.`   |
+| `hltb_main`| Duration to beat the main story of this game               | Optional          | `02:30:00`           |
+| `hltb_extra`| Duration for main story + side quests                     | Optional          | `06:30:00`           |
+| `hltb_completionist`| Duration for main story + side quests             | Optional          | `09:30:00`           |
 
 ### `games_genres` Table
 

@@ -3,10 +3,12 @@ description: Add a new backlog entry into the database
 title: '[ADD_BACKLOG] '
 labels: ["database","[ADD_BACKLOG]"]
 body:
+
   - type: markdown
     attributes:
       value: |
         Please fill in the following fields to add this game into database !
+
   - type: input
     id: title
     attributes:
@@ -15,6 +17,7 @@ body:
       placeholder: ex. Splinter Cell HD
     validations:
       required: true
+
   - type: dropdown
     id: platform
     attributes:
@@ -27,6 +30,28 @@ body:
         - PS1
         - PS2
         - PS3
+
+  - type: input
+    id: hltb_main
+    attributes:
+      label: Main Story Duration
+      description: Expected format HH:mm:ss (Leave empty for auto-sync)
+      placeholder: "08:30:00"
+  
+  - type: input
+    id: hltb_extra
+    attributes:
+      label: Main + Extra Duration
+      description: Expected format HH:mm:ss (Leave empty for auto-sync)
+      placeholder: "12:00:00"
+
+  - type: input
+    id: hltb_completionist
+    attributes:
+      label: Completionist Duration
+      description: Expected format HH:mm:ss (Leave empty for auto-sync)
+      placeholder: "25:45:00"
+      
   - type: textarea
     id: notes
     attributes:

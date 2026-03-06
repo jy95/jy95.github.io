@@ -336,6 +336,9 @@ async function deleteGameFromDatabase(db, payload) {
  * @param {string} payload.title - The title of the game
  * @param {Platform} [payload.platform] - The platform of the game
  * @param {string} [payload.notes] - Additional notes about this game
+ * @param {string} [payload.hltb_main] - Duration for main story (HH:mm:ss)
+ * @param {string} [payload.hltb_extra] - Duration for main + extra (HH:mm:ss)
+ * @param {string} [payload.hltb_completionist] - Duration for 100% (HH:mm:ss)
  * 
  */
 async function addBacklogToDatabase(db, payload) {
@@ -343,11 +346,14 @@ async function addBacklogToDatabase(db, payload) {
     const backlogToInsert = {
         title: payload.title,
         platform: (payload.platform !== undefined) ? platformToInt(payload.platform) : null,
+        hltb_main: payload.hltb_main || null,
+        hltb_extra: payload.hltb_extra || null,
+        hltb_completionist: payload.hltb_completionist || null,
         notes: (payload.notes) ? payload.notes : null
     }
 
     // statments
-    const insertStmt = db.prepare("INSERT INTO backlog (title, platform, notes) VALUES (@title, @platform, @notes)");
+    const insertStmt = db.prepare("INSERT INTO backlog (title, platform, hltb_main, hltb_extra, hltb_completionist, notes) VALUES (@title, @platform, @hltb_main, @hltb_extra, @hltb_completionist, @notes)");
 
     // Execution time
     return insertStmt.run(backlogToInsert);
