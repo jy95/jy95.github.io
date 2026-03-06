@@ -31,14 +31,18 @@ jobs:
       - name: 🚀 Create Pull Request
         uses: peter-evans/create-pull-request@v8
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
           commit-message: "chore: update game covers"
           title: "Update Game Backlog Covers"
           branch: "feat/update-covers"
+          labels: |
+           automerge
           body: |
             This PR automatically fetches missing game covers for your backlog.
             
             - Generated via `google-img-scrap`
             - Targets: `public/backlogcovers/`
+
+            @coderabbitai ignore
           base: master
           delete-branch: true
