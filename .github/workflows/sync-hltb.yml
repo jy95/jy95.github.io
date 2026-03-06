@@ -1,0 +1,49 @@
+name: Sync HLTB Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 10 * * *'
+  push:
+    paths:
+      - 'GamesPassionFR.db'
+
+jobs:
+  update_stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: 🛎️ Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js ✨
+        uses: actions/setup-node@v6
+        with:
+          node-version: "lts/*"
+
+      - name: 💻 Install dependencies
+        run: npm install --no-save howlongtobeat-ts
+
+      - name: 🤖 Run HLTB Sync Script
+        run: node hltb_fetcher.mjs
+
+      - name: 🚀 Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.PAT }}
+          commit-message: "chore: update hltb stats and scores"
+          title: "Update Game Backlog Stats (HLTB)"
+          branch: "feat/update-hltb-stats"
+          labels: |
+            automerge
+          body: |
+            Cette PR met à jour les statistiques de jeu depuis HowLongToBeat.
+            
+            - Champs : `hltb_main`, `hltb_extra`, `hltb_completionist` (Format HH:mm:ss)
+            
+            @coderabbitai ignore
+          base: master
+          delete-branch: true
