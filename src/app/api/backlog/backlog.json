@@ -775,5 +775,10 @@
 		"id": 171,
 		"title": "Gravity Rush 2",
 		"notes": "PS4"
+	},
+	{
+		"id": 172,
+		"title": "Monster Madness: Battle for Suburbia",
+		"platform": 1
 	}
 ]
