@@ -6,7 +6,7 @@ on:
     - cron: '0 10 * * *'
   push:
     paths:
-      - 'GamesPassionFR.db'
+      - 'src/app/api/backlog/backlog.json'
 
 jobs:
   update_stats:
