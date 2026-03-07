@@ -11,7 +11,13 @@ export type BacklogEntry = {
     /** @description Platform for that game */
     "platform"?: number,
     /** @description Extra notes */
-    "notes"?: string
+    "notes"?: string,
+    /** @description Duration of the walkthrough (e.g. "01:42:13") */
+    "hltb_main"?: string,
+    /** @description Duration of the walkthrough + extras (e.g. "02:30:00") */
+    "hltb_extra"?: string,
+    /** @description Duration of the completionist walkthrough (e.g. "03:45:00") */
+    "hltb_completionist"?: string,
 } & CardEntry;
 
 // Raw entry 

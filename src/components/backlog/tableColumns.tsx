@@ -11,7 +11,15 @@ export type Props = {
     titleLabel: string,
     platformLabel: string,
     notesLabel: string
+    hltbLabel: string
 }
+
+// Convert a time string in the format "HH:MM:SS" to total seconds
+const timeToSeconds = (timeStr: string | undefined): number => {
+  if (!timeStr) return 0;
+  const [hours, minutes, seconds] = timeStr.split(':').map(Number);
+  return (hours * 3600) + (minutes * 60) + seconds;
+};
 
 export default function tableColumns(props: Props) : GridColDef[]{
     return [
@@ -42,5 +50,22 @@ export default function tableColumns(props: Props) : GridColDef[]{
             ),
             width: 270
           },
+          {
+            field: "hltb_main",
+            headerName: props.hltbLabel,
+            headerAlign: 'center',
+            filterable: false,
+            valueGetter: ({ value }: { value: string | undefined }) => {
+              if (!value) return 0;
+              return timeToSeconds(value);
+            },
+            valueFormatter : ({ value }: { value: number | undefined }) => {
+                if (!value) return "";
+                const hours = Math.floor(value / 3600);
+                const minutes = Math.floor((value % 3600) / 60);
+                const seconds = value % 60;
+                return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            },
+          }
     ];
 }

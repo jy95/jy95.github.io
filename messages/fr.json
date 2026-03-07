@@ -115,7 +115,8 @@
         "columns": {
             "title": "Titre",
             "platform": "Plateforme",
-            "notes": "Notes"
+            "notes": "Notes",
+            "hltb_main": "Durée estimée"
         }
     },
     "stats": {
