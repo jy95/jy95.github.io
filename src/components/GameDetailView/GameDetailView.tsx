@@ -18,6 +18,7 @@ import Divider from '@mui/material/Divider';
 import GameToolbar from "./GameToolbar";
 import InfoRow from "./InfoRow";
 import GameGenres from './GameGenres';
+import PrettyDuration from "./DurationRow";
 
 // Icons
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
@@ -32,6 +33,12 @@ type ExtraGameProperties = {
     releaseDate?: string;
     /** @description Genres of the game */
     genres?: number[];
+    /** @description Duration of the game in "hh:mm:ss" format */
+    hltb_main?: string;
+    /** @description Duration of the game including extras in "hh:mm:ss" format */
+    hltb_extra?: string;
+    /** @description Duration of the game including extras and completionist in "hh:mm:ss" format */
+    hltb_completionist?: string;
 }
 
 function hasGenres(game: CardGame & ExtraGameProperties): game is CardGame & ExtraGameProperties & { genres: number[] } {
@@ -44,6 +51,18 @@ function hasDuration(game: CardGame & ExtraGameProperties): game is CardGame & E
 
 function hasReleaseDate(game: CardGame & ExtraGameProperties): game is CardGame & ExtraGameProperties & { releaseDate: string } {
     return game.releaseDate !== undefined;
+}
+
+function hasHltbMain(game: CardGame & ExtraGameProperties): game is CardGame & ExtraGameProperties & { hltb_main: string } {
+    return game.hltb_main !== undefined && game.hltb_main !== "00:00:00";
+}
+
+function hasHltbExtra(game: CardGame & ExtraGameProperties): game is CardGame & ExtraGameProperties & { hltb_extra: string } {
+    return game.hltb_extra !== undefined && game.hltb_extra !== "00:00:00";
+}
+
+function hasHltbCompletionist(game: CardGame & ExtraGameProperties): game is CardGame & ExtraGameProperties & { hltb_completionist: string } {
+    return game.hltb_completionist !== undefined && game.hltb_completionist !== "00:00:00";
 }
 
 const formatDate = (dateStr: string) => {
@@ -105,6 +124,9 @@ function GameDetailView(props : {
                         <Stack spacing={3}>
                             {hasReleaseDate(game) && <InfoRow label={t("gameDetail.releaseDate")} value={formatDate(game.releaseDate)} icon={<CalendarTodayIcon fontSize="small" />} />}
                             {hasDuration(game) && <InfoRow label={t("gameDetail.duration")} value={game.duration} icon={<AccessTimeIcon fontSize="small" />} />}
+                            {hasHltbMain(game) && <InfoRow label={t("gameDetail.hltb_main")} value={<PrettyDuration duration={game.hltb_main} />} icon={<AccessTimeIcon fontSize="small" />} />}
+                            {hasHltbExtra(game) && <InfoRow label={t("gameDetail.hltb_extra")} value={<PrettyDuration duration={game.hltb_extra} />} icon={<AccessTimeIcon fontSize="small" />} />}
+                            {hasHltbCompletionist(game) && <InfoRow label={t("gameDetail.hltb_completionist")} value={<PrettyDuration duration={game.hltb_completionist} />} icon={<AccessTimeIcon fontSize="small" />} />}
                         </Stack>
                     </Box>
 

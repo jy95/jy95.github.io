@@ -147,6 +147,9 @@
     },
     "gameDetail": {
         "releaseDate": "Release date",
-        "duration": "Duration"
+        "duration": "Duration",
+        "hltb_main": "Main Story",
+        "hltb_extra": "Main Story + Extras",
+        "hltb_completionist": "Completionist"
     }
 }
