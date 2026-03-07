@@ -2,788 +2,1238 @@
 	{
 		"id": 1,
 		"title": "Beyond: Two Souls",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "10:38:23",
+		"hltb_extra": "12:23:19",
+		"hltb_completionist": "28:06:41"
 	},
 	{
 		"id": 2,
-		"title": "Super Meat Boy"
+		"title": "Super Meat Boy",
+		"hltb_main": "09:15:48",
+		"hltb_extra": "18:27:27",
+		"hltb_completionist": "45:45:07"
 	},
 	{
 		"id": 3,
-		"title": "Manhunt"
+		"title": "Manhunt",
+		"hltb_main": "10:57:18",
+		"hltb_extra": "13:28:59",
+		"hltb_completionist": "17:02:48"
 	},
 	{
 		"id": 4,
-		"title": "Manhunt 2"
+		"title": "Manhunt 2",
+		"hltb_main": "08:01:02",
+		"hltb_extra": "11:30:53",
+		"hltb_completionist": "14:06:45"
 	},
 	{
 		"id": 5,
 		"title": "Dead Head Fred",
-		"platform": 3
+		"platform": 3,
+		"hltb_main": "08:20:00",
+		"hltb_extra": "11:00:00"
 	},
 	{
 		"id": 6,
 		"title": "Ty, le tigre de Tasmanie",
 		"platform": 5,
-		"notes": "Original (PS2) VS remake (PC) ?"
+		"notes": "Original (PS2) VS remake (PC) ?",
+		"hltb_main": "08:58:48",
+		"hltb_extra": "10:58:27",
+		"hltb_completionist": "14:38:09"
 	},
 	{
 		"id": 7,
 		"title": "Ty : Le Tigre de Tasmanie 2 : Opération Sauvetage",
 		"platform": 5,
-		"notes": "Original (PS2) VS remake (PC) ?"
+		"notes": "Original (PS2) VS remake (PC) ?",
+		"hltb_main": "07:51:15",
+		"hltb_extra": "11:55:20",
+		"hltb_completionist": "15:40:43"
 	},
 	{
 		"id": 8,
 		"title": "Ty, le tigre de Tasmanie 3 : Nuit du Quinkan",
 		"platform": 5,
-		"notes": "Original (PS2) VS remake (PC) ?"
+		"notes": "Original (PS2) VS remake (PC) ?",
+		"hltb_main": "07:01:03",
+		"hltb_extra": "12:26:27",
+		"hltb_completionist": "16:25:03"
 	},
 	{
 		"id": 9,
 		"title": "Ty, le tigre de Tasmanie 4 : Le retour de Opération Sauvetage",
 		"platform": 5,
-		"notes": "Original (PS2) VS remake (PC) ?"
+		"notes": "Original (PS2) VS remake (PC) ?",
+		"hltb_main": "03:46:57",
+		"hltb_extra": "07:16:52",
+		"hltb_completionist": "09:55:12"
 	},
 	{
 		"id": 10,
 		"title": "Musashi: Samurai Legend",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "15:38:32",
+		"hltb_extra": "18:42:23",
+		"hltb_completionist": "22:25:01"
 	},
 	{
 		"id": 11,
 		"title": "Shadow of the Colossus",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "07:10:49",
+		"hltb_extra": "09:37:40",
+		"hltb_completionist": "27:35:17"
 	},
 	{
 		"id": 12,
 		"title": "Okami HD",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "33:04:03",
+		"hltb_extra": "40:32:37",
+		"hltb_completionist": "52:59:05"
 	},
 	{
 		"id": 13,
 		"title": "Oni",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "09:28:43",
+		"hltb_extra": "10:34:02",
+		"hltb_completionist": "10:50:26"
 	},
 	{
 		"id": 14,
 		"title": "Heavy Rain",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "09:58:27",
+		"hltb_extra": "12:02:15",
+		"hltb_completionist": "22:12:42"
 	},
 	{
 		"id": 15,
 		"title": "Crash Twinsanity",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "05:04:48",
+		"hltb_extra": "05:51:20",
+		"hltb_completionist": "07:32:16"
 	},
 	{
 		"id": 16,
 		"title": "Crash of the Titans",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "06:59:34",
+		"hltb_extra": "09:10:06",
+		"hltb_completionist": "11:30:31"
 	},
 	{
 		"id": 17,
 		"title": "Viewtiful Joe",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "07:58:03",
+		"hltb_extra": "12:23:03",
+		"hltb_completionist": "22:36:51"
 	},
 	{
 		"id": 18,
 		"title": "Cold Fear",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "06:11:14",
+		"hltb_extra": "06:51:02",
+		"hltb_completionist": "07:05:29"
 	},
 	{
 		"id": 19,
 		"title": "The Suffering : Les Liens qui nous Unissent",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "07:01:32",
+		"hltb_extra": "09:58:36",
+		"hltb_completionist": "12:31:30"
 	},
 	{
 		"id": 20,
 		"title": "BloodRayne : Terminal Cut",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "07:04:24",
+		"hltb_extra": "08:07:58",
+		"hltb_completionist": "10:10:56"
 	},
 	{
 		"id": 21,
 		"title": "BloodRayne 2 : Terminal Cut",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "08:58:17",
+		"hltb_extra": "10:00:57",
+		"hltb_completionist": "10:42:54"
 	},
 	{
 		"id": 22,
 		"title": "Swords of Destiny",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "05:06:53"
 	},
 	{
 		"id": 24,
 		"title": "Trine",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "06:08:51",
+		"hltb_extra": "08:24:41",
+		"hltb_completionist": "14:49:59"
 	},
 	{
 		"id": 25,
 		"title": "Trine 2",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "08:11:16",
+		"hltb_extra": "11:35:41",
+		"hltb_completionist": "22:55:08"
 	},
 	{
 		"id": 26,
 		"title": "Trine 3 : The Artifacts of Power",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "04:56:16",
+		"hltb_extra": "06:04:07",
+		"hltb_completionist": "07:00:43"
 	},
 	{
 		"id": 27,
 		"title": "Trine 4 : Melody of Mystery",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "04:35:40",
+		"hltb_extra": "06:20:12",
+		"hltb_completionist": "06:53:17"
 	},
 	{
 		"id": 28,
 		"title": "Trine 5",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "18:42:41",
+		"hltb_extra": "22:13:55",
+		"hltb_completionist": "24:47:13"
 	},
 	{
 		"id": 29,
 		"title": "Serious Sam HD: The First Encounter",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "06:13:02",
+		"hltb_extra": "08:26:29",
+		"hltb_completionist": "19:56:10"
 	},
 	{
 		"id": 30,
 		"title": "Serious Sam HD: The Second Encounter",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "07:30:25",
+		"hltb_extra": "12:22:38",
+		"hltb_completionist": "23:00:11"
 	},
 	{
 		"id": 31,
 		"title": "Serious Sam 3: BFE",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "10:03:26",
+		"hltb_extra": "14:40:15",
+		"hltb_completionist": "28:48:53"
 	},
 	{
 		"id": 32,
 		"title": "Serious Sam 4",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "09:16:17",
+		"hltb_extra": "13:53:10",
+		"hltb_completionist": "19:14:39"
 	},
 	{
 		"id": 33,
 		"title": "God Hand",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "13:02:41",
+		"hltb_extra": "15:21:21",
+		"hltb_completionist": "19:39:52"
 	},
 	{
 		"id": 34,
 		"title": "Dead Rising",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "12:08:59",
+		"hltb_extra": "18:52:02",
+		"hltb_completionist": "72:40:33"
 	},
 	{
 		"id": 35,
 		"title": "Dead Rising 2",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "14:21:13",
+		"hltb_extra": "17:48:23",
+		"hltb_completionist": "50:53:52"
 	},
 	{
 		"id": 36,
 		"title": "Dead Rising 3",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "13:56:10",
+		"hltb_extra": "21:57:43",
+		"hltb_completionist": "44:32:09"
 	},
 	{
 		"id": 37,
 		"title": "Dead Rising 4",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "10:00:14",
+		"hltb_extra": "18:51:37",
+		"hltb_completionist": "38:46:29"
 	},
 	{
 		"id": 38,
 		"title": "Psi-Ops : The Mindgate Conspiracy",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "11:48:22",
+		"hltb_extra": "13:42:39",
+		"hltb_completionist": "14:27:52"
 	},
 	{
 		"id": 39,
 		"title": "Black",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "05:43:47",
+		"hltb_extra": "08:04:04",
+		"hltb_completionist": "22:05:12"
 	},
 	{
 		"id": 40,
 		"title": "Disgaea : Afternoon of Darkness",
-		"platform": 3
+		"platform": 3,
+		"hltb_main": "41:42:00",
+		"hltb_extra": "82:53:39",
+		"hltb_completionist": "253:45:40"
 	},
 	{
 		"id": 41,
 		"title": "Disgaea 2 : Dark Hero Days",
-		"platform": 3
+		"platform": 3,
+		"hltb_main": "32:23:45",
+		"hltb_extra": "73:39:32",
+		"hltb_completionist": "447:47:52"
 	},
 	{
 		"id": 42,
 		"title": "TimeSplitters : Future Perfect",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "06:11:44",
+		"hltb_extra": "16:02:14",
+		"hltb_completionist": "28:35:58"
 	},
 	{
 		"id": 43,
 		"title": "Kane & Lynch : Dead Men",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "05:11:49",
+		"hltb_extra": "06:26:35",
+		"hltb_completionist": "07:52:12"
 	},
 	{
 		"id": 44,
 		"title": "Mark of the Ninja",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "08:24:10",
+		"hltb_extra": "12:23:58",
+		"hltb_completionist": "20:57:33"
 	},
 	{
 		"id": 45,
 		"title": "The Chronicles of Riddick : Assault on Dark Athena",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "09:05:40",
+		"hltb_extra": "11:20:59",
+		"hltb_completionist": "22:34:55"
 	},
 	{
 		"id": 46,
 		"title": "Shadow Complex Remastered",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "05:09:56",
+		"hltb_extra": "07:41:36",
+		"hltb_completionist": "11:17:13"
 	},
 	{
 		"id": 47,
 		"title": "Kung Fu Panda : Le jeu",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "05:00:54",
+		"hltb_extra": "07:05:41",
+		"hltb_completionist": "12:21:07"
 	},
 	{
 		"id": 48,
 		"title": "Shantae Advance : Risky Revolution",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "05:26:21",
+		"hltb_extra": "06:42:57",
+		"hltb_completionist": "08:20:48"
 	},
 	{
 		"id": 49,
 		"title": "Shantae and the Pirate's Curse",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "08:05:54",
+		"hltb_extra": "09:41:33",
+		"hltb_completionist": "10:26:04"
 	},
 	{
 		"id": 50,
 		"title": "Shantae and the Seven Sirens",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "08:05:42",
+		"hltb_extra": "09:42:39",
+		"hltb_completionist": "13:25:04"
 	},
 	{
 		"id": 51,
 		"title": "Shantae : Half-Genie Hero",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "06:22:20",
+		"hltb_extra": "07:37:44",
+		"hltb_completionist": "08:05:21"
 	},
 	{
 		"id": 52,
 		"title": "Shantae : Risky's Revenge",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "05:06:45",
+		"hltb_extra": "07:04:52",
+		"hltb_completionist": "07:23:04"
 	},
 	{
 		"id": 53,
 		"title": "Syndicate",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "06:03:09",
+		"hltb_extra": "07:52:47",
+		"hltb_completionist": "11:34:52"
 	},
 	{
 		"id": 54,
 		"title": "Wolfenstein",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "08:52:04",
+		"hltb_extra": "10:37:43",
+		"hltb_completionist": "12:17:40"
 	},
 	{
 		"id": 55,
 		"title": "Wolfenstein : The New Order",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "11:21:53",
+		"hltb_extra": "15:19:31",
+		"hltb_completionist": "24:24:05"
 	},
 	{
 		"id": 56,
 		"title": "Wolfenstein II : The New Colossus",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "10:45:30",
+		"hltb_extra": "17:04:35",
+		"hltb_completionist": "33:35:19"
 	},
 	{
 		"id": 57,
 		"title": "Rage",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "11:07:52",
+		"hltb_extra": "15:29:37",
+		"hltb_completionist": "23:42:46"
 	},
 	{
 		"id": 58,
 		"title": "Driver 76",
-		"platform": 3
+		"platform": 3,
+		"hltb_main": "06:09:02",
+		"hltb_extra": "12:58:27",
+		"hltb_completionist": "24:46:01"
 	},
 	{
 		"id": 60,
 		"title": "The House of the Dead : Overkill - Extended Cut",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "03:59:34",
+		"hltb_extra": "06:04:58",
+		"hltb_completionist": "07:49:27"
 	},
 	{
 		"id": 61,
 		"title": "Dark Sector",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "08:00:15",
+		"hltb_extra": "09:31:17",
+		"hltb_completionist": "11:36:53"
 	},
 	{
 		"id": 62,
 		"title": "Scarface : The World is Yours",
 		"platform": 1,
-		"notes": "Scarface Remastered Project 1.1"
+		"notes": "Scarface Remastered Project 1.1",
+		"hltb_main": "15:44:23",
+		"hltb_extra": "22:36:44",
+		"hltb_completionist": "27:03:48"
 	},
 	{
 		"id": 63,
 		"title": "Pizza Tower",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "06:15:45",
+		"hltb_extra": "11:17:51",
+		"hltb_completionist": "45:24:55"
 	},
 	{
 		"id": 64,
 		"title": "Stick It to The Man!",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "04:24:22",
+		"hltb_extra": "05:02:48",
+		"hltb_completionist": "05:40:40"
 	},
 	{
 		"id": 66,
 		"title": "Persona 5 Royal",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "101:16:23",
+		"hltb_extra": "123:04:25",
+		"hltb_completionist": "140:51:46"
 	},
 	{
 		"id": 67,
 		"title": "Yakuza 1 HD",
 		"platform": 6,
-		"notes": "Yakuza 1 & 2 HD Edition"
+		"notes": "Yakuza 1 & 2 HD Edition",
+		"hltb_main": "17:57:00"
 	},
 	{
 		"id": 68,
 		"title": "Yakuza 2 HD",
 		"platform": 6,
-		"notes": "Yakuza 1 & 2 HD Edition"
+		"notes": "Yakuza 1 & 2 HD Edition",
+		"hltb_main": "17:57:00"
 	},
 	{
 		"id": 69,
 		"title": "Yakuza 3",
 		"platform": 1,
-		"notes": "The Yakuza Remastered Collection"
+		"notes": "The Yakuza Remastered Collection",
+		"hltb_main": "16:47:39",
+		"hltb_extra": "31:25:43",
+		"hltb_completionist": "102:01:35"
 	},
 	{
 		"id": 70,
 		"title": "Yakuza 4",
 		"platform": 1,
-		"notes": "The Yakuza Remastered Collection"
+		"notes": "The Yakuza Remastered Collection",
+		"hltb_main": "20:33:30",
+		"hltb_extra": "39:31:47",
+		"hltb_completionist": "92:05:47"
 	},
 	{
 		"id": 71,
 		"title": "Yakuza 5",
 		"platform": 1,
-		"notes": "The Yakuza Remastered Collection"
+		"notes": "The Yakuza Remastered Collection",
+		"hltb_main": "35:59:51",
+		"hltb_extra": "64:01:07",
+		"hltb_completionist": "152:26:06"
 	},
 	{
 		"id": 72,
 		"title": "Yakuza 6 : The Song of Life",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "18:12:00",
+		"hltb_extra": "31:40:24",
+		"hltb_completionist": "55:06:15"
 	},
 	{
 		"id": 73,
 		"title": "Yakuza : Like a Dragon",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "45:49:31",
+		"hltb_extra": "67:49:55",
+		"hltb_completionist": "102:52:04"
 	},
 	{
 		"id": 74,
 		"title": "Yakuza Zero : The Place of Oath",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "31:33:27",
+		"hltb_extra": "64:29:28",
+		"hltb_completionist": "144:33:20"
 	},
 	{
 		"id": 75,
 		"title": "50 Cent - Bulletproof",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "06:27:24",
+		"hltb_extra": "06:34:30",
+		"hltb_completionist": "09:45:00"
 	},
 	{
 		"id": 76,
 		"title": "True Crime - New York City",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "07:10:57",
+		"hltb_extra": "19:03:48",
+		"hltb_completionist": "30:57:10"
 	},
 	{
 		"id": 77,
 		"title": "Batman Begins",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "06:52:38",
+		"hltb_extra": "08:50:53",
+		"hltb_completionist": "09:08:53"
 	},
 	{
 		"id": 78,
 		"title": "Dead to Rights II",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "06:11:38",
+		"hltb_extra": "10:00:00",
+		"hltb_completionist": "15:00:00"
 	},
 	{
 		"id": 79,
 		"title": "Shovel Knight",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "06:40:11",
+		"hltb_extra": "09:29:51",
+		"hltb_completionist": "18:28:41"
 	},
 	{
 		"id": 80,
 		"title": "Kingdoms of amalur : reckoning",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "31:23:54",
+		"hltb_extra": "58:09:37",
+		"hltb_completionist": "104:39:33"
 	},
 	{
 		"id": 81,
 		"title": "The sopranos road to respect",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "04:34:11",
+		"hltb_extra": "05:25:50",
+		"hltb_completionist": "06:43:18"
 	},
 	{
 		"id": 83,
 		"title": "State of Emergency",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "05:19:53",
+		"hltb_extra": "08:00:00"
 	},
 	{
 		"id": 84,
 		"title": "Forbidden siren",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "19:36:18",
+		"hltb_extra": "20:28:49",
+		"hltb_completionist": "27:53:05"
 	},
 	{
 		"id": 85,
 		"title": "Enchanted Arms",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "26:02:28",
+		"hltb_extra": "43:39:14",
+		"hltb_completionist": "50:56:53"
 	},
 	{
 		"id": 86,
 		"title": "The 3rd Birthday",
-		"platform": 3
+		"platform": 3,
+		"hltb_main": "10:14:45",
+		"hltb_extra": "16:48:35",
+		"hltb_completionist": "28:58:07"
 	},
 	{
 		"id": 88,
 		"title": "Halo 2",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "09:11:24",
+		"hltb_extra": "11:28:33",
+		"hltb_completionist": "21:09:29"
 	},
 	{
 		"id": 89,
 		"title": "Halo 4",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "07:13:55",
+		"hltb_extra": "10:30:43",
+		"hltb_completionist": "28:01:35"
 	},
 	{
 		"id": 90,
 		"title": "Halo Reach",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "07:44:15",
+		"hltb_extra": "12:32:03",
+		"hltb_completionist": "49:32:18"
 	},
 	{
 		"id": 91,
-		"title": "Grand Theft Auto III"
+		"title": "Grand Theft Auto III",
+		"hltb_main": "14:08:13",
+		"hltb_extra": "20:22:32",
+		"hltb_completionist": "36:28:49"
 	},
 	{
 		"id": 92,
-		"title": "Grand Theft Auto IV"
+		"title": "Grand Theft Auto IV",
+		"hltb_main": "27:06:18",
+		"hltb_extra": "40:30:04",
+		"hltb_completionist": "72:59:49"
 	},
 	{
 		"id": 93,
-		"title": "Grand Theft Auto V"
+		"title": "Grand Theft Auto V",
+		"hltb_main": "32:03:14",
+		"hltb_extra": "51:20:15",
+		"hltb_completionist": "88:22:33"
 	},
 	{
 		"id": 94,
-		"title": "Grand Theft Auto : San Andreas"
+		"title": "Grand Theft Auto : San Andreas",
+		"hltb_main": "30:12:41",
+		"hltb_extra": "45:02:49",
+		"hltb_completionist": "71:11:44"
 	},
 	{
 		"id": 95,
-		"title": "Grand Theft Auto : Vice City"
+		"title": "Grand Theft Auto : Vice City",
+		"hltb_main": "17:12:04",
+		"hltb_extra": "23:57:03",
+		"hltb_completionist": "38:01:39"
 	},
 	{
 		"id": 96,
-		"title": "Grand Theft Auto : Liberty City Stories"
+		"title": "Grand Theft Auto : Liberty City Stories",
+		"hltb_main": "13:46:00",
+		"hltb_extra": "22:51:47",
+		"hltb_completionist": "40:48:15"
 	},
 	{
 		"id": 97,
 		"title": "BioShock",
 		"platform": 1,
-		"notes": "Bioshock : The Collection"
+		"notes": "Bioshock : The Collection",
+		"hltb_main": "12:06:32",
+		"hltb_extra": "15:38:00",
+		"hltb_completionist": "23:09:14"
 	},
 	{
 		"id": 98,
 		"title": "BioShock 2",
 		"platform": 1,
-		"notes": "Bioshock : The Collection"
+		"notes": "Bioshock : The Collection",
+		"hltb_main": "10:32:06",
+		"hltb_extra": "14:24:32",
+		"hltb_completionist": "23:43:11"
 	},
 	{
 		"id": 99,
 		"title": "BioShock Infinite",
 		"platform": 1,
-		"notes": "Bioshock : The Collection"
+		"notes": "Bioshock : The Collection",
+		"hltb_main": "11:32:11",
+		"hltb_extra": "16:03:59",
+		"hltb_completionist": "28:33:14"
 	},
 	{
 		"id": 100,
 		"title": "Dead Space",
-		"notes": "Dead Space (2023)"
+		"notes": "Dead Space (2023)",
+		"hltb_main": "12:06:56",
+		"hltb_extra": "16:05:28",
+		"hltb_completionist": "29:35:26"
 	},
 	{
 		"id": 102,
 		"title": "Shadow Of The Tomb Raider",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "12:37:13",
+		"hltb_extra": "22:57:03",
+		"hltb_completionist": "38:47:34"
 	},
 	{
 		"id": 103,
-		"title": "Tomb Raider: Anniversary"
+		"title": "Tomb Raider: Anniversary",
+		"hltb_main": "12:18:58",
+		"hltb_extra": "15:13:08",
+		"hltb_completionist": "20:35:54"
 	},
 	{
 		"id": 104,
 		"title": "Tomb Raider",
 		"platform": 6,
-		"notes": "2013"
+		"notes": "2013",
+		"hltb_main": "11:19:29",
+		"hltb_extra": "15:27:24",
+		"hltb_completionist": "20:53:35"
 	},
 	{
 		"id": 105,
 		"title": "Rise Of The Tomb Raider",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "13:18:35",
+		"hltb_extra": "21:51:27",
+		"hltb_completionist": "35:21:31"
 	},
 	{
 		"id": 106,
 		"title": "Gangs of London",
-		"platform": 3
+		"platform": 3,
+		"hltb_main": "05:57:30",
+		"hltb_extra": "27:30:00"
 	},
 	{
 		"id": 107,
 		"title": "Spartan : Total Warrior",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "14:14:20",
+		"hltb_extra": "14:24:43",
+		"hltb_completionist": "16:03:42"
 	},
 	{
 		"id": 108,
 		"title": "Crisis Zone",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "00:20:00",
+		"hltb_extra": "00:39:31",
+		"hltb_completionist": "01:16:58"
 	},
 	{
 		"id": 109,
 		"title": "Dead Island",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "18:21:38",
+		"hltb_extra": "27:57:28",
+		"hltb_completionist": "48:35:16"
 	},
 	{
 		"id": 110,
 		"title": "Blacksite",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "05:36:35",
+		"hltb_extra": "05:50:53",
+		"hltb_completionist": "06:37:09"
 	},
 	{
 		"id": 113,
 		"title": "Rogue Warrior",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "02:12:53",
+		"hltb_extra": "03:35:41",
+		"hltb_completionist": "05:00:13"
 	},
 	{
 		"id": 114,
 		"title": "The Darkness",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "08:59:39",
+		"hltb_extra": "11:21:42",
+		"hltb_completionist": "18:41:36"
 	},
 	{
 		"id": 115,
 		"title": "Bionicle Heroes",
-		"notes": "PC vs PS2 ?"
+		"notes": "PC vs PS2 ?",
+		"hltb_main": "08:28:54",
+		"hltb_extra": "14:34:13",
+		"hltb_completionist": "19:16:34"
 	},
 	{
 		"id": 117,
 		"title": "Jak X",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "11:46:32",
+		"hltb_extra": "14:15:17",
+		"hltb_completionist": "18:40:24"
 	},
 	{
 		"id": 118,
 		"title": "SOS : The Final Escape",
 		"platform": 5,
-		"notes": "Disaster Report 1"
+		"notes": "Disaster Report 1",
+		"hltb_main": "05:22:14",
+		"hltb_extra": "06:07:21",
+		"hltb_completionist": "11:32:54"
 	},
 	{
 		"id": 119,
 		"title": "Raw Danger!",
 		"platform": 5,
-		"notes": "Disaster Report 2"
+		"notes": "Disaster Report 2",
+		"hltb_main": "09:05:02",
+		"hltb_extra": "11:19:28",
+		"hltb_completionist": "17:17:39"
 	},
 	{
 		"id": 120,
 		"title": "Sonic Rivals",
-		"platform": 3
+		"platform": 3,
+		"hltb_main": "04:40:50",
+		"hltb_extra": "09:53:33",
+		"hltb_completionist": "37:19:58"
 	},
 	{
 		"id": 121,
 		"title": "Sonic Rivals 2",
-		"platform": 3
+		"platform": 3,
+		"hltb_main": "05:17:09",
+		"hltb_extra": "38:25:46",
+		"hltb_completionist": "154:03:58"
 	},
 	{
 		"id": 122,
 		"title": "Maximo Ghost To Glory",
 		"platform": 5,
-		"notes": "Available on PS3 as well"
+		"notes": "Available on PS3 as well",
+		"hltb_main": "08:23:28",
+		"hltb_extra": "10:02:38",
+		"hltb_completionist": "11:43:21"
 	},
 	{
 		"id": 126,
 		"title": "Gori: Cuddly Carnage",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "07:12:30",
+		"hltb_extra": "09:33:29",
+		"hltb_completionist": "15:11:15"
 	},
 	{
 		"id": 127,
 		"title": "Deus Ex : Human Revolution",
 		"platform": 6,
-		"notes": "VS \"Deus Ex : Human Revolution Director's Cut\" ?"
+		"notes": "VS \"Deus Ex : Human Revolution Director's Cut\" ?",
+		"hltb_main": "21:25:32",
+		"hltb_extra": "30:12:49",
+		"hltb_completionist": "44:36:25"
 	},
 	{
 		"id": 129,
 		"title": "Transformers : La Chute de Cybertron",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "07:33:53",
+		"hltb_extra": "10:20:26",
+		"hltb_completionist": "15:51:26"
 	},
 	{
 		"id": 130,
 		"title": "Burnout Legends",
-		"platform": 3
+		"platform": 3,
+		"hltb_main": "08:04:07",
+		"hltb_extra": "12:27:36",
+		"hltb_completionist": "17:24:29"
 	},
 	{
 		"id": 131,
 		"title": "Burnout Dominator",
 		"platform": 5,
-		"notes": "PS2 vs PSP ?"
+		"notes": "PS2 vs PSP ?",
+		"hltb_main": "12:00:57",
+		"hltb_extra": "15:11:23",
+		"hltb_completionist": "21:11:06"
 	},
 	{
 		"id": 134,
 		"title": "Outland",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "07:06:02",
+		"hltb_extra": "09:47:48",
+		"hltb_completionist": "12:27:40"
 	},
 	{
 		"id": 135,
 		"title": "Twisted Metal",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "03:48:16",
+		"hltb_extra": "10:17:30",
+		"hltb_completionist": "15:18:32"
 	},
 	{
 		"id": 136,
 		"title": "Berserk Boy",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "04:06:09",
+		"hltb_extra": "07:23:42",
+		"hltb_completionist": "12:17:32"
 	},
 	{
 		"id": 137,
 		"title": "MotorStorm",
 		"platform": 6,
-		"notes": "Complete edition"
+		"notes": "Complete edition",
+		"hltb_main": "14:40:18",
+		"hltb_extra": "17:38:45",
+		"hltb_completionist": "18:25:38"
 	},
 	{
 		"id": 138,
 		"title": "Nikoderiko: The Magical World",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "07:08:13",
+		"hltb_extra": "10:03:30",
+		"hltb_completionist": "19:56:57"
 	},
 	{
 		"id": 139,
 		"title": "Panzer Dragoon",
 		"platform": 5,
-		"notes": "\"Sega Ages 2500 Series Vol. 27: Panzer Dragoon\" - VS \"Panzer Dragoon: Remake\" ?"
+		"notes": "\"Sega Ages 2500 Series Vol. 27: Panzer Dragoon\" - VS \"Panzer Dragoon: Remake\" ?",
+		"hltb_main": "01:38:00",
+		"hltb_extra": "02:04:11",
+		"hltb_completionist": "03:09:16"
 	},
 	{
 		"id": 140,
 		"title": "A la Croisée des Mondes : La Boussole d'Or",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "06:44:09",
+		"hltb_extra": "16:30:00"
 	},
 	{
 		"id": 141,
 		"title": "Rule of Rose",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "08:57:22",
+		"hltb_extra": "10:27:53",
+		"hltb_completionist": "10:34:20"
 	},
 	{
 		"id": 143,
 		"title": "Tales of Xillia",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "35:57:36",
+		"hltb_extra": "51:14:07",
+		"hltb_completionist": "86:49:36"
 	},
 	{
 		"id": 144,
-		"title": "Grim Fandango Remastered"
+		"title": "Grim Fandango Remastered",
+		"hltb_main": "10:56:20",
+		"hltb_extra": "11:30:45",
+		"hltb_completionist": "12:02:03"
 	},
 	{
 		"id": 146,
 		"title": "I-Ninja",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "08:10:30",
+		"hltb_extra": "12:40:30",
+		"hltb_completionist": "13:56:58"
 	},
 	{
 		"id": 147,
 		"title": "X-Blades",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "06:49:59",
+		"hltb_extra": "08:43:01",
+		"hltb_completionist": "10:53:34"
 	},
 	{
 		"id": 148,
 		"title": "Kung Fu Rider",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "01:35:06",
+		"hltb_completionist": "06:00:00"
 	},
 	{
 		"id": 149,
 		"title": "Alien Rage",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "06:21:03",
+		"hltb_extra": "09:31:09",
+		"hltb_completionist": "15:53:44"
 	},
 	{
 		"id": 150,
 		"title": "Burnout Paradise",
 		"platform": 6,
-		"notes": "+ DLCS ( Big Surf Island Pack, ...)"
+		"notes": "+ DLCS ( Big Surf Island Pack, ...)",
+		"hltb_main": "13:06:51",
+		"hltb_extra": "26:09:32",
+		"hltb_completionist": "56:24:08"
 	},
 	{
 		"id": 151,
 		"title": "PAIN",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "03:00:00",
+		"hltb_extra": "25:00:00"
 	},
 	{
 		"id": 152,
-		"title": "THE HOUSE OF THE DEAD 2: Remake"
+		"title": "THE HOUSE OF THE DEAD 2: Remake",
+		"hltb_main": "00:42:00",
+		"hltb_extra": "00:45:28"
 	},
 	{
 		"id": 153,
-		"title": "The Operative: No One Lives Forever"
+		"title": "The Operative: No One Lives Forever",
+		"hltb_main": "13:04:45",
+		"hltb_extra": "15:31:58",
+		"hltb_completionist": "23:15:10"
 	},
 	{
 		"id": 154,
 		"title": "Ninja Gaiden Sigma",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "13:40:39",
+		"hltb_extra": "16:50:12",
+		"hltb_completionist": "39:18:19"
 	},
 	{
 		"id": 155,
-		"title": "Shinobi: Art of Vengeance"
+		"title": "Shinobi: Art of Vengeance",
+		"hltb_main": "09:21:44",
+		"hltb_extra": "13:31:16",
+		"hltb_completionist": "17:31:20"
 	},
 	{
 		"id": 156,
 		"title": "Hollow Knight",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "26:57:16",
+		"hltb_extra": "41:33:32",
+		"hltb_completionist": "64:54:51"
 	},
 	{
 		"id": 157,
 		"title": "Hollow Knight: Silksong",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "28:06:35",
+		"hltb_extra": "46:00:40",
+		"hltb_completionist": "64:09:26"
 	},
 	{
 		"id": 158,
 		"title": "Ori and the Blind Forest",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "08:13:45",
+		"hltb_extra": "10:22:41",
+		"hltb_completionist": "11:46:27"
 	},
 	{
 		"id": 159,
 		"title": "Ori and the Will of the Wisps",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "11:58:59",
+		"hltb_extra": "15:38:42",
+		"hltb_completionist": "18:16:32"
 	},
 	{
 		"id": 160,
 		"title": "Dragon Valor",
-		"platform": 4
+		"platform": 4,
+		"hltb_main": "07:11:27",
+		"hltb_extra": "12:47:28",
+		"hltb_completionist": "22:48:08"
 	},
 	{
 		"id": 161,
 		"title": "25 to Life",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "04:22:18",
+		"hltb_extra": "04:44:14",
+		"hltb_completionist": "06:34:10"
 	},
 	{
 		"id": 162,
 		"title": "Blast Brigade vs. the Evil Legion of Dr. Cread",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "18:56:26",
+		"hltb_extra": "20:49:11",
+		"hltb_completionist": "21:08:03"
 	},
 	{
 		"id": 163,
 		"title": "Splatterhouse",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "01:15:30",
+		"hltb_extra": "01:44:45",
+		"hltb_completionist": "01:50:39"
 	},
 	{
 		"id": 164,
 		"title": "Tornado Outbreak",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "05:32:56",
+		"hltb_extra": "07:00:00"
 	},
 	{
 		"id": 165,
 		"title": "Klonoa 2 : Lunatea's Veil",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "06:13:59",
+		"hltb_extra": "06:19:01",
+		"hltb_completionist": "07:16:01"
 	},
 	{
 		"id": 166,
 		"title": "Damnation",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "08:08:19",
+		"hltb_extra": "09:03:17",
+		"hltb_completionist": "10:04:26"
 	},
 	{
 		"id": 167,
 		"title": "TimeShift",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "07:51:26",
+		"hltb_extra": "09:04:09",
+		"hltb_completionist": "09:09:42"
 	},
 	{
 		"id": 168,
 		"title": "Turning Point : Fall Of Liberty",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "04:17:32",
+		"hltb_extra": "04:44:24",
+		"hltb_completionist": "06:25:18"
 	},
 	{
 		"id": 169,
-		"title": "Turok Evolution"
+		"title": "Turok Evolution",
+		"hltb_main": "10:31:58",
+		"hltb_extra": "12:26:13",
+		"hltb_completionist": "13:20:06"
 	},
 	{
 		"id": 170,
 		"title": "Gravity Rush",
-		"notes": "PS4"
+		"notes": "PS4",
+		"hltb_main": "10:05:34",
+		"hltb_extra": "13:20:42",
+		"hltb_completionist": "19:54:13"
 	},
 	{
 		"id": 171,
 		"title": "Gravity Rush 2",
-		"notes": "PS4"
+		"notes": "PS4",
+		"hltb_main": "19:28:11",
+		"hltb_extra": "32:53:24",
+		"hltb_completionist": "52:17:42"
 	},
 	{
 		"id": 172,
 		"title": "Monster Madness: Battle for Suburbia",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "13:10:04"
 	},
 	{
 		"id": 173,
 		"title": "Monster Madness : Grave Danger",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "06:35:00"
 	}
 ]
