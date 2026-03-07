@@ -26,7 +26,8 @@ export default async function BacklogViewer(props : Props) {
     const propsClient = {
       titleLabel: t("columns.title"),
       platformLabel: t("columns.platform"),
-      notesLabel: t("columns.notes")
+      notesLabel: t("columns.notes"),
+      hltbLabel: t("columns.hltb_main")
     }
 
     return (

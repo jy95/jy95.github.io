@@ -115,7 +115,8 @@
         "columns": {
             "title": "Titre",
             "platform": "Plateforme",
-            "notes": "Notes"
+            "notes": "Notes",
+            "hltb_main": "Durée estimée"
         }
     },
     "stats": {
@@ -147,6 +148,9 @@
     },
     "gameDetail": {
         "releaseDate": "Date de sortie",
-        "duration": "Durée"
+        "duration": "Durée",
+        "hltb_main": "Quête principale",
+        "hltb_extra": "Quête principale + annexes",
+        "hltb_completionist": "À 100 %"
      }
 }

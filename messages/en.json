@@ -115,7 +115,8 @@
         "columns": {
             "title": "Title",
             "platform": "Platform",
-            "notes": "Notes"
+            "notes": "Notes",
+            "hltb_main": "Estimated duration"
         }
     },
     "stats": {
@@ -147,6 +148,9 @@
     },
     "gameDetail": {
         "releaseDate": "Release date",
-        "duration": "Duration"
+        "duration": "Duration",
+        "hltb_main": "Main Story",
+        "hltb_extra": "Main Story + Extras",
+        "hltb_completionist": "Completionist"
     }
 }

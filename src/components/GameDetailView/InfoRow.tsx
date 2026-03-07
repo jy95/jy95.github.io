@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-function InfoRow({ label, value, icon }: { label: string, value: string, icon: React.ReactNode }) {
+function InfoRow({ label, value, icon }: { label: string, value: React.ReactNode, icon: React.ReactNode }) {
     return (
         <Box>
             <Typography 
