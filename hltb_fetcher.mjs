@@ -11,7 +11,8 @@ const hltbService = new HowLongToBeatService();
  * @returns {string}
  */
 function toDuration(totalSeconds) {
-    if (!totalSeconds || totalSeconds <= 0) return "00:00:00";
+    // If the time is not available or zero, return null as 00:00:00 is not meaningful
+    if (!totalSeconds || totalSeconds <= 0) return null;
 
     const h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
     const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');

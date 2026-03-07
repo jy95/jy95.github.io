@@ -346,9 +346,9 @@ async function addBacklogToDatabase(db, payload) {
     const backlogToInsert = {
         title: payload.title,
         platform: (payload.platform !== undefined) ? platformToInt(payload.platform) : null,
-        hltb_main: payload.hltb_main || null,
-        hltb_extra: payload.hltb_extra || null,
-        hltb_completionist: payload.hltb_completionist || null,
+        hltb_main: (payload.hltb_main) ? payload.hltb_main : null,
+        hltb_extra: (payload.hltb_extra) ? payload.hltb_extra : null,
+        hltb_completionist: (payload.hltb_completionist) ? payload.hltb_completionist : null,
         notes: (payload.notes) ? payload.notes : null
     }
 
