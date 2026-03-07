@@ -55,17 +55,23 @@ export default function tableColumns(props: Props) : GridColDef[]{
             headerName: props.hltbLabel,
             headerAlign: 'center',
             filterable: false,
-            valueGetter: ({ value }: { value: string | undefined }) => {
+            valueGetter: (value: string | undefined) => {
               if (!value) return 0;
               return timeToSeconds(value);
             },
-            valueFormatter : ({ value }: { value: number | undefined }) => {
-                if (!value) return "";
-                const hours = Math.floor(value / 3600);
-                const minutes = Math.floor((value % 3600) / 60);
-                const seconds = value % 60;
-                return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            valueFormatter : (value: number | undefined) => {
+              if (!value || value <= 0) return "-";
+                  
+              const hours = Math.floor(value / 3600);
+              const minutes = Math.floor((value % 3600) / 60);
+
+              // If less than an hour, just show minutes
+              if (hours === 0) return `${minutes}m`;
+                  
+              // If an hour or more, show hours and optional minutes
+              return minutes > 0 ? `${hours}h ${minutes}m` : `${hours}h`;
             },
+            width: 270
           }
     ];
 }
