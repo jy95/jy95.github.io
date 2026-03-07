@@ -123,7 +123,7 @@ async function extractAndSaveGenres(db) {
  * @param {import('better-sqlite3').Database} db - The database instance
  */
 async function extractAndSaveBacklog(db) {
-    const extractBacklogStmt = db.prepare("SELECT id, title, platform, notes FROM backlog");
+    const extractBacklogStmt = db.prepare("SELECT * FROM backlog");
     const backlog = extractBacklogStmt.all();
     await writeFile(
         FILES.BACKLOG,
