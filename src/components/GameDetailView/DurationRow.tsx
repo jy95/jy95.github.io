@@ -11,7 +11,7 @@ interface Props {
 function PrettyDuration({ duration }: Props) {
 
     const t = useTranslations();
-    const [hours, minutes] = duration.split(':').map(Number);
+    const [hours = 0, minutes = 0, seconds = 0] = duration.split(':').map(Number);
 
     const parts : string[] = [];
     if (hours > 0) {
@@ -19,6 +19,9 @@ function PrettyDuration({ duration }: Props) {
     }
     if (minutes > 0) {
         parts.push(t("common.dates.minutes", { count: minutes }));
+    }
+    if (parts.length === 0 && seconds > 0) {
+        parts.push(t("common.dates.seconds", { count: seconds }));
     }
 
     return <>{parts.join(" ")}</>;
