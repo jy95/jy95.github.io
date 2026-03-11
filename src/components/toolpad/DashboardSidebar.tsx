@@ -1,24 +1,21 @@
 "use client";
 
-import { Drawer, Box } from "@mui/material";
+import { Drawer, Box, styled } from "@mui/material";
 import DashboardNavigation from "./DashboardNavigation";
 import { useAppContext } from "./provider/useAppContext";
 
-const drawerWidth = 260;
-const collapsedWidth = 72;
-
-type Props = {};
-
-export default function DashboardSidebar({}: Props) {
-
+// We define CSS variables for the behavior, not the specific size.
+// This allows the content (DashboardNavigation) to define how wide it needs to be.
+export default function DashboardSidebar() {
   const { drawerOpen, toggleDrawer } = useAppContext();
 
-  const open = drawerOpen ?? false;
-  const collapsed = !drawerOpen;
-  const width = collapsed ? collapsedWidth : drawerWidth;
-
-  const drawer = (
-    <Box sx={{ width }}>
+  const drawerContent = (
+    <Box sx={{ 
+      display: "flex", 
+      flexDirection: "column",
+      // This ensures the content doesn't wrap awkwardly during transitions
+      minWidth: "max-content" 
+    }}>
       <DashboardNavigation />
     </Box>
   );
@@ -28,34 +25,40 @@ export default function DashboardSidebar({}: Props) {
       {/* Mobile */}
       <Drawer
         variant="temporary"
-        open={open}
+        open={drawerOpen}
         onClose={toggleDrawer}
-        ModalProps={{ keepMounted: true }}
         sx={{
           display: { xs: "block", md: "none" },
           "& .MuiDrawer-paper": {
-            width
+            width: "80vw", // Responsive relative width
+            maxWidth: "300px",
           }
         }}
       >
-        {drawer}
+        {drawerContent}
       </Drawer>
 
       {/* Desktop */}
       <Drawer
         variant="permanent"
-        open
         sx={{
           display: { xs: "none", md: "block" },
-          width,
+          // The container grows/shrinks based on the child
+          width: drawerOpen ? "auto" : "var(--collapsed-size, 70px)",
           flexShrink: 0,
           "& .MuiDrawer-paper": {
-            width,
-            boxSizing: "border-box"
+            position: "relative",
+            overflowX: "hidden",
+            transition: (theme) => theme.transitions.create("width"),
+            // Logic: If open, fit the content. If closed, clamp it.
+            width: drawerOpen ? "max-content" : "var(--collapsed-size, 70px)",
+            boxSizing: "border-box",
+            borderRight: "1px solid",
+            borderColor: "divider",
           }
         }}
       >
-        {drawer}
+        {drawerContent}
       </Drawer>
     </>
   );
