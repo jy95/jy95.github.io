@@ -7,7 +7,7 @@ import {setRequestLocale} from 'next-intl/server';
 import {useTranslations} from 'next-intl';
 
 // components
-import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+import { DashboardLayout } from '@/components/toolpad';
 import AppProviderCustom from "@/components/dashboard/AppProviderCustom";
 import ToolbarActions from "@/components/dashboard/ToolbarActions";
 
@@ -46,7 +46,6 @@ export default function DashboardAppProvider({children, locale} : Props) {
                     <DashboardLayout 
                         defaultSidebarCollapsed 
                         slots={{
-                            // @ts-expect-error Type not accurate, will report it to MUI later
                             toolbarActions: ToolbarActions
                         }}
                         slotProps={{
