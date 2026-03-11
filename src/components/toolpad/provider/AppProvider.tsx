@@ -1,9 +1,13 @@
 "use client";
 
-import { ReactNode } from "react";
+import { useMemo } from "react";
+
+// Hooks
 import { AppContext } from "./useAppContext";
-import { Navigation } from "../types";
-import { Branding } from "./types";
+
+// Types
+import type { Navigation, Branding } from "../types";
+import type { ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
@@ -16,14 +20,15 @@ export default function AppProvider({
   navigation,
   branding
 }: Props) {
+  
+  // Utilisation de useMemo pour éviter des recalculs inutiles du contexte
+  const contextValue = useMemo(() => ({
+    navigation,
+    branding
+  }), [navigation, branding]);
 
   return (
-    <AppContext.Provider
-      value={{
-        navigation,
-        branding
-      }}
-    >
+    <AppContext.Provider value={contextValue}>
       {children}
     </AppContext.Provider>
   );

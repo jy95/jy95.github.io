@@ -1,5 +1,5 @@
 // Providers
-import { NextAppProvider } from '@toolpad/core/nextjs';
+import NextAppProvider from "@/components/toolpad/provider/AppProvider";
 
 // Hooks
 import {useTranslations} from 'next-intl';

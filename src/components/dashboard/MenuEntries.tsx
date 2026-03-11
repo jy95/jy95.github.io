@@ -11,7 +11,7 @@ import ExtensionIcon from '@mui/icons-material/Extension';
 import CasinoIcon from '@mui/icons-material/Casino';
 
 // Types
-import type { Navigation } from '@toolpad/core/AppProvider';
+import type { Navigation } from '@/components/toolpad/types';
 type Props = {
     gamesCategoy: string,
     gamesView: string,

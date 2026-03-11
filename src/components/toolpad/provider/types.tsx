@@ -1,10 +1,4 @@
-import { ReactNode } from "react";
-import { Navigation } from "../types";
-
-export type Branding = {
-  title?: string;
-  logo?: ReactNode;
-};
+import { Navigation, Branding } from "../types";
 
 export type AppContextValue = {
   navigation?: Navigation;
