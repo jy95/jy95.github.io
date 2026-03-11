@@ -30,7 +30,10 @@ export default function DashboardToolbar({
       <Toolbar>
 
         <IconButton
+          type="button"
           edge="start"
+          size="large"
+          aria-label="toggle sidebar"
           onClick={toggleSidebarAction}
           sx={{ mr: 2 }}
         >
@@ -40,7 +43,7 @@ export default function DashboardToolbar({
         <Box sx={{ flexGrow: 1 }} />
 
         {ToolbarActions && (
-          <ToolbarActions {...slotProps?.toolbarActions} />
+          <ToolbarActions {...(slotProps?.toolbarActions ?? {})} />
         )}
 
       </Toolbar>

@@ -5,11 +5,15 @@ import { Box } from "@mui/material";
 
 import DashboardSidebar from "./DashboardSidebar";
 import DashboardToolbar from "./DashboardToolbar";
-import { Navigation, DashboardLayoutSlots, DashboardLayoutSlotProps } from "./types";
+
+// Types
+import type { DashboardLayoutSlots, DashboardLayoutSlotProps } from "./types";
+
+// Provider
+import { useAppContext } from "./provider/useAppContext";
 
 type Props = {
   children: ReactNode;
-  navigation?: Navigation;
   defaultSidebarCollapsed?: boolean;
   slots?: DashboardLayoutSlots;
   slotProps?: DashboardLayoutSlotProps;
@@ -17,7 +21,6 @@ type Props = {
 
 export default function DashboardLayout({
   children,
-  navigation,
   defaultSidebarCollapsed = false,
   slots,
   slotProps,
@@ -27,8 +30,10 @@ export default function DashboardLayout({
   const [collapsed, setCollapsed] = useState(defaultSidebarCollapsed);
 
   const toggleSidebar = () => {
-    setMobileOpen(!mobileOpen);
+    setMobileOpen((prev) => !prev);
   };
+
+  const { navigation } = useAppContext();
 
   return (
     <Box sx={{ display: "flex", minHeight: "100vh" }}>
@@ -37,13 +42,13 @@ export default function DashboardLayout({
         navigation={navigation}
         mobileOpen={mobileOpen}
         collapsed={collapsed}
-        onToggleMobile={toggleSidebar}
+        onToggleMobileAction={toggleSidebar}
       />
 
       <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
 
         <DashboardToolbar
-          toggleSidebar={toggleSidebar}
+          toggleSidebarAction={toggleSidebar}
           slots={slots}
           slotProps={slotProps}
         />
@@ -61,6 +66,7 @@ export default function DashboardLayout({
         </Box>
 
       </Box>
+
     </Box>
   );
 }

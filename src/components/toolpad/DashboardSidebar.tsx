@@ -5,6 +5,7 @@ import { Navigation } from "./types";
 import DashboardNavigation from "./DashboardNavigation";
 
 const drawerWidth = 260;
+const collapsedWidth = 72;
 
 type Props = {
   navigation?: Navigation;
@@ -20,8 +21,10 @@ export default function DashboardSidebar({
   onToggleMobileAction,
 }: Props) {
 
+  const width = collapsed ? collapsedWidth : drawerWidth;
+
   const drawer = (
-    <Box sx={{ width: collapsed ? 72 : drawerWidth }}>
+    <Box sx={{ width }}>
       <DashboardNavigation navigation={navigation} />
     </Box>
   );
@@ -35,7 +38,10 @@ export default function DashboardSidebar({
         onClose={onToggleMobileAction}
         ModalProps={{ keepMounted: true }}
         sx={{
-          display: { xs: "block", md: "none" }
+          display: { xs: "block", md: "none" },
+          "& .MuiDrawer-paper": {
+            width
+          }
         }}
       >
         {drawer}
@@ -48,7 +54,7 @@ export default function DashboardSidebar({
         sx={{
           display: { xs: "none", md: "block" },
           "& .MuiDrawer-paper": {
-            width: collapsed ? 72 : drawerWidth,
+            width,
             boxSizing: "border-box"
           }
         }}
