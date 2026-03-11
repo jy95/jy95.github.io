@@ -1,31 +1,25 @@
 "use client";
 
 import { Drawer, Box } from "@mui/material";
-import { Navigation } from "./types";
 import DashboardNavigation from "./DashboardNavigation";
+import { useAppContext } from "./provider/useAppContext";
 
 const drawerWidth = 260;
 const collapsedWidth = 72;
 
-type Props = {
-  navigation?: Navigation;
-  mobileOpen: boolean;
-  collapsed: boolean;
-  onToggleMobileAction: () => void;
-};
+type Props = {};
 
-export default function DashboardSidebar({
-  navigation,
-  mobileOpen,
-  collapsed,
-  onToggleMobileAction,
-}: Props) {
+export default function DashboardSidebar({}: Props) {
 
+  const { drawerOpen, toggleDrawer } = useAppContext();
+
+  const open = drawerOpen ?? false;
+  const collapsed = !drawerOpen;
   const width = collapsed ? collapsedWidth : drawerWidth;
 
   const drawer = (
     <Box sx={{ width }}>
-      <DashboardNavigation navigation={navigation} />
+      <DashboardNavigation />
     </Box>
   );
 
@@ -34,8 +28,8 @@ export default function DashboardSidebar({
       {/* Mobile */}
       <Drawer
         variant="temporary"
-        open={mobileOpen}
-        onClose={onToggleMobileAction}
+        open={open}
+        onClose={toggleDrawer}
         ModalProps={{ keepMounted: true }}
         sx={{
           display: { xs: "block", md: "none" },

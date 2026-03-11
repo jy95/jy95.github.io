@@ -14,19 +14,17 @@ import { DashboardLayoutSlots, DashboardLayoutSlotProps } from "./types";
 import { useAppContext } from "./provider/useAppContext";
 
 type Props = {
-  toggleSidebarAction: () => void;
   slots?: DashboardLayoutSlots;
   slotProps?: DashboardLayoutSlotProps;
 };
 
 export default function DashboardToolbar({
-  toggleSidebarAction,
   slots,
   slotProps
 }: Props) {
 
   const ToolbarActions = slots?.toolbarActions;
-  const { drawerOpen } = useAppContext();
+  const { drawerOpen, toggleDrawer } = useAppContext();
   const open = drawerOpen ?? false;
 
   return (
@@ -38,7 +36,7 @@ export default function DashboardToolbar({
           edge="start"
           size="large"
           aria-label="toggle sidebar"
-          onClick={toggleSidebarAction}
+          onClick={toggleDrawer}
           sx={{ mr: 2 }}
         >
           {open ? <MenuOpenIcon /> : <MenuIcon />}

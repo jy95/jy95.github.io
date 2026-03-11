@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState, useCallback } from "react";
 
 // Hooks
 import { AppContext } from "./useAppContext";
@@ -13,22 +13,28 @@ type Props = {
   children: ReactNode;
   navigation?: Navigation;
   branding?: Branding;
-  drawerOpen?: boolean;
+  initialDrawerOpen?: boolean;
 };
 
 export default function AppProvider({
   children,
   navigation,
   branding,
-  drawerOpen = false
+  initialDrawerOpen = false
 }: Props) {
   
-  // Utilisation de useMemo pour éviter des recalculs inutiles du contexte
+  const [drawerOpen, setDrawerOpen] = useState(initialDrawerOpen);
+
+  const toggleDrawer = useCallback(() => {
+    setDrawerOpen(prev => !prev);
+  }, []);
+
   const contextValue = useMemo(() => ({
     navigation,
     branding,
-    drawerOpen
-  }), [navigation, branding, drawerOpen]);
+    drawerOpen,
+    toggleDrawer,
+  }), [navigation, branding, drawerOpen, toggleDrawer]);
 
   return (
     <AppContext.Provider value={contextValue}>

@@ -3,15 +3,18 @@
 import { List } from "@mui/material";
 import NavigationGroup from "./navigation/NavigationGroup";
 import type { Navigation } from "./types";
+import { useAppContext } from "./provider/useAppContext";
 
-type Props = { navigation?: Navigation };
+type Props = {};
 
-export default function DashboardNavigation({ navigation }: Props) {
-  if (!navigation) return null;
+export default function DashboardNavigation({}: Props) {
+
+  const { navigation } = useAppContext();
+  const entries = navigation ?? [];
 
   return (
     <List sx={{ px: 1 }}>
-      {navigation.map((item) => (
+      {entries.map((item) => (
         <NavigationGroup 
           key={item.segment ?? item.title} 
           item={item} 

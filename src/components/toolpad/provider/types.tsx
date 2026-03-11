@@ -4,4 +4,5 @@ export type AppContextValue = {
   navigation?: Navigation;
   branding?: Branding;
   drawerOpen?: boolean;
+  toggleDrawer?: () => void;
 };
