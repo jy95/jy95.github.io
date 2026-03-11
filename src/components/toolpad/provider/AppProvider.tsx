@@ -6,20 +6,18 @@ import { useMemo, useState, useCallback } from "react";
 import { AppContext } from "./useAppContext";
 
 // Types
-import type { Navigation, Branding } from "../types";
+import type { Navigation } from "../types";
 import type { ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
   navigation?: Navigation;
-  branding?: Branding;
   initialDrawerOpen?: boolean;
 };
 
 export default function AppProvider({
   children,
   navigation,
-  branding,
   initialDrawerOpen = false
 }: Props) {
   
@@ -31,10 +29,9 @@ export default function AppProvider({
 
   const contextValue = useMemo(() => ({
     navigation,
-    branding,
     drawerOpen,
     toggleDrawer,
-  }), [navigation, branding, drawerOpen, toggleDrawer]);
+  }), [navigation, drawerOpen, toggleDrawer]);
 
   return (
     <AppContext.Provider value={contextValue}>

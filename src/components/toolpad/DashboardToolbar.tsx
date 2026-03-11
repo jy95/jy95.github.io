@@ -7,11 +7,17 @@ import {
   Box
 } from "@mui/material";
 
+import Branding from "./Branding";
+
+// Icons
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
-import { DashboardLayoutSlots, DashboardLayoutSlotProps } from "./types";
+// Context
 import { useAppContext } from "./provider/useAppContext";
+
+// Types
+import type { DashboardLayoutSlots, DashboardLayoutSlotProps } from "./types";
 
 type Props = {
   slots?: DashboardLayoutSlots;
@@ -31,6 +37,7 @@ export default function DashboardToolbar({
     <AppBar position="sticky" color="default" elevation={1}>
       <Toolbar>
 
+        {/* Collapse sidebar button */}
         <IconButton
           type="button"
           edge="start"
@@ -42,8 +49,12 @@ export default function DashboardToolbar({
           {open ? <MenuOpenIcon /> : <MenuIcon />}
         </IconButton>
 
+        <Branding />
+
+        {/* Spacing */}
         <Box sx={{ flexGrow: 1 }} />
 
+        {/* Toolbar actions */}
         {ToolbarActions && (
           <ToolbarActions {...(slotProps?.toolbarActions ?? {})} />
         )}

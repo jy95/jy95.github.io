@@ -9,9 +9,6 @@ import DashboardToolbar from "./DashboardToolbar";
 // Types
 import type { DashboardLayoutSlots, DashboardLayoutSlotProps } from "./types";
 
-// Provider
-import { useAppContext } from "./provider/useAppContext";
-
 type Props = {
   children: ReactNode;
   defaultSidebarCollapsed?: boolean;

@@ -45,10 +45,6 @@ function AppProviderCustomInner(props: Props) {
     return (
         <NextAppProvider 
             navigation={NAVIGATION}
-            branding={{
-                title: "GamesPassionFR",
-                logo: <>&nbsp;</>
-            }}
         >
             {props.children}
         </NextAppProvider>

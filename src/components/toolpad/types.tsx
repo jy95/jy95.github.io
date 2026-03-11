@@ -16,8 +16,3 @@ export type DashboardLayoutSlots = {
 export type DashboardLayoutSlotProps = {
   toolbarActions?: any;
 };
-
-export type Branding = {
-  title?: string;
-  logo?: ReactNode;
-};
