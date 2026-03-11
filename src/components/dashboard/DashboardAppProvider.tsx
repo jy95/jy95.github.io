@@ -44,7 +44,6 @@ export default function DashboardAppProvider({children, locale} : Props) {
             <AppProviderCustom>
                 <NextIntlClientProvider>
                     <DashboardLayout 
-                        defaultSidebarCollapsed 
                         slots={{
                             toolbarActions: ToolbarActions
                         }}

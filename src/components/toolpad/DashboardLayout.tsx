@@ -11,7 +11,6 @@ import type { DashboardLayoutSlots, DashboardLayoutSlotProps } from "./types";
 
 type Props = {
   children: ReactNode;
-  defaultSidebarCollapsed?: boolean;
   slots?: DashboardLayoutSlots;
   slotProps?: DashboardLayoutSlotProps;
 };
