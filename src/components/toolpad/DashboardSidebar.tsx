@@ -53,6 +53,8 @@ export default function DashboardSidebar({
         open
         sx={{
           display: { xs: "none", md: "block" },
+          width,
+          flexShrink: 0,
           "& .MuiDrawer-paper": {
             width,
             boxSizing: "border-box"
