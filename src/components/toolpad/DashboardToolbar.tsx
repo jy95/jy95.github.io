@@ -8,8 +8,10 @@ import {
 } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
 import { DashboardLayoutSlots, DashboardLayoutSlotProps } from "./types";
+import { useAppContext } from "./provider/useAppContext";
 
 type Props = {
   toggleSidebarAction: () => void;
@@ -24,6 +26,8 @@ export default function DashboardToolbar({
 }: Props) {
 
   const ToolbarActions = slots?.toolbarActions;
+  const { drawerOpen } = useAppContext();
+  const open = drawerOpen ?? false;
 
   return (
     <AppBar position="sticky" color="default" elevation={1}>
@@ -37,7 +41,7 @@ export default function DashboardToolbar({
           onClick={toggleSidebarAction}
           sx={{ mr: 2 }}
         >
-          <MenuIcon />
+          {open ? <MenuOpenIcon /> : <MenuIcon />}
         </IconButton>
 
         <Box sx={{ flexGrow: 1 }} />

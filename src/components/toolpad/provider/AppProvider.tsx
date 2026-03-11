@@ -13,19 +13,22 @@ type Props = {
   children: ReactNode;
   navigation?: Navigation;
   branding?: Branding;
+  drawerOpen?: boolean;
 };
 
 export default function AppProvider({
   children,
   navigation,
-  branding
+  branding,
+  drawerOpen = false
 }: Props) {
   
   // Utilisation de useMemo pour éviter des recalculs inutiles du contexte
   const contextValue = useMemo(() => ({
     navigation,
-    branding
-  }), [navigation, branding]);
+    branding,
+    drawerOpen
+  }), [navigation, branding, drawerOpen]);
 
   return (
     <AppContext.Provider value={contextValue}>
