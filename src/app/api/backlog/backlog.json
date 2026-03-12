@@ -1239,6 +1239,9 @@
 	{
 		"id": 174,
 		"title": "PaRappa the Rapper",
-		"platform": 3
+		"platform": 3,
+		"hltb_main": "01:35:05",
+		"hltb_extra": "02:37:18",
+		"hltb_completionist": "04:09:17"
 	}
 ]
