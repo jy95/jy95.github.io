@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { usePathname } from "@/i18n/routing"; 
-import { Box, Collapse, List } from "@mui/material";
+import { usePathname } from "@/i18n/routing";
+import { Collapse, List } from "@mui/material";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import NavigationItem from "./NavigationItem";
@@ -15,32 +15,43 @@ function hasChildren(item: Item): item is Item & { children: Item[] } {
 
 export default function NavigationGroup({ item }: { item: Item }) {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-  
-  const hasAnyChild = hasChildren(item);
   const parentPath = `/${item.segment}`;
-  
-  // La comparaison devient nativement correcte car pathname et parentPath 
-  // utilisent la même logique de résolution fournie par next-intl
-  const isParentSelected = pathname === parentPath;
+  const hasAnyChild = hasChildren(item);
+
+  // Auto-expand if a child is the current route
+  const isAnyChildSelected =
+    hasAnyChild &&
+    item.children.some((child) => {
+      const childPath = child.segment
+        ? `${parentPath}/${child.segment}`
+        : parentPath;
+      return pathname === childPath;
+    });
+
+  const [open, setOpen] = useState(isAnyChildSelected);
+
+  const isParentSelected = !hasAnyChild && pathname === parentPath;
 
   return (
-    <Box sx={{ mb: 0.5 }}>
+    <>
       <NavigationItem
         title={item.title}
         icon={item.icon}
         href={hasAnyChild ? undefined : parentPath}
         selected={isParentSelected}
-        onClickAction={() => hasAnyChild && setOpen(!open)}
-        endIcon={hasAnyChild ? (open ? <ExpandLess /> : <ExpandMore />) : undefined}
+        onClickAction={hasAnyChild ? () => setOpen((prev) => !prev) : undefined}
+        endIcon={
+          hasAnyChild ? open ? <ExpandLess /> : <ExpandMore /> : undefined
+        }
       />
 
       {hasAnyChild && (
         <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding sx={{ mt: 0.5 }}>
-            {item.children.map((child: any) => {
-              const childPath = child.segment ? `${parentPath}/${child.segment}` : parentPath;
-              
+          <List disablePadding sx={{ mt: 0.5 }}>
+            {item.children.map((child) => {
+              const childPath = child.segment
+                ? `${parentPath}/${child.segment}`
+                : parentPath;
               return (
                 <NavigationItem
                   key={child.segment ?? child.title}
@@ -55,6 +66,6 @@ export default function NavigationGroup({ item }: { item: Item }) {
           </List>
         </Collapse>
       )}
-    </Box>
+    </>
   );
 }

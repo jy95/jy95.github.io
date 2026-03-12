@@ -1,61 +1,79 @@
 "use client";
 
-import { Drawer, Box, styled } from "@mui/material";
+import { Drawer, Box, Divider } from "@mui/material";
 import DashboardNavigation from "./DashboardNavigation";
 import { useAppContext } from "./provider/useAppContext";
 
-// We define CSS variables for the behavior, not the specific size.
-// This allows the content (DashboardNavigation) to define how wide it needs to be.
+const DRAWER_WIDTH = 320;
+const MINI_DRAWER_WIDTH = 56;
+
 export default function DashboardSidebar() {
-  const { drawerOpen, toggleDrawer } = useAppContext();
+  const { drawerOpen = false, toggleDrawer } = useAppContext();
 
   const drawerContent = (
-    <Box sx={{ 
-      display: "flex", 
-      flexDirection: "column",
-      // This ensures the content doesn't wrap awkwardly during transitions
-      minWidth: "max-content" 
-    }}>
-      <DashboardNavigation />
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        overflow: "hidden",
+      }}
+    >
+      <Divider />
+
+      {/* Scrollable navigation */}
+      <Box sx={{ flex: 1, overflowY: "auto", overflowX: "hidden", py: 1 }}>
+        <DashboardNavigation />
+      </Box>
     </Box>
   );
 
+  const transitionSx = (theme: any) =>
+    theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: drawerOpen
+        ? theme.transitions.duration.enteringScreen
+        : theme.transitions.duration.leavingScreen,
+    });
+
   return (
     <>
-      {/* Mobile */}
+      {/* Mobile — temporary */}
       <Drawer
         variant="temporary"
         open={drawerOpen}
         onClose={toggleDrawer}
+        ModalProps={{ keepMounted: true }}
         sx={{
           display: { xs: "block", md: "none" },
           "& .MuiDrawer-paper": {
-            width: "80vw", // Responsive relative width
-            maxWidth: "300px",
-          }
+            width: DRAWER_WIDTH,
+            maxWidth: "80vw",
+            boxSizing: "border-box",
+          },
         }}
       >
         {drawerContent}
       </Drawer>
 
-      {/* Desktop */}
+      {/* Desktop — permanent */}
       <Drawer
         variant="permanent"
         sx={{
           display: { xs: "none", md: "block" },
-          // The container grows/shrinks based on the child
-          width: drawerOpen ? "auto" : "var(--collapsed-size, 70px)",
+          width: drawerOpen ? DRAWER_WIDTH : MINI_DRAWER_WIDTH,
           flexShrink: 0,
+          transition: transitionSx,
           "& .MuiDrawer-paper": {
             position: "relative",
-            overflowX: "hidden",
-            transition: (theme) => theme.transitions.create("width"),
-            // Logic: If open, fit the content. If closed, clamp it.
-            width: drawerOpen ? "max-content" : "var(--collapsed-size, 70px)",
+            height: "100%",
+            width: drawerOpen ? DRAWER_WIDTH : MINI_DRAWER_WIDTH,
             boxSizing: "border-box",
+            overflowX: "hidden",
             borderRight: "1px solid",
             borderColor: "divider",
-          }
+            transition: transitionSx,
+          },
         }}
       >
         {drawerContent}

@@ -1,12 +1,11 @@
 "use client";
 
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Box } from "@mui/material";
 
 import DashboardSidebar from "./DashboardSidebar";
 import DashboardToolbar from "./DashboardToolbar";
 
-// Types
 import type { DashboardLayoutSlots, DashboardLayoutSlotProps } from "./types";
 
 type Props = {
@@ -15,38 +14,33 @@ type Props = {
   slotProps?: DashboardLayoutSlotProps;
 };
 
-export default function DashboardLayout({
-  children,
-  slots,
-  slotProps,
-}: Props) {
-
+export default function DashboardLayout({ children, slots, slotProps }: Props) {
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh" }}>
+    <Box sx={{ display: "flex", height: "100vh", overflow: "hidden" }}>
+      <DashboardSidebar />
 
-      <DashboardSidebar/>
-
-      <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
-
-        <DashboardToolbar
-          slots={slots}
-          slotProps={slotProps}
-        />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+          minWidth: 0, // prevents flex child from overflowing
+          overflow: "hidden",
+        }}
+      >
+        <DashboardToolbar slots={slots} slotProps={slotProps} />
 
         <Box
           component="main"
           sx={{
-            flexGrow: 1,
+            flex: 1,
+            overflow: "auto",
             p: 3,
-            display: "flex",
-            flexDirection: "column"
           }}
         >
           {children}
         </Box>
-
       </Box>
-
     </Box>
   );
 }

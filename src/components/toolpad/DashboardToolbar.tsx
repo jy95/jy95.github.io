@@ -1,22 +1,11 @@
 "use client";
 
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Box
-} from "@mui/material";
+import { AppBar, Toolbar, IconButton, Box } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 
 import Branding from "./Branding";
-
-// Icons
-import MenuIcon from "@mui/icons-material/Menu";
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-
-// Context
 import { useAppContext } from "./provider/useAppContext";
-
-// Types
 import type { DashboardLayoutSlots, DashboardLayoutSlotProps } from "./types";
 
 type Props = {
@@ -24,20 +13,22 @@ type Props = {
   slotProps?: DashboardLayoutSlotProps;
 };
 
-export default function DashboardToolbar({
-  slots,
-  slotProps
-}: Props) {
-
+export default function DashboardToolbar({ slots, slotProps }: Props) {
   const ToolbarActions = slots?.toolbarActions;
-  const { drawerOpen, toggleDrawer } = useAppContext();
-  const open = drawerOpen ?? false;
+  const { drawerOpen = false, toggleDrawer } = useAppContext();
 
   return (
-    <AppBar position="sticky" color="default" elevation={1}>
+    <AppBar
+      position="sticky"
+      color="default"
+      elevation={0}
+      sx={{
+        borderBottom: "1px solid",
+        borderColor: "divider",
+        zIndex: (theme) => theme.zIndex.drawer - 1,
+      }}
+    >
       <Toolbar>
-
-        {/* Collapse sidebar button */}
         <IconButton
           type="button"
           edge="start"
@@ -46,19 +37,16 @@ export default function DashboardToolbar({
           onClick={toggleDrawer}
           sx={{ mr: 2 }}
         >
-          {open ? <MenuOpenIcon /> : <MenuIcon />}
+          {drawerOpen ? <MenuOpenIcon /> : <MenuIcon />}
         </IconButton>
 
         <Branding />
 
-        {/* Spacing */}
         <Box sx={{ flexGrow: 1 }} />
 
-        {/* Toolbar actions */}
         {ToolbarActions && (
           <ToolbarActions {...(slotProps?.toolbarActions ?? {})} />
         )}
-
       </Toolbar>
     </AppBar>
   );

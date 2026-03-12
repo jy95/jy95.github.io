@@ -1,7 +1,8 @@
 "use client";
 
-import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { ListItemButton, ListItemIcon, ListItemText, Tooltip } from "@mui/material";
 import { Link } from "@/i18n/routing";
+import { useAppContext } from "../provider/useAppContext";
 
 type NavItemProps = {
   title: string;
@@ -13,29 +14,75 @@ type NavItemProps = {
   endIcon?: React.ReactNode;
 };
 
-export default function NavigationItem({ 
-  title, icon, href, selected, onClickAction, isChild, endIcon 
+export default function NavigationItem({
+  title,
+  icon,
+  href,
+  selected,
+  onClickAction,
+  isChild,
+  endIcon,
 }: NavItemProps) {
-  return (
+  const { drawerOpen = true } = useAppContext();
+
+  const button = (
     <ListItemButton
       component={href ? (Link as any) : "div"}
       href={href}
       selected={selected}
       onClick={onClickAction}
       sx={{
-        mx: 1,
-        mb: 0.5,
         borderRadius: 2,
-        pl: isChild ? 4 : undefined,
-        "&.Mui-selected": { 
-          bgcolor: isChild ? 'primary.main' : 'action.selected',
-          color: isChild ? 'primary.contrastText' : 'inherit'
-        }
+        mb: 0.5,
+        minHeight: 44,
+        px: 1.5,
+        pl: isChild && drawerOpen ? 3 : 1.5,
+        justifyContent: drawerOpen ? "initial" : "center",
+        "&.Mui-selected": {
+          bgcolor: "primary.main",
+          color: "primary.contrastText",
+          "&:hover": { bgcolor: "primary.dark" },
+          "& .MuiListItemIcon-root": { color: "primary.contrastText" },
+        },
       }}
     >
-      {icon && <ListItemIcon sx={{ minWidth: 40 }}>{icon}</ListItemIcon>}
-      <ListItemText primary={title} />
-      {endIcon}
+      {icon && (
+        <ListItemIcon
+          sx={{
+            minWidth: 0,
+            mr: drawerOpen ? 1.5 : "auto",
+            justifyContent: "center",
+            color: selected ? "inherit" : "text.secondary",
+          }}
+        >
+          {icon}
+        </ListItemIcon>
+      )}
+
+      {drawerOpen && (
+        <>
+          <ListItemText
+            primary={title}
+            primaryTypographyProps={{
+              fontSize: 14,
+              fontWeight: selected ? 600 : 400,
+              noWrap: true,
+            }}
+          />
+          {endIcon}
+        </>
+      )}
     </ListItemButton>
   );
+
+  // Wrap with tooltip when collapsed so the title is still discoverable
+  if (!drawerOpen) {
+    return (
+      <Tooltip title={title} placement="right" arrow>
+        {button}
+      </Tooltip>
+    );
+  }
+
+  return button;
 }
