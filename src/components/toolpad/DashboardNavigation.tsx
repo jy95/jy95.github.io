@@ -11,7 +11,12 @@ export default function DashboardNavigation() {
   return (
     <List disablePadding sx={{ px: 1 }}>
       {entries.map((item) => (
-        <NavigationGroup key={item.segment ?? item.title} item={item} />
+      {entries.map((item, index) => (
+        <NavigationGroup
+          key={`${item.segment ?? "group"}:${item.title}:${index}`}
+          item={item}
+        />
+      ))}
       ))}
     </List>
   );
