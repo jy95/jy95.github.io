@@ -1235,5 +1235,10 @@
 		"title": "Monster Madness : Grave Danger",
 		"platform": 6,
 		"hltb_main": "06:35:00"
+	},
+	{
+		"id": 174,
+		"title": "PaRappa the Rapper",
+		"platform": 3
 	}
 ]
