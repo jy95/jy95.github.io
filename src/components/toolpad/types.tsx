@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 
 export type NavigationItem = {
   title: string;
@@ -10,7 +10,7 @@ export type NavigationItem = {
 export type Navigation = NavigationItem[];
 
 export type DashboardLayoutSlots = {
-  toolbarActions?: React.ElementType;
+  toolbarActions?: ElementType;
 };
 
 export type DashboardLayoutSlotProps = {
