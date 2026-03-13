@@ -1,11 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Box } from "@mui/material";
-
+import { Box, Toolbar } from "@mui/material";
 import DashboardSidebar from "./DashboardSidebar";
 import DashboardToolbar from "./DashboardToolbar";
-
 import type { DashboardLayoutSlots, DashboardLayoutSlotProps } from "./types";
 
 type Props = {
@@ -16,7 +14,18 @@ type Props = {
 
 export default function DashboardLayout({ children, slots, slotProps }: Props) {
   return (
-    <Box sx={{ display: "flex", height: "100vh", overflow: "hidden" }}>
+    <Box
+      sx={{
+        position: "relative",
+        display: "flex",
+        overflow: "hidden",
+        height: "100vh",
+        width: "100vw",
+      }}
+    >
+      {/* AppBar is position="absolute" — rendered first so it paints on top */}
+      <DashboardToolbar slots={slots} slotProps={slotProps} />
+
       <DashboardSidebar />
 
       <Box
@@ -24,18 +33,19 @@ export default function DashboardLayout({ children, slots, slotProps }: Props) {
           display: "flex",
           flexDirection: "column",
           flex: 1,
-          minWidth: 0, // prevents flex child from overflowing
-          overflow: "hidden",
+          minWidth: 0,
         }}
       >
-        <DashboardToolbar slots={slots} slotProps={slotProps} />
+        {/* Pushes content below the absolute AppBar */}
+        <Toolbar sx={{ displayPrint: "none" }} />
 
         <Box
           component="main"
           sx={{
+            display: "flex",
+            flexDirection: "column",
             flex: 1,
             overflow: "auto",
-            p: 3,
           }}
         >
           {children}

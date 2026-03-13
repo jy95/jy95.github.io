@@ -1,82 +1,98 @@
 "use client";
 
-import { Drawer, Box, Divider } from "@mui/material";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Toolbar from "@mui/material/Toolbar";
 import DashboardNavigation from "./DashboardNavigation";
 import { useAppContext } from "./provider/useAppContext";
+import { getDrawerWidthTransitionMixin } from "./utils";
 
-const DRAWER_WIDTH = 320;
-const MINI_DRAWER_WIDTH = 56;
+export const DRAWER_WIDTH = 320;
+export const MINI_DRAWER_WIDTH = 84;
 
 export default function DashboardSidebar() {
   const { drawerOpen = false, toggleDrawer } = useAppContext();
 
-  const drawerContent = (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        overflow: "hidden",
-      }}
-    >
-      <Divider />
+  // When sidebar is closed → mini mode
+  const isMini = !drawerOpen;
 
-      {/* Scrollable navigation */}
-      <Box sx={{ flex: 1, overflowY: "auto", overflowX: "hidden", py: 1 }}>
+  const getDrawerContent = () => (
+    <>
+      {/* Spacer that matches AppBar height so nav starts below it */}
+      <Toolbar />
+      <Box
+        component="nav"
+        sx={{
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          overflow: "auto",
+          scrollbarGutter: isMini ? "stable" : "auto",
+          overflowX: "hidden",
+          pt: 2,
+        }}
+      >
         <DashboardNavigation />
       </Box>
-    </Box>
+    </>
   );
 
-  const transitionSx = (theme: any) =>
-    theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: drawerOpen
-        ? theme.transitions.duration.enteringScreen
-        : theme.transitions.duration.leavingScreen,
-    });
+  // Matches getDrawerSharedSx from the original
+  const getDrawerSx = (mini: boolean, isTemporary: boolean) => {
+    const width = mini ? MINI_DRAWER_WIDTH : DRAWER_WIDTH;
+    return {
+      displayPrint: "none",
+      width,
+      flexShrink: 0,
+      ...getDrawerWidthTransitionMixin(drawerOpen),
+      ...(isTemporary ? { position: "absolute" } : {}),
+      "& .MuiDrawer-paper": {
+        position: "absolute",
+        width,
+        boxSizing: "border-box",
+        backgroundImage: "none",
+        ...getDrawerWidthTransitionMixin(drawerOpen),
+      },
+    } as const;
+  };
 
   return (
     <>
-      {/* Mobile — temporary */}
+      {/* Mobile — temporary, always full-width when open */}
       <Drawer
         variant="temporary"
         open={drawerOpen}
         onClose={toggleDrawer}
         ModalProps={{ keepMounted: true }}
         sx={{
-          display: { xs: "block", md: "none" },
-          "& .MuiDrawer-paper": {
-            width: DRAWER_WIDTH,
-            maxWidth: "80vw",
-            boxSizing: "border-box",
-          },
+          display: { xs: "block", sm: "none" },
+          ...getDrawerSx(false, true),
         }}
       >
-        {drawerContent}
+        {getDrawerContent()}
       </Drawer>
 
-      {/* Desktop — permanent */}
+      {/* Tablet — permanent, collapsible mini */}
+      <Drawer
+        variant="permanent"
+        sx={{
+          display: { xs: "none", sm: "block", md: "none" },
+          ...getDrawerSx(isMini, false),
+        }}
+      >
+        {getDrawerContent()}
+      </Drawer>
+
+      {/* Desktop — permanent, collapsible mini */}
       <Drawer
         variant="permanent"
         sx={{
           display: { xs: "none", md: "block" },
-          width: drawerOpen ? DRAWER_WIDTH : MINI_DRAWER_WIDTH,
-          flexShrink: 0,
-          transition: transitionSx,
-          "& .MuiDrawer-paper": {
-            position: "relative",
-            height: "100%",
-            width: drawerOpen ? DRAWER_WIDTH : MINI_DRAWER_WIDTH,
-            boxSizing: "border-box",
-            overflowX: "hidden",
-            borderRight: "1px solid",
-            borderColor: "divider",
-            transition: transitionSx,
-          },
+          ...getDrawerSx(isMini, false),
         }}
       >
-        {drawerContent}
+        {getDrawerContent()}
       </Drawer>
     </>
   );
