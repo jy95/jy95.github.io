@@ -18,14 +18,29 @@ import { MINI_DRAWER_WIDTH } from "../DashboardSidebar";
 
 const LIST_ITEM_ICON_SIZE = 34;
 
-// Matches Toolpad's NavigationListItemButton styled component exactly
+/**
+ * Matches Toolpad's NavigationListItemButton styling:
+ * - Non-selected: text.primary for text; text.secondary for icons/avatar
+ * - Selected: primary.dark for icon, text and ripple; no background change
+ */
 const NavigationListItemButton = styled(ListItemButton)(({ theme }) => ({
   borderRadius: 8,
+  // Non-selected state — explicit colours so dark mode works correctly
+  "& .MuiListItemText-primary": {
+    color: theme.palette.text.primary,
+  },
+  "& .MuiSvgIcon-root": {
+    color: theme.palette.text.secondary,
+  },
+  "& .MuiAvatar-root": {
+    backgroundColor: theme.palette.text.secondary,
+  },
+  // Selected state
   "&.Mui-selected": {
     "& .MuiListItemIcon-root": {
       color: theme.palette.primary.dark,
     },
-    "& .MuiTypography-root": {
+    "& .MuiListItemText-primary": {
       color: theme.palette.primary.dark,
     },
     "& .MuiSvgIcon-root": {
@@ -38,12 +53,6 @@ const NavigationListItemButton = styled(ListItemButton)(({ theme }) => ({
       backgroundColor: theme.palette.primary.dark,
     },
   },
-  "& .MuiSvgIcon-root": {
-    color: theme.palette.action.active,
-  },
-  "& .MuiAvatar-root": {
-    backgroundColor: theme.palette.action.active,
-  },
 }));
 
 export type NavItemProps = {
@@ -52,11 +61,8 @@ export type NavItemProps = {
   href?: string;
   selected: boolean;
   onClick?: () => void;
-  /** True when the item has children (controls expand icon rendering) */
   hasChildren?: boolean;
-  /** Whether the children list is currently expanded (controls icon rotation) */
   expanded?: boolean;
-  /** Content rendered in the mini hover popover (only used when isMini && hasChildren) */
   miniPopoverContent?: React.ReactNode;
 };
 
@@ -75,7 +81,6 @@ export default function NavigationItem({
 
   const [hovered, setHovered] = useState(false);
 
-  // Initials for Avatar fallback in mini mode (when no icon)
   const initials = title
     .split(" ")
     .slice(0, 2)
@@ -84,7 +89,13 @@ export default function NavigationItem({
 
   return (
     <ListItem
-      sx={{ py: 0, px: 1, overflowX: "hidden" }}
+      sx={{
+        py: 0,
+        px: 1,
+        // Must be relative + visible so the absolute popover can escape
+        position: "relative",
+        overflow: "visible",
+      }}
       {...(isMini && hasChildren
         ? {
             onMouseEnter: () => setHovered(true),
@@ -93,44 +104,40 @@ export default function NavigationItem({
         : {})}
     >
       <NavigationListItemButton
-        // @ts-ignore - MUI's ListItemButtonProps doesn't allow component to be a next Link, but it works fine
+        // @ts-ignore - ListItemButtonProps doesn't allow 'div' but it works fine and avoids invalid DOM attributes from Link
         component={href ? (Link as any) : "div"}
         href={href}
         selected={selected}
         onClick={onClick}
         sx={{
           px: 1.4,
-          // Mini items are taller to accommodate icon + caption
           height: isMini ? 60 : 48,
           position: "relative",
         }}
       >
-        {/* ── Icon area ───────────────────────────────────────────────────── */}
-        {(icon || isMini) ? (
-          <Box
-            sx={
-              isMini
-                ? {
-                    // Centered absolutely — matches Toolpad's mini icon positioning
-                    position: "absolute",
-                    left: "50%",
-                    top: "calc(50% - 6px)",
-                    transform: "translate(-50%, -50%)",
-                  }
-                : {}
-            }
+        {/* ── Icon / Avatar area ───────────────────────────────────────── */}
+        <Box
+          sx={
+            isMini
+              ? {
+                  position: "absolute",
+                  left: "50%",
+                  top: "calc(50% - 6px)",
+                  transform: "translate(-50%, -50%)",
+                }
+              : { display: "flex" }
+          }
+        >
+          <ListItemIcon
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              minWidth: LIST_ITEM_ICON_SIZE,
+            }}
           >
-            <ListItemIcon
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                minWidth: LIST_ITEM_ICON_SIZE,
-              }}
-            >
-              {icon ?? null}
-              {/* Fallback Avatar with initials when no icon in mini mode */}
-              {!icon && isMini ? (
+            {icon ?? (
+              isMini ? (
                 <Avatar
                   sx={{
                     width: LIST_ITEM_ICON_SIZE - 7,
@@ -140,43 +147,45 @@ export default function NavigationItem({
                 >
                   {initials}
                 </Avatar>
-              ) : null}
-            </ListItemIcon>
+              ) : null
+            )}
+          </ListItemIcon>
 
-            {/* Caption label below icon in mini mode */}
-            {isMini ? (
-              <Typography
-                variant="caption"
-                sx={{
-                  position: "absolute",
-                  bottom: -18,
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  fontSize: 10,
-                  fontWeight: 500,
-                  textAlign: "center",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  maxWidth: MINI_DRAWER_WIDTH - 28,
-                }}
-              >
-                {title}
-              </Typography>
-            ) : null}
-          </Box>
-        ) : null}
+          {/* Caption label in mini mode */}
+          {isMini && (
+            <Typography
+              variant="caption"
+              sx={{
+                position: "absolute",
+                bottom: -18,
+                left: "50%",
+                transform: "translateX(-50%)",
+                fontSize: 10,
+                fontWeight: 500,
+                textAlign: "center",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                maxWidth: MINI_DRAWER_WIDTH - 28,
+                // inherit selected colour
+                color: selected ? "primary.dark" : "text.secondary",
+              }}
+            >
+              {title}
+            </Typography>
+          )}
+        </Box>
 
-        {/* ── Text (expanded mode only) ───────────────────────────────────── */}
-        {!isMini ? (
+        {/* ── Text (expanded mode only) ────────────────────────────────── */}
+        {!isMini && (
           <ListItemText
             primary={title}
             sx={{ ml: 1.2, whiteSpace: "nowrap", zIndex: 1 }}
           />
-        ) : null}
+        )}
 
-        {/* ── Expand chevron — rotates with CSS transition (expanded mode) ── */}
-        {hasChildren && !isMini ? (
+        {/* ── Expand chevron — rotates with CSS transition (expanded mode) */}
+        {hasChildren && !isMini && (
           <ExpandMoreIcon
             sx={{
               ml: 0.5,
@@ -188,10 +197,10 @@ export default function NavigationItem({
                 }),
             }}
           />
-        ) : null}
+        )}
 
-        {/* ── Small right-arrow chevron in mini mode for items with children ── */}
-        {hasChildren && isMini ? (
+        {/* ── Small right-arrow for mini items with children ─────────── */}
+        {hasChildren && isMini && (
           <ExpandMoreIcon
             sx={{
               fontSize: 18,
@@ -201,25 +210,31 @@ export default function NavigationItem({
               transform: "translateY(-50%) rotate(-90deg)",
             }}
           />
-        ) : null}
+        )}
       </NavigationListItemButton>
 
-      {/* ── Hover popover for child navigation in mini mode ─────────────── */}
-      {isMini && hasChildren && miniPopoverContent ? (
+      {/* ── Mini hover popover ───────────────────────────────────────────
+           Positioned absolute from the ListItem (position:relative above).
+           left:100% places it immediately to the right of the mini drawer item.
+           top:0 aligns it with the top of the hovered item.
+      ─────────────────────────────────────────────────────────────────── */}
+      {isMini && hasChildren && miniPopoverContent && (
         <Grow in={hovered}>
           <Box
             sx={{
-              position: "fixed",
-              left: MINI_DRAWER_WIDTH - 2,
+              position: "absolute",
+              left: "100%",
+              top: 0,
               pl: "6px",
+              zIndex: (theme) => theme.zIndex.drawer + 2,
             }}
           >
-            <Paper sx={{ pt: 0.5, pb: 0.5, transform: "translateY(calc(50% - 30px))" }}>
+            <Paper elevation={1} sx={{ py: 0.5 }}>
               {miniPopoverContent}
             </Paper>
           </Box>
         </Grow>
-      ) : null}
+      )}
     </ListItem>
   );
 }
