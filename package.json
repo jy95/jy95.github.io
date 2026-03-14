@@ -21,6 +21,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^7.3.8",
     "@mui/material": "^7.3.8",
+    "@mui/material-nextjs": "^7.3.9",
     "@mui/x-charts": "^8.27.0",
     "@mui/x-data-grid": "^8.27.3",
     "@reduxjs/toolkit": "^2.11.2",
@@ -42,7 +43,6 @@
     "typescript": "5.9.3"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.4",
     "@inquirer/input": "^5.0.8",
     "better-sqlite3": "^12.6.2",
     "feed": "^5.2.0",
