@@ -1,5 +1,5 @@
 // Providers
-import { NextAppProvider } from '@toolpad/core/nextjs';
+import NextAppProvider from "@/components/toolpad/provider/AppProvider";
 
 // Hooks
 import {useTranslations} from 'next-intl';
@@ -45,10 +45,6 @@ function AppProviderCustomInner(props: Props) {
     return (
         <NextAppProvider 
             navigation={NAVIGATION}
-            branding={{
-                title: "GamesPassionFR",
-                logo: <>&nbsp;</>
-            }}
         >
             {props.children}
         </NextAppProvider>
