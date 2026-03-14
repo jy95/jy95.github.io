@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
@@ -10,6 +10,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Link } from "@/i18n/routing";
@@ -19,31 +20,43 @@ import { MINI_DRAWER_WIDTH } from "../DashboardSidebar";
 const LIST_ITEM_ICON_SIZE = 34;
 
 /**
- * Matches Toolpad's NavigationListItemButton styling:
- * - Non-selected: text.primary for text; text.secondary for icons/avatar
- * - Selected: primary.dark for icon, text and ripple; no background change
+ * Matches Toolpad's NavigationListItemButton styling.
+ *
+ * Key fixes vs previous version:
+ *  - Target `.MuiListItemIcon-root` (not just `.MuiSvgIcon-root`) so the
+ *    color actually wins over MUI's ListItemIcon default in the cascade.
+ *  - Add `backgroundColor: "transparent"` in `&.Mui-selected` to suppress
+ *    MUI's default selected-state background tint that breaks dark mode.
  */
 const NavigationListItemButton = styled(ListItemButton)(({ theme }) => ({
   borderRadius: 8,
-  // Non-selected state — explicit colours so dark mode works correctly
+  // ── Non-selected: explicit colours for both light and dark mode ──────────
+  "& .MuiListItemIcon-root": {
+    color: theme.palette.text.secondary,
+  },
+  "& .MuiSvgIcon-root": {
+    color: "inherit",
+  },
   "& .MuiListItemText-primary": {
     color: theme.palette.text.primary,
   },
-  "& .MuiSvgIcon-root": {
-    color: theme.palette.text.secondary,
-  },
   "& .MuiAvatar-root": {
-    backgroundColor: theme.palette.text.secondary,
+    backgroundColor: theme.palette.action.active,
+    color: theme.palette.background.default,
   },
-  // Selected state
+  // ── Selected: primary.dark accent; NO background tint ────────────────────
   "&.Mui-selected": {
+    backgroundColor: "transparent",
+    "&:hover": {
+      backgroundColor: theme.palette.action.hover,
+    },
     "& .MuiListItemIcon-root": {
       color: theme.palette.primary.dark,
     },
-    "& .MuiListItemText-primary": {
-      color: theme.palette.primary.dark,
-    },
     "& .MuiSvgIcon-root": {
+      color: "inherit",
+    },
+    "& .MuiListItemText-primary": {
       color: theme.palette.primary.dark,
     },
     "& .MuiAvatar-root": {
@@ -80,6 +93,9 @@ export default function NavigationItem({
   const isMini = !drawerOpen;
 
   const [hovered, setHovered] = useState(false);
+  // Ref for the Popper anchor — must sit on the ListItem so the popover
+  // aligns with the full row height.
+  const listItemRef = useRef<HTMLLIElement>(null);
 
   const initials = title
     .split(" ")
@@ -89,13 +105,8 @@ export default function NavigationItem({
 
   return (
     <ListItem
-      sx={{
-        py: 0,
-        px: 1,
-        // Must be relative + visible so the absolute popover can escape
-        position: "relative",
-        overflow: "visible",
-      }}
+      ref={listItemRef}
+      sx={{ py: 0, px: 1 }}
       {...(isMini && hasChildren
         ? {
             onMouseEnter: () => setHovered(true),
@@ -167,7 +178,6 @@ export default function NavigationItem({
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 maxWidth: MINI_DRAWER_WIDTH - 28,
-                // inherit selected colour
                 color: selected ? "primary.dark" : "text.secondary",
               }}
             >
@@ -184,7 +194,7 @@ export default function NavigationItem({
           />
         )}
 
-        {/* ── Expand chevron — rotates with CSS transition (expanded mode) */}
+        {/* ── Expand chevron with rotation transition (expanded mode) ───── */}
         {hasChildren && !isMini && (
           <ExpandMoreIcon
             sx={{
@@ -213,27 +223,35 @@ export default function NavigationItem({
         )}
       </NavigationListItemButton>
 
-      {/* ── Mini hover popover ───────────────────────────────────────────
-           Positioned absolute from the ListItem (position:relative above).
-           left:100% places it immediately to the right of the mini drawer item.
-           top:0 aligns it with the top of the hovered item.
-      ─────────────────────────────────────────────────────────────────── */}
+      {/*
+       * ── Mini hover popover ─────────────────────────────────────────────
+       *
+       * Uses MUI <Popper> instead of a positioned <Box>:
+       *   - Popper renders via a portal into document.body by default
+       *   - This completely bypasses the drawer's overflow:hidden ancestor
+       *     that was clipping the old absolutely-positioned element
+       *   - anchorEl={listItemRef.current} pins placement to this row
+       *   - placement="right-start" aligns left edge of popup to right edge of item
+       */}
       {isMini && hasChildren && miniPopoverContent && (
-        <Grow in={hovered}>
-          <Box
-            sx={{
-              position: "absolute",
-              left: "100%",
-              top: 0,
-              pl: "6px",
-              zIndex: (theme) => theme.zIndex.drawer + 2,
-            }}
-          >
-            <Paper elevation={1} sx={{ py: 0.5 }}>
-              {miniPopoverContent}
-            </Paper>
-          </Box>
-        </Grow>
+        <Popper
+          open={hovered}
+          anchorEl={listItemRef.current}
+          placement="right-start"
+          transition
+          sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
+        >
+          {({ TransitionProps }) => (
+            <Grow
+              {...TransitionProps}
+              style={{ transformOrigin: "left top" }}
+            >
+              <Paper elevation={1} sx={{ py: 0.5, ml: "6px" }}>
+                {miniPopoverContent}
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
       )}
     </ListItem>
   );

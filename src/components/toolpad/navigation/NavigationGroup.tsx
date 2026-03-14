@@ -15,19 +15,30 @@ import { useAppContext } from "../provider/useAppContext";
 import type { NavigationItem as Item } from "../types";
 import { Link } from "@/i18n/routing";
 
-// Reuse the same styled button for popover items so selected colour matches
+/**
+ * Same fix as NavigationListItemButton:
+ *  - Target .MuiListItemIcon-root (not just .MuiSvgIcon-root)
+ *  - Clear MUI's default selected background tint
+ */
 const PopoverListItemButton = styled(ListItemButton)(({ theme }) => ({
   borderRadius: 8,
+  "& .MuiListItemIcon-root": {
+    color: theme.palette.text.secondary,
+  },
+  "& .MuiSvgIcon-root": {
+    color: "inherit",
+  },
   "& .MuiListItemText-primary": {
     color: theme.palette.text.primary,
   },
-  "& .MuiSvgIcon-root": {
-    color: theme.palette.text.secondary,
-  },
   "&.Mui-selected": {
+    backgroundColor: "transparent",
+    "&:hover": {
+      backgroundColor: theme.palette.action.hover,
+    },
     "& .MuiListItemIcon-root": { color: theme.palette.primary.dark },
+    "& .MuiSvgIcon-root": { color: "inherit" },
     "& .MuiListItemText-primary": { color: theme.palette.primary.dark },
-    "& .MuiSvgIcon-root": { color: theme.palette.primary.dark },
     "& .MuiTouchRipple-child": { backgroundColor: theme.palette.primary.dark },
   },
 }));
@@ -57,7 +68,9 @@ export default function NavigationGroup({
   const isAnyChildSelected =
     hasAnyChild &&
     item.children.some((child) => {
-      const childPath = child.segment ? `${itemPath}/${child.segment}` : itemPath;
+      const childPath = child.segment
+        ? `${itemPath}/${child.segment}`
+        : itemPath;
       return pathname === childPath || pathname.startsWith(`${childPath}/`);
     });
 
@@ -68,8 +81,8 @@ export default function NavigationGroup({
     : pathname === itemPath;
 
   /**
-   * Popover content — rendered in EXPANDED style (icon + body1 text).
-   * Matches the HTML you provided: Box > ListItemIcon  +  ListItemText.
+   * Popover content — rendered in full EXPANDED style (icon + body1 text)
+   * matching the HTML snapshot provided earlier.
    */
   const miniPopover =
     hasAnyChild && isMini ? (
@@ -80,15 +93,18 @@ export default function NavigationGroup({
             : itemPath;
           const childSelected = pathname === childPath;
           return (
-            <ListItem key={`${child.segment ?? child.title}-${idx}`} sx={{ py: 0, px: 1 }}>
+            <ListItem
+              key={`${child.segment ?? child.title}-${idx}`}
+              sx={{ py: 0, px: 1 }}
+            >
               <PopoverListItemButton
-                // @ts-ignore - ListItemButtonProps doesn't allow 'a' but it works fine and avoids invalid DOM attributes from Link
+                // @ts-ignore - ListItemButtonProps doesn't allow 'div' but it works fine and avoids invalid DOM attributes from Link
                 component={Link as any}
                 href={childPath}
                 selected={childSelected}
                 sx={{ px: 1.4, height: 48, borderRadius: 2 }}
               >
-                {/* Expanded-style: Box > ListItemIcon */}
+                {/* Box > ListItemIcon matches Toolpad's expanded DOM structure */}
                 <Box sx={{ display: "flex" }}>
                   <ListItemIcon
                     sx={{
@@ -101,7 +117,7 @@ export default function NavigationGroup({
                     {child.icon ?? null}
                   </ListItemIcon>
                 </Box>
-                {/* body1 text — matches MuiListItemText-primary in your HTML */}
+                {/* MuiListItemText-primary body1 text */}
                 <ListItemText
                   primary={child.title}
                   sx={{ ml: 1.2, whiteSpace: "nowrap" }}
@@ -120,7 +136,9 @@ export default function NavigationGroup({
         icon={item.icon}
         href={hasAnyChild && !isMini ? undefined : itemPath}
         selected={isSelected}
-        onClick={hasAnyChild && !isMini ? () => setOpen((prev) => !prev) : undefined}
+        onClick={
+          hasAnyChild && !isMini ? () => setOpen((prev) => !prev) : undefined
+        }
         expanded={open}
         hasChildren={hasAnyChild}
         miniPopoverContent={miniPopover}
@@ -128,13 +146,7 @@ export default function NavigationGroup({
 
       {hasAnyChild && !isMini && (
         <Collapse in={open} timeout="auto" unmountOnExit>
-          <List
-            sx={{
-              padding: 0,
-              mb: 0.5,
-              pl: 2 * (depth + 1),
-            }}
-          >
+          <List sx={{ padding: 0, mb: 0.5, pl: 2 * (depth + 1) }}>
             {item.children.map((child, idx) => (
               <NavigationGroup
                 key={`${child.segment ?? child.title}-${idx}`}
