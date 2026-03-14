@@ -16,30 +16,30 @@ import type { NavigationItem as Item } from "../types";
 import { Link } from "@/i18n/routing";
 
 /**
- * Same fix as NavigationListItemButton:
- *  - Target .MuiListItemIcon-root (not just .MuiSvgIcon-root)
- *  - Clear MUI's default selected background tint
+ * Same styled button used for popover child items — identical colour rules
+ * to NavigationListItemButton in NavigationItem.tsx.
  */
 const PopoverListItemButton = styled(ListItemButton)(({ theme }) => ({
   borderRadius: 8,
-  "& .MuiListItemIcon-root": {
-    color: theme.palette.text.secondary,
-  },
   "& .MuiSvgIcon-root": {
-    color: "inherit",
+    color: (theme.vars ?? theme).palette.action.active,
   },
-  "& .MuiListItemText-primary": {
-    color: theme.palette.text.primary,
+  "& .MuiAvatar-root": {
+    backgroundColor: (theme.vars ?? theme).palette.action.active,
   },
   "&.Mui-selected": {
-    backgroundColor: "transparent",
-    "&:hover": {
-      backgroundColor: theme.palette.action.hover,
+    "& .MuiListItemIcon-root": {
+      color: (theme.vars ?? theme).palette.primary.dark,
     },
-    "& .MuiListItemIcon-root": { color: theme.palette.primary.dark },
-    "& .MuiSvgIcon-root": { color: "inherit" },
-    "& .MuiListItemText-primary": { color: theme.palette.primary.dark },
-    "& .MuiTouchRipple-child": { backgroundColor: theme.palette.primary.dark },
+    "& .MuiTypography-root": {
+      color: (theme.vars ?? theme).palette.primary.dark,
+    },
+    "& .MuiSvgIcon-root": {
+      color: (theme.vars ?? theme).palette.primary.dark,
+    },
+    "& .MuiTouchRipple-child": {
+      backgroundColor: (theme.vars ?? theme).palette.primary.dark,
+    },
   },
 }));
 
@@ -68,22 +68,19 @@ export default function NavigationGroup({
   const isAnyChildSelected =
     hasAnyChild &&
     item.children.some((child) => {
-      const childPath = child.segment
-        ? `${itemPath}/${child.segment}`
-        : itemPath;
+      const childPath = child.segment ? `${itemPath}/${child.segment}` : itemPath;
       return pathname === childPath || pathname.startsWith(`${childPath}/`);
     });
 
   const [open, setOpen] = useState(isAnyChildSelected);
 
+  // In mini mode highlight parent when any child is active; in expanded mode
+  // only leaf items are highlighted.
   const isSelected = hasAnyChild
     ? isMini && isAnyChildSelected
     : pathname === itemPath;
 
-  /**
-   * Popover content — rendered in full EXPANDED style (icon + body1 text)
-   * matching the HTML snapshot provided earlier.
-   */
+  // Popover children rendered in full expanded style matching Toolpad's DOM
   const miniPopover =
     hasAnyChild && isMini ? (
       <List sx={{ padding: 0, minWidth: 200 }}>
@@ -104,7 +101,6 @@ export default function NavigationGroup({
                 selected={childSelected}
                 sx={{ px: 1.4, height: 48, borderRadius: 2 }}
               >
-                {/* Box > ListItemIcon matches Toolpad's expanded DOM structure */}
                 <Box sx={{ display: "flex" }}>
                   <ListItemIcon
                     sx={{
@@ -117,7 +113,6 @@ export default function NavigationGroup({
                     {child.icon ?? null}
                   </ListItemIcon>
                 </Box>
-                {/* MuiListItemText-primary body1 text */}
                 <ListItemText
                   primary={child.title}
                   sx={{ ml: 1.2, whiteSpace: "nowrap" }}
@@ -144,7 +139,7 @@ export default function NavigationGroup({
         miniPopoverContent={miniPopover}
       />
 
-      {hasAnyChild && !isMini && (
+      {hasAnyChild && !isMini ? (
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List sx={{ padding: 0, mb: 0.5, pl: 2 * (depth + 1) }}>
             {item.children.map((child, idx) => (
@@ -157,7 +152,7 @@ export default function NavigationGroup({
             ))}
           </List>
         </Collapse>
-      )}
+      ) : null}
     </>
   );
 }

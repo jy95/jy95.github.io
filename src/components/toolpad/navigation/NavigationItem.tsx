@@ -20,50 +20,42 @@ import { MINI_DRAWER_WIDTH } from "../DashboardSidebar";
 const LIST_ITEM_ICON_SIZE = 34;
 
 /**
- * Matches Toolpad's NavigationListItemButton styling.
+ * Faithful copy of Toolpad's NavigationListItemButton.
  *
- * Key fixes vs previous version:
- *  - Target `.MuiListItemIcon-root` (not just `.MuiSvgIcon-root`) so the
- *    color actually wins over MUI's ListItemIcon default in the cascade.
- *  - Add `backgroundColor: "transparent"` in `&.Mui-selected` to suppress
- *    MUI's default selected-state background tint that breaks dark mode.
+ * Critical: use `(theme.vars ?? theme).palette.x` everywhere so that the
+ * generated CSS uses MUI CSS-variable references. Without this, plain
+ * `theme.palette.x` bakes in the light-mode value at build time and dark
+ * mode colours never apply.
+ *
+ * Non-selected state: only .MuiSvgIcon-root and .MuiAvatar-root are
+ * overridden — no ListItemIcon colour, no text colour — both inherit from
+ * the theme naturally and therefore work correctly in dark mode.
  */
 const NavigationListItemButton = styled(ListItemButton)(({ theme }) => ({
   borderRadius: 8,
-  // ── Non-selected: explicit colours for both light and dark mode ──────────
-  "& .MuiListItemIcon-root": {
-    color: theme.palette.text.secondary,
-  },
+  // Non-selected: icon SVGs use action.active (adapts in dark mode via CSS vars)
   "& .MuiSvgIcon-root": {
-    color: "inherit",
-  },
-  "& .MuiListItemText-primary": {
-    color: theme.palette.text.primary,
+    color: (theme.vars ?? theme).palette.action.active,
   },
   "& .MuiAvatar-root": {
-    backgroundColor: theme.palette.action.active,
-    color: theme.palette.background.default,
+    backgroundColor: (theme.vars ?? theme).palette.action.active,
   },
-  // ── Selected: primary.dark accent; NO background tint ────────────────────
+  // Selected: primary.dark accent for all children; no background tint
   "&.Mui-selected": {
-    backgroundColor: "transparent",
-    "&:hover": {
-      backgroundColor: theme.palette.action.hover,
-    },
     "& .MuiListItemIcon-root": {
-      color: theme.palette.primary.dark,
+      color: (theme.vars ?? theme).palette.primary.dark,
+    },
+    "& .MuiTypography-root": {
+      color: (theme.vars ?? theme).palette.primary.dark,
     },
     "& .MuiSvgIcon-root": {
-      color: "inherit",
-    },
-    "& .MuiListItemText-primary": {
-      color: theme.palette.primary.dark,
+      color: (theme.vars ?? theme).palette.primary.dark,
     },
     "& .MuiAvatar-root": {
-      backgroundColor: theme.palette.primary.dark,
+      backgroundColor: (theme.vars ?? theme).palette.primary.dark,
     },
     "& .MuiTouchRipple-child": {
-      backgroundColor: theme.palette.primary.dark,
+      backgroundColor: (theme.vars ?? theme).palette.primary.dark,
     },
   },
 }));
@@ -93,8 +85,6 @@ export default function NavigationItem({
   const isMini = !drawerOpen;
 
   const [hovered, setHovered] = useState(false);
-  // Ref for the Popper anchor — must sit on the ListItem so the popover
-  // aligns with the full row height.
   const listItemRef = useRef<HTMLLIElement>(null);
 
   const initials = title
@@ -106,7 +96,7 @@ export default function NavigationItem({
   return (
     <ListItem
       ref={listItemRef}
-      sx={{ py: 0, px: 1 }}
+      sx={{ py: 0, px: 1, overflowX: "hidden" }}
       {...(isMini && hasChildren
         ? {
             onMouseEnter: () => setHovered(true),
@@ -127,28 +117,29 @@ export default function NavigationItem({
         }}
       >
         {/* ── Icon / Avatar area ───────────────────────────────────────── */}
-        <Box
-          sx={
-            isMini
-              ? {
-                  position: "absolute",
-                  left: "50%",
-                  top: "calc(50% - 6px)",
-                  transform: "translate(-50%, -50%)",
-                }
-              : { display: "flex" }
-          }
-        >
-          <ListItemIcon
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              minWidth: LIST_ITEM_ICON_SIZE,
-            }}
+        {(icon || isMini) ? (
+          <Box
+            sx={
+              isMini
+                ? {
+                    position: "absolute",
+                    left: "50%",
+                    top: "calc(50% - 6px)",
+                    transform: "translate(-50%, -50%)",
+                  }
+                : {}
+            }
           >
-            {icon ?? (
-              isMini ? (
+            <ListItemIcon
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minWidth: LIST_ITEM_ICON_SIZE,
+              }}
+            >
+              {icon ?? null}
+              {!icon && isMini ? (
                 <Avatar
                   sx={{
                     width: LIST_ITEM_ICON_SIZE - 7,
@@ -158,44 +149,43 @@ export default function NavigationItem({
                 >
                   {initials}
                 </Avatar>
-              ) : null
-            )}
-          </ListItemIcon>
+              ) : null}
+            </ListItemIcon>
 
-          {/* Caption label in mini mode */}
-          {isMini && (
-            <Typography
-              variant="caption"
-              sx={{
-                position: "absolute",
-                bottom: -18,
-                left: "50%",
-                transform: "translateX(-50%)",
-                fontSize: 10,
-                fontWeight: 500,
-                textAlign: "center",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                maxWidth: MINI_DRAWER_WIDTH - 28,
-                color: selected ? "primary.dark" : "text.secondary",
-              }}
-            >
-              {title}
-            </Typography>
-          )}
-        </Box>
+            {/* Caption below icon in mini mode — inherits colour from button */}
+            {isMini ? (
+              <Typography
+                variant="caption"
+                sx={{
+                  position: "absolute",
+                  bottom: -18,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  fontSize: 10,
+                  fontWeight: 500,
+                  textAlign: "center",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  maxWidth: MINI_DRAWER_WIDTH - 28,
+                }}
+              >
+                {title}
+              </Typography>
+            ) : null}
+          </Box>
+        ) : null}
 
         {/* ── Text (expanded mode only) ────────────────────────────────── */}
-        {!isMini && (
+        {!isMini ? (
           <ListItemText
             primary={title}
             sx={{ ml: 1.2, whiteSpace: "nowrap", zIndex: 1 }}
           />
-        )}
+        ) : null}
 
         {/* ── Expand chevron with rotation transition (expanded mode) ───── */}
-        {hasChildren && !isMini && (
+        {hasChildren && !isMini ? (
           <ExpandMoreIcon
             sx={{
               ml: 0.5,
@@ -207,10 +197,10 @@ export default function NavigationItem({
                 }),
             }}
           />
-        )}
+        ) : null}
 
         {/* ── Small right-arrow for mini items with children ─────────── */}
-        {hasChildren && isMini && (
+        {hasChildren && isMini ? (
           <ExpandMoreIcon
             sx={{
               fontSize: 18,
@@ -220,20 +210,14 @@ export default function NavigationItem({
               transform: "translateY(-50%) rotate(-90deg)",
             }}
           />
-        )}
+        ) : null}
       </NavigationListItemButton>
 
       {/*
-       * ── Mini hover popover ─────────────────────────────────────────────
-       *
-       * Uses MUI <Popper> instead of a positioned <Box>:
-       *   - Popper renders via a portal into document.body by default
-       *   - This completely bypasses the drawer's overflow:hidden ancestor
-       *     that was clipping the old absolutely-positioned element
-       *   - anchorEl={listItemRef.current} pins placement to this row
-       *   - placement="right-start" aligns left edge of popup to right edge of item
+       * Mini hover popover — uses MUI Popper (portal into document.body) so
+       * the drawer's overflow:hidden ancestor cannot clip it.
        */}
-      {isMini && hasChildren && miniPopoverContent && (
+      {isMini && hasChildren && miniPopoverContent ? (
         <Popper
           open={hovered}
           anchorEl={listItemRef.current}
@@ -242,17 +226,14 @@ export default function NavigationItem({
           sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
         >
           {({ TransitionProps }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: "left top" }}
-            >
+            <Grow {...TransitionProps} style={{ transformOrigin: "left top" }}>
               <Paper elevation={1} sx={{ py: 0.5, ml: "6px" }}>
                 {miniPopoverContent}
               </Paper>
             </Grow>
           )}
         </Popper>
-      )}
+      ) : null}
     </ListItem>
   );
 }
