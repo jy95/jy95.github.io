@@ -1,6 +1,6 @@
 // Providers
 import {NextIntlClientProvider} from 'next-intl';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 
 // Hooks
 import {setRequestLocale} from 'next-intl/server';
