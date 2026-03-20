@@ -1263,16 +1263,25 @@
 	{
 		"id": 177,
 		"title": "The Cursed Crusade",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "07:58:30",
+		"hltb_extra": "11:58:37",
+		"hltb_completionist": "17:25:00"
 	},
 	{
 		"id": 178,
 		"title": "Murdered: Soul Suspect",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "06:52:22",
+		"hltb_extra": "08:43:43",
+		"hltb_completionist": "11:30:21"
 	},
 	{
 		"id": 179,
 		"title": "Ruff Trigger: The Vanocore Conspiracy",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "05:52:35",
+		"hltb_extra": "06:16:24",
+		"hltb_completionist": "07:01:03"
 	}
 ]
