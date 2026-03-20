@@ -1251,5 +1251,13 @@
 		"hltb_main": "05:00:00",
 		"hltb_extra": "05:00:00",
 		"hltb_completionist": "11:30:00"
+	},
+	{
+		"id": 176,
+		"title": "La Mémoire dans la peau",
+		"platform": 6,
+		"hltb_main": "05:30:00",
+		"hltb_extra": "07:00:00",
+		"hltb_completionist": "09:00:00"
 	}
 ]
