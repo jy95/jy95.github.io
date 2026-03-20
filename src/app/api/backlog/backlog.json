@@ -1243,5 +1243,13 @@
 		"hltb_main": "01:35:05",
 		"hltb_extra": "02:37:18",
 		"hltb_completionist": "04:09:17"
+	},
+	{
+		"id": 175,
+		"title": "Wanted : Les Armes du Destin",
+		"platform": 6,
+		"hltb_main": "05:00:00",
+		"hltb_extra": "05:00:00",
+		"hltb_completionist": "11:30:00"
 	}
 ]
