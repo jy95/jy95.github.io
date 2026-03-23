@@ -12,6 +12,14 @@
     "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
+            "title": "Child of Eden",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR/cover.webp",
+            "date_modified": "2026-03-22T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
@@ -122,14 +130,6 @@
             "title": "Sly 2 : Association de voleurs",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361/cover.webp",
             "date_modified": "2025-02-21T00:00:00.000Z"
-        },
-        {
-            "id": "yt:ZTfstKEM4Ko",
-            "content_html": "https://www.youtube.com/watch?v=ZTfstKEM4Ko",
-            "url": "https://www.youtube.com/watch?v=ZTfstKEM4Ko",
-            "title": "Enslaved Odyssey to the West - Pigsy's Perfect 10 DLC",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/ZTfstKEM4Ko/cover.webp",
-            "date_modified": "2025-02-19T00:00:00.000Z"
         }
     ]
 }
