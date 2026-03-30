@@ -1283,5 +1283,13 @@
 		"hltb_main": "05:52:35",
 		"hltb_extra": "06:16:24",
 		"hltb_completionist": "07:01:03"
+	},
+	{
+		"id": 180,
+		"title": "Les Désastreuses Aventures des orphelins Baudelaire",
+		"platform": 5,
+		"hltb_main": "04:30:00",
+		"hltb_extra": "05:00:00",
+		"hltb_completionist": "05:00:00"
 	}
 ]
