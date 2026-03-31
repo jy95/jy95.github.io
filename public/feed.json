@@ -12,6 +12,14 @@
     "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
+            "title": "Ratchet & Clank : QForce",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk/cover.webp",
+            "date_modified": "2026-03-30T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
@@ -122,14 +130,6 @@
             "title": "Batman The Enemy Within",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG/cover.webp",
             "date_modified": "2025-03-17T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
-            "title": "Sly 2 : Association de voleurs",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361/cover.webp",
-            "date_modified": "2025-02-21T00:00:00.000Z"
         }
     ]
 }
