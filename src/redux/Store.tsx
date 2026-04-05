@@ -10,6 +10,7 @@ import { backlogAPI } from "./services/backlogAPI";
 import { platformsAPI } from "./services/platformsAPI"
 import { genresAPI } from "./services/genresAPI";
 import { dlcsAPI } from "./services/dlcsAPI";
+import { votesAPI } from "./services/votesAPI";
 
 export const makeStore = () => {
     return configureStore({
@@ -25,7 +26,8 @@ export const makeStore = () => {
             [backlogAPI.reducerPath]: backlogAPI.reducer,
             [platformsAPI.reducerPath]: platformsAPI.reducer,
             [genresAPI.reducerPath]: genresAPI.reducer,
-            [dlcsAPI.reducerPath]: dlcsAPI.reducer
+            [dlcsAPI.reducerPath]: dlcsAPI.reducer,
+            [votesAPI.reducerPath]: votesAPI.reducer,
         },
         // Adding the api middleware enables caching, invalidation, polling,
         // and other useful features of `rtk-query`.
@@ -38,7 +40,8 @@ export const makeStore = () => {
             .concat(backlogAPI.middleware)
             .concat(platformsAPI.middleware)
             .concat(genresAPI.middleware)
-            .concat(dlcsAPI.middleware),
+            .concat(dlcsAPI.middleware)
+            .concat(votesAPI.middleware),
     });
 }
 

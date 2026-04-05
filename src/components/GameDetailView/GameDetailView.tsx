@@ -19,6 +19,7 @@ import GameToolbar from "./GameToolbar";
 import InfoRow from "./InfoRow";
 import GameGenres from './GameGenres';
 import PrettyDuration from "./DurationRow";
+import VoteSection from "./VoteSection";
 
 // Icons
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
@@ -118,6 +119,10 @@ function GameDetailView(props : {
                     <Box sx={{ flex: 1 }}>
 
                         {hasGenres(game) && <GameGenres genreIds={game.genres} />}
+
+                        <Divider sx={{ mb: 3 }} />
+
+                        <VoteSection slug={game.id} />
 
                         <Divider sx={{ mb: 3 }} />
 

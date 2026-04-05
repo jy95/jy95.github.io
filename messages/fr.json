@@ -152,5 +152,11 @@
         "hltb_main": "Quête principale",
         "hltb_extra": "Quête principale + annexes",
         "hltb_completionist": "À 100 %"
-     }
+     },
+    "vote": {
+        "voteAction": "Voter",
+        "voted": "Voté !",
+        "loginRequired": "Connecte-toi pour voter !",
+        "voteCount": "{count, plural, =0 {vote} =1 {vote} other {votes}}"
+    }
 }
