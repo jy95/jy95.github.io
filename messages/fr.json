@@ -157,6 +157,7 @@
         "voteAction": "Voter",
         "voted": "Voté !",
         "loginRequired": "Connecte-toi pour voter !",
-        "voteCount": "{count, plural, =0 {vote} =1 {vote} other {votes}}"
+        "voteCount": "{count, plural, =0 {vote} =1 {vote} other {votes}}",
+        "disclaimer": "Les votes servent à accompagner la priorité des prochaines vidéos. Sans constituer une garantie de diffusion, ils offrent un aperçu précieux des envies de la communauté !"
     }
 }
