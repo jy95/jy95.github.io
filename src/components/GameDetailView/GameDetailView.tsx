@@ -118,11 +118,9 @@ function GameDetailView(props : {
                     {/* --- Game details --- */}
                     <Box sx={{ flex: 1 }}>
 
-                        {hasGenres(game) && <GameGenres genreIds={game.genres} />}
-
-                        <Divider sx={{ mb: 3 }} />
-
                         <VoteSection slug={game.id} />
+
+                        {hasGenres(game) && <GameGenres genreIds={game.genres} />}
 
                         <Divider sx={{ mb: 3 }} />
 

@@ -31,9 +31,15 @@ export default function VoteSection({ slug }: { slug: string }) {
   const count = stats?.[slug] || 0;
   const hasVoted = myVotes?.includes(slug) || false;
 
-  const handleAction = () => {
+  const handleAction = async () => {
     if (!userId) {
-      alert(t("loginRequired"));
+      await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          // Redirige l'utilisateur sur la page actuelle après connexion
+          redirectTo: window.location.href, 
+        },
+      });
       return;
     }
     toggle({ slug, userId, hasVoted });
