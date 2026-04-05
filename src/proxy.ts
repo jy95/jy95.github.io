@@ -7,7 +7,7 @@ import { updateSession } from '@/lib/supabase/proxy';
 // Use the file middleware.ts (or .js) in the root of your project to define Middleware. For example, at the same level as pages or app, or inside src if applicable.
 const intlMiddleware = createMiddleware(routing);
 
-export async function proxy(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
 
   // On rafraîchit la session avant de faire quoi que ce soit d'autre.
   const authResponse = await updateSession(request);
@@ -22,9 +22,6 @@ export async function proxy(request: NextRequest) {
   // On retourne la réponse du middleware de next-intl, qui contient les cookies de session à jour.
   return intlResponse;
 }
-
-export default createMiddleware(routing);
-
 // https://next-intl-docs.vercel.app/docs/routing/middleware#matcher-no-prefix
 // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
 export const config = {
