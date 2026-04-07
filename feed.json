@@ -12,6 +12,14 @@
     "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
+            "title": "Le Chat Potté",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4/cover.webp",
+            "date_modified": "2026-04-06T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
@@ -122,14 +130,6 @@
             "title": "Fahrenheit Indigo Prophecy",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2/cover.webp",
             "date_modified": "2025-03-28T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
-            "title": "Batman The Enemy Within",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG/cover.webp",
-            "date_modified": "2025-03-17T00:00:00.000Z"
         }
     ]
 }
