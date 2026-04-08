@@ -76,7 +76,7 @@ function GamesGalleryGridInner() {
             </Grid>
             <Grid 
                 container 
-                justifyContent="center"
+                sx={{ justifyContent: 'center' }}
             >
                 <LoadingButton
                     loading={isFetching}

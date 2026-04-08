@@ -17,7 +17,7 @@ function InfoRow({ label, value, icon }: { label: string, value: React.ReactNode
             >
                 {label}
             </Typography>
-            <Stack direction="row" spacing={1.5} alignItems="center">
+            <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
                 <Box sx={{ color: 'text.secondary', display: 'flex' }}>
                     {icon}
                 </Box>

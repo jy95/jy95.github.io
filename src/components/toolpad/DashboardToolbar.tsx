@@ -37,11 +37,12 @@ export default function DashboardToolbar({ slots, slotProps }: Props) {
       <Toolbar sx={{ backgroundColor: "inherit", mx: { xs: -0.75, sm: -1 } }}>
         <Stack
           direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-          sx={{ flexWrap: "wrap", width: "100%" }}
+          sx={{ flexWrap: "wrap", width: "100%", alignItems: 'center', justifyContent: 'space-between' }}
         >
-          <Stack direction="row" alignItems="center">
+          <Stack 
+            direction="row"
+            sx={{ alignItems: 'center' }}
+          >
             <Tooltip
               title={drawerOpen ? "Collapse menu" : "Expand menu"}
               enterDelay={1000}
@@ -63,9 +64,8 @@ export default function DashboardToolbar({ slots, slotProps }: Props) {
           </Stack>
           <Stack
             direction="row"
-            alignItems="center"
             spacing={1}
-            sx={{ marginLeft: "auto" }}
+            sx={{ marginLeft: "auto", alignItems: 'center' }}
           >
             {ToolbarActionsSlot && (
               <ToolbarActionsSlot {...(slotProps?.toolbarActions ?? {})} />

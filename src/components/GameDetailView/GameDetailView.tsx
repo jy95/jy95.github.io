@@ -100,7 +100,7 @@ function GameDetailView(props : {
 
             {/* --- Content --- */}
             <Box sx={{ p: { xs: 2, md: 5 }, flexGrow: 1 }}>
-                <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} alignItems="flex-start">
+                <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} sx={{ alignItems: 'flex-start' }}>
 
                     {/* --- Game cover --- */}
                     <Box sx={{ position: 'relative', width: 300, height: 400 }}>
