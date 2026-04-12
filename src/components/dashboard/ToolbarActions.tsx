@@ -7,7 +7,7 @@ import { useState, Suspense } from "react";
 // Components
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
-import { Link } from '@/i18n/routing';
+import Link from 'next/link';
 const ThemeMode = dynamic(() => import("./ThemeModeToggle"));
 const LanguageToggle = dynamic(() => import("./LanguageToggle")); 
 const Drawer = dynamic(() => import('@mui/material/Drawer'));
