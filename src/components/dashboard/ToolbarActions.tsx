@@ -7,7 +7,6 @@ import { useState, Suspense } from "react";
 // Components
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
-import Link from 'next/link';
 const ThemeMode = dynamic(() => import("./ThemeModeToggle"));
 const LanguageToggle = dynamic(() => import("./LanguageToggle")); 
 const Drawer = dynamic(() => import('@mui/material/Drawer'));
@@ -40,11 +39,6 @@ export default function ToolbarActions(props: Props){
                     <Box sx={{ pl: 2, pr: 2, py: 10 }}>
                         <ThemeMode {...props} />
                         <LanguageToggle {...props} />
-                        {/* Footer Links */}
-                        <Box sx={{ mt: 4, display: 'flex', flexDirection: 'column', gap: 1 }}>
-                            <Link href="/privacy.html">Privacy Policy</Link>
-                            <Link href="/tos.html">Terms of Service</Link>
-                        </Box>
                     </Box>
                 </Drawer>
             </Suspense>
