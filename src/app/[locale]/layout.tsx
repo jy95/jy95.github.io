@@ -13,6 +13,7 @@ import {routing} from '@/i18n/routing';
 // components
 import Box from '@mui/material/Box';
 import DashboardAppProvider from "@/components/dashboard/DashboardAppProvider";
+import Footer from "@/components/Footer";
 
 // Types
 import type {Locale} from 'next-intl';
@@ -60,12 +61,18 @@ export default async function RootLayout(props: Props) {
             <DashboardAppProvider locale={resolvedLocale} >
               <Box
                 sx={{
-                  py: 1,
                   display: 'flex',
-                  flexDirection: 'column'
+                  flexDirection: 'column',
+                  minHeight: '100vh'
                 }}
               >
-                {children}
+                {/* Main content */}
+                <Box sx={{ flex: 1, py: 1 }}>
+                  {children}
+                </Box>
+
+                {/* Footer */}
+                <Footer />
               </Box>
             </DashboardAppProvider>
           </ThemeProvider>
