@@ -19,7 +19,7 @@ export default function DashboardLayout({ children, slots, slotProps }: Props) {
         position: "relative",
         display: "flex",
         overflow: "hidden",
-        height: "100vh",
+        height: "100%",
         width: "100%"
       }}
     >
