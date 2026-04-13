@@ -20,7 +20,7 @@ export default function DashboardLayout({ children, slots, slotProps }: Props) {
         display: "flex",
         overflow: "hidden",
         height: "100vh",
-        width: "100vw",
+        width: "100%"
       }}
     >
       {/* AppBar is position="absolute" — rendered first so it paints on top */}
