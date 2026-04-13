@@ -46,6 +46,8 @@ export default function DashboardLayout({ children, slots, slotProps }: Props) {
             flexDirection: "column",
             flex: 1,
             overflow: "auto",
+            // matches Grid spacing={1} (MUI spacing unit = 8px, half = 4px each side)
+            p: 1
           }}
         >
           {children}
