@@ -68,7 +68,7 @@ export default async function RootLayout(props: Props) {
                 }}
               >
                 {/* Main content */}
-                <Box sx={{ flex: 1, py: 1 }}>
+                <Box sx={{ flex: 1 }}>
                   {children}
                 </Box>
 
