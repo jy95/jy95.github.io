@@ -32,6 +32,7 @@ type Props = {
   }>
 }
 
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));
 }
@@ -63,11 +64,11 @@ export default async function RootLayout(props: Props) {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  minHeight: '100vh'
+                  minHeight: '100%'
                 }}
               >
                 {/* Main content */}
-                <Box sx={{ flex: 1, py: 1 }}>
+                <Box sx={{ flex: 1 }}>
                   {children}
                 </Box>
 

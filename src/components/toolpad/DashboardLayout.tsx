@@ -20,7 +20,7 @@ export default function DashboardLayout({ children, slots, slotProps }: Props) {
         display: "flex",
         overflow: "hidden",
         height: "100vh",
-        width: "100vw",
+        width: "100%"
       }}
     >
       {/* AppBar is position="absolute" — rendered first so it paints on top */}
@@ -46,6 +46,8 @@ export default function DashboardLayout({ children, slots, slotProps }: Props) {
             flexDirection: "column",
             flex: 1,
             overflow: "auto",
+            // matches Grid spacing={1} (MUI spacing unit = 8px, half = 4px each side)
+            p: 1
           }}
         >
           {children}
