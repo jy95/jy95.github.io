@@ -64,7 +64,7 @@ export default async function RootLayout(props: Props) {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  minHeight: '100vh'
+                  minHeight: '100%'
                 }}
               >
                 {/* Main content */}
