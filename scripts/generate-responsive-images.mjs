@@ -9,7 +9,7 @@ const testsJson = JSON.parse(
     await readFile(
         resolve(
             __dirname,
-            './src/app/api/tests/tests.json'
+            '../src/app/api/tests/tests.json'
         )
     )
 );
@@ -17,7 +17,7 @@ const gamesJson = JSON.parse(
     await readFile(
         resolve(
             __dirname,
-            './src/app/api/games/games.json'
+            '../src/app/api/games/games.json'
         )
     )
 );

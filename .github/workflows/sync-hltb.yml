@@ -28,7 +28,7 @@ jobs:
         run: npm install --no-save howlongtobeat-ts
 
       - name: 🤖 Run HLTB Sync Script
-        run: node hltb_fetcher.mjs
+        run: node scripts/hltb_fetcher.mjs
 
       - name: 🚀 Create Pull Request
         uses: peter-evans/create-pull-request@v8
