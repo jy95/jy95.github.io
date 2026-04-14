@@ -6,8 +6,12 @@
 
 import { readFile } from "fs/promises";
 import { createWriteStream } from "fs";
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
 import { google } from "googleapis";
 import input from '@inquirer/input';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const scope = ["https://www.googleapis.com/auth/youtube.readonly"];
 const START_DATE = "2023-01-01";
@@ -42,7 +46,7 @@ const FILTERS = [
 
 // Load client secrets from a local file.
 // https://stackoverflow.com/a/52222827/6149867
-const content = await readFile("YOUR_CLIENT_SECRET_FILE.json");
+const content = await readFile(resolve(__dirname, '..', 'YOUR_CLIENT_SECRET_FILE.json'));
 
 // Authorize a client with credentials, then make API call.
 const credentials = JSON.parse(content);
@@ -93,7 +97,7 @@ const callApi = async (auth) => {
     const rows = response.data.rows || [];
 
     if (rows.length > 0) {
-      const filePath = "playlists_stats.csv";
+      const filePath = resolve(__dirname, '..', 'playlists_stats.csv');
       const stream = createWriteStream(filePath);
 
       // Write headers to the stream

@@ -1,6 +1,9 @@
 import Database from 'better-sqlite3';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
 
-const databasePath = 'GamesPassionFR.db';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const databasePath = resolve(__dirname, '..', 'GamesPassionFR.db');
 const db = new Database(databasePath, { verbose: console.log });
 
 // Constantes

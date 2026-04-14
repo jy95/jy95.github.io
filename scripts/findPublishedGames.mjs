@@ -1,7 +1,11 @@
 import Database from 'better-sqlite3';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Path to the SQLite database file
-const dbPath = 'GamesPassionFR.db';
+const dbPath = resolve(__dirname, '..', 'GamesPassionFR.db');
 
 // Set of years to match
 const yearsToMatch = new Set(['2023', '2022']);

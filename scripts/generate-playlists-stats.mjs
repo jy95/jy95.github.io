@@ -1,11 +1,13 @@
 import { readFile, writeFile, access } from "fs/promises";
-import { resolve as resolvePath } from "path";
+import { resolve as resolvePath, dirname } from "path";
+import { fileURLToPath } from "url";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Params
-const csvFilePath = 'playlists_stats.csv';
-const basePicturesPath = "./public"
-const outputFilePath = 'playlists_stats.json';
+const csvFilePath = resolvePath(__dirname, '..', 'playlists_stats.csv');
+const basePicturesPath = resolvePath(__dirname, '..', 'public');
+const outputFilePath = resolvePath(__dirname, '..', 'playlists_stats.json');
 
 // First line are headers
 const numberOfHeaders = 1;

@@ -1,7 +1,10 @@
 import Database from 'better-sqlite3';
 import { HowLongToBeatService, SearchModifier } from 'howlongtobeat-ts';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
 
-const databasePath = 'GamesPassionFR.db';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const databasePath = resolve(__dirname, '..', 'GamesPassionFR.db');
 const db = new Database(databasePath, { verbose: console.log });
 const hltbService = new HowLongToBeatService();
 

@@ -7,13 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "generate-responsive-images": "node generate-responsive-images.mjs",
+    "generate-responsive-images": "node scripts/generate-responsive-images.mjs",
     "sample-game": "npm run generate-responsive-images -- singleGame PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8 covers cover.jpg",
-    "generate-json-schemas": "node generate-json-schema.cjs",
-    "generate-playlist-data-report": "node generate-playlists-stats.mjs",
-    "generate-playlist-csv": "node generate-playlist-csv.mjs",
-    "find-published-games": "node findPublishedGames.mjs",
-    "generate-api-json-files": "node generateJsonFiles.mjs"
+    "generate-json-schemas": "node scripts/generate-json-schema.cjs",
+    "generate-playlist-data-report": "node scripts/generate-playlists-stats.mjs",
+    "generate-playlist-csv": "node scripts/generate-playlist-csv.mjs",
+    "find-published-games": "node scripts/findPublishedGames.mjs",
+    "generate-api-json-files": "node scripts/generateJsonFiles.mjs"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

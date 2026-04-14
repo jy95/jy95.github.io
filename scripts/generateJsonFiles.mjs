@@ -1,23 +1,27 @@
 import { writeFile } from "fs/promises";
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
 import { Feed } from "feed";
 import Database from 'better-sqlite3';
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 // Params
-const databasePath = 'GamesPassionFR.db';
+const databasePath = resolve(__dirname, '..', 'GamesPassionFR.db');
 const FILES = {
-    "BACKLOG": "src/app/api/backlog/backlog.json",
-    "GAMES": "src/app/api/games/games.json",
-    "SERIES": "src/app/api/series/series.json",
-    "TESTS": "src/app/api/tests/tests.json",
-    "PLATFORMS": "src/app/api/platforms/platforms.json",
-    "GENRES": "src/app/api/genres/genres.json",
-    "PLANNING": "src/app/api/planning/planning.json",
-    "STATS": "src/app/api/stats/stats.json",
-    "PAST_GAMES": "src/app/api/planning/past-planning.json",
-    "DLCS": "src/app/api/dlcs/dlcs.json",
-    "IDENTIFIERS": "src/app/api/random/identifiers.json",
-    "RSS": "public/rss.xml",
-    "JSON_FEED": "public/feed.json"
+    "BACKLOG": resolve(__dirname, '..', 'src/app/api/backlog/backlog.json'),
+    "GAMES": resolve(__dirname, '..', 'src/app/api/games/games.json'),
+    "SERIES": resolve(__dirname, '..', 'src/app/api/series/series.json'),
+    "TESTS": resolve(__dirname, '..', 'src/app/api/tests/tests.json'),
+    "PLATFORMS": resolve(__dirname, '..', 'src/app/api/platforms/platforms.json'),
+    "GENRES": resolve(__dirname, '..', 'src/app/api/genres/genres.json'),
+    "PLANNING": resolve(__dirname, '..', 'src/app/api/planning/planning.json'),
+    "STATS": resolve(__dirname, '..', 'src/app/api/stats/stats.json'),
+    "PAST_GAMES": resolve(__dirname, '..', 'src/app/api/planning/past-planning.json'),
+    "DLCS": resolve(__dirname, '..', 'src/app/api/dlcs/dlcs.json'),
+    "IDENTIFIERS": resolve(__dirname, '..', 'src/app/api/random/identifiers.json'),
+    "RSS": resolve(__dirname, '..', 'public/rss.xml'),
+    "JSON_FEED": resolve(__dirname, '..', 'public/feed.json')
 }
 
 const db = new Database(databasePath, {

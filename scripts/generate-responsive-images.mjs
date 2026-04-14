@@ -9,7 +9,7 @@ const testsJson = JSON.parse(
     await readFile(
         resolve(
             __dirname,
-            './src/app/api/tests/tests.json'
+            '../src/app/api/tests/tests.json'
         )
     )
 );
@@ -17,7 +17,7 @@ const gamesJson = JSON.parse(
     await readFile(
         resolve(
             __dirname,
-            './src/app/api/games/games.json'
+            '../src/app/api/games/games.json'
         )
     )
 );
@@ -81,7 +81,7 @@ async function resizePicturesInFolder() {
     }
 
     for (let [folderKey, store] of Object.entries(all_games)) {
-        let directory = normalize(`${__dirname}/public/${ store.coversRootPath }`);
+        let directory = resolve(__dirname, '..', 'public', store.coversRootPath);
         for(let game of store.games) {
             const gameId = `${game.playlistId || game.videoId}`
             let gameIcon = `${directory}/${gameId}/${ game.coverFile || store.defaultCoverFile }`
@@ -98,7 +98,7 @@ async function resizePicturesInFolder() {
 
 // For new game / test entry
 async function resizePicturesInSingleFolder(folder, game, icon) {
-    let directory = normalize(`${__dirname}/public/${ folder }`);
+    let directory = resolve(__dirname, '..', 'public', folder);
     let gameIcon = `${directory}/${game}/${ icon }`
     try {
         await resizePicture(directory, game, gameIcon);
