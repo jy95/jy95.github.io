@@ -1,12 +1,14 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import axios from 'axios';
 import { GOOGLE_IMG_SCRAP, GOOGLE_QUERY } from 'google-img-scrap';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // --- CONFIGURATION ---
-const JSON_FILE = './src/app/api/backlog/backlog.json';
-const OUTPUT_ROOT = './public/backlogcovers';
+const JSON_FILE = path.resolve(__dirname, '..', 'src/app/api/backlog/backlog.json');
+const OUTPUT_ROOT = path.resolve(__dirname, '..', 'public/backlogcovers');
 
 const PLATFORMS_MAP = {
     1: 'PC',
