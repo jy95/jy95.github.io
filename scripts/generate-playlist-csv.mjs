@@ -14,14 +14,14 @@ import input from '@inquirer/input';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const scope = ["https://www.googleapis.com/auth/youtube.readonly"];
-const START_DATE = "2023-01-01";
-const END_DATE = "2024-12-31";
+const START_DATE = "2026-01-01";
+const END_DATE = "2026-12-31";
 const MAX_RESULTS = 500;
 
 // See "Statistics for a specific playlist"
 // https://developers.google.com/youtube/analytics/sample-requests
-//const generateFilters = (playListIds) => `playlist==${playListIds.join(",")}`;
-/*
+const generateFilters = (playListIds) => `playlist==${playListIds.join(",")}`;
+
 const FILTERS = [
   "PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
   "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
@@ -42,7 +42,6 @@ const FILTERS = [
   "PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX",
   "PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc"
 ];
-*/
 
 // Load client secrets from a local file.
 // https://stackoverflow.com/a/52222827/6149867
@@ -90,8 +89,8 @@ const callApi = async (auth) => {
       metrics: "views,estimatedMinutesWatched",
       sort: "-estimatedMinutesWatched",
       startDate: START_DATE,
-      endDate: END_DATE
-      //filters: generateFilters(FILTERS)
+      endDate: END_DATE,
+      filters: generateFilters(FILTERS)
     });
 
     const rows = response.data.rows || [];
@@ -120,6 +119,7 @@ const callApi = async (auth) => {
       console.log("No data found.");
     }
   } catch (error) {
-    console.log("The API returned an error: ", error.errors);
+    console.log("The API returned an error ");
+    console.error(error);
   }
 };
