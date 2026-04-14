@@ -8,7 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const dbPath = resolve(__dirname, '..', 'GamesPassionFR.db');
 
 // Set of years to match
-const yearsToMatch = new Set(['2023', '2022']);
+const yearsToMatch = new Set(['2026', '2025']);
 
 /**
  * Fetches games with a playlistId from the database for all years in the provided set.
