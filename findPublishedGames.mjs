@@ -6,6 +6,7 @@ const dbPath = 'GamesPassionFR.db';
 // Set of years to match
 const yearsToMatch = new Set(['2023', '2022']);
 
+
 /**
  * Fetches games with a playlistId from the database for all years in the provided set.
  * 
