@@ -1,18 +1,5 @@
 [
 	{
-		"id": 187,
-		"availableAt": "2026-04-06",
-		"endAt": "2026-04-17",
-		"playlistId": "PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
-		"title": "Le Chat Potté",
-		"releaseDate": "2011-11-25",
-		"duration": "01:38:54",
-		"platform": 6,
-		"genres": [
-			1
-		]
-	},
-	{
 		"id": 188,
 		"availableAt": "2026-04-20",
 		"endAt": "2026-05-04",
