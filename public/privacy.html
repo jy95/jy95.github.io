@@ -29,13 +29,38 @@
     </ul>
 
     <div class="highlight">
-        <h2>2. Utilisation des données (Data Usage)</h2>
-        <p>Conformément aux politiques de Google, nous précisons ici comment votre application accède, utilise, stocke ou partage les données utilisateur Google :</p>
+        <h2>2. Utilisation des données Google (Google User Data Usage)</h2>
+        <p>Conformément à la <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Politique d'utilisation des données des services API Google</a> et aux <a href="https://developers.google.com/terms" target="_blank">Conditions d'utilisation des API Google</a>, nous précisons ici comment notre application accède, utilise, stocke ou partage les données utilisateur Google.</p>
+
+        <h3>Portées OAuth (Scopes) demandées</h3>
+        <p>L'application demande uniquement les portées OAuth minimales nécessaires à son fonctionnement :</p>
         <ul>
-            <li><strong>Accès et Utilisation :</strong> Nous utilisons votre adresse e-mail et votre nom uniquement pour vous identifier en tant qu'utilisateur unique. Cela nous permet de vérifier que chaque personne ne vote qu'une seule fois.</li>
-            <li><strong>Stockage :</strong> Ces informations sont stockées de manière sécurisée dans notre base de données (Supabase). Elles ne sont pas utilisées à d'autres fins que le fonctionnement du scrutin.</li>
-            <li><strong>Partage :</strong> Nous ne partageons, ne vendons et ne transférons <strong>aucune</strong> donnée Google à des tiers, à l'exception des services d'infrastructure (hébergement) nécessaires au fonctionnement technique de l'application.</li>
+            <li><code>email</code> — pour récupérer votre adresse e-mail Google.</li>
+            <li><code>profile</code> — pour récupérer votre nom d'affichage Google.</li>
         </ul>
+
+        <h3>Accès et finalité</h3>
+        <ul>
+            <li><strong>Accès :</strong> Nous recevons votre adresse e-mail et votre nom via Google OAuth uniquement au moment de la connexion.</li>
+            <li><strong>Finalité unique :</strong> Ces données sont utilisées <strong>exclusivement</strong> pour vous identifier en tant qu'utilisateur unique et garantir qu'une seule participation par personne est enregistrée. Aucune autre utilisation n'est faite de ces données.</li>
+            <li><strong>Usage limité (Limited Use) :</strong> L'utilisation des données Google est strictement limitée à la fourniture et à l'amélioration des fonctionnalités décrites dans cette politique. Ces données ne sont <strong>pas</strong> utilisées à des fins publicitaires, de profilage, de vente ou de transfert à des tiers à des fins propres.</li>
+        </ul>
+
+        <h3>Stockage</h3>
+        <ul>
+            <li>Votre adresse e-mail et votre nom sont stockés de manière sécurisée dans notre base de données (Supabase), protégée par chiffrement en transit (TLS) et au repos.</li>
+            <li>Ces données ne sont pas utilisées à d'autres fins que le fonctionnement du scrutin.</li>
+        </ul>
+
+        <h3>Partage et transfert</h3>
+        <ul>
+            <li>Nous ne partageons, ne vendons, ne louons et ne transférons <strong>aucune</strong> donnée Google à des tiers.</li>
+            <li>Les seuls accès techniques sont ceux de nos prestataires d'infrastructure (Vercel pour l'hébergement, Supabase pour la base de données), qui traitent ces données uniquement pour assurer le fonctionnement de l'application, conformément à leurs propres politiques de confidentialité.</li>
+            <li>Aucun transfert de données Google ne s'effectue à des fins publicitaires, d'analyse comportementale ou de profilage.</li>
+        </ul>
+
+        <h3>Révocation de l'accès</h3>
+        <p>Vous pouvez révoquer à tout moment les autorisations accordées à cette application via les <a href="https://myaccount.google.com/permissions" target="_blank">paramètres de votre compte Google</a>. La révocation mettra fin à l'accès de l'application à vos données Google.</p>
     </div>
 
     <h2>3. Services tiers</h2>
