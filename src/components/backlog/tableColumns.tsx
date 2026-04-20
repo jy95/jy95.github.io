@@ -10,8 +10,9 @@ import type { GridColDef } from '@mui/x-data-grid';
 export type Props = {
     titleLabel: string,
     platformLabel: string,
-    notesLabel: string
-    hltbLabel: string
+    notesLabel: string,
+    hltbLabel: string,
+    votesLabel: string
 }
 
 // Convert a time string in the format "HH:MM:SS" to total seconds
@@ -38,6 +39,13 @@ export default function tableColumns(props: Props) : GridColDef[]{
             field: "platform",
             headerName: props.platformLabel,
             ...PlatformColumn
+          },
+          {
+            field: "votes",
+            headerName: props.votesLabel,
+            headerAlign: 'center',
+            width: 90,
+            type: 'number'
           },
           {
             field: "notes",

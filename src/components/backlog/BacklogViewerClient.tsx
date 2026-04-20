@@ -2,10 +2,11 @@
 
 // Hooks
 import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 // Redux
 import { useGetBacklogQuery } from "@/redux/services/backlogAPI";
+import { useGetGlobalStatsQuery } from "@/redux/services/votesAPI";
 
 // Components
 import { DataGrid } from '@mui/x-data-grid';
@@ -21,13 +22,19 @@ type Props = {} & PropsTable;
 export default function BacklogViewerClient(props : Props) {
 
     // Using a query hook automatically fetches data and returns query values
-    const { data, error, isLoading } = useGetBacklogQuery();
+    const { data : backlogData, error, isLoading } = useGetBacklogQuery();
     const customLocaleText = useMuiXDataGridText();
+    const { data : stats } = useGetGlobalStatsQuery();
     const [selectedGame, setSelectedGame] = useState<BacklogEntry | null>(null);
 
     if (error) {
         return <>Something bad happened</>
     }
+
+    const data = useMemo(
+        () => backlogData?.map(entry => ({ ...entry, votes: stats?.[entry.id] ?? 0 })) ?? [],
+        [backlogData, stats]
+    );
 
     const columns = generateColumns(props);
 

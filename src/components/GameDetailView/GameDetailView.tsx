@@ -19,6 +19,7 @@ import GameToolbar from "./GameToolbar";
 import InfoRow from "./InfoRow";
 import GameGenres from './GameGenres';
 import PrettyDuration from "./DurationRow";
+import VoteSection from "./VoteSection";
 
 // Icons
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
@@ -72,6 +73,8 @@ const formatDate = (dateStr: string) => {
 function GameDetailView(props : {
     game: CardGame & ExtraGameProperties;
     onClose: () => void;
+    /** @default true */
+    showVoteSection?: boolean;
 }) {
 
     // hooks
@@ -79,7 +82,7 @@ function GameDetailView(props : {
     const t = useTranslations();
 
     // props
-    const {game} = props;
+    const {game , showVoteSection = true} = props;
 
     function handleClose() {
         setOpen(false);
@@ -117,9 +120,19 @@ function GameDetailView(props : {
                     {/* --- Game details --- */}
                     <Box sx={{ flex: 1 }}>
 
-                        {hasGenres(game) && <GameGenres genreIds={game.genres} />}
+                        {showVoteSection && (
+                            <>
+                                <VoteSection slug={game.id} />
+                                <Divider sx={{ mb: 3 }} />
+                            </>
+                        )}
 
-                        <Divider sx={{ mb: 3 }} />
+                        {hasGenres(game) && (
+                            <>
+                                <GameGenres genreIds={game.genres} />
+                                <Divider sx={{ mb: 3 }} />
+                            </>
+                        )}
 
                         <Stack spacing={3}>
                             {hasReleaseDate(game) && <InfoRow label={t("gameDetail.releaseDate")} value={formatDate(game.releaseDate)} icon={<CalendarTodayIcon fontSize="small" />} />}
