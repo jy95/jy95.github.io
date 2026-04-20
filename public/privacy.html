@@ -35,8 +35,18 @@
         <h3>Portées OAuth (Scopes) demandées</h3>
         <p>L'application demande uniquement les portées OAuth minimales nécessaires à son fonctionnement :</p>
         <ul>
+            <li><code>openid</code> — pour obtenir un identifiant unique et stable via OpenID Connect (JWT), permettant de vous reconnaître de manière pseudonyme sans stocker de mot de passe.</li>
             <li><code>email</code> — pour récupérer votre adresse e-mail Google.</li>
             <li><code>profile</code> — pour récupérer votre nom d'affichage Google.</li>
+        </ul>
+
+        <h3>Pourquoi l'authentification est-elle requise ?</h3>
+        <p>L'authentification via Google OAuth est indispensable pour les raisons suivantes :</p>
+        <ul>
+            <li><strong>Prévention de la fraude :</strong> Elle garantit qu'une seule participation est enregistrée par personne réelle, en s'appuyant sur un compte Google vérifié.</li>
+            <li><strong>Vote multi-appareils :</strong> Elle permet de reconnaître un même utilisateur quel que soit l'appareil utilisé, sans créer de compte supplémentaire.</li>
+            <li><strong>Intégrité du scrutin :</strong> Elle assure la fiabilité et l'équité des résultats en empêchant les votes multiples.</li>
+            <li><strong>Traçabilité pseudonyme :</strong> L'identifiant unique (<code>openid</code>) permet de lier un vote à un utilisateur de façon pseudonyme, sans révéler son identité publiquement.</li>
         </ul>
 
         <h3>Accès et finalité</h3>
