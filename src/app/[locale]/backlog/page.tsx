@@ -27,7 +27,8 @@ export default async function BacklogViewer(props : Props) {
       titleLabel: t("columns.title"),
       platformLabel: t("columns.platform"),
       notesLabel: t("columns.notes"),
-      hltbLabel: t("columns.hltb_main")
+      hltbLabel: t("columns.hltb_main"),
+      votesLabel: t("columns.votes")
     }
 
     return (

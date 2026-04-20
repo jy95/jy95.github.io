@@ -2,7 +2,7 @@
 
 // Hooks
 import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 // Redux
 import { useGetBacklogQuery } from "@/redux/services/backlogAPI";
@@ -31,10 +31,10 @@ export default function BacklogViewerClient(props : Props) {
         return <>Something bad happened</>
     }
 
-    const data = backlogData?.map(entry => {
-        const votes = stats?.[entry.id] ?? 0;
-        return { ...entry, votes };
-    }) || [];
+    const data = useMemo(
+        () => backlogData?.map(entry => ({ ...entry, votes: stats?.[entry.id] ?? 0 })) ?? [],
+        [backlogData, stats]
+    );
 
     const columns = generateColumns(props);
 

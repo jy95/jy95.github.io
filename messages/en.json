@@ -116,7 +116,8 @@
             "title": "Title",
             "platform": "Platform",
             "notes": "Notes",
-            "hltb_main": "Estimated duration"
+            "hltb_main": "Estimated duration",
+            "votes": "Votes"
         }
     },
     "stats": {
