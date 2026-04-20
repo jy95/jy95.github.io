@@ -13,6 +13,7 @@
         .highlight { background-color: #f9f9f9; padding: 15px; border-left: 5px solid #007bff; }
     </style>
 </head>
+    
 <body>
     <h1>Politique de Confidentialité</h1>
     <p>Dernière mise à jour : 20 avril 2026</p>
@@ -28,13 +29,62 @@
     </ul>
 
     <div class="highlight">
-        <h2>2. Utilisation des données (Data Usage)</h2>
-        <p>Conformément aux politiques de Google, nous précisons ici comment votre application accède, utilise, stocke ou partage les données utilisateur Google :</p>
+        <h2>2. Utilisation des données Google (Google User Data Usage)</h2>
+        <p>Conformément à la <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Politique d'utilisation des données des services API Google</a> et aux <a href="https://developers.google.com/terms" target="_blank">Conditions d'utilisation des API Google</a>, nous précisons ici comment notre application accède, utilise, stocke ou partage les données utilisateur Google.</p>
+
+        <h3>Portées OAuth (Scopes) demandées</h3>
+        <p>L'application demande uniquement les portées OAuth minimales nécessaires à son fonctionnement :</p>
         <ul>
-            <li><strong>Accès et Utilisation :</strong> Nous utilisons votre adresse e-mail et votre nom uniquement pour vous identifier en tant qu'utilisateur unique. Cela nous permet de vérifier que chaque personne ne vote qu'une seule fois.</li>
-            <li><strong>Stockage :</strong> Ces informations sont stockées de manière sécurisée dans notre base de données (Supabase). Elles ne sont pas utilisées à d'autres fins que le fonctionnement du scrutin.</li>
-            <li><strong>Partage :</strong> Nous ne partageons, ne vendons et ne transférons <strong>aucune</strong> donnée Google à des tiers, à l'exception des services d'infrastructure (hébergement) nécessaires au fonctionnement technique de l'application.</li>
+            <li><code>openid</code> — pour obtenir un identifiant unique et stable via OpenID Connect (JWT), permettant de vous reconnaître de manière pseudonyme sans stocker de mot de passe.</li>
+            <li><code>email</code> — pour récupérer votre adresse e-mail Google.</li>
+            <li><code>profile</code> — pour récupérer votre nom d'affichage Google.</li>
         </ul>
+
+        <h3>Pourquoi l'authentification est-elle requise ?</h3>
+        <p>L'authentification via Google OAuth est indispensable pour les raisons suivantes :</p>
+        <ul>
+            <li><strong>Prévention de la fraude :</strong> Elle garantit qu'une seule participation est enregistrée par personne réelle, en s'appuyant sur un compte Google vérifié.</li>
+            <li><strong>Vote multi-appareils :</strong> Elle permet de reconnaître un même utilisateur quel que soit l'appareil utilisé, sans créer de compte supplémentaire.</li>
+            <li><strong>Intégrité du scrutin :</strong> Elle assure la fiabilité et l'équité des résultats en empêchant les votes multiples.</li>
+            <li><strong>Traçabilité pseudonyme :</strong> L'identifiant unique (<code>openid</code>) permet de lier un vote à un utilisateur de façon pseudonyme, sans révéler son identité publiquement.</li>
+        </ul>
+
+        <h3>Accès et finalité</h3>
+        <ul>
+            <li><strong>Accès :</strong> Nous recevons votre adresse e-mail et votre nom via Google OAuth uniquement au moment de la connexion.</li>
+            <li><strong>Finalité unique :</strong> Ces données sont utilisées <strong>exclusivement</strong> pour vous identifier en tant qu'utilisateur unique et garantir qu'une seule participation par personne est enregistrée. Aucune autre utilisation n'est faite de ces données.</li>
+            <li><strong>Usage limité (Limited Use) :</strong> L'utilisation des données Google est strictement limitée à la fourniture et à l'amélioration des fonctionnalités décrites dans cette politique. Ces données ne sont <strong>pas</strong> utilisées à des fins publicitaires, de profilage, de vente ou de transfert à des tiers à des fins propres.</li>
+        </ul>
+
+        <h3>Stockage</h3>
+        <ul>
+            <li>Votre adresse e-mail et votre nom sont stockés de manière sécurisée dans notre base de données (Supabase), protégée par chiffrement en transit (TLS) et au repos.</li>
+            <li>Ces données ne sont pas utilisées à d'autres fins que le fonctionnement du scrutin.</li>
+        </ul>
+
+        <h3>Partage et transfert</h3>
+        <ul>
+            <li>Nous ne partageons, ne vendons, ne louons et ne transférons <strong>aucune</strong> donnée Google à des tiers.</li>
+            <li>Les seuls accès techniques sont ceux de nos prestataires d'infrastructure (Vercel pour l'hébergement, Supabase pour la base de données), qui traitent ces données uniquement pour assurer le fonctionnement de l'application, conformément à leurs propres politiques de confidentialité.</li>
+            <li>Aucun transfert de données Google ne s'effectue à des fins publicitaires, d'analyse comportementale ou de profilage.</li>
+        </ul>
+
+        <h3>Intelligence artificielle et apprentissage automatique</h3>
+        <ul>
+            <li>Les données obtenues via les API Google ne sont <strong>jamais</strong> utilisées pour entraîner, améliorer ou développer des modèles d'intelligence artificielle ou d'apprentissage automatique, que ce soit de façon directe, agrégée ou anonymisée, sans le consentement explicite de l'utilisateur.</li>
+        </ul>
+
+        <h3>Accès humain aux données Google</h3>
+        <ul>
+            <li>Aucun employé, prestataire ou agent n'accède aux données Google de l'utilisateur, sauf dans les cas suivants : (1) l'utilisateur y a expressément consenti pour résoudre un problème, (2) des raisons de sécurité l'exigent, ou (3) la loi applicable l'impose.</li>
+        </ul>
+
+        <h3>Révocation de l'accès</h3>
+        <p>Vous pouvez révoquer à tout moment les autorisations accordées à cette application via les <a href="https://myaccount.google.com/permissions" target="_blank">paramètres de votre compte Google</a>. La révocation mettra fin à l'accès de l'application à vos données Google.</p>
+
+        <h3>Déclaration de conformité (Limited Use)</h3>
+        <p>L'utilisation et le transfert à toute autre application des informations reçues des API Google sont conformes à la <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Politique d'utilisation des données des services API Google</a>, y compris les exigences d'utilisation limitée.</p>
+        <p><em>In English: The use and transfer to any other app of information received from Google APIs will adhere to <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Google API Services User Data Policy</a>, including the Limited Use requirements.</em></p>
     </div>
 
     <h2>3. Services tiers</h2>
@@ -45,8 +95,14 @@
         <li><strong>Google OAuth :</strong> Authentification tiers. <a href="https://policies.google.com/privacy" target="_blank">Politique de confidentialité de Google</a>.</li>
     </ul>
 
-    <h2>4. Conservation des données</h2>
+    <h2>4. Conservation et suppression des données</h2>
     <p>Les données sont conservées tant que nécessaire pour les besoins du projet ou jusqu'à ce que l'utilisateur demande explicitement leur suppression.</p>
+    <p>Concernant les <strong>données Google</strong> (adresse e-mail et nom) :</p>
+    <ul>
+        <li>Ces données ne sont conservées que le temps nécessaire au fonctionnement du système de vote.</li>
+        <li>En cas de demande de suppression, les données Google associées à votre compte seront effacées dans un délai raisonnable (au plus 30 jours).</li>
+        <li>Si l'application est désactivée ou perd l'accès aux API Google, toutes les données Google stockées seront supprimées.</li>
+    </ul>
 
     <h2>5. Contact et Droits des utilisateurs</h2>
     <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles. Pour toute demande, contactez-nous à : <a href="mailto:gamespassionfr.pro@gmail.com">gamespassionfr.pro@gmail.com</a>.</p>
