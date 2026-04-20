@@ -74,6 +74,7 @@ export default function PlanningViewer(props: Props) {
                 <GameDetailView 
                     game={selectedGame}
                     onClose={() => setSelectedGame(null)}
+                    showVoteSection={false}
                 />
             )}
         </>

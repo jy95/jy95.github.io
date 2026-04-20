@@ -40,6 +40,13 @@ export default function tableColumns(props: Props) : GridColDef[]{
             ...PlatformColumn
           },
           {
+            field: "votes",
+            headerName: "👍",
+            headerAlign: 'center',
+            width: 90,
+            type: 'number'
+          },
+          {
             field: "notes",
             headerName: props.notesLabel,
             headerAlign: 'center',
