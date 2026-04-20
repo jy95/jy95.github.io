@@ -7,7 +7,19 @@ type AvailableRoutes = keyof pathnames;
 type StaticRoute = Exclude<AvailableRoutes, `${string}[${string}]`>;
 
 // Adapt this as necessary
-const host = 'https://jy95.github.io';
+// https://vercel.com/docs/environment-variables/system-environment-variables
+const getHost = () => {
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  // fallback Github pages
+  return 'https://jy95.github.io';
+};
+
+const host = getHost();
 
 function isStaticPath(path: AvailableRoutes): path is Exclude<AvailableRoutes, `${string}[${string}]`> {
   return !/\[.+\]/.test(path);
