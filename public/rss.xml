@@ -4,7 +4,7 @@
         <title>GamesPassionFR - New Games</title>
         <link>https://www.youtube.com/@GPFR1</link>
         <description>Feed for new games featured on the GamesPassionFR YouTube channel</description>
-        <lastBuildDate>Mon, 20 Apr 2026 12:05:05 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 21 Apr 2026 11:59:58 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -13,6 +13,14 @@
             <url>https://yt3.ggpht.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s176-c-k-c0x00ffffff-no-rj</url>
             <link>https://www.youtube.com/@GPFR1</link>
         </image>
+        <item>
+            <title><![CDATA[Shank]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD</guid>
+            <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD/cover.webp" length="0" type="image/webp"/>
+        </item>
         <item>
             <title><![CDATA[Le Chat Potté]]></title>
             <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4</link>
@@ -124,14 +132,6 @@
             <pubDate>Thu, 08 May 2025 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP]]></content:encoded>
             <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP/cover.webp" length="0" type="image/webp"/>
-        </item>
-        <item>
-            <title><![CDATA[Fahrenheit Indigo Prophecy]]></title>
-            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2</link>
-            <guid isPermaLink="false">yt:PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2</guid>
-            <pubDate>Fri, 28 Mar 2025 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2]]></content:encoded>
-            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2/cover.webp" length="0" type="image/webp"/>
         </item>
         <rssFeed>https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ</rssFeed>
     </channel>

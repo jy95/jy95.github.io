@@ -12,6 +12,14 @@
     "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
+            "title": "Shank",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD/cover.webp",
+            "date_modified": "2026-04-20T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
@@ -122,14 +130,6 @@
             "title": "Metal Gear Rising Revengeance",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP/cover.webp",
             "date_modified": "2025-05-08T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
-            "title": "Fahrenheit Indigo Prophecy",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2/cover.webp",
-            "date_modified": "2025-03-28T00:00:00.000Z"
         }
     ]
 }
