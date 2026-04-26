@@ -1291,5 +1291,10 @@
 		"hltb_main": "04:30:00",
 		"hltb_extra": "05:00:00",
 		"hltb_completionist": "05:00:00"
+	},
+	{
+		"id": 181,
+		"title": "MOUSE: P.I. For Hire",
+		"platform": 1
 	}
 ]
