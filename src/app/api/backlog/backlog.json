@@ -1295,6 +1295,9 @@
 	{
 		"id": 181,
 		"title": "MOUSE: P.I. For Hire",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "11:02:07",
+		"hltb_extra": "13:50:55",
+		"hltb_completionist": "14:56:34"
 	}
 ]
