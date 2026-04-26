@@ -35,9 +35,9 @@ async function syncBacklog() {
             console.log(`\nRecherche pour : ${game.title}...`);
             const results = await hltbService.search(game.title);
 
-            if (results && results.length > 0) {
+            if ( results.success ) {
                 // On prend le résultat le plus pertinent (le premier)
-                const data = results[0];
+                const data = results.data[0];
 
                 const main = toDuration(data.mainTime);
                 const extra = toDuration(data.mainExtraTime);
