@@ -12,6 +12,14 @@
     "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
+            "title": "Shank 2",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4/cover.webp",
+            "date_modified": "2026-05-05T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
@@ -122,14 +130,6 @@
             "title": "Ghost Rider",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8/cover.webp",
             "date_modified": "2025-05-26T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
-            "title": "Metal Gear Rising Revengeance",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP/cover.webp",
-            "date_modified": "2025-05-08T00:00:00.000Z"
         }
     ]
 }
