@@ -38,7 +38,7 @@
     "next": "16.2.5",
     "next-intl": "^4.11.0",
     "react": "19.2.6",
-    "react-dom": "19.2.5",
+    "react-dom": "19.2.6",
     "react-player": "^3.4.0",
     "react-redux": "^9.2.0",
     "sharp": "^0.34.5",
