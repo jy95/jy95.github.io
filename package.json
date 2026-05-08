@@ -23,7 +23,7 @@
     "@mui/material": "^9.0.0",
     "@mui/material-nextjs": "^9.0.0",
     "@mui/x-charts": "^9.0.4",
-    "@mui/x-data-grid": "^9.0.4",
+    "@mui/x-data-grid": "^9.1.0",
     "@reduxjs/toolkit": "^2.11.2",
     "@supabase/ssr": "^0.10.0",
     "@supabase/supabase-js": "^2.105.3",
