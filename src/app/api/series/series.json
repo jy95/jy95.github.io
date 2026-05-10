@@ -960,5 +960,24 @@
 				"platform": 1
 			}
 		]
+	},
+	{
+		"name": "Yu-Gi-Oh!",
+		"items": [
+			{
+				"id": 137,
+				"title": "Yu-Gi-Oh! Les Cartes Sacrées",
+				"videoId": "NZiAc-mIJuQ",
+				"duration": "02:57:48",
+				"platform": 2
+			},
+			{
+				"id": 139,
+				"title": "Yu-Gi-Oh! Reshef le Destructeur",
+				"videoId": "1vvwPVwbACY",
+				"duration": "05:04:19",
+				"platform": 2
+			}
+		]
 	}
 ]
