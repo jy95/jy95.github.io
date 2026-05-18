@@ -308,10 +308,11 @@
 	{
 		"id": 228,
 		"availableAt": "2027-12-24",
+		"endAt": "2028-01-10",
 		"playlistId": "PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D",
 		"title": "Rogue Warrior",
 		"releaseDate": "2009-11-27",
-		"duration": "00:00:00",
+		"duration": "01:56:29",
 		"platform": 6,
 		"genres": [
 			16
