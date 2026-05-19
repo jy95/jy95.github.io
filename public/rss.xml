@@ -4,7 +4,7 @@
         <title>GamesPassionFR - New Games</title>
         <link>https://www.youtube.com/@GPFR1</link>
         <description>Feed for new games featured on the GamesPassionFR YouTube channel</description>
-        <lastBuildDate>Mon, 18 May 2026 21:40:34 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 19 May 2026 13:55:37 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -13,6 +13,14 @@
             <url>https://yt3.ggpht.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s176-c-k-c0x00ffffff-no-rj</url>
             <link>https://www.youtube.com/@GPFR1</link>
         </image>
+        <item>
+            <title><![CDATA[NeverDead]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW</guid>
+            <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW/cover.webp" length="0" type="image/webp"/>
+        </item>
         <item>
             <title><![CDATA[Shank 2]]></title>
             <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4</link>
@@ -124,14 +132,6 @@
             <pubDate>Mon, 07 Jul 2025 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb]]></content:encoded>
             <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb/cover.webp" length="0" type="image/webp"/>
-        </item>
-        <item>
-            <title><![CDATA[Ghost Rider]]></title>
-            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8</link>
-            <guid isPermaLink="false">yt:PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8</guid>
-            <pubDate>Mon, 26 May 2025 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8]]></content:encoded>
-            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8/cover.webp" length="0" type="image/webp"/>
         </item>
         <rssFeed>https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ</rssFeed>
     </channel>
