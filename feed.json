@@ -12,6 +12,14 @@
     "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
+            "title": "NeverDead",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW/cover.webp",
+            "date_modified": "2026-05-18T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
@@ -122,14 +130,6 @@
             "title": "Sly 3 : Honor Among Thieves",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb/cover.webp",
             "date_modified": "2025-07-07T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
-            "title": "Ghost Rider",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8/cover.webp",
-            "date_modified": "2025-05-26T00:00:00.000Z"
         }
     ]
 }
