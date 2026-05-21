@@ -317,5 +317,18 @@
 		"genres": [
 			16
 		]
+	},
+	{
+		"id": 229,
+		"availableAt": "2028-01-12",
+		"playlistId": "PLRfhDHeBTBJ6omOFd-ITLsOCYCYOEf0Nw",
+		"title": "Splatterhouse",
+		"releaseDate": "2010-11-26",
+		"duration": "00:00:00",
+		"platform": 6,
+		"genres": [
+			1,
+			9
+		]
 	}
 ]
