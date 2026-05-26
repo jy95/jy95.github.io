@@ -1304,5 +1304,13 @@
 		"id": 182,
 		"title": "Rise of the Argonauts",
 		"platform": 6
+	},
+	{
+		"id": 183,
+		"title": "La Legende de Beowulf : Le Jeu",
+		"platform": 6,
+		"hltb_main": "09:30:00",
+		"hltb_extra": "09:30:00",
+		"hltb_completionist": "14:00:00"
 	}
 ]
