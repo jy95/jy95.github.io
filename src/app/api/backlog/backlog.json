@@ -1303,7 +1303,10 @@
 	{
 		"id": 182,
 		"title": "Rise of the Argonauts",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "12:09:27",
+		"hltb_extra": "13:25:54",
+		"hltb_completionist": "16:25:45"
 	},
 	{
 		"id": 183,
@@ -1316,6 +1319,8 @@
 	{
 		"id": 184,
 		"title": "Rogue Ops",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "09:00:00",
+		"hltb_extra": "09:20:06"
 	}
 ]
