@@ -1312,5 +1312,10 @@
 		"hltb_main": "09:30:00",
 		"hltb_extra": "09:30:00",
 		"hltb_completionist": "14:00:00"
+	},
+	{
+		"id": 184,
+		"title": "Rogue Ops",
+		"platform": 5
 	}
 ]
