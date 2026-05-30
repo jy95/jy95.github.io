@@ -48,7 +48,7 @@
     "@inquirer/input": "^5.1.0",
     "better-sqlite3": "^12.6.2",
     "feed": "^5.2.1",
-    "googleapis": "^172.0.0"
+    "googleapis": "^173.0.0"
   },
   "overrides": {
     "@types/react": "19.2.15",
