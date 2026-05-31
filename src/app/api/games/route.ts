@@ -71,6 +71,8 @@ function generateResponse(params: RequestParams, gamesData: RawPayload): Respons
         });
 
     // Apply search if title is specified
+    // https://www.fusejs.io/web-workers.html#overhead
+    // < 5K items — Use Fuse. Workers add latency, 10K+ items — FuseWorker is faster and keeps the UI responsive.
     const results = (filters?.title === undefined) 
         ? filtered_games
         : new Fuse(filtered_games, { keys: ["title"] }).search(filters.title).map(s => s.item);
