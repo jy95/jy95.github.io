@@ -45,7 +45,7 @@
     "typescript": "6.0.3"
   },
   "devDependencies": {
-    "@inquirer/input": "^5.1.1",
+    "@inquirer/input": "^5.1.2",
     "better-sqlite3": "^12.6.2",
     "feed": "^5.2.1",
     "googleapis": "^173.0.0"
