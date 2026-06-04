@@ -190,7 +190,7 @@
 		"games": {
 			"total": 211,
 			"total_available": 187,
-			"total_unavailable": 25
+			"total_unavailable": 24
 		},
 		"dlcs": {
 			"total": 17,
@@ -209,9 +209,9 @@
 				"seconds": 27
 			},
 			"total_unavailable": {
-				"hours": 109,
-				"minutes": 34,
-				"seconds": 53
+				"hours": 102,
+				"minutes": 46,
+				"seconds": 48
 			}
 		}
 	}
