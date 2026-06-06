@@ -12,6 +12,14 @@
     "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+            "title": "Driver: San Francisco",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
+            "date_modified": "2026-06-05T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
@@ -122,14 +130,6 @@
             "title": "La Planète au Trésor",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl/cover.webp",
             "date_modified": "2025-07-25T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
-            "title": "Sly 3 : Honor Among Thieves",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb/cover.webp",
-            "date_modified": "2025-07-07T00:00:00.000Z"
         }
     ]
 }
