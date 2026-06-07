@@ -57,4 +57,4 @@ await extractAndSaveStats(db, FILES.STATS);
 await extractAndSavePastGames(db, FILES.PAST_GAMES);
 await extractAndSaveDLCS(db, FILES.DLCS);
 await extractAndSaveRandomList(db, FILES.IDENTIFIERS);
-await extractAndSavePastGamesToFeeds(db, FILES.JSON_FEED, FILES.RSS);
+await extractAndSavePastGamesToFeeds(db, FILES.RSS, FILES.JSON_FEED);
