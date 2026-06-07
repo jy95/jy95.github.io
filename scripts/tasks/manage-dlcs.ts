@@ -1,13 +1,12 @@
+import { findIdsInTextArea } from './common/utils';
+
 import type { Database } from 'better-sqlite3';
 import type { DlcPayload } from './common/types';
 
 export async function manageDlcsInDatabase(db: Database, payload: DlcPayload) {
 
     // Fetch games ID
-    const dlcs = payload.dlcs_textarea
-        .split("\n")
-        .map(s => s.trim())
-        .filter(s => s.length > 0);
+    const dlcs = findIdsInTextArea(payload.dlcs_textarea);
 
     // Statements
     const fetchGameByIdStmt = db.prepare('SELECT id FROM games WHERE videoId = @id OR playlistId = @id');

@@ -1,13 +1,13 @@
+import { findIdsInTextArea } from './common/utils';
+
 import type { Database } from 'better-sqlite3';
 import type { SeriePayload } from './common/types';
+
 
 export async function manageSerieInDatabase(db: Database, payload: SeriePayload) {
 
     // Fetch games ID
-    const games = (payload.games_textarea || "")
-        .split("\n")
-        .map(s => s.trim())
-        .filter(s => s.length > 0);
+    const games = findIdsInTextArea(payload.games_textarea);
 
     // Statements
     const findSerieIdStmt = db.prepare('SELECT id FROM series WHERE name = ?');

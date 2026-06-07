@@ -68,3 +68,11 @@ export function turnStringToObj(taskPayloadAsString: string) {
         return value;
     });
 }
+
+export function findIdsInTextArea(textAreaContent?: string) {
+    if (!textAreaContent) return [];
+
+    return textAreaContent.split("\n")
+        .map(s => s.trim())
+        .filter(s => s.length > 0);
+}
