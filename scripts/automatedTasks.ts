@@ -16,6 +16,7 @@ import {
     addTestToDatabase,
     updateTestInDatabase,
     deleteTestFromDatabase,
+    manageDlcsInDatabase,
 } from "./tasks";
 
 // Types
@@ -69,7 +70,7 @@ switch (taskType as TaskType) {
 
     // DLCs
     case "MANAGE_DLCS":
-        await manageSerieInDatabase(db, taskPayload);
+        await manageDlcsInDatabase(db, taskPayload);
         break;
 
     // Tests
