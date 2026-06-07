@@ -9,7 +9,9 @@
         "name": "GamesPassionFR",
         "url": "http://jy95.github.io/"
     },
-    "rssFeed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ",
+    "channelFeed": {
+        "link": "https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ"
+    },
     "items": [
         {
             "id": "yt:PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
