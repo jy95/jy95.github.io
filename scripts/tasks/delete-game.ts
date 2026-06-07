@@ -19,6 +19,9 @@ export async function deleteGameFromDatabase(db: Database, payload: DeleteGamePa
 
     // Find game id
     const gameId = findGameIdStmt.pluck().get(youtubeIdentifier) as number;
+    if (gameId === undefined) {
+        throw new Error(`Game not found with ${keyField}=${youtubeIdentifier}`);
+    }
     // Delete game and everything related, thanks to the CASCADE DELETE
     return deleteGameStmt.run(gameId);
 }
