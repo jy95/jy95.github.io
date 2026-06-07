@@ -160,5 +160,17 @@
         "loginRequired": "Connecte-toi pour voter !",
         "voteCount": "{count, plural, =0 {vote} =1 {vote} other {votes}}",
         "disclaimer": "Les votes servent à accompagner la priorité des prochaines vidéos. Sans constituer une garantie de diffusion, ils offrent un aperçu précieux des envies de la communauté !"
+    },
+    "TierList": {
+        "title_games": "Tier List des Jeux Faits",
+        "title_backlog": "Tier List du Backlog",
+        "empty": "Aucun jeu dans cette catégorie pour le moment.",
+        "categories": {
+            "tier_masterpiece": "Chef-d'œuvre",
+            "tier_excellent": "Excellent",
+            "tier_average": "Moyen",
+            "tier_trash": "À chier",
+            "tier_not_evaluated": "Pas encore évalué"
+        }
     }
 }

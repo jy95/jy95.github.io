@@ -160,5 +160,17 @@
         "loginRequired": "Login to vote!",
         "voteCount": "{count, plural, =0 {vote} =1 {vote} other {votes}}",
         "disclaimer": "Votes are used to guide the priority of upcoming videos. While not a guarantee of coverage, they provide valuable insight into the community's desires!"
+    },
+    "TierList": {
+        "title_games": "Completed Games Tier List",
+        "title_backlog": "Backlog Tier List",
+        "empty": "No games in this category yet.",
+        "categories": {
+            "tier_masterpiece": "Masterpiece",
+            "tier_excellent": "Excellent",
+            "tier_average": "Average",
+            "tier_trash": "Garbage",
+            "tier_not_evaluated": "Not evaluated yet"
+        }
     }
 }
