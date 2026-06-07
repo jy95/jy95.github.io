@@ -33,6 +33,9 @@ export async function updateTestInDatabase(db: Database, payload: UpdateTestPara
     const updateGame = db.transaction(() => {
         // Find game id
         const gameId = findGameIdStmt.pluck().get(youtubeIdentifier);
+        if (gameId === undefined) {
+            throw new Error(`Test record not found for identifier: ${youtubeIdentifier}`);
+        }
 
         // Update title
         if (hasTitle) {

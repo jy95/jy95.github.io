@@ -43,6 +43,10 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
     const updateGame = db.transaction(() => {
         // Find game id
         const gameId = findGameIdStmt.pluck().get(youtubeIdentifier);
+        if (gameId === undefined) {
+            throw new Error(`Game record not found for identifier: ${youtubeIdentifier}`);
+        }
+
         // has schedule ?
         const hasScheduleRow = hasScheduleStmt.pluck().get(gameId) !== undefined;
 

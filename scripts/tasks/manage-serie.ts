@@ -17,12 +17,18 @@ export async function manageSerieInDatabase(db: Database, payload: SeriePayload)
 
     // Execution time
     const serieId = findSerieIdStmt.pluck().get(payload.title) as number;
+    if (!serieId) {
+        throw new Error(`Series not found: ${payload.title}`);
+    }
     await deleteSeriesGamesStmt.run(serieId);
 
     const updateSerieItems = db.transaction(() => {
         let idx = 1;
         for (const gameIdentifier of games) {
             const gameId = fetchGameByIdStmt.pluck().get({ id: gameIdentifier }) as number;
+            if (!gameId) {
+                throw new Error(`Game not found: ${gameIdentifier}`);
+            }
             insertGameToSerieStmt.run(serieId, gameId, idx);
             idx++;
         }

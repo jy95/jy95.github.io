@@ -25,6 +25,9 @@ export async function manageDlcsInDatabase(db: Database, payload: DlcPayload) {
 
             // Fetch game id
             const dlcID = fetchGameByIdStmt.pluck().get({ id: gameIdentifier }) as number;
+            if (!dlcID) {
+                throw new Error(`DLC not found: ${gameIdentifier}`);
+            }
 
             // Insert the dlc's order in the game
             insertDLCToGameStmt.run(gameID, dlcID, idx);
