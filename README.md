@@ -150,7 +150,7 @@ There is a [database](GamesPassionFR.db) for managing video games, their genres,
 | `game_id` | Foreign key referencing the `games` table (Primary Key). | Required | 1 |
 | `category_id` | Foreign key referencing the `tier_categories` table. | Required | 2 |
 
-### tier_list_backlog Table
+### `tier_list_backlog` Table
 
 | Field | Description | Required/Optional | Example |
 | :--- | :--- | :--- | :--- |
