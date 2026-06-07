@@ -135,6 +135,28 @@ There is a [database](GamesPassionFR.db) for managing video games, their genres,
 | `platform`   | Foreign key referencing the `platforms` table.        | Required          | `2`                  |
 | `duration`   | The duration of the test or video content.            | Optional          | `00:30:00`           |
 
+### `tier_categories` Table
+
+| Field | Description | Required/Optional | Example |
+| :--- | :--- | :--- | :--- |
+| `id` | Unique identifier for each category (Primary Key). | Required | 1 |
+| `slug` | Language-independent translation key used for localization. | Required | `tier_excellent` |
+| `display_order` | Integer used to define the custom sorting order of categories. | Required | 1 |
+
+### `tier_list_games` Table
+
+| Field | Description | Required/Optional | Example |
+| :--- | :--- | :--- | :--- |
+| `game_id` | Foreign key referencing the `games` table (Primary Key). | Required | 1 |
+| `category_id` | Foreign key referencing the `tier_categories` table. | Required | 2 |
+
+### tier_list_backlog Table
+
+| Field | Description | Required/Optional | Example |
+| :--- | :--- | :--- | :--- |
+| `backlog_id` | Foreign key referencing the `backlog` table (Primary Key). | Required | 1 |
+| `category_id` | Foreign key referencing the `tier_categories` table. | Required | 3 |
+
 This project is tested with BrowserStack
 
 [YoutubeChannel]: https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ
