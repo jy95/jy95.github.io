@@ -1,0 +1,12 @@
+export { extractAndSavePlatforms } from "./platforms";
+export { extractAndSaveGenres } from "./genres";
+export { extractAndSaveBacklog } from "./backlog";
+export { extractAndSavePlanning } from "./planning";
+export { extractAndSaveGames } from "./games";
+export { extractAndSaveSeries } from "./series";
+export { extractAndSaveTests } from "./tests";
+export { extractAndSaveStats } from "./stats";
+export { extractAndSavePastGames } from "./past-games";
+export { extractAndSaveDLCS } from "./dlcs";
+export { extractAndSaveRandomList } from "./identifiers";
+export { extractAndSavePastGamesToFeeds } from "./feeds";

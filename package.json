@@ -13,7 +13,7 @@
     "generate-playlist-data-report": "node scripts/generate-playlists-stats.mjs",
     "generate-playlist-csv": "node scripts/generate-playlist-csv.mjs",
     "find-published-games": "node scripts/findPublishedGames.mjs",
-    "generate-api-json-files": "node scripts/generateJsonFiles.mjs"
+    "generate-api-json-files": "tsx scripts/generateJsonFiles.ts"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
