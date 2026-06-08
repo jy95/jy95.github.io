@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "generate-responsive-images": "node scripts/generate-responsive-images.mjs",
     "sample-game": "npm run generate-responsive-images -- singleGame PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8 covers cover.jpg",
-    "generate-playlist-data-report": "node scripts/generate-playlists-stats.mjs",
+    "generate-playlist-data-report": "tsx scripts/generate-playlists-stats.ts",
     "generate-playlist-csv": "tsx scripts/generate-playlist-csv.ts",
     "find-published-games": "tsx scripts/findPublishedGames.ts",
     "generate-api-json-files": "tsx scripts/generateJsonFiles.ts"
