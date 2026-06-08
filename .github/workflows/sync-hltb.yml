@@ -28,7 +28,7 @@ jobs:
         run: npm install
 
       - name: 🤖 Run HLTB Sync Script
-        run: tsx scripts/hltb_fetcher.ts
+        run: npx tsx scripts/hltb_fetcher.ts
 
       - name: 🚀 Create Pull Request
         uses: peter-evans/create-pull-request@v8
