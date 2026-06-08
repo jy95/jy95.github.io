@@ -23,7 +23,7 @@ jobs:
           node-version: "lts/*"
 
       - name: 💻 Install dependencies
-        run: npm install --no-save google-img-scrap axios
+        run: npm install
 
       - name: 🤖 Run downloader script
         run: tsx scripts/backlog-cover-downloader.ts
