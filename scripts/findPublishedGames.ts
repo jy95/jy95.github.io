@@ -2,22 +2,28 @@ import Database from 'better-sqlite3';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
+import type { Database as SQLDatabase } from 'better-sqlite3';
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Path to the SQLite database file
 const dbPath = resolve(__dirname, '..', 'GamesPassionFR.db');
 
 // Set of years to match
-const yearsToMatch = new Set(['2026', '2025']);
+const yearsToMatch: Set<string> = new Set(['2026']);
+
+interface GameRow {
+    identifier: string;
+    title: string;
+}
 
 /**
  * Fetches games with a playlistId from the database for all years in the provided set.
- * 
- * @param {Database} db - The open database connection.
+ * * @param {SQLDatabase} db - The open database connection.
  * @param {Set<string>} years - The set of years to match games.
- * @returns {Array<{ title: string, identifier: string }>} - List of games with their titles and playlistIds as "identifier".
+ * @returns {GameRow[]} - List of games with their titles and playlistIds as "identifier".
  */
-function fetchGamesWithPlaylists(db, years) {
+function fetchGamesWithPlaylists(db: SQLDatabase, years: Set<string>): GameRow[] {
     const stmt = db.prepare(`
         SELECT g.playlistId AS identifier, g.title
         FROM games_schedules gs
@@ -27,9 +33,9 @@ function fetchGamesWithPlaylists(db, years) {
           AND g.playlistId IS NOT NULL
     `);
     
-    let allGamesWithPlaylists = [];
+    let allGamesWithPlaylists: GameRow[] = [];
     for (const year of years) {
-        const gamesForYear = stmt.all(year, year);
+        const gamesForYear = stmt.all(year, year) as GameRow[];
         allGamesWithPlaylists = allGamesWithPlaylists.concat(gamesForYear);
     }
     return allGamesWithPlaylists;
@@ -37,12 +43,11 @@ function fetchGamesWithPlaylists(db, years) {
 
 /**
  * Fetches games with a videoId from the database for all years in the provided set.
- * 
- * @param {Database} db - The open database connection.
+ * * @param {SQLDatabase} db - The open database connection.
  * @param {Set<string>} years - The set of years to match games.
- * @returns {Array<{ title: string, identifier: string }>} - List of games with their titles and videoIds as "identifier".
+ * @returns {GameRow[]} - List of games with their titles and videoIds as "identifier".
  */
-function fetchGamesWithVideos(db, years) {
+function fetchGamesWithVideos(db: SQLDatabase, years: Set<string>): GameRow[] {
     const stmt = db.prepare(`
         SELECT g.videoId AS identifier, g.title
         FROM games_schedules gs
@@ -52,9 +57,9 @@ function fetchGamesWithVideos(db, years) {
           AND g.videoId IS NOT NULL
     `);
     
-    let allGamesWithVideos = [];
+    let allGamesWithVideos: GameRow[] = [];
     for (const year of years) {
-        const gamesForYear = stmt.all(year, year);
+        const gamesForYear = stmt.all(year, year) as GameRow[];
         allGamesWithVideos = allGamesWithVideos.concat(gamesForYear);
     }
     return allGamesWithVideos;
@@ -62,10 +67,9 @@ function fetchGamesWithVideos(db, years) {
 
 /**
  * Prints games with their corresponding IDs in the specified format.
- * 
- * @param {Array<{ title: string, identifier: string }>} games - The list of games to print.
+ * * @param {GameRow[]} games - The list of games to print.
  */
-function printGamesWithIds(games) {
+function printGamesWithIds(games: GameRow[]): void {
     const output = games.map(game => {
         return `\n\t// ${game.title}\n\t"${game.identifier}"`;
     });
@@ -76,7 +80,7 @@ function printGamesWithIds(games) {
  * Main function to find and print games with matching playlistIds and videoIds.
  * Opens a shared database connection and fetches data using separate functions for all years.
  */
-function findMatchingPlaylistsAndVideos() {
+async function findMatchingPlaylistsAndVideos(): Promise<void> {
     // Open the database connection
     const db = new Database(dbPath, { readonly: true });
     
@@ -108,4 +112,6 @@ function findMatchingPlaylistsAndVideos() {
 }
 
 // Call the main function
-findMatchingPlaylistsAndVideos();
+(async () => {
+    await findMatchingPlaylistsAndVideos();
+})();
