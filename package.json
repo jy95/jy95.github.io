@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "generate-responsive-images": "node scripts/generate-responsive-images.mjs",
+    "generate-responsive-images": "tsx scripts/generate-responsive-images.ts",
     "sample-game": "npm run generate-responsive-images -- singleGame PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8 covers cover.jpg",
     "generate-playlist-data-report": "tsx scripts/generate-playlists-stats.ts",
     "generate-playlist-csv": "tsx scripts/generate-playlist-csv.ts",
