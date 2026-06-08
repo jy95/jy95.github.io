@@ -8,12 +8,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "generate-responsive-images": "tsx scripts/generate-responsive-images.ts",
+    "generate-responsive-images": "npx tsx scripts/generate-responsive-images.ts",
     "sample-game": "npm run generate-responsive-images -- singleGame PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8 covers cover.jpg",
-    "generate-playlist-data-report": "tsx scripts/generate-playlists-stats.ts",
-    "generate-playlist-csv": "tsx scripts/generate-playlist-csv.ts",
-    "find-published-games": "tsx scripts/findPublishedGames.ts",
-    "generate-api-json-files": "tsx scripts/generateJsonFiles.ts"
+    "generate-playlist-data-report": "npx tsx scripts/generate-playlists-stats.ts",
+    "generate-playlist-csv": "npx tsx scripts/generate-playlist-csv.ts",
+    "find-published-games": "npx tsx scripts/findPublishedGames.ts",
+    "generate-api-json-files": "npx tsx scripts/generateJsonFiles.ts"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
