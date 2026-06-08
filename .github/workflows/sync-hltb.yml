@@ -25,10 +25,10 @@ jobs:
           node-version: "lts/*"
 
       - name: 💻 Install dependencies
-        run: npm install --no-save howlongtobeat-ts
+        run: npm install
 
       - name: 🤖 Run HLTB Sync Script
-        run: node scripts/hltb_fetcher.mjs
+        run: tsx scripts/hltb_fetcher.ts
 
       - name: 🚀 Create Pull Request
         uses: peter-evans/create-pull-request@v8

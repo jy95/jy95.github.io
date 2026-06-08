@@ -1,7 +1,18 @@
 import Database from 'better-sqlite3';
-import { HowLongToBeatService, SearchModifier } from 'howlongtobeat-ts';
+import { HowLongToBeatService } from 'howlongtobeat-ts';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+
+// Define structures for our database records
+interface GameRow {
+    id: number;
+    title: string;
+}
+
+const CONFIG = {
+    DELAY_MIN_MS: 500,  // Pause minimale en millisecondes
+    DELAY_MAX_MS: 1000, // Pause maximale en millisecondes
+};
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const databasePath = resolve(__dirname, '..', 'GamesPassionFR.db');
@@ -11,9 +22,9 @@ const hltbService = new HowLongToBeatService();
 /**
  * Transforme le temps HLTB (secondes) en format "HH:mm:ss"
  * @param {number} totalSeconds 
- * @returns {string}
+ * @returns {string | null}
  */
-function toDuration(totalSeconds) {
+function toDuration(totalSeconds: number | undefined): string | null {
     // If the time is not available or zero, return null as 00:00:00 is not meaningful
     if (!totalSeconds || totalSeconds <= 0) return null;
 
@@ -24,9 +35,9 @@ function toDuration(totalSeconds) {
     return `${h}:${m}:${s}`;
 }
 
-async function syncBacklog() {
+async function syncBacklog(): Promise<void> {
     // 1. On récupère les jeux qui n'ont pas encore de données HLTB
-    const games = db.prepare("SELECT id, title FROM backlog WHERE hltb_main IS NULL").all();
+    const games = db.prepare("SELECT id, title FROM backlog WHERE hltb_main IS NULL").all() as GameRow[];
 
     console.log(`🔍 Analyse de ${games.length} jeux...`);
 
@@ -35,7 +46,7 @@ async function syncBacklog() {
             console.log(`\nRecherche pour : ${game.title}...`);
             const results = await hltbService.search(game.title);
 
-            if ( results.success ) {
+            if ( results.success && results.data.length > 0 ) {
                 // On prend le résultat le plus pertinent (le premier)
                 const data = results.data[0];
 
@@ -55,19 +66,25 @@ async function syncBacklog() {
                 update.run(main, extra, comp, game.id);
                 console.log(`✅ Mis à jour : ${game.title} (Main: ${main})`);
             } else {
-                console.log(`⚠️ Aucun résultat trouvé pour ${game.title}`);
+                console.log(`⚠️ Aucun résultat trouvé pour ${game.title} (${game.id})`);
             }
 
             // Petite pause pour éviter de se faire bannir par HLTB si tu as 500 jeux
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            const randomDelay = Math.floor(Math.random() * (CONFIG.DELAY_MAX_MS - CONFIG.DELAY_MIN_MS + 1)) + CONFIG.DELAY_MIN_MS;
+            console.log(`⏳ Pause de ${randomDelay} ms...`);
+            await new Promise<void>(resolve => setTimeout(resolve, randomDelay));
 
         } catch (error) {
-            console.error(`❌ Erreur sur ${game.title}:`, error.message);
+            const errorMessage = error instanceof Error ? error.message : String(error);
+            console.error(`❌ Erreur sur ${game.title} (${game.id}):`, errorMessage);
         }
     }
 
     console.log("\n✨ Synchronisation terminée !");
-    db.close();
 }
 
-syncBacklog();
+try {
+    await syncBacklog();
+} finally {
+    db.close();
+}

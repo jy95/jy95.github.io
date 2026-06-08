@@ -26,7 +26,7 @@ jobs:
         run: npm install --no-save google-img-scrap axios
 
       - name: 🤖 Run downloader script
-        run: node scripts/backlog-cover-downloader.mjs
+        run: tsx scripts/backlog-cover-downloader.ts
 
       - name: 🚀 Create Pull Request
         uses: peter-evans/create-pull-request@v8

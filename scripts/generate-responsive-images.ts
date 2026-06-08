@@ -1,37 +1,63 @@
 import sharp from 'sharp';
 import { createReadStream } from 'fs';
 import { readFile } from 'fs/promises';
-import { normalize, resolve, dirname } from 'path';
+import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+
+import type { OutputInfo } from 'sharp';
+
 const __dirname = fileURLToPath(dirname(import.meta.url));
 
-const testsJson = JSON.parse(
+// Define interfaces for your JSON structure and configurations
+interface GameEntry {
+    playlistId?: string | number;
+    videoId?: string | number;
+    coverFile?: string;
+    title?: string;
+}
+
+interface StoreConfig {
+    coversRootPath: string;
+    defaultCoverFile: string;
+    games: GameEntry[];
+}
+
+interface ResizeConfig {
+    width: number;
+    height: number;
+    suffix: string;
+}
+
+const testsJson: GameEntry[] = JSON.parse(
     await readFile(
         resolve(
             __dirname,
             '../src/app/api/tests/tests.json'
-        )
+        ),
+        'utf-8'
     )
 );
-const gamesJson = JSON.parse(
+
+const gamesJson: GameEntry[] = JSON.parse(
     await readFile(
         resolve(
             __dirname,
             '../src/app/api/games/games.json'
-        )
+        ),
+        'utf-8'
     )
 );
 
 // Get-ChildItem *@*.webp -Recurse | foreach { Remove-Item -Path $_.FullName }
-async function resizePicture(directory, gameId, pathIcon) {
+async function resizePicture(directory: string, gameId: string, pathIcon: string): Promise<OutputInfo[]> {
     const sharpStream = sharp({ failOn: 'none' });
     const readableStream = createReadStream(pathIcon);
 
     // set up pipe
-    readableStream.pipe(sharpStream)
+    readableStream.pipe(sharpStream);
 
-    const promises = [];
-    const config = [
+    const promises: Promise<OutputInfo>[] = [];
+    const config: ResizeConfig[] = [
         // generate small picture
         {
             width: 150, 
@@ -50,9 +76,9 @@ async function resizePicture(directory, gameId, pathIcon) {
             height: 250,
             suffix: "big"
         },
-    ]
+    ];
 
-    for(let setting of config) {
+    for (let setting of config) {
         promises.push(
             sharpStream
               .clone()
@@ -65,9 +91,9 @@ async function resizePicture(directory, gameId, pathIcon) {
 }
 
 // For big bang pictures refactoring
-async function resizePicturesInFolder() {
+async function resizePicturesInFolder(): Promise<void> {
 
-    const all_games = {
+    const all_games: Record<string, StoreConfig> = {
         games: {
             coversRootPath: "covers",
             defaultCoverFile: "cover.webp",
@@ -78,13 +104,13 @@ async function resizePicturesInFolder() {
             defaultCoverFile: "cover.webp",
             games: testsJson
         }
-    }
+    };
 
     for (let [folderKey, store] of Object.entries(all_games)) {
         let directory = resolve(__dirname, '..', 'public', store.coversRootPath);
-        for(let game of store.games) {
-            const gameId = `${game.playlistId || game.videoId}`
-            let gameIcon = `${directory}/${gameId}/${ game.coverFile || store.defaultCoverFile }`
+        for (let game of store.games) {
+            const gameId = `${game.playlistId || game.videoId}`;
+            let gameIcon = `${directory}/${gameId}/${ game.coverFile || store.defaultCoverFile }`;
             try {
                 await resizePicture(directory, gameId, gameIcon);
                 console.log(`${game.title} - finished`);
@@ -97,9 +123,9 @@ async function resizePicturesInFolder() {
 }
 
 // For new game / test entry
-async function resizePicturesInSingleFolder(folder, game, icon) {
+async function resizePicturesInSingleFolder(folder: string, game: string, icon: string): Promise<void> {
     let directory = resolve(__dirname, '..', 'public', folder);
-    let gameIcon = `${directory}/${game}/${ icon }`
+    let gameIcon = `${directory}/${game}/${ icon }`;
     try {
         await resizePicture(directory, game, gameIcon);
         console.log(`${game} - finished`);
@@ -115,6 +141,10 @@ switch (args[0]) {
     case 'singleGame':
         console.log("Resize single game");
         const [, gameId, folder = "covers", icon = "cover.jpg"] = args;
+        if (!gameId) {
+            console.error("Error: gameId is required for singleGame mode.");
+            break;
+        }
         resizePicturesInSingleFolder(folder, gameId, icon);
         break;
     default:
