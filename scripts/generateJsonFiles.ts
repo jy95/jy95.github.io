@@ -46,15 +46,19 @@ const db = new Database(databasePath, {
 //db.pragma('journal_mode = WAL');
 
 // Operations time
-await extractAndSavePlatforms(db, FILES.PLATFORMS);
-await extractAndSaveGenres(db, FILES.GENRES);
-await extractAndSaveBacklog(db, FILES.BACKLOG);
-await extractAndSavePlanning(db, FILES.PLANNING);
-await extractAndSaveGames(db, FILES.GAMES);
-await extractAndSaveSeries(db, FILES.SERIES);
-await extractAndSaveTests(db, FILES.TESTS);
-await extractAndSaveStats(db, FILES.STATS);
-await extractAndSavePastGames(db, FILES.PAST_GAMES);
-await extractAndSaveDLCS(db, FILES.DLCS);
-await extractAndSaveRandomList(db, FILES.IDENTIFIERS);
-await extractAndSavePastGamesToFeeds(db, FILES.RSS, FILES.JSON_FEED);
+try {
+    await extractAndSavePlatforms(db, FILES.PLATFORMS);
+    await extractAndSaveGenres(db, FILES.GENRES);
+    await extractAndSaveBacklog(db, FILES.BACKLOG);
+    await extractAndSavePlanning(db, FILES.PLANNING);
+    await extractAndSaveGames(db, FILES.GAMES);
+    await extractAndSaveSeries(db, FILES.SERIES);
+    await extractAndSaveTests(db, FILES.TESTS);
+    await extractAndSaveStats(db, FILES.STATS);
+    await extractAndSavePastGames(db, FILES.PAST_GAMES);
+    await extractAndSaveDLCS(db, FILES.DLCS);
+    await extractAndSaveRandomList(db, FILES.IDENTIFIERS);
+    await extractAndSavePastGamesToFeeds(db, FILES.RSS, FILES.JSON_FEED);
+} finally {
+    db.close();
+}

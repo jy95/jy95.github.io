@@ -46,7 +46,7 @@ async function syncBacklog(): Promise<void> {
             console.log(`\nRecherche pour : ${game.title}...`);
             const results = await hltbService.search(game.title);
 
-            if ( results.success ) {
+            if ( results.success && results.data.length > 0 ) {
                 // On prend le résultat le plus pertinent (le premier)
                 const data = results.data[0];
 
@@ -81,7 +81,10 @@ async function syncBacklog(): Promise<void> {
     }
 
     console.log("\n✨ Synchronisation terminée !");
-    db.close();
 }
 
-await syncBacklog();
+try {
+    await syncBacklog();
+} finally {
+    db.close();
+}

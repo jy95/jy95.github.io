@@ -19,7 +19,7 @@ interface GameRow {
 
 /**
  * Fetches games with a playlistId from the database for all years in the provided set.
- * * @param {SQLDatabase} db - The open database connection.
+ * @param {SQLDatabase} db - The open database connection.
  * @param {Set<string>} years - The set of years to match games.
  * @returns {GameRow[]} - List of games with their titles and playlistIds as "identifier".
  */
@@ -33,17 +33,19 @@ export function fetchGamesWithPlaylists(db: SQLDatabase, years: Set<string>): Ga
           AND g.playlistId IS NOT NULL
     `);
     
-    let allGamesWithPlaylists: GameRow[] = [];
+    const allGamesWithPlaylists = new Map<string, GameRow>();
     for (const year of years) {
         const gamesForYear = stmt.all(year, year) as GameRow[];
-        allGamesWithPlaylists = allGamesWithPlaylists.concat(gamesForYear);
+        for (const game of gamesForYear) {
+            allGamesWithPlaylists.set(game.identifier, game);
+        }
     }
-    return allGamesWithPlaylists;
+    return [...allGamesWithPlaylists.values()];
 }
 
 /**
  * Fetches games with a videoId from the database for all years in the provided set.
- * * @param {SQLDatabase} db - The open database connection.
+ * @param {SQLDatabase} db - The open database connection.
  * @param {Set<string>} years - The set of years to match games.
  * @returns {GameRow[]} - List of games with their titles and videoIds as "identifier".
  */
@@ -57,12 +59,14 @@ export function fetchGamesWithVideos(db: SQLDatabase, years: Set<string>): GameR
           AND g.videoId IS NOT NULL
     `);
     
-    let allGamesWithVideos: GameRow[] = [];
+    const allGamesWithVideos = new Map<string, GameRow>();
     for (const year of years) {
         const gamesForYear = stmt.all(year, year) as GameRow[];
-        allGamesWithVideos = allGamesWithVideos.concat(gamesForYear);
+        for (const game of gamesForYear) {
+            allGamesWithVideos.set(game.identifier, game);
+        }
     }
-    return allGamesWithVideos;
+    return [...allGamesWithVideos.values()];
 }
 
 /**
