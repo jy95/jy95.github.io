@@ -22,7 +22,7 @@ jobs:
                 node-version: "lts/*"
                 cache: 'npm'
             - name: 💻 Install npm packages
-              run: npm install better-sqlite3 --no-save
+              run: npm install
             - name: 🤖 Do the thing
               run: npm run generate-api-json-files
             - name: 💅 Create Pull Request
