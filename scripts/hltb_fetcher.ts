@@ -84,6 +84,4 @@ async function syncBacklog(): Promise<void> {
     db.close();
 }
 
-(async () => {
-    await syncBacklog();
-})();
+await syncBacklog();

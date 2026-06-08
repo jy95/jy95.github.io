@@ -23,7 +23,7 @@ interface GameRow {
  * @param {Set<string>} years - The set of years to match games.
  * @returns {GameRow[]} - List of games with their titles and playlistIds as "identifier".
  */
-function fetchGamesWithPlaylists(db: SQLDatabase, years: Set<string>): GameRow[] {
+export function fetchGamesWithPlaylists(db: SQLDatabase, years: Set<string>): GameRow[] {
     const stmt = db.prepare(`
         SELECT g.playlistId AS identifier, g.title
         FROM games_schedules gs
@@ -47,7 +47,7 @@ function fetchGamesWithPlaylists(db: SQLDatabase, years: Set<string>): GameRow[]
  * @param {Set<string>} years - The set of years to match games.
  * @returns {GameRow[]} - List of games with their titles and videoIds as "identifier".
  */
-function fetchGamesWithVideos(db: SQLDatabase, years: Set<string>): GameRow[] {
+export function fetchGamesWithVideos(db: SQLDatabase, years: Set<string>): GameRow[] {
     const stmt = db.prepare(`
         SELECT g.videoId AS identifier, g.title
         FROM games_schedules gs
