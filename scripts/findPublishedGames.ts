@@ -112,6 +112,4 @@ async function findMatchingPlaylistsAndVideos(): Promise<void> {
 }
 
 // Call the main function
-(async () => {
-    await findMatchingPlaylistsAndVideos();
-})();
+await findMatchingPlaylistsAndVideos();

@@ -106,7 +106,7 @@ async function run(): Promise<void> {
         games = JSON.parse(rawData);
     } catch (err) {
         console.error("❌ Impossible de lire le fichier backlog.json");
-        return;
+        throw err;
     }
 
     console.log(`🚀 Lancement de la récupération pour ${games.length} titres...`);
@@ -154,6 +154,4 @@ async function run(): Promise<void> {
     console.log("\n✨ Terminé !");
 }
 
-(async () => {
-    await run();
-})();
+await run();
