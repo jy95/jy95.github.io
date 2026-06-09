@@ -1,0 +1,27 @@
+[
+	{
+		"id": 1,
+		"slug": "tier_masterpiece",
+		"display_order": 1
+	},
+	{
+		"id": 2,
+		"slug": "tier_excellent",
+		"display_order": 2
+	},
+	{
+		"id": 3,
+		"slug": "tier_average",
+		"display_order": 3
+	},
+	{
+		"id": 4,
+		"slug": "tier_trash",
+		"display_order": 4
+	},
+	{
+		"id": 5,
+		"slug": "tier_not_evaluated",
+		"display_order": 5
+	}
+]

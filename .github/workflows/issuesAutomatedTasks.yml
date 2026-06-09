@@ -29,6 +29,7 @@ jobs:
                 contains(github.event.issue.labels.*.name, '[ADD_TEST]') && 'ADD_TEST' || 
                 contains(github.event.issue.labels.*.name, '[UPDATE_TEST]') && 'UPDATE_TEST' || 
                 contains(github.event.issue.labels.*.name, '[DELETE_TEST]') && 'DELETE_TEST' || 
+                contains(github.event.issue.labels.*.name, '[UPDATE_TIER_LIST]') && 'UPDATE_TIER_LIST' || 
                 'UNKNOWN' }}
           run: echo "issue_type=${{ env.ISSUE_TYPE }}" >> $GITHUB_OUTPUT
         - id: set_template_file
@@ -73,6 +74,9 @@ jobs:
                 ;;
               DELETE_TEST)
                 echo "template_file=13-delete-test.yml" >> $GITHUB_OUTPUT
+                ;;
+              UPDATE_TIER_LIST)
+                echo "template_file=14-update-tier-lists.yml" >> $GITHUB_OUTPUT
                 ;;
             esac
     process_issue:

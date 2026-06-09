@@ -10,7 +10,8 @@ export type TaskType =
   | "CLEAN_BACKLOG"
   | "ADD_TEST"
   | "UPDATE_TEST"
-  | "DELETE_TEST";
+  | "DELETE_TEST"
+  | "UPDATE_TIER_LIST";
 
 export type IdentifierKind = 'Playlist' | 'Video';
 
@@ -76,4 +77,10 @@ export interface TestPayload {
   identifierValue: string;
   platform: Platform;
   duration?: string;
+}
+
+export interface TierListPayload {
+  tierList: "GAMES" | "BACKLOG";
+  category: "tier_average" | "tier_excellent" | "tier_masterpiece" | "tier_trash" | "tier_not_evaluated";
+  games_textarea: string;
 }
