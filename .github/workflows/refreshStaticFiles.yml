@@ -34,20 +34,6 @@ jobs:
                   automerge
                 body: |
                   This is an automated update of static files based on the latest data in the database.
-                  
-                  Updated files:
-                  - backlog.json
-                  - games.json
-                  - series.json
-                  - tests.json
-                  - platforms.json
-                  - genres.json
-                  - planning.json
-                  - stats.json  
-                  - past-planning.json  
-                  - dlcs.json  
-                  - identifiers.json
-                  - rss.xml
 
                   @coderabbitai ignore
                 draft: false
