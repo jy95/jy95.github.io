@@ -153,7 +153,7 @@
         "hltb_main": "Quête principale",
         "hltb_extra": "Quête principale + annexes",
         "hltb_completionist": "À 100 %"
-     },
+    },
     "vote": {
         "voteAction": "Voter",
         "voted": "Voté !",
@@ -168,8 +168,10 @@
         "categories": {
             "tier_masterpiece": "Chef-d'œuvre",
             "tier_excellent": "Excellent",
+            "tier_good": "Bon",
             "tier_average": "Moyen",
-            "tier_trash": "À chier",
+            "tier_poor": "Médiocre",
+            "tier_bad": "Mauvais",
             "tier_not_evaluated": "Pas encore évalué"
         }
     }

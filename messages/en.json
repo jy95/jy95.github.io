@@ -168,8 +168,10 @@
         "categories": {
             "tier_masterpiece": "Masterpiece",
             "tier_excellent": "Excellent",
+            "tier_good": "Good",
             "tier_average": "Average",
-            "tier_trash": "Garbage",
+            "tier_poor": "Poor",
+            "tier_bad": "Bad",
             "tier_not_evaluated": "Not evaluated yet"
         }
     }
