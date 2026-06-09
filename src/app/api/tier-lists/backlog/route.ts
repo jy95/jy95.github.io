@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
 
-    // Game data
+    // Backlog data
     const backlog = (await import("./backlog.json")).default;
     return NextResponse.json(backlog, {
         headers: {

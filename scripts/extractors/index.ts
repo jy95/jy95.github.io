@@ -12,3 +12,4 @@ export { extractAndSaveRandomList } from "./identifiers";
 export { extractAndSavePastGamesToFeeds } from "./feeds";
 export { extractAndSaveTierListGames } from "./tier-list-games";
 export { extractAndSaveTierListBacklog } from "./tier-list-backlog";
+export { extractAndSaveTierListCategories } from "./tier-list-categories";

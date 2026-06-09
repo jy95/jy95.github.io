@@ -17,7 +17,8 @@ import {
     extractAndSaveRandomList,
     extractAndSavePastGamesToFeeds,
     extractAndSaveTierListGames,
-    extractAndSaveTierListBacklog
+    extractAndSaveTierListBacklog,
+    extractAndSaveTierListCategories
 } from "./extractors"
 
 // Directory of the current script
@@ -41,6 +42,7 @@ const FILES = {
     "JSON_FEED": resolve(__dirname, '..', 'public/feed.json'),
     "TIER_LIST_GAMES": resolve(__dirname, '..', 'src/app/api/tier-lists/games/games.json'),
     "TIER_LIST_BACKLOG": resolve(__dirname, '..', 'src/app/api/tier-lists/backlog/backlog.json'),
+    "TIER_LIST_CATEGORIES": resolve(__dirname, '..', 'src/app/api/tier-lists/categories/categories.json')
 }
 
 const db = new Database(databasePath, {
@@ -65,6 +67,7 @@ try {
     await extractAndSavePastGamesToFeeds(db, FILES.RSS, FILES.JSON_FEED);
     await extractAndSaveTierListGames(db, FILES.TIER_LIST_GAMES);
     await extractAndSaveTierListBacklog(db, FILES.TIER_LIST_BACKLOG);
+    await extractAndSaveTierListCategories(db, FILES.TIER_LIST_CATEGORIES);
 } finally {
     db.close();
 }

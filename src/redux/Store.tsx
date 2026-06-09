@@ -11,6 +11,7 @@ import { platformsAPI } from "./services/platformsAPI"
 import { genresAPI } from "./services/genresAPI";
 import { dlcsAPI } from "./services/dlcsAPI";
 import { votesAPI } from "./services/votesAPI";
+import { tierListAPI } from "./services/tierListAPI";
 
 export const makeStore = () => {
     return configureStore({
@@ -27,7 +28,8 @@ export const makeStore = () => {
             [platformsAPI.reducerPath]: platformsAPI.reducer,
             [genresAPI.reducerPath]: genresAPI.reducer,
             [dlcsAPI.reducerPath]: dlcsAPI.reducer,
-            [votesAPI.reducerPath]: votesAPI.reducer
+            [votesAPI.reducerPath]: votesAPI.reducer,
+            [tierListAPI.reducerPath]: tierListAPI.reducer
         },
         // Adding the api middleware enables caching, invalidation, polling,
         // and other useful features of `rtk-query`.
@@ -41,7 +43,8 @@ export const makeStore = () => {
             .concat(platformsAPI.middleware)
             .concat(genresAPI.middleware)
             .concat(dlcsAPI.middleware)
-            .concat(votesAPI.middleware),
+            .concat(votesAPI.middleware)
+            .concat(tierListAPI.middleware),
     });
 }
 
