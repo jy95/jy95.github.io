@@ -15,7 +15,9 @@ import {
     extractAndSavePastGames,
     extractAndSaveDLCS,
     extractAndSaveRandomList,
-    extractAndSavePastGamesToFeeds
+    extractAndSavePastGamesToFeeds,
+    extractAndSaveTierListGames,
+    extractAndSaveTierListBacklog
 } from "./extractors"
 
 // Directory of the current script
@@ -36,7 +38,9 @@ const FILES = {
     "DLCS": resolve(__dirname, '..', 'src/app/api/dlcs/dlcs.json'),
     "IDENTIFIERS": resolve(__dirname, '..', 'src/app/api/random/identifiers.json'),
     "RSS": resolve(__dirname, '..', 'public/rss.xml'),
-    "JSON_FEED": resolve(__dirname, '..', 'public/feed.json')
+    "JSON_FEED": resolve(__dirname, '..', 'public/feed.json'),
+    "TIER_LIST_GAMES": resolve(__dirname, '..', 'src/app/api/tier-lists/games/games.json'),
+    "TIER_LIST_BACKLOG": resolve(__dirname, '..', 'src/app/api/tier-lists/backlog/backlog.json'),
 }
 
 const db = new Database(databasePath, {
@@ -59,6 +63,8 @@ try {
     await extractAndSaveDLCS(db, FILES.DLCS);
     await extractAndSaveRandomList(db, FILES.IDENTIFIERS);
     await extractAndSavePastGamesToFeeds(db, FILES.RSS, FILES.JSON_FEED);
+    await extractAndSaveTierListGames(db, FILES.TIER_LIST_GAMES);
+    await extractAndSaveTierListBacklog(db, FILES.TIER_LIST_BACKLOG);
 } finally {
     db.close();
 }
