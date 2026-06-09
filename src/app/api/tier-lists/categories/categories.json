@@ -11,17 +11,27 @@
 	},
 	{
 		"id": 3,
-		"slug": "tier_average",
+		"slug": "tier_good",
 		"display_order": 3
 	},
 	{
 		"id": 4,
-		"slug": "tier_trash",
+		"slug": "tier_average",
 		"display_order": 4
 	},
 	{
 		"id": 5,
-		"slug": "tier_not_evaluated",
+		"slug": "tier_poor",
 		"display_order": 5
+	},
+	{
+		"id": 6,
+		"slug": "tier_bad",
+		"display_order": 6
+	},
+	{
+		"id": 7,
+		"slug": "tier_not_evaluated",
+		"display_order": 7
 	}
 ]
