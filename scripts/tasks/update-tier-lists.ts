@@ -22,8 +22,10 @@ export async function updateTierLists(db: Database, payload: TierListPayload) {
 
     // Statments
     const fetchGameByIdStmt = db.prepare('SELECT id FROM games WHERE videoId = @id OR playlistId = @id');
+
     const insertGameToTierListStmt = db.prepare('INSERT OR IGNORE INTO tier_list_games (game_id, category_id) VALUES (@id, @category)');
     const insertBacklogGameToTierListStmt = db.prepare('INSERT OR IGNORE INTO backlog_tier_list_games (backlog_id, category_id) VALUES (@id, @category)');
+    
     const updateGameCategoryStmt = db.prepare('UPDATE tier_list_games SET category_id = @category WHERE game_id = @id');
     const updateBacklogGameCategoryStmt = db.prepare('UPDATE backlog_tier_list_games SET category_id = @category WHERE backlog_id = @id');
 
@@ -47,7 +49,7 @@ export async function updateTierLists(db: Database, payload: TierListPayload) {
     const updateBacklogTierList = db.transaction(() => {
         for (const gameIdentifier of gameIDs) {
             // Fetch game ID
-            const backlogId = fetchGameByIdStmt.pluck().get({ id: gameIdentifier }) as number;
+            const backlogId = parseInt(gameIdentifier);
 
             if (!backlogId) {
                 throw new Error(`Backlog game not found: ${gameIdentifier}`);

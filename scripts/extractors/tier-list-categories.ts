@@ -6,7 +6,7 @@ import type { Database } from "better-sqlite3";
 type TierListCategory = {
     id: number;
     slug: string;
-    name: string;
+    display_order: number;
 };
 
 export async function extractAndSaveTierListCategories(db: Database, outputPath: string): Promise<void> {

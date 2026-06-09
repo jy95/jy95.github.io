@@ -6,7 +6,8 @@ export async function GET(request: Request) {
 
     // Get query parameters
     const { searchParams } = new URL(request.url);
-    const sortOrder = searchParams.get("sort") ?? "asc" as sortOption;
+    const rawSort = searchParams.get("sort");
+    const sortOrder: sortOption = rawSort === "desc" ? "desc" : "asc";
 
     // Categories data
     const categories = (await import("./categories.json")).default;
