@@ -1,0 +1,45 @@
+name: 🎖️ Update tier list
+description: Update tier lists in the database
+title: '[UPDATE_TIER_LIST] '
+labels: ["database","[UPDATE_TIER_LIST]"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill in the following fields to update tier lists in the database !
+  - type: dropdown
+    id: tierList
+    attributes:
+      label: Tier list to update ?
+      description: What is the tier list you want to update ?
+      options:
+        - GAMES
+        - BACKLOG
+      default: 0
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category ?
+      description: What is the rating category of this tier list (tier_excellent, tier_average, ...) ?
+      options:
+        - tier_average
+        - tier_excellent
+        - tier_masterpiece
+        - tier_trash
+        - tier_not_evaluated
+      default: 0
+
+  - type: textarea
+    id: games_textarea
+    attributes:
+      label: Games
+      description: Put the ID of each game (playlistId or videoId) in the order you want them to be in this tier list category
+      placeholder: |
+        ID_1
+        ID_2
+        ID_3
+        ...
+    validations:
+      required: true

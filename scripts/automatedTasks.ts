@@ -17,6 +17,7 @@ import {
     updateTestInDatabase,
     deleteTestFromDatabase,
     manageDlcsInDatabase,
+    updateTierLists,
 } from "./tasks";
 
 // Types
@@ -82,6 +83,11 @@ switch (taskType as TaskType) {
         break;
     case "DELETE_TEST":
         await deleteTestFromDatabase(db, taskPayload);
+        break;
+
+    // Tier Lists
+    case "UPDATE_TIER_LIST":
+        await updateTierLists(db, taskPayload);
         break;
 
     default:
