@@ -3,7 +3,128 @@
 	"tier_excellent": [],
 	"tier_good": [],
 	"tier_average": [],
-	"tier_poor": [],
+	"tier_poor": [
+		{
+			"id": "PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5",
+			"title": "Da Vinci Code",
+			"playlistId": "PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5",
+			"releaseDate": "2006-05-19",
+			"duration": "05:49:40",
+			"platform": 5,
+			"genres": [
+				1,
+				2,
+				13
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP",
+			"title": "Mafia 1",
+			"playlistId": "PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP",
+			"releaseDate": "2004-02-13",
+			"duration": "09:00:04",
+			"platform": 5,
+			"genres": [
+				1,
+				2,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "6UzzEQjYA9c",
+			"title": "Hot Pixel",
+			"videoId": "6UzzEQjYA9c",
+			"releaseDate": "2008-06-22",
+			"duration": "00:27:38",
+			"platform": 3,
+			"genres": [
+				13
+			],
+			"imagePath": "/covers/6UzzEQjYA9c/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=6UzzEQjYA9c",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "uDs_7iY6oqw",
+			"title": "Danny Fantôme : L'Ultime Ennemi",
+			"videoId": "uDs_7iY6oqw",
+			"releaseDate": "2006-05-26",
+			"duration": "00:52:53",
+			"platform": 2,
+			"genres": [
+				9
+			],
+			"imagePath": "/covers/uDs_7iY6oqw/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=uDs_7iY6oqw",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "-LX3ae9m_uU",
+			"title": "Dingo : Une Journée de Dingue !",
+			"videoId": "-LX3ae9m_uU",
+			"releaseDate": "2001-12-13",
+			"duration": "00:53:20",
+			"platform": 4,
+			"genres": [
+				13,
+				7
+			],
+			"imagePath": "/covers/-LX3ae9m_uU/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=-LX3ae9m_uU",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"title": "Aladdin : La Revanche de Nasira",
+			"playlistId": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"releaseDate": "2000-12-13",
+			"duration": "03:51:25",
+			"platform": 4,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
+			"title": "Afro Samurai",
+			"playlistId": "PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
+			"releaseDate": "2009-03-27",
+			"duration": "04:46:22",
+			"platform": 6,
+			"genres": [
+				1,
+				9
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
+			"title": "Fahrenheit Indigo Prophecy",
+			"playlistId": "PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
+			"releaseDate": "2005-09-16",
+			"duration": "05:38:37",
+			"platform": 5,
+			"genres": [
+				1
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
+			"url_type": "PLAYLIST"
+		}
+	],
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
@@ -223,22 +344,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5",
-			"title": "Da Vinci Code",
-			"playlistId": "PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5",
-			"releaseDate": "2006-05-19",
-			"duration": "05:49:40",
-			"platform": 5,
-			"genres": [
-				1,
-				2,
-				13
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
 			"title": "Astérix & Obélix XXL",
 			"playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
@@ -392,22 +497,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP",
-			"title": "Mafia 1",
-			"playlistId": "PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP",
-			"releaseDate": "2004-02-13",
-			"duration": "09:00:04",
-			"platform": 5,
-			"genres": [
-				1,
-				2,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1337,20 +1426,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "6UzzEQjYA9c",
-			"title": "Hot Pixel",
-			"videoId": "6UzzEQjYA9c",
-			"releaseDate": "2008-06-22",
-			"duration": "00:27:38",
-			"platform": 3,
-			"genres": [
-				13
-			],
-			"imagePath": "/covers/6UzzEQjYA9c/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=6UzzEQjYA9c",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "lYIH7XkENSw",
 			"title": "Prince of Persia : Les sables oubliés",
 			"videoId": "lYIH7XkENSw",
@@ -1413,20 +1488,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "uDs_7iY6oqw",
-			"title": "Danny Fantôme : L'Ultime Ennemi",
-			"videoId": "uDs_7iY6oqw",
-			"releaseDate": "2006-05-26",
-			"duration": "00:52:53",
-			"platform": 2,
-			"genres": [
-				9
-			],
-			"imagePath": "/covers/uDs_7iY6oqw/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=uDs_7iY6oqw",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
 			"title": "Ratchet & Clank : Opération Destruction",
 			"playlistId": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
@@ -1471,21 +1532,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "-LX3ae9m_uU",
-			"title": "Dingo : Une Journée de Dingue !",
-			"videoId": "-LX3ae9m_uU",
-			"releaseDate": "2001-12-13",
-			"duration": "00:53:20",
-			"platform": 4,
-			"genres": [
-				13,
-				7
-			],
-			"imagePath": "/covers/-LX3ae9m_uU/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=-LX3ae9m_uU",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1932,22 +1978,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
-			"title": "Aladdin : La Revanche de Nasira",
-			"playlistId": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
-			"releaseDate": "2000-12-13",
-			"duration": "03:51:25",
-			"platform": 4,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
 			"title": "Alan Wake Remastered",
 			"playlistId": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
@@ -2099,21 +2129,6 @@
 			],
 			"imagePath": "/covers/NZiAc-mIJuQ/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=NZiAc-mIJuQ",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
-			"title": "Afro Samurai",
-			"playlistId": "PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
-			"releaseDate": "2009-03-27",
-			"duration": "04:46:22",
-			"platform": 6,
-			"genres": [
-				1,
-				9
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2607,20 +2622,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
-			"title": "Fahrenheit Indigo Prophecy",
-			"playlistId": "PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
-			"releaseDate": "2005-09-16",
-			"duration": "05:38:37",
-			"platform": 5,
-			"genres": [
-				1
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
 			"url_type": "PLAYLIST"
 		},
 		{
