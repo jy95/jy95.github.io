@@ -26,10 +26,10 @@ export async function updateTierLists(db: Database, payload: TierListPayload) {
     const fetchGameByIdStmt = db.prepare('SELECT id FROM games WHERE videoId = @id OR playlistId = @id');
 
     const insertGameToTierListStmt = db.prepare('INSERT OR IGNORE INTO tier_list_games (game_id, category_id) VALUES (@id, @category)');
-    const insertBacklogGameToTierListStmt = db.prepare('INSERT OR IGNORE INTO backlog_tier_list_games (backlog_id, category_id) VALUES (@id, @category)');
+    const insertBacklogGameToTierListStmt = db.prepare('INSERT OR IGNORE INTO tier_list_backlog (backlog_id, category_id) VALUES (@id, @category)');
     
     const updateGameCategoryStmt = db.prepare('UPDATE tier_list_games SET category_id = @category WHERE game_id = @id');
-    const updateBacklogGameCategoryStmt = db.prepare('UPDATE backlog_tier_list_games SET category_id = @category WHERE backlog_id = @id');
+    const updateBacklogGameCategoryStmt = db.prepare('UPDATE tier_list_backlog SET category_id = @category WHERE backlog_id = @id');
 
     // Update games tier list
     const updateGamesTierList = db.transaction(() => {
