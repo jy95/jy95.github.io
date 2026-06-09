@@ -6,9 +6,11 @@ import type { TierListPayload } from './common/types';
 const TIER_LIST_CATEGORIES = {
     "tier_masterpiece": 1,
     "tier_excellent": 2,
-    "tier_average": 3,
-    "tier_trash": 4,
-    "tier_not_evaluated": 5,
+    "tier_good": 3,
+    "tier_average": 4,
+    "tier_poor": 5,
+    "tier_bad": 6,
+    "tier_not_evaluated": 7,
 } satisfies Record<TierListPayload['category'], number>;
 
 export async function updateTierLists(db: Database, payload: TierListPayload) {
