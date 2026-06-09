@@ -1,8 +1,10 @@
 {
 	"tier_masterpiece": [],
 	"tier_excellent": [],
+	"tier_good": [],
 	"tier_average": [],
-	"tier_trash": [],
+	"tier_poor": [],
+	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
 			"id": "1",
