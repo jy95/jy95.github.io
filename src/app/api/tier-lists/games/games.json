@@ -2115,6 +2115,37 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
+			"title": "Batman: Rise of Sin Tzu",
+			"playlistId": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
+			"releaseDate": "2003-11-20",
+			"duration": "04:25:24",
+			"platform": 5,
+			"genres": [
+				1
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s",
+			"title": "Ratchet & Clank : La Taille, Ca Compte",
+			"playlistId": "PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s",
+			"releaseDate": "2007-05-16",
+			"duration": "04:05:03",
+			"platform": 3,
+			"genres": [
+				1,
+				2,
+				12,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
 			"title": "Les Indestructibles : La Terrible Attaque du Démolisseur",
 			"playlistId": "PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
@@ -2127,6 +2158,23 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo",
+			"title": "Ratchet & Clank",
+			"playlistId": "PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo",
+			"releaseDate": "2002-11-08",
+			"duration": "07:03:58",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2206,6 +2254,23 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
+			"title": "Jak II : Hors la Loi",
+			"playlistId": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
+			"releaseDate": "2003-10-15",
+			"duration": "06:25:22",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
 			"title": "Marc Eckō's Getting Up: Contents Under Pressure",
 			"playlistId": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
@@ -2218,6 +2283,23 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
+			"title": "Sonic Adventure DX: Director's Cut",
+			"playlistId": "PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
+			"releaseDate": "2004-02-06",
+			"duration": "06:25:57",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				12,
+				14
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2313,6 +2395,22 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ5yE1da-5kvYirmxBd7sLEX",
+			"title": "Jak and Daxter: The Lost Frontier",
+			"playlistId": "PLRfhDHeBTBJ5yE1da-5kvYirmxBd7sLEX",
+			"releaseDate": "2009-11-18",
+			"duration": "05:16:27",
+			"platform": 3,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5yE1da-5kvYirmxBd7sLEX/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5yE1da-5kvYirmxBd7sLEX",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
 			"title": "Ratchet & Clank : Quest for Booty",
 			"playlistId": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
@@ -2372,6 +2470,21 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
+			"title": "Sly Cooper : Voleurs à travers le Temps",
+			"playlistId": "PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
+			"releaseDate": "2013-03-27",
+			"duration": "08:55:44",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2562,54 +2675,6 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
-			"id": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
-			"title": "Batman: Rise of Sin Tzu",
-			"playlistId": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
-			"releaseDate": "2003-11-20",
-			"duration": "04:25:24",
-			"platform": 5,
-			"genres": [
-				1
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s",
-			"title": "Ratchet & Clank : La Taille, Ca Compte",
-			"playlistId": "PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s",
-			"releaseDate": "2007-05-16",
-			"duration": "04:05:03",
-			"platform": 3,
-			"genres": [
-				1,
-				2,
-				12,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo",
-			"title": "Ratchet & Clank",
-			"playlistId": "PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo",
-			"releaseDate": "2002-11-08",
-			"duration": "07:03:58",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
 			"title": "Saints Row The Third",
 			"playlistId": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
@@ -2637,40 +2702,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
-			"title": "Jak II : Hors la Loi",
-			"playlistId": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
-			"releaseDate": "2003-10-15",
-			"duration": "06:25:22",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
-			"title": "Sonic Adventure DX: Director's Cut",
-			"playlistId": "PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
-			"releaseDate": "2004-02-06",
-			"duration": "06:25:57",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				12,
-				14
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2783,22 +2814,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5yE1da-5kvYirmxBd7sLEX",
-			"title": "Jak and Daxter: The Lost Frontier",
-			"playlistId": "PLRfhDHeBTBJ5yE1da-5kvYirmxBd7sLEX",
-			"releaseDate": "2009-11-18",
-			"duration": "05:16:27",
-			"platform": 3,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5yE1da-5kvYirmxBd7sLEX/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5yE1da-5kvYirmxBd7sLEX",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
 			"title": "Batman The Telltale Series",
 			"playlistId": "PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
@@ -2902,21 +2917,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
-			"title": "Sly Cooper : Voleurs à travers le Temps",
-			"playlistId": "PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
-			"releaseDate": "2013-03-27",
-			"duration": "08:55:44",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
 			"url_type": "PLAYLIST"
 		},
 		{
