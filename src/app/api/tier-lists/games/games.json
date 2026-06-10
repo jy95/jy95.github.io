@@ -2114,6 +2114,20 @@
 			"imagePath": "/covers/PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
 			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
+			"title": "Le Chat Potté",
+			"playlistId": "PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
+			"releaseDate": "2011-11-25",
+			"duration": "01:38:54",
+			"platform": 6,
+			"genres": [
+				1
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"tier_bad": [],
@@ -2917,20 +2931,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
-			"title": "Le Chat Potté",
-			"playlistId": "PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
-			"releaseDate": "2011-11-25",
-			"duration": "01:38:54",
-			"platform": 6,
-			"genres": [
-				1
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
 			"url_type": "PLAYLIST"
 		}
 	]
