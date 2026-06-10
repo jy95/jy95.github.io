@@ -91,6 +91,52 @@
 			"imagePath": "/covers/PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
 			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
+			"title": "Rayman Legends",
+			"playlistId": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
+			"releaseDate": "2013-08-29",
+			"duration": "04:41:01",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"title": "Enslaved Odyssey to the West",
+			"playlistId": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"releaseDate": "2010-10-08",
+			"duration": "06:29:47",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"title": "Driver: San Francisco",
+			"playlistId": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"releaseDate": "2011-09-01",
+			"duration": "04:37:43",
+			"platform": 6,
+			"genres": [
+				1,
+				15
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"tier_excellent": [],
@@ -2102,22 +2148,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"title": "Rayman Legends",
-			"playlistId": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"releaseDate": "2013-08-29",
-			"duration": "04:41:01",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "NZiAc-mIJuQ",
 			"title": "Yu-Gi-Oh! Les Cartes Sacrées",
 			"videoId": "NZiAc-mIJuQ",
@@ -2581,21 +2611,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"title": "Enslaved Odyssey to the West",
-			"playlistId": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"releaseDate": "2010-10-08",
-			"duration": "06:29:47",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
 			"title": "Sly 2 : Association de voleurs",
 			"playlistId": "PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
@@ -2913,21 +2928,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"title": "Driver: San Francisco",
-			"playlistId": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"releaseDate": "2011-09-01",
-			"duration": "04:37:43",
-			"platform": 6,
-			"genres": [
-				1,
-				15
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
 			"url_type": "PLAYLIST"
 		}
 	]
