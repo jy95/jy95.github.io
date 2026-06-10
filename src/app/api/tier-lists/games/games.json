@@ -690,6 +690,22 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx",
+			"title": "Sonic Heroes",
+			"playlistId": "PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx",
+			"releaseDate": "2004-02-06",
+			"duration": "02:55:04",
+			"platform": 5,
+			"genres": [
+				3,
+				12,
+				15
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
 			"title": "Ratchet : Gladiator",
 			"playlistId": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
@@ -766,6 +782,50 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6nITizlIWkG5aiqeF8iJeh",
+			"title": "Pokémon Uranium",
+			"playlistId": "PLRfhDHeBTBJ6nITizlIWkG5aiqeF8iJeh",
+			"releaseDate": "2016-08-06",
+			"duration": "19:13:50",
+			"platform": 1,
+			"genres": [
+				2,
+				14
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6nITizlIWkG5aiqeF8iJeh/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6nITizlIWkG5aiqeF8iJeh",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
+			"title": "Kirby: Cauchemar au pays des Rêves",
+			"playlistId": "PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
+			"releaseDate": "2003-09-26",
+			"duration": "01:38:08",
+			"platform": 2,
+			"genres": [
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN",
+			"title": "Splinter Cell",
+			"playlistId": "PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN",
+			"releaseDate": "2002-11-28",
+			"duration": "04:34:58",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1101,6 +1161,36 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "Z-hI2U2g_j0",
+			"title": "Hercule",
+			"videoId": "Z-hI2U2g_j0",
+			"releaseDate": "1997-07-01",
+			"duration": "01:08:37",
+			"platform": 4,
+			"genres": [
+				1,
+				12
+			],
+			"imagePath": "/covers/Z-hI2U2g_j0/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=Z-hI2U2g_j0",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "5ZHExfdq9F8",
+			"title": "Dragon Ball : Advanced Adventure",
+			"videoId": "5ZHExfdq9F8",
+			"releaseDate": "2005-06-17",
+			"duration": "01:50:53",
+			"platform": 2,
+			"genres": [
+				1,
+				12
+			],
+			"imagePath": "/covers/5ZHExfdq9F8/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=5ZHExfdq9F8",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "L7R_LBBOPEk",
 			"title": "Avatar : Le Dernier Maître de l'Air",
 			"videoId": "L7R_LBBOPEk",
@@ -1115,6 +1205,36 @@
 			],
 			"imagePath": "/covers/L7R_LBBOPEk/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=L7R_LBBOPEk",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "lYIH7XkENSw",
+			"title": "Prince of Persia : Les sables oubliés",
+			"videoId": "lYIH7XkENSw",
+			"releaseDate": "2010-04-20",
+			"duration": "03:23:14",
+			"platform": 3,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/lYIH7XkENSw/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=lYIH7XkENSw",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "AVwWGO0Zocs",
+			"title": "Shrek Super Slam",
+			"videoId": "AVwWGO0Zocs",
+			"releaseDate": "2005-11-18",
+			"duration": "00:31:13",
+			"platform": 5,
+			"genres": [
+				9
+			],
+			"imagePath": "/covers/AVwWGO0Zocs/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=AVwWGO0Zocs",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1161,6 +1281,21 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH",
+			"title": "Splinter Cell: Pandora Tomorrow",
+			"playlistId": "PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH",
+			"releaseDate": "2004-03-25",
+			"duration": "03:11:52",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1413,6 +1548,20 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "0vTdVPo9I_4",
+			"title": "Metal Slug XX",
+			"videoId": "0vTdVPo9I_4",
+			"releaseDate": "2010-06-25",
+			"duration": "01:10:06",
+			"platform": 3,
+			"genres": [
+				1
+			],
+			"imagePath": "/covers/0vTdVPo9I_4/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=0vTdVPo9I_4",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2179,22 +2328,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx",
-			"title": "Sonic Heroes",
-			"playlistId": "PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx",
-			"releaseDate": "2004-02-06",
-			"duration": "02:55:04",
-			"platform": 5,
-			"genres": [
-				3,
-				12,
-				15
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu",
 			"title": "Ratchet & Clank 3",
 			"playlistId": "PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu",
@@ -2273,50 +2406,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6nITizlIWkG5aiqeF8iJeh",
-			"title": "Pokémon Uranium",
-			"playlistId": "PLRfhDHeBTBJ6nITizlIWkG5aiqeF8iJeh",
-			"releaseDate": "2016-08-06",
-			"duration": "19:13:50",
-			"platform": 1,
-			"genres": [
-				2,
-				14
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6nITizlIWkG5aiqeF8iJeh/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6nITizlIWkG5aiqeF8iJeh",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
-			"title": "Kirby: Cauchemar au pays des Rêves",
-			"playlistId": "PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
-			"releaseDate": "2003-09-26",
-			"duration": "01:38:08",
-			"platform": 2,
-			"genres": [
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN",
-			"title": "Splinter Cell",
-			"playlistId": "PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN",
-			"releaseDate": "2002-11-28",
-			"duration": "04:34:58",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2444,66 +2533,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "Z-hI2U2g_j0",
-			"title": "Hercule",
-			"videoId": "Z-hI2U2g_j0",
-			"releaseDate": "1997-07-01",
-			"duration": "01:08:37",
-			"platform": 4,
-			"genres": [
-				1,
-				12
-			],
-			"imagePath": "/covers/Z-hI2U2g_j0/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=Z-hI2U2g_j0",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "5ZHExfdq9F8",
-			"title": "Dragon Ball : Advanced Adventure",
-			"videoId": "5ZHExfdq9F8",
-			"releaseDate": "2005-06-17",
-			"duration": "01:50:53",
-			"platform": 2,
-			"genres": [
-				1,
-				12
-			],
-			"imagePath": "/covers/5ZHExfdq9F8/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=5ZHExfdq9F8",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "lYIH7XkENSw",
-			"title": "Prince of Persia : Les sables oubliés",
-			"videoId": "lYIH7XkENSw",
-			"releaseDate": "2010-04-20",
-			"duration": "03:23:14",
-			"platform": 3,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/lYIH7XkENSw/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=lYIH7XkENSw",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "AVwWGO0Zocs",
-			"title": "Shrek Super Slam",
-			"videoId": "AVwWGO0Zocs",
-			"releaseDate": "2005-11-18",
-			"duration": "00:31:13",
-			"platform": 5,
-			"genres": [
-				9
-			],
-			"imagePath": "/covers/AVwWGO0Zocs/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=AVwWGO0Zocs",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
 			"title": "Harry Potter et la Coupe de Feu",
 			"playlistId": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
@@ -2533,21 +2562,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH",
-			"title": "Splinter Cell: Pandora Tomorrow",
-			"playlistId": "PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH",
-			"releaseDate": "2004-03-25",
-			"duration": "03:11:52",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2736,20 +2750,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "0vTdVPo9I_4",
-			"title": "Metal Slug XX",
-			"videoId": "0vTdVPo9I_4",
-			"releaseDate": "2010-06-25",
-			"duration": "01:10:06",
-			"platform": 3,
-			"genres": [
-				1
-			],
-			"imagePath": "/covers/0vTdVPo9I_4/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=0vTdVPo9I_4",
 			"url_type": "PLAYLIST"
 		},
 		{
