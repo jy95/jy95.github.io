@@ -459,6 +459,23 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
+			"title": "Ratchet : Gladiator",
+			"playlistId": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
+			"releaseDate": "2005-11-23",
+			"duration": "06:07:43",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
 			"title": "Darksiders I",
 			"playlistId": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
@@ -472,6 +489,51 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf",
+			"title": "God of War: Chains of Olympus",
+			"playlistId": "PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf",
+			"releaseDate": "2008-03-28",
+			"duration": "03:34:18",
+			"platform": 3,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7VH9EyPcKvQSCo6FbMUE6g",
+			"title": "God of War: Ghost of Sparta",
+			"playlistId": "PLRfhDHeBTBJ7VH9EyPcKvQSCo6FbMUE6g",
+			"releaseDate": "2010-11-03",
+			"duration": "04:53:25",
+			"platform": 3,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7VH9EyPcKvQSCo6FbMUE6g/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7VH9EyPcKvQSCo6FbMUE6g",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj",
+			"title": "God of War I",
+			"playlistId": "PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj",
+			"releaseDate": "2005-06-22",
+			"duration": "07:02:42",
+			"platform": 5,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -491,6 +553,37 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
+			"title": "Rayman 2: The Great Escape",
+			"playlistId": "PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
+			"releaseDate": "2000-09-07",
+			"duration": "04:18:06",
+			"platform": 4,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
+			"title": "Saints Row IV",
+			"playlistId": "PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
+			"releaseDate": "2013-08-23",
+			"duration": "20:55:30",
+			"platform": 1,
+			"genres": [
+				1,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
 			"title": "Psychonauts",
 			"playlistId": "PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
@@ -503,6 +596,70 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
+			"title": "Prince of Persia 2008",
+			"playlistId": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
+			"releaseDate": "2008-12-04",
+			"duration": "10:18:10",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
+			"title": "Rayman 2 : Revolution",
+			"playlistId": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
+			"releaseDate": "2000-12-14",
+			"duration": "04:59:15",
+			"platform": 5,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO",
+			"title": "Sleeping Dogs",
+			"playlistId": "PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO",
+			"releaseDate": "2012-08-17",
+			"duration": "07:22:10",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
+			"title": "Rayman contre les Lapins Crétins",
+			"playlistId": "PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
+			"releaseDate": "2006-11-30",
+			"duration": "03:05:12",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				8
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -580,6 +737,22 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem",
+			"title": "Dragon Ball Z : L'Héritage de Goku 2",
+			"playlistId": "PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem",
+			"releaseDate": "2003-08-01",
+			"duration": "04:38:54",
+			"platform": 2,
+			"genres": [
+				1,
+				2,
+				14
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -693,6 +866,22 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz",
+			"title": "Dragon Ball Z : Buu's Fury",
+			"playlistId": "PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz",
+			"releaseDate": "2004-09-14",
+			"duration": "04:36:11",
+			"platform": 2,
+			"genres": [
+				1,
+				2,
+				14
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq",
 			"title": "Stranglehold",
 			"playlistId": "PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq",
@@ -739,6 +928,36 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX",
+			"title": "God of War: Chains of Olympus HD",
+			"playlistId": "PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX",
+			"releaseDate": "2011-09-13",
+			"duration": "03:20:24",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc",
+			"title": "God of War I HD",
+			"playlistId": "PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc",
+			"releaseDate": "2010-11-03",
+			"duration": "06:48:04",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
 			"title": "Astérix aux Jeux olympiques",
 			"playlistId": "PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
@@ -752,6 +971,21 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7TJ1MBUMRg588JQd9p-ub9",
+			"title": "God of War: Ghost of Sparta HD",
+			"playlistId": "PLRfhDHeBTBJ7TJ1MBUMRg588JQd9p-ub9",
+			"releaseDate": "2011-09-14",
+			"duration": "04:30:40",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7TJ1MBUMRg588JQd9p-ub9/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7TJ1MBUMRg588JQd9p-ub9",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1571,23 +1805,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
-			"title": "Ratchet : Gladiator",
-			"playlistId": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
-			"releaseDate": "2005-11-23",
-			"duration": "06:07:43",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
 			"title": "God of War Ascension",
 			"playlistId": "PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
@@ -1709,51 +1926,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf",
-			"title": "God of War: Chains of Olympus",
-			"playlistId": "PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf",
-			"releaseDate": "2008-03-28",
-			"duration": "03:34:18",
-			"platform": 3,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7VH9EyPcKvQSCo6FbMUE6g",
-			"title": "God of War: Ghost of Sparta",
-			"playlistId": "PLRfhDHeBTBJ7VH9EyPcKvQSCo6FbMUE6g",
-			"releaseDate": "2010-11-03",
-			"duration": "04:53:25",
-			"platform": 3,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7VH9EyPcKvQSCo6FbMUE6g/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7VH9EyPcKvQSCo6FbMUE6g",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj",
-			"title": "God of War I",
-			"playlistId": "PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj",
-			"releaseDate": "2005-06-22",
-			"duration": "07:02:42",
-			"platform": 5,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
 			"title": "Total Overdose",
 			"playlistId": "PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
@@ -1820,37 +1992,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
-			"title": "Rayman 2: The Great Escape",
-			"playlistId": "PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
-			"releaseDate": "2000-09-07",
-			"duration": "04:18:06",
-			"platform": 4,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
-			"title": "Saints Row IV",
-			"playlistId": "PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
-			"releaseDate": "2013-08-23",
-			"duration": "20:55:30",
-			"platform": 1,
-			"genres": [
-				1,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
 			"title": "Saints Row The Third",
 			"playlistId": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
@@ -1878,22 +2019,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
-			"title": "Prince of Persia 2008",
-			"playlistId": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
-			"releaseDate": "2008-12-04",
-			"duration": "10:18:10",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1957,54 +2082,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
-			"title": "Rayman 2 : Revolution",
-			"playlistId": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
-			"releaseDate": "2000-12-14",
-			"duration": "04:59:15",
-			"platform": 5,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO",
-			"title": "Sleeping Dogs",
-			"playlistId": "PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO",
-			"releaseDate": "2012-08-17",
-			"duration": "07:22:10",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
-			"title": "Rayman contre les Lapins Crétins",
-			"playlistId": "PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
-			"releaseDate": "2006-11-30",
-			"duration": "03:05:12",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				8
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2290,22 +2367,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem",
-			"title": "Dragon Ball Z : L'Héritage de Goku 2",
-			"playlistId": "PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem",
-			"releaseDate": "2003-08-01",
-			"duration": "04:38:54",
-			"platform": 2,
-			"genres": [
-				1,
-				2,
-				14
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
 			"title": "Marc Eckō's Getting Up: Contents Under Pressure",
 			"playlistId": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
@@ -2496,22 +2557,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz",
-			"title": "Dragon Ball Z : Buu's Fury",
-			"playlistId": "PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz",
-			"releaseDate": "2004-09-14",
-			"duration": "04:36:11",
-			"platform": 2,
-			"genres": [
-				1,
-				2,
-				14
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "6wJFMcIHi8k",
 			"title": "Space Invaders Extreme",
 			"videoId": "6wJFMcIHi8k",
@@ -2599,51 +2644,6 @@
 			],
 			"imagePath": "/covers/0vTdVPo9I_4/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=0vTdVPo9I_4",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX",
-			"title": "God of War: Chains of Olympus HD",
-			"playlistId": "PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX",
-			"releaseDate": "2011-09-13",
-			"duration": "03:20:24",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc",
-			"title": "God of War I HD",
-			"playlistId": "PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc",
-			"releaseDate": "2010-11-03",
-			"duration": "06:48:04",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7TJ1MBUMRg588JQd9p-ub9",
-			"title": "God of War: Ghost of Sparta HD",
-			"playlistId": "PLRfhDHeBTBJ7TJ1MBUMRg588JQd9p-ub9",
-			"releaseDate": "2011-09-14",
-			"duration": "04:30:40",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7TJ1MBUMRg588JQd9p-ub9/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7TJ1MBUMRg588JQd9p-ub9",
 			"url_type": "PLAYLIST"
 		},
 		{
