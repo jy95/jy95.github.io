@@ -1193,6 +1193,21 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
+			"title": "Saints Row The Third",
+			"playlistId": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
+			"releaseDate": "2011-11-15",
+			"duration": "13:53:03",
+			"platform": 1,
+			"genres": [
+				1,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
 			"title": "Prince of Persia 2008",
 			"playlistId": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
@@ -1413,6 +1428,21 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
+			"title": "Harry Potter et la Coupe de Feu",
+			"playlistId": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
+			"releaseDate": "2005-11-10",
+			"duration": "02:17:52",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
 			"title": "Pumpkin Jack",
 			"playlistId": "PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
@@ -1584,6 +1614,38 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7",
+			"title": "Harry Potter à l'Ecole des Sorciers",
+			"playlistId": "PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7",
+			"releaseDate": "2001-11-16",
+			"duration": "03:36:33",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
+			"title": "Harry Potter et la Chambre des Secrets",
+			"playlistId": "PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
+			"releaseDate": "2002-11-14",
+			"duration": "04:06:59",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "a0mr0A8VM9A",
 			"title": "Sonic Adventure 2",
 			"videoId": "a0mr0A8VM9A",
@@ -1598,6 +1660,22 @@
 			],
 			"imagePath": "/covers/a0mr0A8VM9A/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=a0mr0A8VM9A",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "IOog6QKck6o",
+			"title": "Harry Potter et le Prisonnier d'Azkaban",
+			"videoId": "IOog6QKck6o",
+			"releaseDate": "2004-06-04",
+			"duration": "03:01:32",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/IOog6QKck6o/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=IOog6QKck6o",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1708,6 +1786,21 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "Drz_YdmE-yQ",
+			"title": "Worms Ultimate Mayhem",
+			"videoId": "Drz_YdmE-yQ",
+			"releaseDate": "2011-09-28",
+			"duration": "03:43:44",
+			"platform": 6,
+			"genres": [
+				1,
+				19
+			],
+			"imagePath": "/covers/Drz_YdmE-yQ/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=Drz_YdmE-yQ",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2691,84 +2784,6 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
-			"id": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
-			"title": "Saints Row The Third",
-			"playlistId": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
-			"releaseDate": "2011-11-15",
-			"duration": "13:53:03",
-			"platform": 1,
-			"genres": [
-				1,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
-			"title": "Harry Potter et la Coupe de Feu",
-			"playlistId": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
-			"releaseDate": "2005-11-10",
-			"duration": "02:17:52",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7",
-			"title": "Harry Potter à l'Ecole des Sorciers",
-			"playlistId": "PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7",
-			"releaseDate": "2001-11-16",
-			"duration": "03:36:33",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
-			"title": "Harry Potter et la Chambre des Secrets",
-			"playlistId": "PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
-			"releaseDate": "2002-11-14",
-			"duration": "04:06:59",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "IOog6QKck6o",
-			"title": "Harry Potter et le Prisonnier d'Azkaban",
-			"videoId": "IOog6QKck6o",
-			"releaseDate": "2004-06-04",
-			"duration": "03:01:32",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/IOog6QKck6o/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=IOog6QKck6o",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "6wJFMcIHi8k",
 			"title": "Space Invaders Extreme",
 			"videoId": "6wJFMcIHi8k",
@@ -2781,21 +2796,6 @@
 			],
 			"imagePath": "/covers/6wJFMcIHi8k/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=6wJFMcIHi8k",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "Drz_YdmE-yQ",
-			"title": "Worms Ultimate Mayhem",
-			"videoId": "Drz_YdmE-yQ",
-			"releaseDate": "2011-09-28",
-			"duration": "03:43:44",
-			"platform": 6,
-			"genres": [
-				1,
-				19
-			],
-			"imagePath": "/covers/Drz_YdmE-yQ/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=Drz_YdmE-yQ",
 			"url_type": "PLAYLIST"
 		},
 		{
