@@ -1,5 +1,98 @@
 {
-	"tier_masterpiece": [],
+	"tier_masterpiece": [
+		{
+			"id": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
+			"title": "Le Parrain : Edition du Don",
+			"playlistId": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
+			"releaseDate": "2007-03-23",
+			"duration": "15:05:17",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"title": "God of War III",
+			"playlistId": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"releaseDate": "2010-03-17",
+			"duration": "06:46:19",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
+			"title": "XIII - le jeu",
+			"playlistId": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
+			"releaseDate": "2003-11-20",
+			"duration": "04:34:35",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+			"title": "Splinter Cell Chaos Theory HD",
+			"playlistId": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+			"releaseDate": "2011-08-10",
+			"duration": "05:22:51",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
+			"title": "The Simpsons Hit & Run",
+			"playlistId": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
+			"releaseDate": "2003-09-16",
+			"duration": "04:04:20",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
+			"title": "X-Men Origins : Wolverine",
+			"playlistId": "PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
+			"releaseDate": "2009-04-30",
+			"duration": "06:43:09",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
+			"url_type": "PLAYLIST"
+		}
+	],
 	"tier_excellent": [],
 	"tier_good": [],
 	"tier_average": [],
@@ -484,22 +577,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"title": "Le Parrain : Edition du Don",
-			"playlistId": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"releaseDate": "2007-03-23",
-			"duration": "15:05:17",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
 			"title": "TMNT 2007 (GBA)",
 			"playlistId": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
@@ -706,21 +783,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
-			"title": "God of War III",
-			"playlistId": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
-			"releaseDate": "2010-03-17",
-			"duration": "06:46:19",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1063,22 +1125,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"title": "XIII - le jeu",
-			"playlistId": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"releaseDate": "2003-11-20",
-			"duration": "04:34:35",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1596,21 +1642,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
-			"title": "Splinter Cell Chaos Theory HD",
-			"playlistId": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
-			"releaseDate": "2011-08-10",
-			"duration": "05:22:51",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
 			"title": "Jak II : Hors la Loi",
 			"playlistId": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
@@ -1750,21 +1781,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"title": "The Simpsons Hit & Run",
-			"playlistId": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"releaseDate": "2003-09-16",
-			"duration": "04:04:20",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2052,21 +2068,6 @@
 			],
 			"imagePath": "/covers/6wJFMcIHi8k/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=6wJFMcIHi8k",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
-			"title": "X-Men Origins : Wolverine",
-			"playlistId": "PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
-			"releaseDate": "2009-04-30",
-			"duration": "06:43:09",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
 			"url_type": "PLAYLIST"
 		},
 		{
