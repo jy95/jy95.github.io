@@ -1941,6 +1941,51 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
+			"title": "Les indestructibles Le Jeu",
+			"playlistId": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
+			"releaseDate": "2004-11-12",
+			"duration": "03:42:26",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
+			"title": "Les Indestructibles : La Terrible Attaque du Démolisseur",
+			"playlistId": "PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
+			"releaseDate": "2005-11-18",
+			"duration": "02:11:24",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
+			"title": "God of War Ascension",
+			"playlistId": "PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
+			"releaseDate": "2013-03-13",
+			"duration": "06:20:52",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb",
 			"title": "Prince of Persia : Les sables oubliés",
 			"playlistId": "PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb",
@@ -2002,6 +2047,37 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
+			"title": "Marc Eckō's Getting Up: Contents Under Pressure",
+			"playlistId": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
+			"releaseDate": "2006-06-17",
+			"duration": "07:26:19",
+			"platform": 5,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
+			"title": "Dead to Rights",
+			"playlistId": "PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
+			"releaseDate": "2003-06-03",
+			"duration": "06:19:09",
+			"platform": 1,
+			"genres": [
+				1,
+				16,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "1vvwPVwbACY",
 			"title": "Yu-Gi-Oh! Reshef le Destructeur",
 			"videoId": "1vvwPVwbACY",
@@ -2014,6 +2090,21 @@
 			],
 			"imagePath": "/covers/1vvwPVwbACY/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=1vvwPVwbACY",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB",
+			"title": "Pursuit Force",
+			"playlistId": "PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB",
+			"releaseDate": "2005-11-23",
+			"duration": "03:06:59",
+			"platform": 3,
+			"genres": [
+				1,
+				15
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2048,6 +2139,21 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "kDoc1rzc-Zs",
+			"title": "Lucky Luke : Tous à l'Ouest",
+			"videoId": "kDoc1rzc-Zs",
+			"releaseDate": "2007-11-07",
+			"duration": "01:21:01",
+			"platform": 1,
+			"genres": [
+				3,
+				6
+			],
+			"imagePath": "/covers/kDoc1rzc-Zs/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=kDoc1rzc-Zs",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
 			"title": "Ratchet & Clank : Quest for Booty",
 			"playlistId": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
@@ -2077,6 +2183,21 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4DjOEslvP3es_dby3reani/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X",
+			"title": "Contra Operation Galuga",
+			"playlistId": "PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X",
+			"releaseDate": "2024-02-21",
+			"duration": "02:04:32",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2282,21 +2403,6 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
-			"id": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
-			"title": "Les indestructibles Le Jeu",
-			"playlistId": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
-			"releaseDate": "2004-11-12",
-			"duration": "03:42:26",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
 			"title": "Batman: Rise of Sin Tzu",
 			"playlistId": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
@@ -2345,21 +2451,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
-			"title": "Les Indestructibles : La Terrible Attaque du Démolisseur",
-			"playlistId": "PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
-			"releaseDate": "2005-11-18",
-			"duration": "02:11:24",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
 			"title": "Ratchet & Clank 2",
 			"playlistId": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
@@ -2391,21 +2482,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
-			"title": "God of War Ascension",
-			"playlistId": "PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
-			"releaseDate": "2013-03-13",
-			"duration": "06:20:52",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2565,21 +2641,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
-			"title": "Marc Eckō's Getting Up: Contents Under Pressure",
-			"playlistId": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
-			"releaseDate": "2006-06-17",
-			"duration": "07:26:19",
-			"platform": 5,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ",
 			"title": "Rayman 3 : Hoodlum Havoc HD",
 			"playlistId": "PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ",
@@ -2642,22 +2703,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
-			"title": "Dead to Rights",
-			"playlistId": "PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
-			"releaseDate": "2003-06-03",
-			"duration": "06:19:09",
-			"platform": 1,
-			"genres": [
-				1,
-				16,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2735,36 +2780,6 @@
 			],
 			"imagePath": "/covers/NZiAc-mIJuQ/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=NZiAc-mIJuQ",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB",
-			"title": "Pursuit Force",
-			"playlistId": "PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB",
-			"releaseDate": "2005-11-23",
-			"duration": "03:06:59",
-			"platform": 3,
-			"genres": [
-				1,
-				15
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "kDoc1rzc-Zs",
-			"title": "Lucky Luke : Tous à l'Ouest",
-			"videoId": "kDoc1rzc-Zs",
-			"releaseDate": "2007-11-07",
-			"duration": "01:21:01",
-			"platform": 1,
-			"genres": [
-				3,
-				6
-			],
-			"imagePath": "/covers/kDoc1rzc-Zs/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=kDoc1rzc-Zs",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2887,21 +2902,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X",
-			"title": "Contra Operation Galuga",
-			"playlistId": "PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X",
-			"releaseDate": "2024-02-21",
-			"duration": "02:04:32",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X",
 			"url_type": "PLAYLIST"
 		},
 		{
