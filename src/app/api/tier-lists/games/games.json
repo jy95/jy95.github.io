@@ -593,6 +593,22 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO",
+			"title": "Remember Me",
+			"playlistId": "PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO",
+			"releaseDate": "2013-06-07",
+			"duration": "06:41:04",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
 			"title": "Prince of Persia : L'Ame du guerrier",
 			"playlistId": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
@@ -738,6 +754,21 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
+			"title": "Max Payne I",
+			"playlistId": "PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
+			"releaseDate": "2001-08-01",
+			"duration": "04:10:57",
+			"platform": 1,
+			"genres": [
+				1,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
 			"title": "Darksiders I",
 			"playlistId": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
@@ -796,6 +827,22 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
+			"title": "Total Overdose",
+			"playlistId": "PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
+			"releaseDate": "2005-09-16",
+			"duration": "06:54:30",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1008,6 +1055,22 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f",
+			"title": "Quantum Break",
+			"playlistId": "PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f",
+			"releaseDate": "2016-04-05",
+			"duration": "05:29:07",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
 			"title": "Splinter Cell Conviction",
 			"playlistId": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
@@ -1211,6 +1274,39 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "a0mr0A8VM9A",
+			"title": "Sonic Adventure 2",
+			"videoId": "a0mr0A8VM9A",
+			"releaseDate": "2012-11-19",
+			"duration": "03:50:39",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				12,
+				14
+			],
+			"imagePath": "/covers/a0mr0A8VM9A/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=a0mr0A8VM9A",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
+			"title": "Dead to Rights : Retribution",
+			"playlistId": "PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
+			"releaseDate": "2010-10-23",
+			"duration": "05:50:51",
+			"platform": 6,
+			"genres": [
+				1,
+				16,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
 			"title": "50 Cent: Blood on the Sand",
 			"playlistId": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
@@ -1286,6 +1382,22 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh",
+			"title": "Les Simpson : Le Jeu",
+			"playlistId": "PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh",
+			"releaseDate": "2007-11-15",
+			"duration": "04:05:46",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				14
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1396,6 +1508,53 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
+			"title": "Splinter Cell HD",
+			"playlistId": "PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
+			"releaseDate": "2011-08-10",
+			"duration": "04:40:45",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5AJN9pWW6v6NQSxnK5tGTV",
+			"title": "Daxter",
+			"playlistId": "PLRfhDHeBTBJ5AJN9pWW6v6NQSxnK5tGTV",
+			"releaseDate": "2006-04-20",
+			"duration": "05:12:35",
+			"platform": 3,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5AJN9pWW6v6NQSxnK5tGTV/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5AJN9pWW6v6NQSxnK5tGTV",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7-gVyU44CdXMekwgbm-sNn",
+			"title": "Chili Con Carnage",
+			"playlistId": "PLRfhDHeBTBJ7-gVyU44CdXMekwgbm-sNn",
+			"releaseDate": "2007-02-23",
+			"duration": "03:19:49",
+			"platform": 3,
+			"genres": [
+				1,
+				2,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7-gVyU44CdXMekwgbm-sNn/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7-gVyU44CdXMekwgbm-sNn",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR",
 			"title": "Robots",
 			"playlistId": "PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR",
@@ -1473,6 +1632,36 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
+			"title": "DuckTales Remastered",
+			"playlistId": "PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
+			"releaseDate": "2013-08-14",
+			"duration": "02:34:47",
+			"platform": 6,
+			"genres": [
+				1,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
+			"title": "Ghost Rider",
+			"playlistId": "PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
+			"releaseDate": "2007-02-16",
+			"duration": "03:29:44",
+			"platform": 5,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1930,22 +2119,6 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
-			"id": "PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO",
-			"title": "Remember Me",
-			"playlistId": "PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO",
-			"releaseDate": "2013-06-07",
-			"duration": "06:41:04",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
 			"title": "Les indestructibles Le Jeu",
 			"playlistId": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
@@ -2089,21 +2262,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
-			"title": "Max Payne I",
-			"playlistId": "PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
-			"releaseDate": "2001-08-01",
-			"duration": "04:10:57",
-			"platform": 1,
-			"genres": [
-				1,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ6nITizlIWkG5aiqeF8iJeh",
 			"title": "Pokémon Uranium",
 			"playlistId": "PLRfhDHeBTBJ6nITizlIWkG5aiqeF8iJeh",
@@ -2145,22 +2303,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
-			"title": "Total Overdose",
-			"playlistId": "PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
-			"releaseDate": "2005-09-16",
-			"duration": "06:54:30",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2237,22 +2379,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6MEuVUHAD2HZETNt5cBCZP/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6MEuVUHAD2HZETNt5cBCZP",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f",
-			"title": "Quantum Break",
-			"playlistId": "PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f",
-			"releaseDate": "2016-04-05",
-			"duration": "05:29:07",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2491,23 +2617,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "a0mr0A8VM9A",
-			"title": "Sonic Adventure 2",
-			"videoId": "a0mr0A8VM9A",
-			"releaseDate": "2012-11-19",
-			"duration": "03:50:39",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				12,
-				14
-			],
-			"imagePath": "/covers/a0mr0A8VM9A/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=a0mr0A8VM9A",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
 			"title": "Dead to Rights",
 			"playlistId": "PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
@@ -2540,22 +2649,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
-			"title": "Dead to Rights : Retribution",
-			"playlistId": "PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
-			"releaseDate": "2010-10-23",
-			"duration": "05:50:51",
-			"platform": 6,
-			"genres": [
-				1,
-				16,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
 			"title": "God of War (2018)",
 			"playlistId": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
@@ -2584,22 +2677,6 @@
 			],
 			"imagePath": "/covers/6wJFMcIHi8k/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=6wJFMcIHi8k",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh",
-			"title": "Les Simpson : Le Jeu",
-			"playlistId": "PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh",
-			"releaseDate": "2007-11-15",
-			"duration": "04:05:46",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				14
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2708,53 +2785,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
-			"title": "Splinter Cell HD",
-			"playlistId": "PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
-			"releaseDate": "2011-08-10",
-			"duration": "04:40:45",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5AJN9pWW6v6NQSxnK5tGTV",
-			"title": "Daxter",
-			"playlistId": "PLRfhDHeBTBJ5AJN9pWW6v6NQSxnK5tGTV",
-			"releaseDate": "2006-04-20",
-			"duration": "05:12:35",
-			"platform": 3,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5AJN9pWW6v6NQSxnK5tGTV/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5AJN9pWW6v6NQSxnK5tGTV",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7-gVyU44CdXMekwgbm-sNn",
-			"title": "Chili Con Carnage",
-			"playlistId": "PLRfhDHeBTBJ7-gVyU44CdXMekwgbm-sNn",
-			"releaseDate": "2007-02-23",
-			"duration": "03:19:49",
-			"platform": 3,
-			"genres": [
-				1,
-				2,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7-gVyU44CdXMekwgbm-sNn/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7-gVyU44CdXMekwgbm-sNn",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
 			"title": "Legend of Kay Anniversary",
 			"playlistId": "PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
@@ -2801,21 +2831,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
-			"title": "DuckTales Remastered",
-			"playlistId": "PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
-			"releaseDate": "2013-08-14",
-			"duration": "02:34:47",
-			"platform": 6,
-			"genres": [
-				1,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
 			"title": "Sly 2 : Association de voleurs",
 			"playlistId": "PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
@@ -2843,21 +2858,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
-			"title": "Ghost Rider",
-			"playlistId": "PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
-			"releaseDate": "2007-02-16",
-			"duration": "03:29:44",
-			"platform": 5,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
 			"url_type": "PLAYLIST"
 		},
 		{
