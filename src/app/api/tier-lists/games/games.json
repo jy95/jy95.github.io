@@ -270,7 +270,257 @@
 			"url_type": "PLAYLIST"
 		}
 	],
-	"tier_good": [],
+	"tier_good": [
+		{
+			"id": "PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
+			"title": "Mafia: Definitive Edition",
+			"playlistId": "PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
+			"releaseDate": "2020-09-25",
+			"duration": "06:59:14",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr",
+			"title": "Destroy All Humans! - Remake",
+			"playlistId": "PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr",
+			"releaseDate": "2020-07-28",
+			"duration": "04:25:44",
+			"platform": 1,
+			"genres": [
+				1,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz",
+			"title": "Batman: Arkham Origins",
+			"playlistId": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz",
+			"releaseDate": "2013-10-25",
+			"duration": "06:48:06",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
+			"title": "Splinter Cell Blacklist",
+			"playlistId": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
+			"releaseDate": "2013-08-22",
+			"duration": "06:34:25",
+			"platform": 1,
+			"genres": [
+				1
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO",
+			"title": "Prince of Persia : Les Sables du temps",
+			"playlistId": "PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO",
+			"releaseDate": "2003-11-13",
+			"duration": "05:01:34",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg",
+			"title": "Prince of Persia : Les Deux Royaumes",
+			"playlistId": "PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg",
+			"releaseDate": "2005-12-01",
+			"duration": "04:39:35",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy",
+			"title": "Destroy All Humans! 2",
+			"playlistId": "PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy",
+			"releaseDate": "2006-10-27",
+			"duration": "11:22:25",
+			"platform": 5,
+			"genres": [
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
+			"title": "Astérix & Obélix XXL",
+			"playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
+			"releaseDate": "2003-11-21",
+			"duration": "06:21:55",
+			"platform": 5,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo",
+			"title": "Astérix & Obélix XXL 2",
+			"playlistId": "PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo",
+			"releaseDate": "2018-11-29",
+			"duration": "04:53:56",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
+			"title": "Prince of Persia : L'Ame du guerrier",
+			"playlistId": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
+			"releaseDate": "2004-12-02",
+			"duration": "05:52:06",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg",
+			"title": "Mafia II",
+			"playlistId": "PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg",
+			"releaseDate": "2010-08-27",
+			"duration": "07:56:28",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0",
+			"title": "Dishonored",
+			"playlistId": "PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0",
+			"releaseDate": "2012-10-09",
+			"duration": "05:25:12",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				16,
+				14
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
+			"title": "Darksiders I",
+			"playlistId": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
+			"releaseDate": "2010-09-24",
+			"duration": "11:59:57",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				14
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6ho33uahEjHiIyL5nSi_3O",
+			"title": "Le parrain II",
+			"playlistId": "PLRfhDHeBTBJ6ho33uahEjHiIyL5nSi_3O",
+			"releaseDate": "2009-04-09",
+			"duration": "08:24:01",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6ho33uahEjHiIyL5nSi_3O/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6ho33uahEjHiIyL5nSi_3O",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
+			"title": "Psychonauts",
+			"playlistId": "PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
+			"releaseDate": "2006-02-03",
+			"duration": "13:35:45",
+			"platform": 1,
+			"genres": [
+				1,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
+			"title": "Splinter Cell Conviction",
+			"playlistId": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
+			"releaseDate": "2010-04-15",
+			"duration": "04:02:12",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
+			"url_type": "PLAYLIST"
+		}
+	],
 	"tier_average": [],
 	"tier_poor": [
 		{
@@ -397,22 +647,6 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
-			"id": "PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
-			"title": "Mafia: Definitive Edition",
-			"playlistId": "PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
-			"releaseDate": "2020-09-25",
-			"duration": "06:59:14",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC",
 			"title": "Samurai Jack: Battle Through Time",
 			"playlistId": "PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC",
@@ -426,36 +660,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr",
-			"title": "Destroy All Humans! - Remake",
-			"playlistId": "PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr",
-			"releaseDate": "2020-07-28",
-			"duration": "04:25:44",
-			"platform": 1,
-			"genres": [
-				1,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz",
-			"title": "Batman: Arkham Origins",
-			"playlistId": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz",
-			"releaseDate": "2013-10-25",
-			"duration": "06:48:06",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -473,52 +677,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
-			"title": "Splinter Cell Blacklist",
-			"playlistId": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
-			"releaseDate": "2013-08-22",
-			"duration": "06:34:25",
-			"platform": 1,
-			"genres": [
-				1
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO",
-			"title": "Prince of Persia : Les Sables du temps",
-			"playlistId": "PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO",
-			"releaseDate": "2003-11-13",
-			"duration": "05:01:34",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg",
-			"title": "Prince of Persia : Les Deux Royaumes",
-			"playlistId": "PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg",
-			"releaseDate": "2005-12-01",
-			"duration": "04:39:35",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -548,52 +706,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy",
-			"title": "Destroy All Humans! 2",
-			"playlistId": "PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy",
-			"releaseDate": "2006-10-27",
-			"duration": "11:22:25",
-			"platform": 5,
-			"genres": [
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
-			"title": "Astérix & Obélix XXL",
-			"playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
-			"releaseDate": "2003-11-21",
-			"duration": "06:21:55",
-			"platform": 5,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo",
-			"title": "Astérix & Obélix XXL 2",
-			"playlistId": "PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo",
-			"releaseDate": "2018-11-29",
-			"duration": "04:53:56",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -673,38 +785,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
-			"title": "Prince of Persia : L'Ame du guerrier",
-			"playlistId": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
-			"releaseDate": "2004-12-02",
-			"duration": "05:52:06",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg",
-			"title": "Mafia II",
-			"playlistId": "PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg",
-			"releaseDate": "2010-08-27",
-			"duration": "07:56:28",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
 			"title": "TMNT 2007 (GBA)",
 			"playlistId": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
@@ -718,23 +798,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0",
-			"title": "Dishonored",
-			"playlistId": "PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0",
-			"releaseDate": "2012-10-09",
-			"duration": "05:25:12",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				16,
-				14
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1020,22 +1083,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
-			"title": "Darksiders I",
-			"playlistId": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
-			"releaseDate": "2010-09-24",
-			"duration": "11:59:57",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				14
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf",
 			"title": "God of War: Chains of Olympus",
 			"playlistId": "PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf",
@@ -1094,22 +1141,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6ho33uahEjHiIyL5nSi_3O",
-			"title": "Le parrain II",
-			"playlistId": "PLRfhDHeBTBJ6ho33uahEjHiIyL5nSi_3O",
-			"releaseDate": "2009-04-09",
-			"duration": "08:24:01",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6ho33uahEjHiIyL5nSi_3O/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6ho33uahEjHiIyL5nSi_3O",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1207,21 +1238,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
-			"title": "Psychonauts",
-			"playlistId": "PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
-			"releaseDate": "2006-02-03",
-			"duration": "13:35:45",
-			"platform": 1,
-			"genres": [
-				1,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1426,21 +1442,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
-			"title": "Splinter Cell Conviction",
-			"playlistId": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
-			"releaseDate": "2010-04-15",
-			"duration": "04:02:12",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
 			"url_type": "PLAYLIST"
 		},
 		{
