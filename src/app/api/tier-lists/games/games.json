@@ -139,7 +139,137 @@
 			"url_type": "PLAYLIST"
 		}
 	],
-	"tier_excellent": [],
+	"tier_excellent": [
+		{
+			"id": "PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
+			"title": "Batman: Arkham Asylum",
+			"playlistId": "PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
+			"releaseDate": "2009-08-28",
+			"duration": "05:59:51",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg",
+			"title": "Batman: Arkham Knight",
+			"playlistId": "PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg",
+			"releaseDate": "2015-06-23",
+			"duration": "08:33:35",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
+			"title": "Batman Arkham City",
+			"playlistId": "PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
+			"releaseDate": "2011-10-20",
+			"duration": "06:47:41",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X",
+			"title": "Darksiders II",
+			"playlistId": "PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X",
+			"releaseDate": "2012-08-21",
+			"duration": "14:35:48",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				14
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
+			"title": "Rayman Origins",
+			"playlistId": "PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
+			"releaseDate": "2011-11-24",
+			"duration": "04:40:15",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
+			"title": "Ratchet & Clank : Opération Destruction",
+			"playlistId": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
+			"releaseDate": "2007-11-14",
+			"duration": "06:49:19",
+			"platform": 6,
+			"genres": [
+				12,
+				16,
+				2,
+				1
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
+			"title": "Ratchet & Clank : A Crack in Time",
+			"playlistId": "PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
+			"releaseDate": "2009-11-04",
+			"duration": "05:45:00",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
+			"title": "Metal Gear Rising Revengeance",
+			"playlistId": "PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
+			"releaseDate": "2013-02-21",
+			"duration": "05:59:03",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
+			"url_type": "PLAYLIST"
+		}
+	],
 	"tier_good": [],
 	"tier_average": [],
 	"tier_poor": [
@@ -343,54 +473,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
-			"title": "Batman: Arkham Asylum",
-			"playlistId": "PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
-			"releaseDate": "2009-08-28",
-			"duration": "05:59:51",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg",
-			"title": "Batman: Arkham Knight",
-			"playlistId": "PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg",
-			"releaseDate": "2015-06-23",
-			"duration": "08:33:35",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
-			"title": "Batman Arkham City",
-			"playlistId": "PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
-			"releaseDate": "2011-10-20",
-			"duration": "06:47:41",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -829,22 +911,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X",
-			"title": "Darksiders II",
-			"playlistId": "PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X",
-			"releaseDate": "2012-08-21",
-			"duration": "14:35:48",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				14
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1564,39 +1630,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
-			"title": "Rayman Origins",
-			"playlistId": "PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
-			"releaseDate": "2011-11-24",
-			"duration": "04:40:15",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
-			"title": "Ratchet & Clank : Opération Destruction",
-			"playlistId": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
-			"releaseDate": "2007-11-14",
-			"duration": "06:49:19",
-			"platform": 6,
-			"genres": [
-				12,
-				16,
-				2,
-				1
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
 			"title": "Harry Potter et la Coupe de Feu",
 			"playlistId": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
@@ -1827,23 +1860,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
-			"title": "Ratchet & Clank : A Crack in Time",
-			"playlistId": "PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
-			"releaseDate": "2009-11-04",
-			"duration": "05:45:00",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2638,21 +2654,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
-			"title": "Metal Gear Rising Revengeance",
-			"playlistId": "PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
-			"releaseDate": "2013-02-21",
-			"duration": "05:59:03",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
 			"url_type": "PLAYLIST"
 		},
 		{
