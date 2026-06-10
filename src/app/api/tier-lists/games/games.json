@@ -78,6 +78,22 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
+			"title": "God of War (2018)",
+			"playlistId": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
+			"releaseDate": "2022-02-14",
+			"duration": "17:41:07",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				14
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
 			"title": "X-Men Origins : Wolverine",
 			"playlistId": "PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
@@ -2750,22 +2766,6 @@
 			],
 			"imagePath": "/covers/IOog6QKck6o/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=IOog6QKck6o",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
-			"title": "God of War (2018)",
-			"playlistId": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
-			"releaseDate": "2022-02-14",
-			"duration": "17:41:07",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				14
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
 			"url_type": "PLAYLIST"
 		},
 		{
