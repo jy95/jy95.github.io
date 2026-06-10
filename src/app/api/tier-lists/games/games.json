@@ -424,6 +424,23 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
+			"title": "Guns Gore & Cannoli",
+			"playlistId": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
+			"releaseDate": "2015-04-30",
+			"duration": "02:10:05",
+			"platform": 1,
+			"genres": [
+				1,
+				16,
+				3,
+				10
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
 			"title": "Splinter Cell Blacklist",
 			"playlistId": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
@@ -516,6 +533,66 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
+			"title": "Shrek 2 Le Jeu",
+			"playlistId": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
+			"releaseDate": "2004-06-18",
+			"duration": "02:24:35",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "qaIADIQyr0A",
+			"title": "Sam Pyjam : Héros de la Nuit",
+			"videoId": "qaIADIQyr0A",
+			"releaseDate": "1996-10-04",
+			"duration": "00:44:11",
+			"platform": 1,
+			"genres": [
+				2,
+				7
+			],
+			"imagePath": "/covers/qaIADIQyr0A/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=qaIADIQyr0A",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "We7-JHU7D7I",
+			"title": "Pyjama Sam 2 : Héros Météo",
+			"videoId": "We7-JHU7D7I",
+			"releaseDate": "1998-10-02",
+			"duration": "00:53:45",
+			"platform": 1,
+			"genres": [
+				2,
+				7
+			],
+			"imagePath": "/covers/We7-JHU7D7I/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=We7-JHU7D7I",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "Qsq_q65MwhU",
+			"title": "Pyjama Sam : Héros du Goûter",
+			"videoId": "Qsq_q65MwhU",
+			"releaseDate": "2000-11-22",
+			"duration": "01:07:54",
+			"platform": 1,
+			"genres": [
+				2,
+				7
+			],
+			"imagePath": "/covers/Qsq_q65MwhU/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=Qsq_q65MwhU",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
 			"title": "Prince of Persia : L'Ame du guerrier",
 			"playlistId": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
@@ -548,6 +625,22 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
+			"title": "TMNT 2007 (GBA)",
+			"playlistId": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
+			"releaseDate": "2007-03-29",
+			"duration": "01:10:46",
+			"platform": 2,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0",
 			"title": "Dishonored",
 			"playlistId": "PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0",
@@ -565,6 +658,22 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY",
+			"title": "Secret Agent Clank",
+			"playlistId": "PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY",
+			"releaseDate": "2008-07-11",
+			"duration": "06:22:48",
+			"platform": 3,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
 			"title": "Ratchet : Gladiator",
 			"playlistId": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
@@ -579,6 +688,53 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4ivg1J2leFzeuABXobVFNO",
+			"title": "Guns Gore and Cannoli 2",
+			"playlistId": "PLRfhDHeBTBJ4ivg1J2leFzeuABXobVFNO",
+			"releaseDate": "2018-03-03",
+			"duration": "02:31:53",
+			"platform": 1,
+			"genres": [
+				1,
+				16,
+				3,
+				10
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4ivg1J2leFzeuABXobVFNO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ivg1J2leFzeuABXobVFNO",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4l1G59ZVCUuTuZ-btLpPnm",
+			"title": "Bully : Scholarship Edition",
+			"playlistId": "PLRfhDHeBTBJ4l1G59ZVCUuTuZ-btLpPnm",
+			"releaseDate": "2008-03-07",
+			"duration": "11:38:17",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4l1G59ZVCUuTuZ-btLpPnm/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4l1G59ZVCUuTuZ-btLpPnm",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf",
+			"title": "Max Payne 2 - The Fall of Max Payne",
+			"playlistId": "PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf",
+			"releaseDate": "2003-10-24",
+			"duration": "03:35:54",
+			"platform": 1,
+			"genres": [
+				1,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -659,6 +815,56 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B",
+			"title": "Chicken Invaders 5 - Cluck of the dark side",
+			"playlistId": "PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B",
+			"releaseDate": "2015-03-13",
+			"duration": "02:13:36",
+			"platform": 1,
+			"genres": [
+				1,
+				6,
+				10
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A",
+			"title": "Spy Fox : Operation Ozone",
+			"playlistId": "PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A",
+			"releaseDate": "2001-03-30",
+			"duration": "01:09:17",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				7,
+				6
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx",
+			"title": "Spy Fox : Opération Robot Expo",
+			"playlistId": "PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx",
+			"releaseDate": "2000-11-20",
+			"duration": "01:12:15",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				7,
+				6
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
 			"title": "Rayman 2: The Great Escape",
 			"playlistId": "PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
@@ -718,6 +924,39 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
+			"title": "Spy fox : Opération Milkshake",
+			"playlistId": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
+			"releaseDate": "1997-09-02",
+			"duration": "01:17:20",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				7,
+				6
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
+			"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
+			"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
+			"releaseDate": "2006-11-17",
+			"duration": "04:08:28",
+			"platform": 3,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -846,6 +1085,39 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
+			"title": "Jak and Daxter: The Precursor Legacy",
+			"playlistId": "PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
+			"releaseDate": "2001-12-14",
+			"duration": "05:07:21",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
+			"title": "Jak 3",
+			"playlistId": "PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
+			"releaseDate": "2004-12-01",
+			"duration": "06:27:02",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem",
 			"title": "Dragon Ball Z : L'Héritage de Goku 2",
 			"playlistId": "PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem",
@@ -890,6 +1162,21 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ",
+			"title": "Psychonauts 2",
+			"playlistId": "PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ",
+			"releaseDate": "2021-08-25",
+			"duration": "10:59:44",
+			"platform": 1,
+			"genres": [
+				1,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -969,6 +1256,20 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ",
+			"title": "Astérix & Obélix : Baffez-les Tous !",
+			"playlistId": "PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ",
+			"releaseDate": "2021-12-07",
+			"duration": "05:43:21",
+			"platform": 1,
+			"genres": [
+				9
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1629,83 +1930,6 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
-			"id": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
-			"title": "Guns Gore & Cannoli",
-			"playlistId": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
-			"releaseDate": "2015-04-30",
-			"duration": "02:10:05",
-			"platform": 1,
-			"genres": [
-				1,
-				16,
-				3,
-				10
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
-			"title": "Shrek 2 Le Jeu",
-			"playlistId": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
-			"releaseDate": "2004-06-18",
-			"duration": "02:24:35",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "qaIADIQyr0A",
-			"title": "Sam Pyjam : Héros de la Nuit",
-			"videoId": "qaIADIQyr0A",
-			"releaseDate": "1996-10-04",
-			"duration": "00:44:11",
-			"platform": 1,
-			"genres": [
-				2,
-				7
-			],
-			"imagePath": "/covers/qaIADIQyr0A/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=qaIADIQyr0A",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "We7-JHU7D7I",
-			"title": "Pyjama Sam 2 : Héros Météo",
-			"videoId": "We7-JHU7D7I",
-			"releaseDate": "1998-10-02",
-			"duration": "00:53:45",
-			"platform": 1,
-			"genres": [
-				2,
-				7
-			],
-			"imagePath": "/covers/We7-JHU7D7I/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=We7-JHU7D7I",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "Qsq_q65MwhU",
-			"title": "Pyjama Sam : Héros du Goûter",
-			"videoId": "Qsq_q65MwhU",
-			"releaseDate": "2000-11-22",
-			"duration": "01:07:54",
-			"platform": 1,
-			"genres": [
-				2,
-				7
-			],
-			"imagePath": "/covers/Qsq_q65MwhU/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=Qsq_q65MwhU",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO",
 			"title": "Remember Me",
 			"playlistId": "PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO",
@@ -1719,22 +1943,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
-			"title": "TMNT 2007 (GBA)",
-			"playlistId": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
-			"releaseDate": "2007-03-29",
-			"duration": "01:10:46",
-			"platform": 2,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1764,22 +1972,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY",
-			"title": "Secret Agent Clank",
-			"playlistId": "PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY",
-			"releaseDate": "2008-07-11",
-			"duration": "06:22:48",
-			"platform": 3,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1897,53 +2089,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4ivg1J2leFzeuABXobVFNO",
-			"title": "Guns Gore and Cannoli 2",
-			"playlistId": "PLRfhDHeBTBJ4ivg1J2leFzeuABXobVFNO",
-			"releaseDate": "2018-03-03",
-			"duration": "02:31:53",
-			"platform": 1,
-			"genres": [
-				1,
-				16,
-				3,
-				10
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4ivg1J2leFzeuABXobVFNO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ivg1J2leFzeuABXobVFNO",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4l1G59ZVCUuTuZ-btLpPnm",
-			"title": "Bully : Scholarship Edition",
-			"playlistId": "PLRfhDHeBTBJ4l1G59ZVCUuTuZ-btLpPnm",
-			"releaseDate": "2008-03-07",
-			"duration": "11:38:17",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4l1G59ZVCUuTuZ-btLpPnm/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4l1G59ZVCUuTuZ-btLpPnm",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf",
-			"title": "Max Payne 2 - The Fall of Max Payne",
-			"playlistId": "PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf",
-			"releaseDate": "2003-10-24",
-			"duration": "03:35:54",
-			"platform": 1,
-			"genres": [
-				1,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
 			"title": "Max Payne I",
 			"playlistId": "PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
@@ -2019,56 +2164,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B",
-			"title": "Chicken Invaders 5 - Cluck of the dark side",
-			"playlistId": "PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B",
-			"releaseDate": "2015-03-13",
-			"duration": "02:13:36",
-			"platform": 1,
-			"genres": [
-				1,
-				6,
-				10
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A",
-			"title": "Spy Fox : Operation Ozone",
-			"playlistId": "PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A",
-			"releaseDate": "2001-03-30",
-			"duration": "01:09:17",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				7,
-				6
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx",
-			"title": "Spy Fox : Opération Robot Expo",
-			"playlistId": "PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx",
-			"releaseDate": "2000-11-20",
-			"duration": "01:12:15",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				7,
-				6
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
 			"title": "Saints Row The Third",
 			"playlistId": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
@@ -2096,39 +2191,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
-			"title": "Spy fox : Opération Milkshake",
-			"playlistId": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
-			"releaseDate": "1997-09-02",
-			"duration": "01:17:20",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				7,
-				6
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
-			"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
-			"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
-			"releaseDate": "2006-11-17",
-			"duration": "04:08:28",
-			"platform": 3,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2317,22 +2379,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
-			"title": "Jak and Daxter: The Precursor Legacy",
-			"playlistId": "PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
-			"releaseDate": "2001-12-14",
-			"duration": "05:07:21",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
 			"title": "Jak II : Hors la Loi",
 			"playlistId": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
@@ -2365,23 +2411,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
-			"title": "Jak 3",
-			"playlistId": "PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
-			"releaseDate": "2004-12-01",
-			"duration": "06:27:02",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
 			"title": "Marc Eckō's Getting Up: Contents Under Pressure",
 			"playlistId": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
@@ -2394,21 +2423,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ",
-			"title": "Psychonauts 2",
-			"playlistId": "PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ",
-			"releaseDate": "2021-08-25",
-			"duration": "10:59:44",
-			"platform": 1,
-			"genres": [
-				1,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2555,20 +2569,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ",
-			"title": "Astérix & Obélix : Baffez-les Tous !",
-			"playlistId": "PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ",
-			"releaseDate": "2021-12-07",
-			"duration": "05:43:21",
-			"platform": 1,
-			"genres": [
-				9
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ",
 			"url_type": "PLAYLIST"
 		},
 		{
