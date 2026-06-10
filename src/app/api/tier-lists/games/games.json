@@ -521,6 +521,66 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP",
+			"title": "Dante's Inferno",
+			"playlistId": "PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP",
+			"releaseDate": "2010-10-04",
+			"duration": "05:48:59",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
+			"title": "Sly Raccoon",
+			"playlistId": "PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
+			"releaseDate": "2011-12-07",
+			"duration": "04:05:13",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
+			"title": "Sly 2 : Association de voleurs",
+			"playlistId": "PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
+			"releaseDate": "2011-12-07",
+			"duration": "11:26:08",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
+			"title": "Batman The Enemy Within",
+			"playlistId": "PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
+			"releaseDate": "2017-08-08",
+			"duration": "08:10:21",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
 			"title": "Metal Gear Rising Revengeance",
 			"playlistId": "PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
@@ -533,6 +593,21 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
+			"title": "Sly 3 : Honor Among Thieves",
+			"playlistId": "PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
+			"releaseDate": "2011-12-07",
+			"duration": "09:46:28",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2842,81 +2917,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP",
-			"title": "Dante's Inferno",
-			"playlistId": "PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP",
-			"releaseDate": "2010-10-04",
-			"duration": "05:48:59",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
-			"title": "Sly Raccoon",
-			"playlistId": "PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
-			"releaseDate": "2011-12-07",
-			"duration": "04:05:13",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
-			"title": "Sly 2 : Association de voleurs",
-			"playlistId": "PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
-			"releaseDate": "2011-12-07",
-			"duration": "11:26:08",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
-			"title": "Batman The Enemy Within",
-			"playlistId": "PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
-			"releaseDate": "2017-08-08",
-			"duration": "08:10:21",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
-			"title": "Sly 3 : Honor Among Thieves",
-			"playlistId": "PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
-			"releaseDate": "2011-12-07",
-			"duration": "09:46:28",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
 			"url_type": "PLAYLIST"
 		},
 		{
