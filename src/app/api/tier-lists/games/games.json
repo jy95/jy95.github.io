@@ -519,6 +519,429 @@
 			"imagePath": "/covers/PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
 			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "odnIJiLjqCY",
+			"title": "Sigi - Un Pet Pour Mélusina",
+			"videoId": "odnIJiLjqCY",
+			"releaseDate": "2017-12-22",
+			"duration": "00:26:00",
+			"platform": 1,
+			"genres": [
+				1,
+				12
+			],
+			"imagePath": "/covers/odnIJiLjqCY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=odnIJiLjqCY",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "L7R_LBBOPEk",
+			"title": "Avatar : Le Dernier Maître de l'Air",
+			"videoId": "L7R_LBBOPEk",
+			"releaseDate": "2006-10-27",
+			"duration": "02:13:24",
+			"platform": 2,
+			"genres": [
+				1,
+				2,
+				14,
+				13
+			],
+			"imagePath": "/covers/L7R_LBBOPEk/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=L7R_LBBOPEk",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
+			"title": "Pumpkin Jack",
+			"playlistId": "PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
+			"releaseDate": "2020-10-23",
+			"duration": "03:33:36",
+			"platform": 1,
+			"genres": [
+				12,
+				13
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
+			"title": "Destroy All Humans! En route vers Paname !",
+			"playlistId": "PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
+			"releaseDate": "2009-02-13",
+			"duration": "06:44:54",
+			"platform": 6,
+			"genres": [
+				16,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT",
+			"title": "Zapper : Le Criquet Ravageur !",
+			"playlistId": "PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT",
+			"releaseDate": "2003-03-07",
+			"duration": "02:45:50",
+			"platform": 5,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3",
+			"title": "DmC: Devil May Cry",
+			"playlistId": "PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3",
+			"releaseDate": "2013-01-15",
+			"duration": "06:08:09",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+			"title": "-KLAUS-",
+			"playlistId": "PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+			"releaseDate": "2016-01-19",
+			"duration": "04:32:14",
+			"platform": 1,
+			"genres": [
+				12,
+				13
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
+			"title": "Batman Vengeance",
+			"playlistId": "PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
+			"releaseDate": "2001-10-15",
+			"duration": "02:32:02",
+			"platform": 5,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"title": "50 Cent: Blood on the Sand",
+			"playlistId": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"releaseDate": "2009-02-13",
+			"duration": "03:52:13",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"title": "Alan Wake Remastered",
+			"playlistId": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"releaseDate": "2021-10-04",
+			"duration": "09:33:04",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT",
+			"title": "The Punisher",
+			"playlistId": "PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT",
+			"releaseDate": "2005-03-11",
+			"duration": "05:36:21",
+			"platform": 1,
+			"genres": [
+				1,
+				16,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq",
+			"title": "Stranglehold",
+			"playlistId": "PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq",
+			"releaseDate": "2007-09-14",
+			"duration": "04:00:42",
+			"platform": 1,
+			"genres": [
+				1,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj",
+			"title": "Kya : Dark Lineage",
+			"playlistId": "PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj",
+			"releaseDate": "2003-11-21",
+			"duration": "07:34:50",
+			"platform": 5,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ72gRyZBPf23ZfxSlG5h8Em",
+			"title": "Pursuit Force: Extreme Justice",
+			"playlistId": "PLRfhDHeBTBJ72gRyZBPf23ZfxSlG5h8Em",
+			"releaseDate": "2007-12-12",
+			"duration": "04:35:22",
+			"platform": 3,
+			"genres": [
+				1,
+				15
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ72gRyZBPf23ZfxSlG5h8Em/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ72gRyZBPf23ZfxSlG5h8Em",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
+			"title": "Astérix aux Jeux olympiques",
+			"playlistId": "PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
+			"releaseDate": "2007-11-09",
+			"duration": "03:23:11",
+			"platform": 5,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR",
+			"title": "Robots",
+			"playlistId": "PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR",
+			"releaseDate": "2005-04-01",
+			"duration": "03:28:59",
+			"platform": 5,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD",
+			"title": "Dr. Fetus' Mean Meat Machine",
+			"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD",
+			"releaseDate": "2023-06-22",
+			"duration": "05:28:02",
+			"platform": 1,
+			"genres": [
+				13
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7-G7QCx-nB3Oc-TNmIaXMk",
+			"title": "Lollipop Chainsaw",
+			"playlistId": "PLRfhDHeBTBJ7-G7QCx-nB3Oc-TNmIaXMk",
+			"releaseDate": "2012-06-12",
+			"duration": "04:26:45",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				14
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7-G7QCx-nB3Oc-TNmIaXMk/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7-G7QCx-nB3Oc-TNmIaXMk",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
+			"title": "Ratchet & Clank Nexus",
+			"playlistId": "PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
+			"releaseDate": "2008-08-21",
+			"duration": "03:39:10",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
+			"title": "La Légende de Korra",
+			"playlistId": "PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
+			"releaseDate": "2014-10-22",
+			"duration": "02:33:20",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
+			"title": "La Planète au Trésor",
+			"playlistId": "PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
+			"releaseDate": "2013-02-13",
+			"duration": "04:54:34",
+			"platform": 6,
+			"genres": [
+				1,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
+			"title": "The Warriors",
+			"playlistId": "PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
+			"releaseDate": "2013-03-20",
+			"duration": "06:11:20",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
+			"title": "WET",
+			"playlistId": "PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
+			"releaseDate": "2009-09-18",
+			"duration": "04:12:24",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
+			"title": "Asura's Wrath",
+			"playlistId": "PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
+			"releaseDate": "2012-02-24",
+			"duration": "08:49:28",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
+			"title": "Shank",
+			"playlistId": "PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
+			"releaseDate": "2010-08-24",
+			"duration": "02:07:05",
+			"platform": 6,
+			"genres": [
+				1,
+				3,
+				9,
+				10
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
+			"title": "Shank 2",
+			"playlistId": "PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
+			"releaseDate": "2012-02-08",
+			"duration": "02:04:10",
+			"platform": 6,
+			"genres": [
+				1,
+				3,
+				9,
+				10
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
+			"title": "NeverDead",
+			"playlistId": "PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
+			"releaseDate": "2012-02-12",
+			"duration": "06:48:05",
+			"platform": 6,
+			"genres": [
+				1,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"tier_average": [
@@ -1680,21 +2103,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "odnIJiLjqCY",
-			"title": "Sigi - Un Pet Pour Mélusina",
-			"videoId": "odnIJiLjqCY",
-			"releaseDate": "2017-12-22",
-			"duration": "00:26:00",
-			"platform": 1,
-			"genres": [
-				1,
-				12
-			],
-			"imagePath": "/covers/odnIJiLjqCY/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=odnIJiLjqCY",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "Z-hI2U2g_j0",
 			"title": "Hercule",
 			"videoId": "Z-hI2U2g_j0",
@@ -1737,23 +2145,6 @@
 			],
 			"imagePath": "/covers/5ZHExfdq9F8/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=5ZHExfdq9F8",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "L7R_LBBOPEk",
-			"title": "Avatar : Le Dernier Maître de l'Air",
-			"videoId": "L7R_LBBOPEk",
-			"releaseDate": "2006-10-27",
-			"duration": "02:13:24",
-			"platform": 2,
-			"genres": [
-				1,
-				2,
-				14,
-				13
-			],
-			"imagePath": "/covers/L7R_LBBOPEk/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=L7R_LBBOPEk",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1815,36 +2206,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
-			"title": "Pumpkin Jack",
-			"playlistId": "PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
-			"releaseDate": "2020-10-23",
-			"duration": "03:33:36",
-			"platform": 1,
-			"genres": [
-				12,
-				13
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
-			"title": "Destroy All Humans! En route vers Paname !",
-			"playlistId": "PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
-			"releaseDate": "2009-02-13",
-			"duration": "06:44:54",
-			"platform": 6,
-			"genres": [
-				16,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1945,37 +2306,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT",
-			"title": "Zapper : Le Criquet Ravageur !",
-			"playlistId": "PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT",
-			"releaseDate": "2003-03-07",
-			"duration": "02:45:50",
-			"platform": 5,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3",
-			"title": "DmC: Devil May Cry",
-			"playlistId": "PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3",
-			"releaseDate": "2013-01-15",
-			"duration": "06:08:09",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
 			"title": "Marc Eckō's Getting Up: Contents Under Pressure",
 			"playlistId": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
@@ -2006,21 +2336,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
-			"title": "-KLAUS-",
-			"playlistId": "PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
-			"releaseDate": "2016-01-19",
-			"duration": "04:32:14",
-			"platform": 1,
-			"genres": [
-				12,
-				13
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ",
 			"title": "Rayman 3 : Hoodlum Havoc HD",
 			"playlistId": "PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ",
@@ -2034,22 +2349,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
-			"title": "Batman Vengeance",
-			"playlistId": "PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
-			"releaseDate": "2001-10-15",
-			"duration": "02:32:02",
-			"platform": 5,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2183,54 +2482,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
-			"title": "50 Cent: Blood on the Sand",
-			"playlistId": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
-			"releaseDate": "2009-02-13",
-			"duration": "03:52:13",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
-			"title": "Alan Wake Remastered",
-			"playlistId": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
-			"releaseDate": "2021-10-04",
-			"duration": "09:33:04",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT",
-			"title": "The Punisher",
-			"playlistId": "PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT",
-			"releaseDate": "2005-03-11",
-			"duration": "05:36:21",
-			"platform": 1,
-			"genres": [
-				1,
-				16,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ",
 			"title": "Astérix & Obélix : Baffez-les Tous !",
 			"playlistId": "PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ",
@@ -2337,21 +2588,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq",
-			"title": "Stranglehold",
-			"playlistId": "PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq",
-			"releaseDate": "2007-09-14",
-			"duration": "04:00:42",
-			"platform": 1,
-			"genres": [
-				1,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "0vTdVPo9I_4",
 			"title": "Metal Slug XX",
 			"videoId": "0vTdVPo9I_4",
@@ -2363,37 +2599,6 @@
 			],
 			"imagePath": "/covers/0vTdVPo9I_4/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=0vTdVPo9I_4",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj",
-			"title": "Kya : Dark Lineage",
-			"playlistId": "PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj",
-			"releaseDate": "2003-11-21",
-			"duration": "07:34:50",
-			"platform": 5,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ72gRyZBPf23ZfxSlG5h8Em",
-			"title": "Pursuit Force: Extreme Justice",
-			"playlistId": "PLRfhDHeBTBJ72gRyZBPf23ZfxSlG5h8Em",
-			"releaseDate": "2007-12-12",
-			"duration": "04:35:22",
-			"platform": 3,
-			"genres": [
-				1,
-				15
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ72gRyZBPf23ZfxSlG5h8Em/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ72gRyZBPf23ZfxSlG5h8Em",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2424,22 +2629,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
-			"title": "Astérix aux Jeux olympiques",
-			"playlistId": "PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
-			"releaseDate": "2007-11-09",
-			"duration": "03:23:11",
-			"platform": 5,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2551,22 +2740,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR",
-			"title": "Robots",
-			"playlistId": "PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR",
-			"releaseDate": "2005-04-01",
-			"duration": "03:28:59",
-			"platform": 5,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
 			"title": "Legend of Kay Anniversary",
 			"playlistId": "PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
@@ -2583,20 +2756,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD",
-			"title": "Dr. Fetus' Mean Meat Machine",
-			"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD",
-			"releaseDate": "2023-06-22",
-			"duration": "05:28:02",
-			"platform": 1,
-			"genres": [
-				13
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP",
 			"title": "Dante's Inferno",
 			"playlistId": "PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP",
@@ -2609,56 +2768,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7-G7QCx-nB3Oc-TNmIaXMk",
-			"title": "Lollipop Chainsaw",
-			"playlistId": "PLRfhDHeBTBJ7-G7QCx-nB3Oc-TNmIaXMk",
-			"releaseDate": "2012-06-12",
-			"duration": "04:26:45",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				14
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7-G7QCx-nB3Oc-TNmIaXMk/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7-G7QCx-nB3Oc-TNmIaXMk",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
-			"title": "Ratchet & Clank Nexus",
-			"playlistId": "PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
-			"releaseDate": "2008-08-21",
-			"duration": "03:39:10",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
-			"title": "La Légende de Korra",
-			"playlistId": "PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
-			"releaseDate": "2014-10-22",
-			"duration": "02:33:20",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2752,51 +2861,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
-			"title": "La Planète au Trésor",
-			"playlistId": "PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
-			"releaseDate": "2013-02-13",
-			"duration": "04:54:34",
-			"platform": 6,
-			"genres": [
-				1,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
-			"title": "The Warriors",
-			"playlistId": "PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
-			"releaseDate": "2013-03-20",
-			"duration": "06:11:20",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
-			"title": "WET",
-			"playlistId": "PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
-			"releaseDate": "2009-09-18",
-			"duration": "04:12:24",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X",
 			"title": "Contra Operation Galuga",
 			"playlistId": "PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X",
@@ -2824,21 +2888,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
-			"title": "Asura's Wrath",
-			"playlistId": "PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
-			"releaseDate": "2012-02-24",
-			"duration": "08:49:28",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2882,55 +2931,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
-			"title": "Shank",
-			"playlistId": "PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
-			"releaseDate": "2010-08-24",
-			"duration": "02:07:05",
-			"platform": 6,
-			"genres": [
-				1,
-				3,
-				9,
-				10
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
-			"title": "Shank 2",
-			"playlistId": "PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
-			"releaseDate": "2012-02-08",
-			"duration": "02:04:10",
-			"platform": 6,
-			"genres": [
-				1,
-				3,
-				9,
-				10
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
-			"title": "NeverDead",
-			"playlistId": "PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
-			"releaseDate": "2012-02-12",
-			"duration": "06:48:05",
-			"platform": 6,
-			"genres": [
-				1,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
 			"url_type": "PLAYLIST"
 		}
 	]
