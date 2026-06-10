@@ -521,7 +521,226 @@
 			"url_type": "PLAYLIST"
 		}
 	],
-	"tier_average": [],
+	"tier_average": [
+		{
+			"id": "PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC",
+			"title": "Samurai Jack: Battle Through Time",
+			"playlistId": "PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC",
+			"releaseDate": "2020-08-21",
+			"duration": "03:51:35",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				9
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb",
+			"title": "Prince of Persia : Les sables oubliés",
+			"playlistId": "PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb",
+			"releaseDate": "2010-04-20",
+			"duration": "05:16:11",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO",
+			"title": "Saints Row Gat out of Hell",
+			"playlistId": "PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO",
+			"releaseDate": "2015-01-23",
+			"duration": "05:45:04",
+			"platform": 1,
+			"genres": [
+				1,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn",
+			"title": "Madagascar",
+			"playlistId": "PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn",
+			"releaseDate": "2005-06-17",
+			"duration": "03:24:49",
+			"platform": 5,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
+			"title": "Titeuf : Méga-Compet'",
+			"playlistId": "PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
+			"releaseDate": "2004-09-24",
+			"duration": "01:26:00",
+			"platform": 5,
+			"genres": [
+				6,
+				13
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "1vvwPVwbACY",
+			"title": "Yu-Gi-Oh! Reshef le Destructeur",
+			"videoId": "1vvwPVwbACY",
+			"releaseDate": "2004-09-10",
+			"duration": "05:04:19",
+			"platform": 2,
+			"genres": [
+				14,
+				5
+			],
+			"imagePath": "/covers/1vvwPVwbACY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=1vvwPVwbACY",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5K0xPqtndkObR9g05hHw5h",
+			"title": "Jet Li: Rise to Honour",
+			"playlistId": "PLRfhDHeBTBJ5K0xPqtndkObR9g05hHw5h",
+			"releaseDate": "2004-04-07",
+			"duration": "03:35:54",
+			"platform": 5,
+			"genres": [
+				1,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5K0xPqtndkObR9g05hHw5h/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5K0xPqtndkObR9g05hHw5h",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "rGnInmyP2s4",
+			"title": "Bionicle",
+			"videoId": "rGnInmyP2s4",
+			"releaseDate": "2003-10-30",
+			"duration": "01:20:42",
+			"platform": 1,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/rGnInmyP2s4/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=rGnInmyP2s4",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
+			"title": "Ratchet & Clank : Quest for Booty",
+			"playlistId": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
+			"releaseDate": "2008-08-21",
+			"duration": "01:48:22",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
+			"title": "Splinter Cell Double Agent HD",
+			"playlistId": "PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
+			"releaseDate": "2007-03-27",
+			"duration": "04:06:45",
+			"platform": 6,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4DjOEslvP3es_dby3reani/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
+			"title": "Deadpool",
+			"playlistId": "PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
+			"releaseDate": "2013-06-28",
+			"duration": "05:23:02",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
+			"title": "Ratchet & Clank : All 4 One",
+			"playlistId": "PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
+			"releaseDate": "2011-10-19",
+			"duration": "07:56:23",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
+			"title": "Child of Eden",
+			"playlistId": "PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
+			"releaseDate": "2011-09-27",
+			"duration": "01:18:06",
+			"platform": 6,
+			"genres": [
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
+			"title": "Ratchet & Clank : QForce",
+			"playlistId": "PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
+			"releaseDate": "2012-11-28",
+			"duration": "02:44:35",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12,
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
+			"url_type": "PLAYLIST"
+		}
+	],
 	"tier_poor": [
 		{
 			"id": "PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5",
@@ -646,22 +865,6 @@
 	],
 	"tier_bad": [],
 	"tier_not_evaluated": [
-		{
-			"id": "PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC",
-			"title": "Samurai Jack: Battle Through Time",
-			"playlistId": "PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC",
-			"releaseDate": "2020-08-21",
-			"duration": "03:51:35",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				9
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC",
-			"url_type": "PLAYLIST"
-		},
 		{
 			"id": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
 			"title": "Guns Gore & Cannoli",
@@ -1210,22 +1413,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb",
-			"title": "Prince of Persia : Les sables oubliés",
-			"playlistId": "PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb",
-			"releaseDate": "2010-04-20",
-			"duration": "05:16:11",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
 			"title": "Saints Row IV",
 			"playlistId": "PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
@@ -1238,21 +1425,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO",
-			"title": "Saints Row Gat out of Hell",
-			"playlistId": "PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO",
-			"releaseDate": "2015-01-23",
-			"duration": "05:45:04",
-			"platform": 1,
-			"genres": [
-				1,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1673,36 +1845,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn",
-			"title": "Madagascar",
-			"playlistId": "PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn",
-			"releaseDate": "2005-06-17",
-			"duration": "03:24:49",
-			"platform": 5,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
-			"title": "Titeuf : Méga-Compet'",
-			"playlistId": "PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
-			"releaseDate": "2004-09-24",
-			"duration": "01:26:00",
-			"platform": 5,
-			"genres": [
-				6,
-				13
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2180,21 +2322,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "1vvwPVwbACY",
-			"title": "Yu-Gi-Oh! Reshef le Destructeur",
-			"videoId": "1vvwPVwbACY",
-			"releaseDate": "2004-09-10",
-			"duration": "05:04:19",
-			"platform": 2,
-			"genres": [
-				14,
-				5
-			],
-			"imagePath": "/covers/1vvwPVwbACY/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=1vvwPVwbACY",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB",
 			"title": "Pursuit Force",
 			"playlistId": "PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB",
@@ -2239,21 +2366,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5K0xPqtndkObR9g05hHw5h",
-			"title": "Jet Li: Rise to Honour",
-			"playlistId": "PLRfhDHeBTBJ5K0xPqtndkObR9g05hHw5h",
-			"releaseDate": "2004-04-07",
-			"duration": "03:35:54",
-			"platform": 5,
-			"genres": [
-				1,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5K0xPqtndkObR9g05hHw5h/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5K0xPqtndkObR9g05hHw5h",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj",
 			"title": "Kya : Dark Lineage",
 			"playlistId": "PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj",
@@ -2267,22 +2379,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "rGnInmyP2s4",
-			"title": "Bionicle",
-			"videoId": "rGnInmyP2s4",
-			"releaseDate": "2003-10-30",
-			"duration": "01:20:42",
-			"platform": 1,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/rGnInmyP2s4/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=rGnInmyP2s4",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2532,23 +2628,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
-			"title": "Ratchet & Clank : Quest for Booty",
-			"playlistId": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
-			"releaseDate": "2008-08-21",
-			"duration": "01:48:22",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
 			"title": "Ratchet & Clank Nexus",
 			"playlistId": "PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
@@ -2610,21 +2689,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
-			"title": "Splinter Cell Double Agent HD",
-			"playlistId": "PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
-			"releaseDate": "2007-03-27",
-			"duration": "04:06:45",
-			"platform": 6,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4DjOEslvP3es_dby3reani/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2748,21 +2812,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
-			"title": "Deadpool",
-			"playlistId": "PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
-			"releaseDate": "2013-06-28",
-			"duration": "05:23:02",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
 			"title": "Sly Cooper : Voleurs à travers le Temps",
 			"playlistId": "PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
@@ -2793,23 +2842,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
-			"title": "Ratchet & Clank : All 4 One",
-			"playlistId": "PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
-			"releaseDate": "2011-10-19",
-			"duration": "07:56:23",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
 			"title": "Vanquish",
 			"playlistId": "PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
@@ -2822,37 +2854,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
-			"title": "Child of Eden",
-			"playlistId": "PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
-			"releaseDate": "2011-09-27",
-			"duration": "01:18:06",
-			"platform": 6,
-			"genres": [
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
-			"title": "Ratchet & Clank : QForce",
-			"playlistId": "PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
-			"releaseDate": "2012-11-28",
-			"duration": "02:44:35",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12,
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
 			"url_type": "PLAYLIST"
 		},
 		{
