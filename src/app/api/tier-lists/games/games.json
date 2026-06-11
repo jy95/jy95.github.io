@@ -1848,6 +1848,21 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "6wJFMcIHi8k",
+			"title": "Space Invaders Extreme",
+			"videoId": "6wJFMcIHi8k",
+			"releaseDate": "2008-07-03",
+			"duration": "00:30:04",
+			"platform": 3,
+			"genres": [
+				1,
+				16
+			],
+			"imagePath": "/covers/6wJFMcIHi8k/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=6wJFMcIHi8k",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh",
 			"title": "Les Simpson : Le Jeu",
 			"playlistId": "PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh",
@@ -1876,6 +1891,21 @@
 			],
 			"imagePath": "/covers/Drz_YdmE-yQ/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=Drz_YdmE-yQ",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "NZiAc-mIJuQ",
+			"title": "Yu-Gi-Oh! Les Cartes Sacrées",
+			"videoId": "NZiAc-mIJuQ",
+			"releaseDate": "2004-01-30",
+			"duration": "02:57:48",
+			"platform": 2,
+			"genres": [
+				14,
+				5
+			],
+			"imagePath": "/covers/NZiAc-mIJuQ/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=NZiAc-mIJuQ",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2874,36 +2904,6 @@
 	],
 	"tier_bad": [],
 	"tier_not_evaluated": [
-		{
-			"id": "6wJFMcIHi8k",
-			"title": "Space Invaders Extreme",
-			"videoId": "6wJFMcIHi8k",
-			"releaseDate": "2008-07-03",
-			"duration": "00:30:04",
-			"platform": 3,
-			"genres": [
-				1,
-				16
-			],
-			"imagePath": "/covers/6wJFMcIHi8k/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=6wJFMcIHi8k",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "NZiAc-mIJuQ",
-			"title": "Yu-Gi-Oh! Les Cartes Sacrées",
-			"videoId": "NZiAc-mIJuQ",
-			"releaseDate": "2004-01-30",
-			"duration": "02:57:48",
-			"platform": 2,
-			"genres": [
-				14,
-				5
-			],
-			"imagePath": "/covers/NZiAc-mIJuQ/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=NZiAc-mIJuQ",
-			"url_type": "PLAYLIST"
-		},
 		{
 			"id": "PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
 			"title": "Batman The Telltale Series",
