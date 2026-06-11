@@ -2595,6 +2595,22 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
+			"title": "Legend of Kay Anniversary",
+			"playlistId": "PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
+			"releaseDate": "2015-05-29",
+			"duration": "09:06:52",
+			"platform": 6,
+			"genres": [
+				1,
+				2,
+				12
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
 			"title": "Ratchet & Clank : Quest for Booty",
 			"playlistId": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
@@ -2901,22 +2917,6 @@
 			],
 			"imagePath": "/covers/PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
-			"title": "Legend of Kay Anniversary",
-			"playlistId": "PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
-			"releaseDate": "2015-05-29",
-			"duration": "09:06:52",
-			"platform": 6,
-			"genres": [
-				1,
-				2,
-				12
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
 			"url_type": "PLAYLIST"
 		},
 		{
