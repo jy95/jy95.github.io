@@ -2030,6 +2030,21 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
+			"title": "Batman The Telltale Series",
+			"playlistId": "PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
+			"releaseDate": "2016-08-02",
+			"duration": "07:08:15",
+			"platform": 1,
+			"genres": [
+				1,
+				2
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
 			"title": "Splinter Cell HD",
 			"playlistId": "PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
@@ -2904,21 +2919,6 @@
 	],
 	"tier_bad": [],
 	"tier_not_evaluated": [
-		{
-			"id": "PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
-			"title": "Batman The Telltale Series",
-			"playlistId": "PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
-			"releaseDate": "2016-08-02",
-			"duration": "07:08:15",
-			"platform": 1,
-			"genres": [
-				1,
-				2
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
-			"url_type": "PLAYLIST"
-		},
 		{
 			"id": "PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
 			"title": "Operation Flashpoint : Red River",
