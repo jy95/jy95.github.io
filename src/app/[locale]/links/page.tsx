@@ -6,7 +6,6 @@ import Avatar from "@mui/material/Avatar";
 
 // Icons
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import GroupsIcon from '@mui/icons-material/Groups';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -33,13 +32,8 @@ const LINKS : {
         icon: <GroupsIcon />
     },
     {
-        primary: "Odysee",
-        path: "https://odysee.com/@GamesPassionFR:d",
-        icon: <RocketLaunchIcon />
-    },
-    {
-        primary: "Twitter / X",
-        path: "https://x.com/GamesPassion_FR",
+        primary: "Bluesky",
+        path: "https://bsky.app/profile/gamespassionfr.bsky.social",
         icon: <TwitterIcon />
     },
     {
