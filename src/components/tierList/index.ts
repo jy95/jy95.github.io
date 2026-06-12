@@ -13,3 +13,4 @@ export type BackgroundColor = CSSProperties["backgroundColor"];
 
 // Export for external use
 export { TierRow } from "./TierRow";
+export { TierLists } from "./TierLists";
