@@ -8,7 +8,7 @@ import TierTitle from "./TierTitle";
 import GamesRow from "./GamesRow";
 
 // Types
-import type { GameRender, RawType } from "./index";
+import type { GameRender, RawType, BackgroundColor } from "./index";
 
 export interface TierRowProps<T extends RawType> {
     // A unique identifier for the tier row, used for keying and styling purposes.
@@ -16,12 +16,12 @@ export interface TierRowProps<T extends RawType> {
     // An array of items that belong to this tier. The type T can be defined by the parent component to allow for flexibility in the kind of data being displayed.
     items: T[];
     // The color associated with this tier
-    slugColor: string;
+    slugColor: BackgroundColor;
     // A function that renders each game item
     GameRender: GameRender<T>;
 }
 
-export default function TierRow<T extends RawType>({ slugKey, items, slugColor, GameRender }: TierRowProps<T>) {
+export function TierRow<T extends RawType>({ slugKey, items, slugColor, GameRender }: TierRowProps<T>) {
 
     return (
         <Box sx={{ display: 'flex', mb: 2, minHeight: '180px' }}>

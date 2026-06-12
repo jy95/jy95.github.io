@@ -7,11 +7,13 @@ import { useTranslations } from "next-intl";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
+import type { BackgroundColor } from "./index";
+
 export interface TierTitleProps {
     // A unique identifier for the tier, used for keying and styling purposes.
     slugKey: string;
     // The color associated with this tier
-    slugColor: string;
+    slugColor: BackgroundColor;
 }
 
 export default function TierTitle({ slugKey, slugColor }: TierTitleProps) {
