@@ -13,7 +13,8 @@
                 "list": "Séries",
                 "dlc": "DLCS",
                 "random": "Au hasard"
-            }
+            },
+            "tierTabs": "Tops"
         },
         "toolbar": {
             "settings": "Paramètres",

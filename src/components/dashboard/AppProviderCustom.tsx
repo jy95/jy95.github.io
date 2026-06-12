@@ -39,7 +39,8 @@ function AppProviderCustomInner(props: Props) {
         planned: t("menuEntries.planningKey"),
         seriesView: t("menuEntries.gamesTabs.list"),
         stats: t("menuEntries.stats"),
-        tests: t("menuEntries.testsKey")
+        tests: t("menuEntries.testsKey"),
+        tierListsCategory: t("menuEntries.tierTabs")
     });
 
     return (

@@ -13,7 +13,8 @@
                 "list": "Series",
                 "dlc": "DLCS",
                 "random": "Random"
-            }
+            },
+            "tierTabs": "Tier Lists"
         },
         "toolbar": {
             "settings": "Settings",

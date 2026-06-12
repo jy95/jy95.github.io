@@ -9,6 +9,7 @@ import AppsIcon from '@mui/icons-material/Apps';
 import ListIcon from '@mui/icons-material/List';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import CasinoIcon from '@mui/icons-material/Casino';
+import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 
 // Types
 import type { Navigation } from '@/components/toolpad/types';
@@ -22,7 +23,8 @@ type Props = {
     backlog: string,
     tests: string,
     stats: string,
-    links: string
+    links: string,
+    tierListsCategory: string
 }
 
 export default function NavigationMenu(props: Props) : Navigation {
@@ -62,6 +64,18 @@ export default function NavigationMenu(props: Props) : Navigation {
             icon: <HourglassEmptyIcon />,
             title: props.backlog,
             segment: "backlog"
+        },
+        {
+            icon: <LeaderboardIcon />,
+            title: props.tierListsCategory,
+            segment: "tier",
+            children: [
+                {
+                    segment: "games",
+                    icon: <SportsEsportsIcon />,
+                    title: props.gamesView
+                },
+            ]
         },
         {
             icon: <ScienceIcon />,
