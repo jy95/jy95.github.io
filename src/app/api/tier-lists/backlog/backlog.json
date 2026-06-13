@@ -3,7 +3,20 @@
 	"tier_excellent": [],
 	"tier_good": [],
 	"tier_average": [],
-	"tier_poor": [],
+	"tier_poor": [
+		{
+			"id": "81",
+			"title": "The sopranos road to respect",
+			"platform": 5,
+			"hltb_main": "04:34:11",
+			"hltb_extra": "05:25:50",
+			"hltb_completionist": "06:43:18",
+			"category_slug": "tier_poor",
+			"imagePath": "/backlogcovers/81/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		}
+	],
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
@@ -927,18 +940,6 @@
 			"hltb_completionist": "104:39:33",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/80/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "81",
-			"title": "The sopranos road to respect",
-			"platform": 5,
-			"hltb_main": "04:34:11",
-			"hltb_extra": "05:25:50",
-			"hltb_completionist": "06:43:18",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/81/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
