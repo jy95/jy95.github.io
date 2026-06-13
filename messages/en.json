@@ -146,6 +146,11 @@
             "total_duration": "Content total duration",
             "total_duration_available": "Content total duration (Available)",
             "total_duration_unavailable": "Content total duration (Not yet available)"
+        },
+        "tierStats": {
+            "distributionTitle": "Tier list distribution",
+            "total_games": "{count} games in total",
+            "tooltip": "{category}: {count} games ({percentage}%)"
         }
     },
     "gameDetail": {

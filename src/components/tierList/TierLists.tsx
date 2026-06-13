@@ -5,10 +5,10 @@ import { useGetSortedCategoriesQuery } from "@/redux/services/tierListAPI";
 
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
-import Typography from "@mui/material/Typography";
 
 import { TierListControls } from "./TierListControls";
 import { TierListBoard } from "./TierListBoard";
+import DistributionBar from "./DistributionBar";
 
 import type { RawType, GameRender, BackgroundColor } from "./index";
 
@@ -61,7 +61,10 @@ export function TierLists<T extends RawType>({
                 sortOrder={sortOrder} 
                 onToggleSort={toggleSort} 
             />
-
+            <DistributionBar 
+                categoryColors={categoryColors}
+                data={data}
+            />
             <TierListBoard 
                 categories={categories}
                 data={data}

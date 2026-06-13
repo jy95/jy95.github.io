@@ -146,6 +146,11 @@
             "total_duration": "Durée totale du contenu",
             "total_duration_available": "Durée totale du contenu (disponible)",
             "total_duration_unavailable": "Durée totale du contenu (pas encore disponible)"
+        },
+        "tierStats": {
+            "distributionTitle": "Répartition du top",
+            "total_games": "{count} jeux au total",
+            "tooltip": "{category}: {count} jeux ({percentage}%)"
         }
     },
     "gameDetail": {
