@@ -149,8 +149,8 @@
         },
         "tierStats": {
             "distributionTitle": "Répartition du top",
-            "total_games": "{count} jeux au total",
-            "tooltip": "{category}: {count} jeux ({percentage}%)"
+            "total_games": "{count, plural, one {# jeu au total} other {# jeux au total}}",
+            "tooltip": "{category} : {count, plural, one {# jeu} other {# jeux}} ({percentage}%)"
         }
     },
     "gameDetail": {

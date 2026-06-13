@@ -75,6 +75,11 @@ export default function NavigationMenu(props: Props) : Navigation {
                     icon: <SportsEsportsIcon />,
                     title: props.gamesView
                 },
+                {
+                    segment: "backlog",
+                    icon: <HourglassEmptyIcon />,
+                    title: props.backlog,
+                }
             ]
         },
         {

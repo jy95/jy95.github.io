@@ -24,13 +24,13 @@ export function TierLists<T extends RawType>({
     isLoadingData = false, 
     GameRender, 
     categoryColors = {
-        'tier_masterpiece': '#FF6B6B',    // red
-        'tier_excellent': '#FF8C42',      // orange
-        'tier_good': '#FFD93D',           // yellow
-        'tier_average': '#6BCB77',        // green
+        'tier_masterpiece': '#FF6B6B',    
+        'tier_excellent': '#FF8C42',      
+        'tier_good': '#6BCB77',           
+        'tier_average': '#FFD93D',
         'tier_poor': '#4D96FF',           // blue
         'tier_bad': '#9D4EDD',            // purple
-        'tier_not_evaluated': '#A0A0A0',  // gray
+        'tier_not_evaluated': '#A0A0A0',  
     }
 }: TierListsProps<T>) {
 
