@@ -17,6 +17,8 @@ export const routing = defineRouting({
     '/tests': '/tests',
     '/stats': '/stats',
     '/links': '/links',
+    '/tier/games': '/tier/games',
+    '/tier/backlog': '/tier/backlog',
     // Dynamic params are supported via square brackets
     '/playlist/[id]': '/playlist/[id]',
     '/video/[id]': '/video/[id]'

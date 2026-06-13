@@ -13,7 +13,8 @@
                 "list": "Series",
                 "dlc": "DLCS",
                 "random": "Random"
-            }
+            },
+            "tierTabs": "Tier Lists"
         },
         "toolbar": {
             "settings": "Settings",
@@ -145,6 +146,11 @@
             "total_duration": "Content total duration",
             "total_duration_available": "Content total duration (Available)",
             "total_duration_unavailable": "Content total duration (Not yet available)"
+        },
+        "tierStats": {
+            "distributionTitle": "Tier list distribution",
+            "total_games": "{count, plural, =0 {0 games in total} one {# game in total} other {# games in total}}",
+            "tooltip": "{category}: {count, plural, =0 {0 games} one {# game} other {# games}} ({percentage}%)"
         }
     },
     "gameDetail": {

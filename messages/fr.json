@@ -13,7 +13,8 @@
                 "list": "Séries",
                 "dlc": "DLCS",
                 "random": "Au hasard"
-            }
+            },
+            "tierTabs": "Tops"
         },
         "toolbar": {
             "settings": "Paramètres",
@@ -145,6 +146,11 @@
             "total_duration": "Durée totale du contenu",
             "total_duration_available": "Durée totale du contenu (disponible)",
             "total_duration_unavailable": "Durée totale du contenu (pas encore disponible)"
+        },
+        "tierStats": {
+            "distributionTitle": "Répartition du top",
+            "total_games": "{count, plural, one {# jeu au total} other {# jeux au total}}",
+            "tooltip": "{category} : {count, plural, one {# jeu} other {# jeux}} ({percentage}%)"
         }
     },
     "gameDetail": {
