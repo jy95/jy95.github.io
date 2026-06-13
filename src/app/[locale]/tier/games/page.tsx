@@ -7,6 +7,11 @@ import { useGetGamesTierListQuery } from "@/redux/services/tierListAPI";
 import CardEntry from "@/components/GamesView/CardEntry";
 import { TierLists } from "@/components/tierList";
 
+// Types 
+import type { CardGame } from "@/redux/sharedDefintion";
+
+const GameCardRenderer = ({ game }: { game: CardGame }) => <CardEntry game={game} />;
+
 export default function GamesTierList() {
 
     const { data, isLoading } = useGetGamesTierListQuery();
@@ -15,7 +20,7 @@ export default function GamesTierList() {
         <TierLists 
             data={data}
             isLoadingData={isLoading}
-            GameRender={({ game }) => <CardEntry  game={game} />}
+            GameRender={GameCardRenderer}
         />
     );
 }

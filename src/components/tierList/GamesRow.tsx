@@ -4,7 +4,7 @@
 import { useTranslations } from "next-intl";
 
 // Styles
-import Box from "@mui/material/Box";
+import Grid from '@mui/material/Grid';
 import Typography from "@mui/material/Typography";
 
 // Types
@@ -22,21 +22,38 @@ export default function GamesRow<T extends RawType>({ items, GameRender }: Games
     // Display texts in user's language
     const t = useTranslations("TierList");
 
+    const renderRow = (game: T) => (
+        <Grid 
+            key={game.id}
+            size={{
+                xs: 6,
+                md: 4,
+                lg: 2
+            }}
+        >
+            <GameRender game={game}/>
+        </Grid>
+    );
+
     // If there are no items in this games row, display a message indicating that it's empty.
     if (items.length === 0) {
         return (
-            <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Grid sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Typography variant="body1" color="textSecondary">
                     {t("empty")}
                 </Typography>
-            </Box>
+            </Grid>
         );
     }
 
     // If there are items in this games row, render them as needed.
     return (
-        <Box sx={{ flex: 1, gap: 1 }}>
-            {items.map( (game, idx) => <GameRender key={game?.id ?? idx} game={game} />) }
-        </Box>
+        <Grid 
+            container 
+            spacing={1}
+            rowSpacing={1}
+        >
+            {items.map(renderRow)}
+        </Grid>
     );
 }

@@ -7,7 +7,7 @@ type Props = {
     children: ReactNode
 }
 
-export default async function StatsLaytou({children} : Props) {
+export default async function TierLayout({children} : Props) {
 
     return (
         <NextIntlClientProvider>

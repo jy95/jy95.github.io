@@ -1,7 +1,7 @@
 import type { ElementType, CSSProperties } from "react";
 
 export interface RawType {
-    // Identifier of the ressource 
+    // Identifier of the resource 
     id?: string
 }
 
