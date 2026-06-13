@@ -19,10 +19,21 @@ const getHost = () => {
   return 'https://jy95.github.io';
 };
 
+// Routes to exclude, SEO doesn't like redirects
+const EXCLUDED_ROUTES: AvailableRoutes[] = [
+  '/'
+];
+
 const host = getHost();
 
 function isStaticPath(path: AvailableRoutes): path is Exclude<AvailableRoutes, `${string}[${string}]`> {
-  return !/\[.+\]/.test(path);
+  // 1. Check if route isn't dynamic (ex: [id])
+  const isDynamic = /\[.+\]/.test(path);
+
+  // 2. Check if route isn't manually excluded
+  const isExcluded = EXCLUDED_ROUTES.includes(path);
+  
+  return !isDynamic && !isExcluded;
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
