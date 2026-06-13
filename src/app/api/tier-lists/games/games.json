@@ -2779,6 +2779,20 @@
 			"imagePath": "/covers/PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
 			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
+			"title": "Operation Flashpoint : Red River",
+			"playlistId": "PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
+			"releaseDate": "2011-04-21",
+			"duration": "10:25:18",
+			"platform": 6,
+			"genres": [
+				16
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"tier_poor": [
@@ -2918,20 +2932,5 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": [
-		{
-			"id": "PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
-			"title": "Operation Flashpoint : Red River",
-			"playlistId": "PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
-			"releaseDate": "2011-04-21",
-			"duration": "10:25:18",
-			"platform": 6,
-			"genres": [
-				16
-			],
-			"imagePath": "/covers/PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
-			"url_type": "PLAYLIST"
-		}
-	]
+	"tier_not_evaluated": []
 }
