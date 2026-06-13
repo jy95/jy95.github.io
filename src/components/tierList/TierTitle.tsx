@@ -22,8 +22,29 @@ export default function TierTitle({ slugKey, slugColor }: TierTitleProps) {
     const t = useTranslations("TierList.categories");
 
     return (
-        <Box sx={{ backgroundColor: slugColor, alignItems: 'center', justifyContent: 'center', borderRadius: 1, mb: 2 }}>
-            <Typography>{t(slugKey as any)}</Typography>
+        <Box 
+            sx={{ 
+                display: 'flex',
+                alignItems: 'center', 
+                justifyContent: 'center',
+                backgroundColor: slugColor, 
+                borderRadius: 1,
+                mr: 1,
+                px: 1.5,
+                py: 2,
+                flex: '0 0 auto',
+            }}
+        >
+            <Typography
+                sx={{
+                    writingMode: 'vertical-rl',
+                    transform: 'rotate(180deg)',
+                    whiteSpace: 'nowrap',
+                    fontWeight: 'bold'
+                }}
+            >
+                {t(slugKey as any)}
+            </Typography>
         </Box>
     );
 }
