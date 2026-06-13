@@ -51,7 +51,8 @@ export default function GamesRow<T extends RawType>({ items, GameRender }: Games
         <Grid 
             container 
             spacing={1}
-            rowSpacing={1}
+            rowSpacing={1} 
+            sx={{ flexGrow: 1 }}
         >
             {items.map(renderRow)}
         </Grid>
