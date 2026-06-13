@@ -166,6 +166,8 @@
         "title_games": "Tier List des Jeux Faits",
         "title_backlog": "Tier List du Backlog",
         "empty": "Aucun jeu dans cette catégorie pour le moment.",
+        "sortAsc": "Tri : A → Z",
+        "sortDesc": "Tri : Z → A",
         "categories": {
             "tier_masterpiece": "Chef-d'œuvre",
             "tier_excellent": "Excellent",

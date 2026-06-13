@@ -24,9 +24,11 @@ export interface TierRowProps<T extends RawType> {
 export function TierRow<T extends RawType>({ slugKey, items, slugColor, GameRender }: TierRowProps<T>) {
 
     return (
-        <Box sx={{ display: 'flex', mb: 2, minHeight: '180px' }}>
+        <Box sx={{ display: 'flex', mb: 1, minHeight: '120px', border: '1px solid', borderColor: 'divider' }}>
             <TierTitle slugKey={slugKey} slugColor={slugColor} />
-            <GamesRow items={items} GameRender={GameRender} />
+            <Box sx={{ flex: 1, p: 1, borderLeft: '2px solid', borderColor: 'divider' }}>
+                <GamesRow items={items} GameRender={GameRender} />
+            </Box>
         </Box>
     );
 

@@ -166,6 +166,8 @@
         "title_games": "Completed Games Tier List",
         "title_backlog": "Backlog Tier List",
         "empty": "No games in this category yet.",
+        "sortAsc": "Sort: A → Z",
+        "sortDesc": "Sort: Z → A",
         "categories": {
             "tier_masterpiece": "Masterpiece",
             "tier_excellent": "Excellent",

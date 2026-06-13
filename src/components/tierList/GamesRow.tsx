@@ -35,8 +35,12 @@ export default function GamesRow<T extends RawType>({ items, GameRender }: Games
 
     // If there are items in this games row, render them as needed.
     return (
-        <Box sx={{ flex: 1, gap: 1 }}>
-            {items.map( (game, idx) => <GameRender key={game?.id ?? idx} game={game} />) }
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, alignItems: 'flex-start', alignContent: 'flex-start' }}>
+            {items.map((game, idx) => (
+                <Box key={game?.id ?? idx} sx={{ width: 80, flexShrink: 0, overflow: 'hidden' }}>
+                    <GameRender game={game} />
+                </Box>
+            ))}
         </Box>
     );
 }
