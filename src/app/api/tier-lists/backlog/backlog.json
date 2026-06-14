@@ -212,7 +212,68 @@
 			"url_type": "VIDEO"
 		}
 	],
-	"tier_average": [],
+	"tier_average": [
+		{
+			"id": "47",
+			"title": "Kung Fu Panda : Le jeu",
+			"platform": 6,
+			"hltb_main": "05:00:54",
+			"hltb_extra": "07:05:41",
+			"hltb_completionist": "12:21:07",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/47/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "76",
+			"title": "True Crime - New York City",
+			"platform": 5,
+			"hltb_main": "07:10:57",
+			"hltb_extra": "19:03:48",
+			"hltb_completionist": "30:57:10",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/76/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "78",
+			"title": "Dead to Rights II",
+			"platform": 5,
+			"hltb_main": "06:11:38",
+			"hltb_extra": "10:00:00",
+			"hltb_completionist": "15:00:00",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/78/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "161",
+			"title": "25 to Life",
+			"platform": 5,
+			"hltb_main": "04:22:18",
+			"hltb_extra": "04:44:14",
+			"hltb_completionist": "06:34:10",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/161/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "182",
+			"title": "Rise of the Argonauts",
+			"platform": 6,
+			"hltb_main": "12:09:27",
+			"hltb_extra": "13:25:54",
+			"hltb_completionist": "16:25:45",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/182/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		}
+	],
 	"tier_poor": [
 		{
 			"id": "81",
@@ -778,18 +839,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "47",
-			"title": "Kung Fu Panda : Le jeu",
-			"platform": 6,
-			"hltb_main": "05:00:54",
-			"hltb_extra": "07:05:41",
-			"hltb_completionist": "12:21:07",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/47/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "48",
 			"title": "Shantae Advance : Risky Revolution",
 			"platform": 1,
@@ -1092,18 +1141,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "76",
-			"title": "True Crime - New York City",
-			"platform": 5,
-			"hltb_main": "07:10:57",
-			"hltb_extra": "19:03:48",
-			"hltb_completionist": "30:57:10",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/76/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "77",
 			"title": "Batman Begins",
 			"platform": 5,
@@ -1112,18 +1149,6 @@
 			"hltb_completionist": "09:08:53",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/77/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "78",
-			"title": "Dead to Rights II",
-			"platform": 5,
-			"hltb_main": "06:11:38",
-			"hltb_extra": "10:00:00",
-			"hltb_completionist": "15:00:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/78/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1733,18 +1758,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "161",
-			"title": "25 to Life",
-			"platform": 5,
-			"hltb_main": "04:22:18",
-			"hltb_extra": "04:44:14",
-			"hltb_completionist": "06:34:10",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/161/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "162",
 			"title": "Blast Brigade vs. the Evil Legion of Dr. Cread",
 			"platform": 1,
@@ -1940,18 +1953,6 @@
 			"hltb_completionist": "14:56:34",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/181/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "182",
-			"title": "Rise of the Argonauts",
-			"platform": 6,
-			"hltb_main": "12:09:27",
-			"hltb_extra": "13:25:54",
-			"hltb_completionist": "16:25:45",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/182/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
