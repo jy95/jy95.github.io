@@ -28,7 +28,8 @@ export async function extractAndSaveTierListBacklog(db: Database, outputPath: st
         SELECT b.*, COALESCE(tc.slug, 'tier_not_evaluated') AS category_slug
         FROM backlog b
         LEFT JOIN tier_list_backlog tlb ON b.id = tlb.backlog_id
-        LEFT JOIN tier_categories tc ON tlb.category_id = tc.id
+        LEFT JOIN tier_categories tc ON tlb.category_id = tc.id 
+        ORDER BY b.title ASC
     `).all() as TierListBacklogEntry[];
 
     // 3. Fill the result object
