@@ -102,7 +102,80 @@
 			"url_type": "VIDEO"
 		}
 	],
-	"tier_good": [],
+	"tier_good": [
+		{
+			"id": "17",
+			"title": "Viewtiful Joe",
+			"platform": 5,
+			"hltb_main": "07:58:03",
+			"hltb_extra": "12:23:03",
+			"hltb_completionist": "22:36:51",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/17/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "33",
+			"title": "God Hand",
+			"platform": 6,
+			"hltb_main": "13:02:41",
+			"hltb_extra": "15:21:21",
+			"hltb_completionist": "19:39:52",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/33/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "115",
+			"title": "Bionicle Heroes",
+			"notes": "PC vs PS2 ?",
+			"hltb_main": "08:28:54",
+			"hltb_extra": "14:34:13",
+			"hltb_completionist": "19:16:34",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/115/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "117",
+			"title": "Jak X",
+			"platform": 5,
+			"hltb_main": "11:46:32",
+			"hltb_extra": "14:15:17",
+			"hltb_completionist": "18:40:24",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/117/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "137",
+			"title": "MotorStorm",
+			"platform": 6,
+			"notes": "Complete edition",
+			"hltb_main": "14:40:18",
+			"hltb_extra": "17:38:45",
+			"hltb_completionist": "18:25:38",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/137/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "164",
+			"title": "Tornado Outbreak",
+			"platform": 6,
+			"hltb_main": "05:32:56",
+			"hltb_extra": "07:00:00",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/164/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		}
+	],
 	"tier_average": [],
 	"tier_poor": [
 		{
@@ -313,18 +386,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "17",
-			"title": "Viewtiful Joe",
-			"platform": 5,
-			"hltb_main": "07:58:03",
-			"hltb_extra": "12:23:03",
-			"hltb_completionist": "22:36:51",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/17/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "18",
 			"title": "Cold Fear",
 			"platform": 5,
@@ -487,18 +548,6 @@
 			"hltb_completionist": "19:14:39",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/32/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "33",
-			"title": "God Hand",
-			"platform": 6,
-			"hltb_main": "13:02:41",
-			"hltb_extra": "15:21:21",
-			"hltb_completionist": "19:39:52",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/33/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1340,30 +1389,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "115",
-			"title": "Bionicle Heroes",
-			"notes": "PC vs PS2 ?",
-			"hltb_main": "08:28:54",
-			"hltb_extra": "14:34:13",
-			"hltb_completionist": "19:16:34",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/115/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "117",
-			"title": "Jak X",
-			"platform": 5,
-			"hltb_main": "11:46:32",
-			"hltb_extra": "14:15:17",
-			"hltb_completionist": "18:40:24",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/117/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "118",
 			"title": "SOS : The Final Escape",
 			"platform": 5,
@@ -1471,19 +1496,6 @@
 			"hltb_completionist": "12:17:32",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/136/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "137",
-			"title": "MotorStorm",
-			"platform": 6,
-			"notes": "Complete edition",
-			"hltb_main": "14:40:18",
-			"hltb_extra": "17:38:45",
-			"hltb_completionist": "18:25:38",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/137/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1729,17 +1741,6 @@
 			"hltb_completionist": "21:08:03",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/162/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "164",
-			"title": "Tornado Outbreak",
-			"platform": 6,
-			"hltb_main": "05:32:56",
-			"hltb_extra": "07:00:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/164/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
