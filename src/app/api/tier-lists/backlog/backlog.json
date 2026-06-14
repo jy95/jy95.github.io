@@ -736,6 +736,17 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "140",
+			"title": "A la Croisée des Mondes : La Boussole d'Or",
+			"platform": 6,
+			"hltb_main": "06:44:09",
+			"hltb_extra": "16:30:00",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/140/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "110",
 			"title": "Blacksite",
 			"platform": 6,
@@ -744,6 +755,18 @@
 			"hltb_completionist": "06:37:09",
 			"category_slug": "tier_average",
 			"imagePath": "/backlogcovers/110/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "15",
+			"title": "Crash Twinsanity",
+			"platform": 5,
+			"hltb_main": "05:04:48",
+			"hltb_extra": "05:51:20",
+			"hltb_completionist": "07:32:16",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/15/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -780,6 +803,18 @@
 			"hltb_completionist": "12:21:07",
 			"category_slug": "tier_average",
 			"imagePath": "/backlogcovers/47/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "183",
+			"title": "La Legende de Beowulf : Le Jeu",
+			"platform": 6,
+			"hltb_main": "09:30:00",
+			"hltb_extra": "09:30:00",
+			"hltb_completionist": "14:00:00",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/183/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -829,6 +864,18 @@
 			"hltb_completionist": "154:03:58",
 			"category_slug": "tier_average",
 			"imagePath": "/backlogcovers/121/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "177",
+			"title": "The Cursed Crusade",
+			"platform": 6,
+			"hltb_main": "07:58:30",
+			"hltb_extra": "11:58:37",
+			"hltb_completionist": "17:25:00",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/177/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -904,17 +951,6 @@
 			"hltb_completionist": "09:45:00",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/75/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "140",
-			"title": "A la Croisée des Mondes : La Boussole d'Or",
-			"platform": 6,
-			"hltb_main": "06:44:09",
-			"hltb_extra": "16:30:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/140/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1000,18 +1036,6 @@
 			"hltb_completionist": "07:05:29",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/18/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "15",
-			"title": "Crash Twinsanity",
-			"platform": 5,
-			"hltb_main": "05:04:48",
-			"hltb_extra": "05:51:20",
-			"hltb_completionist": "07:32:16",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/15/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1274,18 +1298,6 @@
 			"hltb_completionist": "104:39:33",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/80/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "183",
-			"title": "La Legende de Beowulf : Le Jeu",
-			"platform": 6,
-			"hltb_main": "09:30:00",
-			"hltb_extra": "09:30:00",
-			"hltb_completionist": "14:00:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/183/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1674,18 +1686,6 @@
 			"hltb_completionist": "22:34:55",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/45/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "177",
-			"title": "The Cursed Crusade",
-			"platform": 6,
-			"hltb_main": "07:58:30",
-			"hltb_extra": "11:58:37",
-			"hltb_completionist": "17:25:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/177/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
