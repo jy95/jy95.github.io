@@ -1,5 +1,31 @@
 {
-	"tier_masterpiece": [],
+	"tier_masterpiece": [
+		{
+			"id": "66",
+			"title": "Persona 5 Royal",
+			"platform": 1,
+			"hltb_main": "101:16:23",
+			"hltb_extra": "123:04:25",
+			"hltb_completionist": "140:51:46",
+			"category_slug": "tier_masterpiece",
+			"imagePath": "/backlogcovers/66/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "150",
+			"title": "Burnout Paradise",
+			"platform": 6,
+			"notes": "+ DLCS ( Big Surf Island Pack, ...)",
+			"hltb_main": "13:06:51",
+			"hltb_extra": "26:09:32",
+			"hltb_completionist": "56:24:08",
+			"category_slug": "tier_masterpiece",
+			"imagePath": "/backlogcovers/150/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		}
+	],
 	"tier_excellent": [
 		{
 			"id": "100",
@@ -800,18 +826,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "66",
-			"title": "Persona 5 Royal",
-			"platform": 1,
-			"hltb_main": "101:16:23",
-			"hltb_extra": "123:04:25",
-			"hltb_completionist": "140:51:46",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/66/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "67",
 			"title": "Yakuza 1 HD",
 			"platform": 6,
@@ -1588,19 +1602,6 @@
 			"hltb_completionist": "15:53:44",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/149/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "150",
-			"title": "Burnout Paradise",
-			"platform": 6,
-			"notes": "+ DLCS ( Big Surf Island Pack, ...)",
-			"hltb_main": "13:06:51",
-			"hltb_extra": "26:09:32",
-			"hltb_completionist": "56:24:08",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/150/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
