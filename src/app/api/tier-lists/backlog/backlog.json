@@ -506,6 +506,30 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "135",
+			"title": "Twisted Metal",
+			"platform": 6,
+			"hltb_main": "03:48:16",
+			"hltb_extra": "10:17:30",
+			"hltb_completionist": "15:18:32",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/135/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "136",
+			"title": "Berserk Boy",
+			"platform": 1,
+			"hltb_main": "04:06:09",
+			"hltb_extra": "07:23:42",
+			"hltb_completionist": "12:17:32",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/136/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "146",
 			"title": "I-Ninja",
 			"platform": 5,
@@ -514,6 +538,30 @@
 			"hltb_completionist": "13:56:58",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/146/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "149",
+			"title": "Alien Rage",
+			"platform": 6,
+			"hltb_main": "06:21:03",
+			"hltb_extra": "09:31:09",
+			"hltb_completionist": "15:53:44",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/149/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "154",
+			"title": "Ninja Gaiden Sigma",
+			"platform": 6,
+			"hltb_main": "13:40:39",
+			"hltb_extra": "16:50:12",
+			"hltb_completionist": "39:18:19",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/154/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -553,6 +601,30 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "170",
+			"title": "Gravity Rush",
+			"notes": "PS4",
+			"hltb_main": "10:05:34",
+			"hltb_extra": "13:20:42",
+			"hltb_completionist": "19:54:13",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/170/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "171",
+			"title": "Gravity Rush 2",
+			"notes": "PS4",
+			"hltb_main": "19:28:11",
+			"hltb_extra": "32:53:24",
+			"hltb_completionist": "52:17:42",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/171/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "175",
 			"title": "Wanted : Les Armes du Destin",
 			"platform": 6,
@@ -573,6 +645,18 @@
 			"hltb_completionist": "09:00:00",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/176/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "181",
+			"title": "MOUSE: P.I. For Hire",
+			"platform": 1,
+			"hltb_main": "11:02:07",
+			"hltb_extra": "13:50:55",
+			"hltb_completionist": "14:56:34",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/181/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		}
@@ -1643,30 +1727,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "135",
-			"title": "Twisted Metal",
-			"platform": 6,
-			"hltb_main": "03:48:16",
-			"hltb_extra": "10:17:30",
-			"hltb_completionist": "15:18:32",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/135/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "136",
-			"title": "Berserk Boy",
-			"platform": 1,
-			"hltb_main": "04:06:09",
-			"hltb_extra": "07:23:42",
-			"hltb_completionist": "12:17:32",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/136/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "139",
 			"title": "Panzer Dragoon",
 			"platform": 5,
@@ -1738,18 +1798,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "149",
-			"title": "Alien Rage",
-			"platform": 6,
-			"hltb_main": "06:21:03",
-			"hltb_extra": "09:31:09",
-			"hltb_completionist": "15:53:44",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/149/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "152",
 			"title": "THE HOUSE OF THE DEAD 2: Remake",
 			"hltb_main": "00:42:00",
@@ -1767,18 +1815,6 @@
 			"hltb_completionist": "23:15:10",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/153/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "154",
-			"title": "Ninja Gaiden Sigma",
-			"platform": 6,
-			"hltb_main": "13:40:39",
-			"hltb_extra": "16:50:12",
-			"hltb_completionist": "39:18:19",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/154/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1837,30 +1873,6 @@
 			"hltb_completionist": "13:20:06",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/169/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "170",
-			"title": "Gravity Rush",
-			"notes": "PS4",
-			"hltb_main": "10:05:34",
-			"hltb_extra": "13:20:42",
-			"hltb_completionist": "19:54:13",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/170/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "171",
-			"title": "Gravity Rush 2",
-			"notes": "PS4",
-			"hltb_main": "19:28:11",
-			"hltb_extra": "32:53:24",
-			"hltb_completionist": "52:17:42",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/171/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1941,18 +1953,6 @@
 			"hltb_completionist": "05:00:00",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/180/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "181",
-			"title": "MOUSE: P.I. For Hire",
-			"platform": 1,
-			"hltb_main": "11:02:07",
-			"hltb_extra": "13:50:55",
-			"hltb_completionist": "14:56:34",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/181/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
