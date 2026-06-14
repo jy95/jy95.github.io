@@ -39,6 +39,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "57",
+			"title": "Rage",
+			"platform": 6,
+			"hltb_main": "11:07:52",
+			"hltb_extra": "15:29:37",
+			"hltb_completionist": "23:42:46",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/57/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "73",
 			"title": "Yakuza : Like a Dragon",
 			"platform": 1,
@@ -188,6 +200,18 @@
 			"hltb_completionist": "21:11:06",
 			"category_slug": "tier_excellent",
 			"imagePath": "/backlogcovers/131/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "134",
+			"title": "Outland",
+			"platform": 6,
+			"hltb_main": "07:06:02",
+			"hltb_extra": "09:47:48",
+			"hltb_completionist": "12:27:40",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/134/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1266,18 +1290,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "57",
-			"title": "Rage",
-			"platform": 6,
-			"hltb_main": "11:07:52",
-			"hltb_extra": "15:29:37",
-			"hltb_completionist": "23:42:46",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/57/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "58",
 			"title": "Driver 76",
 			"platform": 3,
@@ -1711,18 +1723,6 @@
 			"hltb_completionist": "11:43:21",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/122/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "134",
-			"title": "Outland",
-			"platform": 6,
-			"hltb_main": "07:06:02",
-			"hltb_extra": "09:47:48",
-			"hltb_completionist": "12:27:40",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/134/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
