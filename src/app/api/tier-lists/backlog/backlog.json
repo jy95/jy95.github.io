@@ -142,6 +142,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "114",
+			"title": "The Darkness",
+			"platform": 6,
+			"hltb_main": "08:59:39",
+			"hltb_extra": "11:21:42",
+			"hltb_completionist": "18:41:36",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/114/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "126",
 			"title": "Gori: Cuddly Carnage",
 			"platform": 1,
@@ -1648,18 +1660,6 @@
 			"hltb_completionist": "06:37:09",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/110/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "114",
-			"title": "The Darkness",
-			"platform": 6,
-			"hltb_main": "08:59:39",
-			"hltb_extra": "11:21:42",
-			"hltb_completionist": "18:41:36",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/114/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
