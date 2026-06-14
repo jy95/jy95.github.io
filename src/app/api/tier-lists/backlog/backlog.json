@@ -1290,18 +1290,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "113",
-			"title": "Rogue Warrior",
-			"platform": 6,
-			"hltb_main": "02:12:53",
-			"hltb_extra": "03:35:41",
-			"hltb_completionist": "05:00:13",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/113/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "114",
 			"title": "The Darkness",
 			"platform": 6,
@@ -1741,18 +1729,6 @@
 			"hltb_completionist": "21:08:03",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/162/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "163",
-			"title": "Splatterhouse",
-			"platform": 6,
-			"hltb_main": "01:15:30",
-			"hltb_extra": "01:44:45",
-			"hltb_completionist": "01:50:39",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/163/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},

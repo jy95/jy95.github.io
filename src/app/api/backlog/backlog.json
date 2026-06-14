@@ -827,14 +827,6 @@
 		"hltb_completionist": "06:37:09"
 	},
 	{
-		"id": 113,
-		"title": "Rogue Warrior",
-		"platform": 6,
-		"hltb_main": "02:12:53",
-		"hltb_extra": "03:35:41",
-		"hltb_completionist": "05:00:13"
-	},
-	{
 		"id": 114,
 		"title": "The Darkness",
 		"platform": 6,
@@ -1153,14 +1145,6 @@
 		"hltb_main": "18:56:26",
 		"hltb_extra": "20:49:11",
 		"hltb_completionist": "21:08:03"
-	},
-	{
-		"id": 163,
-		"title": "Splatterhouse",
-		"platform": 6,
-		"hltb_main": "01:15:30",
-		"hltb_extra": "01:44:45",
-		"hltb_completionist": "01:50:39"
 	},
 	{
 		"id": 164,
