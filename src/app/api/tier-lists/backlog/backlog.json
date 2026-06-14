@@ -28,6 +28,61 @@
 	],
 	"tier_excellent": [
 		{
+			"id": "92",
+			"title": "Grand Theft Auto IV",
+			"hltb_main": "27:06:18",
+			"hltb_extra": "40:30:04",
+			"hltb_completionist": "72:59:49",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/92/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "93",
+			"title": "Grand Theft Auto V",
+			"hltb_main": "32:03:14",
+			"hltb_extra": "51:20:15",
+			"hltb_completionist": "88:22:33",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/93/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "94",
+			"title": "Grand Theft Auto : San Andreas",
+			"hltb_main": "30:12:41",
+			"hltb_extra": "45:02:49",
+			"hltb_completionist": "71:11:44",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/94/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "95",
+			"title": "Grand Theft Auto : Vice City",
+			"hltb_main": "17:12:04",
+			"hltb_extra": "23:57:03",
+			"hltb_completionist": "38:01:39",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/95/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "96",
+			"title": "Grand Theft Auto : Liberty City Stories",
+			"hltb_main": "13:46:00",
+			"hltb_extra": "22:51:47",
+			"hltb_completionist": "40:48:15",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/96/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "100",
 			"title": "Dead Space",
 			"notes": "Dead Space (2023)",
@@ -147,6 +202,30 @@
 			"hltb_completionist": "64:09:26",
 			"category_slug": "tier_excellent",
 			"imagePath": "/backlogcovers/157/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "158",
+			"title": "Ori and the Blind Forest",
+			"platform": 1,
+			"hltb_main": "08:13:45",
+			"hltb_extra": "10:22:41",
+			"hltb_completionist": "11:46:27",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/158/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "159",
+			"title": "Ori and the Will of the Wisps",
+			"platform": 1,
+			"hltb_main": "11:58:59",
+			"hltb_extra": "15:38:42",
+			"hltb_completionist": "18:16:32",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/159/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		}
@@ -1368,61 +1447,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "92",
-			"title": "Grand Theft Auto IV",
-			"hltb_main": "27:06:18",
-			"hltb_extra": "40:30:04",
-			"hltb_completionist": "72:59:49",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/92/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "93",
-			"title": "Grand Theft Auto V",
-			"hltb_main": "32:03:14",
-			"hltb_extra": "51:20:15",
-			"hltb_completionist": "88:22:33",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/93/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "94",
-			"title": "Grand Theft Auto : San Andreas",
-			"hltb_main": "30:12:41",
-			"hltb_extra": "45:02:49",
-			"hltb_completionist": "71:11:44",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/94/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "95",
-			"title": "Grand Theft Auto : Vice City",
-			"hltb_main": "17:12:04",
-			"hltb_extra": "23:57:03",
-			"hltb_completionist": "38:01:39",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/95/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "96",
-			"title": "Grand Theft Auto : Liberty City Stories",
-			"hltb_main": "13:46:00",
-			"hltb_extra": "22:51:47",
-			"hltb_completionist": "40:48:15",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/96/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "99",
 			"title": "BioShock Infinite",
 			"platform": 1,
@@ -1766,30 +1790,6 @@
 			"hltb_completionist": "17:31:20",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/155/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "158",
-			"title": "Ori and the Blind Forest",
-			"platform": 1,
-			"hltb_main": "08:13:45",
-			"hltb_extra": "10:22:41",
-			"hltb_completionist": "11:46:27",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/158/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "159",
-			"title": "Ori and the Will of the Wisps",
-			"platform": 1,
-			"hltb_main": "11:58:59",
-			"hltb_extra": "15:38:42",
-			"hltb_completionist": "18:16:32",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/159/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
