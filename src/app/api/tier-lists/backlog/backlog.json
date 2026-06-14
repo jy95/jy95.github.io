@@ -142,6 +142,31 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "104",
+			"title": "Tomb Raider",
+			"platform": 6,
+			"notes": "2013",
+			"hltb_main": "11:19:29",
+			"hltb_extra": "15:27:24",
+			"hltb_completionist": "20:53:35",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/104/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "105",
+			"title": "Rise Of The Tomb Raider",
+			"platform": 1,
+			"hltb_main": "13:18:35",
+			"hltb_extra": "21:51:27",
+			"hltb_completionist": "35:21:31",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/105/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "114",
 			"title": "The Darkness",
 			"platform": 6,
@@ -1587,31 +1612,6 @@
 			"hltb_completionist": "20:35:54",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/103/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "104",
-			"title": "Tomb Raider",
-			"platform": 6,
-			"notes": "2013",
-			"hltb_main": "11:19:29",
-			"hltb_extra": "15:27:24",
-			"hltb_completionist": "20:53:35",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/104/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "105",
-			"title": "Rise Of The Tomb Raider",
-			"platform": 1,
-			"hltb_main": "13:18:35",
-			"hltb_extra": "21:51:27",
-			"hltb_completionist": "35:21:31",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/105/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
