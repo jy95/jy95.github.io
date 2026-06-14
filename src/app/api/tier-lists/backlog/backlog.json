@@ -225,6 +225,40 @@
 			"imagePath": "/backlogcovers/81/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
+		},
+		{
+			"id": "148",
+			"title": "Kung Fu Rider",
+			"platform": 6,
+			"hltb_main": "01:35:06",
+			"hltb_completionist": "06:00:00",
+			"category_slug": "tier_poor",
+			"imagePath": "/backlogcovers/148/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "151",
+			"title": "PAIN",
+			"platform": 6,
+			"hltb_main": "03:00:00",
+			"hltb_extra": "25:00:00",
+			"category_slug": "tier_poor",
+			"imagePath": "/backlogcovers/151/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "168",
+			"title": "Turning Point : Fall Of Liberty",
+			"platform": 6,
+			"hltb_main": "04:17:32",
+			"hltb_extra": "04:44:24",
+			"hltb_completionist": "06:25:18",
+			"category_slug": "tier_poor",
+			"imagePath": "/backlogcovers/168/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
 		}
 	],
 	"tier_bad": [],
@@ -1607,17 +1641,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "148",
-			"title": "Kung Fu Rider",
-			"platform": 6,
-			"hltb_main": "01:35:06",
-			"hltb_completionist": "06:00:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/148/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "149",
 			"title": "Alien Rage",
 			"platform": 6,
@@ -1626,17 +1649,6 @@
 			"hltb_completionist": "15:53:44",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/149/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "151",
-			"title": "PAIN",
-			"platform": 6,
-			"hltb_main": "03:00:00",
-			"hltb_extra": "25:00:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/151/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1777,18 +1789,6 @@
 			"hltb_completionist": "09:09:42",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/167/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "168",
-			"title": "Turning Point : Fall Of Liberty",
-			"platform": 6,
-			"hltb_main": "04:17:32",
-			"hltb_extra": "04:44:24",
-			"hltb_completionist": "06:25:18",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/168/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
