@@ -736,6 +736,31 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "58",
+			"title": "Driver 76",
+			"platform": 3,
+			"hltb_main": "06:09:02",
+			"hltb_extra": "12:58:27",
+			"hltb_completionist": "24:46:01",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/58/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "62",
+			"title": "Scarface : The World is Yours",
+			"platform": 1,
+			"notes": "Scarface Remastered Project 1.1",
+			"hltb_main": "15:44:23",
+			"hltb_extra": "22:36:44",
+			"hltb_completionist": "27:03:48",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/62/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "76",
 			"title": "True Crime - New York City",
 			"platform": 5,
@@ -756,6 +781,42 @@
 			"hltb_completionist": "15:00:00",
 			"category_slug": "tier_average",
 			"imagePath": "/backlogcovers/78/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "110",
+			"title": "Blacksite",
+			"platform": 6,
+			"hltb_main": "05:36:35",
+			"hltb_extra": "05:50:53",
+			"hltb_completionist": "06:37:09",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/110/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "120",
+			"title": "Sonic Rivals",
+			"platform": 3,
+			"hltb_main": "04:40:50",
+			"hltb_extra": "09:53:33",
+			"hltb_completionist": "37:19:58",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/120/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "121",
+			"title": "Sonic Rivals 2",
+			"platform": 3,
+			"hltb_main": "05:17:09",
+			"hltb_extra": "38:25:46",
+			"hltb_completionist": "154:03:58",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/121/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1327,18 +1388,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "58",
-			"title": "Driver 76",
-			"platform": 3,
-			"hltb_main": "06:09:02",
-			"hltb_extra": "12:58:27",
-			"hltb_completionist": "24:46:01",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/58/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "60",
 			"title": "The House of the Dead : Overkill - Extended Cut",
 			"platform": 6,
@@ -1359,19 +1408,6 @@
 			"hltb_completionist": "11:36:53",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/61/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "62",
-			"title": "Scarface : The World is Yours",
-			"platform": 1,
-			"notes": "Scarface Remastered Project 1.1",
-			"hltb_main": "15:44:23",
-			"hltb_extra": "22:36:44",
-			"hltb_completionist": "27:03:48",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/62/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1652,18 +1688,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "110",
-			"title": "Blacksite",
-			"platform": 6,
-			"hltb_main": "05:36:35",
-			"hltb_extra": "05:50:53",
-			"hltb_completionist": "06:37:09",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/110/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "118",
 			"title": "SOS : The Final Escape",
 			"platform": 5,
@@ -1686,30 +1710,6 @@
 			"hltb_completionist": "17:17:39",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/119/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "120",
-			"title": "Sonic Rivals",
-			"platform": 3,
-			"hltb_main": "04:40:50",
-			"hltb_extra": "09:53:33",
-			"hltb_completionist": "37:19:58",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/120/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "121",
-			"title": "Sonic Rivals 2",
-			"platform": 3,
-			"hltb_main": "05:17:09",
-			"hltb_extra": "38:25:46",
-			"hltb_completionist": "154:03:58",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/121/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
