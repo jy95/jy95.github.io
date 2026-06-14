@@ -37,7 +37,8 @@ export async function extractAndSaveTierListGames(db: Database, outputPath: stri
         FROM games_in_present g
         LEFT JOIN tier_list_games tlg ON g.id = tlg.game_id
         LEFT JOIN tier_categories tc ON tlg.category_id = tc.id
-        WHERE g.id NOT IN (SELECT dlc FROM games_dlcs)
+        WHERE g.id NOT IN (SELECT dlc FROM games_dlcs) 
+        ORDER BY g.title ASC
     `).all() as GameRow[];
 
     // 3. Fill the result object
