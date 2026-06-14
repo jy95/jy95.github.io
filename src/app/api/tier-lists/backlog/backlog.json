@@ -177,6 +177,29 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "79",
+			"title": "Shovel Knight",
+			"platform": 6,
+			"hltb_main": "06:40:11",
+			"hltb_extra": "09:29:51",
+			"hltb_completionist": "18:28:41",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/79/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "106",
+			"title": "Gangs of London",
+			"platform": 3,
+			"hltb_main": "05:57:30",
+			"hltb_extra": "27:30:00",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/106/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "115",
 			"title": "Bionicle Heroes",
 			"notes": "PC vs PS2 ?",
@@ -201,6 +224,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "146",
+			"title": "I-Ninja",
+			"platform": 5,
+			"hltb_main": "08:10:30",
+			"hltb_extra": "12:40:30",
+			"hltb_completionist": "13:56:58",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/146/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "164",
 			"title": "Tornado Outbreak",
 			"platform": 6,
@@ -208,6 +243,54 @@
 			"hltb_extra": "07:00:00",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/164/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "165",
+			"title": "Klonoa 2 : Lunatea's Veil",
+			"platform": 5,
+			"hltb_main": "06:13:59",
+			"hltb_extra": "06:19:01",
+			"hltb_completionist": "07:16:01",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/165/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "167",
+			"title": "TimeShift",
+			"platform": 6,
+			"hltb_main": "07:51:26",
+			"hltb_extra": "09:04:09",
+			"hltb_completionist": "09:09:42",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/167/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "175",
+			"title": "Wanted : Les Armes du Destin",
+			"platform": 6,
+			"hltb_main": "05:00:00",
+			"hltb_extra": "05:00:00",
+			"hltb_completionist": "11:30:00",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/175/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "176",
+			"title": "La Mémoire dans la peau",
+			"platform": 6,
+			"hltb_main": "05:30:00",
+			"hltb_extra": "07:00:00",
+			"hltb_completionist": "09:00:00",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/176/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		}
@@ -1153,18 +1236,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "79",
-			"title": "Shovel Knight",
-			"platform": 6,
-			"hltb_main": "06:40:11",
-			"hltb_extra": "09:29:51",
-			"hltb_completionist": "18:28:41",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/79/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "80",
 			"title": "Kingdoms of amalur : reckoning",
 			"platform": 6,
@@ -1413,17 +1484,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "106",
-			"title": "Gangs of London",
-			"platform": 3,
-			"hltb_main": "05:57:30",
-			"hltb_extra": "27:30:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/106/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "107",
 			"title": "Spartan : Total Warrior",
 			"platform": 5,
@@ -1642,18 +1702,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "146",
-			"title": "I-Ninja",
-			"platform": 5,
-			"hltb_main": "08:10:30",
-			"hltb_extra": "12:40:30",
-			"hltb_completionist": "13:56:58",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/146/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "147",
 			"title": "X-Blades",
 			"platform": 6,
@@ -1770,18 +1818,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "165",
-			"title": "Klonoa 2 : Lunatea's Veil",
-			"platform": 5,
-			"hltb_main": "06:13:59",
-			"hltb_extra": "06:19:01",
-			"hltb_completionist": "07:16:01",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/165/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "166",
 			"title": "Damnation",
 			"platform": 6,
@@ -1790,18 +1826,6 @@
 			"hltb_completionist": "10:04:26",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/166/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "167",
-			"title": "TimeShift",
-			"platform": 6,
-			"hltb_main": "07:51:26",
-			"hltb_extra": "09:04:09",
-			"hltb_completionist": "09:09:42",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/167/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1869,30 +1893,6 @@
 			"hltb_completionist": "04:09:17",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/174/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "175",
-			"title": "Wanted : Les Armes du Destin",
-			"platform": 6,
-			"hltb_main": "05:00:00",
-			"hltb_extra": "05:00:00",
-			"hltb_completionist": "11:30:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/175/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "176",
-			"title": "La Mémoire dans la peau",
-			"platform": 6,
-			"hltb_main": "05:30:00",
-			"hltb_extra": "07:00:00",
-			"hltb_completionist": "09:00:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/176/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
