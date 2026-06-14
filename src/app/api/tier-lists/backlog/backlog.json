@@ -153,6 +153,17 @@
 	],
 	"tier_good": [
 		{
+			"id": "3",
+			"title": "Manhunt",
+			"hltb_main": "10:57:18",
+			"hltb_extra": "13:28:59",
+			"hltb_completionist": "17:02:48",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/3/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "17",
 			"title": "Viewtiful Joe",
 			"platform": 5,
@@ -161,6 +172,30 @@
 			"hltb_completionist": "22:36:51",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/17/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "29",
+			"title": "Serious Sam HD: The First Encounter",
+			"platform": 1,
+			"hltb_main": "06:13:02",
+			"hltb_extra": "08:26:29",
+			"hltb_completionist": "19:56:10",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/29/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "30",
+			"title": "Serious Sam HD: The Second Encounter",
+			"platform": 1,
+			"hltb_main": "07:30:25",
+			"hltb_extra": "12:22:38",
+			"hltb_completionist": "23:00:11",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/30/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -185,6 +220,43 @@
 			"hltb_completionist": "18:28:41",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/79/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "91",
+			"title": "Grand Theft Auto III",
+			"hltb_main": "14:08:13",
+			"hltb_extra": "20:22:32",
+			"hltb_completionist": "36:28:49",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/91/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "97",
+			"title": "BioShock",
+			"platform": 1,
+			"notes": "Bioshock : The Collection",
+			"hltb_main": "12:06:32",
+			"hltb_extra": "15:38:00",
+			"hltb_completionist": "23:09:14",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/97/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "98",
+			"title": "BioShock 2",
+			"platform": 1,
+			"notes": "Bioshock : The Collection",
+			"hltb_main": "10:32:06",
+			"hltb_extra": "14:24:32",
+			"hltb_completionist": "23:43:11",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/98/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -427,17 +499,6 @@
 			"hltb_completionist": "45:45:07",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/2/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "3",
-			"title": "Manhunt",
-			"hltb_main": "10:57:18",
-			"hltb_extra": "13:28:59",
-			"hltb_completionist": "17:02:48",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/3/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -714,30 +775,6 @@
 			"hltb_completionist": "24:47:13",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/28/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "29",
-			"title": "Serious Sam HD: The First Encounter",
-			"platform": 1,
-			"hltb_main": "06:13:02",
-			"hltb_extra": "08:26:29",
-			"hltb_completionist": "19:56:10",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/29/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "30",
-			"title": "Serious Sam HD: The Second Encounter",
-			"platform": 1,
-			"hltb_main": "07:30:25",
-			"hltb_extra": "12:22:38",
-			"hltb_completionist": "23:00:11",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/30/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1331,17 +1368,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "91",
-			"title": "Grand Theft Auto III",
-			"hltb_main": "14:08:13",
-			"hltb_extra": "20:22:32",
-			"hltb_completionist": "36:28:49",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/91/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "92",
 			"title": "Grand Theft Auto IV",
 			"hltb_main": "27:06:18",
@@ -1393,32 +1419,6 @@
 			"hltb_completionist": "40:48:15",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/96/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "97",
-			"title": "BioShock",
-			"platform": 1,
-			"notes": "Bioshock : The Collection",
-			"hltb_main": "12:06:32",
-			"hltb_extra": "15:38:00",
-			"hltb_completionist": "23:09:14",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/97/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "98",
-			"title": "BioShock 2",
-			"platform": 1,
-			"notes": "Bioshock : The Collection",
-			"hltb_main": "10:32:06",
-			"hltb_extra": "14:24:32",
-			"hltb_completionist": "23:43:11",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/98/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
