@@ -28,6 +28,41 @@
 	],
 	"tier_excellent": [
 		{
+			"id": "2",
+			"title": "Super Meat Boy",
+			"hltb_main": "09:15:48",
+			"hltb_extra": "18:27:27",
+			"hltb_completionist": "45:45:07",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/2/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "73",
+			"title": "Yakuza : Like a Dragon",
+			"platform": 1,
+			"hltb_main": "45:49:31",
+			"hltb_extra": "67:49:55",
+			"hltb_completionist": "102:52:04",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/73/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "74",
+			"title": "Yakuza Zero : The Place of Oath",
+			"platform": 6,
+			"hltb_main": "31:33:27",
+			"hltb_extra": "64:29:28",
+			"hltb_completionist": "144:33:20",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/74/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "92",
 			"title": "Grand Theft Auto IV",
 			"hltb_main": "27:06:18",
@@ -667,17 +702,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "2",
-			"title": "Super Meat Boy",
-			"hltb_main": "09:15:48",
-			"hltb_extra": "18:27:27",
-			"hltb_completionist": "45:45:07",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/2/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "4",
 			"title": "Manhunt 2",
 			"hltb_main": "08:01:02",
@@ -1312,30 +1336,6 @@
 			"hltb_completionist": "55:06:15",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/72/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "73",
-			"title": "Yakuza : Like a Dragon",
-			"platform": 1,
-			"hltb_main": "45:49:31",
-			"hltb_extra": "67:49:55",
-			"hltb_completionist": "102:52:04",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/73/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "74",
-			"title": "Yakuza Zero : The Place of Oath",
-			"platform": 6,
-			"hltb_main": "31:33:27",
-			"hltb_extra": "64:29:28",
-			"hltb_completionist": "144:33:20",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/74/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
