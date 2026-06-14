@@ -65,6 +65,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "129",
+			"title": "Transformers : La Chute de Cybertron",
+			"platform": 6,
+			"hltb_main": "07:33:53",
+			"hltb_extra": "10:20:26",
+			"hltb_completionist": "15:51:26",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/129/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "130",
 			"title": "Burnout Legends",
 			"platform": 3,
@@ -90,6 +102,19 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "137",
+			"title": "MotorStorm",
+			"platform": 6,
+			"notes": "Complete edition",
+			"hltb_main": "14:40:18",
+			"hltb_extra": "17:38:45",
+			"hltb_completionist": "18:25:38",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/137/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "138",
 			"title": "Nikoderiko: The Magical World",
 			"platform": 1,
@@ -98,6 +123,30 @@
 			"hltb_completionist": "19:56:57",
 			"category_slug": "tier_excellent",
 			"imagePath": "/backlogcovers/138/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "156",
+			"title": "Hollow Knight",
+			"platform": 1,
+			"hltb_main": "26:57:16",
+			"hltb_extra": "41:33:32",
+			"hltb_completionist": "64:54:51",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/156/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "157",
+			"title": "Hollow Knight: Silksong",
+			"platform": 1,
+			"hltb_main": "28:06:35",
+			"hltb_extra": "46:00:40",
+			"hltb_completionist": "64:09:26",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/157/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		}
@@ -148,19 +197,6 @@
 			"hltb_completionist": "18:40:24",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/117/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "137",
-			"title": "MotorStorm",
-			"platform": 6,
-			"notes": "Complete edition",
-			"hltb_main": "14:40:18",
-			"hltb_extra": "17:38:45",
-			"hltb_completionist": "18:25:38",
-			"category_slug": "tier_good",
-			"imagePath": "/backlogcovers/137/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1452,18 +1488,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "129",
-			"title": "Transformers : La Chute de Cybertron",
-			"platform": 6,
-			"hltb_main": "07:33:53",
-			"hltb_extra": "10:20:26",
-			"hltb_completionist": "15:51:26",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/129/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "134",
 			"title": "Outland",
 			"platform": 6,
@@ -1657,30 +1681,6 @@
 			"hltb_completionist": "17:31:20",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/155/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "156",
-			"title": "Hollow Knight",
-			"platform": 1,
-			"hltb_main": "26:57:16",
-			"hltb_extra": "41:33:32",
-			"hltb_completionist": "64:54:51",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/156/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "157",
-			"title": "Hollow Knight: Silksong",
-			"platform": 1,
-			"hltb_main": "28:06:35",
-			"hltb_extra": "46:00:40",
-			"hltb_completionist": "64:09:26",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/157/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
