@@ -1330,6 +1330,18 @@
 	],
 	"tier_poor": [
 		{
+			"id": "166",
+			"title": "Damnation",
+			"platform": 6,
+			"hltb_main": "08:08:19",
+			"hltb_extra": "09:03:17",
+			"hltb_completionist": "10:04:26",
+			"category_slug": "tier_poor",
+			"imagePath": "/backlogcovers/166/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "148",
 			"title": "Kung Fu Rider",
 			"platform": 6,
@@ -1341,6 +1353,26 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "173",
+			"title": "Monster Madness : Grave Danger",
+			"platform": 6,
+			"hltb_main": "06:35:00",
+			"category_slug": "tier_poor",
+			"imagePath": "/backlogcovers/173/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "172",
+			"title": "Monster Madness: Battle for Suburbia",
+			"platform": 1,
+			"hltb_main": "13:10:04",
+			"category_slug": "tier_poor",
+			"imagePath": "/backlogcovers/172/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "151",
 			"title": "PAIN",
 			"platform": 6,
@@ -1348,6 +1380,17 @@
 			"hltb_extra": "25:00:00",
 			"category_slug": "tier_poor",
 			"imagePath": "/backlogcovers/151/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "83",
+			"title": "State of Emergency",
+			"platform": 5,
+			"hltb_main": "05:19:53",
+			"hltb_extra": "08:00:00",
+			"category_slug": "tier_poor",
+			"imagePath": "/backlogcovers/83/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1400,18 +1443,6 @@
 			"hltb_completionist": "28:33:14",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/99/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "166",
-			"title": "Damnation",
-			"platform": 6,
-			"hltb_main": "08:08:19",
-			"hltb_extra": "09:03:17",
-			"hltb_completionist": "10:04:26",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/166/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1520,26 +1551,6 @@
 			"hltb_completionist": "11:43:21",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/122/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "173",
-			"title": "Monster Madness : Grave Danger",
-			"platform": 6,
-			"hltb_main": "06:35:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/173/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "172",
-			"title": "Monster Madness: Battle for Suburbia",
-			"platform": 1,
-			"hltb_main": "13:10:04",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/172/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1707,17 +1718,6 @@
 			"hltb_completionist": "16:03:42",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/107/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "83",
-			"title": "State of Emergency",
-			"platform": 5,
-			"hltb_main": "05:19:53",
-			"hltb_extra": "08:00:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/83/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
