@@ -1076,6 +1076,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "75",
+			"title": "50 Cent - Bulletproof",
+			"platform": 5,
+			"hltb_main": "06:27:24",
+			"hltb_extra": "06:34:30",
+			"hltb_completionist": "09:45:00",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/75/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "140",
 			"title": "A la Croisée des Mondes : La Boussole d'Or",
 			"platform": 6,
@@ -1111,6 +1123,17 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "5",
+			"title": "Dead Head Fred",
+			"platform": 3,
+			"hltb_main": "08:20:00",
+			"hltb_extra": "11:00:00",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/5/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "78",
 			"title": "Dead to Rights II",
 			"platform": 5,
@@ -1131,6 +1154,17 @@
 			"hltb_completionist": "24:46:01",
 			"category_slug": "tier_average",
 			"imagePath": "/backlogcovers/58/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "144",
+			"title": "Grim Fandango Remastered",
+			"hltb_main": "10:56:20",
+			"hltb_extra": "11:30:45",
+			"hltb_completionist": "12:02:03",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/144/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1159,6 +1193,43 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "180",
+			"title": "Les Désastreuses Aventures des orphelins Baudelaire",
+			"platform": 5,
+			"hltb_main": "04:30:00",
+			"hltb_extra": "05:00:00",
+			"hltb_completionist": "05:00:00",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/180/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "178",
+			"title": "Murdered: Soul Suspect",
+			"platform": 6,
+			"hltb_main": "06:52:22",
+			"hltb_extra": "08:43:43",
+			"hltb_completionist": "11:30:21",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/178/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "119",
+			"title": "Raw Danger!",
+			"platform": 5,
+			"notes": "Disaster Report 2",
+			"hltb_main": "09:05:02",
+			"hltb_extra": "11:19:28",
+			"hltb_completionist": "17:17:39",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/119/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "182",
 			"title": "Rise of the Argonauts",
 			"platform": 6,
@@ -1167,6 +1238,19 @@
 			"hltb_completionist": "16:25:45",
 			"category_slug": "tier_average",
 			"imagePath": "/backlogcovers/182/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "118",
+			"title": "SOS : The Final Escape",
+			"platform": 5,
+			"notes": "Disaster Report 1",
+			"hltb_main": "05:22:14",
+			"hltb_extra": "06:07:21",
+			"hltb_completionist": "11:32:54",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/118/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1204,6 +1288,18 @@
 			"hltb_completionist": "154:03:58",
 			"category_slug": "tier_average",
 			"imagePath": "/backlogcovers/121/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "64",
+			"title": "Stick It to The Man!",
+			"platform": 6,
+			"hltb_main": "04:24:22",
+			"hltb_extra": "05:02:48",
+			"hltb_completionist": "05:40:40",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/64/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1283,18 +1379,6 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
-			"id": "75",
-			"title": "50 Cent - Bulletproof",
-			"platform": 5,
-			"hltb_main": "06:27:24",
-			"hltb_extra": "06:34:30",
-			"hltb_completionist": "09:45:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/75/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "1",
 			"title": "Beyond: Two Souls",
 			"platform": 1,
@@ -1328,17 +1412,6 @@
 			"hltb_completionist": "10:04:26",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/166/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "5",
-			"title": "Dead Head Fred",
-			"platform": 3,
-			"hltb_main": "08:20:00",
-			"hltb_extra": "11:00:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/5/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1403,17 +1476,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "144",
-			"title": "Grim Fandango Remastered",
-			"hltb_main": "10:56:20",
-			"hltb_extra": "11:30:45",
-			"hltb_completionist": "12:02:03",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/144/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "14",
 			"title": "Heavy Rain",
 			"platform": 6,
@@ -1434,18 +1496,6 @@
 			"hltb_completionist": "104:39:33",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/80/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "180",
-			"title": "Les Désastreuses Aventures des orphelins Baudelaire",
-			"platform": 5,
-			"hltb_main": "04:30:00",
-			"hltb_extra": "05:00:00",
-			"hltb_completionist": "05:00:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/180/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1490,18 +1540,6 @@
 			"hltb_main": "13:10:04",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/172/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "178",
-			"title": "Murdered: Soul Suspect",
-			"platform": 6,
-			"hltb_main": "06:52:22",
-			"hltb_extra": "08:43:43",
-			"hltb_completionist": "11:30:21",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/178/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1566,19 +1604,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "119",
-			"title": "Raw Danger!",
-			"platform": 5,
-			"notes": "Disaster Report 2",
-			"hltb_main": "09:05:02",
-			"hltb_extra": "11:19:28",
-			"hltb_completionist": "17:17:39",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/119/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "179",
 			"title": "Ruff Trigger: The Vanocore Conspiracy",
 			"platform": 5,
@@ -1599,19 +1624,6 @@
 			"hltb_completionist": "10:34:20",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/141/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "118",
-			"title": "SOS : The Final Escape",
-			"platform": 5,
-			"notes": "Disaster Report 1",
-			"hltb_main": "05:22:14",
-			"hltb_extra": "06:07:21",
-			"hltb_completionist": "11:32:54",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/118/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1706,18 +1718,6 @@
 			"hltb_extra": "08:00:00",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/83/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "64",
-			"title": "Stick It to The Man!",
-			"platform": 6,
-			"hltb_main": "04:24:22",
-			"hltb_extra": "05:02:48",
-			"hltb_completionist": "05:40:40",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/64/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
