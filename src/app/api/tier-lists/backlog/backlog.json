@@ -53,6 +53,54 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "109",
+			"title": "Dead Island",
+			"platform": 6,
+			"hltb_main": "18:21:38",
+			"hltb_extra": "27:57:28",
+			"hltb_completionist": "48:35:16",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/109/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "34",
+			"title": "Dead Rising",
+			"platform": 1,
+			"hltb_main": "12:08:59",
+			"hltb_extra": "18:52:02",
+			"hltb_completionist": "72:40:33",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/34/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "35",
+			"title": "Dead Rising 2",
+			"platform": 6,
+			"hltb_main": "14:21:13",
+			"hltb_extra": "17:48:23",
+			"hltb_completionist": "50:53:52",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/35/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "36",
+			"title": "Dead Rising 3",
+			"platform": 6,
+			"hltb_main": "13:56:10",
+			"hltb_extra": "21:57:43",
+			"hltb_completionist": "44:32:09",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/36/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "100",
 			"title": "Dead Space",
 			"notes": "Dead Space (2023)",
@@ -145,6 +193,42 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "88",
+			"title": "Halo 2",
+			"platform": 1,
+			"hltb_main": "09:11:24",
+			"hltb_extra": "11:28:33",
+			"hltb_completionist": "21:09:29",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/88/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "89",
+			"title": "Halo 4",
+			"platform": 1,
+			"hltb_main": "07:13:55",
+			"hltb_extra": "10:30:43",
+			"hltb_completionist": "28:01:35",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/89/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "90",
+			"title": "Halo Reach",
+			"platform": 1,
+			"hltb_main": "07:44:15",
+			"hltb_extra": "12:32:03",
+			"hltb_completionist": "49:32:18",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/90/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "156",
 			"title": "Hollow Knight",
 			"platform": 1,
@@ -226,6 +310,18 @@
 			"hltb_completionist": "12:27:40",
 			"category_slug": "tier_excellent",
 			"imagePath": "/backlogcovers/134/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "63",
+			"title": "Pizza Tower",
+			"platform": 1,
+			"hltb_main": "06:15:45",
+			"hltb_extra": "11:17:51",
+			"hltb_completionist": "45:24:55",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/63/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1247,54 +1343,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "109",
-			"title": "Dead Island",
-			"platform": 6,
-			"hltb_main": "18:21:38",
-			"hltb_extra": "27:57:28",
-			"hltb_completionist": "48:35:16",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/109/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "34",
-			"title": "Dead Rising",
-			"platform": 1,
-			"hltb_main": "12:08:59",
-			"hltb_extra": "18:52:02",
-			"hltb_completionist": "72:40:33",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/34/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "35",
-			"title": "Dead Rising 2",
-			"platform": 6,
-			"hltb_main": "14:21:13",
-			"hltb_extra": "17:48:23",
-			"hltb_completionist": "50:53:52",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/35/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "36",
-			"title": "Dead Rising 3",
-			"platform": 6,
-			"hltb_main": "13:56:10",
-			"hltb_extra": "21:57:43",
-			"hltb_completionist": "44:32:09",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/36/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "37",
 			"title": "Dead Rising 4",
 			"platform": 1,
@@ -1362,42 +1410,6 @@
 			"hltb_completionist": "12:02:03",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/144/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "88",
-			"title": "Halo 2",
-			"platform": 1,
-			"hltb_main": "09:11:24",
-			"hltb_extra": "11:28:33",
-			"hltb_completionist": "21:09:29",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/88/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "89",
-			"title": "Halo 4",
-			"platform": 1,
-			"hltb_main": "07:13:55",
-			"hltb_extra": "10:30:43",
-			"hltb_completionist": "28:01:35",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/89/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "90",
-			"title": "Halo Reach",
-			"platform": 1,
-			"hltb_main": "07:44:15",
-			"hltb_extra": "12:32:03",
-			"hltb_completionist": "49:32:18",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/90/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1538,18 +1550,6 @@
 			"hltb_completionist": "04:09:17",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/174/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "63",
-			"title": "Pizza Tower",
-			"platform": 1,
-			"hltb_main": "06:15:45",
-			"hltb_extra": "11:17:51",
-			"hltb_completionist": "45:24:55",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/63/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
