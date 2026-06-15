@@ -795,6 +795,19 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "122",
+			"title": "Maximo Ghost To Glory",
+			"platform": 5,
+			"notes": "Available on PS3 as well",
+			"hltb_main": "08:23:28",
+			"hltb_extra": "10:02:38",
+			"hltb_completionist": "11:43:21",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/122/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "154",
 			"title": "Ninja Gaiden Sigma",
 			"platform": 6,
@@ -831,6 +844,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "31",
+			"title": "Serious Sam 3: BFE",
+			"platform": 1,
+			"hltb_main": "10:03:26",
+			"hltb_extra": "14:40:15",
+			"hltb_completionist": "28:48:53",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/31/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "29",
 			"title": "Serious Sam HD: The First Encounter",
 			"platform": 1,
@@ -851,6 +876,18 @@
 			"hltb_completionist": "23:00:11",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/30/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "102",
+			"title": "Shadow Of The Tomb Raider",
+			"platform": 1,
+			"hltb_main": "12:37:13",
+			"hltb_extra": "22:57:03",
+			"hltb_completionist": "38:47:34",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/102/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -927,6 +964,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "107",
+			"title": "Spartan : Total Warrior",
+			"platform": 5,
+			"hltb_main": "14:14:20",
+			"hltb_extra": "14:24:43",
+			"hltb_completionist": "16:03:42",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/107/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "53",
 			"title": "Syndicate",
 			"platform": 6,
@@ -995,6 +1044,17 @@
 			"hltb_completionist": "28:35:58",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/42/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "103",
+			"title": "Tomb Raider: Anniversary",
+			"hltb_main": "12:18:58",
+			"hltb_extra": "15:13:08",
+			"hltb_completionist": "20:35:54",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/103/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1094,6 +1154,42 @@
 			"hltb_completionist": "11:30:00",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/175/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "54",
+			"title": "Wolfenstein",
+			"platform": 6,
+			"hltb_main": "08:52:04",
+			"hltb_extra": "10:37:43",
+			"hltb_completionist": "12:17:40",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/54/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "55",
+			"title": "Wolfenstein : The New Order",
+			"platform": 6,
+			"hltb_main": "11:21:53",
+			"hltb_extra": "15:19:31",
+			"hltb_completionist": "24:24:05",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/55/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "56",
+			"title": "Wolfenstein II : The New Colossus",
+			"platform": 1,
+			"hltb_main": "10:45:30",
+			"hltb_extra": "17:04:35",
+			"hltb_completionist": "33:35:19",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/56/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		}
@@ -1623,19 +1719,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "122",
-			"title": "Maximo Ghost To Glory",
-			"platform": 5,
-			"notes": "Available on PS3 as well",
-			"hltb_main": "08:23:28",
-			"hltb_extra": "10:02:38",
-			"hltb_completionist": "11:43:21",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/122/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "13",
 			"title": "Oni",
 			"platform": 6,
@@ -1672,18 +1755,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "31",
-			"title": "Serious Sam 3: BFE",
-			"platform": 1,
-			"hltb_main": "10:03:26",
-			"hltb_extra": "14:40:15",
-			"hltb_completionist": "28:48:53",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/31/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "32",
 			"title": "Serious Sam 4",
 			"platform": 1,
@@ -1708,18 +1779,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "102",
-			"title": "Shadow Of The Tomb Raider",
-			"platform": 1,
-			"hltb_main": "12:37:13",
-			"hltb_extra": "22:57:03",
-			"hltb_completionist": "38:47:34",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/102/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "11",
 			"title": "Shadow of the Colossus",
 			"platform": 6,
@@ -1728,18 +1787,6 @@
 			"hltb_completionist": "27:35:17",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/11/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "107",
-			"title": "Spartan : Total Warrior",
-			"platform": 5,
-			"hltb_main": "14:14:20",
-			"hltb_extra": "14:24:43",
-			"hltb_completionist": "16:03:42",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/107/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1785,17 +1832,6 @@
 			"hltb_completionist": "23:15:10",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/153/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "103",
-			"title": "Tomb Raider: Anniversary",
-			"hltb_main": "12:18:58",
-			"hltb_extra": "15:13:08",
-			"hltb_completionist": "20:35:54",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/103/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1855,42 +1891,6 @@
 			"hltb_completionist": "13:20:06",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/169/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "54",
-			"title": "Wolfenstein",
-			"platform": 6,
-			"hltb_main": "08:52:04",
-			"hltb_extra": "10:37:43",
-			"hltb_completionist": "12:17:40",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/54/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "55",
-			"title": "Wolfenstein : The New Order",
-			"platform": 6,
-			"hltb_main": "11:21:53",
-			"hltb_extra": "15:19:31",
-			"hltb_completionist": "24:24:05",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/55/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "56",
-			"title": "Wolfenstein II : The New Colossus",
-			"platform": 1,
-			"hltb_main": "10:45:30",
-			"hltb_extra": "17:04:35",
-			"hltb_completionist": "33:35:19",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/56/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
