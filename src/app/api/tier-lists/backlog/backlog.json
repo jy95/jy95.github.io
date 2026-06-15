@@ -450,6 +450,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "18",
+			"title": "Cold Fear",
+			"platform": 5,
+			"hltb_main": "06:11:14",
+			"hltb_extra": "06:51:02",
+			"hltb_completionist": "07:05:29",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/18/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "16",
 			"title": "Crash of the Titans",
 			"platform": 5,
@@ -458,6 +470,18 @@
 			"hltb_completionist": "11:30:31",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/16/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "108",
+			"title": "Crisis Zone",
+			"platform": 5,
+			"hltb_main": "00:20:00",
+			"hltb_extra": "00:39:31",
+			"hltb_completionist": "01:16:58",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/108/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -771,6 +795,54 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "53",
+			"title": "Syndicate",
+			"platform": 6,
+			"hltb_main": "06:03:09",
+			"hltb_extra": "07:52:47",
+			"hltb_completionist": "11:34:52",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/53/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "45",
+			"title": "The Chronicles of Riddick : Assault on Dark Athena",
+			"platform": 6,
+			"hltb_main": "09:05:40",
+			"hltb_extra": "11:20:59",
+			"hltb_completionist": "22:34:55",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/45/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "60",
+			"title": "The House of the Dead : Overkill - Extended Cut",
+			"platform": 6,
+			"hltb_main": "03:59:34",
+			"hltb_extra": "06:04:58",
+			"hltb_completionist": "07:49:27",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/60/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "19",
+			"title": "The Suffering : Les Liens qui nous Unissent",
+			"platform": 5,
+			"hltb_main": "07:01:32",
+			"hltb_extra": "09:58:36",
+			"hltb_completionist": "12:31:30",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/19/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "167",
 			"title": "TimeShift",
 			"platform": 6,
@@ -814,6 +886,58 @@
 			"hltb_completionist": "15:18:32",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/135/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "7",
+			"title": "Ty : Le Tigre de Tasmanie 2 : Opération Sauvetage",
+			"platform": 5,
+			"notes": "Original (PS2) VS remake (PC) ?",
+			"hltb_main": "07:51:15",
+			"hltb_extra": "11:55:20",
+			"hltb_completionist": "15:40:43",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/7/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "6",
+			"title": "Ty, le tigre de Tasmanie",
+			"platform": 5,
+			"notes": "Original (PS2) VS remake (PC) ?",
+			"hltb_main": "08:58:48",
+			"hltb_extra": "10:58:27",
+			"hltb_completionist": "14:38:09",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/6/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "8",
+			"title": "Ty, le tigre de Tasmanie 3 : Nuit du Quinkan",
+			"platform": 5,
+			"notes": "Original (PS2) VS remake (PC) ?",
+			"hltb_main": "07:01:03",
+			"hltb_extra": "12:26:27",
+			"hltb_completionist": "16:25:03",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/8/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "9",
+			"title": "Ty, le tigre de Tasmanie 4 : Le retour de Opération Sauvetage",
+			"platform": 5,
+			"notes": "Original (PS2) VS remake (PC) ?",
+			"hltb_main": "03:46:57",
+			"hltb_extra": "07:16:52",
+			"hltb_completionist": "09:55:12",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/9/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1096,30 +1220,6 @@
 			"hltb_completionist": "28:33:14",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/99/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "18",
-			"title": "Cold Fear",
-			"platform": 5,
-			"hltb_main": "06:11:14",
-			"hltb_extra": "06:51:02",
-			"hltb_completionist": "07:05:29",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/18/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "108",
-			"title": "Crisis Zone",
-			"platform": 5,
-			"hltb_main": "00:20:00",
-			"hltb_extra": "00:39:31",
-			"hltb_completionist": "01:16:58",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/108/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1632,18 +1732,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "53",
-			"title": "Syndicate",
-			"platform": 6,
-			"hltb_main": "06:03:09",
-			"hltb_extra": "07:52:47",
-			"hltb_completionist": "11:34:52",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/53/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "152",
 			"title": "THE HOUSE OF THE DEAD 2: Remake",
 			"hltb_main": "00:42:00",
@@ -1678,30 +1766,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "45",
-			"title": "The Chronicles of Riddick : Assault on Dark Athena",
-			"platform": 6,
-			"hltb_main": "09:05:40",
-			"hltb_extra": "11:20:59",
-			"hltb_completionist": "22:34:55",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/45/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "60",
-			"title": "The House of the Dead : Overkill - Extended Cut",
-			"platform": 6,
-			"hltb_main": "03:59:34",
-			"hltb_extra": "06:04:58",
-			"hltb_completionist": "07:49:27",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/60/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "153",
 			"title": "The Operative: No One Lives Forever",
 			"hltb_main": "13:04:45",
@@ -1709,18 +1773,6 @@
 			"hltb_completionist": "23:15:10",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/153/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "19",
-			"title": "The Suffering : Les Liens qui nous Unissent",
-			"platform": 5,
-			"hltb_main": "07:01:32",
-			"hltb_extra": "09:58:36",
-			"hltb_completionist": "12:31:30",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/19/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1803,58 +1855,6 @@
 			"hltb_completionist": "13:20:06",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/169/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "7",
-			"title": "Ty : Le Tigre de Tasmanie 2 : Opération Sauvetage",
-			"platform": 5,
-			"notes": "Original (PS2) VS remake (PC) ?",
-			"hltb_main": "07:51:15",
-			"hltb_extra": "11:55:20",
-			"hltb_completionist": "15:40:43",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/7/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "6",
-			"title": "Ty, le tigre de Tasmanie",
-			"platform": 5,
-			"notes": "Original (PS2) VS remake (PC) ?",
-			"hltb_main": "08:58:48",
-			"hltb_extra": "10:58:27",
-			"hltb_completionist": "14:38:09",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/6/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "8",
-			"title": "Ty, le tigre de Tasmanie 3 : Nuit du Quinkan",
-			"platform": 5,
-			"notes": "Original (PS2) VS remake (PC) ?",
-			"hltb_main": "07:01:03",
-			"hltb_extra": "12:26:27",
-			"hltb_completionist": "16:25:03",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/8/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "9",
-			"title": "Ty, le tigre de Tasmanie 4 : Le retour de Opération Sauvetage",
-			"platform": 5,
-			"notes": "Original (PS2) VS remake (PC) ?",
-			"hltb_main": "03:46:57",
-			"hltb_extra": "07:16:52",
-			"hltb_completionist": "09:55:12",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/9/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
