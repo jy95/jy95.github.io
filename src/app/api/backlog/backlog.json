@@ -1306,5 +1306,10 @@
 		"platform": 5,
 		"hltb_main": "09:00:00",
 		"hltb_extra": "09:20:06"
+	},
+	{
+		"id": 185,
+		"title": "Beat Down: Fists of Vengeance",
+		"platform": 5
 	}
 ]

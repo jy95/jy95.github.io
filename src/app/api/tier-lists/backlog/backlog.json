@@ -1636,6 +1636,15 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
+			"id": "185",
+			"title": "Beat Down: Fists of Vengeance",
+			"platform": 5,
+			"category_slug": "tier_not_evaluated",
+			"imagePath": "/backlogcovers/185/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "1",
 			"title": "Beyond: Two Souls",
 			"platform": 1,
