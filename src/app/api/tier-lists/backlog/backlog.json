@@ -1134,6 +1134,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "37",
+			"title": "Dead Rising 4",
+			"platform": 1,
+			"hltb_main": "10:00:14",
+			"hltb_extra": "18:51:37",
+			"hltb_completionist": "38:46:29",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/37/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "78",
 			"title": "Dead to Rights II",
 			"platform": 5,
@@ -1142,6 +1154,18 @@
 			"hltb_completionist": "15:00:00",
 			"category_slug": "tier_average",
 			"imagePath": "/backlogcovers/78/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "160",
+			"title": "Dragon Valor",
+			"platform": 4,
+			"hltb_main": "07:11:27",
+			"hltb_extra": "12:47:28",
+			"hltb_completionist": "22:48:08",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/160/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1217,6 +1241,30 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "10",
+			"title": "Musashi: Samurai Legend",
+			"platform": 5,
+			"hltb_main": "15:38:32",
+			"hltb_extra": "18:42:23",
+			"hltb_completionist": "22:25:01",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/10/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "174",
+			"title": "PaRappa the Rapper",
+			"platform": 3,
+			"hltb_main": "01:35:05",
+			"hltb_extra": "02:37:18",
+			"hltb_completionist": "04:09:17",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/174/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "119",
 			"title": "Raw Danger!",
 			"platform": 5,
@@ -1238,6 +1286,18 @@
 			"hltb_completionist": "16:25:45",
 			"category_slug": "tier_average",
 			"imagePath": "/backlogcovers/182/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "179",
+			"title": "Ruff Trigger: The Vanocore Conspiracy",
+			"platform": 5,
+			"hltb_main": "05:52:35",
+			"hltb_extra": "06:16:24",
+			"hltb_completionist": "07:01:03",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/179/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1304,6 +1364,16 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "22",
+			"title": "Swords of Destiny",
+			"platform": 6,
+			"hltb_main": "05:06:53",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/22/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "177",
 			"title": "The Cursed Crusade",
 			"platform": 6,
@@ -1312,6 +1382,18 @@
 			"hltb_completionist": "17:25:00",
 			"category_slug": "tier_average",
 			"imagePath": "/backlogcovers/177/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "26",
+			"title": "Trine 3 : The Artifacts of Power",
+			"platform": 1,
+			"hltb_main": "04:56:16",
+			"hltb_extra": "06:04:07",
+			"hltb_completionist": "07:00:43",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/26/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1447,18 +1529,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "37",
-			"title": "Dead Rising 4",
-			"platform": 1,
-			"hltb_main": "10:00:14",
-			"hltb_extra": "18:51:37",
-			"hltb_completionist": "38:46:29",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/37/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "41",
 			"title": "Disgaea 2 : Dark Hero Days",
 			"platform": 3,
@@ -1479,18 +1549,6 @@
 			"hltb_completionist": "253:45:40",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/40/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "160",
-			"title": "Dragon Valor",
-			"platform": 4,
-			"hltb_main": "07:11:27",
-			"hltb_extra": "12:47:28",
-			"hltb_completionist": "22:48:08",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/160/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1555,18 +1613,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "10",
-			"title": "Musashi: Samurai Legend",
-			"platform": 5,
-			"hltb_main": "15:38:32",
-			"hltb_extra": "18:42:23",
-			"hltb_completionist": "22:25:01",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/10/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "12",
 			"title": "Okami HD",
 			"platform": 6,
@@ -1591,18 +1637,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "174",
-			"title": "PaRappa the Rapper",
-			"platform": 3,
-			"hltb_main": "01:35:05",
-			"hltb_extra": "02:37:18",
-			"hltb_completionist": "04:09:17",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/174/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "38",
 			"title": "Psi-Ops : The Mindgate Conspiracy",
 			"platform": 5,
@@ -1611,18 +1645,6 @@
 			"hltb_completionist": "14:27:52",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/38/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "179",
-			"title": "Ruff Trigger: The Vanocore Conspiracy",
-			"platform": 5,
-			"hltb_main": "05:52:35",
-			"hltb_extra": "06:16:24",
-			"hltb_completionist": "07:01:03",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/179/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1722,16 +1744,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "22",
-			"title": "Swords of Destiny",
-			"platform": 6,
-			"hltb_main": "05:06:53",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/22/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "152",
 			"title": "THE HOUSE OF THE DEAD 2: Remake",
 			"hltb_main": "00:42:00",
@@ -1808,18 +1820,6 @@
 			"hltb_completionist": "22:55:08",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/25/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "26",
-			"title": "Trine 3 : The Artifacts of Power",
-			"platform": 1,
-			"hltb_main": "04:56:16",
-			"hltb_extra": "06:04:07",
-			"hltb_completionist": "07:00:43",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/26/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
