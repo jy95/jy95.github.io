@@ -375,6 +375,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "11",
+			"title": "Shadow of the Colossus",
+			"platform": 6,
+			"hltb_main": "07:10:49",
+			"hltb_extra": "09:37:40",
+			"hltb_completionist": "27:35:17",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/11/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "155",
 			"title": "Shinobi: Art of Vengeance",
 			"hltb_main": "09:21:44",
@@ -430,6 +442,19 @@
 			"hltb_completionist": "15:51:26",
 			"category_slug": "tier_excellent",
 			"imagePath": "/backlogcovers/129/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "71",
+			"title": "Yakuza 5",
+			"platform": 1,
+			"notes": "The Yakuza Remastered Collection",
+			"hltb_main": "35:59:51",
+			"hltb_extra": "64:01:07",
+			"hltb_completionist": "152:26:06",
+			"category_slug": "tier_excellent",
+			"imagePath": "/backlogcovers/71/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1884,18 +1909,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "11",
-			"title": "Shadow of the Colossus",
-			"platform": 6,
-			"hltb_main": "07:10:49",
-			"hltb_extra": "09:37:40",
-			"hltb_completionist": "27:35:17",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/11/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "152",
 			"title": "THE HOUSE OF THE DEAD 2: Remake",
 			"hltb_main": "00:42:00",
@@ -1987,19 +2000,6 @@
 			"hltb_completionist": "92:05:47",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/70/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "71",
-			"title": "Yakuza 5",
-			"platform": 1,
-			"notes": "The Yakuza Remastered Collection",
-			"hltb_main": "35:59:51",
-			"hltb_extra": "64:01:07",
-			"hltb_completionist": "152:26:06",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/71/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		}
