@@ -1492,6 +1492,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "85",
+			"title": "Enchanted Arms",
+			"platform": 6,
+			"hltb_main": "26:02:28",
+			"hltb_extra": "43:39:14",
+			"hltb_completionist": "50:56:53",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/85/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "144",
 			"title": "Grim Fandango Remastered",
 			"hltb_main": "10:56:20",
@@ -1801,6 +1813,19 @@
 			"imagePath": "/backlogcovers/147/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
+		},
+		{
+			"id": "69",
+			"title": "Yakuza 3",
+			"platform": 1,
+			"notes": "The Yakuza Remastered Collection",
+			"hltb_main": "16:47:39",
+			"hltb_extra": "31:25:43",
+			"hltb_completionist": "102:01:35",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/69/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
 		}
 	],
 	"tier_poor": [
@@ -1919,18 +1944,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "85",
-			"title": "Enchanted Arms",
-			"platform": 6,
-			"hltb_main": "26:02:28",
-			"hltb_extra": "43:39:14",
-			"hltb_completionist": "50:56:53",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/85/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "32",
 			"title": "Serious Sam 4",
 			"platform": 1,
@@ -1974,19 +1987,6 @@
 			"hltb_completionist": "06:53:17",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/27/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "69",
-			"title": "Yakuza 3",
-			"platform": 1,
-			"notes": "The Yakuza Remastered Collection",
-			"hltb_main": "16:47:39",
-			"hltb_extra": "31:25:43",
-			"hltb_completionist": "102:01:35",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/69/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
