@@ -1870,6 +1870,16 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "152",
+			"title": "THE HOUSE OF THE DEAD 2: Remake",
+			"hltb_main": "00:42:00",
+			"hltb_extra": "00:45:28",
+			"category_slug": "tier_poor",
+			"imagePath": "/backlogcovers/152/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "81",
 			"title": "The sopranos road to respect",
 			"platform": 5,
@@ -1929,16 +1939,6 @@
 			"hltb_completionist": "19:14:39",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/32/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "152",
-			"title": "THE HOUSE OF THE DEAD 2: Remake",
-			"hltb_main": "00:42:00",
-			"hltb_extra": "00:45:28",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/152/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
