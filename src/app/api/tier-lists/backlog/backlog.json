@@ -1287,6 +1287,40 @@
 			"imagePath": "/backlogcovers/56/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
+		},
+		{
+			"id": "67",
+			"title": "Yakuza 1 HD",
+			"platform": 6,
+			"notes": "Yakuza 1 & 2 HD Edition",
+			"hltb_main": "17:57:00",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/67/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "68",
+			"title": "Yakuza 2 HD",
+			"platform": 6,
+			"notes": "Yakuza 1 & 2 HD Edition",
+			"hltb_main": "17:57:00",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/68/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "72",
+			"title": "Yakuza 6 : The Song of Life",
+			"platform": 1,
+			"hltb_main": "18:12:00",
+			"hltb_extra": "31:40:24",
+			"hltb_completionist": "55:06:15",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/72/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
 		}
 	],
 	"tier_average": [
@@ -1931,28 +1965,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "67",
-			"title": "Yakuza 1 HD",
-			"platform": 6,
-			"notes": "Yakuza 1 & 2 HD Edition",
-			"hltb_main": "17:57:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/67/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "68",
-			"title": "Yakuza 2 HD",
-			"platform": 6,
-			"notes": "Yakuza 1 & 2 HD Edition",
-			"hltb_main": "17:57:00",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/68/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "69",
 			"title": "Yakuza 3",
 			"platform": 1,
@@ -1988,18 +2000,6 @@
 			"hltb_completionist": "152:26:06",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/71/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "72",
-			"title": "Yakuza 6 : The Song of Life",
-			"platform": 1,
-			"hltb_main": "18:12:00",
-			"hltb_extra": "31:40:24",
-			"hltb_completionist": "55:06:15",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/72/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		}
