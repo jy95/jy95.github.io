@@ -748,6 +748,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "80",
+			"title": "Kingdoms of amalur : reckoning",
+			"platform": 6,
+			"hltb_main": "31:23:54",
+			"hltb_extra": "58:09:37",
+			"hltb_completionist": "104:39:33",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/80/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "165",
 			"title": "Klonoa 2 : Lunatea's Veil",
 			"platform": 5,
@@ -828,6 +840,18 @@
 			"hltb_completionist": "39:18:19",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/154/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "13",
+			"title": "Oni",
+			"platform": 6,
+			"hltb_main": "09:28:43",
+			"hltb_extra": "10:34:02",
+			"hltb_completionist": "10:50:26",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/13/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1126,6 +1150,17 @@
 			"hltb_completionist": "24:47:13",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/28/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "169",
+			"title": "Turok Evolution",
+			"hltb_main": "10:31:58",
+			"hltb_extra": "12:26:13",
+			"hltb_completionist": "13:20:06",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/169/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1792,18 +1827,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "80",
-			"title": "Kingdoms of amalur : reckoning",
-			"platform": 6,
-			"hltb_main": "31:23:54",
-			"hltb_extra": "58:09:37",
-			"hltb_completionist": "104:39:33",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/80/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "4",
 			"title": "Manhunt 2",
 			"hltb_main": "08:01:02",
@@ -1811,18 +1834,6 @@
 			"hltb_completionist": "14:06:45",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/4/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "13",
-			"title": "Oni",
-			"platform": 6,
-			"hltb_main": "09:28:43",
-			"hltb_extra": "10:34:02",
-			"hltb_completionist": "10:50:26",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/13/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1904,17 +1915,6 @@
 			"hltb_completionist": "06:53:17",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/27/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "169",
-			"title": "Turok Evolution",
-			"hltb_main": "10:31:58",
-			"hltb_extra": "12:26:13",
-			"hltb_completionist": "13:20:06",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/169/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
