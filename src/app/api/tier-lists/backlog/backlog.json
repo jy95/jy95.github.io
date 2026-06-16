@@ -1456,6 +1456,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "41",
+			"title": "Disgaea 2 : Dark Hero Days",
+			"platform": 3,
+			"hltb_main": "32:23:45",
+			"hltb_extra": "73:39:32",
+			"hltb_completionist": "447:47:52",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/41/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "160",
 			"title": "Dragon Valor",
 			"platform": 4,
@@ -1731,6 +1743,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "86",
+			"title": "The 3rd Birthday",
+			"platform": 3,
+			"hltb_main": "10:14:45",
+			"hltb_extra": "16:48:35",
+			"hltb_completionist": "28:58:07",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/86/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "177",
 			"title": "The Cursed Crusade",
 			"platform": 6,
@@ -1763,6 +1787,18 @@
 			"hltb_completionist": "30:57:10",
 			"category_slug": "tier_average",
 			"imagePath": "/backlogcovers/76/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "147",
+			"title": "X-Blades",
+			"platform": 6,
+			"hltb_main": "06:49:59",
+			"hltb_extra": "08:43:01",
+			"hltb_completionist": "10:53:34",
+			"category_slug": "tier_average",
+			"imagePath": "/backlogcovers/147/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		}
@@ -1861,18 +1897,6 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
-			"id": "41",
-			"title": "Disgaea 2 : Dark Hero Days",
-			"platform": 3,
-			"hltb_main": "32:23:45",
-			"hltb_extra": "73:39:32",
-			"hltb_completionist": "447:47:52",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/41/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "40",
 			"title": "Disgaea : Afternoon of Darkness",
 			"platform": 3,
@@ -1931,18 +1955,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "86",
-			"title": "The 3rd Birthday",
-			"platform": 3,
-			"hltb_main": "10:14:45",
-			"hltb_extra": "16:48:35",
-			"hltb_completionist": "28:58:07",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/86/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "153",
 			"title": "The Operative: No One Lives Forever",
 			"hltb_main": "13:04:45",
@@ -1962,18 +1974,6 @@
 			"hltb_completionist": "06:53:17",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/27/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "147",
-			"title": "X-Blades",
-			"platform": 6,
-			"hltb_main": "06:49:59",
-			"hltb_extra": "08:43:01",
-			"hltb_completionist": "10:53:34",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/147/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
