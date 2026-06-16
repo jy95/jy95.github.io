@@ -1167,6 +1167,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "27",
+			"title": "Trine 4 : Melody of Mystery",
+			"platform": 1,
+			"hltb_main": "04:35:40",
+			"hltb_extra": "06:20:12",
+			"hltb_completionist": "06:53:17",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/27/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "28",
 			"title": "Trine 5",
 			"platform": 1,
@@ -1332,6 +1344,19 @@
 			"hltb_main": "17:57:00",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/68/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "70",
+			"title": "Yakuza 4",
+			"platform": 1,
+			"notes": "The Yakuza Remastered Collection",
+			"hltb_main": "20:33:30",
+			"hltb_extra": "39:31:47",
+			"hltb_completionist": "92:05:47",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/70/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1975,31 +2000,6 @@
 			"hltb_completionist": "23:15:10",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/153/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "27",
-			"title": "Trine 4 : Melody of Mystery",
-			"platform": 1,
-			"hltb_main": "04:35:40",
-			"hltb_extra": "06:20:12",
-			"hltb_completionist": "06:53:17",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/27/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "70",
-			"title": "Yakuza 4",
-			"platform": 1,
-			"notes": "The Yakuza Remastered Collection",
-			"hltb_main": "20:33:30",
-			"hltb_extra": "39:31:47",
-			"hltb_completionist": "92:05:47",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/70/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		}
