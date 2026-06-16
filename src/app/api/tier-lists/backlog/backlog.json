@@ -484,6 +484,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "185",
+			"title": "Beat Down: Fists of Vengeance",
+			"platform": 5,
+			"hltb_main": "09:31:06",
+			"hltb_extra": "16:45:51",
+			"hltb_completionist": "29:31:33",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/185/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "136",
 			"title": "Berserk Boy",
 			"platform": 1,
@@ -833,6 +845,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "38",
+			"title": "Psi-Ops : The Mindgate Conspiracy",
+			"platform": 5,
+			"hltb_main": "11:48:22",
+			"hltb_extra": "13:42:39",
+			"hltb_completionist": "14:27:52",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/38/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "184",
 			"title": "Rogue Ops",
 			"platform": 5,
@@ -1066,6 +1090,42 @@
 			"hltb_extra": "07:00:00",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/164/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "24",
+			"title": "Trine",
+			"platform": 6,
+			"hltb_main": "06:08:51",
+			"hltb_extra": "08:24:41",
+			"hltb_completionist": "14:49:59",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/24/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "25",
+			"title": "Trine 2",
+			"platform": 6,
+			"hltb_main": "08:11:16",
+			"hltb_extra": "11:35:41",
+			"hltb_completionist": "22:55:08",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/25/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "28",
+			"title": "Trine 5",
+			"platform": 1,
+			"hltb_main": "18:42:41",
+			"hltb_extra": "22:13:55",
+			"hltb_completionist": "24:47:13",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/28/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1636,18 +1696,6 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
-			"id": "185",
-			"title": "Beat Down: Fists of Vengeance",
-			"platform": 5,
-			"hltb_main": "09:31:06",
-			"hltb_extra": "16:45:51",
-			"hltb_completionist": "29:31:33",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/185/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "1",
 			"title": "Beyond: Two Souls",
 			"platform": 1,
@@ -1739,18 +1787,6 @@
 			"hltb_completionist": "10:50:26",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/13/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "38",
-			"title": "Psi-Ops : The Mindgate Conspiracy",
-			"platform": 5,
-			"hltb_main": "11:48:22",
-			"hltb_extra": "13:42:39",
-			"hltb_completionist": "14:27:52",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/38/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1860,30 +1896,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "24",
-			"title": "Trine",
-			"platform": 6,
-			"hltb_main": "06:08:51",
-			"hltb_extra": "08:24:41",
-			"hltb_completionist": "14:49:59",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/24/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "25",
-			"title": "Trine 2",
-			"platform": 6,
-			"hltb_main": "08:11:16",
-			"hltb_extra": "11:35:41",
-			"hltb_completionist": "22:55:08",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/25/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "27",
 			"title": "Trine 4 : Melody of Mystery",
 			"platform": 1,
@@ -1892,18 +1904,6 @@
 			"hltb_completionist": "06:53:17",
 			"category_slug": "tier_not_evaluated",
 			"imagePath": "/backlogcovers/27/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "28",
-			"title": "Trine 5",
-			"platform": 1,
-			"hltb_main": "18:42:41",
-			"hltb_extra": "22:13:55",
-			"hltb_completionist": "24:47:13",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/28/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
