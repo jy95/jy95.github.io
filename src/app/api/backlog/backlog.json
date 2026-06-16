@@ -1310,11 +1310,17 @@
 	{
 		"id": 185,
 		"title": "Beat Down: Fists of Vengeance",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "09:31:06",
+		"hltb_extra": "16:45:51",
+		"hltb_completionist": "29:31:33"
 	},
 	{
 		"id": 186,
 		"title": "Reservoir Dogs",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "03:39:16",
+		"hltb_extra": "03:53:02",
+		"hltb_completionist": "04:24:33"
 	}
 ]
