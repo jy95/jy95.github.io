@@ -39,14 +39,18 @@ export type RawGame = Omit<BasicGame, "genres" | "id">;
 export type YTUrlType = 'PLAYLIST' | 'VIDEO';
 
 // structure for Card entry
-export interface CardEntry {
+export interface BasicCard {
     /** @description Link to the picture for the card component */
     imagePath: string;
+}
+
+// structure for Card entry
+export type CardEntry = {
     /** @description Link to Youtube */
     url: string;
     /** @description Type of Youtube link */
     url_type: YTUrlType;
-};
+} & BasicCard;
 
 // structure used for GameEntry and thus GameDialog
 export interface CardGame extends Omit<BasicGame, "releaseDate" | "genres" | "platform">, CardEntry {};

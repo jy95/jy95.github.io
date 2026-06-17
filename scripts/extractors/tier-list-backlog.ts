@@ -53,8 +53,6 @@ function mapToResult(entry: TierListBacklogEntry): BacklogEntry {
     return { 
         ...entry,
         id: entry.id.toString(),
-        imagePath: `/backlogcovers/${entry.id}/cover.webp`,
-        url: "",
-        url_type: "VIDEO"
+        imagePath: `/backlogcovers/${entry.id}/cover.webp`
     };
 }

@@ -26,44 +26,52 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 // Types
+import type { BacklogEntry } from "@/app/api/backlog/route";
 import type { CardGame } from "@/redux/sharedDefintion";
 
-// Extra properties that are not in CardGame but we might want to display in GameDetailView
-type ExtraGameProperties = {
-    /** @description When the game was released, such "2005-12-22" */
-    releaseDate?: string;
-    /** @description Genres of the game */
-    genres?: number[];
-    /** @description Duration of the game in "hh:mm:ss" format */
-    hltb_main?: string;
-    /** @description Duration of the game including extras in "hh:mm:ss" format */
-    hltb_extra?: string;
-    /** @description Duration of the game including extras and completionist in "hh:mm:ss" format */
-    hltb_completionist?: string;
+// Many fields are optional
+type GameDetailsEntry = BacklogEntry | CardGame;
+
+// --- The Ultimate Union-Safe hasKey Utility ---
+// Instead of intersecting, we look at each member of the Union (T). 
+// If the member can contain the key K, we extract it. 
+// If it can't, we explicitly map K to V so TypeScript knows it's safe to read.
+type WithProperty<T, K extends PropertyKey, V> = T extends any
+    ? K extends keyof T
+        ? T & { [P in K]: V }
+        : T & { [P in K]: V }
+    : never;
+
+function hasKey<T extends object, K extends PropertyKey, V>(
+    obj: T,
+    key: K,
+    validator: (value: unknown) => value is V
+): obj is WithProperty<T, K, V> {
+    return key in obj && validator((obj as any)[key]);
 }
 
-function hasGenres(game: CardGame & ExtraGameProperties): game is CardGame & ExtraGameProperties & { genres: number[] } {
-    return game.genres !== undefined && game.genres.length > 0;
+function hasGenres(game: GameDetailsEntry): game is GameDetailsEntry & { genres: number[] } {
+    return hasKey(game, "genres", (val): val is number[] => Array.isArray(val) && val.length > 0);
 }
 
-function hasDuration(game: CardGame & ExtraGameProperties): game is CardGame & ExtraGameProperties & { duration: string } {
-    return game.duration !== undefined && game.duration !== "00:00:00";
+function hasDuration(game: GameDetailsEntry): game is GameDetailsEntry & { duration: string } {
+    return hasKey(game, "duration", (val): val is string => typeof val === "string" && val !== "00:00:00");
 }
 
-function hasReleaseDate(game: CardGame & ExtraGameProperties): game is CardGame & ExtraGameProperties & { releaseDate: string } {
-    return game.releaseDate !== undefined;
+function hasReleaseDate(game: GameDetailsEntry): game is GameDetailsEntry & { releaseDate: string } {
+    return hasKey(game, "releaseDate", (val): val is string => typeof val === "string");
 }
 
-function hasHltbMain(game: CardGame & ExtraGameProperties): game is CardGame & ExtraGameProperties & { hltb_main: string } {
-    return game.hltb_main !== undefined && game.hltb_main !== "00:00:00";
+function hasHltbMain(game: GameDetailsEntry): game is BacklogEntry & { hltb_main: string } {
+    return hasKey(game, "hltb_main", (val): val is string => typeof val === "string" && val !== "00:00:00");
 }
 
-function hasHltbExtra(game: CardGame & ExtraGameProperties): game is CardGame & ExtraGameProperties & { hltb_extra: string } {
-    return game.hltb_extra !== undefined && game.hltb_extra !== "00:00:00";
+function hasHltbExtra(game: GameDetailsEntry): game is GameDetailsEntry & { hltb_extra: string } {
+    return hasKey(game, "hltb_extra", (val): val is string => typeof val === "string" && val !== "00:00:00");
 }
 
-function hasHltbCompletionist(game: CardGame & ExtraGameProperties): game is CardGame & ExtraGameProperties & { hltb_completionist: string } {
-    return game.hltb_completionist !== undefined && game.hltb_completionist !== "00:00:00";
+function hasHltbCompletionist(game: GameDetailsEntry): game is GameDetailsEntry & { hltb_completionist: string } {
+    return hasKey(game, "hltb_completionist", (val): val is string => typeof val === "string" && val !== "00:00:00");
 }
 
 const formatDate = (dateStr: string) => {
@@ -71,7 +79,7 @@ const formatDate = (dateStr: string) => {
 }
 
 function GameDetailView(props : {
-    game: CardGame & ExtraGameProperties;
+    game: GameDetailsEntry;
     onClose: () => void;
     /** @default true */
     showVoteSection?: boolean;
