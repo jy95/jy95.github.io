@@ -18,7 +18,8 @@ import {
     extractAndSavePastGamesToFeeds,
     extractAndSaveTierListGames,
     extractAndSaveTierListBacklog,
-    extractAndSaveTierListCategories
+    extractAndSaveTierListCategories,
+    extractAndSaveTierListGamesFuture
 } from "./extractors"
 
 // Directory of the current script
@@ -42,7 +43,8 @@ const FILES = {
     "JSON_FEED": resolve(__dirname, '..', 'public/feed.json'),
     "TIER_LIST_GAMES": resolve(__dirname, '..', 'src/app/api/tier-lists/games/games.json'),
     "TIER_LIST_BACKLOG": resolve(__dirname, '..', 'src/app/api/tier-lists/backlog/backlog.json'),
-    "TIER_LIST_CATEGORIES": resolve(__dirname, '..', 'src/app/api/tier-lists/categories/categories.json')
+    "TIER_LIST_CATEGORIES": resolve(__dirname, '..', 'src/app/api/tier-lists/categories/categories.json'),
+    "TIER_LIST_GAMES_FUTURE": resolve(__dirname, '..', 'src/app/api/tier-lists/games/future-games.json'),
 }
 
 const db = new Database(databasePath, {
@@ -68,6 +70,7 @@ try {
     await extractAndSaveTierListGames(db, FILES.TIER_LIST_GAMES);
     await extractAndSaveTierListBacklog(db, FILES.TIER_LIST_BACKLOG);
     await extractAndSaveTierListCategories(db, FILES.TIER_LIST_CATEGORIES);
+    await extractAndSaveTierListGamesFuture(db, FILES.TIER_LIST_GAMES_FUTURE);
 } finally {
     db.close();
 }

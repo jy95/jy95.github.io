@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import type { CardEntry, YTUrlType } from "@/redux/sharedDefintion";
+import type { BasicCard, YTUrlType } from "@/redux/sharedDefintion";
 
 // An entry of backlog
 export type BacklogEntry = {
@@ -18,7 +18,7 @@ export type BacklogEntry = {
     "hltb_extra"?: string,
     /** @description Duration of the completionist walkthrough (e.g. "03:45:00") */
     "hltb_completionist"?: string,
-} & CardEntry;
+} & BasicCard;
 
 // Raw entry 
 type RawBacklogEntry = Omit<BacklogEntry, "id" | "imagePath" | "url" | "url_type">;

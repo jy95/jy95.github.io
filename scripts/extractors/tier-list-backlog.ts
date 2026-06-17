@@ -50,11 +50,10 @@ export async function extractAndSaveTierListBacklog(db: Database, outputPath: st
 }
 
 function mapToResult(entry: TierListBacklogEntry): BacklogEntry {
+    const { category_slug: _categorySlug, ...backlogEntry } = entry;
     return { 
-        ...entry,
-        id: entry.id.toString(),
-        imagePath: `/backlogcovers/${entry.id}/cover.webp`,
-        url: "",
-        url_type: "VIDEO"
+        ...backlogEntry,
+        id: backlogEntry.id.toString(),
+        imagePath: `/backlogcovers/${backlogEntry.id}/cover.webp`
     };
 }
