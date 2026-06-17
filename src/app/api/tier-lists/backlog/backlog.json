@@ -667,6 +667,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "40",
+			"title": "Disgaea : Afternoon of Darkness",
+			"platform": 3,
+			"hltb_main": "41:42:00",
+			"hltb_extra": "82:53:39",
+			"hltb_completionist": "253:45:40",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/40/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "84",
 			"title": "Forbidden siren",
 			"platform": 5,
@@ -929,6 +941,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "32",
+			"title": "Serious Sam 4",
+			"platform": 1,
+			"hltb_main": "09:16:17",
+			"hltb_extra": "13:53:10",
+			"hltb_completionist": "19:14:39",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/32/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "29",
 			"title": "Serious Sam HD: The First Encounter",
 			"platform": 1,
@@ -1061,6 +1085,18 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "143",
+			"title": "Tales of Xillia",
+			"platform": 6,
+			"hltb_main": "35:57:36",
+			"hltb_extra": "51:14:07",
+			"hltb_completionist": "86:49:36",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/143/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "45",
 			"title": "The Chronicles of Riddick : Assault on Dark Athena",
 			"platform": 6,
@@ -1081,6 +1117,17 @@
 			"hltb_completionist": "07:49:27",
 			"category_slug": "tier_good",
 			"imagePath": "/backlogcovers/60/cover.webp",
+			"url": "",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "153",
+			"title": "The Operative: No One Lives Forever",
+			"hltb_main": "13:04:45",
+			"hltb_extra": "15:31:58",
+			"hltb_completionist": "23:15:10",
+			"category_slug": "tier_good",
+			"imagePath": "/backlogcovers/153/cover.webp",
 			"url": "",
 			"url_type": "VIDEO"
 		},
@@ -1955,53 +2002,5 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": [
-		{
-			"id": "40",
-			"title": "Disgaea : Afternoon of Darkness",
-			"platform": 3,
-			"hltb_main": "41:42:00",
-			"hltb_extra": "82:53:39",
-			"hltb_completionist": "253:45:40",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/40/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "32",
-			"title": "Serious Sam 4",
-			"platform": 1,
-			"hltb_main": "09:16:17",
-			"hltb_extra": "13:53:10",
-			"hltb_completionist": "19:14:39",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/32/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "143",
-			"title": "Tales of Xillia",
-			"platform": 6,
-			"hltb_main": "35:57:36",
-			"hltb_extra": "51:14:07",
-			"hltb_completionist": "86:49:36",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/143/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "153",
-			"title": "The Operative: No One Lives Forever",
-			"hltb_main": "13:04:45",
-			"hltb_extra": "15:31:58",
-			"hltb_completionist": "23:15:10",
-			"category_slug": "tier_not_evaluated",
-			"imagePath": "/backlogcovers/153/cover.webp",
-			"url": "",
-			"url_type": "VIDEO"
-		}
-	]
+	"tier_not_evaluated": []
 }
