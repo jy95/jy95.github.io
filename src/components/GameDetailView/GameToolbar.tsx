@@ -19,7 +19,7 @@ import type { CardGame } from "@/redux/sharedDefintion";
 type GameDetailsEntry = BacklogEntry | CardGame;
 
 function isCardGame(game: GameDetailsEntry): game is CardGame {
-    return (game as CardGame).availableAt !== undefined;
+    return (game as CardGame).url_type !== undefined;
 }
 
 function GameToolbar({ game, onClose }: { game: GameDetailsEntry, onClose: () => void }) {
