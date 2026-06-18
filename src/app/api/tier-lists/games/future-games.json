@@ -45,7 +45,30 @@
 			"url_type": "PLAYLIST"
 		}
 	],
-	"tier_excellent": [],
+	"tier_excellent": [
+		{
+			"id": "PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
+			"playlistId": "PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
+			"title": "Half-Life",
+			"releaseDate": "2001-11-30",
+			"duration": "05:44:19",
+			"platform": 5,
+			"imagePath": "/covers/PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "IwBRxURrIDM",
+			"videoId": "IwBRxURrIDM",
+			"title": "Portal",
+			"releaseDate": "2008-01-17",
+			"duration": "01:36:53",
+			"platform": 6,
+			"imagePath": "/covers/IwBRxURrIDM/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=IwBRxURrIDM",
+			"url_type": "PLAYLIST"
+		}
+	],
 	"tier_good": [
 		{
 			"id": "PLRfhDHeBTBJ7W7XcSZIOukj-hyjckT5Ca",
@@ -209,17 +232,6 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
-			"id": "PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
-			"playlistId": "PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
-			"title": "Half-Life",
-			"releaseDate": "2001-11-30",
-			"duration": "05:44:19",
-			"platform": 5,
-			"imagePath": "/covers/PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5-m-EYS85h0SY9bTkrFMor",
 			"playlistId": "PLRfhDHeBTBJ5-m-EYS85h0SY9bTkrFMor",
 			"title": "Half-Life 2",
@@ -250,17 +262,6 @@
 			"platform": 6,
 			"imagePath": "/covers/PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "IwBRxURrIDM",
-			"videoId": "IwBRxURrIDM",
-			"title": "Portal",
-			"releaseDate": "2008-01-17",
-			"duration": "01:36:53",
-			"platform": 6,
-			"imagePath": "/covers/IwBRxURrIDM/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=IwBRxURrIDM",
 			"url_type": "PLAYLIST"
 		},
 		{
