@@ -159,7 +159,19 @@
 		}
 	],
 	"tier_average": [],
-	"tier_poor": [],
+	"tier_poor": [
+		{
+			"id": "PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D",
+			"playlistId": "PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D",
+			"title": "Rogue Warrior",
+			"releaseDate": "2009-11-27",
+			"duration": "01:56:29",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D",
+			"url_type": "PLAYLIST"
+		}
+	],
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
@@ -226,17 +238,6 @@
 			"platform": 6,
 			"imagePath": "/covers/PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D",
-			"playlistId": "PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D",
-			"title": "Rogue Warrior",
-			"releaseDate": "2009-11-27",
-			"duration": "01:56:29",
-			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D",
 			"url_type": "PLAYLIST"
 		},
 		{
