@@ -1,0 +1,276 @@
+{
+	"tier_masterpiece": [
+		{
+			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"playlistId": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"title": "Driver: San Francisco",
+			"releaseDate": "2011-09-01",
+			"duration": "04:37:43",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"url_type": "PLAYLIST"
+		}
+	],
+	"tier_excellent": [],
+	"tier_good": [
+		{
+			"id": "PLRfhDHeBTBJ7W7XcSZIOukj-hyjckT5Ca",
+			"playlistId": "PLRfhDHeBTBJ7W7XcSZIOukj-hyjckT5Ca",
+			"title": "Bayonetta",
+			"releaseDate": "2010-01-08",
+			"duration": "09:14:07",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ7W7XcSZIOukj-hyjckT5Ca/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7W7XcSZIOukj-hyjckT5Ca",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
+			"playlistId": "PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
+			"title": "Binary Domain",
+			"releaseDate": "2024-02-12",
+			"duration": "07:21:57",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4DAQ8BmgRZFLB8hutraIoU",
+			"playlistId": "PLRfhDHeBTBJ4DAQ8BmgRZFLB8hutraIoU",
+			"title": "Bionic Commando",
+			"releaseDate": "2009-05-22",
+			"duration": "04:28:41",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ4DAQ8BmgRZFLB8hutraIoU/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4DAQ8BmgRZFLB8hutraIoU",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5DiP_v6xkZGHkg-XOIimKT",
+			"playlistId": "PLRfhDHeBTBJ5DiP_v6xkZGHkg-XOIimKT",
+			"title": "Injustice: Gods Among Us",
+			"releaseDate": "2013-04-18",
+			"duration": "03:10:20",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ5DiP_v6xkZGHkg-XOIimKT/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5DiP_v6xkZGHkg-XOIimKT",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7xuchAxfBg_Z4RYtbIteZ1",
+			"playlistId": "PLRfhDHeBTBJ7xuchAxfBg_Z4RYtbIteZ1",
+			"title": "Journey",
+			"releaseDate": "2012-03-14",
+			"duration": "01:32:10",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ7xuchAxfBg_Z4RYtbIteZ1/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7xuchAxfBg_Z4RYtbIteZ1",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
+			"playlistId": "PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
+			"title": "Killer Is Dead",
+			"releaseDate": "2013-08-30",
+			"duration": "04:58:20",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4ZG4oDouSRf0-qhG5WMEvn",
+			"playlistId": "PLRfhDHeBTBJ4ZG4oDouSRf0-qhG5WMEvn",
+			"title": "Mirror's Edge",
+			"releaseDate": "2008-11-14",
+			"duration": "02:53:13",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ4ZG4oDouSRf0-qhG5WMEvn/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZG4oDouSRf0-qhG5WMEvn",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
+			"playlistId": "PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
+			"title": "Shadows of the Damned",
+			"releaseDate": "2023-06-23",
+			"duration": "07:32:11",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6omOFd-ITLsOCYCYOEf0Nw",
+			"playlistId": "PLRfhDHeBTBJ6omOFd-ITLsOCYCYOEf0Nw",
+			"title": "Splatterhouse",
+			"releaseDate": "2010-11-26",
+			"duration": "00:00:00",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ6omOFd-ITLsOCYCYOEf0Nw/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6omOFd-ITLsOCYCYOEf0Nw",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R",
+			"playlistId": "PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R",
+			"title": "Wheelman",
+			"releaseDate": "2009-03-27",
+			"duration": "05:06:21",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R",
+			"url_type": "PLAYLIST"
+		}
+	],
+	"tier_average": [],
+	"tier_poor": [],
+	"tier_bad": [],
+	"tier_not_evaluated": [
+		{
+			"id": "PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb",
+			"playlistId": "PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb",
+			"title": "Dead Space 2",
+			"releaseDate": "2011-01-27",
+			"duration": "06:54:25",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN",
+			"playlistId": "PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN",
+			"title": "F.E.A.R. 2 : Project Origin",
+			"releaseDate": "2009-02-13",
+			"duration": "05:55:33",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
+			"playlistId": "PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
+			"title": "Half-Life",
+			"releaseDate": "2001-11-30",
+			"duration": "05:44:19",
+			"platform": 5,
+			"imagePath": "/covers/PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5-m-EYS85h0SY9bTkrFMor",
+			"playlistId": "PLRfhDHeBTBJ5-m-EYS85h0SY9bTkrFMor",
+			"title": "Half-Life 2",
+			"releaseDate": "2008-01-17",
+			"duration": "08:47:35",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ5-m-EYS85h0SY9bTkrFMor/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5-m-EYS85h0SY9bTkrFMor",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-",
+			"playlistId": "PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-",
+			"title": "Half-Life 2: Episode One",
+			"releaseDate": "2006-06-01",
+			"duration": "02:45:11",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB",
+			"playlistId": "PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB",
+			"title": "Half-Life 2: Episode Two",
+			"releaseDate": "2007-10-07",
+			"duration": "04:02:36",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "IwBRxURrIDM",
+			"videoId": "IwBRxURrIDM",
+			"title": "Portal",
+			"releaseDate": "2008-01-17",
+			"duration": "01:36:53",
+			"platform": 6,
+			"imagePath": "/covers/IwBRxURrIDM/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=IwBRxURrIDM",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX",
+			"playlistId": "PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX",
+			"title": "Portal 2",
+			"releaseDate": "2011-04-21",
+			"duration": "04:34:28",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
+			"playlistId": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
+			"title": "Ratatouille",
+			"releaseDate": "2007-08-10",
+			"duration": "03:18:45",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D",
+			"playlistId": "PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D",
+			"title": "Rogue Warrior",
+			"releaseDate": "2009-11-27",
+			"duration": "01:56:29",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
+			"playlistId": "PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
+			"title": "Shrek 2",
+			"releaseDate": "2004-06-18",
+			"duration": "03:52:28",
+			"platform": 5,
+			"imagePath": "/covers/PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
+			"playlistId": "PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
+			"title": "Spec Ops: The Line",
+			"releaseDate": "2012-06-29",
+			"duration": "00:00:00",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m",
+			"playlistId": "PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m",
+			"title": "The Club",
+			"releaseDate": "2008-02-08",
+			"duration": "02:23:03​",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m",
+			"url_type": "PLAYLIST"
+		}
+	]
+}
