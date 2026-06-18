@@ -1,6 +1,17 @@
 {
 	"tier_masterpiece": [
 		{
+			"id": "PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb",
+			"playlistId": "PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb",
+			"title": "Dead Space 2",
+			"releaseDate": "2011-01-27",
+			"duration": "06:54:25",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
 			"playlistId": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
 			"title": "Driver: San Francisco",
@@ -9,6 +20,28 @@
 			"platform": 6,
 			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN",
+			"playlistId": "PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN",
+			"title": "F.E.A.R. 2 : Project Origin",
+			"releaseDate": "2009-02-13",
+			"duration": "05:55:33",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX",
+			"playlistId": "PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX",
+			"title": "Portal 2",
+			"releaseDate": "2011-04-21",
+			"duration": "04:34:28",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX",
 			"url_type": "PLAYLIST"
 		}
 	],
@@ -130,28 +163,6 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
-			"id": "PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb",
-			"playlistId": "PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb",
-			"title": "Dead Space 2",
-			"releaseDate": "2011-01-27",
-			"duration": "06:54:25",
-			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN",
-			"playlistId": "PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN",
-			"title": "F.E.A.R. 2 : Project Origin",
-			"releaseDate": "2009-02-13",
-			"duration": "05:55:33",
-			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
 			"playlistId": "PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
 			"title": "Half-Life",
@@ -204,17 +215,6 @@
 			"platform": 6,
 			"imagePath": "/covers/IwBRxURrIDM/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=IwBRxURrIDM",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX",
-			"playlistId": "PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX",
-			"title": "Portal 2",
-			"releaseDate": "2011-04-21",
-			"duration": "04:34:28",
-			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX",
 			"url_type": "PLAYLIST"
 		},
 		{
