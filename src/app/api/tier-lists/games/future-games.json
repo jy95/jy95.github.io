@@ -160,6 +160,17 @@
 	],
 	"tier_average": [
 		{
+			"id": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
+			"playlistId": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
+			"title": "Ratatouille",
+			"releaseDate": "2007-08-10",
+			"duration": "03:18:45",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
 			"playlistId": "PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
 			"title": "Shrek 2",
@@ -250,17 +261,6 @@
 			"platform": 6,
 			"imagePath": "/covers/IwBRxURrIDM/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=IwBRxURrIDM",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
-			"playlistId": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
-			"title": "Ratatouille",
-			"releaseDate": "2007-08-10",
-			"duration": "03:18:45",
-			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
 			"url_type": "PLAYLIST"
 		},
 		{
