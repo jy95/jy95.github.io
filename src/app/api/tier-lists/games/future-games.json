@@ -158,7 +158,30 @@
 			"url_type": "PLAYLIST"
 		}
 	],
-	"tier_average": [],
+	"tier_average": [
+		{
+			"id": "PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
+			"playlistId": "PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
+			"title": "Shrek 2",
+			"releaseDate": "2004-06-18",
+			"duration": "03:52:28",
+			"platform": 5,
+			"imagePath": "/covers/PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m",
+			"playlistId": "PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m",
+			"title": "The Club",
+			"releaseDate": "2008-02-08",
+			"duration": "02:23:03​",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m",
+			"url_type": "PLAYLIST"
+		}
+	],
 	"tier_poor": [
 		{
 			"id": "PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D",
@@ -241,17 +264,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
-			"playlistId": "PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
-			"title": "Shrek 2",
-			"releaseDate": "2004-06-18",
-			"duration": "03:52:28",
-			"platform": 5,
-			"imagePath": "/covers/PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
 			"playlistId": "PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
 			"title": "Spec Ops: The Line",
@@ -260,17 +272,6 @@
 			"platform": 6,
 			"imagePath": "/covers/PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m",
-			"playlistId": "PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m",
-			"title": "The Club",
-			"releaseDate": "2008-02-08",
-			"duration": "02:23:03​",
-			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m",
 			"url_type": "PLAYLIST"
 		}
 	]
