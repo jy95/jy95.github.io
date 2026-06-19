@@ -115,6 +115,17 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-",
+			"playlistId": "PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-",
+			"title": "Half-Life 2: Episode One",
+			"releaseDate": "2006-06-01",
+			"duration": "02:45:11",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ5DiP_v6xkZGHkg-XOIimKT",
 			"playlistId": "PLRfhDHeBTBJ5DiP_v6xkZGHkg-XOIimKT",
 			"title": "Injustice: Gods Among Us",
@@ -167,6 +178,17 @@
 			"platform": 6,
 			"imagePath": "/covers/PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
+			"playlistId": "PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
+			"title": "Spec Ops: The Line",
+			"releaseDate": "2012-06-29",
+			"duration": "00:00:00",
+			"platform": 6,
+			"imagePath": "/covers/PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -243,17 +265,6 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
-			"id": "PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-",
-			"playlistId": "PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-",
-			"title": "Half-Life 2: Episode One",
-			"releaseDate": "2006-06-01",
-			"duration": "02:45:11",
-			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB",
 			"playlistId": "PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB",
 			"title": "Half-Life 2: Episode Two",
@@ -262,17 +273,6 @@
 			"platform": 6,
 			"imagePath": "/covers/PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
-			"playlistId": "PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
-			"title": "Spec Ops: The Line",
-			"releaseDate": "2012-06-29",
-			"duration": "00:00:00",
-			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
 			"url_type": "PLAYLIST"
 		}
 	]
