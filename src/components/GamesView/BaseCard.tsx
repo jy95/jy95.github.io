@@ -18,11 +18,20 @@ type CommonProps = {
     imagePath: string;
 }
 
+/**
+ * Defines the aspect ratio configurations for the card media container.
+ * @property {'square'} square - 1:1 aspect ratio layout (Original configuration).
+ * @property {'portrait'} portrait - 3:4 aspect ratio layout, optimized for standard video game cover art.
+ * @property {'video'} video - 16:9 widescreen aspect ratio layout, ideal for horizontal banners or video thumbnails.
+ */
+export type CardAspectRatio = 'square' | 'portrait' | 'video';
+
 export interface BaseCardProps<T extends CommonProps> {
     item: T;
     onClick?: (item: T) => void;
     badgesSlot?: (item: T) => ReactNode;  
-    overlaySlot?: (item: T) => ReactNode; 
+    overlaySlot?: (item: T) => ReactNode;
+    aspectRatio?: CardAspectRatio; 
 }
 
 // ==========================================
@@ -30,23 +39,39 @@ export interface BaseCardProps<T extends CommonProps> {
 // ==========================================
 
 // 1. Media Layer (CardMedia + Next.js Image wrapper)
-function CardMediaImage({ src, alt }: { src: string; alt: string }) {
+type ImageProps = {
+    src: string; 
+    alt: string;
+    ratio: CardAspectRatio
+}
+function CardMediaImage({ src, alt, ratio }: ImageProps) {
+
+    const RATIO_PADDING_MAP: Record<CardAspectRatio, string> = {
+        square: '100%',     // 1:1 original ratio
+        portrait: '133.33%', // 3:4 aspect ratio
+        video: '56.25%',    // 16:9 aspect ratio
+    };
+
     return (
         <CardMedia
             sx={{
-                position: 'relative',
-                width: '100%',
-                paddingTop: '133.33%', // Standard 3:4 game cover aspect ratio
+                zIndex: 1,
+                height: "inherit",
             }}
         >
-            <Image 
-                fill
-                src={src}
-                alt={alt}
-                style={{ objectFit: "cover" }}
-                sizes="(max-width: 600px) 45vw, (max-width: 960px) 30vw, 15vw"
-                priority={false}
-            />
+            <div style={{
+                paddingTop: RATIO_PADDING_MAP[ratio],
+                position: "relative",
+            }}>
+                <Image 
+                    fill
+                    src={src}
+                    alt={alt}
+                    style={{ objectFit: "fill" }}
+                    sizes="(max-width: 600px) 45vw, (max-width: 960px) 30vw, 15vw"
+                    priority={false}
+                />
+            </div>
         </CardMedia>
     );
 }
@@ -100,7 +125,8 @@ export default function BaseCard<T extends CommonProps>({
     item, 
     onClick,
     badgesSlot,
-    overlaySlot
+    overlaySlot,
+    aspectRatio = 'square'
 }: BaseCardProps<T>) {
 
     const { title, imagePath } = item;
@@ -118,7 +144,7 @@ export default function BaseCard<T extends CommonProps>({
                 sx={{ position: 'relative', display: 'block' }}
             >
                 {/* Layer 1: Background Cover Image */}
-                <CardMediaImage src={imagePath} alt={title} />
+                <CardMediaImage src={imagePath} alt={title} ratio={aspectRatio} />
 
                 {/* Layer 2: Permanent Badges */}
                 {badgesSlot && (
