@@ -20,6 +20,7 @@ import InfoRow from "./InfoRow";
 import GameGenres from './GameGenres';
 import PrettyDuration from "./DurationRow";
 import VoteSection from "./VoteSection";
+import { CardMediaImage } from '../GamesView/CardMediaImage';
 
 // Icons
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
@@ -114,13 +115,13 @@ function GameDetailView(props : {
                 <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} sx={{ alignItems: 'flex-start' }}>
 
                     {/* --- Game cover --- */}
-                    <Box sx={{ position: 'relative', width: 300, height: 400 }}>
-                        <Paper elevation={3} sx={{ borderRadius: 2, overflow: 'hidden', mb: 2 }}>
-                            <Image
-                                fill
-                                style={{ objectFit: 'cover' }}
-                                src={game.imagePath}
-                                alt={game.title}
+                    <Box sx={{ width: 300, mb: 2 }}>
+                        <Paper elevation={3} sx={{ borderRadius: 2, overflow: 'hidden' }}>
+                            <CardMediaImage 
+                                src={game.imagePath} 
+                                alt={game.title} 
+                                ratio="portrait"
+                                objectFit="cover"
                             />
                         </Paper>
                     </Box>

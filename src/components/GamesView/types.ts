@@ -7,6 +7,9 @@ export type CommonProps = {
 
 /**
  * Defines the aspect ratio configurations for the card media container.
+ * @property {'square'} square - 1:1 aspect ratio layout (Original configuration).
+ * @property {'portrait'} portrait - 3:4 aspect ratio layout, optimized for standard video game cover art.
+ * @property {'video'} video - 16:9 widescreen aspect ratio layout, ideal for horizontal banners or video thumbnails.
  */
 export type CardAspectRatio = 'square' | 'portrait' | 'video';
 

@@ -6,6 +6,7 @@ type ImageProps = {
     src: string; 
     alt: string;
     ratio: CardAspectRatio;
+    objectFit?: 'fill' | 'cover' | 'contain';
 };
 
 const RATIO_PADDING_MAP: Record<CardAspectRatio, string> = {
@@ -14,7 +15,7 @@ const RATIO_PADDING_MAP: Record<CardAspectRatio, string> = {
     video: '56.25%',    // 16:9 aspect ratio
 };
 
-export function CardMediaImage({ src, alt, ratio }: ImageProps) {
+export function CardMediaImage({ src, alt, ratio, objectFit = 'fill' }: ImageProps) {
     return (
         <CardMedia
             sx={{
@@ -30,7 +31,7 @@ export function CardMediaImage({ src, alt, ratio }: ImageProps) {
                     fill
                     src={src}
                     alt={alt}
-                    style={{ objectFit: "fill" }}
+                    style={{ objectFit: objectFit }}
                     sizes="(max-width: 600px) 45vw, (max-width: 960px) 30vw, 15vw"
                     priority={false}
                 />
