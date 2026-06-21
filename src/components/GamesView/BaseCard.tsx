@@ -1,55 +1,53 @@
 "use client";
 
-import Image from 'next/image';
-
+// UI MUI
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from '@mui/material/CardActionArea';
 
-type CommonProps = {
-    title: string; 
-    imagePath: string
-}
-
-export interface BaseCardProps<T extends CommonProps> {
-    item: T;
-    onClick?: (item: T) => void;
-}
+// Types & Components locaux
+import type { CommonProps, BaseCardProps } from './types';
+import { CardMediaImage } from './CardMediaImage';
+import { CardBadgesLayer, CardOverlayLayer } from './CardLayers';
 
 export default function BaseCard<T extends CommonProps>({ 
     item, 
-    onClick 
+    onClick,
+    badgesSlot,
+    overlaySlot,
+    aspectRatio = 'square'
 }: BaseCardProps<T>) {
 
-    // Extract props
     const { title, imagePath } = item;
 
     return (
-        <Card sx={{ position: "relative" }}>
+        <Card sx={{ 
+            position: "relative",
+            // Handles hover states for the absolute layers
+            '&:hover .card-overlay': { opacity: 1 },
+            '&:focus-within .card-overlay': { opacity: 1 }
+        }}>
             <CardActionArea 
                 onClick={() => onClick && onClick(item)} 
                 disabled={!onClick}
-                sx={{ height: "inherit", zIndex: 1 }}
+                sx={{ position: 'relative', display: 'block' }}
             >
-                <CardMedia
-                    sx={{ zIndex: 1, height: "inherit" }}
-                    title={title}
-                >
-                    <div style={{
-                        paddingTop: "100%",
-                        position: "relative",
-                    }}>
-                        <Image 
-                            fill
-                            src={imagePath}
-                            alt={title}
-                            objectFit="fill"
-                            sizes="(max-width: 600px) 45vw, (max-width: 960px) 30vw, 15vw"
-                        />
-                    </div>
-                </CardMedia>
+                {/* Layer 1: Background Cover Image */}
+                <CardMediaImage src={imagePath} alt={title} ratio={aspectRatio} />
+
+                {/* Layer 2: Permanent Badges */}
+                {badgesSlot && (
+                    <CardBadgesLayer>
+                        {badgesSlot(item)}
+                    </CardBadgesLayer>
+                )}
+
+                {/* Layer 3: Hover/Focus Details Overlay */}
+                {overlaySlot && (
+                    <CardOverlayLayer>
+                        {overlaySlot(item)}
+                    </CardOverlayLayer>
+                )}
             </CardActionArea>
         </Card>
     );
-
 }

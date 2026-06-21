@@ -5,6 +5,7 @@ import { useRouter } from '@/i18n/routing';
 
 // UI
 import BaseCard from "./BaseCard";
+import GameCardOverlay from "./GameCardOverlay";
 
 // Types
 import type { CardGame } from "@/redux/sharedDefintion";
@@ -36,6 +37,7 @@ function CardEntry(props : {
         <BaseCard 
             item={game}
             onClick={() => watchGame()}
+            overlaySlot={(item) => <GameCardOverlay game={item} />}
         />
     );
 }
