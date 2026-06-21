@@ -65,7 +65,7 @@ export default function GameDetailView({ game, onClose, showVoteSection = true }
                             </>
                         )}
 
-                        {/* --- Fini les IF ! On boucle sur les composants autonomes --- */}
+                        {/* --- Detail Rows */}
                         <Stack spacing={3}>
                             {DETAIL_ROWS.map((RowComponent, index) => (
                                 <RowComponent key={index} game={game} />
