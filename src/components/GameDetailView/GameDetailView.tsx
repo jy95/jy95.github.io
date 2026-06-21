@@ -4,10 +4,8 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
-// Next.js
-import Image from 'next/image';
-
 // Material UI
+import Grid from "@mui/material/Grid";
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
@@ -39,8 +37,8 @@ type GameDetailsEntry = BacklogEntry | CardGame;
 // If it can't, we explicitly map K to V so TypeScript knows it's safe to read.
 type WithProperty<T, K extends PropertyKey, V> = T extends any
     ? K extends keyof T
-        ? T & { [P in K]: V }
-        : T & { [P in K]: V }
+    ? T & { [P in K]: V }
+    : T & { [P in K]: V }
     : never;
 
 function hasKey<T extends object, K extends PropertyKey, V>(
@@ -79,7 +77,7 @@ const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString();
 }
 
-function GameDetailView(props : {
+function GameDetailView(props: {
     game: GameDetailsEntry;
     onClose: () => void;
     /** @default true */
@@ -91,7 +89,7 @@ function GameDetailView(props : {
     const t = useTranslations();
 
     // props
-    const {game , showVoteSection = true} = props;
+    const { game, showVoteSection = true } = props;
 
     function handleClose() {
         setOpen(false);
@@ -105,21 +103,32 @@ function GameDetailView(props : {
             onClose={() => handleClose()}
         >
             {/* --- Toolbar --- */}
-            <GameToolbar 
+            <GameToolbar
                 game={game}
                 onClose={() => handleClose()}
             />
 
             {/* --- Content --- */}
             <Box sx={{ p: { xs: 2, md: 5 }, flexGrow: 1 }}>
-                <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} sx={{ alignItems: 'flex-start' }}>
+                <Stack
+                    direction={{ xs: 'column', md: 'row' }}
+                    spacing={4}
+                    sx={{ alignItems: 'flex-start' }}
+                >
 
-                    {/* --- Game cover --- */}
-                    <Box sx={{ width: 300, mb: 2 }}>
+                    {/* --- Game cover (Fixed/Fluid Context) --- */}
+                    {/* On utilise flexShrink: 0 pour éviter que le Stack n'écrase l'image sur Desktop */}
+                    <Box sx={{
+                        width: { xs: '100%', md: 280 },
+                        maxWidth: { xs: 340, md: 'none' },
+                        mx: { xs: 'auto', md: 0 },
+                        flexShrink: 0,
+                        mb: 2
+                    }}>
                         <Paper elevation={3} sx={{ borderRadius: 2, overflow: 'hidden' }}>
-                            <CardMediaImage 
-                                src={game.imagePath} 
-                                alt={game.title} 
+                            <CardMediaImage
+                                src={game.imagePath}
+                                alt={game.title}
                                 ratio="portrait"
                                 objectFit="cover"
                             />
@@ -127,7 +136,7 @@ function GameDetailView(props : {
                     </Box>
 
                     {/* --- Game details --- */}
-                    <Box sx={{ flex: 1 }}>
+                    <Box sx={{ flex: 1, width: '100%' }}>
 
                         {showVoteSection && (
                             <>

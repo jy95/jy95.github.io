@@ -20,12 +20,16 @@ export function CardMediaImage({ src, alt, ratio, objectFit = 'fill' }: ImagePro
         <CardMedia
             sx={{
                 zIndex: 1,
-                height: "inherit",
+                width: '100%',        // Force full width of the grid item
+                height: 'auto',       // Let height be driven by the inner padding
+                position: 'relative', // Essential container context for Next.js fill
+                display: 'block',     // Block layout to ensure no inline whitespace gaps
             }}
         >
             <div style={{
                 paddingTop: RATIO_PADDING_MAP[ratio],
                 position: "relative",
+                width: "100%"
             }}>
                 <Image 
                     fill
