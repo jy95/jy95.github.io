@@ -293,10 +293,11 @@
 	{
 		"id": 229,
 		"availableAt": "2028-01-12",
+		"endAt": "2028-02-07",
 		"playlistId": "PLRfhDHeBTBJ6omOFd-ITLsOCYCYOEf0Nw",
 		"title": "Splatterhouse",
 		"releaseDate": "2010-11-26",
-		"duration": "00:00:00",
+		"duration": "05:16:15",
 		"platform": 6,
 		"genres": [
 			1,
