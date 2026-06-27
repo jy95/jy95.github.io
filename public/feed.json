@@ -14,6 +14,14 @@
     },
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R",
+            "title": "Wheelman",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R/cover.webp",
+            "date_modified": "2026-06-26T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
@@ -124,14 +132,6 @@
             "title": "The Warriors",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t/cover.webp",
             "date_modified": "2025-09-08T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
-            "title": "La Planète au Trésor",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl/cover.webp",
-            "date_modified": "2025-07-25T00:00:00.000Z"
         }
     ]
 }
