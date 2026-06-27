@@ -4,8 +4,8 @@
 			"id": 6,
 			"platform": "PS3",
 			"total": 84,
-			"total_available": 63,
-			"total_unavailable": 21
+			"total_available": 64,
+			"total_unavailable": 20
 		},
 		{
 			"id": 1,
@@ -48,8 +48,8 @@
 			"id": 1,
 			"genre": "Action",
 			"total": 171,
-			"total_available": 164,
-			"total_unavailable": 7
+			"total_available": 165,
+			"total_unavailable": 6
 		},
 		{
 			"id": 2,
@@ -115,15 +115,15 @@
 			"total_unavailable": 0
 		},
 		{
-			"id": 10,
-			"genre": "Indie",
-			"total": 6,
-			"total_available": 5,
-			"total_unavailable": 1
-		},
-		{
 			"id": 15,
 			"genre": "Racing",
+			"total": 6,
+			"total_available": 6,
+			"total_unavailable": 0
+		},
+		{
+			"id": 10,
+			"genre": "Indie",
 			"total": 6,
 			"total_available": 5,
 			"total_unavailable": 1
@@ -189,7 +189,7 @@
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"games": {
 			"total": 211,
-			"total_available": 188,
+			"total_available": 189,
 			"total_unavailable": 23
 		},
 		"dlcs": {
@@ -204,9 +204,9 @@
 				"seconds": 30
 			},
 			"total_available": {
-				"hours": 1010,
-				"minutes": 19,
-				"seconds": 10
+				"hours": 1015,
+				"minutes": 25,
+				"seconds": 31
 			},
 			"total_unavailable": {
 				"hours": 103,
