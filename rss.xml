@@ -4,7 +4,7 @@
         <title>GamesPassionFR - New Games</title>
         <link>https://www.youtube.com/@GPFR1</link>
         <description>Feed for new games featured on the GamesPassionFR YouTube channel</description>
-        <lastBuildDate>Fri, 26 Jun 2026 19:41:49 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 27 Jun 2026 12:09:40 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -13,6 +13,14 @@
             <url>https://yt3.ggpht.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s176-c-k-c0x00ffffff-no-rj</url>
             <link>https://www.youtube.com/@GPFR1</link>
         </image>
+        <item>
+            <title><![CDATA[Wheelman]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R</guid>
+            <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R/cover.webp" length="0" type="image/webp"/>
+        </item>
         <item>
             <title><![CDATA[Driver: San Francisco]]></title>
             <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r</link>
@@ -124,14 +132,6 @@
             <pubDate>Mon, 08 Sep 2025 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t]]></content:encoded>
             <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t/cover.webp" length="0" type="image/webp"/>
-        </item>
-        <item>
-            <title><![CDATA[La Planète au Trésor]]></title>
-            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl</link>
-            <guid isPermaLink="false">yt:PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl</guid>
-            <pubDate>Fri, 25 Jul 2025 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl]]></content:encoded>
-            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl/cover.webp" length="0" type="image/webp"/>
         </item>
         <channelFeed>
             <link>https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ</link>
