@@ -179,6 +179,19 @@
             "tier_poor": "Médiocre",
             "tier_bad": "Mauvais",
             "tier_not_evaluated": "Pas encore évalué"
+        },
+        "disclaimer": {
+            "title": "Comment interpréter ce top ?",
+            "text": "Un top est par nature subjectif. Chaque jeu possède ses propres forces et faiblesses, et le classement dépend de mes critères personnels. Libre à chacun.e d'avoir son propre verdict manette en main, et c'est l'occasion de venir en débattre sur Discord."
+        },
+        "descriptions": {
+            "tier_masterpiece": "Des titres incontournables qui frôlent la perfection.",
+            "tier_excellent": "Des expériences marquantes de très grande qualité.",
+            "tier_good": "Des jeux solides et plaisants de bout en bout.",
+            "tier_average": "Des titres corrects mais qui souffrent de défauts notables ou qui manquent d'étincelle.",
+            "tier_poor": "Des expériences décevantes qui peinent à convaincre.",
+            "tier_bad": "Des jeux profondément ratés ou sans grand intérêt.",
+            "tier_not_evaluated": "Des titres sur lesquels je dois me pencher plus longuement avant de me prononcer."
         }
     }
 }

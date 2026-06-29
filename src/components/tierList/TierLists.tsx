@@ -9,6 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { TierListControls } from "./TierListControls";
 import { TierListBoard } from "./TierListBoard";
 import DistributionBar from "./DistributionBar";
+import DisclaimerAccordion from "./DisclaimerAccordion";
 
 import type { RawType, GameRender, BackgroundColor } from "./index";
 
@@ -65,6 +66,7 @@ export function TierLists<T extends RawType>({
                 categoryColors={categoryColors}
                 data={data}
             />
+            <DisclaimerAccordion categoryColors={categoryColors}/>
             <TierListBoard 
                 categories={categories}
                 data={data}
