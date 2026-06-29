@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 
+import type { AppConfig } from 'next-intl';
+
 type sortOption = "asc" | "desc";
+type Ranking = keyof AppConfig["Messages"]["TierList"]["categories"]
 
 export async function GET(request: Request) {
 
@@ -26,7 +29,7 @@ export async function GET(request: Request) {
     });
 
     // Extract slugs for performance reasons, as the frontend isn't interested in the other properties of the categories and it would be wasteful to send them over the network
-    const slugs = categories.map(category => category.slug);
+    const slugs = categories.map(category => category.slug as Ranking);
 
     return NextResponse.json(slugs, {
         headers: {
