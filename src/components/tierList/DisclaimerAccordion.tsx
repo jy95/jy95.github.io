@@ -19,6 +19,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import HelpIcon from '@mui/icons-material/Help';
 
 import type { AppConfig } from 'next-intl';
 import type { BackgroundColor } from "./index";
@@ -53,6 +54,7 @@ export default function DisclaimerAccordion({ categoryColors } : DisclaimerAccor
                 aria-controls="tier-list-disclaimer-content" 
                 expandIcon={<ExpandMoreIcon />}
             >
+                <HelpIcon color="info" sx={{ mr: 1.5 }} />
                 <Typography>
                     { tDisclaimer("title") }
                 </Typography>
