@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
                 source: "/tier",
                 destination: "/tier/games",
                 permanent: false
+            },
+            {
+                source: "/:locale/tier",
+                destination: "/:locale/tier/games",
+                permanent: false
             }
         ]
     },
