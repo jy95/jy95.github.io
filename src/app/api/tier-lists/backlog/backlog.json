@@ -1501,5 +1501,12 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": []
+	"tier_not_evaluated": [
+		{
+			"id": "187",
+			"title": "Whiplash",
+			"platform": 5,
+			"imagePath": "/backlogcovers/187/cover.webp"
+		}
+	]
 }
