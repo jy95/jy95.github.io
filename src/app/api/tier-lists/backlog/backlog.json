@@ -1407,6 +1407,15 @@
 			"imagePath": "/backlogcovers/76/cover.webp"
 		},
 		{
+			"id": "187",
+			"title": "Whiplash",
+			"platform": 5,
+			"hltb_main": "13:12:00",
+			"hltb_extra": "13:37:31",
+			"hltb_completionist": "14:13:27",
+			"imagePath": "/backlogcovers/187/cover.webp"
+		},
+		{
 			"id": "147",
 			"title": "X-Blades",
 			"platform": 6,
@@ -1501,12 +1510,5 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": [
-		{
-			"id": "187",
-			"title": "Whiplash",
-			"platform": 5,
-			"imagePath": "/backlogcovers/187/cover.webp"
-		}
-	]
+	"tier_not_evaluated": []
 }
