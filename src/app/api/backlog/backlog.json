@@ -1322,5 +1322,10 @@
 		"hltb_main": "03:39:16",
 		"hltb_extra": "03:53:02",
 		"hltb_completionist": "04:24:33"
+	},
+	{
+		"id": 187,
+		"title": "Whiplash",
+		"platform": 5
 	}
 ]
