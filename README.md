@@ -1,5 +1,7 @@
 #  [GamesPassionFR][YoutubeChannel] Gaming Catalog
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)]([https://deepwiki.com/jy95/fds](https://deepwiki.com/jy95/jy95.github.io)) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/09aa36da53364aa698098167b27f3077)](https://app.codacy.com/gh/jy95/jy95.github.io/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
 Online catalog to have a clear view of the [GamesPassionFR][YoutubeChannel] channel.  
 Currently, we have the following pages :
 * [`/games`](https://jy95.github.io/games) - List of games, series & dlcs published on [GamesPassionFR][YoutubeChannel] YT channel
