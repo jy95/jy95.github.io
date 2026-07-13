@@ -44,11 +44,11 @@ async function syncBacklog(): Promise<void> {
     for (const game of games) {
         try {
             console.log(`\nRecherche pour : ${game.title}...`);
-            const results = await hltbService.search(game.title);
+            const result = await hltbService.searchOne(game.title);
 
-            if ( results.success && results.data.length > 0 ) {
+            if ( result.success && result.data ) {
                 // On prend le résultat le plus pertinent (le premier)
-                const data = results.data[0];
+                const data = result.data;
 
                 const main = toDuration(data.mainTime);
                 const extra = toDuration(data.mainExtraTime);
