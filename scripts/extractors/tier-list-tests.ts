@@ -49,12 +49,12 @@ export async function extractAndSaveTierListTests(db: Database, outputPath: stri
 function mapToResult(entry: tierListTestsEntry): CardGame {
     const { category_slug: _categorySlug, ...cardGame } = entry;
     
-    const id = (cardGame as BasicPlaylist).playlistId ?? (cardGame as BasicVideo).videoId;
-    const base_url = ("playlistId" in cardGame)
+    const playlistId = (cardGame as BasicPlaylist).playlistId;
+    const id = playlistId ?? (cardGame as BasicVideo).videoId;
+    const base_url = playlistId
             ? `https://www.youtube.com/playlist?list=${id}`
             : `https://www.youtube.com/watch?v=${id}`;
-    const url_type: YTUrlType = ("playlistId" in cardGame) ? "PLAYLIST" : "VIDEO";
-
+    const url_type: YTUrlType = playlistId ? "PLAYLIST" : "VIDEO";
     return { 
         ...cardGame,
         id: id,
