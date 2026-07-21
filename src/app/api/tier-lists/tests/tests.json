@@ -61,6 +61,39 @@
 	"tier_average": [],
 	"tier_poor": [
 		{
+			"id": "PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M",
+			"playlistId": "PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M",
+			"title": "Creepy Road",
+			"releaseDate": "2018-05-18",
+			"platform": 1,
+			"duration": "00:33:32",
+			"imagePath": "/testscovers/PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "2aPqECXPA_E",
+			"videoId": "2aPqECXPA_E",
+			"title": "Demon Pit",
+			"releaseDate": "2019-10-17",
+			"platform": 1,
+			"duration": "00:05:01",
+			"imagePath": "/testscovers/2aPqECXPA_E/cover.webp",
+			"url": "https://www.youtube.com/watch?v=2aPqECXPA_E",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "ip-PjOmBOb4",
+			"videoId": "ip-PjOmBOb4",
+			"title": "Metal Commando",
+			"releaseDate": "2020-11-18",
+			"platform": 1,
+			"duration": "00:16:45",
+			"imagePath": "/testscovers/ip-PjOmBOb4/cover.webp",
+			"url": "https://www.youtube.com/watch?v=ip-PjOmBOb4",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "92xWnlnXX7A",
 			"videoId": "92xWnlnXX7A",
 			"title": "Spirit Roots",
@@ -87,17 +120,6 @@
 	],
 	"tier_not_evaluated": [
 		{
-			"id": "PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M",
-			"playlistId": "PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M",
-			"title": "Creepy Road",
-			"releaseDate": "2018-05-18",
-			"platform": 1,
-			"duration": "00:33:32",
-			"imagePath": "/testscovers/PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "ghUYugzShf8",
 			"videoId": "ghUYugzShf8",
 			"title": "Damsel",
@@ -106,28 +128,6 @@
 			"duration": "00:35:30",
 			"imagePath": "/testscovers/ghUYugzShf8/cover.webp",
 			"url": "https://www.youtube.com/watch?v=ghUYugzShf8",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "2aPqECXPA_E",
-			"videoId": "2aPqECXPA_E",
-			"title": "Demon Pit",
-			"releaseDate": "2019-10-17",
-			"platform": 1,
-			"duration": "00:05:01",
-			"imagePath": "/testscovers/2aPqECXPA_E/cover.webp",
-			"url": "https://www.youtube.com/watch?v=2aPqECXPA_E",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "ip-PjOmBOb4",
-			"videoId": "ip-PjOmBOb4",
-			"title": "Metal Commando",
-			"releaseDate": "2020-11-18",
-			"platform": 1,
-			"duration": "00:16:45",
-			"imagePath": "/testscovers/ip-PjOmBOb4/cover.webp",
-			"url": "https://www.youtube.com/watch?v=ip-PjOmBOb4",
 			"url_type": "VIDEO"
 		},
 		{
