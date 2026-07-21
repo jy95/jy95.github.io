@@ -79,6 +79,11 @@ export default function NavigationMenu(props: Props) : Navigation {
                     segment: "backlog",
                     icon: <HourglassEmptyIcon />,
                     title: props.backlog,
+                },
+                {
+                    icon: <ScienceIcon />,
+                    title: props.tests,
+                    segment: "tests"
                 }
             ]
         },

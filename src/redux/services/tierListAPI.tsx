@@ -10,6 +10,7 @@ type Ranking = keyof AppConfig["Messages"]["TierList"]["categories"]
 
 type GamesTierList = Record<string, CardGame[]>;
 type BacklogTierList = Record<string, BacklogEntry[]>;
+type TestsTierList = Record<string, CardGame[]>;
 
 type sortOption = "asc" | "desc";
 
@@ -26,10 +27,13 @@ export const tierListAPI = createApi({
         }),
         getSortedCategories: builder.query<Ranking[], sortOption>({
             query: (sortOrder) => `/categories?sort=${sortOrder}`
+        }),
+        getTestsTierList: builder.query<TestsTierList, void>({
+            query: () => "/tests"
         })
     })
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetGamesTierListQuery, useGetBacklogTierListQuery, useGetSortedCategoriesQuery } = tierListAPI
+export const { useGetGamesTierListQuery, useGetBacklogTierListQuery, useGetSortedCategoriesQuery, useGetTestsTierListQuery } = tierListAPI
