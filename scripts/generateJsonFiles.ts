@@ -19,7 +19,8 @@ import {
     extractAndSaveTierListGames,
     extractAndSaveTierListBacklog,
     extractAndSaveTierListCategories,
-    extractAndSaveTierListGamesFuture
+    extractAndSaveTierListGamesFuture,
+    extractAndSaveTierListTests
 } from "./extractors"
 
 // Directory of the current script
@@ -45,6 +46,7 @@ const FILES = {
     "TIER_LIST_BACKLOG": resolve(__dirname, '..', 'src/app/api/tier-lists/backlog/backlog.json'),
     "TIER_LIST_CATEGORIES": resolve(__dirname, '..', 'src/app/api/tier-lists/categories/categories.json'),
     "TIER_LIST_GAMES_FUTURE": resolve(__dirname, '..', 'src/app/api/tier-lists/games/future-games.json'),
+    "TIER_LIST_TESTS": resolve(__dirname, '..', 'src/app/api/tier-lists/tests/tests.json')
 }
 
 const db = new Database(databasePath, {
@@ -71,6 +73,7 @@ try {
     await extractAndSaveTierListBacklog(db, FILES.TIER_LIST_BACKLOG);
     await extractAndSaveTierListCategories(db, FILES.TIER_LIST_CATEGORIES);
     await extractAndSaveTierListGamesFuture(db, FILES.TIER_LIST_GAMES_FUTURE);
+    await extractAndSaveTierListTests(db, FILES.TIER_LIST_TESTS);
 } finally {
     db.close();
 }

@@ -159,6 +159,13 @@ There is a [database](GamesPassionFR.db) for managing video games, their genres,
 | `backlog_id` | Foreign key referencing the `backlog` table (Primary Key). | Required | 1 |
 | `category_id` | Foreign key referencing the `tier_categories` table. | Required | 3 |
 
+### `tier_list_tests` Table
+
+| Field | Description | Required/Optional | Example |
+| :--- | :--- | :--- | :--- |
+| `test_id` | Foreign key referencing the `test` table (Primary Key). | Required | 1 |
+| `category_id` | Foreign key referencing the `tier_categories` table. | Required | 3 |
+
 This project is tested with BrowserStack
 
 [YoutubeChannel]: https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ

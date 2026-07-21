@@ -1,0 +1,153 @@
+{
+	"tier_masterpiece": [],
+	"tier_excellent": [],
+	"tier_good": [],
+	"tier_average": [],
+	"tier_poor": [],
+	"tier_bad": [],
+	"tier_not_evaluated": [
+		{
+			"id": "PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M",
+			"playlistId": "PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M",
+			"title": "Creepy Road",
+			"releaseDate": "2018-05-18",
+			"platform": 1,
+			"duration": "00:33:32",
+			"imagePath": "/testscovers/PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "ghUYugzShf8",
+			"videoId": "ghUYugzShf8",
+			"title": "Damsel",
+			"releaseDate": "2018-10-19",
+			"platform": 1,
+			"duration": "00:35:30",
+			"imagePath": "/testscovers/ghUYugzShf8/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=ghUYugzShf8",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "2aPqECXPA_E",
+			"videoId": "2aPqECXPA_E",
+			"title": "Demon Pit",
+			"releaseDate": "2019-10-17",
+			"platform": 1,
+			"duration": "00:05:01",
+			"imagePath": "/testscovers/2aPqECXPA_E/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=2aPqECXPA_E",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "VI5irWqgEZY",
+			"videoId": "VI5irWqgEZY",
+			"title": "FURY UNLEASHED",
+			"releaseDate": "2020-05-08",
+			"platform": 1,
+			"duration": "00:14:26",
+			"imagePath": "/testscovers/VI5irWqgEZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=VI5irWqgEZY",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "RGsuBcF3W4s",
+			"videoId": "RGsuBcF3W4s",
+			"title": "Foregone",
+			"releaseDate": "2020-10-13",
+			"platform": 1,
+			"duration": "00:25:48",
+			"imagePath": "/testscovers/RGsuBcF3W4s/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=RGsuBcF3W4s",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "cS4AuUMOuiE",
+			"videoId": "cS4AuUMOuiE",
+			"title": "GOD’S TRIGGER",
+			"releaseDate": "2019-04-18",
+			"platform": 1,
+			"duration": "00:49:19",
+			"imagePath": "/testscovers/cS4AuUMOuiE/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=cS4AuUMOuiE",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "zR4m0LyTDAY",
+			"videoId": "zR4m0LyTDAY",
+			"title": "Libtard: The Satire Game",
+			"releaseDate": "2020-11-03",
+			"platform": 1,
+			"duration": "00:13:35",
+			"imagePath": "/testscovers/zR4m0LyTDAY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=zR4m0LyTDAY",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "ip-PjOmBOb4",
+			"videoId": "ip-PjOmBOb4",
+			"title": "Metal Commando",
+			"releaseDate": "2020-11-18",
+			"platform": 1,
+			"duration": "00:16:45",
+			"imagePath": "/testscovers/ip-PjOmBOb4/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=ip-PjOmBOb4",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "3EUHvz2NpPE",
+			"videoId": "3EUHvz2NpPE",
+			"title": "Mirage 7",
+			"releaseDate": "2025-05-15",
+			"platform": 1,
+			"duration": "00:00:00",
+			"imagePath": "/testscovers/3EUHvz2NpPE/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=3EUHvz2NpPE",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "RMgDUMubFsM",
+			"videoId": "RMgDUMubFsM",
+			"title": "Nova Drift",
+			"releaseDate": "2021-05-18",
+			"platform": 1,
+			"duration": "00:13:53",
+			"imagePath": "/testscovers/RMgDUMubFsM/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=RMgDUMubFsM",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "92xWnlnXX7A",
+			"videoId": "92xWnlnXX7A",
+			"title": "Spirit Roots",
+			"releaseDate": "2019-12-13",
+			"platform": 1,
+			"duration": "01:04:50",
+			"imagePath": "/testscovers/92xWnlnXX7A/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=92xWnlnXX7A",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "eY5Ll-E8izg",
+			"videoId": "eY5Ll-E8izg",
+			"title": "The Hero Slayer",
+			"releaseDate": "2020-02-19",
+			"platform": 1,
+			"duration": "00:26:30",
+			"imagePath": "/testscovers/eY5Ll-E8izg/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=eY5Ll-E8izg",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "D4yPcvrfV2o",
+			"videoId": "D4yPcvrfV2o",
+			"title": "ULTRAGOODNESS 2",
+			"releaseDate": "2019-09-02",
+			"platform": 1,
+			"duration": "00:40:33",
+			"imagePath": "/testscovers/D4yPcvrfV2o/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=D4yPcvrfV2o",
+			"url_type": "PLAYLIST"
+		}
+	]
+}

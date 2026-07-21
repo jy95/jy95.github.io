@@ -29,12 +29,15 @@ export async function updateTierLists(db: Database, payload: TierListPayload) {
 
     // Statements
     const fetchGameByIdStmt = db.prepare('SELECT id FROM games WHERE videoId = @id OR playlistId = @id');
+    const fetchTestByIdStmt = db.prepare('SELECT id FROM tests WHERE videoId = @id OR playlistId = @id');
 
     const insertGameToTierListStmt = db.prepare('INSERT OR IGNORE INTO tier_list_games (game_id, category_id) VALUES (@id, @category)');
     const insertBacklogGameToTierListStmt = db.prepare('INSERT OR IGNORE INTO tier_list_backlog (backlog_id, category_id) VALUES (@id, @category)');
-    
+    const insertTestToTierListStmt = db.prepare('INSERT OR IGNORE INTO tier_list_tests (test_id, category_id) VALUES (@id, @category)');
+
     const updateGameCategoryStmt = db.prepare('UPDATE tier_list_games SET category_id = @category WHERE game_id = @id');
     const updateBacklogGameCategoryStmt = db.prepare('UPDATE tier_list_backlog SET category_id = @category WHERE backlog_id = @id');
+    const updateTestCategoryStmt = db.prepare('UPDATE tier_list_tests SET category_id = @category WHERE test_id = @id');
 
     // Update games tier list
     const updateGamesTierList = db.transaction(() => {
@@ -84,6 +87,29 @@ export async function updateTierLists(db: Database, payload: TierListPayload) {
         console.log(`[DEBUG] [Transaction BACKLOG] Transaction completed successfully.`);
     });
 
+    const updateTestsTierList = db.transaction(() => {
+        console.log(`[DEBUG] [Transaction TESTS] Starting processing of ${gameIDs.length} items...`);
+        for (const testIdentifier of gameIDs) {
+            // Fetch test ID
+            const testId = fetchTestByIdStmt.pluck().get({ id: testIdentifier });
+
+            if (!testId) {
+                console.error(`[DEBUG] [Transaction TESTS] Error: Failed to parse identifier into valid ID: ${testIdentifier}`);
+                throw new Error(`Test not found: ${testIdentifier}`);
+            }
+
+            console.log(`[DEBUG] [Transaction TESTS] Processing parsed testId: ${testId}`);
+
+            // Insert or update test category
+            const insertResult = insertTestToTierListStmt.run({ id: testId, category: defaultCategoryId });
+            console.log(`[DEBUG] [Transaction TESTS] Insert (Ignore if exists) status - Changes: ${insertResult.changes}`);
+
+            const updateResult = updateTestCategoryStmt.run({ id: testId, category: categoryId });
+            console.log(`[DEBUG] [Transaction TESTS] Update to category ${categoryId} status - Changes: ${updateResult.changes}`);
+        }
+        console.log(`[DEBUG] [Transaction TESTS] Transaction completed successfully.`);
+    });
+
     // Execution time
     switch (tierList) {
         case "GAMES":
@@ -92,6 +118,9 @@ export async function updateTierLists(db: Database, payload: TierListPayload) {
         case "BACKLOG":
             console.log(`[DEBUG] Executing updateBacklogTierList...`);
             return updateBacklogTierList();
+        case "TESTS":
+            console.log(`[DEBUG] Executing updateTestsTierList...`);
+            return updateTestsTierList();
         default:
             console.log(`[DEBUG] Warning: Unknown tierList type provided: ${tierList}`);
     }
