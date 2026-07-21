@@ -47,6 +47,17 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "eY5Ll-E8izg",
+			"videoId": "eY5Ll-E8izg",
+			"title": "The Hero Slayer",
+			"releaseDate": "2020-02-19",
+			"platform": 1,
+			"duration": "00:26:30",
+			"imagePath": "/testscovers/eY5Ll-E8izg/cover.webp",
+			"url": "https://www.youtube.com/watch?v=eY5Ll-E8izg",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "D4yPcvrfV2o",
 			"videoId": "D4yPcvrfV2o",
 			"title": "ULTRAGOODNESS 2",
@@ -139,17 +150,6 @@
 			"duration": "00:00:00",
 			"imagePath": "/testscovers/3EUHvz2NpPE/cover.webp",
 			"url": "https://www.youtube.com/watch?v=3EUHvz2NpPE",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "eY5Ll-E8izg",
-			"videoId": "eY5Ll-E8izg",
-			"title": "The Hero Slayer",
-			"releaseDate": "2020-02-19",
-			"platform": 1,
-			"duration": "00:26:30",
-			"imagePath": "/testscovers/eY5Ll-E8izg/cover.webp",
-			"url": "https://www.youtube.com/watch?v=eY5Ll-E8izg",
 			"url_type": "VIDEO"
 		}
 	]
