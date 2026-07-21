@@ -117,6 +117,17 @@
 			"url_type": "VIDEO"
 		},
 		{
+			"id": "3EUHvz2NpPE",
+			"videoId": "3EUHvz2NpPE",
+			"title": "Mirage 7",
+			"releaseDate": "2025-05-15",
+			"platform": 1,
+			"duration": "00:00:00",
+			"imagePath": "/testscovers/3EUHvz2NpPE/cover.webp",
+			"url": "https://www.youtube.com/watch?v=3EUHvz2NpPE",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "92xWnlnXX7A",
 			"videoId": "92xWnlnXX7A",
 			"title": "Spirit Roots",
@@ -141,17 +152,5 @@
 			"url_type": "VIDEO"
 		}
 	],
-	"tier_not_evaluated": [
-		{
-			"id": "3EUHvz2NpPE",
-			"videoId": "3EUHvz2NpPE",
-			"title": "Mirage 7",
-			"releaseDate": "2025-05-15",
-			"platform": 1,
-			"duration": "00:00:00",
-			"imagePath": "/testscovers/3EUHvz2NpPE/cover.webp",
-			"url": "https://www.youtube.com/watch?v=3EUHvz2NpPE",
-			"url_type": "VIDEO"
-		}
-	]
+	"tier_not_evaluated": []
 }
