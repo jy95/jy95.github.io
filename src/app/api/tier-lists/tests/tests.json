@@ -1,7 +1,63 @@
 {
 	"tier_masterpiece": [],
 	"tier_excellent": [],
-	"tier_good": [],
+	"tier_good": [
+		{
+			"id": "VI5irWqgEZY",
+			"videoId": "VI5irWqgEZY",
+			"title": "FURY UNLEASHED",
+			"releaseDate": "2020-05-08",
+			"platform": 1,
+			"duration": "00:14:26",
+			"imagePath": "/testscovers/VI5irWqgEZY/cover.webp",
+			"url": "https://www.youtube.com/watch?v=VI5irWqgEZY",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "RGsuBcF3W4s",
+			"videoId": "RGsuBcF3W4s",
+			"title": "Foregone",
+			"releaseDate": "2020-10-13",
+			"platform": 1,
+			"duration": "00:25:48",
+			"imagePath": "/testscovers/RGsuBcF3W4s/cover.webp",
+			"url": "https://www.youtube.com/watch?v=RGsuBcF3W4s",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "cS4AuUMOuiE",
+			"videoId": "cS4AuUMOuiE",
+			"title": "GOD’S TRIGGER",
+			"releaseDate": "2019-04-18",
+			"platform": 1,
+			"duration": "00:49:19",
+			"imagePath": "/testscovers/cS4AuUMOuiE/cover.webp",
+			"url": "https://www.youtube.com/watch?v=cS4AuUMOuiE",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "RMgDUMubFsM",
+			"videoId": "RMgDUMubFsM",
+			"title": "Nova Drift",
+			"releaseDate": "2021-05-18",
+			"platform": 1,
+			"duration": "00:13:53",
+			"imagePath": "/testscovers/RMgDUMubFsM/cover.webp",
+			"url": "https://www.youtube.com/watch?v=RMgDUMubFsM",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "D4yPcvrfV2o",
+			"videoId": "D4yPcvrfV2o",
+			"title": "ULTRAGOODNESS 2",
+			"releaseDate": "2019-09-02",
+			"platform": 1,
+			"duration": "00:40:33",
+			"imagePath": "/testscovers/D4yPcvrfV2o/cover.webp",
+			"url": "https://www.youtube.com/watch?v=D4yPcvrfV2o",
+			"url_type": "VIDEO"
+		}
+	],
 	"tier_average": [],
 	"tier_poor": [],
 	"tier_bad": [],
@@ -40,39 +96,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "VI5irWqgEZY",
-			"videoId": "VI5irWqgEZY",
-			"title": "FURY UNLEASHED",
-			"releaseDate": "2020-05-08",
-			"platform": 1,
-			"duration": "00:14:26",
-			"imagePath": "/testscovers/VI5irWqgEZY/cover.webp",
-			"url": "https://www.youtube.com/watch?v=VI5irWqgEZY",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "RGsuBcF3W4s",
-			"videoId": "RGsuBcF3W4s",
-			"title": "Foregone",
-			"releaseDate": "2020-10-13",
-			"platform": 1,
-			"duration": "00:25:48",
-			"imagePath": "/testscovers/RGsuBcF3W4s/cover.webp",
-			"url": "https://www.youtube.com/watch?v=RGsuBcF3W4s",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "cS4AuUMOuiE",
-			"videoId": "cS4AuUMOuiE",
-			"title": "GOD’S TRIGGER",
-			"releaseDate": "2019-04-18",
-			"platform": 1,
-			"duration": "00:49:19",
-			"imagePath": "/testscovers/cS4AuUMOuiE/cover.webp",
-			"url": "https://www.youtube.com/watch?v=cS4AuUMOuiE",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "zR4m0LyTDAY",
 			"videoId": "zR4m0LyTDAY",
 			"title": "Libtard: The Satire Game",
@@ -106,17 +129,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "RMgDUMubFsM",
-			"videoId": "RMgDUMubFsM",
-			"title": "Nova Drift",
-			"releaseDate": "2021-05-18",
-			"platform": 1,
-			"duration": "00:13:53",
-			"imagePath": "/testscovers/RMgDUMubFsM/cover.webp",
-			"url": "https://www.youtube.com/watch?v=RMgDUMubFsM",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "92xWnlnXX7A",
 			"videoId": "92xWnlnXX7A",
 			"title": "Spirit Roots",
@@ -136,17 +148,6 @@
 			"duration": "00:26:30",
 			"imagePath": "/testscovers/eY5Ll-E8izg/cover.webp",
 			"url": "https://www.youtube.com/watch?v=eY5Ll-E8izg",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "D4yPcvrfV2o",
-			"videoId": "D4yPcvrfV2o",
-			"title": "ULTRAGOODNESS 2",
-			"releaseDate": "2019-09-02",
-			"platform": 1,
-			"duration": "00:40:33",
-			"imagePath": "/testscovers/D4yPcvrfV2o/cover.webp",
-			"url": "https://www.youtube.com/watch?v=D4yPcvrfV2o",
 			"url_type": "VIDEO"
 		}
 	]
