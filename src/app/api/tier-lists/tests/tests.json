@@ -69,7 +69,19 @@
 			"url_type": "VIDEO"
 		}
 	],
-	"tier_average": [],
+	"tier_average": [
+		{
+			"id": "ghUYugzShf8",
+			"videoId": "ghUYugzShf8",
+			"title": "Damsel",
+			"releaseDate": "2018-10-19",
+			"platform": 1,
+			"duration": "00:35:30",
+			"imagePath": "/testscovers/ghUYugzShf8/cover.webp",
+			"url": "https://www.youtube.com/watch?v=ghUYugzShf8",
+			"url_type": "VIDEO"
+		}
+	],
 	"tier_poor": [
 		{
 			"id": "PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M",
@@ -130,17 +142,6 @@
 		}
 	],
 	"tier_not_evaluated": [
-		{
-			"id": "ghUYugzShf8",
-			"videoId": "ghUYugzShf8",
-			"title": "Damsel",
-			"releaseDate": "2018-10-19",
-			"platform": 1,
-			"duration": "00:35:30",
-			"imagePath": "/testscovers/ghUYugzShf8/cover.webp",
-			"url": "https://www.youtube.com/watch?v=ghUYugzShf8",
-			"url_type": "VIDEO"
-		},
 		{
 			"id": "3EUHvz2NpPE",
 			"videoId": "3EUHvz2NpPE",
