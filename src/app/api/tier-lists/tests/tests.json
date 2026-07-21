@@ -59,7 +59,19 @@
 		}
 	],
 	"tier_average": [],
-	"tier_poor": [],
+	"tier_poor": [
+		{
+			"id": "92xWnlnXX7A",
+			"videoId": "92xWnlnXX7A",
+			"title": "Spirit Roots",
+			"releaseDate": "2019-12-13",
+			"platform": 1,
+			"duration": "01:04:50",
+			"imagePath": "/testscovers/92xWnlnXX7A/cover.webp",
+			"url": "https://www.youtube.com/watch?v=92xWnlnXX7A",
+			"url_type": "VIDEO"
+		}
+	],
 	"tier_bad": [
 		{
 			"id": "zR4m0LyTDAY",
@@ -127,17 +139,6 @@
 			"duration": "00:00:00",
 			"imagePath": "/testscovers/3EUHvz2NpPE/cover.webp",
 			"url": "https://www.youtube.com/watch?v=3EUHvz2NpPE",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "92xWnlnXX7A",
-			"videoId": "92xWnlnXX7A",
-			"title": "Spirit Roots",
-			"releaseDate": "2019-12-13",
-			"platform": 1,
-			"duration": "01:04:50",
-			"imagePath": "/testscovers/92xWnlnXX7A/cover.webp",
-			"url": "https://www.youtube.com/watch?v=92xWnlnXX7A",
 			"url_type": "VIDEO"
 		},
 		{
