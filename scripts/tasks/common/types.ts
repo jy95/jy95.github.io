@@ -80,7 +80,7 @@ export interface TestPayload {
 }
 
 export interface TierListPayload {
-  tierList: "GAMES" | "BACKLOG";
+  tierList: "GAMES" | "BACKLOG" | "TESTS";
   category: "tier_average" | "tier_bad" | "tier_excellent" | "tier_good" | "tier_masterpiece" | "tier_not_evaluated" | "tier_poor";
   games_textarea: string;
 }

@@ -15,6 +15,7 @@ body:
       options:
         - GAMES
         - BACKLOG
+        - TESTS
       default: 0
     validations:
       required: true
