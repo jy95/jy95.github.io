@@ -1,5 +1,6 @@
 "use client";
 
+// Parameters explained on https://developers.google.com/youtube/player_parameters#Parameters
 import YouTubeVideoElement from 'youtube-video-element/react';
 
 type Params = {type: "PLAYLIST" | "VIDEO", identifier : string}
