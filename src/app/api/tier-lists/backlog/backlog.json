@@ -1512,6 +1512,12 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
+			"id": "190",
+			"title": "Ghost in the Shell: Stand Alone Complex",
+			"platform": 5,
+			"imagePath": "/backlogcovers/190/cover.webp"
+		},
+		{
 			"id": "189",
 			"title": "Pirates: Legend of the Black Buccaneer",
 			"platform": 5,
