@@ -1330,5 +1330,10 @@
 		"hltb_main": "13:12:00",
 		"hltb_extra": "13:37:31",
 		"hltb_completionist": "14:13:27"
+	},
+	{
+		"id": 188,
+		"title": "T'ai Fu: Wrath of the Tiger",
+		"platform": 4
 	}
 ]

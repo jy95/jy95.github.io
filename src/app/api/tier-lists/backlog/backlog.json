@@ -1510,5 +1510,12 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": []
+	"tier_not_evaluated": [
+		{
+			"id": "188",
+			"title": "T'ai Fu: Wrath of the Tiger",
+			"platform": 4,
+			"imagePath": "/backlogcovers/188/cover.webp"
+		}
+	]
 }
