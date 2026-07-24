@@ -20,7 +20,8 @@ export default function GamesTierList() {
         <TierLists 
             data={data}
             isLoadingData={isLoading}
-            GameRender={GameCardRenderer}
+            GameRender={GameCardRenderer} 
+            skipEmptyCategories={true}
         />
     );
 }
