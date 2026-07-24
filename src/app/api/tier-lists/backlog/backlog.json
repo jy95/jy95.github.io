@@ -1515,18 +1515,25 @@
 			"id": "190",
 			"title": "Ghost in the Shell: Stand Alone Complex",
 			"platform": 5,
+			"hltb_main": "05:48:16",
+			"hltb_extra": "08:23:20",
 			"imagePath": "/backlogcovers/190/cover.webp"
 		},
 		{
 			"id": "189",
 			"title": "Pirates: Legend of the Black Buccaneer",
 			"platform": 5,
+			"hltb_main": "05:15:18",
+			"hltb_extra": "06:13:50",
+			"hltb_completionist": "07:33:00",
 			"imagePath": "/backlogcovers/189/cover.webp"
 		},
 		{
 			"id": "188",
 			"title": "T'ai Fu: Wrath of the Tiger",
 			"platform": 4,
+			"hltb_main": "04:19:12",
+			"hltb_completionist": "09:30:00",
 			"imagePath": "/backlogcovers/188/cover.webp"
 		}
 	]
