@@ -1,6 +1,6 @@
 "use client";
 
-import ReactPlayer from 'react-player';
+import YouTubeVideoElement from 'youtube-video-element/react';
 
 type Params = {type: "PLAYLIST" | "VIDEO", identifier : string}
 
@@ -10,11 +10,14 @@ export default function Player({type, identifier} : Params) {
         : `https://www.youtube.com/watch?v=${identifier}`;
     
     return (
-        <ReactPlayer
+        <YouTubeVideoElement 
             controls={true}
-            src={url}
-            width='100%'
-            height='75vh'
+            src={url} 
+            style={{
+                display: "block",
+                width: "100%",
+                height: "75vh"
+            }}
         />
     );
 }

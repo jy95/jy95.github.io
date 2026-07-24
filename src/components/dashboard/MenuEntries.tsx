@@ -5,7 +5,7 @@ import ScienceIcon from '@mui/icons-material/Science';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import LinkIcon from '@mui/icons-material/Link';
-import AppsIcon from '@mui/icons-material/Apps';
+import GridViewIcon from '@mui/icons-material/GridView';
 import ListIcon from '@mui/icons-material/List';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import CasinoIcon from '@mui/icons-material/Casino';
@@ -35,7 +35,7 @@ export default function NavigationMenu(props: Props) : Navigation {
             segment: "games",
             children: [
                 {
-                    icon: <AppsIcon />,
+                    icon: <GridViewIcon />,
                     title: props.gamesView
                 },
                 {
