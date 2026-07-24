@@ -1512,6 +1512,12 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
+			"id": "189",
+			"title": "Pirates: Legend of the Black Buccaneer",
+			"platform": 5,
+			"imagePath": "/backlogcovers/189/cover.webp"
+		},
+		{
 			"id": "188",
 			"title": "T'ai Fu: Wrath of the Tiger",
 			"platform": 4,
