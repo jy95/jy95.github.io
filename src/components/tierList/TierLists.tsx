@@ -18,6 +18,7 @@ export interface TierListsProps<T extends RawType> {
     isLoadingData?: boolean;
     GameRender: GameRender<T>;
     categoryColors?: Record<string, BackgroundColor>;
+    skipEmptyCategories?: boolean;
 }
 
 export function TierLists<T extends RawType>({ 
@@ -32,7 +33,8 @@ export function TierLists<T extends RawType>({
         'tier_poor': '#4D96FF',           // blue
         'tier_bad': '#9D4EDD',            // purple
         'tier_not_evaluated': '#A0A0A0',  
-    }
+    },
+    skipEmptyCategories = false,
 }: TierListsProps<T>) {
 
     // local state for sorting
@@ -72,6 +74,7 @@ export function TierLists<T extends RawType>({
                 data={data}
                 categoryColors={categoryColors}
                 GameRender={GameRender}
+                skipEmptyCategories={skipEmptyCategories}
             />
         </>
     )
