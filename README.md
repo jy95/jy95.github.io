@@ -163,7 +163,7 @@ There is a [database](GamesPassionFR.db) for managing video games, their genres,
 
 | Field | Description | Required/Optional | Example |
 | :--- | :--- | :--- | :--- |
-| `test_id` | Foreign key referencing the `test` table (Primary Key). | Required | 1 |
+| `test_id` | Foreign key referencing the `tests` table (Primary Key). | Required | 1 |
 | `category_id` | Foreign key referencing the `tier_categories` table. | Required | 3 |
 
 This project is tested with BrowserStack
