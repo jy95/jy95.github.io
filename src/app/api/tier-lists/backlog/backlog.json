@@ -1484,6 +1484,15 @@
 			"imagePath": "/backlogcovers/151/cover.webp"
 		},
 		{
+			"id": "189",
+			"title": "Pirates: Legend of the Black Buccaneer",
+			"platform": 5,
+			"hltb_main": "05:15:18",
+			"hltb_extra": "06:13:50",
+			"hltb_completionist": "07:33:00",
+			"imagePath": "/backlogcovers/189/cover.webp"
+		},
+		{
 			"id": "83",
 			"title": "State of Emergency",
 			"platform": 5,
@@ -1519,15 +1528,6 @@
 	],
 	"tier_bad": [],
 	"tier_not_evaluated": [
-		{
-			"id": "189",
-			"title": "Pirates: Legend of the Black Buccaneer",
-			"platform": 5,
-			"hltb_main": "05:15:18",
-			"hltb_extra": "06:13:50",
-			"hltb_completionist": "07:33:00",
-			"imagePath": "/backlogcovers/189/cover.webp"
-		},
 		{
 			"id": "188",
 			"title": "T'ai Fu: Wrath of the Tiger",
