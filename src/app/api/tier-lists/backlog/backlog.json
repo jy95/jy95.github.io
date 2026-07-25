@@ -1501,6 +1501,14 @@
 			"imagePath": "/backlogcovers/83/cover.webp"
 		},
 		{
+			"id": "188",
+			"title": "T'ai Fu: Wrath of the Tiger",
+			"platform": 4,
+			"hltb_main": "04:19:12",
+			"hltb_completionist": "09:30:00",
+			"imagePath": "/backlogcovers/188/cover.webp"
+		},
+		{
 			"id": "152",
 			"title": "THE HOUSE OF THE DEAD 2: Remake",
 			"hltb_main": "00:42:00",
@@ -1527,14 +1535,5 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": [
-		{
-			"id": "188",
-			"title": "T'ai Fu: Wrath of the Tiger",
-			"platform": 4,
-			"hltb_main": "04:19:12",
-			"hltb_completionist": "09:30:00",
-			"imagePath": "/backlogcovers/188/cover.webp"
-		}
-	]
+	"tier_not_evaluated": []
 }
