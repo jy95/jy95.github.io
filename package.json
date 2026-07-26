@@ -28,7 +28,7 @@
     "@supabase/supabase-js": "^2.110.8",
     "@vercel/analytics": "^2.0.0",
     "@vercel/speed-insights": "^2.0.0",
-    "eslint": "10.7.0",
+    "eslint": "10.8.0",
     "eslint-config-next": "16.2.12",
     "fuse.js": "^7.5.0",
     "next": "16.2.11",
