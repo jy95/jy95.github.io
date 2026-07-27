@@ -227,10 +227,11 @@
 	{
 		"id": 224,
 		"availableAt": "2027-08-09",
+		"endAt": "2027-09-15",
 		"playlistId": "PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
 		"title": "Spec Ops: The Line",
 		"releaseDate": "2012-06-29",
-		"duration": "00:00:00",
+		"duration": "04:24:37",
 		"platform": 6,
 		"genres": [
 			16
