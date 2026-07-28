@@ -1352,5 +1352,10 @@
 		"platform": 5,
 		"hltb_main": "05:48:16",
 		"hltb_extra": "08:23:20"
+	},
+	{
+		"id": 191,
+		"title": "Haze",
+		"platform": 6
 	}
 ]
