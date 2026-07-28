@@ -24,7 +24,7 @@
     "@mui/x-charts": "^9.10.1",
     "@mui/x-data-grid": "^9.10.1",
     "@reduxjs/toolkit": "^2.12.0",
-    "@supabase/ssr": "^0.12.3",
+    "@supabase/ssr": "^0.12.4",
     "@supabase/supabase-js": "^2.110.9",
     "@vercel/analytics": "^2.0.0",
     "@vercel/speed-insights": "^2.0.0",
