@@ -1362,5 +1362,10 @@
 		"id": 192,
 		"title": "Killzone 2",
 		"platform": 6
+	},
+	{
+		"id": 193,
+		"title": "Fracture",
+		"platform": 6
 	}
 ]
