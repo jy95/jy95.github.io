@@ -690,6 +690,12 @@
 			"imagePath": "/backlogcovers/139/cover.webp"
 		},
 		{
+			"id": "195",
+			"title": "Prototype",
+			"platform": 6,
+			"imagePath": "/backlogcovers/195/cover.webp"
+		},
+		{
 			"id": "38",
 			"title": "Psi-Ops : The Mindgate Conspiracy",
 			"platform": 5,
@@ -1568,12 +1574,5 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": [
-		{
-			"id": "195",
-			"title": "Prototype",
-			"platform": 6,
-			"imagePath": "/backlogcovers/195/cover.webp"
-		}
-	]
+	"tier_not_evaluated": []
 }
