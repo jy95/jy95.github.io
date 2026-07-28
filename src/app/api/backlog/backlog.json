@@ -1356,16 +1356,25 @@
 	{
 		"id": 191,
 		"title": "Haze",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "06:25:43",
+		"hltb_extra": "07:49:24",
+		"hltb_completionist": "11:50:03"
 	},
 	{
 		"id": 192,
 		"title": "Killzone 2",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "07:34:00",
+		"hltb_extra": "10:33:30",
+		"hltb_completionist": "19:24:17"
 	},
 	{
 		"id": 193,
 		"title": "Fracture",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "07:02:40",
+		"hltb_extra": "09:43:46",
+		"hltb_completionist": "12:09:01"
 	}
 ]

@@ -203,6 +203,9 @@
 			"id": "192",
 			"title": "Killzone 2",
 			"platform": 6,
+			"hltb_main": "07:34:00",
+			"hltb_extra": "10:33:30",
+			"hltb_completionist": "19:24:17",
 			"imagePath": "/backlogcovers/192/cover.webp"
 		},
 		{
@@ -1460,9 +1463,21 @@
 			"imagePath": "/backlogcovers/166/cover.webp"
 		},
 		{
+			"id": "193",
+			"title": "Fracture",
+			"platform": 6,
+			"hltb_main": "07:02:40",
+			"hltb_extra": "09:43:46",
+			"hltb_completionist": "12:09:01",
+			"imagePath": "/backlogcovers/193/cover.webp"
+		},
+		{
 			"id": "191",
 			"title": "Haze",
 			"platform": 6,
+			"hltb_main": "06:25:43",
+			"hltb_extra": "07:49:24",
+			"hltb_completionist": "11:50:03",
 			"imagePath": "/backlogcovers/191/cover.webp"
 		},
 		{
@@ -1547,12 +1562,5 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": [
-		{
-			"id": "193",
-			"title": "Fracture",
-			"platform": 6,
-			"imagePath": "/backlogcovers/193/cover.webp"
-		}
-	]
+	"tier_not_evaluated": []
 }
