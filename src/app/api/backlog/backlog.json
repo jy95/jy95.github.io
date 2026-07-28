@@ -1376,5 +1376,10 @@
 		"hltb_main": "07:02:40",
 		"hltb_extra": "09:43:46",
 		"hltb_completionist": "12:09:01"
+	},
+	{
+		"id": 194,
+		"title": "L.A. Noire",
+		"platform": 6
 	}
 ]
