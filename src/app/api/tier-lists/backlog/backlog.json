@@ -200,6 +200,12 @@
 			"imagePath": "/backlogcovers/157/cover.webp"
 		},
 		{
+			"id": "192",
+			"title": "Killzone 2",
+			"platform": 6,
+			"imagePath": "/backlogcovers/192/cover.webp"
+		},
+		{
 			"id": "137",
 			"title": "MotorStorm",
 			"platform": 6,
@@ -1541,12 +1547,5 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": [
-		{
-			"id": "192",
-			"title": "Killzone 2",
-			"platform": 6,
-			"imagePath": "/backlogcovers/192/cover.webp"
-		}
-	]
+	"tier_not_evaluated": []
 }
