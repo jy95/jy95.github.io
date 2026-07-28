@@ -1535,5 +1535,12 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": []
+	"tier_not_evaluated": [
+		{
+			"id": "191",
+			"title": "Haze",
+			"platform": 6,
+			"imagePath": "/backlogcovers/191/cover.webp"
+		}
+	]
 }
