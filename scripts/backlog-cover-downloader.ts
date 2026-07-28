@@ -128,7 +128,8 @@ async function run(): Promise<void> {
         try {
             const request = await GOOGLE_IMG_SCRAP({
                 search: query,
-                limit: 5
+                limit: 5,
+                safeSearch: false
             });
 
             const results = request.result;
@@ -142,7 +143,7 @@ async function run(): Promise<void> {
                     console.log(`    ✅ Sauvegardé : ${game.id}/${savedName}`);
                 }
             } else {
-                console.log(`    ⚠️ Aucune image trouvée pour : ${game.title}`);
+                console.log(`    ⚠️ Aucune image trouvée pour : ${game.title} (${game.id})`);
             }
         } catch (err: any) {
             console.error(`    ❌ Erreur lors de la recherche : ${err.message}`);
