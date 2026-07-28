@@ -1460,6 +1460,12 @@
 			"imagePath": "/backlogcovers/166/cover.webp"
 		},
 		{
+			"id": "193",
+			"title": "Fracture",
+			"platform": 6,
+			"imagePath": "/backlogcovers/193/cover.webp"
+		},
+		{
 			"id": "191",
 			"title": "Haze",
 			"platform": 6,
@@ -1547,12 +1553,5 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": [
-		{
-			"id": "193",
-			"title": "Fracture",
-			"platform": 6,
-			"imagePath": "/backlogcovers/193/cover.webp"
-		}
-	]
+	"tier_not_evaluated": []
 }
