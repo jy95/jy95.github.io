@@ -1380,11 +1380,17 @@
 	{
 		"id": 194,
 		"title": "L.A. Noire",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "22:11:52",
+		"hltb_extra": "28:59:51",
+		"hltb_completionist": "42:23:33"
 	},
 	{
 		"id": 195,
 		"title": "Prototype",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "11:01:20",
+		"hltb_extra": "16:29:16",
+		"hltb_completionist": "31:50:55"
 	}
 ]
