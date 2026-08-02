@@ -55,6 +55,7 @@ body:
         - PS1
         - PS2
         - PS3
+        - SCUMMVM
       default: 0
     validations:
       required: true

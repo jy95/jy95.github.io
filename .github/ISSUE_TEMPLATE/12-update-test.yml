@@ -49,6 +49,7 @@ body:
         - PS1
         - PS2
         - PS3
+        - SCUMMVM
   - type: input
     id: duration
     attributes:
