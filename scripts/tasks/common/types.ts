@@ -15,7 +15,7 @@ export type TaskType =
 
 export type IdentifierKind = 'Playlist' | 'Video';
 
-export type Platform = 'PC' | 'GBA' | 'PSP' | 'PS1' | 'PS2' | 'PS3';
+export type Platform = 'PC' | 'GBA' | 'PSP' | 'PS1' | 'PS2' | 'PS3' | 'SCUMMVM';
 
 export type GameGenre =
   | 'Action'

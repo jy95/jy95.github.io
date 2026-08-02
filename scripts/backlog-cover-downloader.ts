@@ -22,7 +22,8 @@ const PLATFORMS_MAP: Record<number, string> = {
     3: 'PSP',
     4: 'PS1',
     5: 'PS2',
-    6: 'PS3'
+    6: 'PS3',
+    7: 'SCUMMVM'
 };
 
 /**

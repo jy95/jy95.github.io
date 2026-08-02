@@ -6,7 +6,8 @@ const PLATFORMS_MAP = {
     'PSP': 3,
     'PS1': 4,
     'PS2': 5,
-    'PS3': 6
+    'PS3': 6,
+    'SCUMMVM': 7
 }
 const GENRES_MAP = {
     'Action': 1,
