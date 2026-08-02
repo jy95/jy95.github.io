@@ -1591,6 +1591,15 @@
 			"imagePath": "/backlogcovers/197/cover.webp"
 		},
 		{
+			"id": "198",
+			"title": "Marine Malice 3 : Le Mystère du coquillage volé",
+			"platform": 7,
+			"hltb_main": "00:52:00",
+			"hltb_extra": "00:53:00",
+			"hltb_completionist": "00:55:00",
+			"imagePath": "/backlogcovers/198/cover.webp"
+		},
+		{
 			"id": "196",
 			"title": "Marine Malice et le Mystère des graines d'algues",
 			"platform": 7,
