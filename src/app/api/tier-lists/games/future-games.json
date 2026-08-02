@@ -263,5 +263,17 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": []
+	"tier_not_evaluated": [
+		{
+			"id": "BtBWS67mgJM",
+			"videoId": "BtBWS67mgJM",
+			"title": "Marine Malice et le mystère des graines d'algues",
+			"releaseDate": "1994-10-28",
+			"duration": "00:40:38",
+			"platform": 7,
+			"imagePath": "/covers/BtBWS67mgJM/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=BtBWS67mgJM",
+			"url_type": "PLAYLIST"
+		}
+	]
 }
