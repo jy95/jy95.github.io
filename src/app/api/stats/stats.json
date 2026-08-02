@@ -38,9 +38,9 @@
 		{
 			"id": 7,
 			"platform": "SCUMMVM",
-			"total": 6,
+			"total": 7,
 			"total_available": 6,
-			"total_unavailable": 0
+			"total_unavailable": 1
 		},
 		{
 			"id": 4,
@@ -54,16 +54,16 @@
 		{
 			"id": 1,
 			"genre": "Action",
-			"total": 171,
+			"total": 172,
 			"total_available": 165,
-			"total_unavailable": 6
+			"total_unavailable": 7
 		},
 		{
 			"id": 2,
 			"genre": "Adventure",
-			"total": 140,
+			"total": 141,
 			"total_available": 138,
-			"total_unavailable": 2
+			"total_unavailable": 3
 		},
 		{
 			"id": 12,
@@ -101,6 +101,13 @@
 			"total_unavailable": 1
 		},
 		{
+			"id": 7,
+			"genre": "Educational",
+			"total": 8,
+			"total_available": 7,
+			"total_unavailable": 1
+		},
+		{
 			"id": 3,
 			"genre": "Arcade",
 			"total": 7,
@@ -108,18 +115,11 @@
 			"total_unavailable": 0
 		},
 		{
-			"id": 7,
-			"genre": "Educational",
-			"total": 7,
-			"total_available": 7,
-			"total_unavailable": 0
-		},
-		{
 			"id": 6,
 			"genre": "Casual",
-			"total": 6,
+			"total": 7,
 			"total_available": 6,
-			"total_unavailable": 0
+			"total_unavailable": 1
 		},
 		{
 			"id": 15,
@@ -195,9 +195,9 @@
 	"general": {
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"games": {
-			"total": 211,
+			"total": 212,
 			"total_available": 189,
-			"total_unavailable": 23
+			"total_unavailable": 24
 		},
 		"dlcs": {
 			"total": 17,
@@ -207,8 +207,8 @@
 		"duration": {
 			"total": {
 				"hours": 1118,
-				"minutes": 9,
-				"seconds": 7
+				"minutes": 49,
+				"seconds": 45
 			},
 			"total_available": {
 				"hours": 1015,
@@ -216,9 +216,9 @@
 				"seconds": 31
 			},
 			"total_unavailable": {
-				"hours": 107,
-				"minutes": 49,
-				"seconds": 57
+				"hours": 108,
+				"minutes": 30,
+				"seconds": 35
 			}
 		}
 	}
