@@ -1416,5 +1416,13 @@
 		"hltb_main": "00:52:00",
 		"hltb_extra": "00:53:00",
 		"hltb_completionist": "00:55:00"
+	},
+	{
+		"id": 199,
+		"title": "Marine Malice 4 : Le Mystère du ranch aux cochons",
+		"platform": 7,
+		"hltb_main": "01:30:00",
+		"hltb_extra": "01:30:00",
+		"hltb_completionist": "01:30:00"
 	}
 ]
