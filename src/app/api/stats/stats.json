@@ -10,8 +10,8 @@
 		{
 			"id": 1,
 			"platform": "PC",
-			"total": 76,
-			"total_available": 76,
+			"total": 70,
+			"total_available": 70,
 			"total_unavailable": 0
 		},
 		{
@@ -33,6 +33,13 @@
 			"platform": "GBA",
 			"total": 10,
 			"total_available": 10,
+			"total_unavailable": 0
+		},
+		{
+			"id": 7,
+			"platform": "SCUMMVM",
+			"total": 6,
+			"total_available": 6,
 			"total_unavailable": 0
 		},
 		{

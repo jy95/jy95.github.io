@@ -22,5 +22,9 @@
 	{
 		"id": 6,
 		"name": "PS3"
+	},
+	{
+		"id": 7,
+		"name": "SCUMMVM"
 	}
 ]
