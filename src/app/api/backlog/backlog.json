@@ -1424,5 +1424,13 @@
 		"hltb_main": "01:30:00",
 		"hltb_extra": "01:30:00",
 		"hltb_completionist": "01:30:00"
+	},
+	{
+		"id": 200,
+		"title": "Marine Malice 5 : Le Mystère du monstre du lagon",
+		"platform": 7,
+		"hltb_main": "01:30:00",
+		"hltb_extra": "01:30:00",
+		"hltb_completionist": "01:30:00"
 	}
 ]
