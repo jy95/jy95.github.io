@@ -1582,6 +1582,15 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
+			"id": "197",
+			"title": "Marine Malice 2 : Le Mystère de l'école hantée",
+			"platform": 7,
+			"hltb_main": "00:46:00",
+			"hltb_extra": "01:00:00",
+			"hltb_completionist": "01:30:00",
+			"imagePath": "/backlogcovers/197/cover.webp"
+		},
+		{
 			"id": "196",
 			"title": "Marine Malice et le Mystère des graines d'algues",
 			"platform": 7,
