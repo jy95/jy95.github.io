@@ -1432,5 +1432,10 @@
 		"hltb_main": "01:30:00",
 		"hltb_extra": "01:30:00",
 		"hltb_completionist": "01:30:00"
+	},
+	{
+		"id": 201,
+		"title": "Hot Lava",
+		"platform": 1
 	}
 ]
