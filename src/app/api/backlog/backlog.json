@@ -1436,6 +1436,9 @@
 	{
 		"id": 201,
 		"title": "Hot Lava",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "07:14:21",
+		"hltb_extra": "15:39:22",
+		"hltb_completionist": "21:38:43"
 	}
 ]
