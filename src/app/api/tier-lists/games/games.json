@@ -1328,6 +1328,20 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
+			"title": "Killer Is Dead",
+			"playlistId": "PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
+			"releaseDate": "2013-08-30",
+			"duration": "04:58:20",
+			"platform": 6,
+			"genres": [
+				1
+			],
+			"imagePath": "/covers/PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
 			"title": "Kirby: Cauchemar au pays des Rêves",
 			"playlistId": "PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
