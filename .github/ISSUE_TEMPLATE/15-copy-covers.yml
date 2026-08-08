@@ -1,0 +1,53 @@
+name: 🖨️ Copy games covers
+description: Copy covers from multiple games in a given folder to another folder
+title: '[COPY_COVERS] '
+labels: ["[COPY_COVERS]"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill in the following fields to copy these game covers !
+  - type: dropdown
+    id: sourceFolder
+    attributes:
+      label: Source Folder ?
+      description: What is the source folder
+      options:
+        - covers
+        - testscovers
+        - backlogcovers
+      default: 2
+  - type: textarea
+    id: source_games_textarea
+    attributes:
+      label: Games
+      description: Put the ID of each game (playlistId or videoId) in the order you want them to be copied from the source folder
+      placeholder: |
+        ID_1
+        ID_2
+        ID_3
+        ...
+    validations:
+      required: true
+  - type: dropdown
+    id: destinationFolder
+    attributes:
+      label: Destination Folder ?
+      description: What is the destination folder
+      options:
+        - covers
+        - testscovers
+        - backlogcovers
+      default: 0
+  - type: textarea
+    id: destination_games_textarea
+    attributes:
+      label: Games
+      description: Put the ID of each game (playlistId or videoId) in the order you want them to be copied to the destination folder, same order as the source games list
+      placeholder: |
+        ID_1
+        ID_2
+        ID_3
+        ...
+    validations:
+      required: true

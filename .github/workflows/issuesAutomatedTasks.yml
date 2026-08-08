@@ -30,6 +30,7 @@ jobs:
                 contains(github.event.issue.labels.*.name, '[UPDATE_TEST]') && 'UPDATE_TEST' || 
                 contains(github.event.issue.labels.*.name, '[DELETE_TEST]') && 'DELETE_TEST' || 
                 contains(github.event.issue.labels.*.name, '[UPDATE_TIER_LIST]') && 'UPDATE_TIER_LIST' || 
+                contains(github.event.issue.labels.*.name, '[COPY_COVERS]') && 'COPY_COVERS' ||  
                 'UNKNOWN' }}
           run: echo "issue_type=${{ env.ISSUE_TYPE }}" >> $GITHUB_OUTPUT
         - id: set_template_file
@@ -77,6 +78,9 @@ jobs:
                 ;;
               UPDATE_TIER_LIST)
                 echo "template_file=14-update-tier-lists.yml" >> $GITHUB_OUTPUT
+                ;;
+              COPY_COVERS)
+                echo "template_file=15-copy-covers.yml" >> $GITHUB_OUTPUT
                 ;;
             esac
     process_issue:
