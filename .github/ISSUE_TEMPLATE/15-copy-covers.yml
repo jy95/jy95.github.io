@@ -20,7 +20,7 @@ body:
   - type: textarea
     id: source_games_textarea
     attributes:
-      label: Games
+      label: Original Games
       description: Put the ID of each game (playlistId or videoId) in the order you want them to be copied from the source folder
       placeholder: |
         ID_1
