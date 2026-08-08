@@ -1,11 +1,11 @@
 import { findIdsInTextArea } from './common/utils';
 
 import { fileURLToPath } from 'url';
-import { dirname, resolve, join } from 'path';
-import { stat, readdir, mkdir, copyFile, access, cp } from 'fs/promises';
+import { dirname, resolve, isAbsolute, sep, relative } from 'path';
+import { access, cp } from 'fs/promises';
 
 import type { Database } from 'better-sqlite3';
-import type { CopyCoversPayload } from './common/types';
+import type { CopyCoversPayload, Folder } from './common/types';
 
 export type PairSummary = {
   sourceId: string;
@@ -28,6 +28,28 @@ type ValidatedPairs = {
 };
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const allowedFolders = new Set<Folder>([
+  'covers',
+  'testscovers',
+  'backlogcovers',
+]);
+
+function resolveWithin(basePath: string, value: string): string {
+  const candidate = resolve(basePath, value);
+  const relativePath = relative(basePath, candidate);
+
+  if (
+    relativePath === '' ||
+    relativePath === '..' ||
+    relativePath.startsWith(`..${sep}`) ||
+    isAbsolute(relativePath)
+  ) {
+    throw new Error(`Path escapes the allowed directory: ${value}`);
+  }
+
+  return candidate;
+}
 
 /**
  * Checks if a path exists on the file system.
@@ -90,8 +112,8 @@ async function processPair(
 ): Promise<PairSummary> {
 
     const summary: PairSummary = { sourceId, destId, success: false };
-    const srcPath = join(baseSrc, sourceId);
-    const destPath = join(baseDest, destId);
+    const srcPath = resolveWithin(baseSrc, sourceId);
+    const destPath = resolveWithin(baseDest, destId);
 
     // Check if source folder exists
     if (!(await pathExists(srcPath))) {
@@ -120,8 +142,8 @@ async function processPair(
 function resolveBasePaths(sourceFolder: string, destinationFolder: string) {
   const basePublic = resolve(__dirname, '..', '..', 'public');
   return {
-    baseSrc: join(basePublic, sourceFolder),
-    baseDest: join(basePublic, destinationFolder),
+    baseSrc: resolveWithin(basePublic, sourceFolder),
+    baseDest: resolveWithin(basePublic, destinationFolder),
   };
 }
 
