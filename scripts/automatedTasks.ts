@@ -2,26 +2,11 @@ import Database from 'better-sqlite3';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
-// Functions
-import { turnStringToObj } from './tasks/common/utils';
-import {
-    addGameToDatabase,
-    updateGameInDatabase,
-    deleteGameFromDatabase,
-    manageSerieInDatabase,
-    addSerieToDatabase,
-    cleanBacklog,
-    addBacklogToDatabase,
-    deleteBacklogFromDatabase,
-    addTestToDatabase,
-    updateTestInDatabase,
-    deleteTestFromDatabase,
-    manageDlcsInDatabase,
-    updateTierLists,
-} from "./tasks";
-
 // Types
 import type { TaskType } from './tasks/common/types';
+
+// Utils
+import { turnStringToObj } from './tasks/common/utils';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const databasePath = resolve(__dirname, '..', 'GamesPassionFR.db');
@@ -37,59 +22,87 @@ console.log("Task type :", taskType);
 console.log("Payload as string :", taskPayloadAsString);
 console.log("Payload as object :", taskPayload);
 
-// Execute the task based on the task type
-switch (taskType as TaskType) {
+// Standardized signature for all task handlers
+type TaskHandler = (db: Database.Database, payload: any) => Promise<void>;
+
+// Explicit execution map (100% type-safe)
+const taskMap: Record<TaskType, TaskHandler> = {
     // Games
-    case "ADD_GAME":
-        await addGameToDatabase(db, taskPayload);
-        break;
-    case "UPDATE_GAME":
-        await updateGameInDatabase(db, taskPayload);
-        break;
-    case "DELETE_GAME":
-        await deleteGameFromDatabase(db, taskPayload);
-        break;
+    ADD_GAME: async (db, payload) => {
+        const { addGameToDatabase } = await import('./tasks');
+        await addGameToDatabase(db, payload);
+    },
+    UPDATE_GAME: async (db, payload) => {
+        const { updateGameInDatabase } = await import('./tasks');
+        await updateGameInDatabase(db, payload);
+    },
+    DELETE_GAME: async (db, payload) => {
+        const { deleteGameFromDatabase } = await import('./tasks');
+        await deleteGameFromDatabase(db, payload);
+    },
 
     // Backlog
-    case "ADD_BACKLOG":
-        await addBacklogToDatabase(db, taskPayload);
-        break;
-    case "DELETE_BACKLOG":
-        await deleteBacklogFromDatabase(db, taskPayload);
-        break;
-    case "CLEAN_BACKLOG":
+    ADD_BACKLOG: async (db, payload) => {
+        const { addBacklogToDatabase } = await import('./tasks');
+        await addBacklogToDatabase(db, payload);
+    },
+    DELETE_BACKLOG: async (db, payload) => {
+        const { deleteBacklogFromDatabase } = await import('./tasks');
+        await deleteBacklogFromDatabase(db, payload);
+    },
+    CLEAN_BACKLOG: async (db) => {
+        const { cleanBacklog } = await import('./tasks');
         await cleanBacklog(db);
-        break;
+    },
 
     // Series
-    case "ADD_SERIE":
-        await addSerieToDatabase(db, taskPayload);
-        break;
-    case "MANAGE_SERIE":
-        await manageSerieInDatabase(db, taskPayload);
-        break;
+    ADD_SERIE: async (db, payload) => {
+        const { addSerieToDatabase } = await import('./tasks');
+        await addSerieToDatabase(db, payload);
+    },
+    MANAGE_SERIE: async (db, payload) => {
+        const { manageSerieInDatabase } = await import('./tasks');
+        await manageSerieInDatabase(db, payload);
+    },
 
     // DLCs
-    case "MANAGE_DLCS":
-        await manageDlcsInDatabase(db, taskPayload);
-        break;
+    MANAGE_DLCS: async (db, payload) => {
+        const { manageDlcsInDatabase } = await import('./tasks');
+        await manageDlcsInDatabase(db, payload);
+    },
 
     // Tests
-    case "ADD_TEST":
-        await addTestToDatabase(db, taskPayload);
-        break;
-    case "UPDATE_TEST":
-        await updateTestInDatabase(db, taskPayload);
-        break;
-    case "DELETE_TEST":
-        await deleteTestFromDatabase(db, taskPayload);
-        break;
+    ADD_TEST: async (db, payload) => {
+        const { addTestToDatabase } = await import('./tasks');
+        await addTestToDatabase(db, payload);
+    },
+    UPDATE_TEST: async (db, payload) => {
+        const { updateTestInDatabase } = await import('./tasks');
+        await updateTestInDatabase(db, payload);
+    },
+    DELETE_TEST: async (db, payload) => {
+        const { deleteTestFromDatabase } = await import('./tasks');
+        await deleteTestFromDatabase(db, payload);
+    },
 
     // Tier Lists
-    case "UPDATE_TIER_LIST":
-        await updateTierLists(db, taskPayload);
-        break;
+    UPDATE_TIER_LIST: async (db, payload) => {
+        const { updateTierLists } = await import('./tasks');
+        await updateTierLists(db, payload);
+    },
 
-    default:
-        console.log(`Bip bip - Nothing was done as unexpected task`)
+    // Copy Covers
+    COPY_COVERS: async (db, payload) => {
+        const { copyCovers } = await import('./tasks');
+        await copyCovers(db, payload);
+    },
+};
+
+// Execute task
+const handler = taskMap[taskType as TaskType];
+
+if (handler) {
+    await handler(db, taskPayload);
+} else {
+    console.log(`Bip bip - Unknown or unhandled task: "${taskType}"`);
 }

@@ -11,7 +11,10 @@ export type TaskType =
   | "ADD_TEST"
   | "UPDATE_TEST"
   | "DELETE_TEST"
-  | "UPDATE_TIER_LIST";
+  | "UPDATE_TIER_LIST" 
+  | "COPY_COVERS";
+
+export type Folder = "covers" | "testscovers" | "backlogcovers";
 
 export type IdentifierKind = 'Playlist' | 'Video';
 
@@ -83,4 +86,11 @@ export interface TierListPayload {
   tierList: "GAMES" | "BACKLOG" | "TESTS";
   category: "tier_average" | "tier_bad" | "tier_excellent" | "tier_good" | "tier_masterpiece" | "tier_not_evaluated" | "tier_poor";
   games_textarea: string;
+}
+
+export interface CopyCoversPayload {
+  sourceFolder: Folder;
+  destinationFolder: Folder;
+  source_games_textarea: string;
+  destination_games_textarea: string;
 }
