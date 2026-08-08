@@ -52,6 +52,16 @@ function resolveWithin(basePath: string, value: string): string {
 }
 
 /**
+ * Validates that a folder name is allowed.
+ * @param folder The folder name to validate.   
+ */
+function validateFolder(folder: string): asserts folder is Folder {
+  if (!allowedFolders.has(folder as Folder)) {
+    throw new Error(`Invalid folder name: ${folder}`);
+  }
+}
+
+/**
  * Checks if a path exists on the file system.
  */
 async function pathExists(filePath: string): Promise<boolean> {
@@ -189,6 +199,9 @@ function buildResult(summaries: PairSummary[]): CopyCoversResult {
  * Main orchestrator function to copy covers between folders.
  */
 export async function copyCovers(_db: Database, payload: CopyCoversPayload) {
+    validateFolder(payload.sourceFolder);
+    validateFolder(payload.destinationFolder);
+
     const pairs = parseAndValidatePairs(payload);
     const { baseSrc, baseDest } = resolveBasePaths(
         payload.sourceFolder,
