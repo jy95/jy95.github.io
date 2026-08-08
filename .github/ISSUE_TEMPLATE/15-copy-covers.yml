@@ -40,7 +40,7 @@ body:
         - backlogcovers
       default: 0
   - type: textarea
-    id: destionation_games_textarea
+    id: destination_games_textarea
     attributes:
       label: Games
       description: Put the ID of each game (playlistId or videoId) in the order you want them to be copied to the destination folder, same order as the source games list
