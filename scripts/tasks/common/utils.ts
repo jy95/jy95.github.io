@@ -46,7 +46,7 @@ export function identifierKindToDatabaseField(identifierKind: IdentifierKind) {
 
 // For the json parse reviver
 // Library to parse forms answers considers them as multiple whereas it isn't
-const keysToTransform = ["identifierKind", "platform", "tierList", "category"];
+const keysToTransform = ["identifierKind", "platform", "tierList", "category", "sourceFolder", "destinationFolder"];
 
 export function turnStringToObj(taskPayloadAsString: string) {
     return JSON.parse(taskPayloadAsString, (key, value) => {
