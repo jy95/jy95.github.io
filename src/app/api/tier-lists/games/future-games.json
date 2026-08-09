@@ -274,6 +274,17 @@
 			"imagePath": "/covers/3rgBcXGCQtU/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=3rgBcXGCQtU",
 			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "aK8LL8r1s0Q",
+			"videoId": "aK8LL8r1s0Q",
+			"title": "Marine Malice 3 : Le Mystère du coquillage volé",
+			"releaseDate": "1998-03-06",
+			"duration": "00:43:19",
+			"platform": 7,
+			"imagePath": "/covers/aK8LL8r1s0Q/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=aK8LL8r1s0Q",
+			"url_type": "PLAYLIST"
 		}
 	]
 }
