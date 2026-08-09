@@ -25,8 +25,8 @@ function RenderEntry(props: Props) {
 }
 
 // In theory, we should use useGetPlatforms for that, but mui doesn't allow that with async
-// Platform start from 1 ("PC") to 6 ("PS3")
-const platformsIds : number[] = [1,2,3,4,5,6];
+// Platform start from 1 ("PC") to 7 ("SCUMMVM")
+const platformsIds : number[] = [1,2,3,4,5,6,7];
 
 const options : ValueOptions[] = platformsIds.map( (platformId) => ({
     value: platformId,
