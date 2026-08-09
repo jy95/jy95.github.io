@@ -12,3 +12,4 @@ export * from './update-test';
 export * from './delete-test';
 export * from './update-tier-lists';
 export * from './copy-covers';
+export * from './add-cover';
