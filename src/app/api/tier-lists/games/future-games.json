@@ -296,6 +296,17 @@
 			"imagePath": "/covers/TJbiGTQQUQY/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=TJbiGTQQUQY",
 			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "8LewlLoYHVY",
+			"videoId": "8LewlLoYHVY",
+			"title": "Marine Malice 5 : Le Mystère du monstre du lagon",
+			"releaseDate": "2001-07-19",
+			"duration": "01:13:24",
+			"platform": 7,
+			"imagePath": "/covers/8LewlLoYHVY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=8LewlLoYHVY",
+			"url_type": "PLAYLIST"
 		}
 	]
 }

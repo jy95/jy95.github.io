@@ -29,18 +29,18 @@
 			"total_unavailable": 0
 		},
 		{
+			"id": 7,
+			"platform": "SCUMMVM",
+			"total": 11,
+			"total_available": 6,
+			"total_unavailable": 5
+		},
+		{
 			"id": 2,
 			"platform": "GBA",
 			"total": 10,
 			"total_available": 10,
 			"total_unavailable": 0
-		},
-		{
-			"id": 7,
-			"platform": "SCUMMVM",
-			"total": 10,
-			"total_available": 6,
-			"total_unavailable": 4
 		},
 		{
 			"id": 4,
@@ -54,16 +54,16 @@
 		{
 			"id": 1,
 			"genre": "Action",
-			"total": 175,
+			"total": 176,
 			"total_available": 166,
-			"total_unavailable": 9
+			"total_unavailable": 10
 		},
 		{
 			"id": 2,
 			"genre": "Adventure",
-			"total": 144,
+			"total": 145,
 			"total_available": 138,
-			"total_unavailable": 6
+			"total_unavailable": 7
 		},
 		{
 			"id": 12,
@@ -96,16 +96,16 @@
 		{
 			"id": 7,
 			"genre": "Educational",
-			"total": 11,
+			"total": 12,
 			"total_available": 7,
-			"total_unavailable": 4
+			"total_unavailable": 5
 		},
 		{
 			"id": 6,
 			"genre": "Casual",
-			"total": 10,
+			"total": 11,
 			"total_available": 6,
-			"total_unavailable": 4
+			"total_unavailable": 5
 		},
 		{
 			"id": 13,
@@ -195,9 +195,9 @@
 	"general": {
 		"channel_start_date": "2014-04-15T17:35:16+00:00",
 		"games": {
-			"total": 215,
+			"total": 216,
 			"total_available": 190,
-			"total_unavailable": 26
+			"total_unavailable": 27
 		},
 		"dlcs": {
 			"total": 17,
@@ -206,9 +206,9 @@
 		},
 		"duration": {
 			"total": {
-				"hours": 1121,
-				"minutes": 18,
-				"seconds": 3
+				"hours": 1122,
+				"minutes": 31,
+				"seconds": 27
 			},
 			"total_available": {
 				"hours": 1020,
@@ -216,9 +216,9 @@
 				"seconds": 51
 			},
 			"total_unavailable": {
-				"hours": 105,
-				"minutes": 52,
-				"seconds": 32
+				"hours": 107,
+				"minutes": 5,
+				"seconds": 56
 			}
 		}
 	}
