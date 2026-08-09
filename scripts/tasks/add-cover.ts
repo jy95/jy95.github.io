@@ -4,32 +4,12 @@ import { mkdir, rm, rename } from 'fs/promises';
 import { randomBytes } from 'crypto';
 import sharp from 'sharp';
 
-import type { Database } from 'better-sqlite3';
-import type { Folder } from './common/types';
+import type { validateFolder } from './common/utils';
 
-interface AddCoverPayload {
-  imageURL: string;
-  folder: Folder;
-  identifierValue: string;
-}
+import type { Database } from 'better-sqlite3';
+import type { AddCoverPayload } from './common/types';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
-const allowedFolders = new Set<Folder>([
-  'covers',
-  'testscovers',
-  'backlogcovers',
-]);
-
-/**
- * Validates that a folder name is allowed.
- * @param folder The folder name to validate.
- */
-function validateFolder(folder: string): asserts folder is Folder {
-  if (!allowedFolders.has(folder as Folder)) {
-    throw new Error(`Invalid folder name: ${folder}`);
-  }
-}
 
 /**
  * Validates an identifier value to prevent path traversal attacks.
