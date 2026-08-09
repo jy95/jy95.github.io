@@ -143,33 +143,7 @@ jobs:
           - name: 💻 Install npm packages
             #run: npm ci
             run: npm install
-          - name: 📕 Add cover
-            if: ${{ env.OPERATION == 'ADD_COVER' }}
-            run: |
-              # Extract URL and folder path from the JSON environment variable
-              REQUEST_URL=$(echo $REQUEST | jq -r '.imageURL')
-              REQUEST_FOLDER=$(echo $REQUEST | jq -r '.folder[0]')
-              REQUEST_ID=$(echo $REQUEST | jq -r '.identifierValue')
-
-              # Define the folder path variable
-              FOLDER_PATH="./public/$REQUEST_FOLDER/$REQUEST_ID"  
-              FILE_PATH="$FOLDER_PATH/cover.webp"
-
-              # Delete the target folder (if existing)
-              sudo rm -rf "$FOLDER_PATH"
-
-              # Create the target folder
-              sudo mkdir -p "$FOLDER_PATH"
-
-              # Download the image without worrying about the extension
-              curl -L -o image_file "$REQUEST_URL"
-
-              # Resize the image and convert to WebP format using npx sharp-cli
-              sudo npx --yes sharp-cli -i ./image_file -o "$FILE_PATH" -f webp resize 250 250 --fit inside
-
-              # Clean up the original file
-              sudo rm image_file
-          - name: 💿 Do actions in database
+          - name: 💿 Do requested action
             run: |
                 npx tsx scripts/automatedTasks.ts "$OPERATION" "$REQUEST"
           - name: 🤖 Update JSON files after this change
