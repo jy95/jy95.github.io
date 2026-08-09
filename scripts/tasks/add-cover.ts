@@ -4,7 +4,7 @@ import { mkdir, rm, rename } from 'fs/promises';
 import { randomBytes } from 'crypto';
 import sharp from 'sharp';
 
-import type { validateFolder } from './common/utils';
+import { validateFolder } from './common/utils';
 
 import type { Database } from 'better-sqlite3';
 import type { AddCoverPayload } from './common/types';
