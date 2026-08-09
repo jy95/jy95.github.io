@@ -3,9 +3,10 @@ import { findIdsInTextArea } from './common/utils';
 import { fileURLToPath } from 'url';
 import { dirname, resolve, isAbsolute, sep, relative } from 'path';
 import { access, cp } from 'fs/promises';
+import { validateFolder } from "./common/utils";
 
 import type { Database } from 'better-sqlite3';
-import type { CopyCoversPayload, Folder } from './common/types';
+import type { CopyCoversPayload } from './common/types';
 
 export type PairSummary = {
   sourceId: string;
@@ -29,12 +30,6 @@ type ValidatedPairs = {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const allowedFolders = new Set<Folder>([
-  'covers',
-  'testscovers',
-  'backlogcovers',
-]);
-
 function resolveWithin(basePath: string, value: string): string {
   const candidate = resolve(basePath, value);
   const relativePath = relative(basePath, candidate);
@@ -49,16 +44,6 @@ function resolveWithin(basePath: string, value: string): string {
   }
 
   return candidate;
-}
-
-/**
- * Validates that a folder name is allowed.
- * @param folder The folder name to validate.   
- */
-function validateFolder(folder: string): asserts folder is Folder {
-  if (!allowedFolders.has(folder as Folder)) {
-    throw new Error(`Invalid folder name: ${folder}`);
-  }
 }
 
 /**
