@@ -159,6 +159,50 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "3rgBcXGCQtU",
+			"videoId": "3rgBcXGCQtU",
+			"title": "Marine Malice 2 : Le Mystère de l'école hantée",
+			"releaseDate": "1996-03-29",
+			"duration": "00:30:54",
+			"platform": 7,
+			"imagePath": "/covers/3rgBcXGCQtU/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=3rgBcXGCQtU",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "aK8LL8r1s0Q",
+			"videoId": "aK8LL8r1s0Q",
+			"title": "Marine Malice 3 : Le Mystère du coquillage volé",
+			"releaseDate": "1998-03-06",
+			"duration": "00:43:19",
+			"platform": 7,
+			"imagePath": "/covers/aK8LL8r1s0Q/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=aK8LL8r1s0Q",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "TJbiGTQQUQY",
+			"videoId": "TJbiGTQQUQY",
+			"title": "Marine Malice 4 : Le Mystère du ranch aux cochons",
+			"releaseDate": "1999-11-05",
+			"duration": "01:14:05",
+			"platform": 7,
+			"imagePath": "/covers/TJbiGTQQUQY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=TJbiGTQQUQY",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "8LewlLoYHVY",
+			"videoId": "8LewlLoYHVY",
+			"title": "Marine Malice 5 : Le Mystère du monstre du lagon",
+			"releaseDate": "2001-07-19",
+			"duration": "01:13:24",
+			"platform": 7,
+			"imagePath": "/covers/8LewlLoYHVY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=8LewlLoYHVY",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "BtBWS67mgJM",
 			"videoId": "BtBWS67mgJM",
 			"title": "Marine Malice et le mystère des graines d'algues",
@@ -263,50 +307,5 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": [
-		{
-			"id": "3rgBcXGCQtU",
-			"videoId": "3rgBcXGCQtU",
-			"title": "Marine Malice 2 : Le Mystère de l'école hantée",
-			"releaseDate": "1996-03-29",
-			"duration": "00:30:54",
-			"platform": 7,
-			"imagePath": "/covers/3rgBcXGCQtU/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=3rgBcXGCQtU",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "aK8LL8r1s0Q",
-			"videoId": "aK8LL8r1s0Q",
-			"title": "Marine Malice 3 : Le Mystère du coquillage volé",
-			"releaseDate": "1998-03-06",
-			"duration": "00:43:19",
-			"platform": 7,
-			"imagePath": "/covers/aK8LL8r1s0Q/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=aK8LL8r1s0Q",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "TJbiGTQQUQY",
-			"videoId": "TJbiGTQQUQY",
-			"title": "Marine Malice 4 : Le Mystère du ranch aux cochons",
-			"releaseDate": "1999-11-05",
-			"duration": "01:14:05",
-			"platform": 7,
-			"imagePath": "/covers/TJbiGTQQUQY/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=TJbiGTQQUQY",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "8LewlLoYHVY",
-			"videoId": "8LewlLoYHVY",
-			"title": "Marine Malice 5 : Le Mystère du monstre du lagon",
-			"releaseDate": "2001-07-19",
-			"duration": "01:13:24",
-			"platform": 7,
-			"imagePath": "/covers/8LewlLoYHVY/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=8LewlLoYHVY",
-			"url_type": "PLAYLIST"
-		}
-	]
+	"tier_not_evaluated": []
 }
