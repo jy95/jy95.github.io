@@ -1402,38 +1402,6 @@
 		"hltb_completionist": "01:00:00"
 	},
 	{
-		"id": 197,
-		"title": "Marine Malice 2 : Le Mystère de l'école hantée",
-		"platform": 7,
-		"hltb_main": "00:46:00",
-		"hltb_extra": "01:00:00",
-		"hltb_completionist": "01:30:00"
-	},
-	{
-		"id": 198,
-		"title": "Marine Malice 3 : Le Mystère du coquillage volé",
-		"platform": 7,
-		"hltb_main": "00:52:00",
-		"hltb_extra": "00:53:00",
-		"hltb_completionist": "00:55:00"
-	},
-	{
-		"id": 199,
-		"title": "Marine Malice 4 : Le Mystère du ranch aux cochons",
-		"platform": 7,
-		"hltb_main": "01:30:00",
-		"hltb_extra": "01:30:00",
-		"hltb_completionist": "01:30:00"
-	},
-	{
-		"id": 200,
-		"title": "Marine Malice 5 : Le Mystère du monstre du lagon",
-		"platform": 7,
-		"hltb_main": "01:30:00",
-		"hltb_extra": "01:30:00",
-		"hltb_completionist": "01:30:00"
-	},
-	{
 		"id": 201,
 		"title": "Hot Lava",
 		"platform": 1,
