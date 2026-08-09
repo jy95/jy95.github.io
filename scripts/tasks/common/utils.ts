@@ -1,4 +1,4 @@
-import type { Platform, GameGenre, IdentifierKind } from "./types";
+import type { Platform, GameGenre, IdentifierKind, Folder } from "./types";
 
 const PLATFORMS_MAP = {
     'PC': 1,
@@ -31,6 +31,12 @@ const GENRES_MAP = {
     'Strategy': 19,
     'Misc': 20
 };
+
+const allowedFolders = new Set<Folder>([
+  'covers',
+  'testscovers',
+  'backlogcovers',
+]);
 
 export function platformToInt(platform: Platform) {
     return PLATFORMS_MAP[platform] || 0;
@@ -76,4 +82,14 @@ export function findIdsInTextArea(textAreaContent?: string) {
     return textAreaContent.split("\n")
         .map(s => s.trim())
         .filter(s => s.length > 0);
+}
+
+/**
+ * Validates that a folder name is allowed.
+ * @param folder The folder name to validate.   
+ */
+export function validateFolder(folder: string): asserts folder is Folder {
+  if (!allowedFolders.has(folder as Folder)) {
+    throw new Error(`Invalid folder name: ${folder}`);
+  }
 }
