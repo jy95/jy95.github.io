@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { extractGameCardProps } from "@/redux/sharedDefintion";
-// Assuming BasicVideo is also imported or defined in sharedDefintion
+import { buildCardEntry } from "@/redux/sharedDefintion";
 import type { RawGame, CardGame } from "@/redux/sharedDefintion";
 
 type rawEntry = {
@@ -17,14 +16,13 @@ export type dlcType = {
 };
 
 export async function GET() {
-    // Fetch dlcs data
     const dlcsData = (await import("./dlcs.json")).default;
 
-    const dlcs : dlcType[] = dlcsData.map((dlc) => ({
+    const dlcs: dlcType[] = dlcsData.map((dlc) => ({
         name: dlc.game_title,
         items: fromRawGamesToCardGames(dlc.dlcs as RawGame[])
-    }) )
-    
+    }));
+
     return NextResponse.json(dlcs, {
         headers: {
             "Cache-Control": "public, max-age=86400, must-revalidate"
@@ -32,25 +30,9 @@ export async function GET() {
     });
 }
 
-function fromRawGamesToCardGames(gamesData : RawGame[]) : CardGame[]{
-
-    return gamesData
-        .map(game => {
-            // 🚀 Extracted Logic: Call the helper function to get the derived properties
-            const { id, url, url_type } = extractGameCardProps(game);
-            
-            return {
-                ...game,
-                // Add the new properties required by CardGame
-                id,
-                // Required placeholders for CardGame interface
-                genres: [], 
-                platform: 0, 
-                
-                // Add properties from CardEntry interface
-                imagePath: `/covers/${id}/cover.webp`,
-                url,
-                url_type,
-            }
-        });
+function fromRawGamesToCardGames(gamesData: RawGame[]): CardGame[] {
+    return gamesData.map(game => ({
+        ...game,
+        ...buildCardEntry(game, "/covers")
+    }));
 }

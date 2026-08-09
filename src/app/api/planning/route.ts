@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { extractGameCardProps } from "@/redux/sharedDefintion";
+import { buildCardEntry } from "@/redux/sharedDefintion";
 import type { BasicGame, CardEntry } from "@/redux/sharedDefintion";
 
-type rawEntry = Omit<BasicGame, "id" >;
+type rawEntry = Omit<BasicGame, "id">;
 export type planningEntry = Omit<BasicGame, "videoId" | "playlistId"> & {
     /** @description Still in progress or finished ? */
     status: "RECORDED" | "PENDING";
@@ -13,11 +13,9 @@ export type planningEntry = Omit<BasicGame, "videoId" | "playlistId"> & {
 } & CardEntry;
 
 export async function GET() {
-
-    // Game data
     const games = (await import("./planning.json")).default;
-    
-    return NextResponse.json(games.map(game => enhanceGameItem(game)), {
+
+    return NextResponse.json(games.map(enhanceGameItem), {
         headers: {
             "Cache-Control": "public, max-age=86400, must-revalidate"
         }
@@ -26,21 +24,20 @@ export async function GET() {
 
 // Return an enhanced payload for a single game
 function enhanceGameItem(game: rawEntry): planningEntry {
-
-    const metadata = extractGameCardProps(game);
+    const { id, url, url_type, imagePath } = buildCardEntry(game, "/covers");
 
     return {
-        id: metadata.id,
+        id,
         title: game.title,
         platform: game.platform,
-        status:  (game.hasOwnProperty("endAt") ? "RECORDED" : "PENDING"),
-        imagePath: `/covers/${metadata.id}/${game.coverFile ?? "cover.webp"}`,
+        status: (game.hasOwnProperty("endAt") ? "RECORDED" : "PENDING"),
+        imagePath,
         availableAt: game.availableAt,
         endAt: game.endAt,
         releaseDate: game.releaseDate,
         duration: game.duration,
         genres: game.genres,
-        url: metadata.url,
-        url_type: metadata.url_type
+        url,
+        url_type
     }
 }
