@@ -91,10 +91,14 @@ const taskMap: Record<TaskType, TaskHandler> = {
         await updateTierLists(db, payload);
     },
 
-    // Copy Covers
+    // Covers
     COPY_COVERS: async (db, payload) => {
         const { copyCovers } = await import('./tasks');
         await copyCovers(db, payload);
+    },
+    ADD_COVER: async (db, payload) => {
+        const { addCover } = await import('./tasks');
+        await addCover(db, payload);
     },
 };
 
