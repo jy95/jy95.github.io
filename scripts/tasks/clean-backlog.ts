@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const BACKLOG_COVERS_PATH = join(__dirname, '../../public/covers/backlogcovers');
+const BACKLOG_COVERS_PATH = join(__dirname, '../../public/backlogcovers');
 
 /**
  * Retrieves all valid backlog IDs from the database
