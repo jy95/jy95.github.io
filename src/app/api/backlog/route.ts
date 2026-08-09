@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import type { BasicCard, YTUrlType } from "@/redux/sharedDefintion";
+import type { BasicCard } from "@/redux/sharedDefintion";
 
 // An entry of backlog
 export type BacklogEntry = {
@@ -20,15 +20,12 @@ export type BacklogEntry = {
     "hltb_completionist"?: string,
 } & BasicCard;
 
-// Raw entry 
-type RawBacklogEntry = Omit<BacklogEntry, "id" | "imagePath" | "url" | "url_type">;
+type RawBacklogEntry = Omit<BacklogEntry, "id" | "imagePath">;
 export type RawPayload = RawBacklogEntry[];
 
 export async function GET() {
-
-    // Game data
     const gamesData = (await import("./backlog.json")).default;
-    const games = gamesData.map( (game) => enhanceGameItem(game, game.id) );
+    const games = gamesData.map((game) => enhanceGameItem(game, game.id));
 
     return NextResponse.json(games, {
         headers: {
@@ -37,14 +34,10 @@ export async function GET() {
     });
 }
 
-// Return an enhanced payload for a single game
 function enhanceGameItem(game: RawBacklogEntry, id: number): BacklogEntry {
-
-    return Object.assign({}, game, {
-        // MUI: The data grid component requires all rows to have a unique `id` property.
-        "id": id.toString(),
-        "imagePath": `/backlogcovers/${id}/cover.webp`,
-        "url": "",
-        "url_type": "VIDEO" as YTUrlType
-    })
+    return {
+        ...game,
+        id: id.toString(),
+        imagePath: `/backlogcovers/${id}/cover.webp`,
+    };
 }
