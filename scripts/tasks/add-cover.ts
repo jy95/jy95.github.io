@@ -80,7 +80,7 @@ async function convertAndResizeImage(
  * 3. Download the image from the provided URL
  * 4. Convert and resize to WebP format (250x250)
  */
-export async function addCoverToDatabase(
+export async function addCover(
   _db: Database,
   payload: AddCoverPayload
 ): Promise<void> {
