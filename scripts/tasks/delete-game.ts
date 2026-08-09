@@ -30,12 +30,12 @@ export async function deleteGameFromDatabase(db: Database, payload: DeleteGamePa
         throw new Error(`Game not found with ${keyField}=${youtubeIdentifier}`);
     }
 
-    // 1. Delete game from database
-    const result = deleteGameStmt.run(gameId);
-
-    // 2. Delete cover folder from filesystem
+    // 1. Delete cover folder from filesystem
     const folderPath = join(COVERS_PATH, payload.identifierValue);
     await rm(folderPath, { recursive: true, force: true });
+
+    // 2. Delete game from database
+    const result = deleteGameStmt.run(gameId);
 
     return result;
 }
