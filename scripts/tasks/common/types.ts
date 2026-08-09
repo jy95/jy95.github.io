@@ -12,7 +12,8 @@ export type TaskType =
   | "UPDATE_TEST"
   | "DELETE_TEST"
   | "UPDATE_TIER_LIST" 
-  | "COPY_COVERS";
+  | "COPY_COVERS" 
+  | "ADD_COVER";
 
 export type Folder = "covers" | "testscovers" | "backlogcovers";
 
@@ -93,4 +94,10 @@ export interface CopyCoversPayload {
   destinationFolder: Folder;
   source_games_textarea: string;
   destination_games_textarea: string;
+}
+
+export interface AddCoverPayload {
+  imageURL: string;
+  folder: Folder;
+  identifierValue: string;
 }
