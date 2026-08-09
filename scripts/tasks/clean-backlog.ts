@@ -21,8 +21,8 @@ function getValidBacklogIds(db: Database): Set<string> {
  */
 async function getExistingImageFolders(): Promise<string[]> {
   try {
-    const folders = await fs.readdir(BACKLOG_COVERS_PATH);
-    return folders;
+    const entries = await fs.readdir(BACKLOG_COVERS_PATH, { withFileTypes: true });
+    return entries.filter(entry => entry.isDirectory()).map(entry => entry.name);
   } catch (error) {
     console.warn(`Warning: Could not read backlog covers directory at ${BACKLOG_COVERS_PATH}`, error);
     return [];
