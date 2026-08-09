@@ -12,19 +12,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 
 // Types
-import type { BacklogEntry } from "@/app/api/backlog/route";
-import type { CardGame } from "@/redux/sharedDefintion";
+import { isCardGame } from "./adapters";
+import type { RawGameDetailsEntry } from "./adapters";
 
-// Many fields are optional
-type GameDetailsEntry = BacklogEntry | CardGame;
+function GameToolbar({ game, onClose }: { game: RawGameDetailsEntry, onClose: () => void }) {
 
-function isCardGame(game: GameDetailsEntry): game is CardGame {
-    return (game as CardGame).url_type !== undefined;
-}
-
-function GameToolbar({ game, onClose }: { game: GameDetailsEntry, onClose: () => void }) {
-
-    // hooks
     const router = useRouter();
 
     function watchGame() {
@@ -37,15 +29,12 @@ function GameToolbar({ game, onClose }: { game: GameDetailsEntry, onClose: () =>
     }
 
     function isPublic() {
-        // if no release date, consider it private
         if (!isCardGame(game)) return false;
         const availableAt = game.availableAt;
         if (!availableAt) return false;
-        // if availableAt is in the future, consider it private
         const now = new Date();
         const availableDate = new Date(availableAt);
         if (availableDate > now) return false;
-        // otherwise, consider it public
         return true;
     }
 

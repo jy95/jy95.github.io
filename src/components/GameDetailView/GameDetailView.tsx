@@ -17,18 +17,20 @@ import { CardMediaImage } from '../GamesView/CardMediaImage';
 import { DETAIL_ROWS } from "./rows";
 
 // Types & Utils
-import { hasGenres } from "./utils";
-import type { GameDetailsEntry } from "./types";
+import { hasGenres } from "./predicates";
+import { toGameDetailsEntry } from "./adapters";
+import type { RawGameDetailsEntry } from "./adapters";
 
 interface GameDetailViewProps {
-    game: GameDetailsEntry;
+    game: RawGameDetailsEntry;
     onClose: () => void;
     /** @default true */
     showVoteSection?: boolean;
 }
 
-export default function GameDetailView({ game, onClose, showVoteSection = true }: GameDetailViewProps) {
+export default function GameDetailView({ game: rawGame, onClose, showVoteSection = true }: GameDetailViewProps) {
     const [open, setOpen] = useState(true);
+    const game = toGameDetailsEntry(rawGame);
 
     function handleClose() {
         setOpen(false);
@@ -37,7 +39,7 @@ export default function GameDetailView({ game, onClose, showVoteSection = true }
 
     return (
         <Dialog fullScreen open={open} onClose={handleClose}>
-            <GameToolbar game={game} onClose={handleClose} />
+            <GameToolbar game={rawGame} onClose={handleClose} />
 
             <Box sx={{ p: { xs: 2, md: 5 }, flexGrow: 1 }}>
                 <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} sx={{ alignItems: 'flex-start' }}>

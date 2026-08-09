@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { extractGameCardProps } from "@/redux/sharedDefintion";
+import { buildCardEntry } from "@/redux/sharedDefintion";
 import type { RawGame, CardGame } from "@/redux/sharedDefintion";
 
 type rawEntry = {
@@ -16,15 +16,13 @@ export type serieType = {
 };
 
 export async function GET() {
-
-    // Fetch series data
     const seriesData = (await import("./series.json")).default;
 
-    const series : serieType[] = seriesData.map(serie => ({
+    const series: serieType[] = seriesData.map(serie => ({
         name: serie.name,
         items: fromRawGamesToCardGames(serie.items as RawGame[])
-    }) )
-    
+    }));
+
     return NextResponse.json(series, {
         headers: {
             "Cache-Control": "public, max-age=86400, must-revalidate"
@@ -32,21 +30,9 @@ export async function GET() {
     });
 }
 
-function fromRawGamesToCardGames(gamesData : RawGame[]) : CardGame[]{
-
-    return gamesData
-        .map(game => {
-
-            // 🚀 Extracted Logic: Call the helper function to get the derived properties
-            const { id, url, url_type } = extractGameCardProps(game);
-
-            return {
-                ...game,
-                id,
-                genres: [],
-                imagePath: `/covers/${id}/cover.webp`,
-                url,
-                url_type
-            }
-        });
+function fromRawGamesToCardGames(gamesData: RawGame[]): CardGame[] {
+    return gamesData.map(game => ({
+        ...game,
+        ...buildCardEntry(game, "/covers")
+    }));
 }
