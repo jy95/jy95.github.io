@@ -13,6 +13,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import QueryErrorState from '@/components/common/QueryErrorState';
 
 // Custom
 const CardEntry = dynamic(() => import('@/components/GamesView/CardEntry'), { ssr: false });
@@ -21,10 +22,10 @@ const AccordionDetails = dynamic(() => import('@mui/material/AccordionDetails'),
 // The gallery component
 function GamesGalleryList() {
 
-    const { data, error, isLoading } = useGetSeriesQuery();
+    const { data, error, isLoading, refetch } = useGetSeriesQuery();
 
     if (error) {
-        return <>Something bad happened</>;
+        return <QueryErrorState onRetry={refetch} />;
     }
     
     if (isLoading) {

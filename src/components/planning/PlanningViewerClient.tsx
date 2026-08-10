@@ -12,6 +12,7 @@ import { DataGrid } from '@mui/x-data-grid';
 
 // Components
 import GameDetailView from '@/components/GameDetailView/GameDetailView';
+import QueryErrorState from '@/components/common/QueryErrorState';
 
 // columns
 import generateColumns from "@/components/planning/tableColumns";
@@ -27,12 +28,12 @@ export default function PlanningViewer(props: Props) {
 
     // Using a query hook automatically fetches data and returns query values
 
-    const { data, error, isLoading } = useGetPlanningQuery();
+    const { data, error, isLoading, refetch } = useGetPlanningQuery();
     const customLocaleText = useMuiXDataGridText();
     const [selectedGame, setSelectedGame] = useState<planningEntry | null>(null);
 
     if (error) {
-        return <>Something bad happened</>
+        return <QueryErrorState onRetry={refetch} />;
     }
     
     const columns = generateColumns(props);

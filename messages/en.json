@@ -36,6 +36,10 @@
         "loadMore": "Load more",
         "loading": "Loading ...",
         "noResults": "No more results to display",
+        "errors": {
+            "generic": "Something went wrong while loading this content.",
+            "retry": "Try again"
+        },
         "dates": {
             "years": "{count, plural, =1 {1 year} other {# years} }",
             "months": "{count, plural, =1 {1 month} other {# months} }",
