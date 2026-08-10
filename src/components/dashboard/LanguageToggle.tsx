@@ -2,6 +2,7 @@
 
 // Hooks
 import {usePathname, useRouter} from '@/i18n/routing';
+import type {Href} from '@/i18n/routing';
 
 // Components
 import { Suspense } from 'react'
@@ -30,13 +31,12 @@ function LanguageToggleInner(props: Props) {
     const router = useRouter();
 
     const changeLanguage = (locale: string) => () => {
-        router.replace(
-            // @ts-expect-error -- TypeScript will validate that only known `params`
-            // are used in combination with a given `pathname`. Since the two will
-            // always match for the current route, we can skip runtime checks.
-            pathname, 
-            { locale: locale }
-        );
+        // `usePathname()` returns the current pathname as a plain string,
+        // while `router.replace` expects the strongly-typed `Href` used
+        // across the routing config. This is safe: we're replacing the
+        // *current*, already-resolved route with itself, only swapping the
+        // locale, so `pathname` always corresponds to a valid route.
+        router.replace(pathname as Href, { locale: locale });
     }
 
     return (

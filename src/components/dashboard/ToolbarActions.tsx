@@ -1,48 +1,82 @@
 'use client';
 
 // Hooks
-import dynamic from 'next/dynamic'
-import { useState, Suspense } from "react";
+import { useColorScheme } from '@mui/material/styles';
 
 // Components
-import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
-const ThemeMode = dynamic(() => import("./ThemeModeToggle"));
-const LanguageToggle = dynamic(() => import("./LanguageToggle")); 
-const Drawer = dynamic(() => import('@mui/material/Drawer'));
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
+import Typography from "@mui/material/Typography";
 
 // Icons
-import SettingsIcon from '@mui/icons-material/Settings';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 
-// https://mui.com/toolpad/core/react-dashboard-layout/#slots
-// https://mui.com/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually
+// Types
+import type { MouseEvent } from "react";
+import type { Props as CommonProps } from './types';
+type UsedProps = Pick<CommonProps, "modeTitle" | "darkLabel" | "lightLabel" | "systemLabel">
+type Props = UsedProps;
 
-// Labels
-import type { Props } from './types';
+// Derived from the hook itself rather than hand-typed, so it can never
+// drift from whatever MUI actually accepts.
+type ColorSchemeMode = Parameters<ReturnType<typeof useColorScheme>['setMode']>[0];
 
-export default function ToolbarActions(props: Props){
+export default function ThemeMode(props: Props) {
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const toggleMenu = () => setIsMenuOpen((previousIsMenuOpen) => !previousIsMenuOpen);
+    const { mode, setMode } = useColorScheme();
+
+    const handleChangeThemeMode = (
+        _event: MouseEvent<HTMLElement>,
+        paletteMode: ColorSchemeMode | null
+    ) => {
+        if (paletteMode === null) {
+          return;
+        }
+        setMode(paletteMode);
+    };
 
     return (
         <>
-            <IconButton aria-label={props.settingsLabel} onClick={toggleMenu}>
-                <SettingsIcon />
-            </IconButton>
-            <Suspense fallback={null}>
-                <Drawer 
-                    open={isMenuOpen} 
-                    onClose={toggleMenu}
-                    anchor="right"
+            <Typography variant="body1" gutterBottom id="settings-mode">
+                {props.modeTitle}
+            </Typography>
+            <ToggleButtonGroup
+                exclusive
+                value={mode}
+                color="primary"
+                onChange={handleChangeThemeMode}
+                aria-labelledby="settings-mode"
+                fullWidth
+            >
+
+                <ToggleButton
+                    value="light"
+                    aria-label={props.lightLabel}
                 >
-                    <Box sx={{ pl: 2, pr: 2, py: 10 }}>
-                        <ThemeMode {...props} />
-                        <LanguageToggle {...props} />
-                    </Box>
-                </Drawer>
-            </Suspense>
+                    <LightModeIcon fontSize="small" />
+                    {props.lightLabel}
+                </ToggleButton>
+
+                <ToggleButton
+                    value="system"
+                    aria-label={props.systemLabel}
+                >
+                    <SettingsBrightnessIcon fontSize="small" />
+                    {props.systemLabel}
+                </ToggleButton>
+
+                <ToggleButton
+                    value="dark"
+                    aria-label={props.darkLabel}
+                >
+                    <DarkModeOutlinedIcon fontSize="small" />
+                    {props.darkLabel}
+                </ToggleButton>
+
+            </ToggleButtonGroup>
         </>
-    )
+    );
 
 }

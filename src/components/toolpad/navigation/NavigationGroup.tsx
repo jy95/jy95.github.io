@@ -14,6 +14,7 @@ import NavigationItem from "./NavigationItem";
 import { useAppContext } from "../provider/useAppContext";
 import type { NavigationItem as Item } from "../types";
 import { Link } from "@/i18n/routing";
+import type { Href } from "@/i18n/routing";
 
 /**
  * Same styled button used for popover child items — identical colour rules
@@ -95,9 +96,14 @@ export default function NavigationGroup({
               sx={{ py: 0, px: 1 }}
             >
               <PopoverListItemButton
-                // @ts-ignore - ListItemButtonProps doesn't allow 'div' but it works fine and avoids invalid DOM attributes from Link
-                component={Link as any}
-                href={childPath}
+                component={Link}
+                // `childPath` is built by concatenating route segments at
+                // runtime, so it can't be statically checked against the
+                // finite `routing.pathnames` union the way a literal string
+                // could — it's still guaranteed valid because it's derived
+                // from the exact same segment strings the routes are
+                // defined with.
+                href={childPath as Href}
                 selected={childSelected}
                 sx={{ px: 1.4, height: 48, borderRadius: 2 }}
               >

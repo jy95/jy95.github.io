@@ -8,7 +8,8 @@ import { useGetPlatformsQuery } from "@/redux/services/platformsAPI";
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
-import TextField from '@mui/material/TextField';
+
+import { renderAutocompleteInput } from "./renderAutocompleteInput";
 
 import type { Platform_Entry } from "@/app/api/platforms/route";
 
@@ -29,10 +30,7 @@ function PlatformSelect() {
             loading={isFetching}
             getOptionLabel={(option) => option.name}
             isOptionEqualToValue={(option, value) => value.id === option.id}
-            /* eslint-disable */
-            // @ts-ignore Type not accurate, will report it to MUI later
-            renderInput={(params) => <TextField {...params} label={t("platform") as string} />}
-            /* eslint-enable */
+            renderInput={renderAutocompleteInput(t("platform"))}
             renderOption={(props, option) => (
                 <li {...props} key={option.name}>
                     {option.name}

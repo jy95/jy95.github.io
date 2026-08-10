@@ -8,10 +8,11 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import type { BackgroundColor } from "./index";
+import type { TierCategoryKey } from "@/types/tierList";
 
 export interface TierTitleProps {
     // A unique identifier for the tier, used for keying and styling purposes.
-    slugKey: string;
+    slugKey: TierCategoryKey;
     // The color associated with this tier
     slugColor: BackgroundColor;
 }
@@ -43,7 +44,7 @@ export default function TierTitle({ slugKey, slugColor }: TierTitleProps) {
                     fontWeight: 'bold'
                 }}
             >
-                {t(slugKey as any)}
+                {t(slugKey)}
             </Typography>
         </Box>
     );

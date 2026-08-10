@@ -21,13 +21,11 @@ import Avatar from '@mui/material/Avatar';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import HelpIcon from '@mui/icons-material/Help';
 
-import type { AppConfig } from 'next-intl';
+import type { TierCategoryKey } from "@/types/tierList";
 import type { BackgroundColor } from "./index";
 
-type Ranking = keyof AppConfig["Messages"]["TierList"]["categories"]
-
 interface DisclaimerAccordionProps {
-    categoryColors: Record<Ranking, BackgroundColor>;
+    categoryColors: Record<TierCategoryKey, BackgroundColor>;
 }
 
 export default function DisclaimerAccordion({ categoryColors } : DisclaimerAccordionProps) {
@@ -37,7 +35,7 @@ export default function DisclaimerAccordion({ categoryColors } : DisclaimerAccor
     const tCategories = useTranslations("TierList.categories");
     const tDescriptions = useTranslations("TierList.descriptions");
 
-    const tierKeys : Ranking[] = [
+    const tierKeys : TierCategoryKey[] = [
         "tier_masterpiece",
         "tier_excellent",
         "tier_good",
