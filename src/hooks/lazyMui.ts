@@ -1,45 +1,49 @@
-// Small promise caches for lazy-imported locale packs.
-// These caches ensure each locale module is imported only once per runtime.
+import type { ThemeOptions } from "`@mui/material/styles`";
+import type { GridLocaleText } from "`@mui/x-data-grid`";
 
-type MuiLocale = any;
-type MuiXGridLocaleText = any;
+const muiLocaleCache = new Map<string, Promise<ThemeOptions>>();
+const muiXGridLocaleCache = new Map<string, Promise<Partial<GridLocaleText>>>();
 
-const muiLocaleCache = new Map<string, Promise<MuiLocale>>();
-const muiXGridLocaleCache = new Map<string, Promise<MuiXGridLocaleText>>();
+export function loadMuiLocale(lng: string): Promise<ThemeOptions> {
+    const cachedLocale = muiLocaleCache.get(lng);
 
-export function loadMuiLocale(lng: string): Promise<MuiLocale> {
-  if (muiLocaleCache.has(lng)) return muiLocaleCache.get(lng)!;
-
-  const promise = (async () => {
-    switch (lng) {
-      case 'fr': {
-        const { frFR } = await import('@mui/material/locale');
-        return frFR;
-      }
-      default:
-        return {};
+    if (cachedLocale) {
+        return cachedLocale;
     }
-  })();
 
-  muiLocaleCache.set(lng, promise);
-  return promise;
+    const locale = (async (): Promise<ThemeOptions> => {
+        if (lng === "fr") {
+            const { frFR } = await import("`@mui/material/locale`");
+            return frFR;
+        }
+
+        return {};
+    })();
+
+    muiLocaleCache.set(lng, locale);
+
+    return locale;
 }
 
-export function loadMuiXGridLocaleText(lng: string): Promise<MuiXGridLocaleText> {
-  if (muiXGridLocaleCache.has(lng)) return muiXGridLocaleCache.get(lng)!;
+export function loadMuiXGridLocaleText(
+    lng: string
+): Promise<Partial<GridLocaleText>> {
+    const cachedLocale = muiXGridLocaleCache.get(lng);
 
-  const promise = (async () => {
-    switch (lng) {
-      case 'fr': {
-        const { frFR } = await import('@mui/x-data-grid/locales');
-        // extract the localeText object path used previously
-        return frFR.components.MuiDataGrid.defaultProps.localeText;
-      }
-      default:
-        return {};
+    if (cachedLocale) {
+        return cachedLocale;
     }
-  })();
 
-  muiXGridLocaleCache.set(lng, promise);
-  return promise;
+    const locale = (async (): Promise<Partial<GridLocaleText>> => {
+        if (lng === "fr") {
+            const { frFR } = await import("`@mui/x-data-grid/locales`");
+            return frFR.components.MuiDataGrid.defaultProps.localeText;
+        }
+
+        return {};
+    })();
+
+    muiXGridLocaleCache.set(lng, locale);
+
+    return locale;
 }
