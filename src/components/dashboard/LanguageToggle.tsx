@@ -30,7 +30,7 @@ function LanguageToggleInner(props: Props) {
     const pathname = usePathname();
     const router = useRouter();
 
-    const changeLanguage = (locale: string) => () => {
+    const changeLanguage = (locale: 'fr' | 'en') => () => {
         // `usePathname()` returns the current pathname as a plain string,
         // while `router.replace` expects the strongly-typed `Href` used
         // across the routing config. This is safe: we're replacing the

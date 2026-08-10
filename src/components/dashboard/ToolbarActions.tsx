@@ -37,6 +37,15 @@ export default function ThemeMode(props: Props) {
         setMode(paletteMode);
     };
 
+    // Guard against unresolved mode during SSR
+    if (!mode) {
+        return (
+            <Typography variant="body1" gutterBottom id="settings-mode">
+                {props.modeTitle}
+            </Typography>
+        );
+    }
+
     return (
         <>
             <Typography variant="body1" gutterBottom id="settings-mode">
