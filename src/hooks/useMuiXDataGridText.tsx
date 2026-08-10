@@ -1,34 +1,15 @@
 "use client";
 
+import { use } from 'react';
 import { useLocale } from 'next-intl';
-import { useAsyncMemo } from "./useAsyncMemo"
+import { loadDataGridLocale } from './dataGridLocaleCache';
 
 import type { GridLocaleText } from '@mui/x-data-grid';
 
-// MUI X Data Grid doesn't have the locale text built-in
-export default function useMuiXDataGridText() : Partial<GridLocaleText> {
+// MUI X Data Grid doesn't have the locale text built-in.
+// Callers must be rendered inside a <Suspense> boundary, since this
+// suspends while the locale bundle loads instead of flashing English text.
+export default function useMuiXDataGridText(): Partial<GridLocaleText> {
     const language = useLocale();
-
-    const customLocaleText = useAsyncMemo(async () => {
-        switch(language) {
-            case 'fr':
-                const { 
-                    frFR : {
-                        components : {
-                            MuiDataGrid : {
-                                defaultProps : {
-                                    localeText
-                                }
-                            }
-                        }
-                    }
-                } = await import("@mui/x-data-grid/locales");
-                return localeText;
-            // English is by default built-in in @mui package, so no need to include
-            default:
-                return {};
-        }
-    }, [language], {});
-
-    return customLocaleText;
+    return use(loadDataGridLocale(language));
 }
