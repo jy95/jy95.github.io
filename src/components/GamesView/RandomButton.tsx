@@ -8,6 +8,7 @@ import { Suspense } from 'react'
 // Components
 import Fab from '@mui/material/Fab';
 import CasinoIcon from '@mui/icons-material/Casino';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // Hooks
 import { useNavigateToRandomGame } from '@/hooks/useNavigateToRandomGame';
@@ -26,12 +27,20 @@ type Props = {
 
 export function RandomButtonInner(props: Props) {
 
-    const navigateToRandomGame = useNavigateToRandomGame();
+    const { navigateToRandomGame, isPending } = useNavigateToRandomGame();
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
-            <Fab color="primary" variant="extended" onClick={navigateToRandomGame}>
-                <CasinoIcon sx={{ mr: 1 }} />
+            <Fab
+                color="primary"
+                variant="extended"
+                onClick={navigateToRandomGame}
+                disabled={isPending}
+            >
+                {isPending
+                    ? <CircularProgress size={20} color="inherit" sx={{ mr: 1 }} />
+                    : <CasinoIcon sx={{ mr: 1 }} />
+                }
                 { props.label }
             </Fab>
         </div>
