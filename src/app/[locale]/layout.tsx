@@ -6,9 +6,9 @@ import StoreProvider from "@/providers/StoreProvider";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
 
-// Workaround
-import {setRequestLocale} from 'next-intl/server';
+// Localization
 import {routing} from '@/i18n/routing';
+import {locale} from 'next/root-params';
 
 // components
 import Box from '@mui/material/Box';
@@ -38,21 +38,17 @@ export function generateStaticParams() {
 }
 
 export default async function RootLayout(props: Props) {
-  const params = await props.params;
-
-  const {
-    locale
-  } = params;
 
   const {
     children
   } = props;
 
-  // To catch with stuff that aren't a locale
-  const resolvedLocale : Locale = (routing.locales.includes(locale as Locale)) ? locale as Locale : "fr";
+  // As we are in `[locale]/layout.tsx`, we can be sure that the locale is valid, 
+  // but we still need to check it against the routing.locales array to avoid any issues with invalid locales.
+  let curLocale = await locale();
 
-  // Enable static rendering
-  setRequestLocale(resolvedLocale);
+  // To catch with stuff that aren't a locale
+  const resolvedLocale : Locale = (routing.locales.includes(curLocale as Locale)) ? curLocale as Locale : "fr";
 
   return (
     <html lang={resolvedLocale}>
