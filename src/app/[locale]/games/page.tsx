@@ -12,6 +12,7 @@ import LoadingButton from './_client/LoadingButton';
 // Custom
 import CardEntry from "@/components/GamesView/CardEntry";
 import GamesFilters from "./_client/GamesFilters";
+import QueryErrorState from "@/components/common/QueryErrorState";
 
 // Types
 import type { CardGame } from "@/redux/sharedDefintion";
@@ -38,13 +39,19 @@ function GamesGalleryGridInner() {
         hasNextPage,
         fetchNextPage,
         data, 
-        isFetching 
+        isFetching,
+        isError,
+        refetch
     } = useGetGamesInfiniteQuery(
         {
             filters: activeFilters,
             pageSize : LIMIT_PAGE
         }
     );
+
+    if (isError) {
+        return <QueryErrorState onRetry={refetch} />;
+    }
 
     const handleNextPage = async () => {
         await fetchNextPage()
