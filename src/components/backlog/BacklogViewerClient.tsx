@@ -39,43 +39,61 @@ export default function BacklogViewerClient(props : Props) {
 
     const columns = generateColumns(props);
 
-    const handleRowClick: GridEventListener<'rowClick'> = (params) => { 
+    const handleRowClick: GridEventListener<'rowClick'> = (params) => {
         setSelectedGame(params.row as BacklogEntry);
     }
 
     return (
         <>
             <Suspense fallback={null}>
-                <DataGrid 
-                    showToolbar
-                    rows={data} 
-                    columns={columns} 
+                <BacklogDataGrid
+                    data={data}
+                    columns={columns}
                     onRowClick={handleRowClick}
-                    disableRowSelectionOnClick 
-                    localeText={useMuiXDataGridText()}
-                    slotProps={{
-                        loadingOverlay: {
-                            variant: 'linear-progress',
-                            noRowsVariant: 'skeleton',
-                        }
-                    }}
-                    loading={isLoading}
-                    sortingOrder={['asc', 'desc']}
-                    initialState={{
-                        sorting: {
-                            sortModel: [{ field: 'title', sort: 'asc' }],
-                        },
-                        columns: {
-                            columnVisibilityModel: {
-                                // Hide columns notes, the other columns will remain visible
-                                notes: false
-                            }
-                        }
-                    }}
+                    isLoading={isLoading}
                 />
             </Suspense>
 
             {selectedGame && <GameDetailView game={selectedGame} onClose={() => setSelectedGame(null)} />}
         </>
+    );
+}
+
+function BacklogDataGrid({ data, columns, onRowClick, isLoading }: {
+    data: any[];
+    columns: any[];
+    onRowClick: GridEventListener<'rowClick'>;
+    isLoading: boolean;
+}) {
+    const localeText = useMuiXDataGridText();
+
+    return (
+        <DataGrid
+            showToolbar
+            rows={data}
+            columns={columns}
+            onRowClick={onRowClick}
+            disableRowSelectionOnClick
+            localeText={localeText}
+            slotProps={{
+                loadingOverlay: {
+                    variant: 'linear-progress',
+                    noRowsVariant: 'skeleton',
+                }
+            }}
+            loading={isLoading}
+            sortingOrder={['asc', 'desc']}
+            initialState={{
+                sorting: {
+                    sortModel: [{ field: 'title', sort: 'asc' }],
+                },
+                columns: {
+                    columnVisibilityModel: {
+                        // Hide columns notes, the other columns will remain visible
+                        notes: false
+                    }
+                }
+            }}
+        />
     );
 }

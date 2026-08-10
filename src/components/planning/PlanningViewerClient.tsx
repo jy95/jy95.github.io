@@ -42,37 +42,16 @@ export default function PlanningViewer(props: Props) {
     return (
         <>
             <Suspense fallback={null}>
-                <DataGrid 
-                    showToolbar
-                    rows={data} 
-                    columns={columns} 
+                <PlanningDataGrid
+                    data={data}
+                    columns={columns}
                     onRowClick={handleRowClick}
-                    disableRowSelectionOnClick 
-                    localeText={useMuiXDataGridText()}
-                    slotProps={{
-                        loadingOverlay: {
-                            variant: 'linear-progress',
-                            noRowsVariant: 'skeleton',
-                        }
-                    }}
-                    loading={isLoading}
-                    sortingOrder={['asc', 'desc']}
-                    initialState={{
-                        sorting: {
-                            sortModel: [{ field: 'availableAt', sort: 'asc' }],
-                        },
-                        columns: {
-                            columnVisibilityModel: {
-                                // Hide columns endAt, the other columns will remain visible
-                                endAt: false
-                            }
-                        }
-                    }}
+                    isLoading={isLoading}
                 />
             </Suspense>
 
             {selectedGame && (
-                <GameDetailView 
+                <GameDetailView
                     game={selectedGame}
                     onClose={() => setSelectedGame(null)}
                     showVoteSection={false}
@@ -80,4 +59,43 @@ export default function PlanningViewer(props: Props) {
             )}
         </>
     )
+}
+
+function PlanningDataGrid({ data, columns, onRowClick, isLoading }: {
+    data: any[] | undefined;
+    columns: any[];
+    onRowClick: GridEventListener<'rowClick'>;
+    isLoading: boolean;
+}) {
+    const localeText = useMuiXDataGridText();
+
+    return (
+        <DataGrid
+            showToolbar
+            rows={data}
+            columns={columns}
+            onRowClick={onRowClick}
+            disableRowSelectionOnClick
+            localeText={localeText}
+            slotProps={{
+                loadingOverlay: {
+                    variant: 'linear-progress',
+                    noRowsVariant: 'skeleton',
+                }
+            }}
+            loading={isLoading}
+            sortingOrder={['asc', 'desc']}
+            initialState={{
+                sorting: {
+                    sortModel: [{ field: 'availableAt', sort: 'asc' }],
+                },
+                columns: {
+                    columnVisibilityModel: {
+                        // Hide columns endAt, the other columns will remain visible
+                        endAt: false
+                    }
+                }
+            }}
+        />
+    );
 }
