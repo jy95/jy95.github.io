@@ -33,6 +33,6 @@ export async function GET() {
 function fromRawGamesToCardGames(gamesData: RawGame[]): CardGame[] {
     return gamesData.map(game => ({
         ...game,
-        ...buildCardEntry(game, "/covers")
+        ...buildCardEntry(game, "/covers", "dlc")
     }));
 }

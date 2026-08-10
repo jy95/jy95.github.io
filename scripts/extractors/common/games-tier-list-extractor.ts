@@ -69,6 +69,7 @@ function mapToCardGame(game: BasicGame): CardGame {
         id,
         imagePath: `/covers/${id}/${game.coverFile ?? "cover.webp"}`,
         url: base_url,
-        url_type: url_type
+        url_type: url_type,
+        sourceKind: 'game' // tag as 'game' for tier lists
     };
 }

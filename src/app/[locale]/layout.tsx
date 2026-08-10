@@ -20,6 +20,8 @@ import type {Locale} from 'next-intl';
 import type { Metadata } from 'next/types';
 import type { ReactNode } from "react";
 
+import { Suspense } from 'react';
+
 export const metadata: Metadata = {
   title: 'GamesPassionFR',
   description: 'Catalogue des jeux de GamesPassionFR',
@@ -54,25 +56,27 @@ export default async function RootLayout(props: Props) {
     <html lang={resolvedLocale}>
       <body>
         <StoreProvider>
-          <ThemeProvider lng={resolvedLocale}>
-            <DashboardAppProvider locale={resolvedLocale} >
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  minHeight: '100%'
-                }}
-              >
-                {/* Main content */}
-                <Box sx={{ flex: 1 }}>
-                  {children}
-                </Box>
+          <Suspense fallback={null}>
+            <ThemeProvider lng={resolvedLocale}>
+              <DashboardAppProvider locale={resolvedLocale} >
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    minHeight: '100%'
+                  }}
+                >
+                  {/* Main content */}
+                  <Box sx={{ flex: 1 }}>
+                    {children}
+                  </Box>
 
-                {/* Footer */}
-                <Footer />
-              </Box>
-            </DashboardAppProvider>
-          </ThemeProvider>
+                  {/* Footer */}
+                  <Footer />
+                </Box>
+              </DashboardAppProvider>
+            </ThemeProvider>
+          </Suspense>
         </StoreProvider>
         <SpeedInsights />
         <Analytics />

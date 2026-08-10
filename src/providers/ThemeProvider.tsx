@@ -2,24 +2,17 @@
 
 import { createTheme, ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
 
-import { useMemo } from 'react';
-import { useAsyncMemo } from '@/hooks/useAsyncMemo';
+import { useMemo, use } from 'react';
+import { loadMuiLocale } from '@/hooks/lazyMui';
 
 import type { ReactNode } from "react";
 
 export function ThemeProvider({ children, lng }: { children: ReactNode, lng : string }) {
 
-    // Prepare theme for possible darkmode
-    const muiLanguage = useAsyncMemo(async () => {
-        switch(lng) {
-            case 'fr':
-                const { frFR : language} = await import("@mui/material/locale");
-                return language;
-            // English is by default built-in in @mui package, so no need to include
-            default:
-                return {};
-        }
-    }, [lng], {});
+    // Use React's use() to synchronously obtain the imported locale object.
+    // This will suspend the component until the import resolves; ensure the
+    // caller wraps this provider in a Suspense boundary.
+    const muiLanguage = use(loadMuiLocale(lng));
 
     const theme = useMemo(
         () =>

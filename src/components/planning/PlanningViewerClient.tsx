@@ -2,7 +2,7 @@
 
 // Hooks
 import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 
 // Redux
 import { useGetPlanningQuery } from "@/redux/services/planningAPI";
@@ -26,10 +26,7 @@ type Props = {} & PropsColumns;
 
 export default function PlanningViewer(props: Props) {
 
-    // Using a query hook automatically fetches data and returns query values
-
     const { data, error, isLoading, refetch } = useGetPlanningQuery();
-    const customLocaleText = useMuiXDataGridText();
     const [selectedGame, setSelectedGame] = useState<planningEntry | null>(null);
 
     if (error) {
@@ -44,33 +41,36 @@ export default function PlanningViewer(props: Props) {
 
     return (
         <>
-            <DataGrid 
-                showToolbar
-                rows={data} 
-                columns={columns} 
-                onRowClick={handleRowClick}
-                disableRowSelectionOnClick 
-                localeText={customLocaleText}
-                slotProps={{
-                    loadingOverlay: {
-                        variant: 'linear-progress',
-                        noRowsVariant: 'skeleton',
-                    }
-                }}
-                loading={isLoading}
-                sortingOrder={['asc', 'desc']}
-                initialState={{
-                    sorting: {
-                        sortModel: [{ field: 'availableAt', sort: 'asc' }],
-                    },
-                    columns: {
-                        columnVisibilityModel: {
-                            // Hide columns endAt, the other columns will remain visible
-                            endAt: false
+            <Suspense fallback={null}>
+                <DataGrid 
+                    showToolbar
+                    rows={data} 
+                    columns={columns} 
+                    onRowClick={handleRowClick}
+                    disableRowSelectionOnClick 
+                    localeText={useMuiXDataGridText()}
+                    slotProps={{
+                        loadingOverlay: {
+                            variant: 'linear-progress',
+                            noRowsVariant: 'skeleton',
                         }
-                    }
-                }}
-            />
+                    }}
+                    loading={isLoading}
+                    sortingOrder={['asc', 'desc']}
+                    initialState={{
+                        sorting: {
+                            sortModel: [{ field: 'availableAt', sort: 'asc' }],
+                        },
+                        columns: {
+                            columnVisibilityModel: {
+                                // Hide columns endAt, the other columns will remain visible
+                                endAt: false
+                            }
+                        }
+                    }}
+                />
+            </Suspense>
+
             {selectedGame && (
                 <GameDetailView 
                     game={selectedGame}

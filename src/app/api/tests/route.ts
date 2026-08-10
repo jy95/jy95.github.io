@@ -35,6 +35,6 @@ export async function GET(request: Request) {
 function enhanceGameItem(game: rawEntry): CardGame {
     return {
         ...game,
-        ...buildCardEntry(game, "/testscovers")
+        ...buildCardEntry(game, "/testscovers", "test")
     };
 }

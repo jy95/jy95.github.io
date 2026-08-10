@@ -24,7 +24,7 @@ export async function GET() {
 
 // Return an enhanced payload for a single game
 function enhanceGameItem(game: rawEntry): planningEntry {
-    const { id, url, url_type, imagePath } = buildCardEntry(game, "/covers");
+    const { id, url, url_type, imagePath } = buildCardEntry(game, "/covers", "planning");
 
     return {
         id,
