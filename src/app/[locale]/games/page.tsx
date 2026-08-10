@@ -49,7 +49,7 @@ function GamesGalleryGridInner() {
         }
     );
 
-    if (isError) {
+    if (isError && !data) {
         return <QueryErrorState onRetry={refetch} />;
     }
 
