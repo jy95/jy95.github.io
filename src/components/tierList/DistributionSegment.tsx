@@ -8,10 +8,11 @@ import Box from "@mui/material/Box";
 import Tooltip from "@mui/material/Tooltip";
 
 import type { BackgroundColor } from "./index";
+import type { TierCategoryKey } from "@/types/tierList";
 
 // Types
 export interface DistributionSegmentProps {
-    tierSlug: string;
+    tierSlug: TierCategoryKey;
     count: number;
     percentage: number;
     categoryColors: Record<string, BackgroundColor>;
@@ -23,7 +24,7 @@ export default function DistributionSegment({ tierSlug, count, percentage, categ
     const tCats = useTranslations("TierList.categories");
 
     const tooltipText = tStats('tooltip', { 
-        category: tCats(tierSlug as any), 
+        category: tCats(tierSlug), 
         count: count, 
         percentage: Math.round(percentage) 
     });

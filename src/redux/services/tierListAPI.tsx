@@ -4,9 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // Types
 import type { CardGame } from "@/redux/sharedDefintion";
 import type { BacklogEntry } from "@/app/api/backlog/route";
-import type { AppConfig } from 'next-intl';
-
-type Ranking = keyof AppConfig["Messages"]["TierList"]["categories"]
+import type { TierCategoryKey } from "@/types/tierList";
 
 type GamesTierList = Record<string, CardGame[]>;
 type BacklogTierList = Record<string, BacklogEntry[]>;
@@ -25,7 +23,7 @@ export const tierListAPI = createApi({
         getBacklogTierList: builder.query<BacklogTierList, void>({
             query: () => "/backlog"
         }),
-        getSortedCategories: builder.query<Ranking[], sortOption>({
+        getSortedCategories: builder.query<TierCategoryKey[], sortOption>({
             query: (sortOrder) => `/categories?sort=${sortOrder}`
         }),
         getTestsTierList: builder.query<TestsTierList, void>({

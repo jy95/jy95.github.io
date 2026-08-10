@@ -3,7 +3,6 @@ import {NextIntlClientProvider} from 'next-intl';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 
 // Hooks
-import {setRequestLocale} from 'next-intl/server';
 import {useTranslations} from 'next-intl';
 
 // components
@@ -21,9 +20,6 @@ type Props = {
 }
 
 export default function DashboardAppProvider({children, locale} : Props) {
-
-    // Enable static rendering
-    setRequestLocale(locale);
 
     // Fetch labels
     const t = useTranslations('dashboard.toolbar');

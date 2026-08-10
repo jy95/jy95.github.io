@@ -6,7 +6,8 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
-import TextField from '@mui/material/TextField';
+
+import { renderAutocompleteInput } from "./renderAutocompleteInput";
 
 // actions
 import { filteringByGenre, selectSelectedGenres } from "@/redux/features/gamesSlice";
@@ -66,10 +67,7 @@ function GenresSelect() {
                 name: idToName(genre.toString() as GameGenreId),
                 id: genre
             }))}
-            /* eslint-disable */
-            // @ts-ignore Type not accurate, will report it to MUI later
-            renderInput={(params) => <TextField {...params} label={t("filtersLabels.genres") as string} />}
-            /* eslint-enable */
+            renderInput={renderAutocompleteInput(t("filtersLabels.genres"))}
             onChange={(_event, value) => {
                 dispatch(filteringByGenre(value.map(v => v.id)));
             }}

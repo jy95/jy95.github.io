@@ -1,5 +1,5 @@
 // Hooks
-import {setRequestLocale , getTranslations} from 'next-intl/server';
+import { getTranslations} from 'next-intl/server';
 
 import BacklogViewerClient from '@/components/backlog/BacklogViewerClient';
 
@@ -12,13 +12,6 @@ type Props = {
 }
 
 export default async function BacklogViewer(props : Props) {
-
-    // retrieve locale
-    const params = await props.params;
-    const locale = params.locale;
-
-    // Enable static rendering
-    setRequestLocale(locale);
 
     // Using a query hook automatically fetches data and returns query values
     const t = await getTranslations("backlog");

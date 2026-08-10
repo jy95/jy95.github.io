@@ -14,34 +14,36 @@ import NavigationItem from "./NavigationItem";
 import { useAppContext } from "../provider/useAppContext";
 import type { NavigationItem as Item } from "../types";
 import { Link } from "@/i18n/routing";
+import type { Href } from "@/i18n/routing";
 
 /**
- * Same styled button used for popover child items — identical colour rules
- * to NavigationListItemButton in NavigationItem.tsx.
+ * Shared sx styles for popover child items — identical colour rules
+ * to NavigationListItemButton in NavigationItem.tsx, but as sx prop
+ * to preserve polymorphic component typing.
  */
-const PopoverListItemButton = styled(ListItemButton)(({ theme }) => ({
-  borderRadius: 8,
+const popoverListItemButtonSx = {
+  borderRadius: 2,
   "& .MuiSvgIcon-root": {
-    color: (theme.vars ?? theme).palette.action.active,
+    color: (theme: any) => (theme.vars ?? theme).palette.action.active,
   },
   "& .MuiAvatar-root": {
-    backgroundColor: (theme.vars ?? theme).palette.action.active,
+    backgroundColor: (theme: any) => (theme.vars ?? theme).palette.action.active,
   },
   "&.Mui-selected": {
     "& .MuiListItemIcon-root": {
-      color: (theme.vars ?? theme).palette.primary.dark,
+      color: (theme: any) => (theme.vars ?? theme).palette.primary.dark,
     },
     "& .MuiTypography-root": {
-      color: (theme.vars ?? theme).palette.primary.dark,
+      color: (theme: any) => (theme.vars ?? theme).palette.primary.dark,
     },
     "& .MuiSvgIcon-root": {
-      color: (theme.vars ?? theme).palette.primary.dark,
+      color: (theme: any) => (theme.vars ?? theme).palette.primary.dark,
     },
     "& .MuiTouchRipple-child": {
-      backgroundColor: (theme.vars ?? theme).palette.primary.dark,
+      backgroundColor: (theme: any) => (theme.vars ?? theme).palette.primary.dark,
     },
   },
-}));
+} as const;
 
 function hasChildren(item: Item): item is Item & { children: Item[] } {
   return !!item.children?.length;
@@ -94,12 +96,17 @@ export default function NavigationGroup({
               key={`${child.segment ?? child.title}-${idx}`}
               sx={{ py: 0, px: 1 }}
             >
-              <PopoverListItemButton
-                // @ts-ignore - ListItemButtonProps doesn't allow 'div' but it works fine and avoids invalid DOM attributes from Link
-                component={Link as any}
-                href={childPath}
+              <ListItemButton
+                component={Link}
+                // `childPath` is built by concatenating route segments at
+                // runtime, so it can't be statically checked against the
+                // finite `routing.pathnames` union the way a literal string
+                // could — it's still guaranteed valid because it's derived
+                // from the exact same segment strings the routes are
+                // defined with.
+                href={childPath as Href}
                 selected={childSelected}
-                sx={{ px: 1.4, height: 48, borderRadius: 2 }}
+                sx={{ ...popoverListItemButtonSx, px: 1.4, height: 48 }}
               >
                 <Box sx={{ display: "flex" }}>
                   <ListItemIcon
@@ -117,7 +124,7 @@ export default function NavigationGroup({
                   primary={child.title}
                   sx={{ ml: 1.2, whiteSpace: "nowrap" }}
                 />
-              </PopoverListItemButton>
+              </ListItemButton>
             </ListItem>
           );
         })}

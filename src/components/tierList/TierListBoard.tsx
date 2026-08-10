@@ -4,9 +4,10 @@ import { useMemo } from "react";
 import Box from "@mui/material/Box";
 import { TierRow } from "./TierRow";
 import type { RawType, GameRender, BackgroundColor } from "./index";
+import type { TierCategoryKey } from "@/types/tierList";
 
 interface TierListBoardProps<T extends RawType> {
-    categories: string[];
+    categories: TierCategoryKey[];
     data: Record<string, T[]>;
     categoryColors: Record<string, BackgroundColor>;
     GameRender: GameRender<T>;

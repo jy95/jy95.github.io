@@ -9,10 +9,11 @@ import GamesRow from "./GamesRow";
 
 // Types
 import type { GameRender, RawType, BackgroundColor } from "./index";
+import type { TierCategoryKey } from "@/types/tierList";
 
 export interface TierRowProps<T extends RawType> {
     // A unique identifier for the tier row, used for keying and styling purposes.
-    slugKey: string;
+    slugKey: TierCategoryKey;
     // An array of items that belong to this tier. The type T can be defined by the parent component to allow for flexibility in the kind of data being displayed.
     items: T[];
     // The color associated with this tier

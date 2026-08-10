@@ -1,24 +1,9 @@
 import PlanningViewerClient from "@/components/planning/PlanningViewerClient";
 
 // Hooks
-import {setRequestLocale , getTranslations} from 'next-intl/server';
+import { getTranslations} from 'next-intl/server';
 
-import type {Locale} from 'next-intl';
-
-type Props = {
-    params: Promise<{
-        locale: Locale
-    }>
-}
-
-export default async function PlanningViewer(props : Props) {
-
-    // retrieve locale
-    const params = await props.params;
-    const locale = params.locale;
-
-    // Enable static rendering
-    setRequestLocale(locale);
+export default async function PlanningViewer() {
 
     // Retrieve translation
     const t = await getTranslations("planning");

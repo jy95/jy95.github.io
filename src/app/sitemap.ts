@@ -1,7 +1,7 @@
 import {MetadataRoute} from 'next';
 import {routing, getPathname} from '@/i18n/routing';
+import type {Href} from '@/i18n/routing';
 
-type Href = Parameters<typeof getPathname>[0]['href'];
 type pathnames = typeof routing.pathnames;
 type AvailableRoutes = keyof pathnames;
 type StaticRoute = Exclude<AvailableRoutes, `${string}[${string}]`>;

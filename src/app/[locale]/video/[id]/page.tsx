@@ -1,4 +1,3 @@
-import {setRequestLocale} from 'next-intl/server';
 import {getTranslations} from 'next-intl/server';
 import YTPlayer from "@/components/YTPlayer/Player";
 import RandomButton from '@/components/GamesView/RandomButton';
@@ -22,11 +21,8 @@ export async function generateStaticParams() {
 export default async function PlaylistPage({ params } : Props) {
 
     const parameters = await params;
-    const { id, locale } = parameters
+    const { id } = parameters
     const identifier = id as string;
-
-    // Enable static rendering
-    setRequestLocale(locale);
 
     // Retrieve translation
     const t = await getTranslations("gamesLibrary");
