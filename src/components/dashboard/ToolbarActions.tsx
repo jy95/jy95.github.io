@@ -4,88 +4,96 @@
 import { useColorScheme } from '@mui/material/styles';
 
 // Components
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Stack from '@mui/material/Stack';
 import ToggleButton from '@mui/material/ToggleButton';
-import Typography from "@mui/material/Typography";
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
 
 // Icons
-import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import LightModeIcon from '@mui/icons-material/LightMode';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 
+// Local components
+import LanguageToggle from './LanguageToggle';
+
 // Types
-import type { MouseEvent } from "react";
+import type { MouseEvent } from 'react';
 import type { Props as CommonProps } from './types';
-type UsedProps = Pick<CommonProps, "modeTitle" | "darkLabel" | "lightLabel" | "systemLabel">
-type Props = UsedProps;
 
-// Derived from the hook itself rather than hand-typed, so it can never
-// drift from whatever MUI actually accepts.
-type ColorSchemeMode = Parameters<ReturnType<typeof useColorScheme>['setMode']>[0];
+type Props = CommonProps;
+type ColorSchemeMode =
+  Parameters<ReturnType<typeof useColorScheme>['setMode']>[0];
 
-export default function ThemeMode(props: Props) {
+export default function ToolbarActions(props: Props) {
+  const { mode, setMode } = useColorScheme();
 
-    const { mode, setMode } = useColorScheme();
-
-    const handleChangeThemeMode = (
-        _event: MouseEvent<HTMLElement>,
-        paletteMode: ColorSchemeMode | null
-    ) => {
-        if (paletteMode === null) {
-          return;
-        }
-        setMode(paletteMode);
-    };
-
-    // Guard against unresolved mode during SSR
-    if (!mode) {
-        return (
-            <Typography variant="body1" gutterBottom id="settings-mode">
-                {props.modeTitle}
-            </Typography>
-        );
+  const handleChangeThemeMode = (
+    _event: MouseEvent<HTMLElement>,
+    paletteMode: ColorSchemeMode | null
+  ) => {
+    if (paletteMode !== null) {
+      setMode(paletteMode);
     }
+  };
 
-    return (
-        <>
-            <Typography variant="body1" gutterBottom id="settings-mode">
-                {props.modeTitle}
-            </Typography>
-            <ToggleButtonGroup
-                exclusive
-                value={mode}
-                color="primary"
-                onChange={handleChangeThemeMode}
-                aria-labelledby="settings-mode"
-                fullWidth
+  return (
+    <Stack
+      direction="row"
+      spacing={{ xs: 0.25, sm: 0.75 }}
+      sx={{ alignItems: 'center', minWidth: 0 }}
+    >
+      <LanguageToggle
+        englishLabel={props.englishLabel}
+        frenchLabel={props.frenchLabel}
+        languageTitle={props.languageTitle}
+      />
+
+      <ToggleButtonGroup
+        aria-label={props.modeTitle}
+        color="primary"
+        exclusive
+        onChange={handleChangeThemeMode}
+        size="small"
+        value={mode}
+      >
+        <Tooltip title={props.lightLabel}>
+          <ToggleButton aria-label={props.lightLabel} value="light">
+            <LightModeIcon fontSize="small" />
+            <Typography
+              component="span"
+              sx={{ display: { xs: 'none', md: 'inline' }, ml: 0.5 }}
             >
+              {props.lightLabel}
+            </Typography>
+          </ToggleButton>
+        </Tooltip>
 
-                <ToggleButton
-                    value="light"
-                    aria-label={props.lightLabel}
-                >
-                    <LightModeIcon fontSize="small" />
-                    {props.lightLabel}
-                </ToggleButton>
+        <Tooltip title={props.systemLabel}>
+          <ToggleButton aria-label={props.systemLabel} value="system">
+            <SettingsBrightnessIcon fontSize="small" />
+            <Typography
+              component="span"
+              sx={{ display: { xs: 'none', md: 'inline' }, ml: 0.5 }}
+            >
+              {props.systemLabel}
+            </Typography>
+          </ToggleButton>
+        </Tooltip>
 
-                <ToggleButton
-                    value="system"
-                    aria-label={props.systemLabel}
-                >
-                    <SettingsBrightnessIcon fontSize="small" />
-                    {props.systemLabel}
-                </ToggleButton>
-
-                <ToggleButton
-                    value="dark"
-                    aria-label={props.darkLabel}
-                >
-                    <DarkModeOutlinedIcon fontSize="small" />
-                    {props.darkLabel}
-                </ToggleButton>
-
-            </ToggleButtonGroup>
-        </>
-    );
-
+        <Tooltip title={props.darkLabel}>
+          <ToggleButton aria-label={props.darkLabel} value="dark">
+            <DarkModeOutlinedIcon fontSize="small" />
+            <Typography
+              component="span"
+              sx={{ display: { xs: 'none', md: 'inline' }, ml: 0.5 }}
+            >
+              {props.darkLabel}
+            </Typography>
+          </ToggleButton>
+        </Tooltip>
+      </ToggleButtonGroup>
+    </Stack>
+  );
 }
