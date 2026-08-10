@@ -36,6 +36,10 @@
         "loadMore": "Charger plus",
         "loading": "Chargement en cours ...",
         "noResults": "Plus d'autre résultats à afficher",
+        "errors": {
+            "generic": "Une erreur est survenue lors du chargement de ce contenu.",
+            "retry": "Réessayer"
+        },
         "dates": {
             "years": "{count, plural, =1 {1 année} other {# années} }",
             "months": "{count, plural, =1 {1 mois} other {# mois} }",

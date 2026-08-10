@@ -6,14 +6,15 @@ import { useGetTestsQuery } from "@/redux/services/testsAPI";
 // Components
 import CardEntry from "@/components/GamesView/CardEntry";
 import Grid from '@mui/material/Grid';
+import QueryErrorState from "@/components/common/QueryErrorState";
 
 export default function TestsPage() {
 
     // Using a query hook automatically fetches data and returns query values
-    const { data, error, isLoading } = useGetTestsQuery({});
+    const { data, error, isLoading, refetch } = useGetTestsQuery({});
 
     if (error) {
-        return <>Something bad happened</>;
+        return <QueryErrorState onRetry={refetch} />;
     }
     
     if (isLoading) {

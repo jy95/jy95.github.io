@@ -11,14 +11,15 @@ import SkeletonStats from "./_client/SkeletonStats";
 import GeneralStats from "./_client/GeneralStats";
 import GenresChart from "./_client/GenresChart";
 import PlatformsChart from "./_client/PlatformsChart";
+import QueryErrorState from "@/components/common/QueryErrorState";
 
 export default function StatsPage() {
 
   // Using a query hook automatically fetches data and returns query values
-  const { data, error, isLoading } = useGetStatsQuery();
+  const { data, error, isLoading, refetch } = useGetStatsQuery();
 
   if (error) {
-    return <>Something bad happened</>;
+    return <QueryErrorState onRetry={refetch} />;
   }
 
   if (isLoading) {

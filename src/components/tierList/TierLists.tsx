@@ -10,6 +10,7 @@ import { TierListControls } from "./TierListControls";
 import { TierListBoard } from "./TierListBoard";
 import DistributionBar from "./DistributionBar";
 import DisclaimerAccordion from "./DisclaimerAccordion";
+import QueryErrorState from "@/components/common/QueryErrorState";
 
 import type { RawType, GameRender, BackgroundColor } from "./index";
 
@@ -41,7 +42,12 @@ export function TierLists<T extends RawType>({
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
     // API call for categories
-    const { data: categories, isLoading: isLoadingCategories } = useGetSortedCategoriesQuery(sortOrder);
+    const {
+        data: categories,
+        isLoading: isLoadingCategories,
+        error: categoriesError,
+        refetch: refetchCategories,
+    } = useGetSortedCategoriesQuery(sortOrder);
     const toggleSort = () => setSortOrder(prev => (prev === "asc" ? "desc" : "asc"));
 
     // When loading
@@ -51,6 +57,12 @@ export function TierLists<T extends RawType>({
                 <CircularProgress />
             </Box>
         );
+    }
+
+    // If fetching categories failed, surface the same retry UX as every
+    // other query in the app instead of silently rendering nothing.
+    if (categoriesError) {
+        return <QueryErrorState onRetry={refetchCategories} />;
     }
 
     // If no categories was found
