@@ -1,13 +1,50 @@
-// Type of Youtube link 
-export type YTUrlType = 'PLAYLIST' | 'VIDEO';
+// Structure used in data/games.json.
+export type BasicEntry = {
+    /** @description Technical identifier for React - by default: playlistId | videoId */
+    id: string;
+    /** @description Title of the game, such as "Beyond Good & Evil" */
+    title: string;
+    /** @description Platform for that game */
+    platform: number;
+    /** @description Duration of the walkthrough (e.g. "01:42:13") */
+    duration?: string;
+    /** @description Genres of the game */
+    genres: number[];
+    /** @description When the game was released, such as "2005-12-22" */
+    releaseDate?: string;
+    /** @description When to display the game publicly, such as "2021-12-22" */
+    availableAt?: string;
+    /** @description When to stop displaying the game publicly, such as "2024-07-22" */
+    endAt?: string;
+    /** @description Name of the main cover file, such as "cover.webp" */
+    coverFile?: string;
+};
 
-// structure for Card entry
+export type BasicVideo = BasicEntry & {
+    /** @description Video ID from YouTube */
+    videoId: string;
+};
+
+export type BasicPlaylist = BasicEntry & {
+    /** @description Playlist ID from YouTube */
+    playlistId: string;
+};
+
+export type BasicGame = BasicVideo | BasicPlaylist;
+
+// Structure used in data/dlcs.json and data/tests.json.
+export type RawGame = Omit<BasicGame, "genres" | "id">;
+
+// Type of Youtube link
+export type YTUrlType = "PLAYLIST" | "VIDEO";
+
+// Structure for Card entry
 export interface BasicCard {
     /** @description Link to the picture for the card component */
     imagePath: string;
 }
 
-// structure for Card entry
+// Structure for Card entry
 export type CardEntry = {
     /** @description Link to Youtube */
     url: string;
@@ -15,14 +52,8 @@ export type CardEntry = {
     url_type: YTUrlType;
 } & BasicCard;
 
-/**
- * Source kind discriminant — lets callers know what source a CardGame came from.
- * This is a small, additive discriminant that can be extended into a full
- * discriminated union later if you want to model every source precisely.
- */
-export type SourceKind = 'game' | 'dlc' | 'series' | 'planning' | 'test';
+export type CardKind = "game" | "dlc" | "series" | "planning" | "test";
 
-// Canonical shape for a game rendered as a card
 export type CardGame = {
     id: string;
     title: string;
@@ -33,8 +64,7 @@ export type CardGame = {
     availableAt?: string;
     endAt?: string;
     coverFile?: string;
-    /** Small discriminant telling callers where this item originates from */
-    sourceKind?: SourceKind;
+    kind?: CardKind;
 } & CardEntry;
 
 interface GameProps {
@@ -43,40 +73,38 @@ interface GameProps {
     url_type: YTUrlType;
 }
 
-// 🎯 User-Defined Type Guard
 function isPlaylist(game: RawGame): game is Omit<BasicPlaylist, "genres" | "id"> {
-    return 'playlistId' in game;
+    return "playlistId" in game;
 }
 
 export function extractGameCardProps(game: RawGame): GameProps {
     const isPlaylistType = isPlaylist(game);
     const url_type: YTUrlType = isPlaylistType ? "PLAYLIST" : "VIDEO";
-    const id: string = isPlaylist(game) ? game.playlistId : (game as Omit<BasicVideo, "genres" | "id">).videoId;
+    const id = isPlaylistType
+        ? game.playlistId
+        : (game as Omit<BasicVideo, "genres" | "id">).videoId;
 
     return {
         id,
-        url: isPlaylistType ? `https://www.youtube.com/playlist?list=${id}` : `https://www.youtube.com/watch?v=${id}`,
+        url: isPlaylistType
+            ? `https://www.youtube.com/playlist?list=${id}`
+            : `https://www.youtube.com/watch?v=${id}`,
         url_type
-    }
+    };
 }
 
-/**
- * Builds the CardEntry portion (id/url/url_type/imagePath) shared by every
- * "list of games" API route. `coversBasePath` lets each route point at its
- * own public folder (e.g. "/covers" vs "/testscovers") while keeping the
- * id/url derivation and coverFile fallback logic in exactly one place.
- *
- * Previously this logic was reimplemented — each slightly differently — in
- * games/route.ts, tests/route.ts, series/route.ts, dlcs/route.ts and
- * planning/route.ts.
- */
-export function buildCardEntry(game: RawGame, coversBasePath: string, sourceKind: SourceKind = 'game'): CardEntry & { id: string, sourceKind: SourceKind } {
+export function buildCardEntry(
+    game: RawGame,
+    coversBasePath: string,
+    kind: CardKind = "game"
+): CardEntry & { id: string; kind: CardKind } {
     const { id, url, url_type } = extractGameCardProps(game);
+
     return {
         id,
         url,
         url_type,
         imagePath: `${coversBasePath}/${id}/${game.coverFile ?? "cover.webp"}`,
-        sourceKind
+        kind
     };
 }
