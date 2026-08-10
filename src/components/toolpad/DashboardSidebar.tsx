@@ -24,13 +24,16 @@ export default function DashboardSidebar() {
         component="nav"
         sx={{
           height: "100%",
-          minHeight: 0,                 // <-- allow flex child to shrink and scroll correctly
+          minHeight: 0,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          overflowY: "auto",            // <-- explicit vertical scrolling
-          scrollbarGutter: "stable",    // <-- reserve gutter to avoid layout jumps
           overflowX: "hidden",
+          overflowY: "auto",
+          scrollbarWidth: "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
           pt: 2,
         }}
       >
