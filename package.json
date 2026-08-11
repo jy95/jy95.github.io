@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "dev:test": "vitest",
     "generate-responsive-images": "npx tsx scripts/generate-responsive-images.ts",
     "sample-game": "npm run generate-responsive-images -- singleGame PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8 covers cover.jpg",
     "generate-playlist-data-report": "npx tsx scripts/generate-playlists-stats.ts",
@@ -42,16 +45,21 @@
   },
   "devDependencies": {
     "@inquirer/input": "^5.1.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
     "@types/better-sqlite3": "^9.6.0",
     "@types/node": "^26.2.0",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.4",
+    "@vitest/coverage-v8": "^4.1.10",
     "better-sqlite3": "^13.0.2",
     "feed": "^6.0.0",
     "google-img-scrap": "^1.2.1",
     "googleapis": "^174.0.1",
     "howlongtobeat-ts": "^1.2.0",
-    "tsx": "^4.23.11"
+    "jsdom": "^30.0.1",
+    "tsx": "^4.23.11",
+    "vitest": "^4.1.10"
   },
   "overrides": {
     "@types/react": "19.2.18",
