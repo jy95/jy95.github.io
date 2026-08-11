@@ -7,9 +7,9 @@
 			"releaseDate": "2011-01-27",
 			"duration": "06:54:25",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN",
@@ -18,9 +18,9 @@
 			"releaseDate": "2009-02-13",
 			"duration": "05:55:33",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ5-m-EYS85h0SY9bTkrFMor",
@@ -29,9 +29,9 @@
 			"releaseDate": "2008-01-17",
 			"duration": "08:47:35",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ5-m-EYS85h0SY9bTkrFMor/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5-m-EYS85h0SY9bTkrFMor",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ5-m-EYS85h0SY9bTkrFMor/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX",
@@ -40,9 +40,9 @@
 			"releaseDate": "2011-04-21",
 			"duration": "04:34:28",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX/cover.webp"
 		}
 	],
 	"tier_excellent": [
@@ -53,9 +53,9 @@
 			"releaseDate": "2001-11-30",
 			"duration": "05:44:19",
 			"platform": 5,
-			"imagePath": "/covers/PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB",
@@ -64,9 +64,9 @@
 			"releaseDate": "2007-10-07",
 			"duration": "04:02:36",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB/cover.webp"
 		},
 		{
 			"id": "IwBRxURrIDM",
@@ -75,9 +75,9 @@
 			"releaseDate": "2008-01-17",
 			"duration": "01:36:53",
 			"platform": 6,
-			"imagePath": "/covers/IwBRxURrIDM/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=IwBRxURrIDM",
-			"url_type": "PLAYLIST"
+			"url": "https://www.youtube.com/watch?v=IwBRxURrIDM",
+			"url_type": "VIDEO",
+			"imagePath": "/covers/IwBRxURrIDM/cover.webp"
 		}
 	],
 	"tier_good": [
@@ -88,9 +88,9 @@
 			"releaseDate": "2010-01-08",
 			"duration": "09:14:07",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ7W7XcSZIOukj-hyjckT5Ca/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7W7XcSZIOukj-hyjckT5Ca",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ7W7XcSZIOukj-hyjckT5Ca/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
@@ -99,9 +99,9 @@
 			"releaseDate": "2024-02-12",
 			"duration": "07:21:57",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ4DAQ8BmgRZFLB8hutraIoU",
@@ -110,9 +110,9 @@
 			"releaseDate": "2009-05-22",
 			"duration": "04:28:41",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ4DAQ8BmgRZFLB8hutraIoU/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4DAQ8BmgRZFLB8hutraIoU",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ4DAQ8BmgRZFLB8hutraIoU/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-",
@@ -121,9 +121,9 @@
 			"releaseDate": "2006-06-01",
 			"duration": "02:45:11",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ5DiP_v6xkZGHkg-XOIimKT",
@@ -132,9 +132,9 @@
 			"releaseDate": "2013-04-18",
 			"duration": "03:10:20",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ5DiP_v6xkZGHkg-XOIimKT/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5DiP_v6xkZGHkg-XOIimKT",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ5DiP_v6xkZGHkg-XOIimKT/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ7xuchAxfBg_Z4RYtbIteZ1",
@@ -143,9 +143,9 @@
 			"releaseDate": "2012-03-14",
 			"duration": "01:32:10",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ7xuchAxfBg_Z4RYtbIteZ1/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7xuchAxfBg_Z4RYtbIteZ1",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ7xuchAxfBg_Z4RYtbIteZ1/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
@@ -154,9 +154,9 @@
 			"releaseDate": "2013-08-30",
 			"duration": "04:58:20",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP/cover.webp"
 		},
 		{
 			"id": "3rgBcXGCQtU",
@@ -165,9 +165,9 @@
 			"releaseDate": "1996-03-29",
 			"duration": "00:30:54",
 			"platform": 7,
-			"imagePath": "/covers/3rgBcXGCQtU/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=3rgBcXGCQtU",
-			"url_type": "PLAYLIST"
+			"url": "https://www.youtube.com/watch?v=3rgBcXGCQtU",
+			"url_type": "VIDEO",
+			"imagePath": "/covers/3rgBcXGCQtU/cover.webp"
 		},
 		{
 			"id": "aK8LL8r1s0Q",
@@ -176,9 +176,9 @@
 			"releaseDate": "1998-03-06",
 			"duration": "00:43:19",
 			"platform": 7,
-			"imagePath": "/covers/aK8LL8r1s0Q/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=aK8LL8r1s0Q",
-			"url_type": "PLAYLIST"
+			"url": "https://www.youtube.com/watch?v=aK8LL8r1s0Q",
+			"url_type": "VIDEO",
+			"imagePath": "/covers/aK8LL8r1s0Q/cover.webp"
 		},
 		{
 			"id": "TJbiGTQQUQY",
@@ -187,9 +187,9 @@
 			"releaseDate": "1999-11-05",
 			"duration": "01:14:05",
 			"platform": 7,
-			"imagePath": "/covers/TJbiGTQQUQY/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=TJbiGTQQUQY",
-			"url_type": "PLAYLIST"
+			"url": "https://www.youtube.com/watch?v=TJbiGTQQUQY",
+			"url_type": "VIDEO",
+			"imagePath": "/covers/TJbiGTQQUQY/cover.webp"
 		},
 		{
 			"id": "8LewlLoYHVY",
@@ -198,9 +198,9 @@
 			"releaseDate": "2001-07-19",
 			"duration": "01:13:24",
 			"platform": 7,
-			"imagePath": "/covers/8LewlLoYHVY/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=8LewlLoYHVY",
-			"url_type": "PLAYLIST"
+			"url": "https://www.youtube.com/watch?v=8LewlLoYHVY",
+			"url_type": "VIDEO",
+			"imagePath": "/covers/8LewlLoYHVY/cover.webp"
 		},
 		{
 			"id": "BtBWS67mgJM",
@@ -209,9 +209,9 @@
 			"releaseDate": "1994-10-28",
 			"duration": "00:40:38",
 			"platform": 7,
-			"imagePath": "/covers/BtBWS67mgJM/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=BtBWS67mgJM",
-			"url_type": "PLAYLIST"
+			"url": "https://www.youtube.com/watch?v=BtBWS67mgJM",
+			"url_type": "VIDEO",
+			"imagePath": "/covers/BtBWS67mgJM/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ4ZG4oDouSRf0-qhG5WMEvn",
@@ -220,9 +220,9 @@
 			"releaseDate": "2008-11-14",
 			"duration": "02:53:13",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ4ZG4oDouSRf0-qhG5WMEvn/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZG4oDouSRf0-qhG5WMEvn",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ4ZG4oDouSRf0-qhG5WMEvn/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
@@ -231,9 +231,9 @@
 			"releaseDate": "2023-06-23",
 			"duration": "07:32:11",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
@@ -242,9 +242,9 @@
 			"releaseDate": "2012-06-29",
 			"duration": "04:24:37",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ6omOFd-ITLsOCYCYOEf0Nw",
@@ -253,9 +253,9 @@
 			"releaseDate": "2010-11-26",
 			"duration": "05:16:15",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ6omOFd-ITLsOCYCYOEf0Nw/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6omOFd-ITLsOCYCYOEf0Nw",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ6omOFd-ITLsOCYCYOEf0Nw/cover.webp"
 		}
 	],
 	"tier_average": [
@@ -266,9 +266,9 @@
 			"releaseDate": "2007-08-10",
 			"duration": "03:18:45",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
@@ -277,9 +277,9 @@
 			"releaseDate": "2004-06-18",
 			"duration": "03:52:28",
 			"platform": 5,
-			"imagePath": "/covers/PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am/cover.webp"
 		},
 		{
 			"id": "PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m",
@@ -288,9 +288,9 @@
 			"releaseDate": "2008-02-08",
 			"duration": "02:23:03​",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m/cover.webp"
 		}
 	],
 	"tier_poor": [
@@ -301,9 +301,9 @@
 			"releaseDate": "2009-11-27",
 			"duration": "01:56:29",
 			"platform": 6,
-			"imagePath": "/covers/PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D/cover.webp"
 		}
 	],
 	"tier_bad": [],
