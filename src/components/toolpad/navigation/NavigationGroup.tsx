@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/routing";
 import Collapse from "@mui/material/Collapse";
 import Box from "@mui/material/Box";
@@ -63,6 +64,11 @@ export default function NavigationGroup({
   const pathname = usePathname();
   const { drawerOpen = true } = useAppContext();
   const isMini = !drawerOpen;
+  // Resolves `titleKey` (e.g. "gamesTabs.grid") into display text. Doing
+  // this here — at render time, per navigation node — is what lets
+  // `MenuEntries.tsx` build a static, translation-agnostic tree instead of
+  // taking ~11 pre-translated string props from its caller.
+  const t = useTranslations("dashboard.menuEntries");
 
   const itemPath = item.segment ? `${parentPath}/${item.segment}` : parentPath;
   const hasAnyChild = hasChildren(item);
@@ -93,7 +99,7 @@ export default function NavigationGroup({
           const childSelected = pathname === childPath;
           return (
             <ListItem
-              key={`${child.segment ?? child.title}-${idx}`}
+              key={`${child.segment ?? child.titleKey}-${idx}`}
               sx={{ py: 0, px: 1 }}
             >
               <ListItemButton
@@ -121,7 +127,7 @@ export default function NavigationGroup({
                   </ListItemIcon>
                 </Box>
                 <ListItemText
-                  primary={child.title}
+                  primary={t(child.titleKey)}
                   sx={{ ml: 1.2, whiteSpace: "nowrap" }}
                 />
               </ListItemButton>
@@ -134,7 +140,7 @@ export default function NavigationGroup({
   return (
     <>
       <NavigationItem
-        title={item.title}
+        title={t(item.titleKey)}
         icon={item.icon}
         href={hasAnyChild && !isMini ? undefined : itemPath}
         selected={isSelected}
@@ -151,7 +157,7 @@ export default function NavigationGroup({
           <List sx={{ padding: 0, mb: 0.5, pl: 2 * (depth + 1) }}>
             {item.children.map((child, idx) => (
               <NavigationGroup
-                key={`${child.segment ?? child.title}-${idx}`}
+                key={`${child.segment ?? child.titleKey}-${idx}`}
                 item={child}
                 parentPath={itemPath}
                 depth={depth + 1}

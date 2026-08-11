@@ -1,11 +1,19 @@
 import { writeFile } from "fs/promises";
 import { stringifyJSON } from "./common/utils";
+import { buildCardEntry } from "@/redux/sharedDefintion";
 
 import type { Database } from "better-sqlite3";
+import type { RawGame, CardGame } from "@/redux/sharedDefintion";
 
-import type { BasicPlaylist, BasicVideo, CardGame, YTUrlType } from "@/redux/sharedDefintion";
-
-type tierListTestsEntry = Omit<CardGame, "id" | "imagePath" | "url" | "url_type"> & {
+/**
+ * Previously typed as `Omit<CardGame, "id" | "imagePath" | "url" | "url_type">`,
+ * even though the actual SQL row (and the code below) reached for
+ * `playlistId`/`videoId` via `as BasicPlaylist`/`as BasicVideo` casts —
+ * fields that don't exist on `CardGame` at all. `RawGame` (the same type
+ * `buildCardEntry` expects, already used by the `tests` and `dlcs` API
+ * routes) matches what a raw `tests` table row actually looks like.
+ */
+type tierListTestsEntry = RawGame & {
     category_slug: string;
 };
 
@@ -46,20 +54,15 @@ export async function extractAndSaveTierListTests(db: Database, outputPath: stri
     console.log(`${outputPath} successfully written`);
 }
 
+/**
+ * Same rationale as `games-tier-list-extractor.ts::mapToCardGame`: reuse the
+ * single `buildCardEntry` narrowing helper instead of re-deriving
+ * id/url/url_type from `playlistId`/`videoId` presence locally.
+ */
 function mapToResult(entry: tierListTestsEntry): CardGame {
-    const { category_slug: _categorySlug, ...cardGame } = entry;
-    
-    const playlistId = (cardGame as BasicPlaylist).playlistId;
-    const id = playlistId ?? (cardGame as BasicVideo).videoId;
-    const base_url = playlistId
-            ? `https://www.youtube.com/playlist?list=${id}`
-            : `https://www.youtube.com/watch?v=${id}`;
-    const url_type: YTUrlType = playlistId ? "PLAYLIST" : "VIDEO";
-    return { 
-        ...cardGame,
-        id: id,
-        imagePath: `/testscovers/${id}/cover.webp`,
-        url: base_url,
-        url_type: url_type
+    const { category_slug: _categorySlug, ...game } = entry;
+    return {
+        ...game,
+        ...buildCardEntry(game, "/testscovers")
     };
 }

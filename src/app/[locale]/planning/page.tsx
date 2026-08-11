@@ -1,28 +1,91 @@
-import PlanningViewerClient from "@/components/planning/PlanningViewerClient";
+"use client";
 
 // Hooks
-import { getTranslations} from 'next-intl/server';
+import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
+import { useState } from 'react';
 
-export default async function PlanningViewer() {
+// Redux
+import { useGetPlanningQuery } from "@/redux/services/planningAPI";
 
-    // Retrieve translation
-    const t = await getTranslations("planning");
+// Material UI
+import { DataGrid } from '@mui/x-data-grid';
+
+// Components
+import GameDetailView from '@/components/GameDetailView/GameDetailView';
+import QueryErrorState from '@/components/common/QueryErrorState';
+import { SuspenseBoundary } from '@/components/common/SuspenseBoundary';
+
+// columns
+import generateColumns from "@/components/planning/tableColumns";
+
+// Types
+import type { planningEntry } from "@/app/api/planning/route";
+import type { Props as PropsColumns } from "@/components/planning/tableColumns";
+import type { GridEventListener } from '@mui/x-data-grid';
+
+type Props = {} & PropsColumns;
+
+export default function PlanningViewer(props: Props) {
+    return (
+        <SuspenseBoundary>
+            <PlanningViewerInner {...props} />
+        </SuspenseBoundary>
+    );
+}
+
+function PlanningViewerInner(props: Props) {
+
+    // Using a query hook automatically fetches data and returns query values
+    const { data, error, isLoading, refetch } = useGetPlanningQuery();
+    const customLocaleText = useMuiXDataGridText();
+    const [selectedGame, setSelectedGame] = useState<planningEntry | null>(null);
+
+    if (error) {
+        return <QueryErrorState onRetry={refetch} />;
+    }
     
-    const propsClient = {
-        endDateLabel: t("columns.endDate"),
-        platformLabel: t("columns.platform"),
-        releaseDateLabel: t("columns.releaseDate"),
-        statusLabel: t("columns.status"),
-        titleLabel: t("columns.title"),
-        statesLabels: {
-            PENDING: t("states.PENDING"),
-            RECORDED: t("states.RECORDED")
-        }
+    const columns = generateColumns(props);
+
+    const handleRowClick: GridEventListener<'rowClick'> = (params) => {
+        setSelectedGame(params.row as planningEntry);
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <PlanningViewerClient {...propsClient} />
-        </div>
+        <>
+            <DataGrid 
+                showToolbar
+                rows={data} 
+                columns={columns} 
+                onRowClick={handleRowClick}
+                disableRowSelectionOnClick 
+                localeText={customLocaleText}
+                slotProps={{
+                    loadingOverlay: {
+                        variant: 'linear-progress',
+                        noRowsVariant: 'skeleton',
+                    }
+                }}
+                loading={isLoading}
+                sortingOrder={['asc', 'desc']}
+                initialState={{
+                    sorting: {
+                        sortModel: [{ field: 'availableAt', sort: 'asc' }],
+                    },
+                    columns: {
+                        columnVisibilityModel: {
+                            // Hide columns endAt, the other columns will remain visible
+                            endAt: false
+                        }
+                    }
+                }}
+            />
+            {selectedGame && (
+                <GameDetailView 
+                    game={selectedGame}
+                    onClose={() => setSelectedGame(null)}
+                    showVoteSection={false}
+                />
+            )}
+        </>
     )
 }
