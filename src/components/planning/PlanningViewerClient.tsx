@@ -1,6 +1,7 @@
 "use client";
 
 // Hooks
+import { Suspense } from 'react';
 import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
 import { useState } from 'react';
 
@@ -9,6 +10,8 @@ import { useGetPlanningQuery } from "@/redux/services/planningAPI";
 
 // Material UI
 import { DataGrid } from '@mui/x-data-grid';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // Components
 import GameDetailView from '@/components/GameDetailView/GameDetailView';
@@ -24,10 +27,25 @@ import type { GridEventListener } from '@mui/x-data-grid';
 
 type Props = {} & PropsColumns;
 
+function GridLoadingFallback() {
+    return (
+        <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
+            <CircularProgress />
+        </Box>
+    );
+}
+
 export default function PlanningViewer(props: Props) {
+    return (
+        <Suspense fallback={<GridLoadingFallback />}>
+            <PlanningViewerInner {...props} />
+        </Suspense>
+    );
+}
+
+function PlanningViewerInner(props: Props) {
 
     // Using a query hook automatically fetches data and returns query values
-
     const { data, error, isLoading, refetch } = useGetPlanningQuery();
     const customLocaleText = useMuiXDataGridText();
     const [selectedGame, setSelectedGame] = useState<planningEntry | null>(null);

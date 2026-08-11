@@ -5,15 +5,13 @@
 // https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
 import { Suspense } from 'react'
 
-// Hooks
-import { useRouter } from '@/i18n/routing';
-
 // Components
 import Fab from '@mui/material/Fab';
 import CasinoIcon from '@mui/icons-material/Casino';
+import CircularProgress from '@mui/material/CircularProgress';
 
-// Types
-import type { RandomAnswer } from "@/app/api/random/route";
+// Hooks
+import { useNavigateToRandomGame } from '@/hooks/useNavigateToRandomGame';
 
 export default function RandomButton(props: Props) {
     return (
@@ -29,21 +27,20 @@ type Props = {
 
 export function RandomButtonInner(props: Props) {
 
-    const router = useRouter();
-
-    const fetchRandomGame = async () => {
-        const response = await fetch('/api/random');
-        const data = await response.json() as RandomAnswer;
-        router.push({
-            pathname: data.type === "PLAYLIST" ? "/playlist/[id]" : "/video/[id]",
-            params: { id: data.identifier }
-        });
-    }
+    const { navigateToRandomGame, isPending } = useNavigateToRandomGame();
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
-            <Fab color="primary" variant="extended" onClick={fetchRandomGame}>
-                <CasinoIcon sx={{ mr: 1 }} />
+            <Fab
+                color="primary"
+                variant="extended"
+                onClick={navigateToRandomGame}
+                disabled={isPending}
+            >
+                {isPending
+                    ? <CircularProgress size={20} color="inherit" sx={{ mr: 1 }} />
+                    : <CasinoIcon sx={{ mr: 1 }} />
+                }
                 { props.label }
             </Fab>
         </div>

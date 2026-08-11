@@ -10,33 +10,21 @@ export function isCardGame(game: RawGameDetailsEntry): game is CardGame {
 }
 
 /**
- * Normalizes either raw shape into the flattened GameDetailsEntry used for
- * rendering, so downstream code (rows, predicates) only ever deals with one
- * concrete type instead of a union.
+ * Normalizes either raw shape into the flattened, discriminated
+ * GameDetailsEntry used for rendering, so downstream code (rows,
+ * predicates) only ever deals with one of two concrete, mutually
+ * exclusive shapes instead of a loose "everything optional" union.
  */
 export function toGameDetailsEntry(game: RawGameDetailsEntry): GameDetailsEntry {
     if (isCardGame(game)) {
         return {
-            id: game.id,
-            title: game.title,
-            imagePath: game.imagePath,
-            platform: game.platform,
-            genres: game.genres,
-            releaseDate: game.releaseDate,
-            duration: game.duration,
-            url: game.url,
-            url_type: game.url_type,
+            ...game,
+            kind: "card"
         };
     }
 
     return {
-        id: game.id,
-        title: game.title,
-        imagePath: game.imagePath,
-        platform: game.platform,
-        notes: game.notes,
-        hltb_main: game.hltb_main,
-        hltb_extra: game.hltb_extra,
-        hltb_completionist: game.hltb_completionist,
+        ...game,
+        kind: "backlog",
     };
 }
