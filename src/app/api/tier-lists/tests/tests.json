@@ -9,9 +9,9 @@
 			"releaseDate": "2020-05-08",
 			"platform": 1,
 			"duration": "00:14:26",
-			"imagePath": "/testscovers/VI5irWqgEZY/cover.webp",
 			"url": "https://www.youtube.com/watch?v=VI5irWqgEZY",
-			"url_type": "VIDEO"
+			"url_type": "VIDEO",
+			"imagePath": "/testscovers/VI5irWqgEZY/cover.webp"
 		},
 		{
 			"id": "RGsuBcF3W4s",
@@ -20,9 +20,9 @@
 			"releaseDate": "2020-10-13",
 			"platform": 1,
 			"duration": "00:25:48",
-			"imagePath": "/testscovers/RGsuBcF3W4s/cover.webp",
 			"url": "https://www.youtube.com/watch?v=RGsuBcF3W4s",
-			"url_type": "VIDEO"
+			"url_type": "VIDEO",
+			"imagePath": "/testscovers/RGsuBcF3W4s/cover.webp"
 		},
 		{
 			"id": "cS4AuUMOuiE",
@@ -31,9 +31,9 @@
 			"releaseDate": "2019-04-18",
 			"platform": 1,
 			"duration": "00:49:19",
-			"imagePath": "/testscovers/cS4AuUMOuiE/cover.webp",
 			"url": "https://www.youtube.com/watch?v=cS4AuUMOuiE",
-			"url_type": "VIDEO"
+			"url_type": "VIDEO",
+			"imagePath": "/testscovers/cS4AuUMOuiE/cover.webp"
 		},
 		{
 			"id": "RMgDUMubFsM",
@@ -42,9 +42,9 @@
 			"releaseDate": "2021-05-18",
 			"platform": 1,
 			"duration": "00:13:53",
-			"imagePath": "/testscovers/RMgDUMubFsM/cover.webp",
 			"url": "https://www.youtube.com/watch?v=RMgDUMubFsM",
-			"url_type": "VIDEO"
+			"url_type": "VIDEO",
+			"imagePath": "/testscovers/RMgDUMubFsM/cover.webp"
 		},
 		{
 			"id": "eY5Ll-E8izg",
@@ -53,9 +53,9 @@
 			"releaseDate": "2020-02-19",
 			"platform": 1,
 			"duration": "00:26:30",
-			"imagePath": "/testscovers/eY5Ll-E8izg/cover.webp",
 			"url": "https://www.youtube.com/watch?v=eY5Ll-E8izg",
-			"url_type": "VIDEO"
+			"url_type": "VIDEO",
+			"imagePath": "/testscovers/eY5Ll-E8izg/cover.webp"
 		},
 		{
 			"id": "D4yPcvrfV2o",
@@ -64,9 +64,9 @@
 			"releaseDate": "2019-09-02",
 			"platform": 1,
 			"duration": "00:40:33",
-			"imagePath": "/testscovers/D4yPcvrfV2o/cover.webp",
 			"url": "https://www.youtube.com/watch?v=D4yPcvrfV2o",
-			"url_type": "VIDEO"
+			"url_type": "VIDEO",
+			"imagePath": "/testscovers/D4yPcvrfV2o/cover.webp"
 		}
 	],
 	"tier_average": [
@@ -77,9 +77,9 @@
 			"releaseDate": "2018-10-19",
 			"platform": 1,
 			"duration": "00:35:30",
-			"imagePath": "/testscovers/ghUYugzShf8/cover.webp",
 			"url": "https://www.youtube.com/watch?v=ghUYugzShf8",
-			"url_type": "VIDEO"
+			"url_type": "VIDEO",
+			"imagePath": "/testscovers/ghUYugzShf8/cover.webp"
 		}
 	],
 	"tier_poor": [
@@ -90,9 +90,9 @@
 			"releaseDate": "2018-05-18",
 			"platform": 1,
 			"duration": "00:33:32",
-			"imagePath": "/testscovers/PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M",
-			"url_type": "PLAYLIST"
+			"url_type": "PLAYLIST",
+			"imagePath": "/testscovers/PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M/cover.webp"
 		},
 		{
 			"id": "2aPqECXPA_E",
@@ -101,9 +101,9 @@
 			"releaseDate": "2019-10-17",
 			"platform": 1,
 			"duration": "00:05:01",
-			"imagePath": "/testscovers/2aPqECXPA_E/cover.webp",
 			"url": "https://www.youtube.com/watch?v=2aPqECXPA_E",
-			"url_type": "VIDEO"
+			"url_type": "VIDEO",
+			"imagePath": "/testscovers/2aPqECXPA_E/cover.webp"
 		},
 		{
 			"id": "ip-PjOmBOb4",
@@ -112,9 +112,9 @@
 			"releaseDate": "2020-11-18",
 			"platform": 1,
 			"duration": "00:16:45",
-			"imagePath": "/testscovers/ip-PjOmBOb4/cover.webp",
 			"url": "https://www.youtube.com/watch?v=ip-PjOmBOb4",
-			"url_type": "VIDEO"
+			"url_type": "VIDEO",
+			"imagePath": "/testscovers/ip-PjOmBOb4/cover.webp"
 		},
 		{
 			"id": "3EUHvz2NpPE",
@@ -123,9 +123,9 @@
 			"releaseDate": "2025-05-15",
 			"platform": 1,
 			"duration": "00:00:00",
-			"imagePath": "/testscovers/3EUHvz2NpPE/cover.webp",
 			"url": "https://www.youtube.com/watch?v=3EUHvz2NpPE",
-			"url_type": "VIDEO"
+			"url_type": "VIDEO",
+			"imagePath": "/testscovers/3EUHvz2NpPE/cover.webp"
 		},
 		{
 			"id": "92xWnlnXX7A",
@@ -134,9 +134,9 @@
 			"releaseDate": "2019-12-13",
 			"platform": 1,
 			"duration": "01:04:50",
-			"imagePath": "/testscovers/92xWnlnXX7A/cover.webp",
 			"url": "https://www.youtube.com/watch?v=92xWnlnXX7A",
-			"url_type": "VIDEO"
+			"url_type": "VIDEO",
+			"imagePath": "/testscovers/92xWnlnXX7A/cover.webp"
 		}
 	],
 	"tier_bad": [
@@ -147,9 +147,9 @@
 			"releaseDate": "2020-11-03",
 			"platform": 1,
 			"duration": "00:13:35",
-			"imagePath": "/testscovers/zR4m0LyTDAY/cover.webp",
 			"url": "https://www.youtube.com/watch?v=zR4m0LyTDAY",
-			"url_type": "VIDEO"
+			"url_type": "VIDEO",
+			"imagePath": "/testscovers/zR4m0LyTDAY/cover.webp"
 		}
 	],
 	"tier_not_evaluated": []
