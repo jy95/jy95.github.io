@@ -13,93 +13,92 @@ import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 
 // Types
 import type { Navigation } from '@/components/toolpad/types';
-type Props = {
-    gamesCategoy: string,
-    gamesView: string,
-    seriesView: string,
-    dlcsView: string,
-    randomView: string,
-    planned: string,
-    backlog: string,
-    tests: string,
-    stats: string,
-    links: string,
-    tierListsCategory: string
-}
 
-export default function NavigationMenu(props: Props) : Navigation {
+/**
+ * Builds the navigation tree using translation *keys* (`titleKey`) rather
+ * than already-resolved strings. Previously this function took a flat
+ * `Props` object of ~11 pre-translated labels computed once by the caller
+ * (`AppProviderCustom`), which coupled the whole nav tree to a single
+ * `useTranslations` call site, duplicated lookups for labels reused across
+ * nodes (e.g. "games" appears under both `/games` and `/tier/games`), and
+ * made this tree impossible to build/test without wiring up every label by
+ * hand. `NavigationGroup` now resolves `titleKey` via `useTranslations` at
+ * render time, so this function is a pure, translation-agnostic tree
+ * definition.
+ */
+export default function NavigationMenu(): Navigation {
     return [
         {
             icon: <SportsEsportsIcon />,
-            title: props.gamesCategoy,
+            titleKey: "gamesKey",
             segment: "games",
             children: [
                 {
                     icon: <GridViewIcon />,
-                    title: props.gamesView
+                    titleKey: "gamesTabs.grid"
                 },
                 {
                     segment: "series",
                     icon: <ListIcon />,
-                    title: props.seriesView
+                    titleKey: "gamesTabs.list"
                 },
                 {
                     segment: "dlcs",
                     icon: <ExtensionIcon />,
-                    title: props.dlcsView
+                    titleKey: "gamesTabs.dlc"
                 },
                 {
                     segment: "random",
                     icon: <CasinoIcon />,
-                    title: props.randomView
+                    titleKey: "gamesTabs.random"
                 }
             ]
         },
         {
             icon: <ScheduleIcon />,
-            title: props.planned,
+            titleKey: "planningKey",
             segment: "planning"
         },
         {
             icon: <HourglassEmptyIcon />,
-            title: props.backlog,
+            titleKey: "backlog",
             segment: "backlog"
         },
         {
             icon: <LeaderboardIcon />,
-            title: props.tierListsCategory,
+            titleKey: "tierTabs",
             segment: "tier",
             children: [
                 {
                     segment: "games",
                     icon: <SportsEsportsIcon />,
-                    title: props.gamesView
+                    titleKey: "gamesTabs.grid"
                 },
                 {
                     segment: "backlog",
                     icon: <HourglassEmptyIcon />,
-                    title: props.backlog,
+                    titleKey: "backlog"
                 },
                 {
                     icon: <ScienceIcon />,
-                    title: props.tests,
+                    titleKey: "testsKey",
                     segment: "tests"
                 }
             ]
         },
         {
             icon: <ScienceIcon />,
-            title: props.tests,
+            titleKey: "testsKey",
             segment: "tests"
         },
         {
             icon: <QueryStatsIcon />,
-            title: props.stats,
+            titleKey: "stats",
             segment: "stats"
         },
         {
             icon: <LinkIcon />,
-            title: props.links,
+            titleKey: "links",
             segment: "links"
         },
     ]

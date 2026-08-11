@@ -1,7 +1,7 @@
 "use client";
 
 // Hooks
-import { Suspense, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
 
 // Redux
@@ -10,11 +10,10 @@ import { useGetGlobalStatsQuery } from "@/redux/services/votesAPI";
 
 // Components
 import { DataGrid } from '@mui/x-data-grid';
-import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
 import generateColumns from "./tableColumns";
 import GameDetailView from '../GameDetailView/GameDetailView';
 import QueryErrorState from '@/components/common/QueryErrorState';
+import { SuspenseBoundary } from '@/components/common/SuspenseBoundary';
 
 // Types
 import type { Props as PropsTable } from "./tableColumns";
@@ -22,19 +21,11 @@ import type { GridEventListener } from '@mui/x-data-grid';
 import type { BacklogEntry } from "@/app/api/backlog/route";
 type Props = {} & PropsTable;
 
-function GridLoadingFallback() {
-    return (
-        <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
-            <CircularProgress />
-        </Box>
-    );
-}
-
 export default function BacklogViewerClient(props: Props) {
     return (
-        <Suspense fallback={<GridLoadingFallback />}>
+        <SuspenseBoundary>
             <BacklogViewerClientInner {...props} />
-        </Suspense>
+        </SuspenseBoundary>
     );
 }
 

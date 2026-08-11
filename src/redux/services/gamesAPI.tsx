@@ -14,6 +14,47 @@ type Parameters = {
 
 type FrontendParams = Omit<Parameters, "page">;
 
+type GamesFilter = gamesFilters[number];
+
+/**
+ * One serializer per filter `key`, keyed so TypeScript enforces a case for
+ * every member of the `gamesFilters` discriminated union (see
+ * `gamesSlice.tsx`). This used to be a runtime `switch` with a generic
+ * `default` branch that called `.toString()` on whatever value showed up —
+ * adding a new filter kind to the slice without updating this file would
+ * silently mis-serialize it instead of failing to compile.
+ */
+const FILTER_SERIALIZERS: {
+    [K in GamesFilter["key"]]: (
+        params: URLSearchParams,
+        value: Extract<GamesFilter, { key: K }>["value"]
+    ) => void
+} = {
+    selected_title: (params, value) => {
+        params.append("selected_title", value);
+    },
+    selected_platform: (params, value) => {
+        params.append("selected_platform", value.toString());
+    },
+    selected_genres: (params, value) => {
+        for (const genre of value) {
+            params.append("selected_genres", genre.toString());
+        }
+    },
+};
+
+function appendFilter(params: URLSearchParams, filter: GamesFilter) {
+    // The dispatch table above is exhaustively typed over `GamesFilter["key"]`;
+    // this cast is only needed because TS can't narrow a mapped-type lookup
+    // by a value it hasn't seen yet inside a loop. The exhaustiveness
+    // guarantee lives in `FILTER_SERIALIZERS`'s declared type above, not here.
+    const serialize = FILTER_SERIALIZERS[filter.key] as (
+        params: URLSearchParams,
+        value: GamesFilter["value"]
+    ) => void;
+    serialize(params, filter.value);
+}
+
 // Define a service using a base URL and expected endpoints
 export const gamesAPI = createApi({
     reducerPath: 'gamesApi',
@@ -36,22 +77,8 @@ export const gamesAPI = createApi({
                 searchParams.append("pageSize", queryArg.pageSize.toString());
 
                 // filters parameter
-                const filters = queryArg.filters;
-
-                // filters parameter
-                if (filters.length > 0) {
-                    for(const filter of filters) {
-                        switch(filter.key) {
-                            case "selected_genres":
-                                for(const genre of filter.value) {
-                                    searchParams.append(filter.key, genre.toString());
-                                }
-                                break;
-                            default:
-                                // Append other filters directly
-                                searchParams.append(filter.key, filter.value.toString());
-                        }
-                    }
+                for (const filter of queryArg.filters) {
+                    appendFilter(searchParams, filter);
                 }
 
                 const query = searchParams.toString();

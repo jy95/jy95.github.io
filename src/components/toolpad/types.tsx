@@ -1,7 +1,8 @@
 import type { ElementType, ReactNode } from "react";
+import type { DashboardMenuKey } from "@/types/navigation";
 
 export type NavigationItem = {
-  title: string;
+  titleKey: DashboardMenuKey;
   icon?: ReactNode;
   segment?: string;
   children?: NavigationItem[];

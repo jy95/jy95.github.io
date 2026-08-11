@@ -3,7 +3,7 @@
 // Needed because of 
 // https://nextjs.org/docs/app/api-reference/functions/use-search-params#behavior
 // https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
-import { Suspense } from 'react'
+import { SilentSuspenseBoundary } from '@/components/common/SuspenseBoundary';
 
 // Components
 import Fab from '@mui/material/Fab';
@@ -15,9 +15,9 @@ import { useNavigateToRandomGame } from '@/hooks/useNavigateToRandomGame';
 
 export default function RandomButton(props: Props) {
     return (
-        <Suspense fallback={null}>
+        <SilentSuspenseBoundary>
             <RandomButtonInner {...props} />
-        </Suspense>
+        </SilentSuspenseBoundary>
     );
 }
 

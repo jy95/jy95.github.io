@@ -1,12 +1,9 @@
 // Providers
 import NextAppProvider from "@/components/toolpad/provider/AppProvider";
 
-// Hooks
-import {useTranslations} from 'next-intl';
-
 // components
-import { Suspense } from 'react';
 import NavigationMenu from "./MenuEntries";
+import { SilentSuspenseBoundary } from "@/components/common/SuspenseBoundary";
 
 // Types
 import type { ReactNode } from 'react';
@@ -17,37 +14,10 @@ type Props = {
 // Needed because of https://nextjs.org/docs/app/api-reference/functions/use-search-params#behavior
 export default function AppProviderCustom(props: Props) {
     return (
-        <Suspense fallback={<></>}>
-            <AppProviderCustomInner {...props} />
-        </Suspense>
-    )
-}
-
-function AppProviderCustomInner(props: Props) {
-
-    // Fetch labels
-    const t = useTranslations('dashboard');
-
-    // Generate navigation
-    const NAVIGATION = NavigationMenu({
-        backlog: t("menuEntries.backlog"),
-        dlcsView: t("menuEntries.gamesTabs.dlc"),
-        gamesCategoy: t("menuEntries.gamesKey"),
-        gamesView: t("menuEntries.gamesTabs.grid"),
-        randomView: t("menuEntries.gamesTabs.random"),
-        links: t("menuEntries.links"),
-        planned: t("menuEntries.planningKey"),
-        seriesView: t("menuEntries.gamesTabs.list"),
-        stats: t("menuEntries.stats"),
-        tests: t("menuEntries.testsKey"),
-        tierListsCategory: t("menuEntries.tierTabs")
-    });
-
-    return (
-        <NextAppProvider 
-            navigation={NAVIGATION}
-        >
-            {props.children}
-        </NextAppProvider>
+        <SilentSuspenseBoundary>
+            <NextAppProvider navigation={NavigationMenu()}>
+                {props.children}
+            </NextAppProvider>
+        </SilentSuspenseBoundary>
     );
 }

@@ -21,7 +21,7 @@ export default function DashboardNavigation() {
     >
       {entries.map((item, index) => (
         <NavigationGroup
-          key={`${item.segment ?? "group"}:${item.title}:${index}`}
+          key={`${item.segment ?? "group"}:${item.titleKey}:${index}`}
           item={item}
         />
       ))}

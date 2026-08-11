@@ -6,16 +6,7 @@ import Chip from '@mui/material/Chip';
 import Stack from "@mui/material/Stack";
 
 // Types
-import type { AppConfig } from 'next-intl';
-
-/**
- * Accesses the keys of the 'gamesGenres' object defined within
- * the 'Messages' type of next-intl's augmented AppConfig.
- */
-type GamesLibraryMessages = AppConfig['Messages']['gamesLibrary'];
-
-// 🔑 This is the direct type you want:
-export type GameGenreId = keyof GamesLibraryMessages['gamesGenres'];
+import type { GameGenreId } from "@/types/genres";
 
 function GameGenres(props: { genreIds: number[] }) {
     const t = useTranslations();
