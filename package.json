@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "dev:test": "vitest",
     "generate-responsive-images": "npx tsx scripts/generate-responsive-images.ts",
     "sample-game": "npm run generate-responsive-images -- singleGame PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8 covers cover.jpg",
