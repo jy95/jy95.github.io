@@ -39,12 +39,21 @@ export function useNavigateToRandomGame(): UseNavigateToRandomGameResult {
     const [isPending, setIsPending] = useState(false);
     const abortControllerRef = useRef<AbortController | null>(null);
     const isPendingRef = useRef(false);
+    const isMountedRef = useRef(true);
 
     // Cancel any in-flight request if this component unmounts (e.g. the
-    // route changed underneath it because the locale was switched).
+    // route changed underneath it because the locale was switched, or
+    // React Strict Mode is replaying the effect in development).
     useEffect(() => {
+        isMountedRef.current = true;
         return () => {
+            isMountedRef.current = false;
             abortControllerRef.current?.abort();
+            // Clear the pending flag immediately so a Strict Mode replay
+            // (mount -> cleanup -> mount) is able to start the required
+            // replacement request instead of seeing a stale "pending"
+            // ref from the aborted one.
+            isPendingRef.current = false;
         };
     }, []);
 
@@ -91,9 +100,15 @@ export function useNavigateToRandomGame(): UseNavigateToRandomGameResult {
                 }
                 console.error('Failed to navigate to a random game:', error);
             } finally {
-                if (!controller.signal.aborted) {
+                // Only clear the pending state for this request if it's
+                // still the current one. An aborted request's cleanup may
+                // already have reset the flags for a newer, still-pending
+                // request — don't stomp on that request's state.
+                if (abortControllerRef.current === controller) {
                     isPendingRef.current = false;
-                    setIsPending(false);
+                    if (isMountedRef.current) {
+                        setIsPending(false);
+                    }
                 }
             }
         })();
