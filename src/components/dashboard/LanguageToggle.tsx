@@ -5,6 +5,7 @@ import type { MouseEvent } from 'react';
 
 // Hooks
 import { useLocale } from 'next-intl';
+import { useParams } from 'next/navigation';
 import { usePathname, useRouter } from '@/i18n/routing';
 import type { Href } from '@/i18n/routing';
 
@@ -43,6 +44,21 @@ function LanguageToggleInner(props: Props) {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
+  // `usePathname()` from next-intl returns the *internal route template*
+  // for dynamic routes (e.g. "/playlist/[id]"), not the resolved URL — it's
+  // typed against `routing.pathnames`, whose keys are templates like that.
+  // For a route with dynamic segments, pushing that template directly
+  // (without `params`) produces a URL with the literal "[id]" in it. We
+  // pull the actual segment values via next/navigation's `useParams()` and
+  // forward them so next-intl can substitute them back in.
+  //
+  // `useParams()` also includes the `[locale]` segment itself (since it's
+  // a Next.js dynamic route segment), which must be excluded — the locale
+  // is switched via the `locale` option below, not via `params`.
+  const rawParams = useParams<Record<string, string | string[]>>();
+  const { locale: _localeParam, ...routeParams } = rawParams ?? {};
+  const hasDynamicParams = Object.keys(routeParams).length > 0;
+
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -53,7 +69,11 @@ function LanguageToggleInner(props: Props) {
 
   const changeLanguage = (nextLocale: Locale) => {
     if (nextLocale !== locale) {
-      router.replace(pathname as Href, { locale: nextLocale });
+      const href: Href = hasDynamicParams
+        ? ({ pathname, params: routeParams } as Href)
+        : (pathname as Href);
+
+      router.replace(href, { locale: nextLocale });
     }
     handleClose();
   };
