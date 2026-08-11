@@ -12,7 +12,7 @@ export default defineConfig({
         include: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'scripts/**/*.test.ts'],
         coverage: {
             provider: 'v8',
-            reporter: ['text', 'html'],
+            reporter: ['text', 'html', 'lcov'],
             include: ['src/**/*.{ts,tsx}', 'scripts/**/*.ts'],
             exclude: ['**/*.test.ts', '**/*.test.tsx', '**/*.d.ts'],
         },
