@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useRouter } from '@/i18n/routing';
+import { useLocale } from 'next-intl';
+import { useRouter, usePathname } from '@/i18n/routing';
 import type { RandomAnswer } from "@/app/api/random/route";
 
 type UseNavigateToRandomGameResult = {
@@ -21,32 +22,45 @@ function isRandomAnswer(value: unknown): value is RandomAnswer {
 /**
  * Shared navigation logic for "watch a random game".
  *
- * Guards against three related failure modes:
- * - Concurrent calls: a second click while a request is already in flight
- *   is ignored instead of firing a second /api/random request whose
- *   response could resolve out of order relative to the first.
- * - Failed / malformed responses: the response status and shape are
- *   validated, so a 5xx or unexpected payload never triggers a navigation
- *   with garbage data (e.g. `params: { id: undefined }`).
- * - Stale navigation after unmount: the request is aborted on unmount, so
- *   if the user switches language while this component's page is loading
- *   or waiting on /api/random, the abandoned request can no longer push a
- *   route computed under the *previous* locale once it (would have)
- *   resolved.
+ * IMPORTANT: this does NOT rely on the calling component unmounting to
+ * cancel a stale request. Next.js frequently keeps a client component
+ * instance mounted across a locale-only soft navigation (same component
+ * type + position in the tree), so a `useEffect` cleanup tied only to
+ * unmount never runs when the user switches language mid-request — a
+ * pending /api/random fetch would then resolve and push using the OLD
+ * locale, visibly flipping the language back.
+ *
+ * Instead:
+ * - `locale` (and `pathname`) are watched directly; a change aborts any
+ *   in-flight request, regardless of whether the component unmounts.
+ * - The current locale is re-checked immediately before navigating, as a
+ *   redundant guard against the abort signal and the fetch resolution
+ *   racing in the same tick.
  */
 export function useNavigateToRandomGame(): UseNavigateToRandomGameResult {
     const router = useRouter();
+    const locale = useLocale();
+    const pathname = usePathname();
     const [isPending, setIsPending] = useState(false);
+
     const abortControllerRef = useRef<AbortController | null>(null);
     const isPendingRef = useRef(false);
 
-    // Cancel any in-flight request if this component unmounts (e.g. the
-    // route changed underneath it because the locale was switched).
+    // Always holds the *current* router/locale, read fresh inside the async
+    // callback below instead of relying on the (possibly stale) closure
+    // captured when the user clicked.
+    const contextRef = useRef({ router, locale });
+    useEffect(() => {
+        contextRef.current = { router, locale };
+    }, [router, locale]);
+
+    // Abort any in-flight request whenever locale or pathname changes —
+    // this fires on every navigation, not just on unmount.
     useEffect(() => {
         return () => {
             abortControllerRef.current?.abort();
         };
-    }, []);
+    }, [locale, pathname]);
 
     const navigateToRandomGame = useCallback(() => {
         // Ignore extra clicks while a request is already pending.
@@ -54,6 +68,7 @@ export function useNavigateToRandomGame(): UseNavigateToRandomGameResult {
             return;
         }
 
+        const requestedLocale = locale;
         const controller = new AbortController();
         abortControllerRef.current = controller;
         isPendingRef.current = true;
@@ -73,31 +88,33 @@ export function useNavigateToRandomGame(): UseNavigateToRandomGameResult {
                     throw new Error('/api/random returned a malformed payload');
                 }
 
-                // The request may have been aborted between the fetch
-                // resolving and this point (unmount race) — never navigate
-                // on stale data.
-                if (controller.signal.aborted) {
+                // Bail out if aborted, or if the locale changed between the
+                // click and now — pushing here would land the user back on
+                // a stale locale.
+                if (controller.signal.aborted || contextRef.current.locale !== requestedLocale) {
                     return;
                 }
 
-                router.push({
+                contextRef.current.router.push({
                     pathname: data.type === "PLAYLIST" ? "/playlist/[id]" : "/video/[id]",
                     params: { id: data.identifier }
                 });
             } catch (error) {
                 if (controller.signal.aborted) {
-                    // Expected on unmount/cleanup — not a real error.
+                    // Expected when locale/pathname changed mid-request —
+                    // not a real error.
                     return;
                 }
                 console.error('Failed to navigate to a random game:', error);
             } finally {
-                if (!controller.signal.aborted) {
-                    isPendingRef.current = false;
-                    setIsPending(false);
-                }
+                // Always reset — the component may never unmount, so a
+                // pending flag left `true` after an abort would leave the
+                // button permanently disabled.
+                isPendingRef.current = false;
+                setIsPending(false);
             }
         })();
-    }, [router]);
+    }, [locale]);
 
     return { navigateToRandomGame, isPending };
 }
