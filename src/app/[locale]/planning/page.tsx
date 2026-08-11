@@ -2,6 +2,7 @@
 
 // Hooks
 import useMuiXDataGridText from '@/hooks/useMuiXDataGridText';
+import { useTranslations } from "next-intl";
 import { useState } from 'react';
 
 // Redux
@@ -20,31 +21,39 @@ import generateColumns from "@/components/planning/tableColumns";
 
 // Types
 import type { planningEntry } from "@/app/api/planning/route";
-import type { Props as PropsColumns } from "@/components/planning/tableColumns";
 import type { GridEventListener } from '@mui/x-data-grid';
 
-type Props = {} & PropsColumns;
-
-export default function PlanningViewer(props: Props) {
+export default function PlanningViewer() {
     return (
         <SuspenseBoundary>
-            <PlanningViewerInner {...props} />
+            <PlanningViewerInner />
         </SuspenseBoundary>
     );
 }
 
-function PlanningViewerInner(props: Props) {
+function PlanningViewerInner() {
 
     // Using a query hook automatically fetches data and returns query values
     const { data, error, isLoading, refetch } = useGetPlanningQuery();
     const customLocaleText = useMuiXDataGridText();
     const [selectedGame, setSelectedGame] = useState<planningEntry | null>(null);
+    const t = useTranslations("planning");
 
     if (error) {
         return <QueryErrorState onRetry={refetch} />;
     }
-    
-    const columns = generateColumns(props);
+
+    const columns = generateColumns({
+        titleLabel: t("columns.title"),
+        platformLabel: t("columns.platform"),
+        releaseDateLabel: t("columns.releaseDate"),
+        endDateLabel: t("columns.endDate"),
+        statusLabel: t("columns.status"),
+        statesLabels: {
+            RECORDED: t("states.RECORDED"),
+            PENDING: t("states.PENDING")
+        }
+    });
 
     const handleRowClick: GridEventListener<'rowClick'> = (params) => {
         setSelectedGame(params.row as planningEntry);
