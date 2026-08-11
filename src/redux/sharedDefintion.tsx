@@ -88,17 +88,21 @@ interface GameProps {
 
 // 🎯 User-Defined Type Guard
 function isPlaylist(game: RawGame): game is Omit<BasicPlaylist, "genres" | "id"> {
-    return 'playlistId' in game;
+    return 'playlistId' in game && typeof game.playlistId === 'string';
 }
 
 export function extractGameCardProps(game: RawGame): GameProps {
     const isPlaylistType = isPlaylist(game);
     const url_type: YTUrlType = isPlaylistType ? "PLAYLIST" : "VIDEO";
-    const id: string = isPlaylist(game) ? game.playlistId : (game as Omit<BasicVideo, "genres" | "id">).videoId;
+
+    const id = isPlaylistType ? game.playlistId : (game as Omit<BasicVideo, "genres" | "id">).videoId;
+    const url = isPlaylistType 
+            ? `https://www.youtube.com/playlist?list=${id}` 
+            : `https://www.youtube.com/watch?v=${id}`;
 
     return {
         id,
-        url: isPlaylistType ? `https://www.youtube.com/playlist?list=${id}` : `https://www.youtube.com/watch?v=${id}`,
+        url,
         url_type
     }
 }
