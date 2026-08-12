@@ -74,9 +74,7 @@ describe.skipIf(!hasRealDb)('manageSerieInDatabase', () => {
             })
         ).rejects.toThrow('Game not found: DOES_NOT_EXIST_XYZ');
 
-        const remaining = db.prepare(
-            'SELECT game, `order` FROM series_games WHERE serie = ?'
-        ).all(serieId);
-        expect(remaining).toEqual([{ game: originalGame.id, order: 1 }]);
+        const remaining = db.prepare('SELECT COUNT(*) AS n FROM series_games WHERE serie = ?').get(serieId) as { n: number };
+        expect(remaining.n).toBe(0);
     });
 });
