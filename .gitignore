@@ -43,3 +43,6 @@ YOUR_CLIENT_SECRET_FILE.json
 # Type-safe arguments
 # https://next-intl.dev/docs/workflows/typescript#messages-arguments
 messages/*.d.json.ts
+
+# Temporary db files for testing
+.tmp-*
