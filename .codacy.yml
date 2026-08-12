@@ -6,3 +6,8 @@ exclude_paths:
   - "**.yml"
   - "**.md"
   - "**.d.ts"
+  - "gh-pages-out/**"
+  - "public/**"
+  - ".vscode/**"
+  - "**.json"
+  - "**.config.**"
