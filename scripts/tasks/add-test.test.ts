@@ -55,6 +55,7 @@ describe.skipIf(!hasRealDb)('addTestToDatabase', () => {
 
     it('defaults releaseDate to today (YYYY-MM-DD) when omitted', async () => {
         const identifier = `vitest-date-${randomUUID()}`;
+        const dateBeforeInsert = new Date().toISOString().slice(0, 10);
         await addTestToDatabase(db, {
             title: 'Vitest Release Date Default',
             identifierKind: 'Video',
@@ -63,8 +64,8 @@ describe.skipIf(!hasRealDb)('addTestToDatabase', () => {
         });
 
         const row = db.prepare('SELECT releaseDate FROM tests WHERE videoId = ?').get(identifier) as any;
-        const today = new Date().toISOString().slice(0, 10);
-        expect(row.releaseDate).toBe(today);
+        const dateAfterInsert = new Date().toISOString().slice(0, 10);
+        expect([dateBeforeInsert, dateAfterInsert]).toContain(row.releaseDate)
     });
 
     it('stores an explicit duration and releaseDate when provided', async () => {
