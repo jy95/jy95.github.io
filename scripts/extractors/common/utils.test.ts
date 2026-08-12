@@ -82,7 +82,7 @@ describe('normaliazeDuration', () => {
     it('carries seconds all the way through minutes into hours', () => {
         expect(normaliazeDuration({ hours: 0, minutes: 59, seconds: 3661 })).toEqual({
             hours: 2,
-            minutes: 1,
+            minutes: 0,
             seconds: 1,
         });
     });
