@@ -16,6 +16,10 @@ export default defineConfig({
             include: ['src/**/*.{ts,tsx}', 'scripts/**/*.ts'],
             exclude: ['**/*.test.ts', '**/*.test.tsx', '**/*.d.ts'],
         },
+        env: {
+            NEXT_PUBLIC_SUPABASE_URL: 'https://placeholder.supabase.co',
+            NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: 'placeholder-key',
+        },
     },
     resolve: {
         alias: {
