@@ -1,0 +1,8 @@
+---
+exclude_paths:
+  - ".github/**"
+  - "**/*.test.ts"
+  - "**/*.test.tsx"
+  - "**.yml"
+  - "**.md"
+  - "**.d.ts"
