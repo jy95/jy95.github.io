@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -21,6 +22,9 @@ export default defineConfig({
             NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: 'placeholder-key',
         },
     },
+    plugins: [
+        react()
+    ],
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
