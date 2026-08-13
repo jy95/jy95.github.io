@@ -325,6 +325,12 @@
 			"imagePath": "/backlogcovers/114/cover.webp"
 		},
 		{
+			"id": "202",
+			"title": "The Darkness II",
+			"platform": 6,
+			"imagePath": "/backlogcovers/202/cover.webp"
+		},
+		{
 			"id": "104",
 			"title": "Tomb Raider",
 			"platform": 6,
@@ -1589,12 +1595,5 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": [
-		{
-			"id": "202",
-			"title": "The Darkness II",
-			"platform": 6,
-			"imagePath": "/backlogcovers/202/cover.webp"
-		}
-	]
+	"tier_not_evaluated": []
 }
