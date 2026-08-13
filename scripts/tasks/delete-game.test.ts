@@ -3,12 +3,12 @@ import { randomUUID } from 'crypto';
 import { openTestDb, hasRealDb } from './testDbHelper';
 import type { Database } from 'better-sqlite3';
 
-// delete-game.ts calls `rm` from 'fs/promises' against the real public/covers
-// folder. Mock it so the test suite never deletes real files on disk.
+// delete-game.ts imports `rm` from 'fs/promises'. Vitest resolves this Node builtin
+// as 'node:fs/promises'. Mock the resolved module so tests do not remove real files.
 const { rmMock } = vi.hoisted(() => ({ rmMock: vi.fn() }));
 
-vi.mock('fs/promises', async (importOriginal) => {
-    const actual = await importOriginal<typeof import('fs/promises')>();
+vi.mock('node:fs/promises', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('node:fs/promises')>();
     return { ...actual, rm: rmMock };
 });
 
@@ -24,6 +24,7 @@ describe.skipIf(!hasRealDb)('deleteGameFromDatabase', () => {
         rmMock.mockReset();
         rmMock.mockResolvedValue(undefined);
     });
+
     afterEach(() => {
         cleanup();
     });
