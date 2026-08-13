@@ -7,13 +7,13 @@ const { rmMock } = vi.hoisted(() => ({ rmMock: vi.fn() }));
 
 vi.mock('fs/promises', async (importOriginal) => {
     const actual = await importOriginal<typeof import('fs/promises')>();
-    return {
+    const mock = {
         ...actual,
         rm: rmMock,
-        default: {
-            ...actual.default,
-            rm: rmMock,
-        },
+    };
+    return {
+        ...mock,
+        default: mock,
     };
 });
 
