@@ -1404,6 +1404,9 @@
 	{
 		"id": 202,
 		"title": "The Darkness II",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "06:02:41",
+		"hltb_extra": "08:14:28",
+		"hltb_completionist": "15:14:39"
 	}
 ]
