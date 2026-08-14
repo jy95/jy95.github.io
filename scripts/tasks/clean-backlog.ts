@@ -1,5 +1,5 @@
 import type { Database } from 'better-sqlite3';
-import { promises as fs } from 'fs';
+import { readdir, rm } from 'fs/promises';
 import { join } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -21,7 +21,7 @@ function getValidBacklogIds(db: Database): Set<string> {
  */
 async function getExistingImageFolders(): Promise<string[]> {
   try {
-    const entries = await fs.readdir(BACKLOG_COVERS_PATH, { withFileTypes: true });
+    const entries = await readdir(BACKLOG_COVERS_PATH, { withFileTypes: true });
     return entries.filter(entry => entry.isDirectory()).map(entry => entry.name);
   } catch (error) {
     console.warn(`Warning: Could not read backlog covers directory at ${BACKLOG_COVERS_PATH}`, error);
@@ -35,7 +35,7 @@ async function getExistingImageFolders(): Promise<string[]> {
 async function deleteOrphanedFolder(folderName: string): Promise<boolean> {
   const folderPath = join(BACKLOG_COVERS_PATH, folderName);
   try {
-    await fs.rm(folderPath, { recursive: true, force: true });
+    await rm(folderPath, { recursive: true, force: true });
     console.log(`✓ Deleted orphaned folder: ${folderName}`);
     return true;
   } catch (error) {
