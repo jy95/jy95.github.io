@@ -59,7 +59,7 @@
     "googleapis": "^174.0.1",
     "howlongtobeat-ts": "^1.2.0",
     "jsdom": "^30.0.1",
-    "tsx": "^4.23.11",
+    "tsx": "^4.23.12",
     "vitest": "^4.1.10"
   },
   "overrides": {
