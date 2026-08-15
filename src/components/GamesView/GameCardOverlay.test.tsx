@@ -25,7 +25,8 @@ describe('GameCardOverlay', () => {
     });
 
     it('does not render anything besides the title (no duration, no extra fields required)', () => {
-        const { container } = render(<GameCardOverlay game={baseGame} />);
+        const gameWithDuration = { ...baseGame, duration: '2 hours' };
+        const { container } = render(<GameCardOverlay game={gameWithDuration} />);
         expect(container.textContent).toBe('Some Long Game Title');
     });
 });
