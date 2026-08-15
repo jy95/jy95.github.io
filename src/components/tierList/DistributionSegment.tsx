@@ -34,6 +34,7 @@ export default function DistributionSegment({ tierSlug, count, percentage, categ
     return (
         <Tooltip title={tooltipText} arrow placement="top">
             <Box
+                data-testid={`distribution-segment-${tierSlug}`}
                 sx={{
                     width: `${percentage}%`,
                     backgroundColor: slugColor,

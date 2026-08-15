@@ -49,28 +49,24 @@ describe('DistributionBar', () => {
     });
 
     it('gives each populated segment a width proportional to its share of the total', () => {
-        const { container } = render(
+        render(
             <DistributionBar
                 data={{ tier_good: [{ id: '1' }, { id: '2' }, { id: '3' }], tier_bad: [{ id: '4' }] }}
                 categoryColors={categoryColors}
             />
         );
-        const widths = Array.from(container.querySelectorAll('[style*="width"]'))
-            .map((el) => (el as HTMLElement).style.width)
-            .filter((w) => w && w !== '100%');
-        expect(widths).toEqual(expect.arrayContaining(['75%', '25%']));
+        expect(screen.getByTestId('distribution-segment-tier_good')).toHaveStyle({ width: '75%' });
+        expect(screen.getByTestId('distribution-segment-tier_bad')).toHaveStyle({ width: '25%' });
     });
 
     it('gives an empty category a 0% width segment rather than omitting it', () => {
-        const { container } = render(
+        render(
             <DistributionBar
                 data={{ tier_good: [{ id: '1' }], tier_bad: [] }}
                 categoryColors={categoryColors}
             />
         );
-        const widths = Array.from(container.querySelectorAll('[style*="width"]'))
-            .map((el) => (el as HTMLElement).style.width)
-            .filter((w) => w && w !== '100%');
-        expect(widths).toEqual(expect.arrayContaining(['100%', '0%']));
+        expect(screen.getByTestId('distribution-segment-tier_good')).toHaveStyle({ width: '100%' });
+        expect(screen.getByTestId('distribution-segment-tier_bad')).toHaveStyle({ width: '0%' });
     });
 });
