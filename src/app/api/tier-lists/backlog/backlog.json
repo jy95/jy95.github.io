@@ -699,6 +699,15 @@
 			"imagePath": "/backlogcovers/139/cover.webp"
 		},
 		{
+			"id": "203",
+			"title": "Prey",
+			"platform": 1,
+			"hltb_main": "16:23:57",
+			"hltb_extra": "27:54:47",
+			"hltb_completionist": "46:19:34",
+			"imagePath": "/backlogcovers/203/cover.webp"
+		},
+		{
 			"id": "195",
 			"title": "Prototype",
 			"platform": 6,
@@ -1598,12 +1607,5 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": [
-		{
-			"id": "203",
-			"title": "Prey",
-			"platform": 1,
-			"imagePath": "/backlogcovers/203/cover.webp"
-		}
-	]
+	"tier_not_evaluated": []
 }
