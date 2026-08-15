@@ -98,4 +98,31 @@ describe.skipIf(!hasRealDb)('hltb_fetcher', () => {
         expect(row.hltb_extra == null).toBeTruthy();
         expect(row.hltb_completionist == null).toBeTruthy();
     });
+
+    it('logs a warning when no HLTB result is found and leaves hltb_* as null', async () => {
+        db.prepare('DELETE FROM backlog').run();
+        const testId = 777777;
+        db.prepare('INSERT INTO backlog (id, title) VALUES (?, ?)').run(testId, 'No Result Game');
+
+        // Return a success:false result to trigger the "no result" branch
+        searchOneMock.mockResolvedValue({ success: false });
+
+        const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+
+        await import('./hltb_fetcher');
+
+        // Ensure we logged the "no result" message at least once
+        const calls: any[] = logSpy.mock.calls;
+        const found = calls.some(call => typeof call[0] === 'string' && call[0].includes('Aucun résultat trouvé'));
+
+        logSpy.mockRestore();
+
+        const row = db.prepare('SELECT hltb_main, hltb_extra, hltb_completionist FROM backlog WHERE id = ?').get(testId) as any;
+
+        expect(found).toBeTruthy();
+        expect(row).toBeDefined();
+        expect(row.hltb_main == null).toBeTruthy();
+        expect(row.hltb_extra == null).toBeTruthy();
+        expect(row.hltb_completionist == null).toBeTruthy();
+    });
 });
