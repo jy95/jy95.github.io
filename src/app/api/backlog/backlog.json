@@ -1412,6 +1412,9 @@
 	{
 		"id": 203,
 		"title": "Prey",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "16:23:57",
+		"hltb_extra": "27:54:47",
+		"hltb_completionist": "46:19:34"
 	}
 ]
