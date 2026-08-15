@@ -26,6 +26,8 @@ describe('InfoRow', () => {
 
         rerender(<InfoRow label="Second" value="B" icon={<span />} />);
         expect(screen.getByText('Second')).toBeInTheDocument();
+        expect(screen.getByText('B')).toBeInTheDocument();
         expect(screen.queryByText('First')).not.toBeInTheDocument();
+        expect(screen.queryByText('A')).not.toBeInTheDocument();
     });
 });
