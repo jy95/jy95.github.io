@@ -1,6 +1,14 @@
 // src/redux/services/gamesAPI.test.ts
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
+
+// Use vi.hoisted to stub global fetch before gamesAPI is imported
+const fetchMock = vi.hoisted(() => {
+    const fn = vi.fn();
+    vi.stubGlobal('fetch', fn);
+    return fn;
+});
+
 import { gamesAPI } from './gamesAPI';
 
 function makeStore() {
@@ -20,15 +28,9 @@ function jsonResponse(body: unknown) {
 const emptyPage = { items: [], total_items: 0, total_pages: 1, pageSize: 12, page: 1 };
 
 describe('gamesAPI query building (getGames)', () => {
-    let fetchMock: ReturnType<typeof vi.fn>;
-
     beforeEach(() => {
-        fetchMock = vi.fn().mockImplementation(async () => jsonResponse(emptyPage));
-        vi.stubGlobal('fetch', fetchMock);
-    });
-
-    afterEach(() => {
-        vi.unstubAllGlobals();
+        fetchMock.mockReset();
+        fetchMock.mockImplementation(async () => jsonResponse(emptyPage));
     });
 
     function calledUrl(callIndex = 0): URL {
