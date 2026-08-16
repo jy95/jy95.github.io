@@ -1,11 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
 
-// 1. Create and stub global fetch BEFORE importing gamesAPI
+// 1. Stub global location so undici / Node Request can resolve relative URLs
+vi.stubGlobal('location', new URL('http://localhost'));
+
+// 2. Stub global fetch BEFORE importing gamesAPI
 const fetchMock = vi.fn();
 vi.stubGlobal('fetch', fetchMock);
 
-// 2. Import gamesAPI after fetch has been stubbed
+// 3. Dynamically import gamesAPI after fetch and location are stubbed
 const { gamesAPI } = await import('./gamesAPI');
 
 function makeStore() {
@@ -32,7 +35,8 @@ describe('gamesAPI query building (getGames)', () => {
 
     function calledUrl(callIndex = 0): URL {
         const raw = fetchMock.mock.calls[callIndex][0];
-        return new URL(String(raw), 'http://localhost');
+        const urlStr = typeof raw === 'string' ? raw : raw.url;
+        return new URL(urlStr, 'http://localhost');
     }
 
     it('includes page and pageSize even with no filters', async () => {
