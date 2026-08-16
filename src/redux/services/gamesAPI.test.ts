@@ -1,14 +1,30 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
 
-// 1. Stub global location so undici / Node Request can resolve relative URLs
+// 1. Stub global location so relative URLs can be resolved
 vi.stubGlobal('location', new URL('http://localhost'));
 
-// 2. Stub global fetch BEFORE importing gamesAPI
+// 2. Make Node's Request resolve relative URLs like a browser Request
+const NativeRequest = globalThis.Request;
+vi.stubGlobal(
+    'Request',
+    class extends NativeRequest {
+        constructor(input: RequestInfo | URL, init?: RequestInit) {
+            super(
+                typeof input === 'string'
+                    ? new URL(input, globalThis.location.href).toString()
+                    : input,
+                init
+            );
+        }
+    }
+);
+
+// 3. Stub global fetch BEFORE importing gamesAPI
 const fetchMock = vi.fn();
 vi.stubGlobal('fetch', fetchMock);
 
-// 3. Dynamically import gamesAPI after fetch and location are stubbed
+// 4. Dynamically import gamesAPI after fetch and Request are stubbed
 const { gamesAPI } = await import('./gamesAPI');
 
 function makeStore() {
@@ -25,7 +41,13 @@ function jsonResponse(body: unknown) {
     });
 }
 
-const emptyPage = { items: [], total_items: 0, total_pages: 1, pageSize: 12, page: 1 };
+const emptyPage = {
+    items: [],
+    total_items: 0,
+    total_pages: 1,
+    pageSize: 12,
+    page: 1,
+};
 
 describe('gamesAPI query building (getGames)', () => {
     beforeEach(() => {
@@ -41,7 +63,12 @@ describe('gamesAPI query building (getGames)', () => {
 
     it('includes page and pageSize even with no filters', async () => {
         const store = makeStore();
-        await store.dispatch(gamesAPI.endpoints.getGames.initiate({ filters: [], pageSize: 12 }));
+        await store.dispatch(
+            gamesAPI.endpoints.getGames.initiate({
+                filters: [],
+                pageSize: 12,
+            })
+        );
 
         const url = calledUrl();
         expect(url.searchParams.get('page')).toBe('1');
@@ -50,7 +77,12 @@ describe('gamesAPI query building (getGames)', () => {
 
     it('hits the /api/games endpoint', async () => {
         const store = makeStore();
-        await store.dispatch(gamesAPI.endpoints.getGames.initiate({ filters: [], pageSize: 12 }));
+        await store.dispatch(
+            gamesAPI.endpoints.getGames.initiate({
+                filters: [],
+                pageSize: 12,
+            })
+        );
 
         expect(calledUrl().pathname).toBe('/api/games');
     });
@@ -88,7 +120,11 @@ describe('gamesAPI query building (getGames)', () => {
             })
         );
 
-        expect(calledUrl().searchParams.getAll('selected_genres')).toEqual(['1', '2', '3']);
+        expect(calledUrl().searchParams.getAll('selected_genres')).toEqual([
+            '1',
+            '2',
+            '3',
+        ]);
     });
 
     it('omits selected_genres entirely when the array is empty', async () => {
@@ -124,14 +160,24 @@ describe('gamesAPI query building (getGames)', () => {
 
     it('respects a different pageSize value in the query string', async () => {
         const store = makeStore();
-        await store.dispatch(gamesAPI.endpoints.getGames.initiate({ filters: [], pageSize: 24 }));
+        await store.dispatch(
+            gamesAPI.endpoints.getGames.initiate({
+                filters: [],
+                pageSize: 24,
+            })
+        );
 
         expect(calledUrl().searchParams.get('pageSize')).toBe('24');
     });
 
     it('starts at page 1 on the initial fetch, per initialPageParam', async () => {
         const store = makeStore();
-        await store.dispatch(gamesAPI.endpoints.getGames.initiate({ filters: [], pageSize: 12 }));
+        await store.dispatch(
+            gamesAPI.endpoints.getGames.initiate({
+                filters: [],
+                pageSize: 12,
+            })
+        );
 
         expect(calledUrl().searchParams.get('page')).toBe('1');
     });
