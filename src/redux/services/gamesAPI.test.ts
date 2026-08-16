@@ -1,15 +1,12 @@
-// src/redux/services/gamesAPI.test.ts
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
 
-// Use vi.hoisted to stub global fetch before gamesAPI is imported
-const fetchMock = vi.hoisted(() => {
-    const fn = vi.fn();
-    vi.stubGlobal('fetch', fn);
-    return fn;
-});
+// 1. Create and stub global fetch BEFORE importing gamesAPI
+const fetchMock = vi.fn();
+vi.stubGlobal('fetch', fetchMock);
 
-import { gamesAPI } from './gamesAPI';
+// 2. Import gamesAPI after fetch has been stubbed
+const { gamesAPI } = await import('./gamesAPI');
 
 function makeStore() {
     return configureStore({
