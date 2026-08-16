@@ -16,10 +16,10 @@ vi.mock('next-intl', () => ({
 
 import { useNavigateToRandomGame } from './useNavigateToRandomGame';
 
-function jsonResponse(body: unknown, ok = true, status = 200) {
+function jsonResponse(body: unknown, status = 200) {
     return Promise.resolve(
         new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } })
-    ).then((r) => Object.assign(r, { ok }));
+    );
 }
 
 describe('useNavigateToRandomGame', () => {
@@ -74,10 +74,12 @@ describe('useNavigateToRandomGame', () => {
         await waitFor(() => expect(result.current.isPending).toBe(true));
 
         act(() => {
-            resolveFetch(Object.assign(
-                new Response(JSON.stringify({ identifier: 'X', type: 'VIDEO' })),
-                { ok: true }
-            ));
+            resolveFetch(
+                new Response(JSON.stringify({ identifier: 'X', type: 'VIDEO' }), {
+                    status: 200,
+                    headers: { 'Content-Type': 'application/json' }
+                })
+            );
         });
 
         await waitFor(() => expect(result.current.isPending).toBe(false));
@@ -96,7 +98,7 @@ describe('useNavigateToRandomGame', () => {
     });
 
     it('does not push and resets isPending when the response is not ok', async () => {
-        vi.stubGlobal('fetch', vi.fn().mockImplementation(() => jsonResponse({}, false, 500)));
+        vi.stubGlobal('fetch', vi.fn().mockImplementation(() => jsonResponse({}, 500)));
         const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
         const { result } = renderHook(() => useNavigateToRandomGame());
