@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
 
 const mockBacklog = [
-    { title: 'Game A', platform: 1, hltb_main: '10:00:00' },
-    { title: 'Game B', notes: 'some notes' },
+    { id: 0, title: 'Game A', platform: 1, hltb_main: '10:00:00' },
+    { id: 1, title: 'Game B', notes: 'some notes' },
 ];
 
 vi.mock('./backlog.json', () => ({ default: mockBacklog }));
@@ -42,8 +42,9 @@ describe('GET /api/backlog', () => {
     it('does not carry over a raw numeric id from the source row', async () => {
         const res = await GET();
         const data = await res.json();
-        // Source rows have no "id" field at all; the route derives one from the index.
-        expect(typeof data[0].id).toBe('string');
+        // Source rows have numeric "id" fields; the route converts them to strings.
+        expect(data[0].id).toBe('0');
+        expect(data[1].id).toBe('1');
     });
 
 });
