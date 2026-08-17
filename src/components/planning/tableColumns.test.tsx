@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { render, screen } from '`@testing-library/react`';
+import { render, screen } from '@testing-library/react';
 
 import tableColumns from './tableColumns';
 import type { Props } from './tableColumns';
