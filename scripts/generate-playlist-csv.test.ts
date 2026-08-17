@@ -34,8 +34,11 @@ vi.mock('../scripts/findPublishedGames', () => ({
   fetchGamesWithPlaylists: mockFetchGamesWithPlaylists
 }));
 
+// Fix: Use standard function instead of an arrow function so 'new Database()' works
 vi.mock('better-sqlite3', () => ({
-  default: vi.fn().mockImplementation(() => ({ close: vi.fn() }))
+  default: vi.fn().mockImplementation(function () {
+    return { close: vi.fn() };
+  })
 }));
 
 vi.mock('googleapis', () => ({
