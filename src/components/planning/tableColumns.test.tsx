@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import type { GridSingleSelectColDef } from '@mui/x-data-grid';
 
 import tableColumns from './tableColumns';
@@ -89,20 +89,30 @@ describe('planning tableColumns', () => {
         );
     });
 
-    it('renders the recorded icon with the recorded tooltip text', () => {
+    it('renders the recorded icon with the recorded tooltip text', async () => {
         const renderCell = getColumn('status').renderCell as (params: { value: string }) => React.ReactNode;
 
         render(<>{renderCell({ value: 'RECORDED' })}</>);
 
-        expect(screen.getByLabelText('RECORDED')).toHaveAttribute('title', 'Recorded');
+        const icon = screen.getByLabelText('RECORDED');
+        expect(icon).toBeInTheDocument();
+
+        fireEvent.mouseOver(icon);
+
+        expect(await screen.findByText('Recorded')).toBeInTheDocument();
     });
 
-    it('renders the pending icon with the pending tooltip text', () => {
+    it('renders the pending icon with the pending tooltip text', async () => {
         const renderCell = getColumn('status').renderCell as (params: { value: string }) => React.ReactNode;
 
         render(<>{renderCell({ value: 'PENDING' })}</>);
 
-        expect(screen.getByLabelText('PENDING')).toHaveAttribute('title', 'Pending');
+        const icon = screen.getByLabelText('PENDING');
+        expect(icon).toBeInTheDocument();
+
+        fireEvent.mouseOver(icon);
+
+        expect(await screen.findByText('Pending')).toBeInTheDocument();
     });
 
     it('renders the title value inside an accessible tooltip', () => {
