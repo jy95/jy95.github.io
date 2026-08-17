@@ -4,7 +4,7 @@ const getPathnameMock = vi.fn(
     ({ locale, href }: { locale: string; href: string }) => `/${locale}${href === '/' ? '' : href}`
 );
 
-vi.mock('`@/i18n/routing`', () => ({
+vi.mock('@/i18n/routing', () => ({
     routing: {
         pathnames: {
             '/': '/',
