@@ -1,6 +1,56 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-// We'll mock all external modules used by the script BEFORE importing it.
+// Declare hoisted mock functions so they can be referenced inside vi.mock factories
+const {
+  mockReadFile,
+  mockFetchGamesWithPlaylists,
+  mockReportsQuery,
+  mockCreateWriteStream,
+  mockInput
+} = vi.hoisted(() => ({
+  mockReadFile: vi.fn(),
+  mockFetchGamesWithPlaylists: vi.fn(),
+  mockReportsQuery: vi.fn(),
+  mockCreateWriteStream: vi.fn(),
+  mockInput: vi.fn()
+}));
+
+// Provide both default and named exports for Node built-ins
+vi.mock('fs/promises', () => ({
+  default: { readFile: mockReadFile },
+  readFile: mockReadFile
+}));
+
+vi.mock('fs', () => ({
+  default: { createWriteStream: mockCreateWriteStream },
+  createWriteStream: mockCreateWriteStream
+}));
+
+vi.mock('@inquirer/input', () => ({
+  default: mockInput
+}));
+
+vi.mock('../scripts/findPublishedGames', () => ({
+  fetchGamesWithPlaylists: mockFetchGamesWithPlaylists
+}));
+
+vi.mock('better-sqlite3', () => ({
+  default: vi.fn().mockImplementation(() => ({ close: vi.fn() }))
+}));
+
+vi.mock('googleapis', () => ({
+  google: {
+    auth: {
+      OAuth2: vi.fn().mockImplementation(() => ({
+        generateAuthUrl: () => 'http://auth',
+        getToken: (_code: string, cb: any) => cb(null, { access_token: 'a' }),
+        setCredentials: vi.fn()
+      }))
+    },
+    youtubeAnalytics: () => ({ reports: { query: mockReportsQuery } })
+  }
+}));
+
 let createStreamDone: () => void;
 let createStreamPromise: Promise<void>;
 let queryCalledResolve: () => void;
@@ -15,140 +65,71 @@ beforeEach(() => {
   queryCalledPromise = new Promise<void>((res) => {
     queryCalledResolve = res;
   });
+
+  mockReadFile.mockResolvedValue(
+    JSON.stringify({
+      installed: {
+        client_secret: 'secret',
+        client_id: 'id',
+        redirect_uris: ['urn:ietf:wg:oauth:2.0:oob']
+      }
+    })
+  );
+
+  mockInput.mockResolvedValue('fake-code');
+
+  mockCreateWriteStream.mockImplementation(() => {
+    const chunks: string[] = [];
+    return {
+      write: (s: string) => chunks.push(s),
+      end: (cb?: () => void) => {
+        if (cb) cb();
+        createStreamDone();
+      },
+      __getContents: () => chunks.join('')
+    } as any;
+  });
 });
 
 describe('generate-playlist-csv script', () => {
   it('writes CSV when playlists are returned and rows exist', async () => {
-    // Mock readFile to return minimal client secret JSON
-    vi.mock('fs/promises', () => ({
-      readFile: vi.fn().mockResolvedValue(
-        JSON.stringify({
-          installed: {
-            client_secret: 'secret',
-            client_id: 'id',
-            redirect_uris: ['urn:ietf:wg:oauth:2.0:oob']
-          }
-        })
-      )
-    }));
+    mockFetchGamesWithPlaylists.mockReturnValue([
+      { identifier: 'PL123', title: 'My "Awesome" Playlist' }
+    ]);
 
-    // Mock inquirer input to return a fake code
-    vi.mock('@inquirer/input', () => ({ default: vi.fn().mockResolvedValue('fake-code') }));
-
-    // Mock findPublishedGames to return one game with a playlist id
-    vi.mock('../scripts/findPublishedGames', () => ({
-      fetchGamesWithPlaylists: vi.fn().mockReturnValue([
-        { identifier: 'PL123', title: 'My "Awesome" Playlist' }
-      ])
-    }));
-
-    // Mock better-sqlite3 Database so it doesn't touch filesystem
-    vi.mock('better-sqlite3', () => ({ default: vi.fn().mockImplementation(() => ({ close: vi.fn() })) }));
-
-    // Mock googleapis
-    vi.mock('googleapis', () => {
-      const reportsQuery = vi.fn().mockImplementation(async (opts) => {
-        // signal that the query was called
-        queryCalledResolve();
-        return { data: { rows: [['PL123', 42, 84]] } };
-      });
-
-      return {
-        google: {
-          auth: {
-            OAuth2: vi.fn().mockImplementation(() => ({
-              generateAuthUrl: () => 'http://auth',
-              getToken: (_code: string, cb: any) => cb(null, { access_token: 'a' }) ,
-              setCredentials: vi.fn()
-            }))
-          },
-          youtubeAnalytics: () => ({ reports: { query: reportsQuery } })
-        }
-      };
+    mockReportsQuery.mockImplementation(async () => {
+      queryCalledResolve();
+      return { data: { rows: [['PL123', 42, 84]] } };
     });
 
-    // Mock createWriteStream to capture writes and resolve when end is called
-    vi.mock('fs', async () => {
-      // Lazy import original for other things if needed
-      return {
-        createWriteStream: vi.fn().mockImplementation(() => {
-          const chunks: string[] = [];
-          return {
-            write: (s: string) => chunks.push(s),
-            end: (cb?: () => void) => {
-              // emulate async flush
-              if (cb) cb();
-              createStreamDone();
-            },
-            // expose for inspection via a property (not used by script directly)
-            __getContents: () => chunks.join('')
-          } as any;
-        })
-      };
-    });
-
-    // Spy on console.log so we can assert messages were printed
     const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
     const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-    // Import the module (this will run the top-level code with our mocks)
     await import('../scripts/generate-playlist-csv');
 
-    // Wait for the query to be called and for the stream to finish
     await queryCalledPromise;
     await createStreamPromise;
 
-    // Assert that auth url was printed and that final success message was printed
     expect(logSpy).toHaveBeenCalled();
-    expect(logSpy.mock.calls.some(call => call[0] && call[0].toString().includes('http'))).toBe(true);
-    expect(logSpy.mock.calls.some(call => call[0] === 'Data written to playlists_stats.csv successfully.')).toBe(true);
+    expect(
+      logSpy.mock.calls.some((call) => call[0] && call[0].toString().includes('http'))
+    ).toBe(true);
+    expect(
+      logSpy.mock.calls.some(
+        (call) => call[0] === 'Data written to playlists_stats.csv successfully.'
+      )
+    ).toBe(true);
 
     logSpy.mockRestore();
     errorSpy.mockRestore();
   });
 
   it('runs query without global filter when no playlists are returned and logs no data', async () => {
-    // Mock readFile again
-    vi.mock('fs/promises', () => ({
-      readFile: vi.fn().mockResolvedValue(
-        JSON.stringify({
-          installed: {
-            client_secret: 'secret',
-            client_id: 'id',
-            redirect_uris: ['urn:ietf:wg:oauth:2.0:oob']
-          }
-        })
-      )
-    }));
+    mockFetchGamesWithPlaylists.mockReturnValue([]);
 
-    vi.mock('@inquirer/input', () => ({ default: vi.fn().mockResolvedValue('fake-code') }));
-
-    // Now mock findPublishedGames to return an empty array
-    vi.mock('../scripts/findPublishedGames', () => ({
-      fetchGamesWithPlaylists: vi.fn().mockReturnValue([])
-    }));
-
-    vi.mock('better-sqlite3', () => ({ default: vi.fn().mockImplementation(() => ({ close: vi.fn() })) }));
-
-    // Mock googleapis to return no rows
-    vi.mock('googleapis', () => {
-      const reportsQuery = vi.fn().mockImplementation(async (opts) => {
-        queryCalledResolve();
-        return { data: { rows: [] } };
-      });
-
-      return {
-        google: {
-          auth: {
-            OAuth2: vi.fn().mockImplementation(() => ({
-              generateAuthUrl: () => 'http://auth',
-              getToken: (_code: string, cb: any) => cb(null, { access_token: 'a' }) ,
-              setCredentials: vi.fn()
-            }))
-          },
-          youtubeAnalytics: () => ({ reports: { query: reportsQuery } })
-        }
-      };
+    mockReportsQuery.mockImplementation(async () => {
+      queryCalledResolve();
+      return { data: { rows: [] } };
     });
 
     const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
@@ -158,8 +139,11 @@ describe('generate-playlist-csv script', () => {
 
     await queryCalledPromise;
 
-    // Expect a message saying no playlists found for year and/or No data found
-    expect(logSpy.mock.calls.some(call => call[0] && call[0].toString().includes('Aucune playlist')) || logSpy.mock.calls.some(call => call[0] === 'No data found.')).toBeTruthy();
+    expect(
+      logSpy.mock.calls.some(
+        (call) => call[0] && call[0].toString().includes('Aucune playlist')
+      ) || logSpy.mock.calls.some((call) => call[0] === 'No data found.')
+    ).toBeTruthy();
 
     logSpy.mockRestore();
     errorSpy.mockRestore();
