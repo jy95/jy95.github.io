@@ -34,7 +34,7 @@ vi.mock('../scripts/findPublishedGames', () => ({
   fetchGamesWithPlaylists: mockFetchGamesWithPlaylists
 }));
 
-// Use standard functions for constructors instantiated with 'new'
+// Use standard function constructors for 'new'
 vi.mock('better-sqlite3', () => ({
   default: vi.fn().mockImplementation(function () {
     return { close: vi.fn() };
@@ -47,7 +47,10 @@ vi.mock('googleapis', () => ({
       OAuth2: vi.fn().mockImplementation(function () {
         return {
           generateAuthUrl: () => 'http://auth',
-          getToken: (_code: string, cb: any) => cb(null, { access_token: 'a' }),
+          // Defer callback execution so top-level script finishes initializing 'callApi'
+          getToken: (_code: string, cb: any) => {
+            queueMicrotask(() => cb(null, { access_token: 'a' }));
+          },
           setCredentials: vi.fn()
         };
       })
