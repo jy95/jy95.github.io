@@ -37,7 +37,7 @@ vi.mock('next/server', () => {
     return { NextResponse: FakeNextResponse };
 });
 
-import { updateSession } from './proxy';
+import { updateSession } from './lib/supabase/proxy';
 
 function makeRequest(cookies: Record<string, string> = {}) {
     return { cookies: makeCookieJar(cookies) } as any;
