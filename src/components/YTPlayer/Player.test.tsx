@@ -31,12 +31,10 @@ describe('YTPlayer Player component', () => {
         expect(el).toHaveAttribute('data-src', 'https://www.youtube.com/watch?v=abc123');
         expect(el).toHaveAttribute('data-controls', 'true');
 
-        // check that the inline style was applied
-        expect(el).toHaveStyle({
-            display: 'block',
-            width: '100%',
-            height: '75vh',
-        });
+        // Check raw inline style attributes directly to avoid jsdom unit conversion
+        expect(el.style.display).toBe('block');
+        expect(el.style.width).toBe('100%');
+        expect(el.style.height).toBe('75vh');
     });
 
     it('builds a PLAYLIST URL when type is PLAYLIST', () => {
