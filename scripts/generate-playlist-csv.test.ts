@@ -34,7 +34,7 @@ vi.mock('../scripts/findPublishedGames', () => ({
   fetchGamesWithPlaylists: mockFetchGamesWithPlaylists
 }));
 
-// Fix: Use standard function instead of an arrow function so 'new Database()' works
+// Use standard functions for constructors instantiated with 'new'
 vi.mock('better-sqlite3', () => ({
   default: vi.fn().mockImplementation(function () {
     return { close: vi.fn() };
@@ -44,11 +44,13 @@ vi.mock('better-sqlite3', () => ({
 vi.mock('googleapis', () => ({
   google: {
     auth: {
-      OAuth2: vi.fn().mockImplementation(() => ({
-        generateAuthUrl: () => 'http://auth',
-        getToken: (_code: string, cb: any) => cb(null, { access_token: 'a' }),
-        setCredentials: vi.fn()
-      }))
+      OAuth2: vi.fn().mockImplementation(function () {
+        return {
+          generateAuthUrl: () => 'http://auth',
+          getToken: (_code: string, cb: any) => cb(null, { access_token: 'a' }),
+          setCredentials: vi.fn()
+        };
+      })
     },
     youtubeAnalytics: () => ({ reports: { query: mockReportsQuery } })
   }
