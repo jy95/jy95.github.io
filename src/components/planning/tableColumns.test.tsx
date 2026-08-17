@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import type { GridSingleSelectColDef } from '@mui/x-data-grid';
 
 import tableColumns from './tableColumns';
 import type { Props } from './tableColumns';
@@ -46,7 +47,7 @@ describe('planning tableColumns', () => {
     });
 
     it('uses the shared single-select platform configuration', () => {
-        const platformColumn = getColumn('platform');
+        const platformColumn = getColumn('platform') as GridSingleSelectColDef;
 
         expect(platformColumn.type).toBe('singleSelect');
         expect(platformColumn.width).toBe(160);
@@ -75,7 +76,7 @@ describe('planning tableColumns', () => {
     });
 
     it('configures the status column as a single-select field', () => {
-        const column = getColumn('status');
+        const column = getColumn('status') as GridSingleSelectColDef;
 
         expect(column.type).toBe('singleSelect');
         expect(column.width).toBe(130);
