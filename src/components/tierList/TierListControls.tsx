@@ -13,6 +13,7 @@ export function TierListControls({ onToggleSort }: TierListControlsProps) {
     return (
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 3 }}>
             <Button 
+                data-testid="toggle-sort"
                 variant="outlined" 
                 onClick={onToggleSort}
                 startIcon={<SwapVertIcon />}
