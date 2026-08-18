@@ -24,16 +24,6 @@ vi.mock('next-intl', () => ({
     },
 }));
 
-// Keep the controls mocked because the real controls render an icon-only MUI Button
-// (no accessible text) — mocking preserves a test-friendly toggle button with a testid.
-vi.mock('./TierListControls', () => ({
-    TierListControls: ({ onToggleSort }: { onToggleSort: () => void }) => (
-        <button data-testid="toggle-sort" onClick={onToggleSort}>
-            Toggle
-        </button>
-    ),
-}));
-
 // Use the real QueryErrorState, TierListBoard, DistributionBar and DisclaimerAccordion
 // (we removed the mocks for them so the tests exercise more of the real UI).
 
