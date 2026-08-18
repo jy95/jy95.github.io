@@ -28,7 +28,7 @@ export function TierListBoard<T extends RawType>({
     }, [categories, data, skipEmptyCategories]);
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+        <Box data-testid="tier-list-board" sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
             {visibleCategories.map((categorySlug) => {
                 const itemsForCategory = data[categorySlug] || [];
                 const slugColor = categoryColors[categorySlug] || "grey";

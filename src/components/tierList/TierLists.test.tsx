@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 
 // Keep the API hook mocked so tests control the categories state
 const useGetSortedCategoriesQueryMock = vi.fn();
@@ -139,11 +139,13 @@ describe('TierLists', () => {
         expect(screen.getByText('Disclaimer')).toBeInTheDocument();
 
         // Board: Tier titles for both categories should be rendered (we return raw keys like 'tier_good')
-        expect(screen.getByText('tier_good')).toBeInTheDocument();
-        expect(screen.getByText('tier_bad')).toBeInTheDocument();
+        // Scope queries to the board to avoid matching DisclaimerAccordion content
+        const board = within(screen.getByTestId('tier-list-board'));
+        expect(board.getByText('tier_good')).toBeInTheDocument();
+        expect(board.getByText('tier_bad')).toBeInTheDocument();
 
         // For the empty category (tier_bad) the GamesRow should display the "empty" text
-        expect(screen.getByText('No games')).toBeInTheDocument();
+        expect(board.getByText('No games')).toBeInTheDocument();
     });
 
     it('defaults sortOrder to "asc" on the initial query call', () => {
@@ -190,7 +192,8 @@ describe('TierLists', () => {
             refetch: vi.fn(),
         });
         render(<TierLists GameRender={GameRender} data={{ tier_masterpiece: [{ id: '1' }] }} />);
-        // TierTitle uses the translation function; our mock returns the raw key for category names
-        expect(screen.getByText('tier_masterpiece')).toBeInTheDocument();
+        // Verify the game ID is rendered by GameRender, proving data was forwarded correctly
+        const board = within(screen.getByTestId('tier-list-board'));
+        expect(board.getByText('1')).toBeInTheDocument();
     });
 });
