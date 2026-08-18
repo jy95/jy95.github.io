@@ -1,19 +1,31 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 
+// Keep the API hook mocked so tests control the categories state
 const useGetSortedCategoriesQueryMock = vi.fn();
 vi.mock('@/redux/services/tierListAPI', () => ({
     useGetSortedCategoriesQuery: (...args: unknown[]) => useGetSortedCategoriesQueryMock(...args),
 }));
 
-vi.mock('@/components/common/QueryErrorState', () => ({
-    default: ({ onRetry }: { onRetry?: () => void }) => (
-        <div data-testid="query-error">
-            <button onClick={onRetry}>Retry</button>
-        </div>
-    ),
+// Mock next-intl so components using useTranslations render stable strings in tests.
+// The real code calls useTranslations(namespace) and then t(key[, opts]).
+// Our mock returns a t function that maps some keys to friendly test strings
+vi.mock('next-intl', () => ({
+    useTranslations: (ns?: string) => (key: string, opts?: any) => {
+        const fullKey = ns ? `${ns}.${key}` : key;
+        if (fullKey.endsWith('retry')) return 'Retry';
+        if (fullKey.endsWith('generic')) return 'Something went wrong';
+        if (fullKey.endsWith('empty')) return 'No games';
+        if (fullKey.endsWith('distributionTitle')) return 'Distribution';
+        if (fullKey.endsWith('total_games')) return `${opts?.count ?? 0} games`;
+        if (fullKey.endsWith('title')) return 'Disclaimer';
+        // default: return the raw key (good for category keys like 'tier_good')
+        return key;
+    },
 }));
 
+// Keep the controls mocked because the real controls render an icon-only MUI Button
+// (no accessible text) — mocking preserves a test-friendly toggle button with a testid.
 vi.mock('./TierListControls', () => ({
     TierListControls: ({ onToggleSort }: { onToggleSort: () => void }) => (
         <button data-testid="toggle-sort" onClick={onToggleSort}>
@@ -22,19 +34,8 @@ vi.mock('./TierListControls', () => ({
     ),
 }));
 
-vi.mock('./TierListBoard', () => ({
-    TierListBoard: ({ categories }: { categories: string[] }) => (
-        <div data-testid="tier-list-board">{categories.join(',')}</div>
-    ),
-}));
-
-vi.mock('./DistributionBar', () => ({
-    default: () => <div data-testid="distribution-bar" />,
-}));
-
-vi.mock('./DisclaimerAccordion', () => ({
-    default: () => <div data-testid="disclaimer-accordion" />,
-}));
+// Use the real QueryErrorState, TierListBoard, DistributionBar and DisclaimerAccordion
+// (we removed the mocks for them so the tests exercise more of the real UI).
 
 import { TierLists } from './TierLists';
 import type { RawType } from './index';
@@ -76,7 +77,8 @@ describe('TierLists', () => {
             refetch: vi.fn(),
         });
         render(<TierLists GameRender={GameRender} />);
-        expect(screen.getByTestId('query-error')).toBeInTheDocument();
+        // QueryErrorState renders a retry button labeled "Retry" (from our next-intl mock)
+        expect(screen.getByText('Retry')).toBeInTheDocument();
     });
 
     it('forwards refetch to QueryErrorState as onRetry', () => {
@@ -121,11 +123,29 @@ describe('TierLists', () => {
             error: undefined,
             refetch: vi.fn(),
         });
-        render(<TierLists GameRender={GameRender} />);
+
+        // Provide one game in tier_good so DistributionBar shows up (it hides when totalGames === 0)
+        const data = { tier_good: [{ id: 'g1' }] };
+
+        render(<TierLists GameRender={GameRender} data={data} />);
+
+        // Controls (mocked) are present
         expect(screen.getByTestId('toggle-sort')).toBeInTheDocument();
-        expect(screen.getByTestId('distribution-bar')).toBeInTheDocument();
-        expect(screen.getByTestId('disclaimer-accordion')).toBeInTheDocument();
-        expect(screen.getByTestId('tier-list-board')).toHaveTextContent('tier_good,tier_bad');
+
+        // DistributionHeader is shown (our next-intl mock provides "Distribution")
+        expect(screen.getByText('Distribution')).toBeInTheDocument();
+
+        // DisclaimerAccordion summary includes the title text (our next-intl mock provides "Disclaimer")
+        expect(screen.getByText('Disclaimer')).toBeInTheDocument();
+
+        // Board: Tier titles for both categories should be rendered (we return raw keys like 'tier_good')
+        // Scope queries to the board to avoid matching DisclaimerAccordion content
+        const board = within(screen.getByTestId('tier-list-board'));
+        expect(board.getByText('tier_good')).toBeInTheDocument();
+        expect(board.getByText('tier_bad')).toBeInTheDocument();
+
+        // For the empty category (tier_bad) the GamesRow should display the "empty" text
+        expect(board.getByText('No games')).toBeInTheDocument();
     });
 
     it('defaults sortOrder to "asc" on the initial query call', () => {
@@ -172,6 +192,8 @@ describe('TierLists', () => {
             refetch: vi.fn(),
         });
         render(<TierLists GameRender={GameRender} data={{ tier_masterpiece: [{ id: '1' }] }} />);
-        expect(screen.getByTestId('tier-list-board')).toHaveTextContent('tier_masterpiece');
+        // Verify the game ID is rendered by GameRender, proving data was forwarded correctly
+        const board = within(screen.getByTestId('tier-list-board'));
+        expect(board.getByText('1')).toBeInTheDocument();
     });
 });
