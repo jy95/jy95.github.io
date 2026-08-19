@@ -20,10 +20,18 @@ describe('platforms table column definition', () => {
 
     it('provides 7 value options, one per known platform', () => {
         const column = platformColumn as GridSingleSelectColDef<PlatformColumn, number>;
-        expect(column.valueOptions).toHaveLength(7);
+        const { valueOptions } = column;
+
+        expect(valueOptions).toHaveLength(7);
+
+        if (!Array.isArray(valueOptions)) {
+            throw new Error('Expected valueOptions to be an array');
+        }
+
         // Verify exact platform identifiers: PC, GBA, PSP, PS1, PS2, PS3, SCUMMVM
         const expectedPlatforms = [1, 2, 3, 4, 5, 6, 7];
-        const actualValues = column.valueOptions?.map((opt: any) => opt.value);
+        const actualValues = valueOptions.map((option) => option.value);
+
         expect(actualValues).toEqual(expectedPlatforms);
     });
 
@@ -39,13 +47,17 @@ describe('platforms table column definition', () => {
         const renderCell = platformColumn.renderCell as (params: { value: number }) => ReactNode;
         const { container } = render(<>{renderCell({ value: platformId })}</>);
         const svg = container.querySelector('svg');
+
         expect(svg).toBeTruthy();
         // Verify it's not the fallback help icon
         expect(container.querySelector('[data-testid="HelpOutlineOutlinedIcon"]')).toBeNull();
         // Verify the specific expected platform icon is rendered by checking path d attribute
         const path = container.querySelector('path');
+
         expect(path).toBeTruthy();
+
         const dAttr = path?.getAttribute('d');
+
         expect(dAttr).toBeTruthy();
         expect(dAttr?.startsWith(expectedPathPrefix)).toBe(true);
     });
@@ -53,17 +65,21 @@ describe('platforms table column definition', () => {
     it('renderCell falls back to the help icon for an unknown identifier', () => {
         const renderCell = platformColumn.renderCell as (params: { value: number }) => ReactNode;
         const { container } = render(<>{renderCell({ value: 999 })}</>);
+
         expect(container.querySelector('[data-testid="HelpOutlineOutlinedIcon"]')).toBeTruthy();
     });
 
     it('renderCell falls back to the help icon when value is undefined', () => {
         const renderCell = platformColumn.renderCell as (params: { value: number | undefined }) => ReactNode;
         const { container } = render(<>{renderCell({ value: undefined })}</>);
+
         expect(container.querySelector('[data-testid="HelpOutlineOutlinedIcon"]')).toBeTruthy();
     });
 
     it('reuses the same valueOptions array as platformsFilters (single source of truth)', async () => {
         const platformsFilters = (await import('@/components/filters/platformsFilters')).default;
-        expect(platformColumn.valueOptions).toBe(platformsFilters);
+        const column = platformColumn as GridSingleSelectColDef<PlatformColumn, number>;
+
+        expect(column.valueOptions).toBe(platformsFilters);
     });
 });
