@@ -25,7 +25,7 @@ describe('NavigationMenu', () => {
         const nav = NavigationMenu();
         const tier = nav.find((item) => item.segment === 'tier');
         expect(tier?.children).toHaveLength(3);
-        expect(tier?.children?.map((c) => c.segment)).toEqual(['games', 'backlog', undefined]);
+        expect(tier?.children?.map((c) => c.segment)).toEqual(['games', 'backlog', 'tests']);
     });
 
     it('every top-level entry defines an icon', () => {
