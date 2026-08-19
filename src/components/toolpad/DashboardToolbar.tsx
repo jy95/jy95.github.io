@@ -66,6 +66,7 @@ export default function DashboardToolbar({ slots, slotProps }: Props) {
             direction="row"
             spacing={1}
             sx={{ marginLeft: "auto", alignItems: 'center' }}
+            data-testid="toolbar-actions-container"
           >
             {ToolbarActionsSlot && (
               <ToolbarActionsSlot {...(slotProps?.toolbarActions ?? {})} />
