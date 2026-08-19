@@ -30,7 +30,13 @@ describe('platforms table column definition', () => {
 
         // Verify exact platform identifiers: PC, GBA, PSP, PS1, PS2, PS3, SCUMMVM
         const expectedPlatforms = [1, 2, 3, 4, 5, 6, 7];
-        const actualValues = valueOptions.map((option) => option.value);
+        const actualValues = valueOptions.map((option) => {
+            if (typeof option === 'object' && option !== null && 'value' in option) {
+                return option.value;
+            }
+
+            return option;
+        });
 
         expect(actualValues).toEqual(expectedPlatforms);
     });
