@@ -1,5 +1,14 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen, within } from '@testing-library/react';
+
+vi.mock('@/i18n/routing', () => ({
+    Link: ({ children, href }: { children: React.ReactNode; href: string }) => <a href={href}>{children}</a>,
+    usePathname: () => '/games',
+}));
+
+vi.mock('next-intl', () => ({
+    useTranslations: () => (key: string) => key,
+}));
 
 import DashboardLayout from './DashboardLayout';
 
@@ -10,17 +19,19 @@ describe('DashboardLayout', () => {
                 <div>Page Body</div>
             </DashboardLayout>
         );
-        expect(screen.getByText('Page Body')).toBeInTheDocument();
+        const mainElement = screen.getByRole('main');
+        expect(within(mainElement).getByText('Page Body')).toBeInTheDocument();
     });
 
     it('renders without a toolbarActions slot when none is provided', () => {
-        const { container } = render(
+        render(
             <DashboardLayout>
                 <div>Content</div>
             </DashboardLayout>
         );
-        expect(container).toBeTruthy();
-        expect(screen.getByText('Content')).toBeInTheDocument();
+        const toolbarActionsContainer = screen.getByTestId('toolbar-actions-container');
+        expect(toolbarActionsContainer).toBeInTheDocument();
+        expect(toolbarActionsContainer).toBeEmptyDOMElement();
     });
 
     it('renders a custom toolbarActions slot component when provided', () => {
@@ -45,7 +56,8 @@ describe('DashboardLayout', () => {
                 <span>Second</span>
             </DashboardLayout>
         );
-        expect(screen.getByText('First')).toBeInTheDocument();
-        expect(screen.getByText('Second')).toBeInTheDocument();
+        const mainElement = screen.getByRole('main');
+        expect(within(mainElement).getByText('First')).toBeInTheDocument();
+        expect(within(mainElement).getByText('Second')).toBeInTheDocument();
     });
 });
