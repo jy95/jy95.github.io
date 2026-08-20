@@ -1,16 +1,13 @@
 import Database from 'better-sqlite3';
-import { fileURLToPath } from 'url';
-import { dirname, resolve } from 'path';
 
 // Types
 import type { TaskType } from './tasks/common/types';
 
 // Utils
 import { turnStringToObj } from './tasks/common/utils';
+import { openDatabase } from './common/db';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const databasePath = resolve(__dirname, '..', 'GamesPassionFR.db');
-const db = new Database(databasePath, { verbose: console.log });
+const db = openDatabase();
 
 // Parse positional arguments
 const [taskType, taskPayloadAsString] = process.argv.slice(2);

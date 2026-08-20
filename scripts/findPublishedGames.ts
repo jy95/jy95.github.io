@@ -1,13 +1,6 @@
-import Database from 'better-sqlite3';
-import { fileURLToPath } from 'url';
-import { dirname, resolve } from 'path';
+import { openDatabase } from './common/db';
 
 import type { Database as SQLDatabase } from 'better-sqlite3';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-// Path to the SQLite database file
-const dbPath = resolve(__dirname, '..', 'GamesPassionFR.db');
 
 // Set of years to match
 const yearsToMatch: Set<string> = new Set(['2026']);
@@ -86,7 +79,7 @@ function printGamesWithIds(games: GameRow[]): void {
  */
 async function findMatchingPlaylistsAndVideos(): Promise<void> {
     // Open the database connection
-    const db = new Database(dbPath, { readonly: true });
+    const db = openDatabase({ readonly: true });
     
     try {
         console.log(`\nFetching games for all provided years: ${[...yearsToMatch].join(', ')}...\n`);

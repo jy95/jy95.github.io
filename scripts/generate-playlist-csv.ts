@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 import { dirname, resolve } from "path";
 import { google } from "googleapis";
 import input from '@inquirer/input';
-import Database from 'better-sqlite3';
+import { openDatabase } from './common/db';
 
 // Importation de la fonction et du type depuis findPublishedGames.ts
 import { fetchGamesWithPlaylists } from './findPublishedGames';
@@ -34,8 +34,7 @@ const ONLY_NEW_PLAYLISTS = true;
 const generateFilters = (playListIds: string[]): string => `playlist==${playListIds.join(",")}`;
 
 // Récupération dynamique des playlists depuis la base de données SQLite
-const dbPath = resolve(__dirname, '..', 'GamesPassionFR.db');
-const db = new Database(dbPath, { readonly: true });
+const db = openDatabase({ readonly: true });
 
 const yearsSet: Set<string> = new Set([YEAR]);
 const gamesWithPlaylists = fetchGamesWithPlaylists(db, yearsSet);

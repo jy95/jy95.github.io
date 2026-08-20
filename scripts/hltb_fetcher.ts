@@ -1,7 +1,5 @@
-import Database from 'better-sqlite3';
 import { HowLongToBeatService } from 'howlongtobeat-ts';
-import { fileURLToPath } from 'url';
-import { dirname, resolve } from 'path';
+import { openDatabase } from './common/db';
 
 // Define structures for our database records
 interface GameRow {
@@ -14,9 +12,7 @@ const CONFIG = {
     DELAY_MAX_MS: 1000, // Pause maximale en millisecondes
 };
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const databasePath = resolve(__dirname, '..', 'GamesPassionFR.db');
-const db = new Database(databasePath, { verbose: console.log });
+const db = openDatabase();
 const hltbService = new HowLongToBeatService();
 
 /**

@@ -1,15 +1,13 @@
-import { fileURLToPath } from 'url';
-import { dirname, resolve } from 'path';
+import { resolve } from 'path';
 import { copyFileSync, unlinkSync, existsSync } from 'fs';
 import { randomUUID } from 'crypto';
 import { tmpdir } from 'os';
 import Database from 'better-sqlite3';
+import { getDatabasePath } from '../common/db';
 
 import type { Database as SQLDatabase } from 'better-sqlite3';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const REAL_DB_PATH = resolve(__dirname, '..', '..', 'GamesPassionFR.db');
-
+const REAL_DB_PATH = getDatabasePath();
 export const hasRealDb = existsSync(REAL_DB_PATH);
 
 export function openTestDb(): { db: SQLDatabase; cleanup: () => void } {

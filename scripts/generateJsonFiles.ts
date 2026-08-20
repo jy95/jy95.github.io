@@ -1,6 +1,6 @@
-import Database from 'better-sqlite3';
 import { fileURLToPath } from "url";
 import { dirname, resolve } from "path";
+import { openDatabase } from './common/db';
 
 // Import extractors
 import {
@@ -27,7 +27,6 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Params
-const databasePath = resolve(__dirname, '..', 'GamesPassionFR.db');
 const FILES = {
     "BACKLOG": resolve(__dirname, '..', 'src/app/api/backlog/backlog.json'),
     "GAMES": resolve(__dirname, '..', 'src/app/api/games/games.json'),
@@ -49,9 +48,7 @@ const FILES = {
     "TIER_LIST_TESTS": resolve(__dirname, '..', 'src/app/api/tier-lists/tests/tests.json')
 }
 
-const db = new Database(databasePath, {
-    readonly: true
-});
+const db = openDatabase({ readonly: true });
 
 //db.pragma('journal_mode = WAL');
 
