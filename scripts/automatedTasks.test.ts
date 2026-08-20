@@ -45,112 +45,134 @@ describe('automatedTasks entry point', () => {
     });
 
     describe('task execution', () => {
-        it('executes ADD_GAME task with the parsed payload', async () => {
-            const { openDatabase } = await import('./common/db');
-            const { turnStringToObj } = await import('./tasks/common/utils');
-            const { addGameToDatabase } = await import('./tasks');
+        const testCases = [
+            {
+                taskType: 'ADD_GAME',
+                payloadString: '{"title":"Test Game"}',
+                expectedPayload: { title: 'Test Game' },
+                handlerName: 'addGameToDatabase',
+            },
+            {
+                taskType: 'UPDATE_GAME',
+                payloadString: '{"id":1,"title":"Updated Game"}',
+                expectedPayload: { id: 1, title: 'Updated Game' },
+                handlerName: 'updateGameInDatabase',
+            },
+            {
+                taskType: 'DELETE_GAME',
+                payloadString: '{"id":1}',
+                expectedPayload: { id: 1 },
+                handlerName: 'deleteGameFromDatabase',
+            },
+            {
+                taskType: 'ADD_BACKLOG',
+                payloadString: '{"gameId":1}',
+                expectedPayload: { gameId: 1 },
+                handlerName: 'addBacklogToDatabase',
+            },
+            {
+                taskType: 'DELETE_BACKLOG',
+                payloadString: '{"id":1}',
+                expectedPayload: { id: 1 },
+                handlerName: 'deleteBacklogFromDatabase',
+            },
+            {
+                taskType: 'CLEAN_BACKLOG',
+                payloadString: '{}',
+                expectedPayload: {},
+                handlerName: 'cleanBacklog',
+            },
+            {
+                taskType: 'ADD_SERIE',
+                payloadString: '{"name":"Test Serie"}',
+                expectedPayload: { name: 'Test Serie' },
+                handlerName: 'addSerieToDatabase',
+            },
+            {
+                taskType: 'MANAGE_SERIE',
+                payloadString: '{"id":1,"action":"update"}',
+                expectedPayload: { id: 1, action: 'update' },
+                handlerName: 'manageSerieInDatabase',
+            },
+            {
+                taskType: 'MANAGE_DLCS',
+                payloadString: '{"gameId":1,"dlcs":[]}',
+                expectedPayload: { gameId: 1, dlcs: [] },
+                handlerName: 'manageDlcsInDatabase',
+            },
+            {
+                taskType: 'ADD_TEST',
+                payloadString: '{"name":"Test"}',
+                expectedPayload: { name: 'Test' },
+                handlerName: 'addTestToDatabase',
+            },
+            {
+                taskType: 'UPDATE_TEST',
+                payloadString: '{"id":1,"name":"Updated"}',
+                expectedPayload: { id: 1, name: 'Updated' },
+                handlerName: 'updateTestInDatabase',
+            },
+            {
+                taskType: 'DELETE_TEST',
+                payloadString: '{"id":1}',
+                expectedPayload: { id: 1 },
+                handlerName: 'deleteTestFromDatabase',
+            },
+            {
+                taskType: 'UPDATE_TIER_LIST',
+                payloadString: '{"tier":"S","games":[1,2]}',
+                expectedPayload: { tier: 'S', games: [1, 2] },
+                handlerName: 'updateTierLists',
+            },
+            {
+                taskType: 'COPY_COVERS',
+                payloadString: '{"source":"src","dest":"dst"}',
+                expectedPayload: { source: 'src', dest: 'dst' },
+                handlerName: 'copyCovers',
+            },
+            {
+                taskType: 'ADD_COVER',
+                payloadString: '{"gameId":1,"coverUrl":"url"}',
+                expectedPayload: { gameId: 1, coverUrl: 'url' },
+                handlerName: 'addCover',
+            },
+        ];
 
-            vi.mocked(openDatabase).mockReturnValue(mockDb);
-            vi.mocked(turnStringToObj).mockReturnValue({ title: 'Test Game' });
+        it.each(testCases)(
+            'executes $taskType task with the parsed payload',
+            async ({ taskType, payloadString, expectedPayload, handlerName }) => {
+                // Reset modules to ensure clean state
+                vi.resetModules();
 
-            // Simulate process.argv
-            const originalArgv = process.argv;
-            process.argv = ['node', 'script.ts', 'ADD_GAME', '{"title":"Test Game"}'];
+                const { openDatabase } = await import('./common/db');
+                const { turnStringToObj } = await import('./tasks/common/utils');
+                const tasks = await import('./tasks');
 
-            try {
-                // Dynamically import to pick up mocked argv
-                const { default: automatedTasksModule } = await import('./automatedTasks');
-                
-                // Since it's an ESM module that runs immediately, we verify the mock was called
-                expect(vi.mocked(addGameToDatabase)).toHaveBeenCalled();
-            } finally {
-                process.argv = originalArgv;
+                vi.mocked(openDatabase).mockReturnValue(mockDb);
+                vi.mocked(turnStringToObj).mockReturnValue(expectedPayload);
+
+                // Simulate process.argv
+                const originalArgv = process.argv;
+                process.argv = ['node', 'script.ts', taskType, payloadString];
+
+                try {
+                    // Dynamically import to pick up mocked argv
+                    await import('./automatedTasks');
+
+                    // Verify the correct handler was called
+                    const handler = vi.mocked(tasks[handlerName as keyof typeof tasks]);
+
+                    // CLEAN_BACKLOG is called with only db (no payload)
+                    if (taskType === 'CLEAN_BACKLOG') {
+                        expect(handler).toHaveBeenCalledWith(mockDb);
+                    } else {
+                        expect(handler).toHaveBeenCalledWith(mockDb, expect.any(Object));
+                    }
+                } finally {
+                    process.argv = originalArgv;
+                }
             }
-        });
-
-        it('executes UPDATE_GAME task with the parsed payload', async () => {
-            const { updateGameInDatabase } = await import('./tasks');
-            
-            expect(vi.mocked(updateGameInDatabase)).toBeDefined();
-        });
-
-        it('executes DELETE_GAME task with the parsed payload', async () => {
-            const { deleteGameFromDatabase } = await import('./tasks');
-            
-            expect(vi.mocked(deleteGameFromDatabase)).toBeDefined();
-        });
-
-        it('executes ADD_BACKLOG task with the parsed payload', async () => {
-            const { addBacklogToDatabase } = await import('./tasks');
-            
-            expect(vi.mocked(addBacklogToDatabase)).toBeDefined();
-        });
-
-        it('executes DELETE_BACKLOG task with the parsed payload', async () => {
-            const { deleteBacklogFromDatabase } = await import('./tasks');
-            
-            expect(vi.mocked(deleteBacklogFromDatabase)).toBeDefined();
-        });
-
-        it('executes CLEAN_BACKLOG task without payload', async () => {
-            const { cleanBacklog } = await import('./tasks');
-            
-            expect(vi.mocked(cleanBacklog)).toBeDefined();
-        });
-
-        it('executes ADD_SERIE task with the parsed payload', async () => {
-            const { addSerieToDatabase } = await import('./tasks');
-            
-            expect(vi.mocked(addSerieToDatabase)).toBeDefined();
-        });
-
-        it('executes MANAGE_SERIE task with the parsed payload', async () => {
-            const { manageSerieInDatabase } = await import('./tasks');
-            
-            expect(vi.mocked(manageSerieInDatabase)).toBeDefined();
-        });
-
-        it('executes MANAGE_DLCS task with the parsed payload', async () => {
-            const { manageDlcsInDatabase } = await import('./tasks');
-            
-            expect(vi.mocked(manageDlcsInDatabase)).toBeDefined();
-        });
-
-        it('executes ADD_TEST task with the parsed payload', async () => {
-            const { addTestToDatabase } = await import('./tasks');
-            
-            expect(vi.mocked(addTestToDatabase)).toBeDefined();
-        });
-
-        it('executes UPDATE_TEST task with the parsed payload', async () => {
-            const { updateTestInDatabase } = await import('./tasks');
-            
-            expect(vi.mocked(updateTestInDatabase)).toBeDefined();
-        });
-
-        it('executes DELETE_TEST task with the parsed payload', async () => {
-            const { deleteTestFromDatabase } = await import('./tasks');
-            
-            expect(vi.mocked(deleteTestFromDatabase)).toBeDefined();
-        });
-
-        it('executes UPDATE_TIER_LIST task with the parsed payload', async () => {
-            const { updateTierLists } = await import('./tasks');
-            
-            expect(vi.mocked(updateTierLists)).toBeDefined();
-        });
-
-        it('executes COPY_COVERS task with the parsed payload', async () => {
-            const { copyCovers } = await import('./tasks');
-            
-            expect(vi.mocked(copyCovers)).toBeDefined();
-        });
-
-        it('executes ADD_COVER task with the parsed payload', async () => {
-            const { addCover } = await import('./tasks');
-            
-            expect(vi.mocked(addCover)).toBeDefined();
-        });
+        );
     });
 
     describe('parameter parsing and logging', () => {
@@ -262,23 +284,4 @@ describe('automatedTasks entry point', () => {
         });
     });
 
-    describe('task type safety', () => {
-        it('guarantees all TaskType variants have a corresponding handler', () => {
-            // This test ensures the taskMap record is exhaustive.
-            // All valid TaskType values should be handled.
-            const taskTypes = [
-                'ADD_GAME', 'UPDATE_GAME', 'DELETE_GAME',
-                'ADD_BACKLOG', 'DELETE_BACKLOG', 'CLEAN_BACKLOG',
-                'ADD_SERIE', 'MANAGE_SERIE',
-                'MANAGE_DLCS',
-                'ADD_TEST', 'UPDATE_TEST', 'DELETE_TEST',
-                'UPDATE_TIER_LIST',
-                'COPY_COVERS', 'ADD_COVER',
-            ];
-
-            expect(taskTypes).toContain('ADD_GAME');
-            expect(taskTypes).toContain('CLEAN_BACKLOG');
-            expect(taskTypes.length).toBe(15);
-        });
-    });
 });
