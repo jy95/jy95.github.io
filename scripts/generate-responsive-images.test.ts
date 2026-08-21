@@ -1,81 +1,89 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-// Hoisted mocks so they are set up before the module under test is imported.
 const { readFileMock } = vi.hoisted(() => ({
     readFileMock: vi.fn(),
 }));
 
 const { createReadStreamMock } = vi.hoisted(() => ({
-    // createReadStream will return a minimal object that exposes pipe()
-    createReadStreamMock: vi.fn(() => ({ pipe: () => {} })),
+    createReadStreamMock: vi.fn(),
 }));
 
-const { sharpMock, toFileMock, resizeMock, cloneMock } = vi.hoisted(() => {
-    const toFileMock = vi.fn().mockResolvedValue({} as any);
-
-    // resize() returns an object with toFile()
+const { sharpMock, cloneMock, resizeMock, toFileMock } = vi.hoisted(() => {
+    const toFileMock = vi.fn().mockResolvedValue({});
     const resizeMock = vi.fn(() => ({ toFile: toFileMock }));
-
-    // clone() returns an object that also supports resize()
     const cloneMock = vi.fn(() => ({ resize: resizeMock }));
+    const sharpMock = vi.fn(() => ({ clone: cloneMock }));
 
-    // sharp(...) returns an object with clone and resize (the code pipes a readable stream
-    // into the returned object and later calls .clone().resize(...).toFile(...))
-    const sharpMock = vi.fn(() => ({ clone: cloneMock, resize: resizeMock }));
+    return { sharpMock, cloneMock, resizeMock, toFileMock };
+}));
 
-    return { sharpMock, toFileMock, resizeMock, cloneMock };
-});
-
-// Mock fs/promises.readFile used at module top-level to load JSON files
 vi.mock('fs/promises', async (importOriginal) => {
     const actual = await importOriginal<typeof import('fs/promises')>();
+
     return {
         ...actual,
         readFile: readFileMock,
-        default: { ...actual, readFile: readFileMock },
+        default: {
+            ...actual.default,
+            readFile: readFileMock,
+        },
     };
 });
 
-// Mock createReadStream from 'fs'
-vi.mock('fs', () => ({
-    createReadStream: createReadStreamMock,
+vi.mock('fs', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('fs')>();
+
+    return {
+        ...actual,
+        createReadStream: createReadStreamMock,
+        default: {
+            ...actual.default,
+            createReadStream: createReadStreamMock,
+        },
+    };
+});
+
+vi.mock('sharp', () => ({
+    default: sharpMock,
 }));
 
-// Mock sharp
-vi.mock('sharp', () => ({ default: sharpMock }));
-
 describe('scripts/generate-responsive-images.ts', () => {
-    let consoleLogSpy: ReturnType<typeof vi.spyOn>;
-    let consoleErrorSpy: ReturnType<typeof vi.spyOn>;
     const originalArgv = process.argv.slice();
 
+    let consoleLogSpy: ReturnType<typeof vi.spyOn>;
+    let consoleErrorSpy: ReturnType<typeof vi.spyOn>;
+
     beforeEach(() => {
-        // Ensure a clean module cache so the script runs fresh for each test.
         vi.resetModules();
 
-        // Reset mocks
         readFileMock.mockReset();
         createReadStreamMock.mockReset();
         sharpMock.mockClear();
-        toFileMock.mockClear();
-        resizeMock.mockClear();
         cloneMock.mockClear();
+        resizeMock.mockClear();
+        toFileMock.mockClear();
 
-        // Provide default behavior for createReadStream (safe no-op pipe)
-        createReadStreamMock.mockImplementation(() => ({ pipe: () => {} }));
+        createReadStreamMock.mockImplementation(() => ({
+            pipe: vi.fn(),
+        }));
 
-        // Default content returned for the two JSON files the script reads.
-        // The module reads tests.json and games.json — respond differently depending on path.
-        readFileMock.mockImplementation(async (file: string) => {
-            // simple guard to return different payloads depending on filename
+        readFileMock.mockImplementation(async (file) => {
             if (String(file).includes('tests.json')) {
                 return JSON.stringify([
-                    { playlistId: 't1', coverFile: 'cover.webp', title: 'Test Game' },
+                    {
+                        playlistId: 't1',
+                        coverFile: 'cover.webp',
+                        title: 'Test Game',
+                    },
                 ]);
             }
-            // default to games.json
+
             return JSON.stringify([
-                { playlistId: 'g1', coverFile: 'cover.webp', title: 'Real Game' },
+                {
+                    playlistId: 'g1',
+                    coverFile: 'cover.webp',
+                    title: 'Real Game',
+                },
             ]);
         });
 
@@ -84,21 +92,21 @@ describe('scripts/generate-responsive-images.ts', () => {
     });
 
     afterEach(() => {
-        // restore argv and console spies
         process.argv = originalArgv.slice();
         vi.restoreAllMocks();
     });
 
-    it('generates responsive images for all games (two stores) when no args are provided', async () => {
-        // Ensure no extra CLI args so the module chooses the default branch.
+    it('generates responsive images for all games when no arguments are provided', async () => {
         process.argv = ['node', 'generate-responsive-images'];
 
-        // Import the module; the script runs on import (top-level await).
         await import('./generate-responsive-images');
 
-        // We have two stores: 'games' and 'tests', each with one entry in our mocks.
-        // Each entry generates 3 sizes (small, medium, big) -> total toFile calls = 2 * 3 = 6
-        expect(toFileMock).toHaveBeenCalledTimes(6);
+        await vi.waitFor(() => {
+            expect(toFileMock).toHaveBeenCalledTimes(6);
+        });
+
+        expect(createReadStreamMock).toHaveBeenCalledTimes(2);
+        expect(sharpMock).toHaveBeenCalledTimes(2);
 
         expect(resizeMock).toHaveBeenCalledWith({
             width: 150,
@@ -116,21 +124,32 @@ describe('scripts/generate-responsive-images.ts', () => {
             fit: 'inside',
         });
 
-        // Ensure sharp was constructed at least once
-        expect(sharpMock).toHaveBeenCalled();
-
-        // Basic log assertion to show the script ran
-        expect(consoleLogSpy).toHaveBeenCalled();
+        expect(consoleLogSpy).toHaveBeenCalledWith('Resize all pictures ....');
+        expect(consoleLogSpy).toHaveBeenCalledWith('Real Game - finished');
+        expect(consoleLogSpy).toHaveBeenCalledWith('Test Game - finished');
     });
 
-    it('runs singleGame mode and resizes a single game from arguments', async () => {
-        // Simulate CLI: singleGame <gameId> <folder> <icon>
-        process.argv = ['node', 'generate-responsive-images', 'singleGame', 'SINGLE_ID', 'covers', 'custom-cover.png'];
+    it('generates responsive images for one game in singleGame mode', async () => {
+        process.argv = [
+            'node',
+            'generate-responsive-images',
+            'singleGame',
+            'SINGLE_ID',
+            'covers',
+            'custom-cover.png',
+        ];
 
         await import('./generate-responsive-images');
 
-        // single game -> 3 sizes
-        expect(toFileMock).toHaveBeenCalledTimes(3);
+        await vi.waitFor(() => {
+            expect(toFileMock).toHaveBeenCalledTimes(3);
+        });
+
+        expect(createReadStreamMock).toHaveBeenCalledTimes(1);
+        expect(sharpMock).toHaveBeenCalledTimes(1);
+        expect(createReadStreamMock).toHaveBeenCalledWith(
+            expect.stringContaining('/public/covers/SINGLE_ID/custom-cover.png')
+        );
 
         expect(resizeMock).toHaveBeenCalledWith({
             width: 150,
@@ -148,19 +167,19 @@ describe('scripts/generate-responsive-images.ts', () => {
             fit: 'inside',
         });
 
-        // The "Resize single game" message should have been logged
         expect(consoleLogSpy).toHaveBeenCalledWith('Resize single game');
+        expect(consoleLogSpy).toHaveBeenCalledWith('SINGLE_ID - finished');
     });
 
-    it('logs an error and does nothing when singleGame is called without a gameId', async () => {
+    it('logs an error and does not resize when singleGame has no game ID', async () => {
         process.argv = ['node', 'generate-responsive-images', 'singleGame'];
 
         await import('./generate-responsive-images');
 
-        // No resize should have happened
         expect(toFileMock).not.toHaveBeenCalled();
-
-        // Error message about missing gameId should be emitted
-        expect(consoleErrorSpy).toHaveBeenCalledWith('Error: gameId is required for singleGame mode.');
+        expect(createReadStreamMock).not.toHaveBeenCalled();
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+            'Error: gameId is required for singleGame mode.'
+        );
     });
 });
