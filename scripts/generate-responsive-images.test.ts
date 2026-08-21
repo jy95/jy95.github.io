@@ -22,50 +22,58 @@ describe('generate-responsive-images script', () => {
         originalExitCode = process.exitCode;
         originalArgv = process.argv;
 
-        readFileMock = vi.fn(async (p: string, enc?: string) => {
-            const np = p.replace(/\\/g, '/');
+        readFileMock = vi.fn(async (filePath: string) => {
+            const normalizedPath = filePath.replace(/\\/g, '/');
 
-            if (np.endsWith('/src/app/api/games/games.json')) {
+            if (normalizedPath.endsWith('/src/app/api/games/games.json')) {
                 return JSON.stringify(gamesJson);
             }
 
-            if (np.endsWith('/src/app/api/tests/tests.json')) {
+            if (normalizedPath.endsWith('/src/app/api/tests/tests.json')) {
                 return JSON.stringify(testsJson);
             }
 
             return Buffer.from('image-data');
         });
 
-        vi.doMock('fs/promises', () => ({
-            readFile: readFileMock
-        }));
+        vi.doMock('fs/promises', async () => {
+            const actual =
+                await vi.importActual<typeof import('fs/promises')>(
+                    'fs/promises'
+                );
+
+            return {
+                ...actual,
+                readFile: readFileMock,
+                default: {
+                    ...actual,
+                    readFile: readFileMock
+                }
+            };
+        });
 
         vi.doMock('sharp', () => ({
-            default: (image: any, options: any) => {
-                return {
-                    resize: ({ width, height, fit }: any) => {
-                        return {
-                            toFile: (outPath: string) => {
-                                sharpToFileCalls.push(outPath);
+            default: () => ({
+                resize: () => ({
+                    toFile: (outputPath: string) => {
+                        sharpToFileCalls.push(outputPath);
 
-                                if (
-                                    shouldThrowForGameId &&
-                                    outPath.includes(shouldThrowForGameId)
-                                ) {
-                                    return Promise.reject(
-                                        new Error('simulated sharp failure')
-                                    );
-                                }
+                        if (
+                            shouldThrowForGameId &&
+                            outputPath.includes(shouldThrowForGameId)
+                        ) {
+                            return Promise.reject(
+                                new Error('simulated sharp failure')
+                            );
+                        }
 
-                                return Promise.resolve({
-                                    format: 'webp',
-                                    size: 123
-                                } as any);
-                            }
-                        };
+                        return Promise.resolve({
+                            format: 'webp',
+                            size: 123
+                        });
                     }
-                };
-            }
+                })
+            })
         }));
 
         vi.spyOn(console, 'log').mockImplementation(() => {});
@@ -84,7 +92,7 @@ describe('generate-responsive-images script', () => {
 
         await import('./generate-responsive-images');
 
-        expect(sharpToFileCalls.length).toBe(6);
+        expect(sharpToFileCalls).toHaveLength(6);
 
         const expectedFiles = [
             path.join('public', 'covers', 'PL1', 'cover@small.webp'),
@@ -100,31 +108,29 @@ describe('generate-responsive-images script', () => {
             path.join('public', 'testscovers', 'VID1', 'cover@big.webp')
         ];
 
-        for (const expected of expectedFiles) {
-            const found = sharpToFileCalls.some(p => p.endsWith(expected));
-
+        for (const expectedFile of expectedFiles) {
             expect(
-                found,
-                `Expected resize output path ending with ${expected}, got ${JSON.stringify(sharpToFileCalls)}`
-            ).toBeTruthy();
+                sharpToFileCalls.some(outputPath =>
+                    outputPath.endsWith(expectedFile)
+                ),
+                `Expected resize output path ending with ${expectedFile}, got ${JSON.stringify(sharpToFileCalls)}`
+            ).toBe(true);
         }
 
-        expect(readFileMock).toHaveBeenCalled();
-
-        const calledPaths = readFileMock.mock.calls.map(c =>
-            String(c[0]).replace(/\\/g, '/')
+        const calledPaths = readFileMock.mock.calls.map(([filePath]) =>
+            String(filePath).replace(/\\/g, '/')
         );
 
         expect(
-            calledPaths.some(p =>
-                p.endsWith('/src/app/api/games/games.json')
+            calledPaths.some(filePath =>
+                filePath.endsWith('/src/app/api/games/games.json')
             )
-        ).toBeTruthy();
+        ).toBe(true);
         expect(
-            calledPaths.some(p =>
-                p.endsWith('/src/app/api/tests/tests.json')
+            calledPaths.some(filePath =>
+                filePath.endsWith('/src/app/api/tests/tests.json')
             )
-        ).toBeTruthy();
+        ).toBe(true);
     });
 
     it('resizes a single game when run in singleGame mode', async () => {
@@ -139,20 +145,23 @@ describe('generate-responsive-images script', () => {
 
         await import('./generate-responsive-images');
 
-        expect(sharpToFileCalls.length).toBe(3);
+        expect(sharpToFileCalls).toHaveLength(3);
 
-        const expected = path.join(
+        const expectedFile = path.join(
             'public',
             'covers',
             'PL1',
             'cover@small.webp'
         );
-        const found = sharpToFileCalls.some(p => p.endsWith(expected));
 
-        expect(found).toBeTruthy();
+        expect(
+            sharpToFileCalls.some(outputPath =>
+                outputPath.endsWith(expectedFile)
+            )
+        ).toBe(true);
     });
 
-    it('sets process.exitCode = 1 and logs an error when resizing a game fails', async () => {
+    it('sets process.exitCode to 1 and logs an error when resizing a game fails', async () => {
         shouldThrowForGameId = 'PL1';
         process.argv = ['node', 'script'];
 
@@ -160,13 +169,14 @@ describe('generate-responsive-images script', () => {
 
         expect(process.exitCode).toBe(1);
 
-        const errorCalls = vi
-            .mocked(console.error)
-            .mock.calls.map((c: any[]) => String(c[0]));
-        const foundMessage = errorCalls.some((m: string) =>
-            m.includes('Cannot generate responsive images for')
-        );
-
-        expect(foundMessage).toBeTruthy();
+        expect(
+            vi
+                .mocked(console.error)
+                .mock.calls.some(([message]) =>
+                    String(message).includes(
+                        'Cannot generate responsive images for'
+                    )
+                )
+        ).toBe(true);
     });
 });
