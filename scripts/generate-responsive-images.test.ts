@@ -100,6 +100,22 @@ describe('scripts/generate-responsive-images.ts', () => {
         // Each entry generates 3 sizes (small, medium, big) -> total toFile calls = 2 * 3 = 6
         expect(toFileMock).toHaveBeenCalledTimes(6);
 
+        expect(resizeMock).toHaveBeenCalledWith({
+            width: 150,
+            height: 150,
+            fit: 'inside',
+        });
+        expect(resizeMock).toHaveBeenCalledWith({
+            width: 200,
+            height: 200,
+            fit: 'inside',
+        });
+        expect(resizeMock).toHaveBeenCalledWith({
+            width: 250,
+            height: 250,
+            fit: 'inside',
+        });
+
         // Ensure sharp was constructed at least once
         expect(sharpMock).toHaveBeenCalled();
 
@@ -115,6 +131,22 @@ describe('scripts/generate-responsive-images.ts', () => {
 
         // single game -> 3 sizes
         expect(toFileMock).toHaveBeenCalledTimes(3);
+
+        expect(resizeMock).toHaveBeenCalledWith({
+            width: 150,
+            height: 150,
+            fit: 'inside',
+        });
+        expect(resizeMock).toHaveBeenCalledWith({
+            width: 200,
+            height: 200,
+            fit: 'inside',
+        });
+        expect(resizeMock).toHaveBeenCalledWith({
+            width: 250,
+            height: 250,
+            fit: 'inside',
+        });
 
         // The "Resize single game" message should have been logged
         expect(consoleLogSpy).toHaveBeenCalledWith('Resize single game');
