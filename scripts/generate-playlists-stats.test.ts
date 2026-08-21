@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
-// Explicitly typing vi.fn() as generic functions resolves the TS2348 callable error
 let mockReadFile: ReturnType<typeof vi.fn<(...args: any[]) => any>>;
 let mockWriteFile: ReturnType<typeof vi.fn<(...args: any[]) => any>>;
 let mockAccess: ReturnType<typeof vi.fn<(...args: any[]) => any>>;
@@ -13,13 +12,19 @@ beforeEach(() => {
   mockWriteFile = vi.fn();
   mockAccess = vi.fn();
 
-  // Mock fs/promises before importing the module-under-test so the
-  // top-level generateData() call inside the script uses our mocks.
-  vi.mock('fs/promises', () => ({
-    readFile: (...args: any[]) => mockReadFile(...args),
-    writeFile: (...args: any[]) => mockWriteFile(...args),
-    access: (...args: any[]) => mockAccess(...args),
-  }));
+  // Mock fs/promises including named exports and the default export
+  vi.mock('fs/promises', () => {
+    const fsMock = {
+      readFile: (...args: any[]) => mockReadFile(...args),
+      writeFile: (...args: any[]) => mockWriteFile(...args),
+      access: (...args: any[]) => mockAccess(...args),
+    };
+
+    return {
+      ...fsMock,
+      default: fsMock,
+    };
+  });
 });
 
 afterEach(() => {
