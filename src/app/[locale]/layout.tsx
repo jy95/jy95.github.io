@@ -24,6 +24,11 @@ import type { ReactNode } from "react";
 export const metadata: Metadata = {
   title: 'GamesPassionFR',
   description: 'Catalogue des jeux de GamesPassionFR',
+  alternates: {
+    types: {
+      'application/rss+xml': '/rss.xml',
+    },
+  },
 }
 
 type Props = {
