@@ -5,6 +5,8 @@ describe('generate-responsive-images script', () => {
     let readFileMock: ReturnType<typeof vi.fn>;
     let sharpToFileCalls: string[] = [];
     let shouldThrowForGameId: string | null = null;
+    let originalExitCode: number | string | null | undefined;
+    let originalArgv: string[];
 
     const gamesJson = [
         { playlistId: 'PL1', coverFile: 'cover.jpg', title: 'Game PL1' },
@@ -17,6 +19,8 @@ describe('generate-responsive-images script', () => {
         vi.resetModules();
         sharpToFileCalls = [];
         shouldThrowForGameId = null;
+        originalExitCode = process.exitCode;
+        originalArgv = process.argv;
 
         // Mock fs/promises.readFile
         readFileMock = vi.fn(async (p: string, enc?: string) => {
@@ -67,8 +71,8 @@ describe('generate-responsive-images script', () => {
         vi.unstubAllGlobals();
         // Clear any module-level side effects between tests
         // reset any exit code
-        // @ts-expect-error intentionally resetting for tests
-        process.exitCode = undefined;
+        process.exitCode = originalExitCode;
+        process.argv = originalArgv;
     });
 
     it('resizes all pictures for games and tests into each configured size', async () => {
@@ -130,12 +134,10 @@ describe('generate-responsive-images script', () => {
         await import('./generate-responsive-images');
 
         // Because we simulated a failure for PL1, the script catches per-game errors and sets process.exitCode = 1
-        // @ts-expect-error process.exitCode may be undefined
         expect(process.exitCode).toBe(1);
 
         // Ensure console.error was called with the high level message at least once
-        const errSpy = (console.error as unknown) as jest.MockedFunction<any>;
-        const errorCalls = (errSpy as any).mock.calls.map((c: any[]) => String(c[0]));
+        const errorCalls = vi.mocked(console.error).mock.calls.map((c: any[]) => String(c[0]));
         const foundMessage = errorCalls.some((m: string) => m.includes('Cannot generate responsive images for'));
         expect(foundMessage).toBeTruthy();
     });
