@@ -19,14 +19,14 @@ const { sharpMock, cloneMock, resizeMock, toFileMock } = vi.hoisted(() => {
 
 vi.mock('fs/promises', async (importOriginal) => {
   const actual = await importOriginal<typeof import('fs/promises')>();
-
-  return {
+  const mock = {
     ...actual,
     readFile: readFileMock,
-    default: {
-      ...actual.default,
-      readFile: readFileMock,
-    },
+  }
+
+  return {
+      ...mock,
+      default: mock,
   };
 });
 
