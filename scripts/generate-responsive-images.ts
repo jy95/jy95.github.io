@@ -119,6 +119,7 @@ async function resizePicturesInFolder(): Promise<void> {
                 await resizePicture(directory, gameId, gameIcon);
                 console.log(`${game.title} - finished`);
             } catch (error) {
+                process.exitCode = 1;
                 console.error(
                     `${folderKey} - Cannot generate responsive images for ${gameId} - ${game.title}`
                 );
@@ -146,6 +147,7 @@ async function resizePicturesInSingleFolder(
         await resizePicture(directory, game, gameIcon);
         console.log(`${game} - finished`);
     } catch (error) {
+        process.exitCode = 1;
         console.error(
             `Cannot generate responsive images for ${game}`
         );
@@ -165,6 +167,7 @@ switch (args[0]) {
             console.error(
                 'Error: gameId is required for singleGame mode.'
             );
+            process.exitCode = 1;
             break;
         }
 
