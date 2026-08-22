@@ -179,12 +179,12 @@ describe('backlog-cover-downloader', () => {
 
             const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
             const result = await downloadImage('https://example.com/cover.jpg', 222);
-            consoleErrorSpy.mockRestore();
 
             expect(consoleErrorSpy).toHaveBeenCalledWith(
                 expect.stringContaining('délai d\'attente (timeout) a expiré')
             );
             expect(result).toBeNull();
+            consoleErrorSpy.mockRestore();
         });
 
         it('returns null and logs error when fetch response is not ok', async () => {
@@ -197,12 +197,12 @@ describe('backlog-cover-downloader', () => {
 
             const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
             const result = await downloadImage('https://example.com/missing.jpg', 333);
-            consoleErrorSpy.mockRestore();
 
             expect(result).toBeNull();
             expect(consoleErrorSpy).toHaveBeenCalledWith(
                 expect.stringContaining('HTTP error! status: 404')
             );
+            consoleErrorSpy.mockRestore();
         });
 
         it('strips charset from Content-Type header', async () => {
@@ -268,7 +268,12 @@ describe('backlog-cover-downloader', () => {
                 { id: 2, title: 'Game 2', platform: 2 },
             ];
             readFileSyncMock.mockReturnValue(JSON.stringify(games));
-            readdirSyncMock.mockReturnValue(['cover.jpg']); // Existing cover
+            existsSyncMock.mockReturnValue(true);
+            // First call for Game 1: has cover, second call for Game 2: no cover
+            readdirSyncMock
+                .mockReturnValueOnce(['cover.jpg'])
+                .mockReturnValueOnce([]);
+            googleImgScrapMock.mockResolvedValue({ result: [] });
 
             const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
             await run();
@@ -362,11 +367,11 @@ describe('backlog-cover-downloader', () => {
 
             const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
             await run();
-            consoleErrorSpy.mockRestore();
 
             expect(consoleErrorSpy).toHaveBeenCalledWith(
                 expect.stringContaining('Erreur lors de la recherche')
             );
+            consoleErrorSpy.mockRestore();
         });
 
         it('waits 2 seconds between game searches', async () => {
@@ -385,6 +390,7 @@ describe('backlog-cover-downloader', () => {
         });
 
         it('processes all games in the backlog sequentially', async () => {
+            vi.useFakeTimers();
             const games = [
                 { id: 1, title: 'Game 1', platform: 1 },
                 { id: 2, title: 'Game 2', platform: 2 },
@@ -395,8 +401,16 @@ describe('backlog-cover-downloader', () => {
             googleImgScrapMock.mockResolvedValue({ result: [] });
 
             const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-            await run();
+            const runPromise = run();
+
+            // Advance through all the delays (2000ms after each game)
+            await vi.advanceTimersByTimeAsync(2000); // After Game 1
+            await vi.advanceTimersByTimeAsync(2000); // After Game 2
+            await vi.advanceTimersByTimeAsync(2000); // After Game 3
+
+            await runPromise;
             consoleLogSpy.mockRestore();
+            vi.useRealTimers();
 
             expect(googleImgScrapMock).toHaveBeenCalledTimes(3);
         });
@@ -406,9 +420,9 @@ describe('backlog-cover-downloader', () => {
 
             const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
             await run();
-            consoleLogSpy.mockRestore();
 
             expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('✨ Terminé !'));
+            consoleLogSpy.mockRestore();
         });
     });
 });
