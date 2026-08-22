@@ -14,14 +14,16 @@ vi.mock('@/components/GamesView/TitleFilter', () => ({
 import GamesFilters from './GamesFilters';
 
 describe('GamesFilters', () => {
-    it('renders the accordion summary with the Options label', () => {
+    it('renders the accordion summary with the Options label', async () => {
         render(<GamesFilters />);
+        await screen.findByText('Title Component');
         expect(screen.getByText('Options')).toBeInTheDocument();
     });
 
-    it('exposes the summary as an accessible "Options" control', () => {
+    it('exposes the summary as an accessible "Options" control', async () => {
         render(<GamesFilters />);
-        expect(screen.getByLabelText('Options')).toBeInTheDocument();
+        await screen.findByText('Title Component');
+        expect(screen.getByRole('button', { name: /Options/i })).toBeInTheDocument();
     });
 
     it('eventually renders the lazily-loaded TitleFilter', async () => {
