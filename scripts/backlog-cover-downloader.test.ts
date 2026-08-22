@@ -1,6 +1,4 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import fs from 'fs';
-import path from 'path';
 
 const { existsSyncMock, mkdirSyncMock, writeFileSyncMock, renameSyncMock, unlinkSyncMock, readFileSyncMock, readdirSyncMock } = vi.hoisted(() => ({
     existsSyncMock: vi.fn(),
@@ -17,7 +15,7 @@ vi.mock('fs', () => ({
         existsSync: existsSyncMock,
         mkdirSync: mkdirSyncMock,
         writeFileSync: writeFileSyncMock,
-        renameSync: renameSyncMock,
+        renameSyncMock: renameSyncMock,
         unlinkSync: unlinkSyncMock,
         readFileSync: readFileSyncMock,
         readdirSync: readdirSyncMock,
@@ -31,6 +29,24 @@ const { googleImgScrapMock } = vi.hoisted(() => ({
 vi.mock('google-img-scrap', () => ({
     GOOGLE_IMG_SCRAP: googleImgScrapMock,
 }));
+
+// Helper to construct a mocked Fetch Response with a working .headers.get()
+function createMockResponse(status = 200, headersMap: Record<string, string> = {}, arrayBufferData = new ArrayBuffer(8)) {
+    return {
+        ok: status >= 200 && status < 300,
+        status,
+        headers: {
+            get: (key: string) => {
+                const lowerKey = key.toLowerCase();
+                for (const [k, v] of Object.entries(headersMap)) {
+                    if (k.toLowerCase() === lowerKey) return v;
+                }
+                return null;
+            }
+        },
+        arrayBuffer: async () => arrayBufferData
+    };
+}
 
 // Simulate loading the module
 const { downloadImage, run } = await import('./backlog-cover-downloader');
@@ -55,11 +71,7 @@ describe('backlog-cover-downloader', () => {
     describe('downloadImage', () => {
         it('creates the game directory if it does not exist', async () => {
             existsSyncMock.mockReturnValue(false);
-            (global.fetch as any).mockResolvedValue({
-                ok: true,
-                headers: new Map([['content-type', 'image/jpeg']]),
-                arrayBuffer: async () => new ArrayBuffer(8),
-            });
+            (global.fetch as any).mockResolvedValue(createMockResponse(200, { 'content-type': 'image/jpeg' }));
 
             await downloadImage('https://example.com/cover.jpg', 123);
 
@@ -71,11 +83,7 @@ describe('backlog-cover-downloader', () => {
 
         it('skips directory creation when the game directory already exists', async () => {
             existsSyncMock.mockReturnValue(true);
-            (global.fetch as any).mockResolvedValue({
-                ok: true,
-                headers: new Map([['content-type', 'image/png']]),
-                arrayBuffer: async () => new ArrayBuffer(8),
-            });
+            (global.fetch as any).mockResolvedValue(createMockResponse(200, { 'content-type': 'image/png' }));
 
             await downloadImage('https://example.com/cover.png', 456);
 
@@ -84,11 +92,7 @@ describe('backlog-cover-downloader', () => {
 
         it('fetches the image with a valid User-Agent header', async () => {
             existsSyncMock.mockReturnValue(true);
-            (global.fetch as any).mockResolvedValue({
-                ok: true,
-                headers: new Map([['content-type', 'image/webp']]),
-                arrayBuffer: async () => new ArrayBuffer(8),
-            });
+            (global.fetch as any).mockResolvedValue(createMockResponse(200, { 'content-type': 'image/webp' }));
 
             await downloadImage('https://example.com/cover.webp', 789);
 
@@ -112,14 +116,11 @@ describe('backlog-cover-downloader', () => {
                 { contentType: 'image/gif', expected: 'gif' },
             ];
 
-            for (const { contentType, expected } of testCases) {
-                (global.fetch as any).mockResolvedValueOnce({
-                    ok: true,
-                    headers: new Map([['content-type', contentType]]),
-                    arrayBuffer: async () => new ArrayBuffer(8),
-                });
+            for (let i = 0; i < testCases.length; i++) {
+                const { contentType, expected } = testCases[i];
+                (global.fetch as any).mockResolvedValueOnce(createMockResponse(200, { 'content-type': contentType }));
 
-                const result = await downloadImage('https://example.com/cover', 100 + testCases.indexOf({ contentType, expected }));
+                const result = await downloadImage('https://example.com/cover', 100 + i);
 
                 expect(result).toBe(`cover.${expected}`);
             }
@@ -127,11 +128,7 @@ describe('backlog-cover-downloader', () => {
 
         it('defaults to jpg extension when Content-Type is unknown', async () => {
             existsSyncMock.mockReturnValue(true);
-            (global.fetch as any).mockResolvedValue({
-                ok: true,
-                headers: new Map([['content-type', 'application/octet-stream']]),
-                arrayBuffer: async () => new ArrayBuffer(8),
-            });
+            (global.fetch as any).mockResolvedValue(createMockResponse(200, { 'content-type': 'application/octet-stream' }));
 
             const result = await downloadImage('https://example.com/cover', 999);
 
@@ -141,11 +138,7 @@ describe('backlog-cover-downloader', () => {
         it('writes image data to a temporary file then renames it atomically', async () => {
             existsSyncMock.mockReturnValue(true);
             const mockBuffer = Buffer.from([1, 2, 3, 4]);
-            (global.fetch as any).mockResolvedValue({
-                ok: true,
-                headers: new Map([['content-type', 'image/jpeg']]),
-                arrayBuffer: async () => mockBuffer.buffer,
-            });
+            (global.fetch as any).mockResolvedValue(createMockResponse(200, { 'content-type': 'image/jpeg' }, mockBuffer.buffer));
 
             await downloadImage('https://example.com/cover.jpg', 555);
 
@@ -160,7 +153,7 @@ describe('backlog-cover-downloader', () => {
         });
 
         it('cleans up temporary file if fetch fails', async () => {
-            existsSyncMock.mockReturnValueOnce(false).mockReturnValueOnce(true); // first for dir check, then for .tmp cleanup
+            existsSyncMock.mockReturnValueOnce(false).mockReturnValueOnce(true);
             (global.fetch as any).mockRejectedValue(new Error('Network error'));
 
             const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
@@ -181,7 +174,7 @@ describe('backlog-cover-downloader', () => {
             const result = await downloadImage('https://example.com/cover.jpg', 222);
 
             expect(consoleErrorSpy).toHaveBeenCalledWith(
-                expect.stringContaining('délai d\'attente (timeout) a expiré')
+                expect.stringContaining("délai d'attente (timeout) a expiré")
             );
             expect(result).toBeNull();
             consoleErrorSpy.mockRestore();
@@ -189,11 +182,7 @@ describe('backlog-cover-downloader', () => {
 
         it('returns null and logs error when fetch response is not ok', async () => {
             existsSyncMock.mockReturnValue(true);
-            (global.fetch as any).mockResolvedValue({
-                ok: false,
-                status: 404,
-                headers: new Map(),
-            });
+            (global.fetch as any).mockResolvedValue(createMockResponse(404));
 
             const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
             const result = await downloadImage('https://example.com/missing.jpg', 333);
@@ -207,11 +196,7 @@ describe('backlog-cover-downloader', () => {
 
         it('strips charset from Content-Type header', async () => {
             existsSyncMock.mockReturnValue(true);
-            (global.fetch as any).mockResolvedValue({
-                ok: true,
-                headers: new Map([['content-type', 'image/jpeg; charset=utf-8']]),
-                arrayBuffer: async () => new ArrayBuffer(8),
-            });
+            (global.fetch as any).mockResolvedValue(createMockResponse(200, { 'content-type': 'image/jpeg; charset=utf-8' }));
 
             const result = await downloadImage('https://example.com/cover.jpg', 444);
 
@@ -220,15 +205,11 @@ describe('backlog-cover-downloader', () => {
 
         it('handles missing Content-Type header', async () => {
             existsSyncMock.mockReturnValue(true);
-            (global.fetch as any).mockResolvedValue({
-                ok: true,
-                headers: new Map(),
-                arrayBuffer: async () => new ArrayBuffer(8),
-            });
+            (global.fetch as any).mockResolvedValue(createMockResponse(200));
 
             const result = await downloadImage('https://example.com/cover', 555);
 
-            expect(result).toBe('cover.jpg'); // Falls back to jpg
+            expect(result).toBe('cover.jpg');
         });
     });
 
@@ -269,7 +250,6 @@ describe('backlog-cover-downloader', () => {
             ];
             readFileSyncMock.mockReturnValue(JSON.stringify(games));
             existsSyncMock.mockReturnValue(true);
-            // First call for Game 1: has cover, second call for Game 2: no cover
             readdirSyncMock
                 .mockReturnValueOnce(['cover.jpg'])
                 .mockReturnValueOnce([]);
@@ -279,12 +259,11 @@ describe('backlog-cover-downloader', () => {
             await run();
             consoleLogSpy.mockRestore();
 
-            // Should only search for Game 2, not Game 1
             expect(googleImgScrapMock).toHaveBeenCalledTimes(1);
         });
 
         it('constructs correct Google Image Search query with platform name', async () => {
-            const games = [{ id: 1, title: 'Mario Kart', platform: 2 }]; // GBA
+            const games = [{ id: 1, title: 'Mario Kart', platform: 2 }];
             readFileSyncMock.mockReturnValue(JSON.stringify(games));
             readdirSyncMock.mockReturnValue([]);
             existsSyncMock.mockReturnValue(false);
@@ -311,7 +290,7 @@ describe('backlog-cover-downloader', () => {
 
             expect(googleImgScrapMock).toHaveBeenCalledWith(
                 expect.objectContaining({
-                    search: 'Unknown Game official box art', // No platform name appended
+                    search: 'Unknown Game official box art',
                 })
             );
         });
@@ -325,14 +304,10 @@ describe('backlog-cover-downloader', () => {
             googleImgScrapMock.mockResolvedValue({
                 result: [
                     { url: imageUrl },
-                    { url: 'https://example.com/other.jpg' }, // Should ignore this
+                    { url: 'https://example.com/other.jpg' },
                 ],
             });
-            (global.fetch as any).mockResolvedValue({
-                ok: true,
-                headers: new Map([['content-type', 'image/jpeg']]),
-                arrayBuffer: async () => new ArrayBuffer(8),
-            });
+            (global.fetch as any).mockResolvedValue(createMockResponse(200, { 'content-type': 'image/jpeg' }));
 
             const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
             await run();
@@ -403,10 +378,9 @@ describe('backlog-cover-downloader', () => {
             const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
             const runPromise = run();
 
-            // Advance through all the delays (2000ms after each game)
-            await vi.advanceTimersByTimeAsync(2000); // After Game 1
-            await vi.advanceTimersByTimeAsync(2000); // After Game 2
-            await vi.advanceTimersByTimeAsync(2000); // After Game 3
+            await vi.advanceTimersByTimeAsync(2000);
+            await vi.advanceTimersByTimeAsync(2000);
+            await vi.advanceTimersByTimeAsync(2000);
 
             await runPromise;
             consoleLogSpy.mockRestore();
