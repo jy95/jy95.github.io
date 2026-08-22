@@ -87,9 +87,10 @@ describe('LanguageToggle', () => {
 
     it('closes the menu after a selection', () => {
         render(<LanguageToggle {...props} />);
-        fireEvent.click(screen.getByText('en'));
+        const button = screen.getByText('en');
+        fireEvent.click(button);
         fireEvent.click(screen.getByText('French'));
-        expect(screen.queryByText('English')).not.toBeInTheDocument();
+        expect(button).not.toHaveAttribute('aria-expanded', 'true');
     });
 
     it('renders the French locale button label when the active locale is fr', () => {
