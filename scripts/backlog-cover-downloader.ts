@@ -153,7 +153,13 @@ export async function run(): Promise<void> {
         await new Promise<void>(resolve => setTimeout(resolve, 2000));
     }
 
-    console.log("\n✨ Terminé !");
+console.log("\n✨ Terminé !");
 }
 
-await run();
+const isDirectExecution: boolean =
+    process.argv[1] !== undefined &&
+    path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
+if (isDirectExecution) {
+    await run();
+}
