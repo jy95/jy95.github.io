@@ -6,7 +6,7 @@ const { existsSyncMock, mkdirSyncMock, writeFileSyncMock, renameSyncMock, unlink
     writeFileSyncMock: vi.fn(),
     renameSyncMock: vi.fn(),
     unlinkSyncMock: vi.fn(),
-    readFileSyncMock: vi.fn().mockReturnValue('[]'), // Default return value for top-level import
+    readFileSyncMock: vi.fn().mockReturnValue('[]'), // Default return value to safely handle module import execution
     readdirSyncMock: vi.fn(),
 }));
 
@@ -48,15 +48,15 @@ function createMockResponse(status = 200, headersMap: Record<string, string> = {
     };
 }
 
-// Suppress console output during initial import execution
-const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+// Suppress console output during initial module import execution
+const initialLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+const initialErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
 // Import module (triggers top-level await run())
 const { downloadImage, run } = await import('./backlog-cover-downloader');
 
-consoleLogSpy.mockRestore();
-consoleErrorSpy.mockRestore();
+initialLogSpy.mockRestore();
+initialErrorSpy.mockRestore();
 
 describe('backlog-cover-downloader', () => {
     beforeEach(() => {
@@ -293,11 +293,13 @@ describe('backlog-cover-downloader', () => {
             readdirSyncMock.mockReturnValue([]);
             googleImgScrapMock.mockResolvedValue({ result: [] });
 
+            const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
             await run();
+            logSpy.mockRestore();
 
             expect(googleImgScrapMock).toHaveBeenCalledWith(
                 expect.objectContaining({
-                    search: 'Unknown Game official box art',
+                    search: 'Unknown Game  official box art',
                 })
             );
         });
@@ -334,11 +336,11 @@ describe('backlog-cover-downloader', () => {
 
             const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
             await run();
-            logSpy.mockRestore();
 
             expect(logSpy).toHaveBeenCalledWith(
                 expect.stringContaining('Aucune image trouvée')
             );
+            logSpy.mockRestore();
         });
 
         it('logs error when Google Image Search fails for a game', async () => {
