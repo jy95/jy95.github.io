@@ -36,7 +36,7 @@ const MIME_MAP: Record<string, string> = {
     'image/gif': 'gif'
 };
 
-async function downloadImage(url: string, gameId: number | string): Promise<string | null> {
+export async function downloadImage(url: string, gameId: number | string): Promise<string | null> {
     const gameDir: string = path.join(OUTPUT_ROOT, String(gameId));
 
     if (!fs.existsSync(gameDir)) {
@@ -83,7 +83,7 @@ async function downloadImage(url: string, gameId: number | string): Promise<stri
         return fileName;
     } catch (error: any) {
         clearTimeout(timeoutId);
-        
+
         // Nettoyage du fichier temporaire si l'erreur survient pendant l'écriture
         const fileName: string = `cover.jpg`; // Fallback de nom pour le chemin de nettoyage au cas où
         const tmpPath: string = path.join(gameDir, `${fileName}.tmp`);
@@ -100,7 +100,7 @@ async function downloadImage(url: string, gameId: number | string): Promise<stri
     }
 }
 
-async function run(): Promise<void> {
+export async function run(): Promise<void> {
     let games: Game[];
     try {
         const rawData: string = fs.readFileSync(JSON_FILE, 'utf-8');
