@@ -55,10 +55,24 @@ describe('DisclaimerAccordion', () => {
     it('applies the given background color to each category avatar', () => {
         const { container } = render(<DisclaimerAccordion categoryColors={categoryColors} />);
         const avatars = container.querySelectorAll('.MuiAvatar-root');
-        // First avatar in the list belongs to tier_masterpiece
-        const masterpieceAvatar = Array.from(avatars).find(
-            (el) => (el as HTMLElement).style.backgroundColor !== ''
-        );
-        expect(masterpieceAvatar).toBeDefined();
+
+        // The component renders avatars in the fixed tier order
+        const tierOrder: TierCategoryKey[] = [
+            'tier_masterpiece',
+            'tier_excellent',
+            'tier_good',
+            'tier_average',
+            'tier_poor',
+            'tier_bad',
+            'tier_not_evaluated',
+        ];
+
+        expect(avatars).toHaveLength(tierOrder.length);
+
+        avatars.forEach((avatar, index) => {
+            const categoryKey = tierOrder[index];
+            const expectedColor = categoryColors[categoryKey];
+            expect(avatar).toHaveStyle({ backgroundColor: expectedColor });
+        });
     });
 });
