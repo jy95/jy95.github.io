@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 const setModeMock = vi.fn();
 let mockMode: 'light' | 'dark' | 'system' = 'light';
@@ -87,10 +87,12 @@ describe('ToolbarActions', () => {
         expect(lightItem).not.toHaveClass('Mui-selected');
     });
 
-    it('closes the menu after a mode selection', () => {
+    it('closes the menu after a mode selection', async () => {
         render(<ToolbarActions {...props} />);
         fireEvent.click(screen.getByLabelText('Mode'));
         fireEvent.click(screen.getByText('Dark'));
-        expect(screen.queryByText('Light')).not.toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.queryByText('Light')).not.toBeInTheDocument();
+        });
     });
 });
