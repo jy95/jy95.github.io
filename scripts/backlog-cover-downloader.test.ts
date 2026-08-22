@@ -6,7 +6,7 @@ const { existsSyncMock, mkdirSyncMock, writeFileSyncMock, renameSyncMock, unlink
     writeFileSyncMock: vi.fn(),
     renameSyncMock: vi.fn(),
     unlinkSyncMock: vi.fn(),
-    readFileSyncMock: vi.fn(),
+    readFileSyncMock: vi.fn().mockReturnValue('[]'), // Default return value for top-level import
     readdirSyncMock: vi.fn(),
 }));
 
@@ -15,7 +15,7 @@ vi.mock('fs', () => ({
         existsSync: existsSyncMock,
         mkdirSync: mkdirSyncMock,
         writeFileSync: writeFileSyncMock,
-        renameSyncMock: renameSyncMock,
+        renameSync: renameSyncMock,
         unlinkSync: unlinkSyncMock,
         readFileSync: readFileSyncMock,
         readdirSync: readdirSyncMock,
@@ -30,7 +30,7 @@ vi.mock('google-img-scrap', () => ({
     GOOGLE_IMG_SCRAP: googleImgScrapMock,
 }));
 
-// Helper to construct a mocked Fetch Response with a working .headers.get()
+// Helper to construct a mocked Fetch Response with working headers.get()
 function createMockResponse(status = 200, headersMap: Record<string, string> = {}, arrayBufferData = new ArrayBuffer(8)) {
     return {
         ok: status >= 200 && status < 300,
@@ -48,8 +48,15 @@ function createMockResponse(status = 200, headersMap: Record<string, string> = {
     };
 }
 
-// Simulate loading the module
+// Suppress console output during initial import execution
+const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+// Import module (triggers top-level await run())
 const { downloadImage, run } = await import('./backlog-cover-downloader');
+
+consoleLogSpy.mockRestore();
+consoleErrorSpy.mockRestore();
 
 describe('backlog-cover-downloader', () => {
     beforeEach(() => {
@@ -156,9 +163,9 @@ describe('backlog-cover-downloader', () => {
             existsSyncMock.mockReturnValueOnce(false).mockReturnValueOnce(true);
             (global.fetch as any).mockRejectedValue(new Error('Network error'));
 
-            const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+            const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
             const result = await downloadImage('https://example.com/cover.jpg', 111);
-            consoleErrorSpy.mockRestore();
+            errSpy.mockRestore();
 
             expect(result).toBeNull();
             expect(unlinkSyncMock).toHaveBeenCalled();
@@ -170,28 +177,28 @@ describe('backlog-cover-downloader', () => {
             abortError.name = 'AbortError';
             (global.fetch as any).mockRejectedValue(abortError);
 
-            const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+            const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
             const result = await downloadImage('https://example.com/cover.jpg', 222);
 
-            expect(consoleErrorSpy).toHaveBeenCalledWith(
+            expect(errSpy).toHaveBeenCalledWith(
                 expect.stringContaining("délai d'attente (timeout) a expiré")
             );
             expect(result).toBeNull();
-            consoleErrorSpy.mockRestore();
+            errSpy.mockRestore();
         });
 
         it('returns null and logs error when fetch response is not ok', async () => {
             existsSyncMock.mockReturnValue(true);
             (global.fetch as any).mockResolvedValue(createMockResponse(404));
 
-            const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+            const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
             const result = await downloadImage('https://example.com/missing.jpg', 333);
 
             expect(result).toBeNull();
-            expect(consoleErrorSpy).toHaveBeenCalledWith(
+            expect(errSpy).toHaveBeenCalledWith(
                 expect.stringContaining('HTTP error! status: 404')
             );
-            consoleErrorSpy.mockRestore();
+            errSpy.mockRestore();
         });
 
         it('strips charset from Content-Type header', async () => {
@@ -230,17 +237,17 @@ describe('backlog-cover-downloader', () => {
                 throw new Error('ENOENT: no such file');
             });
 
-            const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+            const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
             await expect(run()).rejects.toThrow();
-            consoleErrorSpy.mockRestore();
+            errSpy.mockRestore();
         });
 
         it('throws when backlog.json contains invalid JSON', async () => {
             readFileSyncMock.mockReturnValue('{ invalid json }');
 
-            const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+            const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
             await expect(run()).rejects.toThrow();
-            consoleErrorSpy.mockRestore();
+            errSpy.mockRestore();
         });
 
         it('skips games that already have a cover', async () => {
@@ -255,9 +262,9 @@ describe('backlog-cover-downloader', () => {
                 .mockReturnValueOnce([]);
             googleImgScrapMock.mockResolvedValue({ result: [] });
 
-            const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+            const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
             await run();
-            consoleLogSpy.mockRestore();
+            logSpy.mockRestore();
 
             expect(googleImgScrapMock).toHaveBeenCalledTimes(1);
         });
@@ -309,9 +316,9 @@ describe('backlog-cover-downloader', () => {
             });
             (global.fetch as any).mockResolvedValue(createMockResponse(200, { 'content-type': 'image/jpeg' }));
 
-            const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+            const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
             await run();
-            consoleLogSpy.mockRestore();
+            logSpy.mockRestore();
 
             expect(global.fetch).toHaveBeenCalledWith(
                 imageUrl,
@@ -325,11 +332,11 @@ describe('backlog-cover-downloader', () => {
             readdirSyncMock.mockReturnValue([]);
             googleImgScrapMock.mockResolvedValue({ result: [] });
 
-            const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+            const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
             await run();
-            consoleLogSpy.mockRestore();
+            logSpy.mockRestore();
 
-            expect(consoleLogSpy).toHaveBeenCalledWith(
+            expect(logSpy).toHaveBeenCalledWith(
                 expect.stringContaining('Aucune image trouvée')
             );
         });
@@ -340,13 +347,13 @@ describe('backlog-cover-downloader', () => {
             readdirSyncMock.mockReturnValue([]);
             googleImgScrapMock.mockRejectedValue(new Error('API rate limit'));
 
-            const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+            const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
             await run();
 
-            expect(consoleErrorSpy).toHaveBeenCalledWith(
+            expect(errSpy).toHaveBeenCalledWith(
                 expect.stringContaining('Erreur lors de la recherche')
             );
-            consoleErrorSpy.mockRestore();
+            errSpy.mockRestore();
         });
 
         it('waits 2 seconds between game searches', async () => {
@@ -375,7 +382,7 @@ describe('backlog-cover-downloader', () => {
             readdirSyncMock.mockReturnValue([]);
             googleImgScrapMock.mockResolvedValue({ result: [] });
 
-            const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+            const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
             const runPromise = run();
 
             await vi.advanceTimersByTimeAsync(2000);
@@ -383,7 +390,7 @@ describe('backlog-cover-downloader', () => {
             await vi.advanceTimersByTimeAsync(2000);
 
             await runPromise;
-            consoleLogSpy.mockRestore();
+            logSpy.mockRestore();
             vi.useRealTimers();
 
             expect(googleImgScrapMock).toHaveBeenCalledTimes(3);
@@ -392,11 +399,11 @@ describe('backlog-cover-downloader', () => {
         it('logs completion message at the end', async () => {
             readFileSyncMock.mockReturnValue(JSON.stringify([]));
 
-            const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+            const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
             await run();
 
-            expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('✨ Terminé !'));
-            consoleLogSpy.mockRestore();
+            expect(logSpy).toHaveBeenCalledWith(expect.stringContaining('✨ Terminé !'));
+            logSpy.mockRestore();
         });
     });
 });
