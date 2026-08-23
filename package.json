@@ -60,7 +60,7 @@
     "howlongtobeat-ts": "^1.3.0",
     "jsdom": "^30.0.1",
     "tsx": "^4.23.12",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.11"
   },
   "overrides": {
     "@types/react": "19.2.18",
