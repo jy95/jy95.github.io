@@ -1,47 +1,46 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
 
+const mockFrom = vi.fn();
+
+vi.mock('@/lib/supabase/client', () => ({
+    createClient: () => ({
+        from: mockFrom,
+    }),
+}));
+
+import { api } from './api';
 import { votesAPI } from './votesAPI';
 
 const makeStore = () =>
     configureStore({
         reducer: {
-            [votesAPI.reducerPath]: votesAPI.reducer,
+            [api.reducerPath]: api.reducer,
         },
         middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware().concat(votesAPI.middleware),
+            getDefaultMiddleware().concat(api.middleware),
     });
 
 describe('votesAPI.getGlobalStats', () => {
-    it('returns the global stats', async () => {
-        const stats = {
-            totalVotes: 42,
-            totalUsers: 10,
-            averageScore: 8.5,
-        };
-
-        vi.mocked(
-            votesAPI.endpoints.getGlobalStats
-        );
-
-        // Keep your existing Supabase mocking/setup here.
-        // This test body should remain identical to your current passing test.
-        expect(stats).toEqual({
-            totalVotes: 42,
-            totalUsers: 10,
-            averageScore: 8.5,
-        });
+    beforeEach(() => {
+        vi.clearAllMocks();
     });
 
     it('surfaces the Supabase error message on failure', async () => {
-        // Keep the existing Supabase mock that makes the query fail
-        // with: new Error('network down').
+        mockFrom.mockReturnValueOnce({
+            select: vi.fn().mockResolvedValueOnce({
+                data: null,
+                error: {
+                    message: 'network down',
+                },
+            }),
+        });
 
         const result = await makeStore().dispatch(
             votesAPI.endpoints.getGlobalStats.initiate()
         );
 
-        expect(result.error).toMatchObject({
+        expect(result.error).toEqual({
             status: 'CUSTOM_ERROR',
             error: 'network down',
         });
