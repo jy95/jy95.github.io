@@ -3,7 +3,10 @@ import { configureStore } from '@reduxjs/toolkit';
 
 const { supabaseMock, fromMock } = vi.hoisted(() => {
     const fromMock = vi.fn();
-    return { supabaseMock: { from: fromMock }, fromMock };
+    return {
+        supabaseMock: { from: fromMock },
+        fromMock,
+    };
 });
 
 vi.mock('@/lib/supabase/client', () => ({
@@ -35,24 +38,41 @@ describe('votesAPI.getGlobalStats', () => {
             }),
         });
 
-        const result = await makeStore().dispatch(votesAPI.endpoints.getGlobalStats.initiate());
-        expect(result.data).toEqual({ batman: 3, portal: 7 });
+        const result = await makeStore().dispatch(
+            votesAPI.endpoints.getGlobalStats.initiate()
+        );
+
+        expect(result.data).toEqual({
+            batman: 3,
+            portal: 7,
+        });
     });
 
     it('surfaces the Supabase error message on failure', async () => {
         fromMock.mockReturnValue({
-            select: vi.fn().mockResolvedValue({ data: null, error: { message: 'network down' } }),
+            select: vi.fn().mockResolvedValue({
+                data: null,
+                error: { message: 'network down' },
+            }),
         });
 
-        const result = await makeStore().dispatch(votesAPI.endpoints.getGlobalStats.initiate());
-        // Fixed: queryFn returns the string message directly, not an object
-        expect(result.error).toBe('network down');
+        const result = await makeStore().dispatch(
+            votesAPI.endpoints.getGlobalStats.initiate()
+        );
+
+        expect(result.error).toMatchObject({
+            status: 'CUSTOM_ERROR',
+            error: 'network down',
+        });
     });
 });
 
 describe('votesAPI.getMyVotes', () => {
     it('returns [] and never queries Supabase when userId is undefined', async () => {
-        const result = await makeStore().dispatch(votesAPI.endpoints.getMyVotes.initiate(undefined));
+        const result = await makeStore().dispatch(
+            votesAPI.endpoints.getMyVotes.initiate(undefined)
+        );
+
         expect(result.data).toEqual([]);
         expect(fromMock).not.toHaveBeenCalled();
     });
@@ -60,11 +80,20 @@ describe('votesAPI.getMyVotes', () => {
     it('returns the slugs the user voted for', async () => {
         fromMock.mockReturnValue({
             select: vi.fn().mockReturnValue({
-                eq: vi.fn().mockResolvedValue({ data: [{ game_slug: 'batman' }, { game_slug: 'portal' }], error: null }),
+                eq: vi.fn().mockResolvedValue({
+                    data: [
+                        { game_slug: 'batman' },
+                        { game_slug: 'portal' },
+                    ],
+                    error: null,
+                }),
             }),
         });
 
-        const result = await makeStore().dispatch(votesAPI.endpoints.getMyVotes.initiate('user-1'));
+        const result = await makeStore().dispatch(
+            votesAPI.endpoints.getMyVotes.initiate('user-1')
+        );
+
         expect(result.data).toEqual(['batman', 'portal']);
     });
 });
@@ -74,32 +103,65 @@ describe('votesAPI.toggleVote optimistic updates', () => {
         const store = makeStore();
 
         fromMock.mockReturnValueOnce({
-            select: vi.fn().mockResolvedValue({ data: [{ game_slug: 'batman', likes_count: 3 }], error: null }),
+            select: vi.fn().mockResolvedValue({
+                data: [{ game_slug: 'batman', likes_count: 3 }],
+                error: null,
+            }),
         });
-        await store.dispatch(votesAPI.endpoints.getGlobalStats.initiate());
+
+        await store.dispatch(
+            votesAPI.endpoints.getGlobalStats.initiate()
+        );
 
         fromMock.mockReturnValueOnce({
-            select: vi.fn().mockReturnValue({ eq: vi.fn().mockResolvedValue({ data: [], error: null }) }),
+            select: vi.fn().mockReturnValue({
+                eq: vi.fn().mockResolvedValue({
+                    data: [],
+                    error: null,
+                }),
+            }),
         });
-        await store.dispatch(votesAPI.endpoints.getMyVotes.initiate('user-1'));
+
+        await store.dispatch(
+            votesAPI.endpoints.getMyVotes.initiate('user-1')
+        );
 
         // Never resolve insert() synchronously, so we can inspect the
         // optimistic patch before the mutation settles.
         let resolveInsert: (v: unknown) => void = () => {};
+
         fromMock.mockReturnValueOnce({
-            insert: vi.fn().mockReturnValue(new Promise((res) => { resolveInsert = res; })),
+            insert: vi.fn().mockReturnValue(
+                new Promise((res) => {
+                    resolveInsert = res;
+                })
+            ),
         });
 
         const pending = store.dispatch(
-            votesAPI.endpoints.toggleVote.initiate({ slug: 'batman', userId: 'user-1', hasVoted: false })
+            votesAPI.endpoints.toggleVote.initiate({
+                slug: 'batman',
+                userId: 'user-1',
+                hasVoted: false,
+            })
         );
 
-        const stats = votesAPI.endpoints.getGlobalStats.select(undefined)(store.getState());
-        const votes = votesAPI.endpoints.getMyVotes.select('user-1')(store.getState());
-        expect(stats.data).toEqual({ batman: 4 });
+        const stats = votesAPI.endpoints.getGlobalStats.select(undefined)(
+            store.getState()
+        );
+
+        const votes = votesAPI.endpoints.getMyVotes.select('user-1')(
+            store.getState()
+        );
+
+        expect(stats.data).toEqual({
+            batman: 4,
+        });
+
         expect(votes.data).toEqual(['batman']);
 
         resolveInsert({ error: null });
+
         await pending;
     });
 
@@ -107,26 +169,57 @@ describe('votesAPI.toggleVote optimistic updates', () => {
         const store = makeStore();
 
         fromMock.mockReturnValueOnce({
-            select: vi.fn().mockResolvedValue({ data: [{ game_slug: 'batman', likes_count: 3 }], error: null }),
-        });
-        await store.dispatch(votesAPI.endpoints.getGlobalStats.initiate());
-
-        fromMock.mockReturnValueOnce({
-            select: vi.fn().mockReturnValue({ eq: vi.fn().mockResolvedValue({ data: [{ game_slug: 'batman' }], error: null }) }),
-        });
-        await store.dispatch(votesAPI.endpoints.getMyVotes.initiate('user-1'));
-
-        fromMock.mockReturnValueOnce({
-            delete: vi.fn().mockReturnValue({ match: vi.fn().mockResolvedValue({ error: { message: 'delete failed' } }) }),
+            select: vi.fn().mockResolvedValue({
+                data: [{ game_slug: 'batman', likes_count: 3 }],
+                error: null,
+            }),
         });
 
         await store.dispatch(
-            votesAPI.endpoints.toggleVote.initiate({ slug: 'batman', userId: 'user-1', hasVoted: true })
+            votesAPI.endpoints.getGlobalStats.initiate()
         );
 
-        const stats = votesAPI.endpoints.getGlobalStats.select(undefined)(store.getState());
-        const votes = votesAPI.endpoints.getMyVotes.select('user-1')(store.getState());
-        expect(stats.data).toEqual({ batman: 3 });
+        fromMock.mockReturnValueOnce({
+            select: vi.fn().mockReturnValue({
+                eq: vi.fn().mockResolvedValue({
+                    data: [{ game_slug: 'batman' }],
+                    error: null,
+                }),
+            }),
+        });
+
+        await store.dispatch(
+            votesAPI.endpoints.getMyVotes.initiate('user-1')
+        );
+
+        fromMock.mockReturnValueOnce({
+            delete: vi.fn().mockReturnValue({
+                match: vi.fn().mockResolvedValue({
+                    error: { message: 'delete failed' },
+                }),
+            }),
+        });
+
+        await store.dispatch(
+            votesAPI.endpoints.toggleVote.initiate({
+                slug: 'batman',
+                userId: 'user-1',
+                hasVoted: true,
+            })
+        );
+
+        const stats = votesAPI.endpoints.getGlobalStats.select(undefined)(
+            store.getState()
+        );
+
+        const votes = votesAPI.endpoints.getMyVotes.select('user-1')(
+            store.getState()
+        );
+
+        expect(stats.data).toEqual({
+            batman: 3,
+        });
+
         expect(votes.data).toEqual(['batman']);
     });
 });

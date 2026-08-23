@@ -1,37 +1,33 @@
-// Need to use the React-specific entry point to import createApi
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
-// Types
 import type { CardGame } from "@/redux/sharedDefintion";
 import type { BacklogEntry } from "@/app/api/backlog/route";
 import type { TierCategoryKey } from "@/types/tierList";
+import { api } from "./api"
 
 type GamesTierList = Record<string, CardGame[]>;
 type BacklogTierList = Record<string, BacklogEntry[]>;
 type TestsTierList = Record<string, CardGame[]>;
-
 type sortOption = "asc" | "desc";
 
-// Define a service using a base URL and expected endpoints
-export const tierListAPI = createApi({
-    reducerPath: 'tierListAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: '/api/tier-lists' }),
+export const tierListAPI = api.injectEndpoints({
     endpoints: (builder) => ({
         getGamesTierList: builder.query<GamesTierList, void>({
-            query: () => "/games"
+            query: () => "/tier-lists/games"
         }),
         getBacklogTierList: builder.query<BacklogTierList, void>({
-            query: () => "/backlog"
+            query: () => "/tier-lists/backlog"
         }),
         getSortedCategories: builder.query<TierCategoryKey[], sortOption>({
-            query: (sortOrder) => `/categories?sort=${sortOrder}`
+            query: (sortOrder) => `/tier-lists/categories?sort=${sortOrder}`
         }),
         getTestsTierList: builder.query<TestsTierList, void>({
-            query: () => "/tests"
+            query: () => "/tier-lists/tests"
         })
     })
 });
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
-export const { useGetGamesTierListQuery, useGetBacklogTierListQuery, useGetSortedCategoriesQuery, useGetTestsTierListQuery } = tierListAPI
+export const {
+    useGetGamesTierListQuery,
+    useGetBacklogTierListQuery,
+    useGetSortedCategoriesQuery,
+    useGetTestsTierListQuery
+} = tierListAPI

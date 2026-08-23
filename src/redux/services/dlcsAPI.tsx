@@ -1,11 +1,7 @@
-// Need to use the React-specific entry point to import createApi
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { dlcType } from "@/app/api/dlcs/route";
+import { api } from "./api"
 
-// Define a service using a base URL and expected endpoints
-export const dlcsAPI = createApi({
-    reducerPath: 'dlcsApi',
-    baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
+export const dlcsAPI = api.injectEndpoints({
     endpoints: (builder) => ({
         getDLCs: builder.query<dlcType[], void>({
             query: () => "/dlcs"
@@ -13,6 +9,4 @@ export const dlcsAPI = createApi({
     })
 });
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
 export const { useGetDLCsQuery } = dlcsAPI

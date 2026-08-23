@@ -1,10 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
 
-// 1. Stub global location so relative URLs can be resolved
 vi.stubGlobal('location', new URL('http://localhost'));
-
-// 2. Make Node's Request resolve relative URLs like a browser Request
 const NativeRequest = globalThis.Request;
 vi.stubGlobal(
     'Request',
@@ -19,12 +16,9 @@ vi.stubGlobal(
         }
     }
 );
-
-// 3. Stub global fetch BEFORE importing any of the API slices
 const fetchMock = vi.fn();
 vi.stubGlobal('fetch', fetchMock);
 
-// 4. Dynamically import every slice after fetch and Request are stubbed
 const { genresAPI } = await import('./genresAPI');
 const { seriesAPI } = await import('./seriesAPI');
 const { dlcsAPI } = await import('./dlcsAPI');
@@ -60,7 +54,7 @@ function calledPath(callIndex = 0): string {
     return new URL(urlStr, 'http://localhost').pathname;
 }
 
-describe('single-endpoint RTK Query API slices', () => {
+describe('injected RTK Query endpoints', () => {
     beforeEach(() => {
         fetchMock.mockReset();
         fetchMock.mockImplementation(async () => jsonResponse([]));
@@ -96,10 +90,11 @@ describe('single-endpoint RTK Query API slices', () => {
         expect(calledPath()).toBe('/api/planning');
     });
 
-    it('every slice uses a distinct reducerPath (no accidental collisions)', () => {
+    it('all injected APIs share the same reducerPath and cache', () => {
         const paths = [genresAPI, seriesAPI, dlcsAPI, statsAPI, platformsAPI, planningAPI].map(
             (api) => api.reducerPath
         );
-        expect(new Set(paths).size).toBe(paths.length);
+        expect(new Set(paths).size).toBe(1);
+        expect(paths[0]).toBe('api');
     });
 });

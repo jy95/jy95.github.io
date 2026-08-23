@@ -1,11 +1,7 @@
-// Need to use the React-specific entry point to import createApi
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { planningEntry } from "@/app/api/planning/route";
+import { api } from "./api"
 
-// Define a service using a base URL and expected endpoints
-export const planningAPI = createApi({
-    reducerPath: 'planningApi',
-    baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
+export const planningAPI = api.injectEndpoints({
     endpoints: (builder) => ({
         getPlanning: builder.query<planningEntry[], void>({
             query: () => "/planning"
@@ -13,6 +9,4 @@ export const planningAPI = createApi({
     })
 });
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
 export const { useGetPlanningQuery } = planningAPI

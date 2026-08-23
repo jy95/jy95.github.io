@@ -7,9 +7,7 @@ vi.mock('@/lib/supabase/client', () => ({
 }));
 
 import { makeStore } from './Store';
-import { gamesAPI } from './services/gamesAPI';
-import { planningAPI } from './services/planningAPI';
-import { votesAPI } from './services/votesAPI';
+import { api } from './services/api';
 
 describe('makeStore', () => {
     it('creates a fresh, independent store instance on every call', () => {
@@ -21,21 +19,22 @@ describe('makeStore', () => {
         expect(state.games).toEqual({ activeFilters: [] });
     });
 
-    it('registers every RTK Query api reducer under its own reducerPath', () => {
+    it('registers the shared RTK Query reducer under the shared reducerPath', () => {
         const state = makeStore().getState();
-        expect(state[gamesAPI.reducerPath]).toBeDefined();
-        expect(state[planningAPI.reducerPath]).toBeDefined();
-        expect(state[votesAPI.reducerPath]).toBeDefined();
+        expect(state[api.reducerPath]).toBeDefined();
+    });
+
+    it('uses one shared RTK Query cache for injected endpoints', () => {
+        expect(api.reducerPath).toBe('api');
     });
 
     it('dispatching a gamesSlice action only touches that slice', () => {
         const store = makeStore();
         store.dispatch({ type: 'games/filterByTitle', payload: 'mario' });
-
         expect(store.getState().games.activeFilters).toEqual([{ key: 'selected_title', value: 'mario' }]);
-        
-        const votesState = store.getState()[votesAPI.reducerPath];
-        expect(votesState.queries).toEqual({});
-        expect(votesState.mutations).toEqual({});
+
+        const apiState = store.getState()[api.reducerPath];
+        expect(apiState.queries).toEqual({});
+        expect(apiState.mutations).toEqual({});
     });
 });
