@@ -21,7 +21,6 @@ describe('votesAPI.getGlobalStats', () => {
         };
 
         vi.mocked(
-            // @ts-expect-error — test override
             votesAPI.endpoints.getGlobalStats
         );
 
