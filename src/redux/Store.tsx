@@ -33,18 +33,20 @@ export const makeStore = () => {
         },
         // Adding the api middleware enables caching, invalidation, polling,
         // and other useful features of `rtk-query`.
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware()
-            .concat(gamesAPI.middleware)
-            .concat(planningAPI.middleware)
-            .concat(seriesAPI.middleware)
-            .concat(statsAPI.middleware)
-            .concat(testsAPI.middleware)
-            .concat(backlogAPI.middleware)
-            .concat(platformsAPI.middleware)
-            .concat(genresAPI.middleware)
-            .concat(dlcsAPI.middleware)
-            .concat(votesAPI.middleware)
-            .concat(tierListAPI.middleware),
+        middleware: (getDefaultMiddleware) => 
+            getDefaultMiddleware().concat([
+                gamesAPI.middleware,
+                planningAPI.middleware,
+                seriesAPI.middleware,
+                statsAPI.middleware,
+                testsAPI.middleware,
+                backlogAPI.middleware,
+                platformsAPI.middleware,
+                genresAPI.middleware,
+                dlcsAPI.middleware,
+                votesAPI.middleware,
+                tierListAPI.middleware,
+            ]),
     });
 }
 
