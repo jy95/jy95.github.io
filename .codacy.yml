@@ -12,3 +12,5 @@ exclude_paths:
   - "**.json"
   - "**.config.**"
   - "playlist_stats_viewer.html"
+  - "src/test/*.ts"
+  - "src/types/*.ts"
