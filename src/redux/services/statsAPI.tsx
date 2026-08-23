@@ -3,8 +3,8 @@ import { createSimpleGetApi } from './createSimpleApi';
 import type { statsProperty } from "@/app/api/stats/route";
 
 // Define a service using a base URL and expected endpoints
-export const statsAPI = createSimpleGetApi<statsProperty>('statsApi', '/stats');
+export const statsAPI = createSimpleGetApi<statsProperty>('statsApi', '/stats', 'getStats');
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetQuery: useGetStatsQuery } = statsAPI
+export const { useGetStatsQuery } = statsAPI
