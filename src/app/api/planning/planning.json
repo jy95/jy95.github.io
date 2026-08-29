@@ -1,18 +1,5 @@
 [
 	{
-		"id": 208,
-		"availableAt": "2026-08-05",
-		"endAt": "2026-08-28",
-		"playlistId": "PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
-		"title": "Killer Is Dead",
-		"releaseDate": "2013-08-30",
-		"duration": "04:58:20",
-		"platform": 6,
-		"genres": [
-			1
-		]
-	},
-	{
 		"id": 209,
 		"availableAt": "2026-09-02",
 		"endAt": "2026-10-14",
