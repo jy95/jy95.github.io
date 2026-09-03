@@ -1919,6 +1919,20 @@
 			"imagePath": "/covers/PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY/cover.webp"
 		},
 		{
+			"id": "PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
+			"title": "Shadows of the Damned",
+			"playlistId": "PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
+			"releaseDate": "2023-06-23",
+			"duration": "07:32:11",
+			"platform": 6,
+			"genres": [
+				1
+			],
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb/cover.webp"
+		},
+		{
 			"id": "PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
 			"title": "Shank",
 			"playlistId": "PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",

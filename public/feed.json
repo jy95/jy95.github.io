@@ -14,6 +14,14 @@
     },
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
+            "title": "Shadows of the Damned",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb/cover.webp",
+            "date_modified": "2026-09-02T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
@@ -124,14 +132,6 @@
             "title": "Deadpool",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI/cover.webp",
             "date_modified": "2025-10-31T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
-            "title": "WET",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV/cover.webp",
-            "date_modified": "2025-10-06T00:00:00.000Z"
         }
     ]
 }
