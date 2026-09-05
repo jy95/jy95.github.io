@@ -1420,5 +1420,10 @@
 	{
 		"id": 204,
 		"title": "Grabbed by the Ghoulies"
+	},
+	{
+		"id": 205,
+		"title": "Conan",
+		"platform": 6
 	}
 ]
