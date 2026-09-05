@@ -1607,5 +1607,11 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": []
+	"tier_not_evaluated": [
+		{
+			"id": "204",
+			"title": "Grabbed by the Ghoulies",
+			"imagePath": "/backlogcovers/204/cover.webp"
+		}
+	]
 }
