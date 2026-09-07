@@ -50,7 +50,7 @@
     "@types/better-sqlite3": "^9.6.0",
     "@types/node": "^26.4.0",
     "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.5",
+    "@types/react-dom": "19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "@vitest/coverage-v8": "^5.0.0",
     "better-sqlite3": "^13.0.2",
@@ -64,7 +64,7 @@
   },
   "overrides": {
     "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.5"
+    "@types/react-dom": "19.2.7"
   },
   "allowScripts": {
     "@parcel/watcher@2.6.0": true,
