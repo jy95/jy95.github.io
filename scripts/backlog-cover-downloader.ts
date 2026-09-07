@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { GOOGLE_IMG_SCRAP } from 'google-img-scrap';
+import { Bing } from 'bing-image-downloader';
 
 const __dirname: string = path.dirname(fileURLToPath(import.meta.url));
 
@@ -91,69 +91,88 @@ export async function downloadImage(url: string, gameId: number | string): Promi
             fs.unlinkSync(tmpPath);
         }
 
-        if (error.name === 'AbortError') {
-            console.error(`      ❌ Erreur de téléchargement : Le délai d'attente (timeout) a expiré`);
-        } else {
-            console.error(`      ❌ Erreur de téléchargement : ${error.message}`);
-        }
+        console.error(`Error downloading image for game ${gameId}:`, error.message);
         return null;
     }
 }
 
-export async function run(): Promise<void> {
-    let games: Game[];
+/**
+ * Recherche et télécharge une image de couverture pour un jeu
+ */
+export async function searchAndDownloadCover(game: Game): Promise<boolean> {
     try {
-        const rawData: string = fs.readFileSync(JSON_FILE, 'utf-8');
-        games = JSON.parse(rawData);
-    } catch (err) {
-        console.error("❌ Impossible de lire le fichier backlog.json");
-        throw err;
-    }
+        const searchQuery: string = `${game.title} ${PLATFORMS_MAP[game.platform] || ''} game cover`;
+        console.log(`Searching cover for: ${searchQuery}`);
 
-    console.log(`🚀 Lancement de la récupération pour ${games.length} titres...`);
+        const bing = new Bing();
+        const results = await bing.download({
+            query: searchQuery,
+            limit: 1,
+            detailed_results: false,
+            force_replace: false,
+            timeout: 60,
+            adult_filter_off: false,
+            force_replace_all: false,
+            silent: true
+        });
 
-    for (const game of games) {
-        const platformName: string = PLATFORMS_MAP[game.platform] || "";
-        const query: string = `${game.title} ${platformName} official box art`.trim();
-        const gameDir: string = path.join(OUTPUT_ROOT, String(game.id));
-
-        // Vérification si une image existe déjà (peu importe l'extension)
-        const existingFiles: string[] = fs.existsSync(gameDir) ? fs.readdirSync(gameDir) : [];
-        if (existingFiles.some((file: string) => file.startsWith('cover.'))) {
-            console.log(`⏩ [${game.id}] ${game.title} (Déjà présent)`);
-            continue;
+        if (results && results.length > 0) {
+            const imageUrl: string = results[0];
+            const result = await downloadImage(imageUrl, game.id);
+            return result !== null;
         }
 
-        console.log(`🔍 Recherche : "${query}"`);
-
-        try {
-            const request = await GOOGLE_IMG_SCRAP({
-                search: query,
-                limit: 5,
-                safeSearch: false
-            });
-
-            const results = request.result;
-
-            if (results && results.length > 0) {
-                const imageUrl: string = results[0].url;
-                console.log(`    🔗 Image trouvée : ${imageUrl}`);
-
-                const savedName: string | null = await downloadImage(imageUrl, game.id);
-                if (savedName) {
-                    console.log(`    ✅ Sauvegardé : ${game.id}/${savedName}`);
-                }
-            } else {
-                console.log(`    ⚠️ Aucune image trouvée pour : ${game.title} (${game.id})`);
-            }
-        } catch (err: any) {
-            console.error(`    ❌ Erreur lors de la recherche : ${err.message}`);
-        }
-
-        await new Promise<void>(resolve => setTimeout(resolve, 2000));
+        return false;
+    } catch (error: any) {
+        console.error(`Error searching cover for game ${game.id}:`, error.message);
+        return false;
     }
-
-    console.log("\n✨ Terminé !");
 }
 
-await run();
+/**
+ * Fonction principale
+ */
+export async function run(): Promise<void> {
+    try {
+        if (!fs.existsSync(JSON_FILE)) {
+            console.log('Backlog file not found at:', JSON_FILE);
+            return;
+        }
+
+        const data: string = fs.readFileSync(JSON_FILE, 'utf-8');
+        const games: Game[] = JSON.parse(data);
+
+        console.log(`Found ${games.length} games in backlog`);
+
+        let downloaded: number = 0;
+
+        for (const game of games) {
+            const gameDir: string = path.join(OUTPUT_ROOT, String(game.id));
+            const coverExists: boolean = fs.existsSync(gameDir) &&
+                fs.readdirSync(gameDir).some(file => file.startsWith('cover.'));
+
+            if (!coverExists) {
+                const success: boolean = await searchAndDownloadCover(game);
+                if (success) {
+                    downloaded++;
+                    console.log(`✓ Downloaded cover for: ${game.title}`);
+                } else {
+                    console.log(`✗ Failed to download cover for: ${game.title}`);
+                }
+                // Petit délai pour éviter de surcharger le serveur
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            } else {
+                console.log(`⊘ Cover already exists for: ${game.title}`);
+            }
+        }
+
+        console.log(`\nDownload complete: ${downloaded} new covers`);
+    } catch (error: any) {
+        console.error('Error running downloader:', error);
+    }
+}
+
+// Run the script if this is the main module
+if (import.meta.url === `file://${process.argv[1]}`) {
+    run().catch(console.error);
+}

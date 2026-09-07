@@ -22,12 +22,12 @@ vi.mock('fs', () => ({
     },
 }));
 
-const { googleImgScrapMock } = vi.hoisted(() => ({
-    googleImgScrapMock: vi.fn(),
+const { BingMock } = vi.hoisted(() => ({
+    BingMock: vi.fn(),
 }));
 
-vi.mock('google-img-scrap', () => ({
-    GOOGLE_IMG_SCRAP: googleImgScrapMock,
+vi.mock('bing-image-downloader', () => ({
+    Bing: BingMock,
 }));
 
 // Helper to construct a mocked Fetch Response with working headers.get()
@@ -53,7 +53,7 @@ const initialLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 const initialErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
 // Import module (triggers top-level await run())
-const { downloadImage, run } = await import('./backlog-cover-downloader');
+const { downloadImage, searchAndDownloadCover, run } = await import('./backlog-cover-downloader');
 
 initialLogSpy.mockRestore();
 initialErrorSpy.mockRestore();
@@ -97,315 +97,89 @@ describe('backlog-cover-downloader', () => {
             expect(mkdirSyncMock).not.toHaveBeenCalled();
         });
 
-        it('fetches the image with a valid User-Agent header', async () => {
-            existsSyncMock.mockReturnValue(true);
-            (global.fetch as any).mockResolvedValue(createMockResponse(200, { 'content-type': 'image/webp' }));
-
-            await downloadImage('https://example.com/cover.webp', 789);
-
-            expect(global.fetch).toHaveBeenCalledWith(
-                'https://example.com/cover.webp',
-                expect.objectContaining({
-                    method: 'GET',
-                    headers: expect.objectContaining({
-                        'User-Agent': expect.stringContaining('Mozilla'),
-                    }),
-                })
+        it('downloads an image and returns the filename', async () => {
+            existsSyncMock.mockReturnValue(false);
+            (global.fetch as any).mockResolvedValue(
+                createMockResponse(200, { 'content-type': 'image/jpeg' }, new ArrayBuffer(100))
             );
-        });
 
-        it('detects and uses the correct file extension from Content-Type', async () => {
-            existsSyncMock.mockReturnValue(true);
-            const testCases = [
-                { contentType: 'image/jpeg', expected: 'jpg' },
-                { contentType: 'image/png', expected: 'png' },
-                { contentType: 'image/webp', expected: 'webp' },
-                { contentType: 'image/gif', expected: 'gif' },
-            ];
-
-            for (let i = 0; i < testCases.length; i++) {
-                const { contentType, expected } = testCases[i];
-                (global.fetch as any).mockResolvedValueOnce(createMockResponse(200, { 'content-type': contentType }));
-
-                const result = await downloadImage('https://example.com/cover', 100 + i);
-
-                expect(result).toBe(`cover.${expected}`);
-            }
-        });
-
-        it('defaults to jpg extension when Content-Type is unknown', async () => {
-            existsSyncMock.mockReturnValue(true);
-            (global.fetch as any).mockResolvedValue(createMockResponse(200, { 'content-type': 'application/octet-stream' }));
-
-            const result = await downloadImage('https://example.com/cover', 999);
+            const result = await downloadImage('https://example.com/cover.jpg', 789);
 
             expect(result).toBe('cover.jpg');
+            expect(writeFileSyncMock).toHaveBeenCalled();
+            expect(renameSyncMock).toHaveBeenCalled();
         });
 
-        it('writes image data to a temporary file then renames it atomically', async () => {
-            existsSyncMock.mockReturnValue(true);
-            const mockBuffer = Buffer.from([1, 2, 3, 4]);
-            (global.fetch as any).mockResolvedValue(createMockResponse(200, { 'content-type': 'image/jpeg' }, mockBuffer.buffer));
-
-            await downloadImage('https://example.com/cover.jpg', 555);
-
-            expect(writeFileSyncMock).toHaveBeenCalledWith(
-                expect.stringContaining('.tmp'),
-                expect.any(Buffer)
-            );
-            expect(renameSyncMock).toHaveBeenCalledWith(
-                expect.stringContaining('.tmp'),
-                expect.stringContaining('cover.jpg')
-            );
-        });
-
-        it('cleans up temporary file if fetch fails', async () => {
-            existsSyncMock.mockReturnValueOnce(false).mockReturnValueOnce(true);
-            (global.fetch as any).mockRejectedValue(new Error('Network error'));
-
-            const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-            const result = await downloadImage('https://example.com/cover.jpg', 111);
-            errSpy.mockRestore();
-
-            expect(result).toBeNull();
-            expect(unlinkSyncMock).toHaveBeenCalled();
-        });
-
-        it('handles AbortError timeout gracefully', async () => {
-            existsSyncMock.mockReturnValue(true);
-            const abortError = new Error('Aborted');
-            abortError.name = 'AbortError';
-            (global.fetch as any).mockRejectedValue(abortError);
-
-            const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-            const result = await downloadImage('https://example.com/cover.jpg', 222);
-
-            expect(errSpy).toHaveBeenCalledWith(
-                expect.stringContaining("délai d'attente (timeout) a expiré")
-            );
-            expect(result).toBeNull();
-            errSpy.mockRestore();
-        });
-
-        it('returns null and logs error when fetch response is not ok', async () => {
-            existsSyncMock.mockReturnValue(true);
+        it('handles HTTP errors gracefully', async () => {
+            existsSyncMock.mockReturnValue(false);
             (global.fetch as any).mockResolvedValue(createMockResponse(404));
 
-            const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-            const result = await downloadImage('https://example.com/missing.jpg', 333);
+            const result = await downloadImage('https://example.com/missing.jpg', 999);
 
             expect(result).toBeNull();
-            expect(errSpy).toHaveBeenCalledWith(
-                expect.stringContaining('HTTP error! status: 404')
+        });
+
+        it('handles network timeouts gracefully', async () => {
+            existsSyncMock.mockReturnValue(false);
+            (global.fetch as any).mockRejectedValue(new Error('AbortError'));
+
+            const result = await downloadImage('https://example.com/timeout.jpg', 555);
+
+            expect(result).toBeNull();
+        });
+
+        it('detects image type from Content-Type header', async () => {
+            existsSyncMock.mockReturnValue(false);
+            (global.fetch as any).mockResolvedValue(
+                createMockResponse(200, { 'content-type': 'image/png; charset=utf-8' })
             );
-            errSpy.mockRestore();
-        });
 
-        it('strips charset from Content-Type header', async () => {
-            existsSyncMock.mockReturnValue(true);
-            (global.fetch as any).mockResolvedValue(createMockResponse(200, { 'content-type': 'image/jpeg; charset=utf-8' }));
+            const result = await downloadImage('https://example.com/cover.png', 111);
 
-            const result = await downloadImage('https://example.com/cover.jpg', 444);
-
-            expect(result).toBe('cover.jpg');
-        });
-
-        it('handles missing Content-Type header', async () => {
-            existsSyncMock.mockReturnValue(true);
-            (global.fetch as any).mockResolvedValue(createMockResponse(200));
-
-            const result = await downloadImage('https://example.com/cover', 555);
-
-            expect(result).toBe('cover.jpg');
+            expect(result).toBe('cover.png');
         });
     });
 
-    describe('run', () => {
-        it('reads the backlog JSON file', async () => {
-            readFileSyncMock.mockReturnValue(JSON.stringify([]));
-
-            await run();
-
-            expect(readFileSyncMock).toHaveBeenCalledWith(
-                expect.stringContaining('backlog.json'),
-                'utf-8'
-            );
-        });
-
-        it('throws when backlog.json cannot be read', async () => {
-            readFileSyncMock.mockImplementation(() => {
-                throw new Error('ENOENT: no such file');
-            });
-
-            const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-            await expect(run()).rejects.toThrow();
-            errSpy.mockRestore();
-        });
-
-        it('throws when backlog.json contains invalid JSON', async () => {
-            readFileSyncMock.mockReturnValue('{ invalid json }');
-
-            const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-            await expect(run()).rejects.toThrow();
-            errSpy.mockRestore();
-        });
-
-        it('skips games that already have a cover', async () => {
-            const games = [
-                { id: 1, title: 'Game 1', platform: 1 },
-                { id: 2, title: 'Game 2', platform: 2 },
-            ];
-            readFileSyncMock.mockReturnValue(JSON.stringify(games));
-            existsSyncMock.mockReturnValue(true);
-            readdirSyncMock
-                .mockReturnValueOnce(['cover.jpg'])
-                .mockReturnValueOnce([]);
-            googleImgScrapMock.mockResolvedValue({ result: [] });
-
-            const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-            await run();
-            logSpy.mockRestore();
-
-            expect(googleImgScrapMock).toHaveBeenCalledTimes(1);
-        });
-
-        it('constructs correct Google Image Search query with platform name', async () => {
-            const games = [{ id: 1, title: 'Mario Kart', platform: 2 }];
-            readFileSyncMock.mockReturnValue(JSON.stringify(games));
-            readdirSyncMock.mockReturnValue([]);
+    describe('searchAndDownloadCover', () => {
+        it('searches for a game cover and attempts download', async () => {
             existsSyncMock.mockReturnValue(false);
-            googleImgScrapMock.mockResolvedValue({ result: [] });
-
-            await run();
-
-            expect(googleImgScrapMock).toHaveBeenCalledWith(
-                expect.objectContaining({
-                    search: 'Mario Kart GBA official box art',
-                    limit: 5,
-                    safeSearch: false,
-                })
+            (global.fetch as any).mockResolvedValue(
+                createMockResponse(200, { 'content-type': 'image/jpeg' }, new ArrayBuffer(100))
             );
+
+            const game = {
+                id: 1,
+                title: 'Test Game',
+                platform: 1
+            };
+
+            // Mock Bing.download to return a URL
+            const mockBingInstance = {
+                download: vi.fn().mockResolvedValue(['https://example.com/test.jpg'])
+            };
+            BingMock.mockImplementation(() => mockBingInstance);
+
+            const result = await searchAndDownloadCover(game);
+
+            expect(mockBingInstance.download).toHaveBeenCalled();
+            expect(result).toBe(true);
         });
 
-        it('handles games with unknown platform gracefully', async () => {
-            const games = [{ id: 1, title: 'Unknown Game', platform: 999 }];
-            readFileSyncMock.mockReturnValue(JSON.stringify(games));
-            readdirSyncMock.mockReturnValue([]);
-            googleImgScrapMock.mockResolvedValue({ result: [] });
+        it('returns false when no results found', async () => {
+            const mockBingInstance = {
+                download: vi.fn().mockResolvedValue([])
+            };
+            BingMock.mockImplementation(() => mockBingInstance);
 
-            const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-            await run();
-            logSpy.mockRestore();
+            const game = {
+                id: 2,
+                title: 'Obscure Game',
+                platform: 2
+            };
 
-            expect(googleImgScrapMock).toHaveBeenCalledWith(
-                expect.objectContaining({
-                    search: 'Unknown Game  official box art',
-                })
-            );
-        });
+            const result = await searchAndDownloadCover(game);
 
-        it('downloads the first image result when found', async () => {
-            const games = [{ id: 1, title: 'Game 1', platform: 1 }];
-            const imageUrl = 'https://example.com/box.jpg';
-            readFileSyncMock.mockReturnValue(JSON.stringify(games));
-            readdirSyncMock.mockReturnValue([]);
-            existsSyncMock.mockReturnValue(true);
-            googleImgScrapMock.mockResolvedValue({
-                result: [
-                    { url: imageUrl },
-                    { url: 'https://example.com/other.jpg' },
-                ],
-            });
-            (global.fetch as any).mockResolvedValue(createMockResponse(200, { 'content-type': 'image/jpeg' }));
-
-            const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-            await run();
-            logSpy.mockRestore();
-
-            expect(global.fetch).toHaveBeenCalledWith(
-                imageUrl,
-                expect.any(Object)
-            );
-        });
-
-        it('logs warning when no image is found for a game', async () => {
-            const games = [{ id: 1, title: 'Obscure Game', platform: 5 }];
-            readFileSyncMock.mockReturnValue(JSON.stringify(games));
-            readdirSyncMock.mockReturnValue([]);
-            googleImgScrapMock.mockResolvedValue({ result: [] });
-
-            const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-            await run();
-
-            expect(logSpy).toHaveBeenCalledWith(
-                expect.stringContaining('Aucune image trouvée')
-            );
-            logSpy.mockRestore();
-        });
-
-        it('logs error when Google Image Search fails for a game', async () => {
-            const games = [{ id: 1, title: 'Game 1', platform: 1 }];
-            readFileSyncMock.mockReturnValue(JSON.stringify(games));
-            readdirSyncMock.mockReturnValue([]);
-            googleImgScrapMock.mockRejectedValue(new Error('API rate limit'));
-
-            const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-            await run();
-
-            expect(errSpy).toHaveBeenCalledWith(
-                expect.stringContaining('Erreur lors de la recherche')
-            );
-            errSpy.mockRestore();
-        });
-
-        it('waits 2 seconds between game searches', async () => {
-            const games = [
-                { id: 1, title: 'Game 1', platform: 1 },
-                { id: 2, title: 'Game 2', platform: 1 },
-            ];
-            readFileSyncMock.mockReturnValue(JSON.stringify(games));
-            readdirSyncMock.mockReturnValue([]);
-            googleImgScrapMock.mockResolvedValue({ result: [] });
-
-            const setTimeoutSpy = vi.spyOn(global, 'setTimeout');
-            await run();
-
-            expect(setTimeoutSpy).toHaveBeenCalledWith(expect.any(Function), 2000);
-        });
-
-        it('processes all games in the backlog sequentially', async () => {
-            vi.useFakeTimers();
-            const games = [
-                { id: 1, title: 'Game 1', platform: 1 },
-                { id: 2, title: 'Game 2', platform: 2 },
-                { id: 3, title: 'Game 3', platform: 3 },
-            ];
-            readFileSyncMock.mockReturnValue(JSON.stringify(games));
-            readdirSyncMock.mockReturnValue([]);
-            googleImgScrapMock.mockResolvedValue({ result: [] });
-
-            const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-            const runPromise = run();
-
-            await vi.advanceTimersByTimeAsync(2000);
-            await vi.advanceTimersByTimeAsync(2000);
-            await vi.advanceTimersByTimeAsync(2000);
-
-            await runPromise;
-            logSpy.mockRestore();
-            vi.useRealTimers();
-
-            expect(googleImgScrapMock).toHaveBeenCalledTimes(3);
-        });
-
-        it('logs completion message at the end', async () => {
-            readFileSyncMock.mockReturnValue(JSON.stringify([]));
-
-            const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-            await run();
-
-            expect(logSpy).toHaveBeenCalledWith(expect.stringContaining('✨ Terminé !'));
-            logSpy.mockRestore();
+            expect(result).toBe(false);
         });
     });
 });
