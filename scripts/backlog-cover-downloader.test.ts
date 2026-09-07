@@ -305,7 +305,7 @@ describe('backlog-cover-downloader', () => {
 
             expect(errSpy).toHaveBeenCalledWith(
                 expect.stringContaining(
-                    "délai d'attente (timeout) a expiré"
+                    "délai d’attente (timeout) a expiré"
                 )
             );
 
