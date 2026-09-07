@@ -22,9 +22,6 @@ jobs:
           find . -name "package-lock.json" -delete
       - name: 💻 Install npm packages
         run: npm install
-      - name: Build website 🤖
-        run: |
-          npm run build
       - name: Create Pull Request 🤖
         uses: peter-evans/create-pull-request@v8
         with:
