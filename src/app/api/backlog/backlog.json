@@ -1419,11 +1419,17 @@
 	},
 	{
 		"id": 204,
-		"title": "Grabbed by the Ghoulies"
+		"title": "Grabbed by the Ghoulies",
+		"hltb_main": "06:13:34",
+		"hltb_extra": "06:24:14",
+		"hltb_completionist": "11:55:43"
 	},
 	{
 		"id": 205,
 		"title": "Conan",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "06:43:10",
+		"hltb_extra": "08:09:45",
+		"hltb_completionist": "11:55:57"
 	}
 ]
