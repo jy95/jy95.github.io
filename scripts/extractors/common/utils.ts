@@ -38,7 +38,16 @@ export function stringifyJSON(payload: any): string {
     }, "\t");
 }
 
-export function normaliazeDuration(duration: Duration): Duration {
+export function normaliazeDuration(duration?: Duration): Duration {
+
+    // If the duration is undefined or null, return a default Duration object with all values set to 0
+    if (!duration) {
+        return {
+            hours: 0,
+            minutes: 0,
+            seconds: 0
+        }
+    }
 
     // Turn it into seconds
     let totalInSeconds = [

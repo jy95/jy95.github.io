@@ -2,6 +2,7 @@ import { writeFile } from "node:fs/promises";
 import { normaliazeDuration, stringifyJSON } from "./common/utils";
 
 import type { Database } from "better-sqlite3";
+import type { Duration } from "./common/types";
 
 /**
  * Extracts stats from the database and saves them to a file.
@@ -9,9 +10,9 @@ import type { Database } from "better-sqlite3";
 export async function extractAndSaveStats(db: Database, outputPath: string): Promise<void> {
     const genresStats = db.prepare("SELECT * FROM genres_stats").all();
     const platformStats = db.prepare("SELECT * FROM platforms_stats").all();
-    const games_total_time: any = db.prepare("SELECT * FROM games_total_time").get();
-    const games_total_time_available: any = db.prepare("SELECT * FROM games_available_time").get();
-    const games_total_time_unavailable: any = db.prepare("SELECT * FROM games_unavailable_time").get();
+    const games_total_time = db.prepare<[], Duration>("SELECT * FROM games_total_time").get();
+    const games_total_time_available = db.prepare<[], Duration>("SELECT * FROM games_available_time").get();
+    const games_total_time_unavailable = db.prepare<[], Duration>("SELECT * FROM games_unavailable_time").get();
     
     // where condition needed to exclude dlc from game resultset
     const total_games = db.prepare("SELECT COUNT(*) FROM games WHERE id NOT IN (SELECT dlc FROM games_dlcs)").pluck().get();
