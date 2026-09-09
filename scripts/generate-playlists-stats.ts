@@ -74,7 +74,6 @@ async function readCSV(filePath: string): Promise<GameStats[]> {
             });
         } catch {
             console.log(`\t ${title} is not a game - skipping`);
-            continue;
         }
     }
 
