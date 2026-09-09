@@ -25,14 +25,15 @@ vi.mock("./games.json", () => {
   };
 });
 
-// For determinism of built card entries, mock buildCardEntry so it returns predictable fields.
-// The route imports buildCardEntry from "@/redux/sharedDefintion".
-vi.mock("@/redux/sharedDefintion", () => {
+// For determinism of built card entries, mock buildCardGame so it returns predictable fields.
+// The route imports buildCardGame from "@/domain/games" (the canonical domain module).
+vi.mock("@/domain/games", () => {
   return {
-    // runtime: provide a deterministic buildCardEntry
-    buildCardEntry: (game: any, base: string) => {
+    // runtime: provide a deterministic buildCardGame
+    buildCardGame: (game: any, base: string) => {
       const safeTitle = String(game.title).replace(/\s+/g, "-").toLowerCase();
       return {
+        ...game,
         id: `id-${safeTitle}`,
         url: `https://www.youtube.com/watch?v=video-${safeTitle}`,
         url_type: "VIDEO",

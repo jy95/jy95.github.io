@@ -11,7 +11,7 @@ vi.mock('./tests.json', () => ({
     default: mockTests,
 }));
 
-vi.mock('@/redux/sharedDefintion', () => ({
+vi.mock('@/domain/games', () => ({
     buildCardEntry: (game: any, base: string) => ({
         id: game.videoId,
         url: `https://www.youtube.com/watch?v=${game.videoId}`,
