@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import Fuse from 'fuse.js';
 import { buildCardGame } from "@/domain/games";
 
-import type { BasicGame, CardGame } from "@/domain/games";
+import type { RawGame, CardGame } from "@/domain/games";
 
 // Types
 type gamesFilters = {
@@ -26,7 +26,7 @@ export type ResponseBody = {
     page: number
 };
 
-type rawEntry = Omit<BasicGame, "id">;
+type rawEntry = RawGame & { genres: number[] };
 export type RawPayload = rawEntry[];
 
 export async function GET(request: Request) {

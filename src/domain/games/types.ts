@@ -42,7 +42,11 @@ export type BasicPlaylist = BasicEntry & {
 }
 
 export type BasicGame = BasicVideo | BasicPlaylist;
-export type RawGame = Omit<BasicGame, "genres" | "id">;
+type RawGameVariant<T extends BasicGame> = T extends BasicGame
+    ? Omit<T, "genres" | "id">
+    : never;
+
+export type RawGame = RawGameVariant<BasicGame>;
 
 export type YTUrlType = 'PLAYLIST' | 'VIDEO';
 

@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { buildCardGame } from "@/domain/games";
-import type { BasicGame, CardGame } from "@/domain/games";
+import type { RawGame, CardGame } from "@/domain/games";
 
-type rawEntry = Omit<BasicGame, "id">;
+type rawEntry = RawGame;
 
 /**
  * A planning entry is the canonical CardGame representation *plus*
@@ -28,7 +28,7 @@ export async function GET() {
 // Return an enhanced payload for a single game
 function enhanceGameItem(game: rawEntry): planningEntry {
     return {
-        ...buildCardGame(game as BasicGame, "/covers"),
+        ...buildCardGame(game, "/covers"),
         status: Object.hasOwn(game, "endAt") ? "RECORDED" : "PENDING"
     };
 }
