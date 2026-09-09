@@ -60,7 +60,6 @@ function deleteOrphanedBacklogEntries(db: Database): number {
  * Removes image folders that no longer have corresponding backlog IDs in the database
  */
 async function deleteOrphanedImageFolders(
-  db: Database,
   validIds: Set<string>
 ): Promise<number> {
   const existingFolders = await getExistingImageFolders();
@@ -99,7 +98,7 @@ export async function cleanBacklog(db: Database): Promise<void> {
     console.log(`📊 Found ${validIds.size} valid backlog entries\n`);
 
     // Step 3: Delete orphaned image folders
-    const deletedFolders = await deleteOrphanedImageFolders(db, validIds);
+    const deletedFolders = await deleteOrphanedImageFolders(validIds);
 
     console.log(`\n✅ Cleanup complete! Deleted ${deletedEntries} entries and ${deletedFolders} image folder(s)`);
   } catch (error) {

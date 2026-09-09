@@ -3,15 +3,7 @@ import { getTranslations} from 'next-intl/server';
 
 import BacklogViewerClient from '@/components/backlog/BacklogViewerClient';
 
-import type {Locale} from 'next-intl';
-
-type Props = {
-  params: Promise<{
-      locale: Locale
-  }>
-}
-
-export default async function BacklogViewer(props : Props) {
+export default async function BacklogViewer() {
 
     // Using a query hook automatically fetches data and returns query values
     const t = await getTranslations("backlog");
