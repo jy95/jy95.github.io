@@ -1,5 +1,5 @@
 import { extractGameCardProps } from "./youtube";
-import type { RawGame, CardEntry, CardGame, BasicGame } from "./types";
+import type { RawGame, CardEntry, CardGame } from "./types";
 
 const DEFAULT_COVER_FILE = "cover.webp";
 
@@ -27,7 +27,7 @@ export function buildCardEntry(game: RawGame, coversBasePath: string): CardEntry
  *
  *   return { ...buildCardGame(game, "/covers"), status };
  */
-export function buildCardGame(game: BasicGame, coversBasePath: string): CardGame {
+export function buildCardGame(game: RawGame, coversBasePath: string): CardGame {
     return {
         ...game,
         ...buildCardEntry(game, coversBasePath)
