@@ -119,4 +119,16 @@ describe.skipIf(!hasRealDb)('extractAndSaveStats', () => {
             expect(entry.total_available + entry.total_unavailable).toBe(entry.total);
         }
     });
+
+    it('handles missing or empty duration views gracefully without throwing', async () => {
+        // Mock execution or execute on an empty table state where queries return undefined
+        db.exec('DELETE FROM games;');
+
+        await extractAndSaveStats(db, outPath);
+        const written: StatsOutput = JSON.parse(await readFile(outPath, 'utf-8'));
+
+        expect(written.general.duration.total).toEqual({ hours: 0, minutes: 0, seconds: 0 });
+        expect(written.general.duration.total_available).toEqual({ hours: 0, minutes: 0, seconds: 0 });
+        expect(written.general.duration.total_unavailable).toEqual({ hours: 0, minutes: 0, seconds: 0 });
+    });
 });
