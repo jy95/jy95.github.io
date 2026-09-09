@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { isCardGame, toGameDetailsEntry } from './adapters';
-import type { CardGame } from '@/redux/sharedDefintion';
+import type { CardGame } from '@/domain/games';
 import type { BacklogEntry } from '@/app/api/backlog/route';
 
 const cardGame: CardGame = {
