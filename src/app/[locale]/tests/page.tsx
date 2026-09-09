@@ -4,7 +4,7 @@
 import { useGetTestsQuery } from "@/redux/services/testsAPI";
 
 // Components
-import CardEntry from "@/components/GamesView/CardEntry";
+import CardEntry from "@/features/games/components/CardEntry";
 import Grid from '@mui/material/Grid';
 import QueryErrorState from "@/components/common/QueryErrorState";
 

@@ -1,6 +1,6 @@
 import {getTranslations} from 'next-intl/server';
 import YTPlayer from "@/components/YTPlayer/Player";
-import RandomButton from '@/components/GamesView/RandomButton';
+import RandomButton from '@/features/games/components/RandomButton';
 
 import type {Locale} from 'next-intl';
 

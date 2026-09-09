@@ -4,11 +4,11 @@
 import { useGetTestsTierListQuery } from "@/redux/services/tierListAPI";
 
 // Custom
-import CardEntry from "@/components/GamesView/CardEntry";
+import CardEntry from "@/features/games/components/CardEntry";
 import { TierLists } from "@/components/tierList";
 
 // Types 
-import type { CardGame } from "@/redux/sharedDefintion";
+import type { CardGame } from "@/domain/games";
 
 const GameCardRenderer = ({ game }: { game: CardGame }) => <CardEntry game={game} />;
 

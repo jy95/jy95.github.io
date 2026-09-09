@@ -10,9 +10,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 import SearchIcon from '@mui/icons-material/Search';
 
 // Custom
-const GenresSelect = lazy(() => import("@/components/GamesView/GenresSelect"));
-const PlatformSelect = lazy(() => import("@/components/GamesView/PlatformSelect"));
-const TitleFilter = lazy(() => import("@/components/GamesView/TitleFilter"));
+const GenresSelect = lazy(() => import("@/features/games/components/GenresSelect"));
+const PlatformSelect = lazy(() => import("@/features/games/components/PlatformSelect"));
+const TitleFilter = lazy(() => import("@/features/games/components/TitleFilter"));
 
 export default function GamesFilters() {
 
