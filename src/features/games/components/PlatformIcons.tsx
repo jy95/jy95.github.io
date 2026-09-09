@@ -19,13 +19,13 @@ const platformIcons = {
 }
 
 const platformsMappings = {
-    1: platformIcons["PC"],
-    2: platformIcons["GBA"],
-    3: platformIcons["PSP"],
-    4: platformIcons["PS1"],
-    5: platformIcons["PS2"],
-    6: platformIcons["PS3"],
-    7: platformIcons["SCUMMVM"]
+    1: platformIcons.PC,
+    2: platformIcons.GBA,
+    3: platformIcons.PSP,
+    4: platformIcons.PS1,
+    5: platformIcons.PS2,
+    6: platformIcons.PS3,
+    7: platformIcons.SCUMMVM
 }
 
 type Props = {
