@@ -1,5 +1,5 @@
 import { resolve } from 'node:path';
-import { copyFileSync, unlinkSync, existsSync } from 'fs';
+import { copyFileSync, unlinkSync, existsSync } from 'node:fs';
 import { randomUUID } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import Database from 'better-sqlite3';

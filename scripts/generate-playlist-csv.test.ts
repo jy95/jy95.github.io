@@ -21,7 +21,7 @@ vi.mock('node:fs/promises', () => ({
   readFile: mockReadFile
 }));
 
-vi.mock('fs', () => ({
+vi.mock('node:fs', () => ({
   default: { createWriteStream: mockCreateWriteStream },
   createWriteStream: mockCreateWriteStream
 }));

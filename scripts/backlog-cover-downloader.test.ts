@@ -18,7 +18,7 @@ const {
     readdirSyncMock: vi.fn(),
 }));
 
-vi.mock('fs', () => ({
+vi.mock('node:fs', () => ({
     default: {
         existsSync: existsSyncMock,
         mkdirSync: mkdirSyncMock,
