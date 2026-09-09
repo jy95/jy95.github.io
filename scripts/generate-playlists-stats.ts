@@ -52,7 +52,7 @@ async function readCSV(filePath: string): Promise<GameStats[]> {
     const rows: string[] = data.split('\n').slice(numberOfHeaders);
     const games: GameStats[] = [];
 
-    for (let game of rows) {
+    for (const game of rows) {
         
         const columns: string[] = parseCSVLine(game);
         // Check if it is a real line or not
