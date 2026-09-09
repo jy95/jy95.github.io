@@ -1,8 +1,5 @@
 "use client";
 
-// Hooks
-import { useTranslations } from "next-intl";
-
 // UI
 import Box from "@mui/material/Box";
 import DistributionHeader from "./DistributionHeader"
@@ -17,8 +14,6 @@ export interface TierStatProps<T extends RawType> {
 }
 
 export default function DistributionBar<T extends RawType>({ data, categoryColors }: TierStatProps<T>) {
-
-    const t = useTranslations("TierList.categories");
 
     // Let find out how many games we have
     const totalGames = Object.values(data).reduce((acc, tier) => acc + tier.length, 0);
