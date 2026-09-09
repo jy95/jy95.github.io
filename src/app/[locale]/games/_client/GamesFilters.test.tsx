@@ -1,13 +1,13 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
-vi.mock('@/components/GamesView/GenresSelect', () => ({
+vi.mock('@/features/games/components/GenresSelect', () => ({
     default: () => <div>Genres Component</div>,
 }));
-vi.mock('@/components/GamesView/PlatformSelect', () => ({
+vi.mock('@/features/games/components/PlatformSelect', () => ({
     default: () => <div>Platform Component</div>,
 }));
-vi.mock('@/components/GamesView/TitleFilter', () => ({
+vi.mock('@/features/games/components/TitleFilter', () => ({
     default: () => <div>Title Component</div>,
 }));
 
