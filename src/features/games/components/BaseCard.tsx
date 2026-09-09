@@ -6,8 +6,8 @@ import CardActionArea from '@mui/material/CardActionArea';
 
 // Types & Components locaux
 import type { CommonProps, BaseCardProps } from './types';
-import { CardMediaImage } from './CardMediaImage';
-import { CardBadgesLayer, CardOverlayLayer } from './CardLayers';
+import { CardMediaImage } from '@/components/common/CardMediaImage';
+import { CardBadgesLayer, CardOverlayLayer } from './CardBadgesLayer';
 
 export default function BaseCard<T extends CommonProps>({ 
     item, 
@@ -27,7 +27,7 @@ export default function BaseCard<T extends CommonProps>({
             '&:focus-within .card-overlay': { opacity: 1 }
         }}>
             <CardActionArea 
-                onClick={() => onClick && onClick(item)} 
+                onClick={() => onClick?.(item)} 
                 disabled={!onClick}
                 sx={{ position: 'relative', display: 'block' }}
             >

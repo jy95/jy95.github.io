@@ -8,7 +8,7 @@ import BaseCard from "./BaseCard";
 import GameCardOverlay from "./GameCardOverlay";
 
 // Types
-import type { CardGame } from "@/redux/sharedDefintion";
+import type { CardGame } from "@/domain/games";
 
 function CardEntry(props : {
     game: CardGame;

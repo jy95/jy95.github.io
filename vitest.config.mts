@@ -12,6 +12,7 @@ export default defineConfig({
         setupFiles: ['./src/test/setup.ts'],
         include: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'scripts/**/*.test.ts'],
         coverage: {
+            reportOnFailure: true,
             provider: 'v8',
             reporter: ['text', 'html', 'lcov'],
             include: ['src/**/*.{ts,tsx}', 'scripts/**/*.ts'],

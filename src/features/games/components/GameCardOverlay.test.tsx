@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import GameCardOverlay from './GameCardOverlay';
-import type { CardGame } from '@/redux/sharedDefintion';
+import type { CardGame } from '@/domain/games';
 
 const baseGame: CardGame = {
     id: '1',

@@ -1,4 +1,4 @@
-import type { YTUrlType } from "@/redux/sharedDefintion";
+import type { YTUrlType } from "@/domain/games";
 
 /**
  * Canonical, flattened shapes consumed by GameDetailView and its row

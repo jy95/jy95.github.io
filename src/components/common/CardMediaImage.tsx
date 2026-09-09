@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import CardMedia from "@mui/material/CardMedia";
-import type { CardAspectRatio } from './types';
+import type { CardAspectRatio } from '@/features/games/components/types';
 
 type ImageProps = {
     // The source URL or path of the image to display.

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
-import { CardBadgesLayer, CardOverlayLayer } from './CardLayers';
+import { CardBadgesLayer, CardOverlayLayer } from '@/features/games/components/CardBadgesLayer';
 
 describe('CardBadgesLayer', () => {
     it('renders its children', () => {

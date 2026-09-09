@@ -2,7 +2,7 @@
 
 import Typography from "@mui/material/Typography";
 
-import type { CardGame } from "@/redux/sharedDefintion";
+import type { CardGame } from "@/domain/games";
 
 interface GameCardOverlayProps {
     game: CardGame;

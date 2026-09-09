@@ -11,14 +11,6 @@ vi.mock('./tests.json', () => ({
     default: mockTests,
 }));
 
-vi.mock('@/redux/sharedDefintion', () => ({
-    buildCardEntry: (game: any, base: string) => ({
-        id: game.videoId,
-        url: `https://www.youtube.com/watch?v=${game.videoId}`,
-        url_type: 'VIDEO',
-        imagePath: `${base}/${game.videoId}/cover.webp`,
-    }),
-}));
 
 import { GET } from './route';
 

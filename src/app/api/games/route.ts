@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import Fuse from 'fuse.js';
-import { buildCardEntry } from "@/redux/sharedDefintion";
+import { buildCardGame } from "@/domain/games";
 
-import type { BasicGame, CardGame } from "@/redux/sharedDefintion";
+import type { RawGame, CardGame } from "@/domain/games";
 
 // Types
 type gamesFilters = {
@@ -26,7 +26,7 @@ export type ResponseBody = {
     page: number
 };
 
-type rawEntry = Omit<BasicGame, "id">;
+type rawEntry = RawGame & { genres: number[] };
 export type RawPayload = rawEntry[];
 
 export async function GET(request: Request) {
@@ -106,8 +106,5 @@ function extractParameters(params: URLSearchParams): RequestParams {
 
 // Return an enhanced payload for a single game
 function enhanceGameItem(game: rawEntry): CardGame {
-    return {
-        ...game,
-        ...buildCardEntry(game, "/covers")
-    };
+    return buildCardGame(game, "/covers");
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { buildCardEntry } from "@/redux/sharedDefintion";
-import type { BasicGame, CardGame } from "@/redux/sharedDefintion";
+import { buildCardGame } from "@/domain/games";
+import type { BasicGame, CardGame } from "@/domain/games";
 
 export type TestsResponse = {
     items: CardGame[],
@@ -33,8 +33,5 @@ export async function GET(request: Request) {
 }
 
 function enhanceGameItem(game: rawEntry): CardGame {
-    return {
-        ...game,
-        ...buildCardEntry(game, "/testscovers")
-    };
+    return buildCardGame(game as BasicGame, "/testscovers");
 }

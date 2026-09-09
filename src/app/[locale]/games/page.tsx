@@ -10,12 +10,12 @@ import Grid from '@mui/material/Grid';
 import LoadingButton from './_client/LoadingButton';
 
 // Custom
-import CardEntry from "@/components/GamesView/CardEntry";
+import CardEntry from "@/features/games/components/CardEntry";
 import GamesFilters from "./_client/GamesFilters";
 import QueryErrorState from "@/components/common/QueryErrorState";
 
 // Types
-import type { CardGame } from "@/redux/sharedDefintion";
+import type { CardGame } from "@/domain/games";
 
 export default function GamesGalleryGrid() {
     return (

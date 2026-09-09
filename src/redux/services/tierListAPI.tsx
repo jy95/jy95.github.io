@@ -1,4 +1,4 @@
-import type { CardGame } from "@/redux/sharedDefintion";
+import type { CardGame } from "@/domain/games";
 import type { BacklogEntry } from "@/app/api/backlog/route";
 import type { TierCategoryKey } from "@/types/tierList";
 import { api } from "./api"

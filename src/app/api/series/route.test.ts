@@ -19,7 +19,7 @@ const mockSeries = [
 
 vi.mock('./series.json', () => ({ default: mockSeries }));
 
-vi.mock('@/redux/sharedDefintion', () => ({
+vi.mock('@/domain/games', () => ({
     buildCardEntry: (game: { videoId?: string; playlistId?: string }, base: string) => {
         const id = game.videoId ?? game.playlistId!;
         return {

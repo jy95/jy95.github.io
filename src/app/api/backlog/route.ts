@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import type { BasicCard } from "@/redux/sharedDefintion";
+import type { BasicCard } from "@/domain/games";
 
 // An entry of backlog
 export type BacklogEntry = {

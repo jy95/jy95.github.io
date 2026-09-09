@@ -11,7 +11,7 @@ import Divider from '@mui/material/Divider';
 import GameToolbar from "./GameToolbar";
 import GameGenres from './GameGenres';
 import VoteSection from "./VoteSection";
-import { CardMediaImage } from '../GamesView/CardMediaImage';
+import { CardMediaImage } from '@/components/common/CardMediaImage';
 
 // Dynamic Rows Registry
 import { DETAIL_ROWS } from "./rows";

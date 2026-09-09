@@ -12,7 +12,7 @@ import { useGetPlanningQuery } from "@/redux/services/planningAPI";
 import { DataGrid } from '@mui/x-data-grid';
 
 // Components
-import GameDetailView from '@/components/GameDetailView/GameDetailView';
+import GameDetailView from '@/features/games/detail/GameDetailView';
 import QueryErrorState from '@/components/common/QueryErrorState';
 import { SuspenseBoundary } from '@/components/common/SuspenseBoundary';
 

@@ -3,7 +3,8 @@
 import { useTranslations } from "next-intl";
 
 interface Props {
-  duration: string;
+    /* Duration in HH:MM:SS format */
+    duration: string;
 }
 
 // Print the duration in a human readable format, e.g. "2 hours 30 minutes"

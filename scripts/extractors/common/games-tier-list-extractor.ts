@@ -1,9 +1,9 @@
 import { writeFile } from "fs/promises";
 import { stringifyJSON } from "./utils";
-import { buildCardEntry } from "@/redux/sharedDefintion";
+import { buildCardGame } from "@/domain/games";
 
 import type { Database } from "better-sqlite3";
-import type { BasicGame, CardGame } from "@/redux/sharedDefintion";
+import type { BasicGame, CardGame } from "@/domain/games";
 
 type GameRow = BasicGame & {
     category_slug: string;
@@ -51,24 +51,9 @@ export async function genericExtractAndSaveTierListGames(
 
     for (const row of rows) {
         const { category_slug, ...gameData } = row;
-        result[category_slug].push(mapToCardGame(gameData));
+        result[category_slug].push(buildCardGame(gameData, "/covers"));
     }
 
     await writeFile(outputPath, stringifyJSON(result), "utf-8");
     console.log(`${outputPath} successfully written`);
-}
-
-/**
- * Delegates to the same `buildCardEntry` used by every "list of games" API
- * route (games/dlcs/series/planning) instead of re-deriving
- * id/url/url_type from `playlistId`/`videoId` presence locally. This used
- * to be a hand-rolled reimplementation (with `as BasicPlaylist`/
- * `as BasicVideo` casts) that had to be kept in sync with
- * `sharedDefintion.tsx::extractGameCardProps` by hand.
- */
-function mapToCardGame(game: BasicGame): CardGame {
-    return {
-        ...game,
-        ...buildCardEntry(game, "/covers")
-    };
 }

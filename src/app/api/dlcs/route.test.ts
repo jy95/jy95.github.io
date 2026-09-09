@@ -1,5 +1,5 @@
 // src/app/api/dlcs/route.test.ts
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi } from "vitest";
 
 const mockDlcs = [
     {
@@ -19,7 +19,7 @@ const mockDlcs = [
 
 vi.mock('./dlcs.json', () => ({ default: mockDlcs }));
 
-vi.mock('@/redux/sharedDefintion', () => ({
+vi.mock('@/domain/games', () => ({
     buildCardEntry: (game: { videoId?: string; playlistId?: string }, base: string) => {
         const id = game.videoId ?? game.playlistId!;
         return {

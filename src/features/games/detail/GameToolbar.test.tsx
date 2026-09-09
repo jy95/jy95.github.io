@@ -1,4 +1,3 @@
-// src/components/GameDetailView/GameToolbar.test.tsx
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 
@@ -8,7 +7,7 @@ vi.mock('@/i18n/routing', () => ({
 }));
 
 import GameToolbar from './GameToolbar';
-import type { CardGame } from '@/redux/sharedDefintion';
+import type { CardGame } from '@/domain/games';
 import type { BacklogEntry } from '@/app/api/backlog/route';
 
 const baseCard: CardGame = {

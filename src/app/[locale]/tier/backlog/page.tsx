@@ -4,7 +4,7 @@
 import { useGetBacklogTierListQuery } from "@/redux/services/tierListAPI";
 
 // UI
-import BaseCard from "@/components/GamesView/BaseCard";
+import BaseCard from "@/features/games/components/BaseCard";
 import { TierLists } from "@/components/tierList";
 
 // Types

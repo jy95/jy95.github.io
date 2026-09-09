@@ -1,8 +1,5 @@
+import { isMeaningfulDuration } from "@/domain/games";
 import type { GameDetailsEntry, CardKindEntry, BacklogKindEntry } from "./types";
-
-function isMeaningfulDuration(value: string | undefined): value is string {
-    return typeof value === "string" && value !== "00:00:00";
-}
 
 export const hasDuration = (game: GameDetailsEntry): game is CardKindEntry & { duration: string } =>
     game.kind === "card" && isMeaningfulDuration(game.duration);

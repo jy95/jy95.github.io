@@ -1,5 +1,5 @@
 import type { BacklogEntry } from "@/app/api/backlog/route";
-import type { CardGame } from "@/redux/sharedDefintion";
+import type { CardGame } from "@/domain/games";
 import type { GameDetailsEntry } from "./types";
 
 /** The two raw shapes GameDetailView is handed by its callers. */

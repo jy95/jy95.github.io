@@ -38,7 +38,7 @@ vi.mock('@/components/common/QueryErrorState', () => ({
     ),
 }));
 
-vi.mock('../GameDetailView/GameDetailView', () => ({
+vi.mock('@/features/games/detail/GameDetailView', () => ({
     default: ({ game, onClose }: any) => (
         <div>
             <span>detail:{game.title}</span>
