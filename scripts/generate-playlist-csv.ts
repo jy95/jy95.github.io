@@ -5,8 +5,8 @@
  */
 
 import { readFile } from "node:fs/promises";
-import { createWriteStream } from "fs";
-import { fileURLToPath } from "url";
+import { createWriteStream } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import { google } from "googleapis";
 import input from '@inquirer/input';
