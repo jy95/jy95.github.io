@@ -1,10 +1,11 @@
 import type { Duration } from "./types";
 
-export function stringifyJSON(payload: any): string {
+export function stringifyJSON(payload: unknown): string {
 
-    function parseIfJsonString(value : any) {
+    function parseIfJsonString(value : unknown) {
         if (typeof value === 'string' && (value.startsWith('{') || value.startsWith('['))) {
-            let parsedValue = value; // Initialize with original value (default return on failure)
+            // Initialize with original value (default return on failure)
+            let parsedValue = value;
             let success = false;
 
             try {
@@ -29,7 +30,7 @@ export function stringifyJSON(payload: any): string {
         return value;
     }
 
-    return JSON.stringify(payload, function(_key: string, value: any) {
+    return JSON.stringify(payload, (_key: string, value: unknown) => {
         if (value === null) {
             // Exclude null values
             return undefined;
