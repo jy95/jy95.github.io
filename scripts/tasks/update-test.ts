@@ -44,7 +44,7 @@ export async function updateTestInDatabase(db: Database, payload: UpdateTestPara
 
         // Update release date
         if (hasReleaseDate) {
-            updateReleaseDateStmt.run(payload.releaseDate!.trim(), gameId);
+            updateReleaseDateStmt.run(payload.releaseDate?.trim(), gameId);
         }
 
         // Update platform

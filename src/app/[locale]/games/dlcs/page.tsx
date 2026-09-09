@@ -51,8 +51,8 @@ function GamesGalleryList() {
                     <Accordion key={game.name}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
-                            aria-controls={"panel-content" + game.name}
-                            id={"panel-header" + game.name}
+                            aria-controls={`panel-content${game.name}`}
+                            id={`panel-header${game.name}`}
                         >
                             <Typography>{game.name}</Typography>
                         </AccordionSummary>

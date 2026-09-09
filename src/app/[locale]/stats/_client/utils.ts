@@ -42,8 +42,7 @@ export function usePrettyDuration(contentDuration: Duration) {
       calc = new Date(date2_time_stamp - date1_time_stamp);
     }
     //Retrieve the date, month and year
-    const calcFormatTmp =
-      calc.getDate() + "-" + (calc.getMonth() + 1) + "-" + calc.getFullYear();
+    const calcFormatTmp = `${calc.getDate()}-${calc.getMonth() + 1}-${calc.getFullYear()}`;
     //Convert to an array and store
     const calcFormat = calcFormatTmp.split("-");
     //Subtract each member of our array from the default date

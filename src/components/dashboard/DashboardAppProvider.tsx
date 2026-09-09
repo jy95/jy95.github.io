@@ -11,15 +11,13 @@ import AppProviderCustom from "@/components/dashboard/AppProviderCustom";
 import ToolbarActions from "@/components/dashboard/ToolbarActions";
 
 // Types
-import type {Locale} from 'next-intl';
 import type { ReactNode } from "react";
 
 type Props = {
-    children: ReactNode,
-    locale: Locale
+    children: ReactNode
 }
 
-export default function DashboardAppProvider({children, locale} : Props) {
+export default function DashboardAppProvider({children} : Props) {
 
     // Fetch labels
     const t = useTranslations('dashboard.toolbar');

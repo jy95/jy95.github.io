@@ -63,7 +63,7 @@ export default async function RootLayout(props: Props) {
         <StoreProvider>
           <Suspense fallback={null}>
             <ThemeProvider lng={resolvedLocale}>
-              <DashboardAppProvider locale={resolvedLocale} >
+              <DashboardAppProvider>
                 <Box
                   sx={{
                     display: 'flex',

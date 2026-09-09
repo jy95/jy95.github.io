@@ -57,7 +57,7 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
 
         // Update release date
         if (hasReleaseDate) {
-            updateReleaseDateStmt.run(payload.releaseDate!.trim(), gameId);
+            updateReleaseDateStmt.run(payload.releaseDate?.trim(), gameId);
         }
 
         // Update platform
@@ -78,12 +78,12 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
 
         // Update available at
         if (hasAvailableAt) {
-            updateAvailableAtStmt.run(payload.availableAt!.trim(), gameId);
+            updateAvailableAtStmt.run(payload.availableAt?.trim(), gameId);
         }
 
         // Update end at
         if (hasEndAt) {
-            updateEndAtStmt.run(payload.endAt!.trim(), gameId);
+            updateEndAtStmt.run(payload.endAt?.trim(), gameId);
         }
 
         // update genres
