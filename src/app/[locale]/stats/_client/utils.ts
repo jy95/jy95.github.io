@@ -33,7 +33,7 @@ export function usePrettyDuration(contentDuration: Duration) {
     const date1_time_stamp = dt_date1.getTime();
     const date2_time_stamp = dt_date2.getTime();
 
-    let calc;
+    let calc : Date;
 
     //Check which timestamp is greater
     if (date1_time_stamp > date2_time_stamp) {
