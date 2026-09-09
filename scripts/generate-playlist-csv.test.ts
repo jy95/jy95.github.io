@@ -16,12 +16,12 @@ const {
 }));
 
 // Provide both default and named exports for Node built-ins
-vi.mock('fs/promises', () => ({
+vi.mock('node:fs/promises', () => ({
   default: { readFile: mockReadFile },
   readFile: mockReadFile
 }));
 
-vi.mock('fs', () => ({
+vi.mock('node:fs', () => ({
   default: { createWriteStream: mockCreateWriteStream },
   createWriteStream: mockCreateWriteStream
 }));

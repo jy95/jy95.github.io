@@ -1,7 +1,7 @@
-import { tmpdir } from 'os';
-import { resolve } from 'path';
-import { randomUUID } from 'crypto';
-import { unlinkSync, existsSync } from 'fs';
+import { tmpdir } from 'node:os';
+import { resolve } from 'node:path';
+import { randomUUID } from 'node:crypto';
+import { unlinkSync, existsSync } from 'node:fs';
 
 /**
  * Gives every extractor test its own throwaway output path under the OS

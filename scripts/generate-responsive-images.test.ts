@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import path from 'path';
+import path from 'node:path';
 
 describe('generate-responsive-images script', () => {
     let readFileMock: ReturnType<typeof vi.fn>;
@@ -36,10 +36,10 @@ describe('generate-responsive-images script', () => {
             return Buffer.from('image-data');
         });
 
-        vi.doMock('fs/promises', async () => {
+        vi.doMock('node:fs/promises', async () => {
             const actual =
-                await vi.importActual<typeof import('fs/promises')>(
-                    'fs/promises'
+                await vi.importActual<typeof import('node:fs/promises')>(
+                    'node:fs/promises'
                 );
 
             return {

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { randomUUID } from 'crypto';
+import { randomUUID } from 'node:crypto';
 import { openTestDb, hasRealDb } from './testDbHelper';
 import { addGameToDatabase } from './add-game';
 import type { Database } from 'better-sqlite3';

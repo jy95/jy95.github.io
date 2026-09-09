@@ -1,7 +1,7 @@
-import { fileURLToPath } from 'url';
-import { dirname, resolve, normalize, relative } from 'path';
-import { mkdir, rm, rename } from 'fs/promises';
-import { randomBytes } from 'crypto';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve, normalize, relative } from 'node:path';
+import { mkdir, rm, rename } from 'node:fs/promises';
+import { randomBytes } from 'node:crypto';
 import sharp from 'sharp';
 
 import { validateFolder } from './common/utils';

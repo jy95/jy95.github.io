@@ -1,5 +1,5 @@
 import { fileURLToPath } from "url";
-import { dirname, resolve } from "path";
+import { dirname, resolve } from "node:path";
 import { openDatabase } from './common/db';
 
 // Import extractors

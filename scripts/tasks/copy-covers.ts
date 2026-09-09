@@ -1,8 +1,8 @@
 import { findIdsInTextArea } from './common/utils';
 
-import { fileURLToPath } from 'url';
-import { dirname, resolve, isAbsolute, sep, relative } from 'path';
-import { access, cp } from 'fs/promises';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve, isAbsolute, sep, relative } from 'node:path';
+import { access, cp } from 'node:fs/promises';
 import { validateFolder } from "./common/utils";
 
 import type { Database } from 'better-sqlite3';

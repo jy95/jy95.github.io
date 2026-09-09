@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { existsSync, writeFileSync } from 'fs';
+import { existsSync, writeFileSync } from 'node:fs';
 import { tempOutputPath } from './testFileHelper';
 
 describe('tempOutputPath', () => {

@@ -6,7 +6,7 @@ const { mockReadFile, mockWriteFile, mockAccess } = vi.hoisted(() => ({
   mockAccess: vi.fn(),
 }));
 
-vi.mock('fs/promises', () => {
+vi.mock('node:fs/promises', () => {
   const fsMock = {
     readFile: (...args: unknown[]) => mockReadFile(...args),
     writeFile: (...args: unknown[]) => mockWriteFile(...args),

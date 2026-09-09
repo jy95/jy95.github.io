@@ -1,4 +1,4 @@
-import { writeFile } from "fs/promises";
+import { writeFile } from "node:fs/promises";
 import { stringifyJSON } from "./common/utils";
 import { buildCardEntry } from "@/domain/games";
 

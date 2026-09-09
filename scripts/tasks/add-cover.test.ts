@@ -6,8 +6,8 @@ const { mkdirMock, rmMock, renameMock } = vi.hoisted(() => ({
     renameMock: vi.fn(),
 }));
 
-vi.mock('fs/promises', async (importOriginal) => {
-    const actual = await importOriginal<typeof import('fs/promises')>();
+vi.mock('node:fs/promises', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('node:fs/promises')>();
     const mock = {
         ...actual,
         mkdir: mkdirMock,

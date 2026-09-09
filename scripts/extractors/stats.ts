@@ -1,4 +1,4 @@
-import { writeFile } from "fs/promises";
+import { writeFile } from "node:fs/promises";
 import { normaliazeDuration, stringifyJSON } from "./common/utils";
 
 import type { Database } from "better-sqlite3";
