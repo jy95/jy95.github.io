@@ -1,6 +1,6 @@
 import { rm } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url'';
+import { fileURLToPath } from 'node:url';
 
 import { identifierKindToDatabaseField } from './common/utils';
 

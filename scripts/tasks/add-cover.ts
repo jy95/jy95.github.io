@@ -1,4 +1,4 @@
-import { fileURLToPath } from 'node:url'';
+import { fileURLToPath } from 'node:url';
 import { dirname, resolve, normalize, relative } from 'node:path';
 import { mkdir, rm, rename } from 'node:fs/promises';
 import { randomBytes } from 'node:crypto';

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url'';
+import { fileURLToPath } from 'node:url';
 import { closeBrowser, imageSearch } from 'imgsearch-api';
 
 const __dirname: string = path.dirname(fileURLToPath(import.meta.url));

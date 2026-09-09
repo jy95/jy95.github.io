@@ -1,5 +1,5 @@
 import Database from 'better-sqlite3';
-import { fileURLToPath } from 'node:url'';
+import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 import type { Options } from 'better-sqlite3';

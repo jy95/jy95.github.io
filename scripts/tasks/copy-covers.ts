@@ -1,6 +1,6 @@
 import { findIdsInTextArea } from './common/utils';
 
-import { fileURLToPath } from 'node:url'';
+import { fileURLToPath } from 'node:url';
 import { dirname, resolve, isAbsolute, sep, relative } from 'node:path';
 import { access, cp } from 'node:fs/promises';
 import { validateFolder } from "./common/utils";
