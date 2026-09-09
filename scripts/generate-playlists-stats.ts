@@ -30,7 +30,7 @@ function parseCSVLine(line: string): string[] {
     let inQuotes: boolean = false;
     let field: string = '';
 
-    for (let char of line) {
+    for (const char of line) {
         if (char === '"') {
             inQuotes = !inQuotes;  // Toggle the quotes flag
             field += char;  // Add the quote character to the field
