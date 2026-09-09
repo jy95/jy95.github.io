@@ -57,7 +57,7 @@ function GamesGalleryGridInner() {
         await fetchNextPage()
     }
 
-    const allGames = data?.pages.map(result => result.items).flat() ?? [];
+    const allGames = data?.pages.flatMap(result => result.items) ?? [];
 
     const renderRow = (game: CardGame) => (
         <Grid 
