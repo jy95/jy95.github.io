@@ -27,7 +27,7 @@ export default function BaseCard<T extends CommonProps>({
             '&:focus-within .card-overlay': { opacity: 1 }
         }}>
             <CardActionArea 
-                onClick={() => onClick && onClick(item)} 
+                onClick={() => onClick?.(item)} 
                 disabled={!onClick}
                 sx={{ position: 'relative', display: 'block' }}
             >

@@ -29,6 +29,6 @@ export async function GET() {
 function enhanceGameItem(game: rawEntry): planningEntry {
     return {
         ...buildCardGame(game as BasicGame, "/covers"),
-        status: (game.hasOwnProperty("endAt") ? "RECORDED" : "PENDING")
+        status: Object.hasOwn(game, "endAt") ? "RECORDED" : "PENDING"
     };
 }
