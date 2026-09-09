@@ -1,5 +1,5 @@
 // Platform icons
-import RenderPlatformIcon from "@/components/GamesView/PlatformIcons";
+import RenderPlatformIcon from "@/features/games/components/PlatformIcons";
 
 // Options
 import PLATFORMS_OPTIONS from "@/components/filters/platformsFilters";
