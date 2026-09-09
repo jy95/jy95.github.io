@@ -1,0 +1,38 @@
+name: Vitest doctor
+env:
+  NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v7
+      - name: Set up Node.js ✨
+        uses: actions/setup-node@v7
+        with:
+          node-version: "lts/*"
+          cache: 'npm'
+      - name: Cache
+        uses: actions/cache@v6.1.0
+        with: 
+           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
+           path: |
+              ~/.npm
+              ${{ github.workspace }}/.next/cache
+           # Generate a new cache whenever packages or source files change.
+           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+           # If source files changed but packages didn't, rebuild from a prior cache.
+           restore-keys: |
+              ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+      - name: Install and Build 🔧
+        run: |
+          npm ci  
+          npm run build
+# https://vitest.dev/guide/cli.html#vitest-doctor
+      - name: Run vitest doctor 🧪
+        run: npx vitest doctor
