@@ -16,8 +16,8 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const gamesData = (await import("./tests.json")).default;
 
-    const limit = searchParams.has("limit") ? parseInt(searchParams.get("limit")!) : -1;
-    const offset = searchParams.has("offset") ? parseInt(searchParams.get("offset")!) : 0;
+    const limit = parseInt(searchParams.get("limit") ?? "-1", 10);
+    const offset = parseInt(searchParams.get("offset") ?? "0", 10);
     const games = (limit === -1) ? gamesData : gamesData.slice(offset, limit);
 
     return NextResponse.json({
