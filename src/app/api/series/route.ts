@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { buildCardEntry } from "@/redux/sharedDefintion";
-import type { RawGame, CardGame } from "@/redux/sharedDefintion";
+import { buildCardEntry } from "@/domain/games";
+import type { RawGame, CardGame } from "@/domain/games";
 
 type rawEntry = {
     /** @description Name of the series */

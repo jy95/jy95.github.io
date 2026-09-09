@@ -1,17 +1,14 @@
 import { writeFile } from "fs/promises";
 import { stringifyJSON } from "./common/utils";
-import { buildCardEntry } from "@/redux/sharedDefintion";
+import { buildCardEntry } from "@/domain/games";
 
 import type { Database } from "better-sqlite3";
-import type { RawGame, CardGame } from "@/redux/sharedDefintion";
+import type { RawGame, CardGame } from "@/domain/games";
 
 /**
- * Previously typed as `Omit<CardGame, "id" | "imagePath" | "url" | "url_type">`,
- * even though the actual SQL row (and the code below) reached for
- * `playlistId`/`videoId` via `as BasicPlaylist`/`as BasicVideo` casts —
- * fields that don't exist on `CardGame` at all. `RawGame` (the same type
- * `buildCardEntry` expects, already used by the `tests` and `dlcs` API
- * routes) matches what a raw `tests` table row actually looks like.
+ * Typed against `RawGame` (the same type `buildCardEntry` expects, already
+ * used by the `tests` and `dlcs` API routes) which matches what a raw
+ * `tests` table row actually looks like.
  */
 type tierListTestsEntry = RawGame & {
     category_slug: string;
@@ -55,7 +52,7 @@ export async function extractAndSaveTierListTests(db: Database, outputPath: stri
 }
 
 /**
- * Same rationale as `games-tier-list-extractor.ts::mapToCardGame`: reuse the
+ * Same rationale as `games-tier-list-extractor.ts::buildCardGame`: reuse the
  * single `buildCardEntry` narrowing helper instead of re-deriving
  * id/url/url_type from `playlistId`/`videoId` presence locally.
  */
