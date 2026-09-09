@@ -1,4 +1,4 @@
-import Database from 'better-sqlite3';
+import type { Database } from 'better-sqlite3';
 
 // Types
 import type { TaskType } from './tasks/common/types';
@@ -20,7 +20,7 @@ console.log("Payload as string :", taskPayloadAsString);
 console.log("Payload as object :", taskPayload);
 
 // Standardized signature for all task handlers
-type TaskHandler = (db: Database.Database, payload: any) => Promise<void>;
+type TaskHandler = (db: Database, payload: any) => Promise<void>;
 
 // Explicit execution map (100% type-safe)
 const taskMap: Record<TaskType, TaskHandler> = {

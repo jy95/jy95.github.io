@@ -1,6 +1,6 @@
 import { readFile, writeFile, access } from "node:fs/promises";
 import { resolve as resolvePath, dirname } from "node:path";
-import { fileURLToPath } from "url";
+import { fileURLToPath } from "node:url";
 
 const __dirname: string = dirname(fileURLToPath(import.meta.url));
 
@@ -30,7 +30,7 @@ function parseCSVLine(line: string): string[] {
     let inQuotes: boolean = false;
     let field: string = '';
 
-    for (let char of line) {
+    for (const char of line) {
         if (char === '"') {
             inQuotes = !inQuotes;  // Toggle the quotes flag
             field += char;  // Add the quote character to the field
@@ -52,7 +52,7 @@ async function readCSV(filePath: string): Promise<GameStats[]> {
     const rows: string[] = data.split('\n').slice(numberOfHeaders);
     const games: GameStats[] = [];
 
-    for (let game of rows) {
+    for (const game of rows) {
         
         const columns: string[] = parseCSVLine(game);
         // Check if it is a real line or not

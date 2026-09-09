@@ -1,6 +1,6 @@
 import createMiddleware from 'next-intl/middleware';
 import {routing} from './i18n/routing';
-import { type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 import { updateSession } from '@/lib/supabase/proxy';
 
 // https://nextjs.org/docs/app/building-your-application/routing/middleware#convention

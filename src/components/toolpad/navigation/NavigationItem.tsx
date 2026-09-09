@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Grow from "@mui/material/Grow";
@@ -13,9 +13,11 @@ import Popper from "@mui/material/Popper";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Link } from "@/i18n/routing";
-import type { Href } from "@/i18n/routing";
 import { useAppContext } from "../provider/useAppContext";
 import { MINI_DRAWER_WIDTH } from "../DashboardSidebar";
+
+import type { ReactNode } from "react";
+import type { Href } from "@/i18n/routing";
 
 const LIST_ITEM_ICON_SIZE = 34;
 
@@ -64,13 +66,13 @@ const navigationListItemButtonSx = {
 
 export type NavItemProps = {
   title: string;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   href?: string;
   selected: boolean;
   onClick?: () => void;
   hasChildren?: boolean;
   expanded?: boolean;
-  miniPopoverContent?: React.ReactNode;
+  miniPopoverContent?: ReactNode;
 };
 
 export default function NavigationItem({

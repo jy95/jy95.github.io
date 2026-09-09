@@ -48,10 +48,10 @@ export function normaliazeDuration(duration: Duration): Duration {
     ].reduce( (acc, total) => acc + total, 0);
 
     // Time to normalize the result
-    let new_hours = Math.floor(totalInSeconds / 3600);
+    const new_hours = Math.floor(totalInSeconds / 3600);
     totalInSeconds %= 3600;
-    let new_minutes = Math.floor(totalInSeconds / 60);
-    let new_seconds = totalInSeconds % 60;
+    const new_minutes = Math.floor(totalInSeconds / 60);
+    const new_seconds = totalInSeconds % 60;
 
     return {
         hours: new_hours,

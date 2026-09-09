@@ -1,6 +1,7 @@
-import {MetadataRoute} from 'next';
 import {routing, getPathname} from '@/i18n/routing';
+
 import type {Href} from '@/i18n/routing';
+import type { MetadataRoute } from 'next';
 
 type pathnames = typeof routing.pathnames;
 type AvailableRoutes = keyof pathnames;
