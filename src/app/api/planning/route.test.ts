@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import type { CardGame } from '@/redux/sharedDefintion';
+import type { CardGame } from '@/domain/games';
 import type { planningEntry } from './route';
 
 // Mock the JSON data source so we control which entries have `endAt` and

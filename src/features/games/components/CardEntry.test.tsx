@@ -14,7 +14,7 @@ vi.mock('next/image', () => ({
 }));
 
 import CardEntry from './CardEntry';
-import type { CardGame } from '@/redux/sharedDefintion';
+import type { CardGame } from '@/domain/games';
 
 const baseGame: CardGame = {
     id: 'abc123',
