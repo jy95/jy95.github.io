@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { randomUUID } from 'crypto';
+import { randomUUID } from 'node:crypto';
 import { openTestDb, hasRealDb } from './testDbHelper';
 import type { Database } from 'better-sqlite3';
 
 const { rmMock } = vi.hoisted(() => ({ rmMock: vi.fn() }));
 
-vi.mock('fs/promises', async (importOriginal) => {
-    const actual = await importOriginal<typeof import('fs/promises')>();
+vi.mock('node:fs/promises', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('node:fs/promises')>();
     const mock = {
         ...actual,
         rm: rmMock,

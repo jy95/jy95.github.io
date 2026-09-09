@@ -5,8 +5,8 @@ const { accessMock, cpMock } = vi.hoisted(() => ({
     cpMock: vi.fn(),
 }));
 
-vi.mock('fs/promises', async (importOriginal) => {
-    const actual = await importOriginal<typeof import('fs/promises')>();
+vi.mock('node:fs/promises', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('node:fs/promises')>();
     const mock = {
         ...actual,
         access: accessMock,

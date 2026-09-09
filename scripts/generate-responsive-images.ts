@@ -1,7 +1,7 @@
 import sharp from 'sharp';
-import { readFile } from 'fs/promises';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { readFile } from 'node:fs/promises';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url'';
 
 import type { OutputInfo } from 'sharp';
 

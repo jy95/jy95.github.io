@@ -1,8 +1,8 @@
 import type { Database } from 'better-sqlite3';
-import { readdir, rm } from 'fs/promises';
-import { join } from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { readdir, rm } from 'node:fs/promises';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url'';
+import { dirname } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const BACKLOG_COVERS_PATH = join(__dirname, '../../public/backlogcovers');

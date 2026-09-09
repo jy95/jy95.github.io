@@ -58,7 +58,7 @@ describe('platforms table column definition', () => {
         // Verify it's not the fallback help icon
         expect(container.querySelector('[data-testid="HelpOutlineOutlinedIcon"]')).toBeNull();
         // Verify the specific expected platform icon is rendered by checking path d attribute
-        const path = container.querySelector('path');
+        const path = container.querySelector('node:path');
 
         expect(path).toBeTruthy();
 

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { readFile } from 'fs/promises';
+import { readFile } from 'node:fs/promises';
 import { openTestDb, hasRealDb } from '../tasks/testDbHelper';
 import { tempOutputPath } from './common/testFileHelper';
 import { extractAndSaveSeries } from './series';

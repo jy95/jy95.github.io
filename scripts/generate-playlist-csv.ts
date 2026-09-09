@@ -4,10 +4,10 @@
  * https://developers.google.com/explorer-help/code-samples#nodejs
  */
 
-import { readFile } from "fs/promises";
+import { readFile } from "node:fs/promises";
 import { createWriteStream } from "fs";
 import { fileURLToPath } from "url";
-import { dirname, resolve } from "path";
+import { dirname, resolve } from "node:path";
 import { google } from "googleapis";
 import input from '@inquirer/input';
 import { openDatabase } from './common/db';

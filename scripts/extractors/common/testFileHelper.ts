@@ -1,6 +1,6 @@
-import { tmpdir } from 'os';
-import { resolve } from 'path';
-import { randomUUID } from 'crypto';
+import { tmpdir } from 'node:os';
+import { resolve } from 'node:path';
+import { randomUUID } from 'node:crypto';
 import { unlinkSync, existsSync } from 'fs';
 
 /**

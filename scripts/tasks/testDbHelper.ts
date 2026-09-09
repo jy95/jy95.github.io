@@ -1,7 +1,7 @@
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 import { copyFileSync, unlinkSync, existsSync } from 'fs';
-import { randomUUID } from 'crypto';
-import { tmpdir } from 'os';
+import { randomUUID } from 'node:crypto';
+import { tmpdir } from 'node:os';
 import Database from 'better-sqlite3';
 import { getDatabasePath } from '../common/db';
 
