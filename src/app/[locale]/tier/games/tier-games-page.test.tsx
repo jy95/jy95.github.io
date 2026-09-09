@@ -15,7 +15,7 @@ vi.mock('@/components/tierList', () => ({
     ),
 }));
 
-vi.mock('@/components/GamesView/CardEntry', () => ({
+vi.mock('@/features/games/components/CardEntry', () => ({
     default: () => <div>card</div>,
 }));
 
