@@ -7,7 +7,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 // Types & Components locaux
 import type { CommonProps, BaseCardProps } from './types';
 import { CardMediaImage } from '@/components/common/CardMediaImage';
-import { CardBadgesLayer, CardOverlayLayer } from './CardLayers';
+import { CardBadgesLayer, CardOverlayLayer } from './CardBadgesLayer';
 
 export default function BaseCard<T extends CommonProps>({ 
     item, 
