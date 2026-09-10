@@ -1,6 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+import { supabaseEnv } from "./env";
 
+import type { NextRequest } from "next/server";
 // Inspired by https://github.com/vercel/next.js/blob/canary/examples/with-supabase/lib/supabase/proxy.ts
 
 export async function updateSession(request: NextRequest) {
@@ -9,8 +11,8 @@ export async function updateSession(request: NextRequest) {
   });
 
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+    supabaseEnv.url,
+    supabaseEnv.key,
     {
       cookies: {
         getAll() {
