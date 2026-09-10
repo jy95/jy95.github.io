@@ -1,4 +1,4 @@
-import { Navigation } from "../types";
+import type { Navigation } from "../types";
 
 export type AppContextValue = {
   navigation?: Navigation;
