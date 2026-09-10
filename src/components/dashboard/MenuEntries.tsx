@@ -27,9 +27,16 @@ import type { Navigation } from '@/components/toolpad/types';
  * definition.
  */
 export default function NavigationMenu(): Navigation {
+
+    // Icons for top-level entries are reused in nested entries to avoid
+    // unnecessary duplication of icon components.
+    const gamesIcon = <SportsEsportsIcon />;
+    const backlogIcon = <HourglassEmptyIcon />;
+    const testsIcon = <ScienceIcon />;
+
     return [
         {
-            icon: <SportsEsportsIcon />,
+            icon: gamesIcon,
             titleKey: "gamesKey",
             segment: "games",
             children: [
@@ -60,9 +67,14 @@ export default function NavigationMenu(): Navigation {
             segment: "planning"
         },
         {
-            icon: <HourglassEmptyIcon />,
+            icon: backlogIcon,
             titleKey: "backlog",
             segment: "backlog"
+        },
+        {
+            icon: testsIcon,
+            titleKey: "testsKey",
+            segment: "tests"
         },
         {
             icon: <LeaderboardIcon />,
@@ -71,23 +83,23 @@ export default function NavigationMenu(): Navigation {
             children: [
                 {
                     segment: "games",
-                    icon: <SportsEsportsIcon />,
+                    icon: gamesIcon,
                     titleKey: "gamesTabs.grid"
                 },
                 {
                     segment: "backlog",
-                    icon: <HourglassEmptyIcon />,
+                    icon: backlogIcon,
                     titleKey: "backlog"
                 },
                 {
-                    icon: <ScienceIcon />,
+                    icon: testsIcon,
                     titleKey: "testsKey",
                     segment: "tests"
                 }
             ]
         },
         {
-            icon: <ScienceIcon />,
+            icon: testsIcon,
             titleKey: "testsKey",
             segment: "tests"
         },
