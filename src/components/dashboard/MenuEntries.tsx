@@ -72,11 +72,6 @@ export default function NavigationMenu(): Navigation {
             segment: "backlog"
         },
         {
-            icon: testsIcon,
-            titleKey: "testsKey",
-            segment: "tests"
-        },
-        {
             icon: <LeaderboardIcon />,
             titleKey: "tierTabs",
             segment: "tier",

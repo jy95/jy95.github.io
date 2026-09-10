@@ -72,7 +72,7 @@ describe('GameDetailView', () => {
 
     it('hides the vote section when showVoteSection is false', () => {
         render(<GameDetailView game={game} onClose={vi.fn()} showVoteSection={false} />);
-        expect(screen.queryByText('disclaimer')).not.toBeInTheDocument();
+        expect(screen.queryByText('vote.disclaimer')).not.toBeInTheDocument();
     });
 
     it('calls onClose when the toolbar close button is clicked', () => {
