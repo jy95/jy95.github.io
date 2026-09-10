@@ -68,7 +68,7 @@ export async function updateTierLists(db: Database, payload: TierListPayload) {
         console.log(`[DEBUG] [Transaction BACKLOG] Starting processing of ${gameIDs.length} items...`);
         for (const gameIdentifier of gameIDs) {
             // Fetch game ID
-            const backlogId = parseInt(gameIdentifier);
+            const backlogId = parseInt(gameIdentifier, 10);
 
             if (!backlogId) {
                 console.error(`[DEBUG] [Transaction BACKLOG] Error: Failed to parse identifier into valid ID: ${gameIdentifier}`);
