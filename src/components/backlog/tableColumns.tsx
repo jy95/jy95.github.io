@@ -1,6 +1,3 @@
-// Material UI
-import Tooltip from '@mui/material/Tooltip';
-
 // Others
 import PlatformColumn from "@/components/tableColumns/platforms";
 import { renderTooltipCell } from "@/components/tableColumns/renderTooltipCell";
