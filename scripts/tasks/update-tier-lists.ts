@@ -22,7 +22,7 @@ export async function updateTierLists(db: Database, payload: TierListPayload) {
     // Parameters
     const gameIDs = findIdsInTextArea(games_textarea);
     const categoryId = TIER_LIST_CATEGORIES[category];
-    const defaultCategoryId = TIER_LIST_CATEGORIES['tier_not_evaluated'];
+    const defaultCategoryId = TIER_LIST_CATEGORIES.tier_not_evaluated;
 
     console.log(`[DEBUG] Found ${gameIDs.length} raw IDs in textarea:`, gameIDs);
     console.log(`[DEBUG] Category ID mapped to: ${categoryId} (Default: ${defaultCategoryId})`);
