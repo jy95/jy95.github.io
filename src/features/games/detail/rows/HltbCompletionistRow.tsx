@@ -8,7 +8,7 @@ import { hasHltbCompletionist } from "../utils";
 import PrettyDuration from "../DurationRow";
 import type { GameDetailsEntry } from "../types";
 
-export default function HltbExtraRow({ game }: { game: GameDetailsEntry }) {
+export default function HltbCompletionistRow({ game }: { game: GameDetailsEntry }) {
     const t = useTranslations("gameDetail");
     if (!hasHltbCompletionist(game)) return null;
 
