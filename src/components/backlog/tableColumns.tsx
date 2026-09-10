@@ -3,6 +3,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 // Others
 import PlatformColumn from "@/components/tableColumns/platforms";
+import { renderTooltipCell } from "@/components/tableColumns/renderTooltipCell";
 import { timeToSeconds } from "@/domain/games";
 
 // Types
@@ -22,11 +23,7 @@ export default function tableColumns(props: Props) : GridColDef[]{
             field: "title",
             headerName: props.titleLabel,
             headerAlign: 'center',
-            renderCell: ({ value }) => (
-              <Tooltip title={value} aria-label={value}>
-                {value}
-              </Tooltip>
-            ),
+            renderCell: renderTooltipCell,
             width: 270
           },
           {
@@ -45,11 +42,7 @@ export default function tableColumns(props: Props) : GridColDef[]{
             field: "notes",
             headerName: props.notesLabel,
             headerAlign: 'center',
-            renderCell: ({ value }) => (
-              <Tooltip title={value || ""} aria-label={value || ""}>
-                {value || ""}
-              </Tooltip>
-            ),
+            renderCell: renderTooltipCell,
             width: 270
           },
           {
