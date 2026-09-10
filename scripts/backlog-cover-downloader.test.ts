@@ -630,39 +630,31 @@ describe('backlog-cover-downloader', () => {
             errSpy.mockRestore();
         });
 
-        it('waits 2 seconds between game searches', async () => {
+        it('waits a random delay between game searches', async () => {
             const games = [
-                {
-                    id: 1,
-                    title: 'Game 1',
-                    platform: 1,
-                },
-                {
-                    id: 2,
-                    title: 'Game 2',
-                    platform: 1,
-                },
+                { id: 1, title: 'Game 1', platform: 1 },
+                { id: 2, title: 'Game 2', platform: 1 },
             ];
 
-            readFileSyncMock.mockReturnValue(
-                JSON.stringify(games)
-            );
-
+            readFileSyncMock.mockReturnValue(JSON.stringify(games));
             readdirSyncMock.mockReturnValue([]);
-
             imageSearchMock.mockResolvedValue([]);
 
-            const setTimeoutSpy = vi.spyOn(
-                global,
-                'setTimeout'
-            );
+            const setTimeoutSpy = vi.spyOn(global, 'setTimeout');
 
             await run();
 
             expect(setTimeoutSpy).toHaveBeenCalledWith(
                 expect.any(Function),
-                2000
+                expect.any(Number)
             );
+
+            // Get the delay passed to the first call
+            const delay = setTimeoutSpy.mock.calls[0][1];
+            
+            // Verify that the delay is within the expected dynamic range
+            expect(delay).toBeGreaterThanOrEqual(1000);
+            expect(delay).toBeLessThanOrEqual(2000);
 
             setTimeoutSpy.mockRestore();
         });
