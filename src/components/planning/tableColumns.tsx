@@ -8,6 +8,7 @@ import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 import PlatformColumn from "@/components/tableColumns/platforms";
+import { renderTooltipCell } from "@/components/tableColumns/renderTooltipCell";
 
 // Types
 import type { JSX } from "react";
@@ -30,13 +31,7 @@ export default function tableColumns(props: Props) : GridColDef[]{
             field: "title", 
             headerName: props.titleLabel,
             headerAlign: 'center',
-            renderCell: ({value}) => (
-                <Tooltip title={value} aria-label={value}>
-                    <div>
-                        {value}
-                    </div>
-                </Tooltip>
-            ),
+            renderCell: renderTooltipCell,
             width: 270
         },
         {

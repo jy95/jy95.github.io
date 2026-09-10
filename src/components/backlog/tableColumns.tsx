@@ -1,8 +1,7 @@
-// Material UI
-import Tooltip from '@mui/material/Tooltip';
-
 // Others
 import PlatformColumn from "@/components/tableColumns/platforms";
+import { renderTooltipCell } from "@/components/tableColumns/renderTooltipCell";
+import { timeToSeconds } from "@/domain/games";
 
 // Types
 import type { GridColDef } from '@mui/x-data-grid';
@@ -15,24 +14,13 @@ export type Props = {
     votesLabel: string
 }
 
-// Convert a time string in the format "HH:MM:SS" to total seconds
-const timeToSeconds = (timeStr: string | undefined): number => {
-  if (!timeStr) return 0;
-  const [hours, minutes, seconds] = timeStr.split(':').map(Number);
-  return (hours * 3600) + (minutes * 60) + seconds;
-};
-
 export default function tableColumns(props: Props) : GridColDef[]{
     return [
         {
             field: "title",
             headerName: props.titleLabel,
             headerAlign: 'center',
-            renderCell: ({ value }) => (
-              <Tooltip title={value} aria-label={value}>
-                {value}
-              </Tooltip>
-            ),
+            renderCell: renderTooltipCell,
             width: 270
           },
           {
@@ -51,11 +39,7 @@ export default function tableColumns(props: Props) : GridColDef[]{
             field: "notes",
             headerName: props.notesLabel,
             headerAlign: 'center',
-            renderCell: ({ value }) => (
-              <Tooltip title={value || ""} aria-label={value || ""}>
-                {value || ""}
-              </Tooltip>
-            ),
+            renderCell: renderTooltipCell,
             width: 270
           },
           {

@@ -3,6 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { closeBrowser, imageSearch } from 'imgsearch-api';
 
+import { sleep, randomDelay } from './common/delay';
+
 const __dirname: string = path.dirname(fileURLToPath(import.meta.url));
 
 // --- CONFIGURATION ---
@@ -261,9 +263,11 @@ export async function run(): Promise<void> {
             }
 
             // Avoid hammering image search engines.
-            await new Promise<void>(
-                (resolve) => setTimeout(resolve, 2000)
+            const delay = randomDelay(1000, 2000);
+            console.log(
+                `    ⏳ Pause de ${delay} ms...`
             );
+            await sleep(delay);
         }
     } finally {
         // imgsearch-api keeps a browser singleton alive between searches.
