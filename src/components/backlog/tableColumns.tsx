@@ -3,6 +3,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 // Others
 import PlatformColumn from "@/components/tableColumns/platforms";
+import { timeToSeconds } from "@/domain/games";
 
 // Types
 import type { GridColDef } from '@mui/x-data-grid';
@@ -14,13 +15,6 @@ export type Props = {
     hltbLabel: string,
     votesLabel: string
 }
-
-// Convert a time string in the format "HH:MM:SS" to total seconds
-const timeToSeconds = (timeStr: string | undefined): number => {
-  if (!timeStr) return 0;
-  const [hours, minutes, seconds] = timeStr.split(':').map(Number);
-  return (hours * 3600) + (minutes * 60) + seconds;
-};
 
 export default function tableColumns(props: Props) : GridColDef[]{
     return [
