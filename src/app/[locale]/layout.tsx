@@ -52,7 +52,7 @@ export default async function RootLayout(props: Props) {
 
   // As we are in `[locale]/layout.tsx`, we can be sure that the locale is valid, 
   // but we still need to check it against the routing.locales array to avoid any issues with invalid locales.
-  let curLocale = await locale();
+  const curLocale = await locale();
 
   // To catch with stuff that aren't a locale
   const resolvedLocale : Locale = (routing.locales.includes(curLocale as Locale)) ? curLocale as Locale : "fr";
