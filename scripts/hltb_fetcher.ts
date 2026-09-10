@@ -1,5 +1,6 @@
 import { HowLongToBeatService } from 'howlongtobeat-ts';
 import { openDatabase } from './common/db';
+import { randomDelay, sleep } from './common/delay';
 
 // Define structures for our database records
 interface GameRow {
@@ -66,9 +67,9 @@ async function syncBacklog(): Promise<void> {
             }
 
             // Petite pause pour éviter de se faire bannir par HLTB si tu as 500 jeux
-            const randomDelay = Math.floor(Math.random() * (CONFIG.DELAY_MAX_MS - CONFIG.DELAY_MIN_MS + 1)) + CONFIG.DELAY_MIN_MS;
-            console.log(`⏳ Pause de ${randomDelay} ms...`);
-            await new Promise<void>(resolve => setTimeout(resolve, randomDelay));
+            const delay = randomDelay(CONFIG.DELAY_MIN_MS, CONFIG.DELAY_MAX_MS);
+            console.log(`⏳ Pause de ${delay} ms...`);
+            await sleep(delay);
 
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : String(error);
