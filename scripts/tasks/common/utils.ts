@@ -38,12 +38,17 @@ const allowedFolders = new Set<Folder>([
   'backlogcovers',
 ]);
 
+// Converts a string value to its corresponding integer based on the provided mapping.
+function mapNameToInt<T extends string>(map: Record<T, number>, value: T): number {
+  return map[value] ?? 0;
+}
+
 export function platformToInt(platform: Platform) {
-    return PLATFORMS_MAP[platform] || 0;
+    return mapNameToInt(PLATFORMS_MAP, platform);
 }
 
 export function genreToInt(genre: GameGenre) {
-    return GENRES_MAP[genre] || 0;
+    return mapNameToInt(GENRES_MAP, genre);
 }
 
 export function identifierKindToDatabaseField(identifierKind: IdentifierKind) {
