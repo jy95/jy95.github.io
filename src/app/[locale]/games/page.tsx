@@ -10,12 +10,9 @@ import Grid from '@mui/material/Grid';
 import LoadingButton from './_client/LoadingButton';
 
 // Custom
-import CardEntry from "@/features/games/components/CardEntry";
+import { CardGrid } from "@/features/games/components/CardGrid";
 import GamesFilters from "./_client/GamesFilters";
 import QueryErrorState from "@/components/common/QueryErrorState";
-
-// Types
-import type { CardGame } from "@/domain/games";
 
 export default function GamesGalleryGrid() {
     return (
@@ -59,28 +56,9 @@ function GamesGalleryGridInner() {
 
     const allGames = data?.pages.flatMap(result => result.items) ?? [];
 
-    const renderRow = (game: CardGame) => (
-        <Grid 
-            key={game.id}
-            size={{
-                xs: 6,
-                md: 4,
-                lg: 2
-            }}
-        >
-            <CardEntry game={game}/>
-        </Grid>
-    );
-
     return (
         <>
-            <Grid 
-                container 
-                spacing={1}
-                rowSpacing={1}
-            >
-                {allGames.map(renderRow)}
-            </Grid>
+            <CardGrid items={allGames} size={{ xs: 6, md: 4, lg: 2 }} />
             <Grid 
                 container 
                 sx={{ justifyContent: 'center' }}

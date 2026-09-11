@@ -1,25 +1,12 @@
 "use client";
 
-// Next js
-import dynamic from 'next/dynamic'
-
 // Hooks
 import { useGetDLCsQuery } from "@/redux/services/dlcsAPI";
-
-// MUI component
-import Grid from '@mui/material/Grid';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 // Components
 import QueryErrorState from '@/components/common/QueryErrorState';
 import SkeletonGrid from '@/components/common/SkeletonGrid';
-
-// Custom
-const CardEntry = dynamic(() => import('@/features/games/components/CardEntry'), { ssr: false });
-const AccordionDetails = dynamic(() => import('@mui/material/AccordionDetails'), { ssr: false });
+import { GroupedGamesAccordion } from '@/features/games/components/GroupedGamesAccordion';
 
 // The gallery component
 function GamesGalleryList() {
@@ -29,7 +16,7 @@ function GamesGalleryList() {
     if (error) {
         return <QueryErrorState onRetry={refetch} />;
     }
-    
+
     if (isLoading) {
         return <SkeletonGrid />;
     }
@@ -39,45 +26,11 @@ function GamesGalleryList() {
     }
 
     return (
-        <>
-            {
-                data.map(game => 
-                    <Accordion key={game.name}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls={`panel-content${game.name}`}
-                            id={`panel-header${game.name}`}
-                        >
-                            <Typography>{game.name}</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Grid
-                                container
-                                spacing={1}
-                                rowSpacing={1}
-                            >
-                                {
-                                    game
-                                        .items
-                                        .map(dlc => 
-                                                <Grid 
-                                                    key={dlc.id}
-                                                    size={{
-                                                        xs: 6,
-                                                        md: 4,
-                                                        lg: 1.5
-                                                    }}
-                                                >
-                                                    <CardEntry game={dlc}/>
-                                                </Grid>
-                                        )
-                                }
-                            </Grid> 
-                        </AccordionDetails>
-                    </Accordion>
-                )
-            }
-        </>
+        <GroupedGamesAccordion groups={data} itemSize={{
+            xs: 6,
+            md: 4,
+            lg: 1.5
+        }} />
     )
 }
 
