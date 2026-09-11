@@ -1,25 +1,12 @@
 "use client";
 
-// Next js
-import dynamic from 'next/dynamic'
-
 // Hooks
 import { useGetSeriesQuery } from "@/redux/services/seriesAPI";
-
-// MUI component
-import Grid from '@mui/material/Grid';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 // Components
 import QueryErrorState from '@/components/common/QueryErrorState';
 import SkeletonGrid from '@/components/common/SkeletonGrid';
-
-// Custom
-const CardEntry = dynamic(() => import('@/features/games/components/CardEntry'), { ssr: false });
-const AccordionDetails = dynamic(() => import('@mui/material/AccordionDetails'), { ssr: false });
+import { GroupedGamesAccordion } from '@/features/games/components/GroupedGamesAccordion';
 
 // The gallery component
 function GamesGalleryList() {
@@ -40,45 +27,14 @@ function GamesGalleryList() {
 
     return (
         <>
-            {
-                data.map(serie => 
-                    <Accordion key={serie.name}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls={`panel-content${serie.name}`}
-                            id={`panel-header${serie.name}`}
-                        >
-                            <Typography>{serie.name}</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Grid
-                                container
-                                spacing={1}
-                                rowSpacing={1}
-                            >
-                                {
-                                    serie
-                                        .items
-                                        .map(game => 
-                                                <Grid 
-                                                    key={game.id}
-                                                    size={{
-                                                        xs: 6,
-                                                        md: 4,
-                                                        lg: 1.5
-                                                    }}
-                                                >
-                                                    <CardEntry game={game}/>
-                                                </Grid>
-                                        )
-                                }
-                            </Grid> 
-                        </AccordionDetails>
-                    </Accordion>
-                )
-            }
+            <GroupedGamesAccordion groups={data} itemSize={{
+                xs: 6,
+                md: 4,
+                lg: 1.5
+            }} />
         </>
     )
 }
+
 
 export default GamesGalleryList;

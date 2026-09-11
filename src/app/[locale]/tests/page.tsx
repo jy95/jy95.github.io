@@ -4,8 +4,7 @@
 import { useGetTestsQuery } from "@/redux/services/testsAPI";
 
 // Components
-import CardEntry from "@/features/games/components/CardEntry";
-import Grid from '@mui/material/Grid';
+import { CardGrid } from "@/features/games/components/CardGrid";
 import QueryErrorState from "@/components/common/QueryErrorState";
 
 export default function TestsPage() {
@@ -16,7 +15,7 @@ export default function TestsPage() {
     if (error) {
         return <QueryErrorState onRetry={refetch} />;
     }
-    
+
     if (isLoading) {
         return <>Loading</>;
     }
@@ -26,29 +25,13 @@ export default function TestsPage() {
     }
 
     return (
-        <Grid
-            container
-            spacing={1}
-            rowSpacing={1}
-        >
-            {
-                data
-                    .items
-                    .map(game => 
-                            <Grid 
-                                key={game.id}
-                                size={{
-                                    xs: 12,
-                                    sm: 6,
-                                    md: 3,
-                                    // 5 items for this screen size
-                                    lg: 2.4
-                                }}
-                            >
-                                <CardEntry game={game}/>
-                            </Grid>
-                    )
-            }
-        </Grid>
+        <CardGrid items={data.items} size={{
+            xs: 12,
+            sm: 6,
+            md: 3,
+            // 5 items for this screen size
+            lg: 2.4
+        }} />
+
     )
 }
