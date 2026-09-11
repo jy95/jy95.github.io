@@ -8,12 +8,14 @@ import { useGetSeriesQuery } from "@/redux/services/seriesAPI";
 
 // MUI component
 import Grid from '@mui/material/Grid';
-import Skeleton from '@mui/material/Skeleton';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+// Components
 import QueryErrorState from '@/components/common/QueryErrorState';
+import SkeletonGrid from '@/components/common/SkeletonGrid';
 
 // Custom
 const CardEntry = dynamic(() => import('@/features/games/components/CardEntry'), { ssr: false });
@@ -29,15 +31,7 @@ function GamesGalleryList() {
     }
     
     if (isLoading) {
-        return (
-            <div>
-                {Array.from({ length: 5 }).map((_, index) => (
-                    <div key={index} style={{ marginBottom: '15px' }}>
-                        <Skeleton variant="rectangular" width="100%" height={50} />
-                    </div>
-                ))}
-          </div>
-        );
+        return <SkeletonGrid count={5} height={50} />;
     }
 
     if (!data) {
