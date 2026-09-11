@@ -3,6 +3,7 @@ import { describe, it, expect, vi } from 'vitest';
 
 const mockSeries = [
     {
+        id: 1,
         name: 'Batman',
         items: [
             { id: 6, title: 'Batman: Arkham Asylum', playlistId: 'PL_ASYLUM', duration: '05:59:51', platform: 1 },
@@ -10,6 +11,7 @@ const mockSeries = [
         ],
     },
     {
+        id: 2,
         name: 'God of War',
         items: [
             { id: 41, title: 'God of War III', playlistId: 'PL_GOW3', duration: '06:46:19', platform: 6 },
