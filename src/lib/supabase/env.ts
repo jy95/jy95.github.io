@@ -8,7 +8,11 @@ function getEnvVar(name: string): string {
 
 export const supabaseEnv = {
     /** The URL of the Supabase instance. */
-    url: getEnvVar('NEXT_PUBLIC_SUPABASE_URL'),
+    get url() {
+        return getEnvVar('NEXT_PUBLIC_SUPABASE_URL');
+    },
     /** The public key of the Supabase instance. */
-    key: getEnvVar('NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY'),
+    get key() {
+        return getEnvVar('NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY');
+    },
 };
