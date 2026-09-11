@@ -149,7 +149,7 @@ describe('addCover', () => {
                 folder: 'covers',
                 identifierValue: '../../etc/passwd',
             })
-        ).rejects.toThrow(/path traversal detected/);
+        ).rejects.toThrow(/Path escapes the allowed directory/);
     });
 
     it('accepts every valid folder value', async () => {
