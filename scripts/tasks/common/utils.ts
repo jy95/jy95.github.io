@@ -128,6 +128,6 @@ export function applyIfPresent<T extends object, K extends keyof T>(
   apply: (value: string) => void
 ): void {
   if (isNonEmptyStringField(payload, key)) {
-    apply(payload[key] as unknown as string);
+    apply(payload[key]);
   }
 }
