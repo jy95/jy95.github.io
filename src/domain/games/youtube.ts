@@ -1,4 +1,5 @@
 import type { RawGame, BasicPlaylist, BasicVideo, YTUrlType } from "./types";
+import type { Href } from "@/i18n/routing";
 
 type GameIdentity = {
     /** @description Unique identifier for the playlist or video */
@@ -38,4 +39,11 @@ export function extractGameCardProps(game: RawGame): GameIdentity {
     const url = isPlaylistType ? buildPlaylistUrl(id) : buildVideoUrl(id);
 
     return { id, url, url_type };
+}
+
+export function buildWatchRoute(urlType: YTUrlType, id: string): Href {
+    return {
+        pathname: urlType === "PLAYLIST" ? "/playlist/[id]" : "/video/[id]",
+        params: { id }
+    };
 }

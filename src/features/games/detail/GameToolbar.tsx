@@ -11,6 +11,9 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from '@mui/icons-material/Close';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 
+// Others
+import { buildWatchRoute } from "@/domain/games/youtube";
+
 // Types
 import { isCardGame } from "./adapters";
 import type { RawGameDetailsEntry } from "./adapters";
@@ -21,10 +24,7 @@ function GameToolbar({ game, onClose }: { game: RawGameDetailsEntry, onClose: ()
 
     function watchGame() {
         if (isCardGame(game)) {
-            router.push({
-                pathname: game.url_type === "PLAYLIST" ? "/playlist/[id]" : "/video/[id]",
-                params: { id: game.id }
-            });
+            router.push(buildWatchRoute(game.url_type, game.id));
         }
     }
 
