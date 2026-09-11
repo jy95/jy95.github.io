@@ -34,7 +34,7 @@ jobs:
           token: ${{ secrets.PAT }}
           commit-message: "chore: update game covers"
           title: "Update Game Backlog Covers"
-          branch: "feat/update-covers"
+          branch: "automated/update-covers"
           labels: |
            automerge
           body: |

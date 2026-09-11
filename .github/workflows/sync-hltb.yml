@@ -36,7 +36,7 @@ jobs:
           token: ${{ secrets.PAT }}
           commit-message: "chore: update hltb stats and scores"
           title: "Update Game Backlog Stats (HLTB)"
-          branch: "feat/update-hltb-stats"
+          branch: "automated/update-hltb-stats"
           labels: |
             automerge
           body: |

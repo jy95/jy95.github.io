@@ -29,6 +29,7 @@ jobs:
               uses: peter-evans/create-pull-request@v8
               with:
                 title: "[auto-updater] Updated static files"
+                branch: "automated/update-static-files"
                 token: ${{ secrets.PAT }}
                 labels: |
                   automerge

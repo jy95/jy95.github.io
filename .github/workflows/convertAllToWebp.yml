@@ -35,7 +35,7 @@ jobs:
           with:
             token: ${{ secrets.PAT }}
             commit-message: "chore: convert images to webp and optimize"
-            branch: auto-webp-optimization
+            branch: "automated/auto-webp-optimization"
             title: "Optimize Images: Convert to WebP"
             labels: |
              automerge
