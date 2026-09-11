@@ -3,12 +3,14 @@ import { describe, it, expect, vi } from "vitest";
 
 const mockDlcs = [
     {
+        id: 'PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw',
         game_title: 'Batman Arkham City',
         dlcs: [
             { id: 203, title: "Harley Quinn's Revenge", videoId: 'XGEgNG67oXA', duration: '01:12:35', platform: 1 },
         ],
     },
     {
+        id: 'PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg',
         game_title: 'Batman: Arkham Knight',
         dlcs: [
             { id: 193, title: 'Harley Quinn Story Pack', videoId: 'ln_Pnp1zOQw', duration: '00:15:00', platform: 1 },
