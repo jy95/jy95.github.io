@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState, useCallback } from "react";
+import { useMemo, useCallback } from "react";
 
 // Hooks
 import { AppContext } from "./useAppContext";
+import { useToggle } from "@/hooks/useToggle";
 
 // Types
 import type { Navigation } from "../types";
@@ -21,10 +22,10 @@ export default function AppProvider({
   initialDrawerOpen = false
 }: Props) {
   
-  const [drawerOpen, setDrawerOpen] = useState(initialDrawerOpen);
+  const [drawerOpen, toggleDrawerOpen] = useToggle(initialDrawerOpen);
 
   const toggleDrawer = useCallback(() => {
-    setDrawerOpen(prev => !prev);
+    toggleDrawerOpen();
   }, []);
 
   const contextValue = useMemo(() => ({
