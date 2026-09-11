@@ -98,3 +98,18 @@ export function validateFolder(folder: string): asserts folder is Folder {
     throw new Error(`Invalid folder name: ${folder}`);
   }
 }
+
+/**
+ * Check if the given key is a valid key in the payload object and its value is not an empty string.
+ * 
+ * @param {object} payload - The object to check the key against.
+ * @param {keyof typeof payload} key - The key to check in the payload.
+ * @returns {boolean} - Returns `true` if the value of the key in the payload is defined and non-empty, otherwise `false`.
+ */
+export function isNonEmptyStringField<T extends object, K extends keyof T>(
+  payload: T,
+  key: K
+): payload is T & Record<K, string> {
+  const value = payload[key];
+  return typeof value === "string" && value.length > 0;
+}

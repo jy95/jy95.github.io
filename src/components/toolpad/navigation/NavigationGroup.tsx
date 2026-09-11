@@ -1,20 +1,25 @@
 "use client";
 
-import { useState } from "react";
+ // React / Next.js / third-party libraries
 import { useTranslations } from "next-intl";
-import { usePathname } from "@/i18n/routing";
-import Collapse from "@mui/material/Collapse";
+
 import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+
+// Project utilities and shared modules (@/)
+import { useToggle } from "@/hooks/useToggle";
+import { Link, usePathname } from "@/i18n/routing";
+import type { Href } from "@/i18n/routing";
+
+// Navigation feature
 import NavigationItem from "./NavigationItem";
 import { useAppContext } from "../provider/useAppContext";
 import type { NavigationItem as Item } from "../types";
-import { Link } from "@/i18n/routing";
-import type { Href } from "@/i18n/routing";
 
 /**
  * Shared sx styles for popover child items — identical colour rules
@@ -79,7 +84,7 @@ export default function NavigationGroup({
       return pathname === childPath || pathname.startsWith(`${childPath}/`);
     });
 
-  const [open, setOpen] = useState(isAnyChildSelected);
+  const [open, toggleOpen] = useToggle(isAnyChildSelected);
 
   // In mini mode highlight parent when any child is active; in expanded mode
   // only leaf items are highlighted.
@@ -144,7 +149,7 @@ export default function NavigationGroup({
         href={hasAnyChild && !isMini ? undefined : itemPath}
         selected={isSelected}
         onClick={
-          hasAnyChild && !isMini ? () => setOpen((prev) => !prev) : undefined
+          hasAnyChild && !isMini ? toggleOpen : undefined
         }
         expanded={open}
         hasChildren={hasAnyChild}

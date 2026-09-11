@@ -3,6 +3,9 @@
 // Hooks
 import { useRouter } from '@/i18n/routing';
 
+// Reusable functions
+import { buildWatchRoute } from "@/domain/games/youtube";
+
 // UI
 import BaseCard from "./BaseCard";
 import GameCardOverlay from "./GameCardOverlay";
@@ -27,10 +30,7 @@ function CardEntry(props : {
     } = game;
 
     function watchGame() {
-        router.push({
-            pathname: url_type === "PLAYLIST" ? "/playlist/[id]" : "/video/[id]",
-            params: { id: gameId }
-        });
+        router.push(buildWatchRoute(url_type, gameId))
     }
 
     return (

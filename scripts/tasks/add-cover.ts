@@ -1,46 +1,16 @@
 import { fileURLToPath } from 'node:url';
-import { dirname, resolve, normalize, relative } from 'node:path';
+import { dirname, resolve } from 'node:path';
 import { mkdir, rm, rename } from 'node:fs/promises';
 import { randomBytes } from 'node:crypto';
 import sharp from 'sharp';
 
 import { validateFolder } from './common/utils';
+import { resolveWithin } from './common/pathSafety';
 
 import type { Database } from 'better-sqlite3';
 import type { AddCoverPayload } from './common/types';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
-/**
- * Validates an identifier value to prevent path traversal attacks.
- * Rejects empty values, absolute paths, and paths that would escape the folder root.
- * @param identifierValue The identifier value to validate.
- * @param folderRoot The root directory that the identifier must stay within.
- */
-function validateIdentifier(identifierValue: string, folderRoot: string): void {
-  // Reject empty values
-  if (!identifierValue || identifierValue.trim() === '') {
-    throw new Error('Identifier value cannot be empty');
-  }
-
-  // Normalize and resolve the full path
-  const resolvedPath = resolve(folderRoot, identifierValue);
-  const normalizedPath = normalize(resolvedPath);
-
-  // Get the relative path from folderRoot to the resolved path
-  const relativePath = relative(folderRoot, normalizedPath);
-
-  // Check if the path escapes the folder root
-  // If it starts with '..' or is an absolute path outside folderRoot, it's invalid
-  if (relativePath.startsWith('..') || resolve(folderRoot, relativePath) !== normalizedPath) {
-    throw new Error(`Invalid identifier value: path traversal detected in "${identifierValue}"`);
-  }
-
-  // Additional check: reject absolute paths
-  if (resolve(identifierValue) === normalize(identifierValue)) {
-    throw new Error(`Invalid identifier value: absolute paths not allowed "${identifierValue}"`);
-  }
-}
 
 /**
  * Downloads an image from a URL using native Node.js fetch.
@@ -114,9 +84,7 @@ export async function addCover(
   const folderRoot = resolve(publicPath, folder);
 
   // Validate identifier before constructing paths
-  validateIdentifier(identifierValue, folderRoot);
-
-  const folderPath = resolve(folderRoot, identifierValue);
+  const folderPath = resolveWithin(folderRoot, identifierValue);
 
   // Create a unique staging directory (sibling to target, not inside it)
   const stagingDirName = `.staging-${identifierValue}-${randomBytes(8).toString('hex')}`;

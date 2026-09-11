@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import { extractGameCardProps } from "@/domain/games";
+
+import type { RawGame } from "@/domain/games/types";
 
 export type RandomAnswer = {
     "identifier": string;
@@ -16,9 +19,10 @@ export async function GET() {
     const entry = gamesData[index];
 
     // map it to understandable structure
+    const { id, url_type } = extractGameCardProps(entry as RawGame);
     const game : RandomAnswer = {
-        "identifier": entry.playlistId ?? entry.videoId,
-        "type": ("videoId" in entry) ? "VIDEO" : "PLAYLIST"
+        "identifier": id,
+        "type": url_type
     }
 
     return NextResponse.json(game)

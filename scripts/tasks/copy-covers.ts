@@ -1,9 +1,10 @@
 import { findIdsInTextArea } from './common/utils';
 
 import { fileURLToPath } from 'node:url';
-import { dirname, resolve, isAbsolute, sep, relative } from 'node:path';
+import { dirname, resolve } from 'node:path';
 import { access, cp } from 'node:fs/promises';
 import { validateFolder } from "./common/utils";
+import { resolveWithin } from './common/pathSafety';
 
 import type { Database } from 'better-sqlite3';
 import type { CopyCoversPayload } from './common/types';
@@ -29,22 +30,6 @@ type ValidatedPairs = {
 };
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
-function resolveWithin(basePath: string, value: string): string {
-  const candidate = resolve(basePath, value);
-  const relativePath = relative(basePath, candidate);
-
-  if (
-    relativePath === '' ||
-    relativePath === '..' ||
-    relativePath.startsWith(`..${sep}`) ||
-    isAbsolute(relativePath)
-  ) {
-    throw new Error(`Path escapes the allowed directory: ${value}`);
-  }
-
-  return candidate;
-}
 
 /**
  * Checks if a path exists on the file system.
