@@ -28,6 +28,8 @@ const platformsMappings = {
     7: platformIcons.SCUMMVM
 }
 
+export const PLATFORM_IDS = Object.keys(platformsMappings).map(Number) as (keyof typeof platformsMappings)[];
+
 type Props = {
     identifier: number | undefined,
     label?: string
