@@ -22,6 +22,33 @@ export interface GamesState {
     activeFilters: gamesFilters
 }
 
+
+/**
+
+* Replaces or removes a filter identified by its key.
+*
+* When an entry is provided, any existing filter with the same key is removed
+* and the new entry is appended. When `entry` is `undefined`, the existing
+* filter is simply removed.
+*
+* The generic key and `Extract` type ensure that the provided entry has the
+* value type associated with the specified filter key.
+*
+* @template K - The key of the filter to replace.
+* @param filters - The current collection of active game filters.
+* @param key - The key of the filter to replace or remove.
+* @param entry - The replacement filter, or `undefined` to remove the filter.
+* @returns A new collection of active filters with the specified filter replaced or removed.
+*/
+function replaceFilter<K extends gamesFilters[number]["key"]>(
+    filters: gamesFilters,
+    key: K,
+    entry: Extract<gamesFilters[number], { key: K }> | undefined
+): gamesFilters {
+    const kept = filters.filter(f => f.key !== key) as gamesFilters;
+    return entry ? [...kept, entry] : kept;
+}
+
 const initialState: GamesState = {
     activeFilters: []
 };
@@ -32,38 +59,41 @@ const gamesSlice = createSlice({
 // Redux Toolkit allows us to write "mutating" logic in reducers. It
 // doesn't actually mutate the state because it uses the Immer library
     reducers: {
-        filteringByGenre(state : GamesState, action: PayloadAction<number[]>) {
-            // If empty, remove filter - if not, add it
-            const newFilters = state.activeFilters.filter(s => s.key !== "selected_genres") as gamesFilters;
-            if (action.payload.length !== 0) {
-                newFilters.push({
-                    key: "selected_genres",
-                    value: action.payload
-                });
-            }
-            state.activeFilters = newFilters;
+        filteringByGenre(state: GamesState, action: PayloadAction<number[]>) {
+            state.activeFilters = replaceFilter(
+                state.activeFilters,
+                "selected_genres",
+                action.payload.length > 0
+                    ? {
+                        key: "selected_genres",
+                        value: action.payload
+                    }
+                    : undefined
+            );
         },
         filterByTitle(state : GamesState, action: PayloadAction<string>) {
-            // If empty, remove filter - if not, add it
-            const newFilters = state.activeFilters.filter(s => s.key !== "selected_title") as gamesFilters;
-            if (action.payload.length !== 0) {
-                newFilters.push({
-                    key: "selected_title",
-                    value: action.payload
-                });
-            }
-            state.activeFilters = newFilters;
+            state.activeFilters = replaceFilter(
+                state.activeFilters,
+                "selected_title",
+                action.payload.length !== 0
+                    ? {
+                        key: "selected_title",
+                        value: action.payload
+                    }
+                    : undefined
+            );
         },
-        filterByPlatform(state : GamesState, action: PayloadAction<number | undefined>) {
-            // If empty, remove filter - if not, add it
-            const newFilters = state.activeFilters.filter(s => s.key !== "selected_platform") as gamesFilters;
-            if (action.payload !== undefined) {
-                newFilters.push({
-                    key: "selected_platform",
-                    value: action.payload
-                });
-            }
-            state.activeFilters = newFilters;
+        filterByPlatform(state: GamesState, action: PayloadAction<number | undefined>) {
+            state.activeFilters = replaceFilter(
+                state.activeFilters,
+                "selected_platform",
+                action.payload !== undefined
+                    ? {
+                        key: "selected_platform",
+                        value: action.payload
+                    }
+                    : undefined
+            );
         },
     }
 });
