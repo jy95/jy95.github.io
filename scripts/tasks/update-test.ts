@@ -1,4 +1,4 @@
-import { platformToInt, identifierKindToDatabaseField } from './common/utils';
+import { platformToInt, identifierKindToDatabaseField, isNonEmptyStringField } from './common/utils';
 
 import type { Database } from 'better-sqlite3';
 import type { TestPayload } from './common/types';
@@ -16,18 +16,10 @@ export async function updateTestInDatabase(db: Database, payload: UpdateTestPara
     const updatePlatformStmt = db.prepare("UPDATE tests SET platform = ? WHERE id = ?");
     const updateDurationStmt = db.prepare("UPDATE tests SET duration = ? WHERE id = ?");
 
-    /**
-     * Check if the given key is a valid key in the payload object and its value is not an empty string.
-     * 
-     * @param {keyof typeof payload} key - The key to check in the payload.
-     * @returns {boolean} - Returns `true` if the value of the key in the payload is defined and non-empty, otherwise `false`.
-     */
-    const notEmptyString = (key: keyof UpdateTestParams) => payload[key] !== undefined && (payload[key] as string).length > 0;
-
     // has attributes
-    const hasTitle = notEmptyString("title");
-    const hasReleaseDate = notEmptyString("releaseDate");
-    const hasDuration = notEmptyString("duration");
+    const hasTitle = isNonEmptyStringField(payload, "title");
+    const hasReleaseDate = isNonEmptyStringField(payload, "releaseDate");
+    const hasDuration = isNonEmptyStringField(payload, "duration");
 
     // Execution time
     const updateGame = db.transaction(() => {
@@ -44,7 +36,7 @@ export async function updateTestInDatabase(db: Database, payload: UpdateTestPara
 
         // Update release date
         if (hasReleaseDate) {
-            updateReleaseDateStmt.run(payload.releaseDate?.trim(), gameId);
+            updateReleaseDateStmt.run(payload.releaseDate.trim(), gameId);
         }
 
         // Update platform

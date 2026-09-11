@@ -1,7 +1,7 @@
 import type { Database } from "better-sqlite3";
 import type { GamePayload } from "./common/types";
 
-import { platformToInt, genreToInt, identifierKindToDatabaseField } from "./common/utils";
+import { platformToInt, genreToInt, identifierKindToDatabaseField, isNonEmptyStringField } from "./common/utils";
 
 type UpdatePayload = Partial<GamePayload> & { identifierValue: string; identifierKind: GamePayload['identifierKind'] };
 
@@ -23,20 +23,12 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
     const deleteGenreStmt = db.prepare("DELETE FROM games_genres WHERE game = ?");
     const insertGenresWithGameStmt = db.prepare("INSERT INTO games_genres (game, genre) VALUES (?, ?)");
 
-    /**
-     * Check if the given key is a valid key in the payload object and its value is not an empty string.
-     * 
-     * @param {keyof typeof payload} key - The key to check in the payload.
-     * @returns {boolean} - Returns `true` if the value of the key in the payload is defined and non-empty, otherwise `false`.
-     */
-    const notEmptyString = (key: keyof UpdatePayload) => payload[key] !== undefined && (payload[key] as string).length > 0;
-
     // has attributes
-    const hasTitle = notEmptyString("title");
-    const hasReleaseDate = notEmptyString("releaseDate");
-    const hasDuration = notEmptyString("duration");
-    const hasAvailableAt = notEmptyString("availableAt");
-    const hasEndAt = notEmptyString("endAt");
+    const hasTitle = isNonEmptyStringField(payload, "title");
+    const hasReleaseDate = isNonEmptyStringField(payload, "releaseDate");
+    const hasDuration = isNonEmptyStringField(payload, "duration");
+    const hasAvailableAt = isNonEmptyStringField(payload, "availableAt");
+    const hasEndAt = isNonEmptyStringField(payload, "endAt");
     const hasScheduleData = hasAvailableAt || hasEndAt;
 
     // Execution time
