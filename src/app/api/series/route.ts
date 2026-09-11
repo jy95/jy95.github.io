@@ -4,7 +4,7 @@ import type { RawGame, CardGame } from "@/domain/games";
 
 type rawEntry = {
     /** @description Unique identifier of the game */
-    id: integer,
+    id: number,
     /** @description Name of the series */
     name: string;
     /** @description List of videoId or playlistId for this series */
@@ -13,7 +13,7 @@ type rawEntry = {
 export type RawPayload = rawEntry[];
 
 export type serieType = {
-    id: integer,
+    id: number,
     name: string,
     items: CardGame[]
 };
