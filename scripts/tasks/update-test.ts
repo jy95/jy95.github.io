@@ -1,4 +1,4 @@
-import { platformToInt, identifierKindToDatabaseField, isNonEmptyStringField } from './common/utils';
+import { platformToInt, identifierKindToDatabaseField, applyIfPresent } from './common/utils';
 
 import type { Database } from 'better-sqlite3';
 import type { TestPayload } from './common/types';
@@ -16,11 +16,6 @@ export async function updateTestInDatabase(db: Database, payload: UpdateTestPara
     const updatePlatformStmt = db.prepare("UPDATE tests SET platform = ? WHERE id = ?");
     const updateDurationStmt = db.prepare("UPDATE tests SET duration = ? WHERE id = ?");
 
-    // has attributes
-    const hasTitle = isNonEmptyStringField(payload, "title");
-    const hasReleaseDate = isNonEmptyStringField(payload, "releaseDate");
-    const hasDuration = isNonEmptyStringField(payload, "duration");
-
     // Execution time
     const updateGame = db.transaction(() => {
         // Find game id
@@ -30,14 +25,10 @@ export async function updateTestInDatabase(db: Database, payload: UpdateTestPara
         }
 
         // Update title
-        if (hasTitle) {
-            updateTitleStmt.run(payload.title, gameId);
-        }
+        applyIfPresent(payload, "title", (title) => updateTitleStmt.run(title, gameId));
 
         // Update release date
-        if (hasReleaseDate) {
-            updateReleaseDateStmt.run(payload.releaseDate.trim(), gameId);
-        }
+        applyIfPresent(payload, "releaseDate", (date) => updateReleaseDateStmt.run(date.trim(), gameId));
 
         // Update platform
         if (payload.platform !== undefined) {
@@ -46,9 +37,7 @@ export async function updateTestInDatabase(db: Database, payload: UpdateTestPara
         }
 
         // Update duration
-        if (hasDuration) {
-            updateDurationStmt.run(payload.duration, gameId);
-        }
+        applyIfPresent(payload, "duration", (duration) => updateDurationStmt.run(duration, gameId));
 
     });
 
