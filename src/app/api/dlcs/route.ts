@@ -3,6 +3,8 @@ import { buildCardEntry } from "@/domain/games";
 import type { RawGame, CardGame } from "@/domain/games";
 
 type rawEntry = {
+    /** @description Unique identifier of the game */
+    id: string,
     /** @description Name of the game */
     name: string;
     /** @description List of dlc for this game */
@@ -11,6 +13,7 @@ type rawEntry = {
 export type RawPayload = rawEntry[];
 
 export type dlcType = {
+    id: string,
     name: string,
     items: CardGame[]
 };
@@ -19,6 +22,7 @@ export async function GET() {
     const dlcsData = (await import("./dlcs.json")).default;
 
     const dlcs: dlcType[] = dlcsData.map((dlc) => ({
+        id: dlc.id,
         name: dlc.game_title,
         items: fromRawGamesToCardGames(dlc.dlcs as RawGame[])
     }));
