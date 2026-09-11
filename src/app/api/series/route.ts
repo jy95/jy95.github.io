@@ -3,6 +3,8 @@ import { buildCardEntry } from "@/domain/games";
 import type { RawGame, CardGame } from "@/domain/games";
 
 type rawEntry = {
+    /** @description Unique identifier of the game */
+    id: string,
     /** @description Name of the series */
     name: string;
     /** @description List of videoId or playlistId for this series */
@@ -11,6 +13,7 @@ type rawEntry = {
 export type RawPayload = rawEntry[];
 
 export type serieType = {
+    id: string,
     name: string,
     items: CardGame[]
 };
@@ -19,6 +22,7 @@ export async function GET() {
     const seriesData = (await import("./series.json")).default;
 
     const series: serieType[] = seriesData.map(serie => ({
+        id: serie.id,
         name: serie.name,
         items: fromRawGamesToCardGames(serie.items as RawGame[])
     }));
