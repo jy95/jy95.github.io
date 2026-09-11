@@ -5,7 +5,7 @@ import { randomBytes } from 'node:crypto';
 import sharp from 'sharp';
 
 import { validateFolder } from './common/utils';
-import { resolveWithin as validateIdentifier} from './common/pathSafety';
+import { resolveWithin } from './common/pathSafety';
 
 import type { Database } from 'better-sqlite3';
 import type { AddCoverPayload } from './common/types';
@@ -84,9 +84,7 @@ export async function addCover(
   const folderRoot = resolve(publicPath, folder);
 
   // Validate identifier before constructing paths
-  validateIdentifier(identifierValue, folderRoot);
-
-  const folderPath = resolve(folderRoot, identifierValue);
+  const folderPath = resolveWithin(folderRoot, identifierValue);
 
   // Create a unique staging directory (sibling to target, not inside it)
   const stagingDirName = `.staging-${identifierValue}-${randomBytes(8).toString('hex')}`;
