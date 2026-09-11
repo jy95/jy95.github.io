@@ -1,7 +1,7 @@
 import type { Database } from "better-sqlite3";
 import type { GamePayload } from "./common/types";
 
-import { platformToInt, genreToInt, identifierKindToDatabaseField, isNonEmptyStringField } from "./common/utils";
+import { platformToInt, genreToInt, identifierKindToDatabaseField, isNonEmptyStringField, applyIfPresent } from "./common/utils";
 
 type UpdatePayload = Partial<GamePayload> & { identifierValue: string; identifierKind: GamePayload['identifierKind'] };
 
@@ -24,9 +24,6 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
     const insertGenresWithGameStmt = db.prepare("INSERT INTO games_genres (game, genre) VALUES (?, ?)");
 
     // has attributes
-    const hasTitle = isNonEmptyStringField(payload, "title");
-    const hasReleaseDate = isNonEmptyStringField(payload, "releaseDate");
-    const hasDuration = isNonEmptyStringField(payload, "duration");
     const hasAvailableAt = isNonEmptyStringField(payload, "availableAt");
     const hasEndAt = isNonEmptyStringField(payload, "endAt");
     const hasScheduleData = hasAvailableAt || hasEndAt;
@@ -43,14 +40,10 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
         const hasScheduleRow = hasScheduleStmt.pluck().get(gameId) !== undefined;
 
         // Update title
-        if (hasTitle) {
-            updateTitleStmt.run(payload.title, gameId);
-        }
+        applyIfPresent(payload, "title", (title) => updateTitleStmt.run(title, gameId));
 
         // Update release date
-        if (hasReleaseDate) {
-            updateReleaseDateStmt.run(payload.releaseDate?.trim(), gameId);
-        }
+        applyIfPresent(payload, "releaseDate", (date) => updateReleaseDateStmt.run(date.trim(), gameId));
 
         // Update platform
         if (payload.platform !== undefined) {
@@ -59,9 +52,7 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
         }
 
         // Update duration
-        if (hasDuration) {
-            updateDurationStmt.run(payload.duration, gameId);
-        }
+        applyIfPresent(payload, "duration", (duration) => updateDurationStmt.run(duration, gameId));
 
         // Create a row of game schedules, if not existing already
         if (hasScheduleData && !hasScheduleRow) {
@@ -69,14 +60,10 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
         }
 
         // Update available at
-        if (hasAvailableAt) {
-            updateAvailableAtStmt.run(payload.availableAt?.trim(), gameId);
-        }
+        applyIfPresent(payload, "availableAt", (availableAt) => updateAvailableAtStmt.run(availableAt.trim(), gameId));
 
         // Update end at
-        if (hasEndAt) {
-            updateEndAtStmt.run(payload.endAt?.trim(), gameId);
-        }
+        applyIfPresent(payload, "endAt", (endAt) => updateEndAtStmt.run(endAt.trim(), gameId));
 
         // update genres
         if (genres.length > 0) {

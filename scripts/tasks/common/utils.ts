@@ -90,9 +90,9 @@ export function findIdsInTextArea(textAreaContent?: string) {
 }
 
 /**
- * Validates that a folder name is allowed.
- * @param folder The folder name to validate.   
- */
+  * Validates that a folder name is allowed.
+  * @param folder The folder name to validate.   
+  */
 export function validateFolder(folder: string): asserts folder is Folder {
   if (!allowedFolders.has(folder as Folder)) {
     throw new Error(`Invalid folder name: ${folder}`);
@@ -100,16 +100,34 @@ export function validateFolder(folder: string): asserts folder is Folder {
 }
 
 /**
- * Check if the given key is a valid key in the payload object and its value is not an empty string.
- * 
- * @param {object} payload - The object to check the key against.
- * @param {keyof typeof payload} key - The key to check in the payload.
- * @returns {boolean} - Returns `true` if the value of the key in the payload is defined and non-empty, otherwise `false`.
- */
+  * Check if the given key is a valid key in the payload object and its value is not an empty string.
+  * 
+  * @param {object} payload - The object to check the key against.
+  * @param {keyof typeof payload} key - The key to check in the payload.
+  * @returns {boolean} - Returns `true` if the value of the key in the payload is defined and non-empty, otherwise `false`.
+  */
 export function isNonEmptyStringField<T extends object, K extends keyof T>(
   payload: T,
   key: K
 ): payload is T & Record<K, string> {
   const value = payload[key];
   return typeof value === "string" && value.length > 0;
+}
+
+/**
+  * Applies a callback function to a payload field if it is present and non-empty.
+  * Uses isNonEmptyStringField type guard to safely access the field value.
+  * 
+  * @param {T} payload - The object to check the key against.
+  * @param {K} key - The key to check in the payload.
+  * @param {(value: string) => void} apply - Callback function to apply with the field value.
+  */
+export function applyIfPresent<T extends object, K extends keyof T>(
+  payload: T,
+  key: K,
+  apply: (value: string) => void
+): void {
+  if (isNonEmptyStringField(payload, key)) {
+    apply(payload[key]);
+  }
 }
