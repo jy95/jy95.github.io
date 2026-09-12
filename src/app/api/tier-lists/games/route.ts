@@ -1,12 +1,5 @@
-import { NextResponse } from "next/server";
+import { staticJsonRoute } from "@/lib/http/staticJsonRoute";
 
 export async function GET() {
-
-    // Game data
-    const games = (await import("./games.json")).default;
-    return NextResponse.json(games, {
-        headers: {
-            "Cache-Control": "public, max-age=86400, must-revalidate"
-        }
-    });
+    return staticJsonRoute(() => import("./games.json"));
 }

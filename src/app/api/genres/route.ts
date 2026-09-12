@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { staticJsonRoute } from "@/lib/http/staticJsonRoute";
 
 export type Genre = {
     // identifier
@@ -9,12 +9,5 @@ export type Genre = {
 export type GenreResponse = Genre[];
 
 export async function GET() {
-
-    const genresData = (await import("./genres.json")).default;
-
-    return NextResponse.json(genresData, {
-        headers: {
-            "Cache-Control": "public, max-age=86400, must-revalidate"
-        }
-    });
+    return staticJsonRoute<GenreResponse>(() => import("./genres.json"));
 }
