@@ -1,48 +1,36 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { readFile } from 'node:fs/promises';
-import { openTestDb, hasRealDb } from '../tasks/testDbHelper';
-import { tempOutputPath } from './common/testFileHelper';
+import { useExtractorHarness } from '../extractors/common/extractorTestHarness';
+import { hasRealDb } from '../tasks/testDbHelper';
 import { extractAndSaveTierListCategories } from './tier-list-categories';
-import type { Database } from 'better-sqlite3';
 
 describe.skipIf(!hasRealDb)('extractAndSaveTierListCategories', () => {
-    let db: Database;
-    let cleanupDb: () => void;
-    let outPath: string;
-    let cleanupFile: () => void;
-
-    beforeEach(() => {
-        ({ db, cleanup: cleanupDb } = openTestDb() as any);
-        ({ path: outPath, cleanup: cleanupFile } = tempOutputPath('tier-list-categories'));
-    });
-    afterEach(() => {
-        cleanupDb();
-        cleanupFile();
-    });
+    
+    const ctx = useExtractorHarness('extractAndSaveTierListCategories');
 
     it('matches the row count of tier_categories exactly', async () => {
-        const expectedCount = db.prepare('SELECT COUNT(*) AS n FROM tier_categories').get() as { n: number };
+        const expectedCount = ctx.db.prepare('SELECT COUNT(*) AS n FROM tier_categories').get() as { n: number };
 
-        await extractAndSaveTierListCategories(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8'));
+        await extractAndSaveTierListCategories(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
 
         expect(written).toHaveLength(expectedCount.n);
     });
 
     it('is sorted by display_order ascending, with id as a tiebreaker', async () => {
-        const expected = db
+        const expected = ctx.db
             .prepare('SELECT id, slug, display_order FROM tier_categories ORDER BY display_order ASC, id ASC')
             .all();
 
-        await extractAndSaveTierListCategories(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8'));
+        await extractAndSaveTierListCategories(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
 
         expect(written).toEqual(expected);
     });
 
     it('includes every well-known tier slug used by the frontend TierCategoryKey type', async () => {
-        await extractAndSaveTierListCategories(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8')) as { slug: string }[];
+        await extractAndSaveTierListCategories(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8')) as { slug: string }[];
         const slugs = new Set(written.map((c) => c.slug));
 
         for (const expectedSlug of [

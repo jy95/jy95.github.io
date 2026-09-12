@@ -1,37 +1,24 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { readFile } from 'node:fs/promises';
-import { openTestDb, hasRealDb } from '../tasks/testDbHelper';
-import { tempOutputPath } from './common/testFileHelper';
+import { useExtractorHarness } from '../extractors/common/extractorTestHarness';
+import { hasRealDb } from '../tasks/testDbHelper';
 import { extractAndSavePlanning } from './planning';
-import type { Database } from 'better-sqlite3';
 
 describe.skipIf(!hasRealDb)('extractAndSavePlanning', () => {
-    let db: Database;
-    let cleanupDb: () => void;
-    let outPath: string;
-    let cleanupFile: () => void;
-
-    beforeEach(() => {
-        ({ db, cleanup: cleanupDb } = openTestDb() as any);
-        ({ path: outPath, cleanup: cleanupFile } = tempOutputPath('planning'));
-    });
-    afterEach(() => {
-        cleanupDb();
-        cleanupFile();
-    });
+    const ctx = useExtractorHarness('extractAndSavePlanning');
 
     it('matches the row count of games_in_future exactly', async () => {
-        const expectedCount = db.prepare('SELECT COUNT(*) AS n FROM games_in_future').get() as { n: number };
+        const expectedCount = ctx.db.prepare('SELECT COUNT(*) AS n FROM games_in_future').get() as { n: number };
 
-        await extractAndSavePlanning(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8'));
+        await extractAndSavePlanning(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
 
         expect(written).toHaveLength(expectedCount.n);
     });
 
     it('parses the aggregated genres column into a real JSON array, not a raw string', async () => {
-        await extractAndSavePlanning(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8')) as { genres: unknown }[];
+        await extractAndSavePlanning(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8')) as { genres: unknown }[];
 
         for (const entry of written) {
             expect(Array.isArray(entry.genres)).toBe(true);
@@ -39,8 +26,8 @@ describe.skipIf(!hasRealDb)('extractAndSavePlanning', () => {
     });
 
     it('every genre id in the output is a number', async () => {
-        await extractAndSavePlanning(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8')) as { genres: number[] }[];
+        await extractAndSavePlanning(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8')) as { genres: number[] }[];
 
         for (const entry of written) {
             for (const genreId of entry.genres) {
@@ -50,8 +37,8 @@ describe.skipIf(!hasRealDb)('extractAndSavePlanning', () => {
     });
 
     it('joins in the parent game row (title, releaseDate, duration) for every future entry', async () => {
-        await extractAndSavePlanning(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8')) as {
+        await extractAndSavePlanning(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8')) as {
             title: string;
             releaseDate: unknown;
             duration: unknown;
