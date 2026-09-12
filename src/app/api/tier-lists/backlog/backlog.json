@@ -1130,6 +1130,15 @@
 			"imagePath": "/backlogcovers/140/cover.webp"
 		},
 		{
+			"id": "207",
+			"title": "Alpha Protocol",
+			"platform": 6,
+			"hltb_main": "12:56:39",
+			"hltb_extra": "17:24:00",
+			"hltb_completionist": "26:09:25",
+			"imagePath": "/backlogcovers/207/cover.webp"
+		},
+		{
 			"id": "1",
 			"title": "Beyond: Two Souls",
 			"platform": 1,
@@ -1617,15 +1626,6 @@
 	],
 	"tier_bad": [],
 	"tier_not_evaluated": [
-		{
-			"id": "207",
-			"title": "Alpha Protocol",
-			"platform": 6,
-			"hltb_main": "12:56:39",
-			"hltb_extra": "17:24:00",
-			"hltb_completionist": "26:09:25",
-			"imagePath": "/backlogcovers/207/cover.webp"
-		},
 		{
 			"id": "204",
 			"title": "Grabbed by the Ghoulies",
