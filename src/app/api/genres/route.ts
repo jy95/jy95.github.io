@@ -8,6 +8,4 @@ export type Genre = {
 }
 export type GenreResponse = Genre[];
 
-export async function GET() {
-    return staticJsonRoute<GenreResponse>(() => import("./genres.json"));
-}
+export const GET = staticJsonRoute<GenreResponse>(() => import("./genres.json"));

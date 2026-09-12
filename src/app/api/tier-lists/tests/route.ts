@@ -1,5 +1,3 @@
 import { staticJsonRoute } from "@/lib/http/staticJsonRoute";
 
-export async function GET() {
-    return staticJsonRoute(() => import("./tests.json"));
-}
+export const GET = staticJsonRoute(() => import("./tests.json"));

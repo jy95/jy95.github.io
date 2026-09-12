@@ -5,8 +5,13 @@ export const STATIC_CACHE_HEADERS = {
 } as const;
 
 export function cachedJson<T>(data: T, init?: ResponseInit) {
+    const headers = new Headers(init?.headers);
+    Object.entries(STATIC_CACHE_HEADERS).forEach(([key, value]) => {
+        if (!headers.has(key)) headers.set(key, value);
+    });
+
     return NextResponse.json(data, {
         ...init,
-        headers: { ...STATIC_CACHE_HEADERS, ...init?.headers }
+        headers
     });
 }
