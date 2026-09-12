@@ -8,7 +8,7 @@ import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 import PlatformColumn from "@/components/tableColumns/platforms";
-import { renderTooltipCell } from "@/components/tableColumns/renderTooltipCell";
+import { titleColumn } from "@/components/tableColumns/titleColumn";
 
 // Types
 import type { JSX } from "react";
@@ -27,13 +27,7 @@ export type Props = {
 
 export default function tableColumns(props: Props) : GridColDef[]{
     return [
-        {
-            field: "title", 
-            headerName: props.titleLabel,
-            headerAlign: 'center',
-            renderCell: renderTooltipCell,
-            width: 270
-        },
+        titleColumn(props.titleLabel),
         {
             field: "platform",
             headerName: props.platformLabel,
