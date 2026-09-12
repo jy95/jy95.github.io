@@ -9,5 +9,5 @@ export type Platform_Entry = {
 export type PlatformsResponse = Platform_Entry[];
 
 export async function GET() {
-    return staticJsonRoute<PlatformsResponse>(() => import("./platforms.json"));
+    return staticJsonRoute(() => import("./platforms.json"));
 }
