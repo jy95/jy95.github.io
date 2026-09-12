@@ -1,0 +1,17 @@
+{  
+  "ADD_GAME": "01-add-game.yml",  
+  "UPDATE_GAME": "02-update-game.yml",  
+  "DELETE_GAME": "03-delete-game.yml",  
+  "ADD_BACKLOG": "04-add-backlog.yml",  
+  "DELETE_BACKLOG": "05-delete-backlog.yml",  
+  "ADD_COVER": "06-add-cover.yml",  
+  "ADD_SERIE": "07-add-serie.yml",  
+  "MANAGE_SERIE": "08-manage-serie.yml",  
+  "MANAGE_DLCS": "09-manage-game-dlcs.yml",  
+  "CLEAN_BACKLOG": "10-clean-backlog.yml",  
+  "ADD_TEST": "11-add-test.yml",  
+  "UPDATE_TEST": "12-update-test.yml",  
+  "DELETE_TEST": "13-delete-test.yml",  
+  "UPDATE_TIER_LIST": "14-update-tier-lists.yml",  
+  "COPY_COVERS": "15-copy-covers.yml"  
+}
