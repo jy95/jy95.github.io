@@ -1,4 +1,5 @@
 import { findIdsInTextArea } from './common/utils';
+import { findGameIdByEitherIdentifier } from './common/lookup';
 
 import type { Database } from 'better-sqlite3';
 import type { DlcPayload } from './common/types';
@@ -9,12 +10,14 @@ export async function manageDlcsInDatabase(db: Database, payload: DlcPayload) {
     const dlcs = findIdsInTextArea(payload.dlcs_textarea);
 
     // Statements
-    const fetchGameByIdStmt = db.prepare('SELECT id FROM games WHERE videoId = @id OR playlistId = @id');
     const deleteGameDLCsStmt = db.prepare('DELETE FROM games_dlcs WHERE game = ?');
     const insertDLCToGameStmt = db.prepare('INSERT INTO games_dlcs (game, dlc, `order`) VALUES (?, ?, ?)');
 
     // Execution time
-    const gameID = fetchGameByIdStmt.pluck().get({ id: payload.gameID }) as number;
+    const gameID = findGameIdByEitherIdentifier(db, payload.gameID);
+    if (!gameID) {
+        throw new Error(`Game not found: ${payload.gameID}`);
+    }
     await deleteGameDLCsStmt.run(gameID);
 
     const updateDLCSItems = db.transaction(() => {
@@ -23,7 +26,7 @@ export async function manageDlcsInDatabase(db: Database, payload: DlcPayload) {
         for (const gameIdentifier of dlcs) {
 
             // Fetch game id
-            const dlcID = fetchGameByIdStmt.pluck().get({ id: gameIdentifier }) as number;
+            const dlcID = findGameIdByEitherIdentifier(db, gameIdentifier);
             if (!dlcID) {
                 throw new Error(`DLC not found: ${gameIdentifier}`);
             }
