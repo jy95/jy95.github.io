@@ -15,74 +15,22 @@ jobs:
         - id: detect_issue_type
           name: 🔍 Scan issue type
           env:
-            ISSUE_TYPE: ${{ 
-                contains(github.event.issue.labels.*.name, '[ADD_GAME]') && 'ADD_GAME' || 
-                contains(github.event.issue.labels.*.name, '[UPDATE_GAME]') && 'UPDATE_GAME' || 
-                contains(github.event.issue.labels.*.name, '[DELETE_GAME]') && 'DELETE_GAME' || 
-                contains(github.event.issue.labels.*.name, '[ADD_BACKLOG]') && 'ADD_BACKLOG' || 
-                contains(github.event.issue.labels.*.name, '[DELETE_BACKLOG]') && 'DELETE_BACKLOG' || 
-                contains(github.event.issue.labels.*.name, '[ADD_COVER]') && 'ADD_COVER' || 
-                contains(github.event.issue.labels.*.name, '[ADD_SERIE]') && 'ADD_SERIE' || 
-                contains(github.event.issue.labels.*.name, '[MANAGE_SERIE]') && 'MANAGE_SERIE' || 
-                contains(github.event.issue.labels.*.name, '[MANAGE_DLCS]') && 'MANAGE_DLCS' || 
-                contains(github.event.issue.labels.*.name, '[CLEAN_BACKLOG]') && 'CLEAN_BACKLOG' || 
-                contains(github.event.issue.labels.*.name, '[ADD_TEST]') && 'ADD_TEST' || 
-                contains(github.event.issue.labels.*.name, '[UPDATE_TEST]') && 'UPDATE_TEST' || 
-                contains(github.event.issue.labels.*.name, '[DELETE_TEST]') && 'DELETE_TEST' || 
-                contains(github.event.issue.labels.*.name, '[UPDATE_TIER_LIST]') && 'UPDATE_TIER_LIST' || 
-                contains(github.event.issue.labels.*.name, '[COPY_COVERS]') && 'COPY_COVERS' ||  
-                'UNKNOWN' }}
-          run: echo "issue_type=${{ env.ISSUE_TYPE }}" >> $GITHUB_OUTPUT
+            LABELS_JSON: ${{ toJson(github.event.issue.labels.*.name) }}
+          run: |  
+            issue_type="UNKNOWN"  
+            for key in $(jq -r 'keys[]' .github/issue-type-templates.json); do  
+              if echo "$LABELS_JSON" | jq -e --arg l "[$key]" 'index($l) != null' > /dev/null; then  
+                issue_type="$key"  
+                break  
+              fi  
+            done  
+            echo "issue_type=$issue_type" >> $GITHUB_OUTPUT
         - id: set_template_file
           name: 👉 Select the correct template for this issue
           run: |
-            case "${{ steps.detect_issue_type.outputs.issue_type }}" in
-              ADD_GAME)
-                echo "template_file=01-add-game.yml" >> $GITHUB_OUTPUT
-                ;;
-              UPDATE_GAME)
-                echo "template_file=02-update-game.yml" >> $GITHUB_OUTPUT
-                ;;
-              DELETE_GAME)
-                echo "template_file=03-delete-game.yml" >> $GITHUB_OUTPUT
-                ;;
-              ADD_BACKLOG)
-                echo "template_file=04-add-backlog.yml" >> $GITHUB_OUTPUT
-                ;;
-              DELETE_BACKLOG)
-                echo "template_file=05-delete-backlog.yml" >> $GITHUB_OUTPUT
-                ;;
-              ADD_COVER)
-                echo "template_file=06-add-cover.yml" >> $GITHUB_OUTPUT
-                ;;
-              ADD_SERIE)
-                echo "template_file=07-add-serie.yml" >> $GITHUB_OUTPUT
-                ;;
-              MANAGE_SERIE)
-                echo "template_file=08-manage-serie.yml" >> $GITHUB_OUTPUT
-                ;;
-              MANAGE_DLCS)
-                echo "template_file=09-manage-game-dlcs.yml" >> $GITHUB_OUTPUT
-                ;;
-              CLEAN_BACKLOG)
-                echo "template_file=10-clean-backlog.yml" >> $GITHUB_OUTPUT
-                ;;
-              ADD_TEST)
-                echo "template_file=11-add-test.yml" >> $GITHUB_OUTPUT
-                ;;
-              UPDATE_TEST)
-                echo "template_file=12-update-test.yml" >> $GITHUB_OUTPUT
-                ;;
-              DELETE_TEST)
-                echo "template_file=13-delete-test.yml" >> $GITHUB_OUTPUT
-                ;;
-              UPDATE_TIER_LIST)
-                echo "template_file=14-update-tier-lists.yml" >> $GITHUB_OUTPUT
-                ;;
-              COPY_COVERS)
-                echo "template_file=15-copy-covers.yml" >> $GITHUB_OUTPUT
-                ;;
-            esac
+            template_file=$(jq -r --arg t "${{ steps.detect_issue_type.outputs.issue_type }}" \  
+              '.[$t] // "UNKNOWN"' .github/issue-type-templates.json)  
+            echo "template_file=$template_file" >> $GITHUB_OUTPUT
     process_issue:
       runs-on: ubuntu-latest
       needs: check_issue
