@@ -1,4 +1,5 @@
 import { findIdsInTextArea } from './common/utils';
+import { findGameIdByEitherIdentifier, findTestIdByEitherIdentifier } from './common/lookup';
 
 import type { Database } from 'better-sqlite3';
 import type { TierListPayload } from './common/types';
@@ -28,9 +29,6 @@ export async function updateTierLists(db: Database, payload: TierListPayload) {
     console.log(`[DEBUG] Category ID mapped to: ${categoryId} (Default: ${defaultCategoryId})`);
 
     // Statements
-    const fetchGameByIdStmt = db.prepare('SELECT id FROM games WHERE videoId = @id OR playlistId = @id');
-    const fetchTestByIdStmt = db.prepare('SELECT id FROM tests WHERE videoId = @id OR playlistId = @id');
-
     const insertGameToTierListStmt = db.prepare('INSERT OR IGNORE INTO tier_list_games (game_id, category_id) VALUES (@id, @category)');
     const insertBacklogGameToTierListStmt = db.prepare('INSERT OR IGNORE INTO tier_list_backlog (backlog_id, category_id) VALUES (@id, @category)');
     const insertTestToTierListStmt = db.prepare('INSERT OR IGNORE INTO tier_list_tests (test_id, category_id) VALUES (@id, @category)');
@@ -44,7 +42,7 @@ export async function updateTierLists(db: Database, payload: TierListPayload) {
         console.log(`[DEBUG] [Transaction GAMES] Starting processing of ${gameIDs.length} items...`);
         for (const gameIdentifier of gameIDs) {
             // Fetch game ID
-            const gameId = fetchGameByIdStmt.pluck().get({ id: gameIdentifier }) as number;
+            const gameId = findGameIdByEitherIdentifier(db, gameIdentifier);
 
             if (!gameId) {
                 console.error(`[DEBUG] [Transaction GAMES] Error: Game NOT found in DB for identifier: ${gameIdentifier}`);
@@ -91,7 +89,7 @@ export async function updateTierLists(db: Database, payload: TierListPayload) {
         console.log(`[DEBUG] [Transaction TESTS] Starting processing of ${gameIDs.length} items...`);
         for (const testIdentifier of gameIDs) {
             // Fetch test ID
-            const testId = fetchTestByIdStmt.pluck().get({ id: testIdentifier });
+            const testId = findTestIdByEitherIdentifier(db, testIdentifier);
 
             if (!testId) {
                 console.error(`[DEBUG] [Transaction TESTS] Error: Failed to parse identifier into valid ID: ${testIdentifier}`);

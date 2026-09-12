@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { staticJsonRoute } from "@/lib/http/staticJsonRoute";
 
 export type Platform_Entry = {
     // Identifier
@@ -8,13 +8,4 @@ export type Platform_Entry = {
 }
 export type PlatformsResponse = Platform_Entry[];
 
-export async function GET() {
-
-    const platformsData = (await import("./platforms.json")).default;
-
-    return NextResponse.json(platformsData, {
-        headers: {
-            "Cache-Control": "public, max-age=86400, must-revalidate"
-        }
-    });
-}
+export const GET = staticJsonRoute(() => import("./platforms.json"));
