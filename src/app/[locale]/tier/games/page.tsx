@@ -23,6 +23,13 @@ export default function GamesTierList() {
             isLoading={isLoading}
             data={data}
             onRetry={refetch}
+            loadingFallback={(
+                <TierLists
+                    data={data}
+                    isLoadingData={isLoading}
+                    GameRender={GameCardRenderer}
+                />
+            )}
         >
             {(data) => (
                 <TierLists 

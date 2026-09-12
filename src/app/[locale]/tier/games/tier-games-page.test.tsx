@@ -39,9 +39,9 @@ describe('GamesTierList (tier/games page)', () => {
         expect(el).toHaveAttribute('data-loading', 'false');
     });
 
-    it('renders no-data placeholder when the query has not resolved yet', () => {
+    it('renders nothing when the query has neither data nor a loading state', () => {
         useGetGamesTierListQueryMock.mockReturnValue({ data: undefined, isLoading: false });
         render(<GamesTierList />);
-        expect(screen.getByTestId('tier-lists')).toHaveTextContent('no-data');
+        expect(screen.queryByTestId('tier-lists')).not.toBeInTheDocument();
     });
 });
