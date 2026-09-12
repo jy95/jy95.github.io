@@ -28,7 +28,7 @@ jobs:
         - id: set_template_file
           name: 👉 Select the correct template for this issue
           run: |
-            template_file=$(jq -r --arg t "${{ steps.detect_issue_type.outputs.issue_type }}" \  
+            template_file=$(jq -r --arg t "${{ steps.detect_issue_type.outputs.issue_type }}" \
               '.[$t] // "UNKNOWN"' .github/issue-type-templates.json)  
             echo "template_file=$template_file" >> $GITHUB_OUTPUT
     process_issue:
