@@ -101,50 +101,24 @@ const gamesSlice = createSlice({
 // memoized selector functions
 const selectActiveFilters = (state : RootState) => state.games.activeFilters;
 
+function makeFilterSelector<K extends gamesFilters[number]["key"], Default>(
+    key: K,
+    defaultValue: Default
+) {
+    return createSelector([selectActiveFilters], (filters) => {
+        const entry = filters.find((f) => f.key === key);
+        return entry ? (entry.value as Extract<gamesFilters[number], { key: K }>["value"]) : defaultValue;
+    });
+}
+
 // Selected genres
-export const selectSelectedGenres = createSelector(
-    [
-        selectActiveFilters,
-    ],
-    (filters) => {
-        const entry = filters.find(s => s.key === "selected_genres");
-        if (!entry) {
-            return [];
-        } else {
-            return entry.value as number[]
-        }
-    }
-);
+export const selectSelectedGenres = makeFilterSelector("selected_genres", [] as number[]);
 
 // Selected platform
-export const selectSelectedPlatform = createSelector(
-    [
-        selectActiveFilters,
-    ],
-    (filters) => {
-        const entry = filters.find(s => s.key === "selected_platform");
-        if (!entry) {
-            return undefined;
-        } else {
-            return entry.value as number
-        }
-    }
-);
+export const selectSelectedPlatform = makeFilterSelector("selected_platform", undefined);
 
 // Selected title
-export const selectSelectedTitle = createSelector(
-    [
-        selectActiveFilters,
-    ],
-    (filters) => {
-        const entry = filters.find(s => s.key === "selected_title");
-        if (!entry) {
-            return "";
-        } else {
-            return entry.value as string
-        }
-    }
-)
+export const selectSelectedTitle = makeFilterSelector("selected_title", "");
 
 // Action creators are generated for each case reducer function
 export const { filteringByGenre, filterByTitle, filterByPlatform } = gamesSlice.actions;
