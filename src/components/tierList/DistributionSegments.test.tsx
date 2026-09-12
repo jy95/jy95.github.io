@@ -1,12 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { echoTranslations } from '@/test/mocks/nextIntl';
 
-vi.mock('next-intl', () => ({
-    useTranslations: (ns?: string) => (key: string, opts?: Record<string, unknown>) => {
-        const base = ns ? `${ns}.${key}` : key;
-        return opts ? `${base}:${JSON.stringify(opts)}` : base;
-    },
-}));
+vi.mock('next-intl', () => echoTranslations());
 
 import DistributionSegments from './DistributionSegments';
 
