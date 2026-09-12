@@ -1,14 +1,13 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
+import { echoTranslations } from '@/test/mocks/nextIntl';
 
 vi.mock('@/i18n/routing', () => ({
     Link: ({ children, href }: { children: React.ReactNode; href: string }) => <a href={href}>{children}</a>,
     usePathname: () => '/games',
 }));
 
-vi.mock('next-intl', () => ({
-    useTranslations: () => (key: string) => key,
-}));
+vi.mock('next-intl', () => echoTranslations());
 
 import DashboardLayout from './DashboardLayout';
 

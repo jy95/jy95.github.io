@@ -1,10 +1,9 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { echoTranslations } from '@/test/mocks/nextIntl';
 
 // Echoes the key back so we can assert which category rows actually rendered.
-vi.mock('next-intl', () => ({
-    useTranslations: () => (key: string) => key,
-}));
+vi.mock('next-intl', () => echoTranslations());
 
 import { TierListBoard } from './TierListBoard';
 import type { RawType } from './index';

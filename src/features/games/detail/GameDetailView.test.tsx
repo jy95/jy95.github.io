@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { echoTranslations } from '@/test/mocks/nextIntl';
 
 // 1. Bloquer le chargement interne ESM de next/navigation dans next-intl
 vi.mock('next-intl/navigation', () => ({
@@ -22,9 +23,7 @@ vi.mock('@/i18n/routing', () => ({
     getPathname: vi.fn(),
 }));
 
-vi.mock('next-intl', () => ({
-    useTranslations: (ns?: string) => (key: string) => (ns ? `${ns}.${key}` : key),
-}));
+vi.mock('next-intl', () => echoTranslations());
 
 vi.mock('next/image', () => ({
     default: (props: Record<string, unknown>) => <img alt={props.alt as string} src={props.src as string} />,
