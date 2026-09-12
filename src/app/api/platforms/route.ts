@@ -8,6 +8,4 @@ export type Platform_Entry = {
 }
 export type PlatformsResponse = Platform_Entry[];
 
-export async function GET() {
-    return staticJsonRoute(() => import("./platforms.json"));
-}
+export const GET = staticJsonRoute(() => import("./platforms.json"));
