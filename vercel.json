@@ -14,7 +14,8 @@
   "git": {
     "deploymentEnabled": {
       "gh-pages": false,
-      "automated/*": false
+      "automated/*": false,
+      "dependabot/*": false
     }
   }
 }
