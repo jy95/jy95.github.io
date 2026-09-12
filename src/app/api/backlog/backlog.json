@@ -1439,5 +1439,10 @@
 		"hltb_main": "18:09:30",
 		"hltb_extra": "19:11:54",
 		"hltb_completionist": "29:00:33"
+	},
+	{
+		"id": 207,
+		"title": "Alpha Protocol",
+		"platform": 6
 	}
 ]
