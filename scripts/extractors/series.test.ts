@@ -1,37 +1,24 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { readFile } from 'node:fs/promises';
-import { openTestDb, hasRealDb } from '../tasks/testDbHelper';
-import { tempOutputPath } from './common/testFileHelper';
+import { useExtractorHarness } from '../extractors/common/extractorTestHarness';
+import { hasRealDb } from '../tasks/testDbHelper';
 import { extractAndSaveSeries } from './series';
-import type { Database } from 'better-sqlite3';
 
 describe.skipIf(!hasRealDb)('extractAndSaveSeries', () => {
-    let db: Database;
-    let cleanupDb: () => void;
-    let outPath: string;
-    let cleanupFile: () => void;
-
-    beforeEach(() => {
-        ({ db, cleanup: cleanupDb } = openTestDb() as any);
-        ({ path: outPath, cleanup: cleanupFile } = tempOutputPath('series'));
-    });
-    afterEach(() => {
-        cleanupDb();
-        cleanupFile();
-    });
+    const ctx = useExtractorHarness('extractAndSaveSeries');
 
     it('matches the row count of the series_as_json view', async () => {
-        const expectedCount = db.prepare('SELECT COUNT(*) AS n FROM series_as_json').get() as { n: number };
+        const expectedCount = ctx.db.prepare('SELECT COUNT(*) AS n FROM series_as_json').get() as { n: number };
 
-        await extractAndSaveSeries(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8'));
+        await extractAndSaveSeries(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
 
         expect(written).toHaveLength(expectedCount.n);
     });
 
     it('every series entry has a non-empty items array', async () => {
-        await extractAndSaveSeries(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8')) as { items: unknown[] }[];
+        await extractAndSaveSeries(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8')) as { items: unknown[] }[];
 
         for (const serie of written) {
             expect(Array.isArray(serie.items)).toBe(true);
@@ -40,11 +27,11 @@ describe.skipIf(!hasRealDb)('extractAndSaveSeries', () => {
     });
 
     it('every serie name in the output exists in the series table', async () => {
-        await extractAndSaveSeries(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8')) as { name: string }[];
+        await extractAndSaveSeries(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8')) as { name: string }[];
 
         const knownNames = new Set(
-            (db.prepare('SELECT name FROM series').all() as { name: string }[]).map((r) => r.name)
+            (ctx.db.prepare('SELECT name FROM series').all() as { name: string }[]).map((r) => r.name)
         );
         for (const serie of written) {
             expect(knownNames.has(serie.name)).toBe(true);

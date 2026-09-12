@@ -1,10 +1,11 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
-// Echoes the key back so we can assert which category rows actually rendered.
-vi.mock('next-intl', () => ({
-    useTranslations: () => (key: string) => key,
-}));
+// Echoes the namespaced key so we can assert which category rows actually rendered.
+vi.mock('next-intl', async () => {
+    const { echoTranslations } = await import('@/test/mocks/nextIntl');
+    return echoTranslations();
+});
 
 import { TierListBoard } from './TierListBoard';
 import type { RawType } from './index';
@@ -23,8 +24,8 @@ describe('TierListBoard', () => {
                 GameRender={GameRender}
             />
         );
-        expect(screen.getByText('tier_good')).toBeInTheDocument();
-        expect(screen.getByText('tier_bad')).toBeInTheDocument();
+        expect(screen.getByText('TierList.categories.tier_good')).toBeInTheDocument();
+        expect(screen.getByText('TierList.categories.tier_bad')).toBeInTheDocument();
     });
 
     it('omits empty categories when skipEmptyCategories is true', () => {
@@ -37,8 +38,8 @@ describe('TierListBoard', () => {
                 skipEmptyCategories
             />
         );
-        expect(screen.getByText('tier_good')).toBeInTheDocument();
-        expect(screen.queryByText('tier_bad')).not.toBeInTheDocument();
+        expect(screen.getByText('TierList.categories.tier_good')).toBeInTheDocument();
+        expect(screen.queryByText('TierList.categories.tier_bad')).not.toBeInTheDocument();
     });
 
     it('keeps a category with skipEmptyCategories when it has at least one item', () => {
@@ -51,8 +52,8 @@ describe('TierListBoard', () => {
                 skipEmptyCategories
             />
         );
-        expect(screen.queryByText('tier_good')).not.toBeInTheDocument();
-        expect(screen.getByText('tier_bad')).toBeInTheDocument();
+        expect(screen.queryByText('TierList.categories.tier_good')).not.toBeInTheDocument();
+        expect(screen.getByText('TierList.categories.tier_bad')).toBeInTheDocument();
     });
 
     it('omits every row when all categories are empty and skipEmptyCategories is true', () => {
@@ -65,8 +66,8 @@ describe('TierListBoard', () => {
                 skipEmptyCategories
             />
         );
-        expect(screen.queryByText('tier_good')).not.toBeInTheDocument();
-        expect(screen.queryByText('tier_bad')).not.toBeInTheDocument();
+        expect(screen.queryByText('TierList.categories.tier_good')).not.toBeInTheDocument();
+        expect(screen.queryByText('TierList.categories.tier_bad')).not.toBeInTheDocument();
     });
 
     it('treats a category missing entirely from data as empty', () => {
@@ -79,8 +80,8 @@ describe('TierListBoard', () => {
                 skipEmptyCategories
             />
         );
-        expect(screen.getByText('tier_good')).toBeInTheDocument();
-        expect(screen.queryByText('tier_bad')).not.toBeInTheDocument();
+        expect(screen.getByText('TierList.categories.tier_good')).toBeInTheDocument();
+        expect(screen.queryByText('TierList.categories.tier_bad')).not.toBeInTheDocument();
     });
 
     it('renders items for each category using GameRender', () => {

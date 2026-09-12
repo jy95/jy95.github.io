@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { echoTranslations } from '@/test/mocks/nextIntl';
 
 let mockPathname = '/games';
 let mockDrawerOpen = true;
@@ -9,9 +10,7 @@ vi.mock('@/i18n/routing', () => ({
     Link: ({ children, href }: { children: React.ReactNode; href: string }) => <a href={href}>{children}</a>,
 }));
 
-vi.mock('next-intl', () => ({
-    useTranslations: () => (key: string) => key,
-}));
+vi.mock('next-intl', () => echoTranslations());
 
 vi.mock('../provider/useAppContext', () => ({
     useAppContext: () => ({ drawerOpen: mockDrawerOpen }),

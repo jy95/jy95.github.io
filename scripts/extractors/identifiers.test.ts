@@ -1,37 +1,24 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { readFile } from 'node:fs/promises';
-import { openTestDb, hasRealDb } from '../tasks/testDbHelper';
-import { tempOutputPath } from './common/testFileHelper';
+import { useExtractorHarness } from '../extractors/common/extractorTestHarness';
+import { hasRealDb } from '../tasks/testDbHelper';
 import { extractAndSaveRandomList } from './identifiers';
-import type { Database } from 'better-sqlite3';
 
 describe.skipIf(!hasRealDb)('extractAndSaveRandomList', () => {
-    let db: Database;
-    let cleanupDb: () => void;
-    let outPath: string;
-    let cleanupFile: () => void;
-
-    beforeEach(() => {
-        ({ db, cleanup: cleanupDb } = openTestDb() as any);
-        ({ path: outPath, cleanup: cleanupFile } = tempOutputPath('identifiers'));
-    });
-    afterEach(() => {
-        cleanupDb();
-        cleanupFile();
-    });
+    const ctx = useExtractorHarness('extractAndSaveRandomList');
 
     it('matches the row count of games_in_present exactly', async () => {
-        const expectedCount = db.prepare('SELECT COUNT(*) AS n FROM games_in_present').get() as { n: number };
+        const expectedCount = ctx.db.prepare('SELECT COUNT(*) AS n FROM games_in_present').get() as { n: number };
 
-        await extractAndSaveRandomList(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8'));
+        await extractAndSaveRandomList(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
 
         expect(written).toHaveLength(expectedCount.n);
     });
 
     it('every entry carries exactly one of videoId or playlistId (this feeds /api/random\'s type detection)', async () => {
-        await extractAndSaveRandomList(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8')) as { videoId?: string; playlistId?: string }[];
+        await extractAndSaveRandomList(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8')) as { videoId?: string; playlistId?: string }[];
 
         for (const entry of written) {
             const hasVideo = 'videoId' in entry && Boolean(entry.videoId);
@@ -43,8 +30,8 @@ describe.skipIf(!hasRealDb)('extractAndSaveRandomList', () => {
     });
 
     it('contains no duplicate identifiers', async () => {
-        await extractAndSaveRandomList(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8')) as { videoId?: string; playlistId?: string }[];
+        await extractAndSaveRandomList(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8')) as { videoId?: string; playlistId?: string }[];
 
         const ids = written.map((e) => e.videoId ?? e.playlistId);
         expect(new Set(ids).size).toBe(ids.length);

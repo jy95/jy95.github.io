@@ -4,12 +4,10 @@ import { render, screen } from '@testing-library/react';
 // Echoes back "<namespace>.<key>[:<opts>]" so we can assert both the
 // distribution header's translated total and the per-segment widths
 // without a real NextIntlClientProvider.
-vi.mock('next-intl', () => ({
-    useTranslations: (namespace?: string) => (key: string, opts?: Record<string, unknown>) => {
-        const base = namespace ? `${namespace}.${key}` : key;
-        return opts ? `${base}:${JSON.stringify(opts)}` : base;
-    },
-}));
+vi.mock('next-intl', async () => {
+    const { echoTranslations } = await import('@/test/mocks/nextIntl');
+    return echoTranslations();
+});
 
 import DistributionBar from './DistributionBar';
 

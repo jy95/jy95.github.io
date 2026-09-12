@@ -1,9 +1,10 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
-vi.mock('next-intl', () => ({
-    useTranslations: (ns?: string) => (key: string) => (ns ? `${ns}.${key}` : key),
-}));
+vi.mock('next-intl', async () => {
+    const { echoTranslations } = await import('@/test/mocks/nextIntl');
+    return echoTranslations();
+});
 
 import DisclaimerAccordion from './DisclaimerAccordion';
 import type { TierCategoryKey } from '@/types/tierList';

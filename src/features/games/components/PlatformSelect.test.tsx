@@ -1,9 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { echoTranslations } from '@/test/mocks/nextIntl';
 
-vi.mock('next-intl', () => ({
-    useTranslations: (ns?: string) => (key: string) => (ns ? `${ns}.${key}` : key),
-}));
+vi.mock('next-intl', () => echoTranslations());
 
 const dispatchMock = vi.fn();
 let mockSelectedPlatform: number | undefined;

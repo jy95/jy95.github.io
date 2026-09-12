@@ -1,9 +1,8 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { readFile } from 'node:fs/promises';
-import { openTestDb, hasRealDb } from '../tasks/testDbHelper';
-import { tempOutputPath } from './common/testFileHelper';
+import { useExtractorHarness } from '../extractors/common/extractorTestHarness';
+import { hasRealDb } from '../tasks/testDbHelper';
 import { extractAndSaveStats } from './stats';
-import type { Database } from 'better-sqlite3';
 
 type StatsOutput = {
     platforms: unknown[];
@@ -21,23 +20,11 @@ type StatsOutput = {
 };
 
 describe.skipIf(!hasRealDb)('extractAndSaveStats', () => {
-    let db: Database;
-    let cleanupDb: () => void;
-    let outPath: string;
-    let cleanupFile: () => void;
-
-    beforeEach(() => {
-        ({ db, cleanup: cleanupDb } = openTestDb() as any);
-        ({ path: outPath, cleanup: cleanupFile } = tempOutputPath('stats'));
-    });
-    afterEach(() => {
-        cleanupDb();
-        cleanupFile();
-    });
+    const ctx = useExtractorHarness('extractAndSaveStats');
 
     it('produces the top-level shape (platforms, genres, general)', async () => {
-        await extractAndSaveStats(db, outPath);
-        const written: StatsOutput = JSON.parse(await readFile(outPath, 'utf-8'));
+        await extractAndSaveStats(ctx.db, ctx.outPath);
+        const written: StatsOutput = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
 
         expect(written).toHaveProperty('platforms');
         expect(written).toHaveProperty('genres');
@@ -45,18 +32,18 @@ describe.skipIf(!hasRealDb)('extractAndSaveStats', () => {
     });
 
     it('games total equals available + unavailable, matching independently-run counts', async () => {
-        const total = db
+        const total = ctx.db
             .prepare('SELECT COUNT(*) AS n FROM games WHERE id NOT IN (SELECT dlc FROM games_dlcs)')
             .get() as { n: number };
-        const available = db
+        const available = ctx.db
             .prepare('SELECT COUNT(*) AS n FROM games_in_present WHERE id NOT IN (SELECT dlc FROM games_dlcs)')
             .get() as { n: number };
-        const unavailable = db
+        const unavailable = ctx.db
             .prepare('SELECT COUNT(*) AS n FROM games_in_future WHERE id NOT IN (SELECT dlc FROM games_dlcs)')
             .get() as { n: number };
 
-        await extractAndSaveStats(db, outPath);
-        const written: StatsOutput = JSON.parse(await readFile(outPath, 'utf-8'));
+        await extractAndSaveStats(ctx.db, ctx.outPath);
+        const written: StatsOutput = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
 
         expect(written.general.games.total).toBe(total.n);
         expect(written.general.games.total_available).toBe(available.n);
@@ -64,16 +51,16 @@ describe.skipIf(!hasRealDb)('extractAndSaveStats', () => {
     });
 
     it('dlcs total equals available + unavailable, matching independently-run counts', async () => {
-        const total = db.prepare('SELECT COUNT(*) AS n FROM games_dlcs').get() as { n: number };
-        const available = db
+        const total = ctx.db.prepare('SELECT COUNT(*) AS n FROM games_dlcs').get() as { n: number };
+        const available = ctx.db
             .prepare('SELECT COUNT(*) AS n FROM games_in_present WHERE id IN (SELECT dlc FROM games_dlcs)')
             .get() as { n: number };
-        const unavailable = db
+        const unavailable = ctx.db
             .prepare('SELECT COUNT(*) AS n FROM games_in_future WHERE id IN (SELECT dlc FROM games_dlcs)')
             .get() as { n: number };
 
-        await extractAndSaveStats(db, outPath);
-        const written: StatsOutput = JSON.parse(await readFile(outPath, 'utf-8'));
+        await extractAndSaveStats(ctx.db, ctx.outPath);
+        const written: StatsOutput = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
 
         expect(written.general.dlcs.total).toBe(total.n);
         expect(written.general.dlcs.total_available).toBe(available.n);
@@ -81,8 +68,8 @@ describe.skipIf(!hasRealDb)('extractAndSaveStats', () => {
     });
 
     it('normalizes duration fields into valid hours/minutes/seconds ranges', async () => {
-        await extractAndSaveStats(db, outPath);
-        const written: StatsOutput = JSON.parse(await readFile(outPath, 'utf-8'));
+        await extractAndSaveStats(ctx.db, ctx.outPath);
+        const written: StatsOutput = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
 
         for (const bucket of [
             written.general.duration.total,
@@ -97,14 +84,14 @@ describe.skipIf(!hasRealDb)('extractAndSaveStats', () => {
     });
 
     it('hardcodes the same channel_start_date used across the app', async () => {
-        await extractAndSaveStats(db, outPath);
-        const written: StatsOutput = JSON.parse(await readFile(outPath, 'utf-8'));
+        await extractAndSaveStats(ctx.db, ctx.outPath);
+        const written: StatsOutput = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
         expect(written.general.channel_start_date).toBe('2014-04-15T17:35:16+00:00');
     });
 
     it('every platform stats entry has total = total_available + total_unavailable', async () => {
-        await extractAndSaveStats(db, outPath);
-        const written: StatsOutput = JSON.parse(await readFile(outPath, 'utf-8'));
+        await extractAndSaveStats(ctx.db, ctx.outPath);
+        const written: StatsOutput = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
 
         for (const entry of written.platforms as { total: number; total_available: number; total_unavailable: number }[]) {
             expect(entry.total_available + entry.total_unavailable).toBe(entry.total);
@@ -112,8 +99,8 @@ describe.skipIf(!hasRealDb)('extractAndSaveStats', () => {
     });
 
     it('every genre stats entry has total = total_available + total_unavailable', async () => {
-        await extractAndSaveStats(db, outPath);
-        const written: StatsOutput = JSON.parse(await readFile(outPath, 'utf-8'));
+        await extractAndSaveStats(ctx.db, ctx.outPath);
+        const written: StatsOutput = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
 
         for (const entry of written.genres as { total: number; total_available: number; total_unavailable: number }[]) {
             expect(entry.total_available + entry.total_unavailable).toBe(entry.total);
@@ -122,10 +109,10 @@ describe.skipIf(!hasRealDb)('extractAndSaveStats', () => {
 
     it('handles missing or empty duration views gracefully without throwing', async () => {
         // Mock execution or execute on an empty table state where queries return undefined
-        db.exec('DELETE FROM games;');
+        ctx.db.exec('DELETE FROM games;');
 
-        await extractAndSaveStats(db, outPath);
-        const written: StatsOutput = JSON.parse(await readFile(outPath, 'utf-8'));
+        await extractAndSaveStats(ctx.db, ctx.outPath);
+        const written: StatsOutput = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
 
         expect(written.general.duration.total).toEqual({ hours: 0, minutes: 0, seconds: 0 });
         expect(written.general.duration.total_available).toEqual({ hours: 0, minutes: 0, seconds: 0 });

@@ -1,6 +1,7 @@
 // Others
 import PlatformColumn from "@/components/tableColumns/platforms";
 import { renderTooltipCell } from "@/components/tableColumns/renderTooltipCell";
+import { titleColumn } from "@/components/tableColumns/titleColumn";
 import { timeToSeconds } from "@/domain/games";
 
 // Types
@@ -16,13 +17,7 @@ export type Props = {
 
 export default function tableColumns(props: Props) : GridColDef[]{
     return [
-        {
-            field: "title",
-            headerName: props.titleLabel,
-            headerAlign: 'center',
-            renderCell: renderTooltipCell,
-            width: 270
-          },
+        titleColumn(props.titleLabel),
           {
             field: "platform",
             headerName: props.platformLabel,

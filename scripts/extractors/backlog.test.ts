@@ -1,36 +1,23 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { readFile } from 'node:fs/promises';
-import { openTestDb, hasRealDb } from '../tasks/testDbHelper';
-import { tempOutputPath } from './common/testFileHelper';
+import { useExtractorHarness } from '../extractors/common/extractorTestHarness';
+import { hasRealDb } from '../tasks/testDbHelper';
 import { extractAndSaveBacklog } from './backlog';
-import type { Database } from 'better-sqlite3';
 
 describe.skipIf(!hasRealDb)('extractAndSaveBacklog', () => {
-    let db: Database;
-    let cleanupDb: () => void;
-    let outPath: string;
-    let cleanupFile: () => void;
-
-    beforeEach(() => {
-        ({ db, cleanup: cleanupDb } = openTestDb() as any);
-        ({ path: outPath, cleanup: cleanupFile } = tempOutputPath('backlog'));
-    });
-    afterEach(() => {
-        cleanupDb();
-        cleanupFile();
-    });
+    const ctx = useExtractorHarness('extractAndSaveBacklog');
 
     it('writes one entry per row in the backlog table', async () => {
-        const expectedCount = db.prepare('SELECT COUNT(*) AS n FROM backlog').get() as { n: number };
+        const expectedCount = ctx.db.prepare('SELECT COUNT(*) AS n FROM backlog').get() as { n: number };
 
-        await extractAndSaveBacklog(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8'));
+        await extractAndSaveBacklog(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
 
         expect(written).toHaveLength(expectedCount.n);
     });
 
     it('drops null fields (e.g. missing notes/platform) rather than writing them as null', async () => {
-        const rowWithNulls = db
+        const rowWithNulls = ctx.db
             .prepare('SELECT id FROM backlog WHERE notes IS NULL LIMIT 1')
             .get() as { id: number } | undefined;
 
@@ -39,8 +26,8 @@ describe.skipIf(!hasRealDb)('extractAndSaveBacklog', () => {
         // across differently-seeded databases without a false pass.
         if (!rowWithNulls) return;
 
-        await extractAndSaveBacklog(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8')) as { id: number }[];
+        await extractAndSaveBacklog(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8')) as { id: number }[];
         const entry = written.find((e) => e.id === rowWithNulls.id);
 
         expect(entry).toBeDefined();
@@ -48,14 +35,14 @@ describe.skipIf(!hasRealDb)('extractAndSaveBacklog', () => {
     });
 
     it('preserves title and hltb duration fields verbatim', async () => {
-        const sample = db.prepare('SELECT id, title, hltb_main FROM backlog LIMIT 1').get() as {
+        const sample = ctx.db.prepare('SELECT id, title, hltb_main FROM backlog LIMIT 1').get() as {
             id: number;
             title: string;
             hltb_main: string | null;
         };
 
-        await extractAndSaveBacklog(db, outPath);
-        const written = JSON.parse(await readFile(outPath, 'utf-8')) as { id: number; title: string; hltb_main?: string }[];
+        await extractAndSaveBacklog(ctx.db, ctx.outPath);
+        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8')) as { id: number; title: string; hltb_main?: string }[];
         const entry = written.find((e) => e.id === sample.id)!;
 
         expect(entry.title).toBe(sample.title);
