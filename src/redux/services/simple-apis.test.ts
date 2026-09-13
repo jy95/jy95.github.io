@@ -1,22 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
+import { stubRtkFetch, calledUrl } from '@/test/mocks/rtkFetch';
 
-vi.stubGlobal('location', new URL('http://localhost'));
-const NativeRequest = globalThis.Request;
-vi.stubGlobal(
-    'Request',
-    class extends NativeRequest {
-        constructor(input: RequestInfo | URL, init?: RequestInit) {
-            super(
-                typeof input === 'string'
-                    ? new URL(input, globalThis.location.href).toString()
-                    : input,
-                init
-            );
-        }
-    }
-);
-const fetchMock = vi.fn();
+const fetchMock = stubRtkFetch();
 vi.stubGlobal('fetch', fetchMock);
 
 const { genresAPI } = await import('./genresAPI');
@@ -48,12 +34,6 @@ function jsonResponse(body: unknown) {
     });
 }
 
-function calledPath(callIndex = 0): string {
-    const raw = fetchMock.mock.calls[callIndex][0];
-    const urlStr = typeof raw === 'string' ? raw : raw.url;
-    return new URL(urlStr, 'http://localhost').pathname;
-}
-
 describe('injected RTK Query endpoints', () => {
     beforeEach(() => {
         fetchMock.mockReset();
@@ -62,32 +42,32 @@ describe('injected RTK Query endpoints', () => {
 
     it('genresAPI.getGenres hits /api/genres', async () => {
         await makeStore(genresAPI).dispatch(genresAPI.endpoints.getGenres.initiate());
-        expect(calledPath()).toBe('/api/genres');
+        expect(calledUrl(fetchMock).pathname).toBe('/api/genres');
     });
 
     it('seriesAPI.getSeries hits /api/series', async () => {
         await makeStore(seriesAPI).dispatch(seriesAPI.endpoints.getSeries.initiate());
-        expect(calledPath()).toBe('/api/series');
+        expect(calledUrl(fetchMock).pathname).toBe('/api/series');
     });
 
     it('dlcsAPI.getDLCs hits /api/dlcs', async () => {
         await makeStore(dlcsAPI).dispatch(dlcsAPI.endpoints.getDLCs.initiate());
-        expect(calledPath()).toBe('/api/dlcs');
+        expect(calledUrl(fetchMock).pathname).toBe('/api/dlcs');
     });
 
     it('statsAPI.getStats hits /api/stats', async () => {
         await makeStore(statsAPI).dispatch(statsAPI.endpoints.getStats.initiate());
-        expect(calledPath()).toBe('/api/stats');
+        expect(calledUrl(fetchMock).pathname).toBe('/api/stats');
     });
 
     it('platformsAPI.getPlatforms hits /api/platforms', async () => {
         await makeStore(platformsAPI).dispatch(platformsAPI.endpoints.getPlatforms.initiate());
-        expect(calledPath()).toBe('/api/platforms');
+        expect(calledUrl(fetchMock).pathname).toBe('/api/platforms');
     });
 
     it('planningAPI.getPlanning hits /api/planning', async () => {
         await makeStore(planningAPI).dispatch(planningAPI.endpoints.getPlanning.initiate());
-        expect(calledPath()).toBe('/api/planning');
+        expect(calledUrl(fetchMock).pathname).toBe('/api/planning');
     });
 
     it('all injected APIs share the same reducerPath and cache', () => {

@@ -1,25 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
+import { stubRtkFetch, calledUrl } from '@/test/mocks/rtkFetch';
 
-vi.stubGlobal('location', new URL('http://localhost'));
-
-const NativeRequest = globalThis.Request;
-
-vi.stubGlobal(
-    'Request',
-    class extends NativeRequest {
-        constructor(input: RequestInfo | URL, init?: RequestInit) {
-            super(
-                typeof input === 'string'
-                    ? new URL(input, globalThis.location.href).toString()
-                    : input,
-                init,
-            );
-        }
-    },
-);
-
-const fetchMock = vi.fn();
+const fetchMock = stubRtkFetch();
 vi.stubGlobal('fetch', fetchMock);
 
 const { backlogAPI } = await import('./backlogAPI');
@@ -39,12 +22,6 @@ function jsonResponse(body: unknown) {
         status: 200,
         headers: { 'Content-Type': 'application/json' },
     });
-}
-
-function calledPath(callIndex = 0): string {
-    const raw = fetchMock.mock.calls[callIndex][0];
-    const url = typeof raw === 'string' ? raw : raw.url;
-    return new URL(url, 'http://localhost').pathname;
 }
 
 describe('backlogAPI.getBacklog', () => {
@@ -71,7 +48,7 @@ describe('backlogAPI.getBacklog', () => {
                 status: 'playing',
             },
         ]);
-        expect(calledPath()).toBe('/api/backlog');
+        expect(calledUrl(fetchMock).pathname).toBe('/api/backlog');
     });
 
     it('uses the shared RTK Query API', () => {
