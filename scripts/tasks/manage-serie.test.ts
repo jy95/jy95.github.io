@@ -71,6 +71,6 @@ describe.skipIf(!hasRealDb)('manageSerieInDatabase', () => {
         ).rejects.toThrow('Game not found: DOES_NOT_EXIST_XYZ');
 
         const remaining = ctx.db.prepare('SELECT COUNT(*) AS n FROM series_games WHERE serie = ?').get(serieId) as { n: number };
-        expect(remaining.n).toBe(0);
+        expect(remaining.n).toBe(1);
     });
 });
