@@ -10,6 +10,19 @@ import { getDrawerWidthTransitionMixin } from "./utils";
 export const DRAWER_WIDTH = 320;
 export const MINI_DRAWER_WIDTH = 84;
 
+type DrawerVariantConfig = {
+  key: string;
+  display: Record<'xs' | 'sm' | 'md', 'none' | 'block'>;
+  variant: 'temporary' | 'permanent';
+  mini: boolean;
+};
+
+const DRAWER_VARIANTS: DrawerVariantConfig[] = [
+  { key: 'mobile', display: { xs: 'block', sm: 'none', md: 'none' }, variant: 'temporary', mini: false },
+  { key: 'tablet', display: { xs: 'none', sm: 'block', md: 'none' }, variant: 'permanent', mini: true },
+  { key: 'desktop', display: { xs: 'none', sm: 'none', md: 'block' }, variant: 'permanent', mini: true },
+];
+
 export default function DashboardSidebar() {
   const { drawerOpen = false, toggleDrawer } = useAppContext();
 
@@ -63,41 +76,21 @@ export default function DashboardSidebar() {
 
   return (
     <>
-      {/* Mobile — temporary, always full-width when open */}
-      <Drawer
-        variant="temporary"
-        open={drawerOpen}
-        onClose={toggleDrawer}
-        ModalProps={{ keepMounted: true }}
-        sx={{
-          display: { xs: "block", sm: "none" },
-          ...getDrawerSx(false, true),
-        }}
-      >
-        {getDrawerContent()}
-      </Drawer>
-
-      {/* Tablet — permanent, collapsible mini */}
-      <Drawer
-        variant="permanent"
-        sx={{
-          display: { xs: "none", sm: "block", md: "none" },
-          ...getDrawerSx(isMini, false),
-        }}
-      >
-        {getDrawerContent()}
-      </Drawer>
-
-      {/* Desktop — permanent, collapsible mini */}
-      <Drawer
-        variant="permanent"
-        sx={{
-          display: { xs: "none", md: "block" },
-          ...getDrawerSx(isMini, false),
-        }}
-      >
-        {getDrawerContent()}
-      </Drawer>
+      {DRAWER_VARIANTS.map(({ key, display, variant, mini }) => (
+        <Drawer
+          key={key}
+          variant={variant}
+          open={variant === 'temporary' ? drawerOpen : undefined}
+          onClose={variant === 'temporary' ? toggleDrawer : undefined}
+          ModalProps={variant === 'temporary' ? { keepMounted: true } : undefined}
+          sx={{
+            display: { xs: display.xs, sm: display.sm, md: display.md },
+            ...getDrawerSx(mini ? isMini : false, variant === 'temporary'),
+          }}
+        >
+          {getDrawerContent()}
+        </Drawer>
+      ))}
     </>
   );
 }

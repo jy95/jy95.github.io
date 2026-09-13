@@ -1,27 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
+import { stubRtkFetch, calledUrl } from '@/test/mocks/rtkFetch';
 
-// 1. Stub global location so relative URLs can be resolved
-vi.stubGlobal('location', new URL('http://localhost'));
-
-// 2. Make Node's Request resolve relative URLs like a browser Request
-const NativeRequest = globalThis.Request;
-vi.stubGlobal(
-    'Request',
-    class extends NativeRequest {
-        constructor(input: RequestInfo | URL, init?: RequestInit) {
-            super(
-                typeof input === 'string'
-                    ? new URL(input, globalThis.location.href).toString()
-                    : input,
-                init
-            );
-        }
-    }
-);
-
-// 3. Stub global fetch BEFORE importing gamesAPI
-const fetchMock = vi.fn();
+const fetchMock = stubRtkFetch();
 vi.stubGlobal('fetch', fetchMock);
 
 // 4. Dynamically import gamesAPI after fetch and Request are stubbed
@@ -55,12 +36,6 @@ describe('gamesAPI query building (getGames)', () => {
         fetchMock.mockImplementation(async () => jsonResponse(emptyPage));
     });
 
-    function calledUrl(callIndex = 0): URL {
-        const raw = fetchMock.mock.calls[callIndex][0];
-        const urlStr = typeof raw === 'string' ? raw : raw.url;
-        return new URL(urlStr, 'http://localhost');
-    }
-
     it('includes page and pageSize even with no filters', async () => {
         const store = makeStore();
         await store.dispatch(
@@ -70,7 +45,7 @@ describe('gamesAPI query building (getGames)', () => {
             })
         );
 
-        const url = calledUrl();
+        const url = calledUrl(fetchMock);
         expect(url.searchParams.get('page')).toBe('1');
         expect(url.searchParams.get('pageSize')).toBe('12');
     });
@@ -84,7 +59,7 @@ describe('gamesAPI query building (getGames)', () => {
             })
         );
 
-        expect(calledUrl().pathname).toBe('/api/games');
+        expect(calledUrl(fetchMock).pathname).toBe('/api/games');
     });
 
     it('serializes a selected_title filter as a plain query param', async () => {
@@ -96,7 +71,7 @@ describe('gamesAPI query building (getGames)', () => {
             })
         );
 
-        expect(calledUrl().searchParams.get('selected_title')).toBe('zelda');
+        expect(calledUrl(fetchMock).searchParams.get('selected_title')).toBe('zelda');
     });
 
     it('serializes a selected_platform filter, converting the number to a string', async () => {
@@ -108,7 +83,7 @@ describe('gamesAPI query building (getGames)', () => {
             })
         );
 
-        expect(calledUrl().searchParams.get('selected_platform')).toBe('6');
+        expect(calledUrl(fetchMock).searchParams.get('selected_platform')).toBe('6');
     });
 
     it('serializes selected_genres as one repeated param per genre, in order', async () => {
@@ -120,7 +95,7 @@ describe('gamesAPI query building (getGames)', () => {
             })
         );
 
-        expect(calledUrl().searchParams.getAll('selected_genres')).toEqual([
+        expect(calledUrl(fetchMock).searchParams.getAll('selected_genres')).toEqual([
             '1',
             '2',
             '3',
@@ -136,7 +111,7 @@ describe('gamesAPI query building (getGames)', () => {
             })
         );
 
-        expect(calledUrl().searchParams.getAll('selected_genres')).toEqual([]);
+        expect(calledUrl(fetchMock).searchParams.getAll('selected_genres')).toEqual([]);
     });
 
     it('combines title, platform and genre filters together in a single request', async () => {
@@ -152,7 +127,7 @@ describe('gamesAPI query building (getGames)', () => {
             })
         );
 
-        const url = calledUrl();
+        const url = calledUrl(fetchMock);
         expect(url.searchParams.get('selected_title')).toBe('mario');
         expect(url.searchParams.get('selected_platform')).toBe('1');
         expect(url.searchParams.getAll('selected_genres')).toEqual(['5']);
@@ -167,7 +142,7 @@ describe('gamesAPI query building (getGames)', () => {
             })
         );
 
-        expect(calledUrl().searchParams.get('pageSize')).toBe('24');
+        expect(calledUrl(fetchMock).searchParams.get('pageSize')).toBe('24');
     });
 
     it('starts at page 1 on the initial fetch, per initialPageParam', async () => {
@@ -179,6 +154,6 @@ describe('gamesAPI query building (getGames)', () => {
             })
         );
 
-        expect(calledUrl().searchParams.get('page')).toBe('1');
+        expect(calledUrl(fetchMock).searchParams.get('page')).toBe('1');
     });
 });

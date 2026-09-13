@@ -3,23 +3,22 @@
 // Hooks
 import { useTranslations } from "next-intl";
 
+// MUI components
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import HelpIcon from '@mui/icons-material/Help';
+
+// Custom components
+import { AvatarListRow } from "@/components/common/AvatarListRow";
 
 import type { TierCategoryKey } from "@/types/tierList";
 import type { BackgroundColor } from "./index";
@@ -64,14 +63,13 @@ export default function DisclaimerAccordion({ categoryColors } : DisclaimerAccor
                 <Box sx={{ mt: 2 }}>
                     <List disablePadding>
                         {tierKeys.map((key) => (
-                            <ListItem key={key}>
-                                <ListItemAvatar>
-                                    <Avatar variant="circular" sx={{ backgroundColor: categoryColors[key] }}>
-                                        <SportsEsportsIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText primary={ tCategories(key) } secondary={ tDescriptions(key) } />
-                            </ListItem>
+                            <AvatarListRow
+                                key={key}
+                                icon={<SportsEsportsIcon />}
+                                avatarSx={{ backgroundColor: categoryColors[key] }}
+                                primary={tCategories(key)}
+                                secondary={tDescriptions(key)}
+                            />
                         ))}
                     </List>
                 </Box>

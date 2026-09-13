@@ -11,30 +11,43 @@ interface GameRow {
 }
 
 /**
+ * Fetches games from the database for all years in the provided set.
+ * @param {SQLDatabase} db - The open database connection.
+ * @param {Set<string>} years - The set of years to match games.
+ * @param {'playlistId' | 'videoId'} identifierColumn - The column to use as the identifier.
+ * @returns {GameRow[]} - List of games with their titles and identifiers.
+ */
+function fetchGamesByIdentifierColumn(
+    db: SQLDatabase,
+    years: Set<string>,
+    identifierColumn: 'playlistId' | 'videoId'
+): GameRow[] {
+    const stmt = db.prepare(`
+        SELECT g.${identifierColumn} AS identifier, g.title
+        FROM games_schedules gs
+        JOIN games g ON g.id = gs.id
+        WHERE strftime('%Y', gs.availableAt) <= ?
+          AND (gs.endAt IS NULL OR strftime('%Y', gs.endAt) >= ?)
+          AND g.${identifierColumn} IS NOT NULL
+    `);
+
+    const seen = new Map<string, GameRow>();
+    for (const year of years) {
+        for (const game of stmt.all(year, year) as GameRow[]) {
+            seen.set(game.identifier, game);
+        }
+    }
+    return [...seen.values()];
+}
+
+/**
  * Fetches games with a playlistId from the database for all years in the provided set.
  * @param {SQLDatabase} db - The open database connection.
  * @param {Set<string>} years - The set of years to match games.
  * @returns {GameRow[]} - List of games with their titles and playlistIds as "identifier".
  */
-export function fetchGamesWithPlaylists(db: SQLDatabase, years: Set<string>): GameRow[] {
-    const stmt = db.prepare(`
-        SELECT g.playlistId AS identifier, g.title
-        FROM games_schedules gs
-        JOIN games g ON g.id = gs.id
-        WHERE strftime('%Y', gs.availableAt) <= ? 
-          AND (gs.endAt IS NULL OR strftime('%Y', gs.endAt) >= ?)
-          AND g.playlistId IS NOT NULL
-    `);
-    
-    const allGamesWithPlaylists = new Map<string, GameRow>();
-    for (const year of years) {
-        const gamesForYear = stmt.all(year, year) as GameRow[];
-        for (const game of gamesForYear) {
-            allGamesWithPlaylists.set(game.identifier, game);
-        }
-    }
-    return [...allGamesWithPlaylists.values()];
-}
+export const fetchGamesWithPlaylists = (db: SQLDatabase, years: Set<string>) =>
+    fetchGamesByIdentifierColumn(db, years, 'playlistId');
 
 /**
  * Fetches games with a videoId from the database for all years in the provided set.
@@ -42,25 +55,8 @@ export function fetchGamesWithPlaylists(db: SQLDatabase, years: Set<string>): Ga
  * @param {Set<string>} years - The set of years to match games.
  * @returns {GameRow[]} - List of games with their titles and videoIds as "identifier".
  */
-export function fetchGamesWithVideos(db: SQLDatabase, years: Set<string>): GameRow[] {
-    const stmt = db.prepare(`
-        SELECT g.videoId AS identifier, g.title
-        FROM games_schedules gs
-        JOIN games g ON g.id = gs.id
-        WHERE strftime('%Y', gs.availableAt) <= ?
-          AND (gs.endAt IS NULL OR strftime('%Y', gs.endAt) >= ?)
-          AND g.videoId IS NOT NULL
-    `);
-    
-    const allGamesWithVideos = new Map<string, GameRow>();
-    for (const year of years) {
-        const gamesForYear = stmt.all(year, year) as GameRow[];
-        for (const game of gamesForYear) {
-            allGamesWithVideos.set(game.identifier, game);
-        }
-    }
-    return [...allGamesWithVideos.values()];
-}
+export const fetchGamesWithVideos = (db: SQLDatabase, years: Set<string>) =>
+    fetchGamesByIdentifierColumn(db, years, 'videoId');
 
 /**
  * Prints games with their corresponding IDs in the specified format.

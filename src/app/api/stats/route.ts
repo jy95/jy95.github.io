@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { staticJsonRoute } from "@/lib/http/staticJsonRoute";
 
 type statsEntry = {
     /** @description  Number of games for this stat (including not yet available ones) */
@@ -50,13 +50,4 @@ export type statsProperty = {
     general: statsGeneral
 };
 
-export async function GET() {
-
-    const statsData = (await import("./stats.json")).default;
-
-    return NextResponse.json(statsData, {
-        headers: {
-            "Cache-Control": "public, max-age=86400, must-revalidate"
-        }
-    });
-}
+export const GET = staticJsonRoute<statsProperty>(() => import("./stats.json"));
