@@ -11,9 +11,9 @@ export function replaceOrderedLinks(
         notFoundMessage: (identifier: string) => string;
     }
 ) {
-    db.prepare(opts.deleteSql).run(opts.deleteParam);
-
     return db.transaction(() => {
+        db.prepare(opts.deleteSql).run(opts.deleteParam);
+
         let order = 1;
         for (const identifier of opts.identifiers) {
             const id = opts.resolveId(identifier);
