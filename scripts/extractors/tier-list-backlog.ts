@@ -1,5 +1,6 @@
 import { writeFile } from "node:fs/promises";
 import { stringifyJSON } from "./common/utils";
+import { COVER_PATHS } from "@/domain/games/coverPaths";
 
 import type { Database } from "better-sqlite3";
 
@@ -54,6 +55,6 @@ function mapToResult(entry: TierListBacklogEntry): BacklogEntry {
     return { 
         ...backlogEntry,
         id: backlogEntry.id.toString(),
-        imagePath: `/backlogcovers/${backlogEntry.id}/cover.webp`
+        imagePath: `${COVER_PATHS.backlog}/${backlogEntry.id}/cover.webp`
     };
 }

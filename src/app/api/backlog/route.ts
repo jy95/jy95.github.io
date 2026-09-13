@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { COVER_PATHS } from "@/domain/games/coverPaths";
 
 import type { BasicCard } from "@/domain/games";
 
@@ -38,6 +39,6 @@ function enhanceGameItem(game: RawBacklogEntry, id: number): BacklogEntry {
     return {
         ...game,
         id: id.toString(),
-        imagePath: `/backlogcovers/${id}/cover.webp`,
+        imagePath: `${COVER_PATHS.backlog}/${id}/cover.webp`,
     };
 }

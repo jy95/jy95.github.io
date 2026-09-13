@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import Fuse from 'fuse.js';
 import { buildCardGame } from "@/domain/games";
+import { COVER_PATHS } from "@/domain/games/coverPaths";
 
 import type { RawGame, CardGame } from "@/domain/games";
 
@@ -106,5 +107,5 @@ function extractParameters(params: URLSearchParams): RequestParams {
 
 // Return an enhanced payload for a single game
 function enhanceGameItem(game: rawEntry): CardGame {
-    return buildCardGame(game, "/covers");
+    return buildCardGame(game, COVER_PATHS.games);
 }

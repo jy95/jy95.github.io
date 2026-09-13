@@ -1,6 +1,7 @@
 import { writeFile } from "node:fs/promises";
 import { stringifyJSON } from "./utils";
 import { buildCardGame } from "@/domain/games";
+import { COVER_PATHS } from "@/domain/games/coverPaths";
 
 import type { Database } from "better-sqlite3";
 import type { BasicGame, CardGame } from "@/domain/games";
@@ -51,7 +52,7 @@ export async function genericExtractAndSaveTierListGames(
 
     for (const row of rows) {
         const { category_slug, ...gameData } = row;
-        result[category_slug].push(buildCardGame(gameData, "/covers"));
+        result[category_slug].push(buildCardGame(gameData, COVER_PATHS.games));
     }
 
     await writeFile(outputPath, stringifyJSON(result), "utf-8");
