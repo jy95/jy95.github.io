@@ -1,6 +1,8 @@
-import Grid, { type GridProps } from '@mui/material/Grid';
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Skeleton from '@mui/material/Skeleton';
+
+import type { GridProps } from '@mui/material/Grid';
 
 type StatPanelSkeletonProps = {
   size: GridProps['size'];
