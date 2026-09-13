@@ -11,10 +11,6 @@ import Typography from "@mui/material/Typography";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
 
 // Icons
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -24,6 +20,9 @@ import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import ExtensionIcon from '@mui/icons-material/Extension';
+
+// Custom components
+import { AvatarListRow } from "@/components/common/AvatarListRow";
 
 // Utils
 import { useCalcDate, usePrettyDuration } from "./utils";
@@ -56,20 +55,21 @@ function StatAccordion({
         aria-controls={`panel-content_${id}`}
         id={`panel-header_${id}`}
       >
-        <ListItemAvatar>
-          <Avatar>{defaultIcon}</Avatar>
-        </ListItemAvatar>
-        <ListItemText primary={title} secondary={generalText} />
+        <AvatarListRow 
+          icon={defaultIcon}
+          primary={title}
+          secondary={generalText}
+        />
       </AccordionSummary>
       <Suspense fallback={null}>
         <List>
           {items.map((item, index) => (
-            <ListItem key={`${id}_item_${index}`}>
-              <ListItemAvatar>
-                <Avatar>{item.icon || defaultIcon}</Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={item.label} secondary={item.value} />
-            </ListItem>
+            <AvatarListRow
+              key={`${id}_item_${index}`}
+              icon={item.icon || defaultIcon}
+              primary={item.label}
+              secondary={item.value}
+            />
           ))}
         </List>
       </Suspense>
@@ -131,17 +131,11 @@ function ChannelCreation({stats}: Props) {
   const human_string = `${localDateString} ${how_long_string}`;
 
   return (
-    <ListItem>
-    <ListItemAvatar>
-      <Avatar>
-        <YouTubeIcon />
-      </Avatar>
-    </ListItemAvatar>
-    <ListItemText
+    <AvatarListRow 
+      icon={<YouTubeIcon />}
       primary={t("stats.generalStats.channel_start_date")}
       secondary={human_string}
     />
-  </ListItem>
   )
 }
 
