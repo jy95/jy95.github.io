@@ -1,4 +1,4 @@
-import type { AppConfig } from 'next-intl';
+import type { MessageKeysOf } from './messageKeys';
 
 /**
  * Flattened dot-path keys for the `dashboard.menuEntries` message
@@ -6,7 +6,7 @@ import type { AppConfig } from 'next-intl';
  * `NavigationItem.titleKey` so a renamed/typo'd message key fails to
  * compile instead of silently rendering nothing in the sidebar.
  */
-type MenuEntriesMessages = AppConfig['Messages']['dashboard']['menuEntries'];
+type MenuEntriesMessages = MessageKeysOf<['dashboard', 'menuEntries']>;
 
 type FlattenKeys<T, Prefix extends string = ""> = {
     [K in keyof T & string]: T[K] extends string
