@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { buildCardGame } from "@/domain/games";
+import { COVER_PATHS } from "@/domain/games/coverPaths";
 import type { BasicGame, CardGame } from "@/domain/games";
 
 export type TestsResponse = {
@@ -33,5 +34,5 @@ export async function GET(request: Request) {
 }
 
 function enhanceGameItem(game: rawEntry): CardGame {
-    return buildCardGame(game as BasicGame, "/testscovers");
+    return buildCardGame(game as BasicGame, COVER_PATHS.tests);
 }

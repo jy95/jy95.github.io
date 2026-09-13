@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { buildCardGame } from "@/domain/games";
+import { COVER_PATHS } from "@/domain/games/coverPaths";
 import type { RawGame, CardGame } from "@/domain/games";
 
 type rawEntry = RawGame;
@@ -28,7 +29,7 @@ export async function GET() {
 // Return an enhanced payload for a single game
 function enhanceGameItem(game: rawEntry): planningEntry {
     return {
-        ...buildCardGame(game, "/covers"),
+        ...buildCardGame(game, COVER_PATHS.games),
         status: Object.hasOwn(game, "endAt") ? "RECORDED" : "PENDING"
     };
 }

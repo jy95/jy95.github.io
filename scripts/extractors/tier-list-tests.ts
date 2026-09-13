@@ -1,6 +1,7 @@
 import { writeFile } from "node:fs/promises";
 import { stringifyJSON } from "./common/utils";
 import { buildCardEntry } from "@/domain/games";
+import { COVER_PATHS } from "@/domain/games/coverPaths";
 
 import type { Database } from "better-sqlite3";
 import type { RawGame, CardGame } from "@/domain/games";
@@ -60,6 +61,6 @@ function mapToResult(entry: tierListTestsEntry): CardGame {
     const { category_slug: _categorySlug, ...game } = entry;
     return {
         ...game,
-        ...buildCardEntry(game, "/testscovers")
+        ...buildCardEntry(game, COVER_PATHS.tests)
     };
 }

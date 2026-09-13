@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { buildCardEntry } from "@/domain/games";
+import { COVER_PATHS } from "@/domain/games/coverPaths";
 import type { RawGame, CardGame } from "@/domain/games";
 
 type rawEntry = {
@@ -37,6 +38,6 @@ export async function GET() {
 function fromRawGamesToCardGames(gamesData: RawGame[]): CardGame[] {
     return gamesData.map(game => ({
         ...game,
-        ...buildCardEntry(game, "/covers")
+        ...buildCardEntry(game, COVER_PATHS.games)
     }));
 }
