@@ -63,9 +63,9 @@ function StatAccordion({
       </AccordionSummary>
       <Suspense fallback={null}>
         <List>
-          {items.map((item, index) => (
+          {items.map((item) => (
             <AvatarListRow
-              key={`${id}_item_${index}`}
+              key={`${id}_item_${item.label}`}
               icon={item.icon || defaultIcon}
               primary={item.label}
               secondary={item.value}
