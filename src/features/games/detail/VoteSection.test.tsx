@@ -87,6 +87,11 @@ describe('VoteSection', () => {
         getUserMock.mockResolvedValue({ data: { user: { id: 'user-1' } } });
         render(<VoteSection slug="my-game" />);
 
+        // Wait for the component to establish auth state
+        await waitFor(() => {
+            expect(getUserMock).toHaveBeenCalled();
+        });
+
         const chip = await screen.findByText('5 • Vote');
         fireEvent.click(chip);
 
