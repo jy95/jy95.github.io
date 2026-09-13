@@ -260,6 +260,17 @@
 			"imagePath": "/covers/PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP/cover.webp"
 		},
 		{
+			"id": "PLQL0wqwr2bao",
+			"playlistId": "PLQL0wqwr2bao",
+			"title": "Ruff Trigger: The Vanocore Conspiracy",
+			"releaseDate": "2026-08-26",
+			"duration": "00:00:00",
+			"platform": 6,
+			"url": "https://www.youtube.com/playlist?list=PLQL0wqwr2bao",
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLQL0wqwr2bao/cover.webp"
+		},
+		{
 			"id": "PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
 			"playlistId": "PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
 			"title": "Shrek 2",
@@ -296,17 +307,5 @@
 		}
 	],
 	"tier_bad": [],
-	"tier_not_evaluated": [
-		{
-			"id": "PLQL0wqwr2bao",
-			"playlistId": "PLQL0wqwr2bao",
-			"title": "Ruff Trigger: The Vanocore Conspiracy",
-			"releaseDate": "2026-08-26",
-			"duration": "00:00:00",
-			"platform": 6,
-			"url": "https://www.youtube.com/playlist?list=PLQL0wqwr2bao",
-			"url_type": "PLAYLIST",
-			"imagePath": "/covers/PLQL0wqwr2bao/cover.webp"
-		}
-	]
+	"tier_not_evaluated": []
 }
