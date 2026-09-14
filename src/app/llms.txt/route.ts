@@ -1,11 +1,20 @@
-import { content } from "./content";
+import {buildContentSummary} from "./content-summary";
+import {buildFeeds} from "./feeds";
 import { guidance } from "./guidance";
+import {buildMediaPages} from "./media-pages";
 import { overview } from "./overview";
-import { pages } from "./pages";
+import {buildSitePages} from "./site-pages";
 
-const llmsContext = [overview, pages, content, guidance].join("\n\n");
+export async function GET() {
+    const llmsContext = [
+        overview,
+        buildSitePages(),
+        buildContentSummary(),
+        buildMediaPages(),
+        buildFeeds(),
+        guidance,
+    ].join("\n\n");
 
-export function GET() {
     return new Response(llmsContext, {
         headers: {
             "Content-Type": "text/plain; charset=utf-8",
