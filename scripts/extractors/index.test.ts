@@ -20,5 +20,6 @@ describe('extractors barrel file', () => {
         expect(typeof extractors.extractAndSaveTierListCategories).toBe('function');
         expect(typeof extractors.extractAndSaveTierListGamesFuture).toBe('function');
         expect(typeof extractors.extractAndSaveTierListTests).toBe('function');
+        expect(typeof extractors.extractAndSaveLlmContext).toBe('function');
     });
 });

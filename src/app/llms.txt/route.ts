@@ -1,19 +1,8 @@
-import {buildContentSummary} from "./content-summary";
-import {buildFeeds} from "./feeds";
-import { guidance } from "./guidance";
-import {buildMediaPages} from "./media-pages";
-import { overview } from "./overview";
-import {buildSitePages} from "./site-pages";
+import {readFile} from "node:fs/promises";
+import {resolve} from "node:path";
 
 export async function GET() {
-    const llmsContext = [
-        overview,
-        buildSitePages(),
-        buildContentSummary(),
-        buildMediaPages(),
-        buildFeeds(),
-        guidance,
-    ].join("\n\n");
+    const llmsContext = await readFile(resolve(process.cwd(), "src/app/llms.txt/llms.txt"), "utf-8");
 
     return new Response(llmsContext, {
         headers: {
