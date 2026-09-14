@@ -210,7 +210,7 @@ Example: { id: 1, name: "Action" }, { id: 2, name: "RPG" }
 
 **games_genres** - Maps games to multiple genres
 ```
-Example: game_id=42, genre_id=1 (Zelda is Action genre)
+Example: game=42, genre=1 (Zelda is Action genre)
 ```
 
 **series_games** - Defines game order within a series
@@ -310,8 +310,8 @@ JSON endpoints that power the frontend:
 
 1. Update SQLite database with game details
 2. Run `npm run generate-api-json-files` to refresh API
-3. Add cover image to `/public/covers/{gameId}/cover.jpg`
-4. Run `npm run generate-responsive-images -- singleGame {gameId} covers cover.jpg`
+3. Add cover image to `/public/covers/{playlistId-or-videoId}/cover.jpg`
+4. Run `npm run generate-responsive-images -- singleGame {playlistId-or-videoId} covers cover.jpg`
 5. Commit changes to git
 
 ### Publishing Game Reviews (Tests)
@@ -359,16 +359,16 @@ JSON endpoints that power the frontend:
 
 ## Internationalization (i18n)
 
-- Supports English (en) and French (fr)
-- Routes prefixed with locale: `/en/games`, `/fr/games`
-- Default locale: English
+- Supports French (fr) and English (en)
+- Default locale: French
+- Locale prefixes are added only when needed (for example, `/en/games`; French routes use `/games`)
 - Message files in `/messages/` directory
 - Example: Navigation labels, page titles translated
 
 ## Image Processing Pipeline
 
-1. **Source Image**: Uploaded as JPEG/WebP to `/public/{covers|testscovers|backlogcovers}/{gameId}/`
-2. **Responsive Generation**: Sharp creates three variants
+1. **Source Images**: The default pipeline processes `/public/covers/{playlistId-or-videoId}/cover.webp` and `/public/testscovers/{playlistId-or-videoId}/cover.webp`. Backlog downloads store source images at `/public/backlogcovers/{id}/cover.{extension}`.
+2. **Responsive Generation**: Sharp creates three variants. Use `npm run generate-responsive-images -- singleGame {folder} {gameId} {sourceFilename}` to generate them for a specific folder, game ID, and source filename.
    - Small (150x150) - Thumbnails in lists
    - Medium (200x200) - Grid views
    - Large (250x250) - Detail pages
@@ -403,7 +403,7 @@ Example action: User clicks genre filter → Redux updates → Component re-rend
 
 ## Development Conventions
 
-- **TypeScript**: Strict mode enabled, no `any` types
+- **TypeScript**: Strict mode enabled; avoid `any` where possible
 - **Path Aliases**: Use `@/*` for imports (maps to `./src/*`)
 - **Async Scripts**: Use `async`/`await` pattern
 - **Error Handling**: Try-catch blocks with console logging
