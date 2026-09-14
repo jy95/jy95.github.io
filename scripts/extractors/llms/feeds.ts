@@ -1,5 +1,7 @@
-export const renderFeeds = (): string => `## Feeds
+import { renderSection, renderBulletList } from "./markdown";
 
-- Sitemap: /sitemap.xml
-- JSON Feed: /feed.json
-- RSS Feed: /rss.xml`;
+export const renderFeeds = (): string => renderSection("Feeds", renderBulletList([
+    "Sitemap: /sitemap.xml",
+    "JSON Feed: /feed.json",
+    "RSS Feed: /rss.xml",
+]));

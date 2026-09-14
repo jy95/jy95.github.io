@@ -1,4 +1,5 @@
-import {getPathname, routing} from "../../../src/i18n/routing";
+import { getPathname, routing } from "@/i18n/routing";
+import { renderSection, renderBulletList } from "./markdown";
 
 const PAGE_PURPOSES: Readonly<Record<string, string>> = {
     "/": "Browse the catalog homepage and featured gaming content.",
@@ -26,6 +27,5 @@ export function buildStaticPaths(): string[] {
     }).replace("[id]", ":id"));
 }
 
-export const renderSitePages = (paths: readonly string[]): string => `## Site pages
-
-${paths.map((path) => `- ${path}: ${PAGE_PURPOSES[path]}`).join("\n")}`;
+export const renderSitePages = (paths: readonly string[]): string =>
+    renderSection("Site pages", renderBulletList(paths.map((path) => `${path}: ${PAGE_PURPOSES[path]}`)));
