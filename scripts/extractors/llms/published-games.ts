@@ -14,5 +14,5 @@ export function renderPublishedGames(sourceGames: readonly Game[]): string {
 
 The complete list below is alphabetical.
 
-${games.map((game) => `- ${game.title} (${youtubeUrl(game)})`).join("\n")}`;
+${games.map((game) => `- [${game.title}](${youtubeUrl(game)})`).join("\n")}`;
 }

@@ -73,11 +73,15 @@ describe("LLM context extractor", () => {
         expect(output).toContain("Available walkthrough duration: 0 hours 0 minutes 0 seconds");
     });
 
-    it("lists every game alphabetically with direct YouTube URLs", () => {
+    it("lists every game alphabetically with direct YouTube Markdown links", () => {
         const output = buildLlmContext(data());
 
-        expect(output.indexOf("- Alpha (https://www.youtube.com/playlist?list=playlist-a)"))
-            .toBeLessThan(output.indexOf("- Zulu (https://www.youtube.com/watch?v=video-z)"));
+        const alpha = "- [Alpha](https://www.youtube.com/playlist?list=playlist-a)";
+        const zulu = "- [Zulu](https://www.youtube.com/watch?v=video-z)";
+        expect(output).toContain(alpha);
+        expect(output).toContain(zulu);
+        expect(output.indexOf(alpha)).toBeLessThan(output.indexOf(zulu));
+        expect(output).not.toMatch(/^- [^\n[]+ \(https:\/\/www\.youtube\.com\//m);
         for (let index = 0; index < 12; index++) {
             expect(output).toContain(`https://www.youtube.com/playlist?list=playlist-${index}`);
         }
@@ -93,8 +97,8 @@ describe("LLM context extractor", () => {
         ];
         const output = buildLlmContext({...sourceData, games: changedGames});
 
-        expect(output).not.toContain("- Alpha (");
-        expect(output).toContain("- Beta (https://www.youtube.com/watch?v=video-b)");
+        expect(output).not.toContain("- [Alpha](");
+        expect(output).toContain("- [Beta](https://www.youtube.com/watch?v=video-b)");
     });
 
     it("writes src/app/llms.txt/llms.txt from the revised source contract", async () => {
@@ -115,7 +119,7 @@ describe("LLM context extractor", () => {
         expect(output).toContain("Published games: 14");
         expect(output).toContain("Backlog candidates: 3");
         expect(output).toContain("Planned items: 2");
-        expect(output).toContain("- Alpha (https://www.youtube.com/playlist?list=playlist-a)");
+        expect(output).toContain("- [Alpha](https://www.youtube.com/playlist?list=playlist-a)");
         for (const path of publicPaths) expect(output).toContain(`- ${path}:`);
     });
 });
