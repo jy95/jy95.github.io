@@ -1,7 +1,9 @@
 import {mkdir, mkdtemp, readFile, rm, writeFile} from "node:fs/promises";
 import {tmpdir} from "node:os";
-import {join} from "node:path";
-import {afterEach, describe, expect, it} from "vitest";
+import {join, resolve} from "node:path";
+import {afterEach, describe, expect, it, vi} from "vitest";
+
+vi.mock("next-intl/navigation", () => import("../../src/test/mocks/nextIntlNavigation"));
 
 import {buildLlmContext, extractAndSaveLlmContext, type LlmContextData} from "./llms";
 
@@ -15,10 +17,13 @@ const publicPaths = [
 const data = (): LlmContextData => ({
     staticPaths: publicPaths,
     games: [
-        {title: "Zulu", videoId: "video-z"},
-        {title: "Alpha", playlistId: "playlist-a"},
-        ...Array.from({length: 12}, (_, index) => ({title: `Game ${index}`, playlistId: `playlist-${index}`})),
+        {title: "Zulu", videoId: "video-z", platform: 1},
+        {title: "Alpha", playlistId: "playlist-a", platform: 1},
+        {title: "Duplicate", videoId: "duplicate-video", platform: 2},
+        {title: "Duplicate", playlistId: "duplicate-playlist", platform: 1},
+        ...Array.from({length: 10}, (_, index) => ({title: `Game ${index}`, playlistId: `playlist-${index}`, platform: 1})),
     ],
+    platforms: [{id: 1, name: "PC"}, {id: 2, name: "PSP"}],
     stats: {general: {
         games: {total: 19, total_available: 14},
         duration: {
@@ -38,7 +43,7 @@ afterEach(async () => {
 
 describe("LLM context extractor", () => {
     it("keeps the entry point small and delegates document rendering", async () => {
-        const source = await readFile(new URL("./llms.ts", import.meta.url), "utf-8");
+        const source = await readFile(resolve("scripts/extractors/llms.ts"), "utf-8");
 
         expect(source.split("\n").length).toBeLessThan(35);
         expect(source).toContain('import {buildLlmContext} from "./llms/document"');
@@ -53,6 +58,14 @@ describe("LLM context extractor", () => {
         for (let index = 1; index < headings.length; index++) {
             expect(output.indexOf(headings[index - 1])).toBeLessThan(output.indexOf(headings[index]));
         }
+    });
+
+    it("lists the sitemap and feed endpoints", () => {
+        const output = buildLlmContext(data());
+
+        expect(output).toContain("- Sitemap: /sitemap.xml");
+        expect(output).toContain("- JSON Feed: /feed.json");
+        expect(output).toContain("- RSS Feed: /rss.xml");
     });
 
     it("uses general statistics and omits DLC, series, and test counts", () => {
@@ -82,18 +95,38 @@ describe("LLM context extractor", () => {
         expect(output).toContain(zulu);
         expect(output.indexOf(alpha)).toBeLessThan(output.indexOf(zulu));
         expect(output).not.toMatch(/^- [^\n[]+ \(https:\/\/www\.youtube\.com\//m);
-        for (let index = 0; index < 12; index++) {
+        for (let index = 0; index < 10; index++) {
             expect(output).toContain(`https://www.youtube.com/playlist?list=playlist-${index}`);
         }
         expect(output).not.toContain("playlistId");
         expect(output).not.toContain("videoId");
     });
 
+    it("adds platform names only when duplicate titles need disambiguation", () => {
+        const output = buildLlmContext(data());
+
+        expect(output).toContain("- [Duplicate (PSP)](https://www.youtube.com/watch?v=duplicate-video)");
+        expect(output).toContain("- [Duplicate (PC)](https://www.youtube.com/playlist?list=duplicate-playlist)");
+        expect(output).toContain("- [Alpha](https://www.youtube.com/playlist?list=playlist-a)");
+        expect(output).not.toContain("[Alpha (PC)]");
+    });
+
+    it("handles a missing platform mapping safely", () => {
+        const sourceData = data();
+        const games = sourceData.games.map((game) => game.title === "Duplicate" && game.platform === 2
+            ? {...game, platform: 999}
+            : game);
+
+        expect(buildLlmContext({...sourceData, games})).toContain(
+            "- [Duplicate](https://www.youtube.com/watch?v=duplicate-video)",
+        );
+    });
+
     it("reflects additions and removals in games data", () => {
         const sourceData = data();
         const changedGames = [
             ...sourceData.games.filter(({title}) => title !== "Alpha"),
-            {title: "Beta", videoId: "video-b"},
+            {title: "Beta", videoId: "video-b", platform: 1},
         ];
         const output = buildLlmContext({...sourceData, games: changedGames});
 
@@ -105,8 +138,8 @@ describe("LLM context extractor", () => {
         const directory = await mkdtemp(join(tmpdir(), "llms-extractor-"));
         temporaryDirectories.push(directory);
         const sourceData = data();
-        const paths = {} as {games: string; stats: string; backlog: string; planning: string};
-        for (const name of ["games", "stats", "backlog", "planning"] as const) {
+        const paths = {} as {games: string; platforms: string; stats: string; backlog: string; planning: string};
+        for (const name of ["games", "platforms", "stats", "backlog", "planning"] as const) {
             paths[name] = join(directory, `${name}.json`);
             await writeFile(paths[name], JSON.stringify(sourceData[name]), "utf-8");
         }

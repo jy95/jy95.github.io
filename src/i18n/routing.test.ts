@@ -1,16 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 
-// Empeche createNavigation de charger next/navigation
-vi.mock('next-intl/navigation', () => ({
-    defineRouting: (config: unknown) => config,
-    createNavigation: () => ({
-        Link: vi.fn(),
-        redirect: vi.fn(),
-        usePathname: vi.fn(),
-        useRouter: vi.fn(),
-        getPathname: vi.fn(),
-    }),
-}));
+vi.mock('next-intl/navigation', () => import('../test/mocks/nextIntlNavigation'));
 
 import { routing } from './routing';
 

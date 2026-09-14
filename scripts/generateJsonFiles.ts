@@ -75,6 +75,7 @@ try {
     await extractAndSaveTierListTests(db, FILES.TIER_LIST_TESTS);
     await extractAndSaveLlmContext(FILES.LLMS, {
         games: FILES.GAMES,
+        platforms: FILES.PLATFORMS,
         stats: FILES.STATS,
         backlog: FILES.BACKLOG,
         planning: FILES.PLANNING

@@ -14,15 +14,16 @@ export async function extractAndSaveLlmContext(
     outputPath: string,
     paths: LlmContextSourcePaths,
 ): Promise<void> {
-    const [games, stats, backlog, planning] = await Promise.all([
+    const [games, platforms, stats, backlog, planning] = await Promise.all([
         readJson<LlmContextData["games"]>(paths.games),
+        readJson<LlmContextData["platforms"]>(paths.platforms),
         readJson<LlmContextData["stats"]>(paths.stats),
         readJson<LlmContextData["backlog"]>(paths.backlog),
         readJson<LlmContextData["planning"]>(paths.planning),
     ]);
 
     await writeFile(outputPath, `${buildLlmContext({
-        staticPaths: buildStaticPaths(), games, stats, backlog, planning,
+        staticPaths: buildStaticPaths(), games, platforms, stats, backlog, planning,
     })}\n`, "utf-8");
     console.log(`${outputPath} successfully written`);
 }
