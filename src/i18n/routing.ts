@@ -12,13 +12,18 @@ export const routing = defineRouting({
   pathnames: {
     '/': '/',
     '/games': '/games',
+    '/games/series': '/games/series',
+    '/games/dlcs': '/games/dlcs',
+    '/games/random': '/games/random',
     '/planning': '/planning',
     '/backlog': '/backlog',
     '/tests': '/tests',
     '/stats': '/stats',
     '/links': '/links',
+    '/tier': '/tier',
     '/tier/games': '/tier/games',
     '/tier/backlog': '/tier/backlog',
+    '/tier/tests': '/tier/tests',
     // Dynamic params are supported via square brackets
     '/playlist/[id]': '/playlist/[id]',
     '/video/[id]': '/video/[id]'

@@ -74,15 +74,12 @@ try {
     await extractAndSaveTierListGamesFuture(db, FILES.TIER_LIST_GAMES_FUTURE);
     await extractAndSaveTierListTests(db, FILES.TIER_LIST_TESTS);
     await extractAndSaveLlmContext(FILES.LLMS, {
-        identifiers: FILES.IDENTIFIERS,
         games: FILES.GAMES,
+        dlcs: FILES.DLCS,
+        series: FILES.SERIES,
         tests: FILES.TESTS,
         backlog: FILES.BACKLOG,
-        planning: FILES.PLANNING,
-        gameTiers: FILES.TIER_LIST_GAMES,
-        backlogTiers: FILES.TIER_LIST_BACKLOG,
-        testTiers: FILES.TIER_LIST_TESTS,
-        feed: FILES.JSON_FEED
+        planning: FILES.PLANNING
     });
 } finally {
     db.close();

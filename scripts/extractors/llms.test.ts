@@ -3,35 +3,27 @@ import {tmpdir} from "node:os";
 import {join} from "node:path";
 import {afterEach, describe, expect, it} from "vitest";
 
-import {
-    buildLlmContext,
-    extractAndSaveLlmContext,
-    MAX_MEDIA_PATHS_PER_TYPE,
-    MAX_RECENT_FEED_ENTRIES,
-    type LlmContextData,
-} from "./llms";
+import {buildLlmContext, extractAndSaveLlmContext, type LlmContextData} from "./llms";
 
 const temporaryDirectories: string[] = [];
+const publicPaths = [
+    "/", "/games", "/games/series", "/games/dlcs", "/games/random", "/planning", "/backlog",
+    "/tests", "/stats", "/tier", "/tier/games", "/tier/backlog", "/tier/tests", "/links",
+    "/video/:id", "/playlist/:id",
+];
 
 const data = (): LlmContextData => ({
-    staticPaths: ["/", "/games", "/new-page"],
-    identifiers: Array.from({length: MAX_MEDIA_PATHS_PER_TYPE + 1}, (_, index) => ({
-        videoId: `video-${index}`,
-        playlistId: `playlist-${index}`,
-    })),
-    games: [{}, {}],
+    staticPaths: publicPaths,
+    games: [
+        {title: "Zulu", videoId: "video-z"},
+        {title: "Alpha", playlistId: "playlist-a"},
+        ...Array.from({length: 12}, (_, index) => ({title: `Game ${index}`, playlistId: `playlist-${index}`})),
+    ],
+    dlcs: [{dlcs: [{}, {}]}, {dlcs: [{}]}],
+    series: [{}, {}],
     tests: [{}],
     backlog: [{}, {}, {}],
     planning: [{}, {}],
-    gameTiers: {recommended: [{}, {}]},
-    backlogTiers: {later: [{}]},
-    testTiers: {},
-    feed: {
-        items: Array.from({length: MAX_RECENT_FEED_ENTRIES + 1}, (_, index) => ({
-            title: `Entry ${index}`,
-            url: `https://example.com/${index}`,
-        })),
-    },
 });
 
 afterEach(async () => {
@@ -41,46 +33,58 @@ afterEach(async () => {
 });
 
 describe("LLM context extractor", () => {
-    it("includes configured paths, catalog totals, feeds, and bounded source entries", () => {
+    it("documents every public page with its purpose", () => {
         const output = buildLlmContext(data());
 
-        expect(output).toContain("- /new-page");
-        expect(output).toContain("Published games: 2");
+        for (const path of publicPaths) expect(output).toContain(`- ${path}:`);
+        expect(output).toContain("Browse all published games and walkthroughs.");
+        expect(output).toContain("Watch the YouTube video identified by id.");
+        expect(output).toContain("Watch the YouTube walkthrough playlist identified by id.");
+        expect(output).not.toContain("Video and playlist pages");
+    });
+
+    it("reports source-derived catalog totals without tier-list totals", () => {
+        const output = buildLlmContext(data());
+
+        expect(output).toContain("Published games: 14");
+        expect(output).toContain("Published DLCs: 3");
+        expect(output).toContain("Series: 2");
+        expect(output).toContain("Tests: 1");
         expect(output).toContain("Backlog candidates: 3");
-        expect(output).toContain("Ranked games: 2");
-        expect(output).toContain("/feed.json");
-        expect(output).toContain("/rss.xml");
-        expect(output).toContain("Entry 0: https://example.com/0");
-        expect(output).not.toContain(`Entry ${MAX_RECENT_FEED_ENTRIES}`);
+        expect(output).toContain("Planned items: 2");
+        expect(output).not.toContain("Ranked games");
+        expect(output).not.toContain("Ranked backlog entries");
+        expect(output).not.toContain("Ranked tests");
     });
 
-    it("limits video and playlist paths and omits removed source material", () => {
+    it("lists every game alphabetically with labeled YouTube identifiers", () => {
         const output = buildLlmContext(data());
 
-        expect(output).toContain("/video/video-0");
-        expect(output).toContain("/playlist/playlist-0");
-        expect(output).not.toContain(`/video/video-${MAX_MEDIA_PATHS_PER_TYPE}`);
-        expect(output).not.toContain(`/playlist/playlist-${MAX_MEDIA_PATHS_PER_TYPE}`);
-        expect(output).not.toContain("/removed-page");
-        expect(output).not.toContain("database schema");
-        expect(output).not.toContain("package.json");
+        expect(output).toContain("`playlistId` identifies a YouTube playlist for a walkthrough");
+        expect(output).toContain("`videoId` identifies one YouTube video");
+        expect(output.indexOf("- Alpha (`playlistId`: playlist-a)")).toBeLessThan(output.indexOf("- Zulu (`videoId`: video-z)"));
+        for (let index = 0; index < 12; index++) expect(output).toContain(`playlist-${index}`);
+        expect(output).toContain("walkthroughs");
+        expect(output).not.toContain("playthroughs");
     });
 
-    it("writes the generated context file from supplied source files", async () => {
+    it("reflects game removal and includes feeds without recent entries", () => {
+        const sourceData = data();
+        const withGames = buildLlmContext(sourceData);
+        const withoutAlpha = buildLlmContext({...sourceData, games: sourceData.games.filter(({title}) => title !== "Alpha")});
+
+        expect(withGames).toContain("- Alpha");
+        expect(withoutAlpha).not.toContain("- Alpha");
+        expect(withoutAlpha).toContain("/feed.json");
+        expect(withoutAlpha).toContain("/rss.xml");
+        expect(withoutAlpha).not.toContain("Recent entries");
+    });
+
+    it("writes the generated context from the revised source contract", async () => {
         const directory = await mkdtemp(join(tmpdir(), "llms-extractor-"));
         temporaryDirectories.push(directory);
         const sourceData = data();
-        const sources = {
-            identifiers: sourceData.identifiers,
-            games: sourceData.games,
-            tests: sourceData.tests,
-            backlog: sourceData.backlog,
-            planning: sourceData.planning,
-            gameTiers: sourceData.gameTiers,
-            backlogTiers: sourceData.backlogTiers,
-            testTiers: sourceData.testTiers,
-            feed: sourceData.feed,
-        };
+        const {staticPaths: _staticPaths, ...sources} = sourceData;
         const paths = Object.fromEntries(await Promise.all(Object.entries(sources).map(async ([name, value]) => {
             const path = join(directory, `${name}.json`);
             await writeFile(path, JSON.stringify(value), "utf-8");
@@ -91,8 +95,7 @@ describe("LLM context extractor", () => {
         await extractAndSaveLlmContext(outputPath, paths);
 
         const output = await readFile(outputPath, "utf-8");
-        expect(output).toContain("# GamesPassionFR");
-        expect(output).toContain("Published games: 2");
-        expect(output).toContain("/games");
+        expect(output).toContain("Published DLCs: 3");
+        for (const path of publicPaths) expect(output).toContain(`- ${path}:`);
     });
 });
