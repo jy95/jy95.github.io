@@ -19,6 +19,7 @@ describe('generateJsonFiles script', () => {
         'extractAndSaveTierListCategories',
         'extractAndSaveTierListGamesFuture',
         'extractAndSaveTierListTests',
+        'extractAndSaveLlmContext',
     ];
 
     const expectedSuffixes: Record<string, string[]> = {
@@ -49,6 +50,7 @@ describe('generateJsonFiles script', () => {
         extractAndSaveTierListTests: [
             'src/app/api/tier-lists/tests/tests.json',
         ],
+        extractAndSaveLlmContext: ['src/app/llms.txt/llms.txt'],
     };
 
     /**
@@ -124,7 +126,13 @@ describe('generateJsonFiles script', () => {
 
             const callArgs = mockFn.mock.calls[0];
 
-            // First argument must be the database.
+            if (name === 'extractAndSaveLlmContext') {
+                expect(normalizePath(callArgs[0]).endsWith('src/app/llms.txt/llms.txt')).toBe(true);
+                expect(normalizePath(callArgs[1].stats).endsWith('src/app/api/stats/stats.json')).toBe(true);
+                expect(normalizePath(callArgs[1].games).endsWith('src/app/api/games/games.json')).toBe(true);
+                continue;
+            }
+
             expect(callArgs[0]).toBe(mockDb);
 
             // Extract all string arguments, which are expected to be paths.
