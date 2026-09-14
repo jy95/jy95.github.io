@@ -23,6 +23,7 @@ GamesPassionFR is a bilingual French and English catalog for the GamesPassionFR 
 
 ## Feeds
 
+- Sitemap: /sitemap.xml
 - JSON Feed: /feed.json
 - RSS Feed: /rss.xml
 
@@ -156,8 +157,8 @@ The complete list below is alphabetical.
 - [Prince of Persia : L'Ame du guerrier](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr)
 - [Prince of Persia : Les Deux Royaumes](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg)
 - [Prince of Persia : Les Sables du temps](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO)
-- [Prince of Persia : Les sables oubliés](https://www.youtube.com/watch?v=lYIH7XkENSw)
-- [Prince of Persia : Les sables oubliés](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb)
+- [Prince of Persia : Les sables oubliés (PSP)](https://www.youtube.com/watch?v=lYIH7XkENSw)
+- [Prince of Persia : Les sables oubliés (PC)](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb)
 - [Psychonauts](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl)
 - [Psychonauts 2](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ)
 - [Pumpkin Jack](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6)

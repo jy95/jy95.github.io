@@ -130,6 +130,7 @@ describe('generateJsonFiles script', () => {
                 expect(normalizePath(callArgs[0]).endsWith('src/app/llms.txt/llms.txt')).toBe(true);
                 expect(normalizePath(callArgs[1].stats).endsWith('src/app/api/stats/stats.json')).toBe(true);
                 expect(normalizePath(callArgs[1].games).endsWith('src/app/api/games/games.json')).toBe(true);
+                expect(normalizePath(callArgs[1].platforms).endsWith('src/app/api/platforms/platforms.json')).toBe(true);
                 continue;
             }
 

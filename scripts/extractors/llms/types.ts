@@ -1,7 +1,13 @@
 export interface Game {
     title: string;
+    platform: number;
     videoId?: string | null;
     playlistId?: string | null;
+}
+
+export interface Platform {
+    id: number;
+    name: string;
 }
 
 export interface Duration {
@@ -20,6 +26,7 @@ export interface Stats {
 export interface LlmContextData {
     staticPaths: readonly string[];
     games: readonly Game[];
+    platforms: readonly Platform[];
     stats: Stats;
     backlog: readonly unknown[];
     planning: readonly unknown[];
@@ -27,6 +34,7 @@ export interface LlmContextData {
 
 export interface LlmContextSourcePaths {
     games: string;
+    platforms: string;
     stats: string;
     backlog: string;
     planning: string;

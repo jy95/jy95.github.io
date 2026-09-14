@@ -15,5 +15,5 @@ export const buildLlmContext = (data: LlmContextData): string => [
     renderFeeds(),
     renderGuidance(),
     renderCatalog(data),
-    renderPublishedGames(data.games),
+    renderPublishedGames(data.games, data.platforms),
 ].join("\n\n");
