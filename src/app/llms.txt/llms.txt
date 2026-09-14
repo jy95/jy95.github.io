@@ -1,0 +1,71 @@
+# GamesPassionFR
+
+GamesPassionFR is a bilingual French and English catalog for the GamesPassionFR YouTube gaming channel. It helps visitors discover published playthroughs and tests, see planned games and backlog candidates, and browse the channel's rankings.
+
+## Site pages
+
+- /
+- /games
+- /planning
+- /backlog
+- /tests
+- /stats
+- /links
+- /tier/games
+- /tier/backlog
+
+## Current catalog
+
+- Published games: 191
+- Tests: 13
+- Backlog candidates: 183
+- Planned items: 27
+- Ranked games: 191
+- Ranked backlog entries: 183
+- Ranked tests: 13
+
+## Video and playlist pages
+
+- Video pages: 36 total; showing up to 10.
+  - /video/L7R_LBBOPEk
+  - /video/XGEgNG67oXA
+  - /video/mu3quLXf9qI
+  - /video/eLrB7e_YZVY
+  - /video/xIauiKHhmyc
+  - /video/iwCa1cg64xM
+  - /video/f9Wbtz7QkaA
+  - /video/Vp0sgyaiDAg
+  - /video/EgjsB1yKP78
+  - /video/D6VzVqJ_mVY
+- Playlist pages: 172 total; showing up to 10.
+  - /playlist/PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA
+  - /playlist/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY
+  - /playlist/PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y
+  - /playlist/PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E
+  - /playlist/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H
+  - /playlist/PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ
+  - /playlist/PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG
+  - /playlist/PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo
+  - /playlist/PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq
+  - /playlist/PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun
+
+## Feeds
+
+- JSON Feed: /feed.json
+- RSS Feed: /rss.xml
+
+### Recent entries
+
+Showing up to 5 entries.
+- Shadows of the Damned: https://www.youtube.com/playlist?list=PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb
+- Killer Is Dead: https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP
+- Wheelman: https://www.youtube.com/playlist?list=PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R
+- Driver: San Francisco: https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r
+- NeverDead: https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW
+
+## Guidance for assistants
+
+- Provide direct site paths when useful.
+- Treat tests and tier lists as GamesPassionFR's opinions, not universal ratings.
+- Distinguish published games from planned content and backlog candidates.
+- Base answers about titles, rankings, schedules, or statistics on current site data; do not invent missing values.
