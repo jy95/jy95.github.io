@@ -20,7 +20,8 @@ import {
     extractAndSaveTierListBacklog,
     extractAndSaveTierListCategories,
     extractAndSaveTierListGamesFuture,
-    extractAndSaveTierListTests
+    extractAndSaveTierListTests,
+    extractAndSaveLlmContext
 } from "./extractors"
 
 // Directory of the current script
@@ -45,7 +46,8 @@ const FILES = {
     "TIER_LIST_BACKLOG": resolve(__dirname, '..', 'src/app/api/tier-lists/backlog/backlog.json'),
     "TIER_LIST_CATEGORIES": resolve(__dirname, '..', 'src/app/api/tier-lists/categories/categories.json'),
     "TIER_LIST_GAMES_FUTURE": resolve(__dirname, '..', 'src/app/api/tier-lists/games/future-games.json'),
-    "TIER_LIST_TESTS": resolve(__dirname, '..', 'src/app/api/tier-lists/tests/tests.json')
+    "TIER_LIST_TESTS": resolve(__dirname, '..', 'src/app/api/tier-lists/tests/tests.json'),
+    "LLMS": resolve(__dirname, '..', 'src/app/llms.txt/llms.txt')
 }
 
 const db = openDatabase({ readonly: true });
@@ -71,6 +73,13 @@ try {
     await extractAndSaveTierListCategories(db, FILES.TIER_LIST_CATEGORIES);
     await extractAndSaveTierListGamesFuture(db, FILES.TIER_LIST_GAMES_FUTURE);
     await extractAndSaveTierListTests(db, FILES.TIER_LIST_TESTS);
+    await extractAndSaveLlmContext(FILES.LLMS, {
+        games: FILES.GAMES,
+        platforms: FILES.PLATFORMS,
+        stats: FILES.STATS,
+        backlog: FILES.BACKLOG,
+        planning: FILES.PLANNING
+    });
 } finally {
     db.close();
 }

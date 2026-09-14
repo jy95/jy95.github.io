@@ -1,0 +1,239 @@
+# GamesPassionFR
+
+GamesPassionFR is a bilingual French and English catalog for the GamesPassionFR YouTube gaming channel. It helps visitors discover published walkthroughs and tests, see planned games and backlog candidates, and browse the channel's rankings.
+
+## Site pages
+
+- /: Browse the catalog homepage and featured gaming content.
+- /games: Browse all published games and walkthroughs.
+- /games/series: Browse published games grouped by series.
+- /games/dlcs: Browse published downloadable-content walkthroughs.
+- /games/random: Open a randomly selected published game.
+- /planning: See games planned for future publication.
+- /backlog: Browse games being considered for future walkthroughs.
+- /tests: Browse game tests and reviews.
+- /stats: View statistics about the published catalog.
+- /links: Find GamesPassionFR's external and social links.
+- /tier: Choose a GamesPassionFR tier-list collection.
+- /tier/games: View the ranking of published games.
+- /tier/backlog: View the ranking of backlog candidates.
+- /tier/tests: View the ranking of tested games.
+- /playlist/:id: Watch the YouTube walkthrough playlist identified by id.
+- /video/:id: Watch the YouTube video identified by id.
+
+## Feeds
+
+- Sitemap: /sitemap.xml
+- JSON Feed: /feed.json
+- RSS Feed: /rss.xml
+
+## Guidance for assistants
+
+- Provide direct site paths when useful.
+- Treat tests and tier lists as GamesPassionFR's opinions, not universal ratings.
+- Distinguish published games from planned content and backlog candidates.
+- Base answers about titles, rankings, schedules, or statistics on current site data; do not invent missing values.
+
+## Current catalog
+
+- Published games: 191
+- Available walkthrough duration: 1027 hours 56 minutes 2 seconds
+- Total catalog duration: 1122 hours 31 minutes 27 seconds
+- Backlog candidates: 183
+- Planned items: 27
+
+## Published games
+
+The complete list below is alphabetical.
+
+- [-KLAUS-](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA)
+- [50 Cent: Blood on the Sand](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY)
+- [Afro Samurai](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y)
+- [Aladdin : La Revanche de Nasira](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E)
+- [Alan Wake Remastered](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H)
+- [Astérix & Obélix : Baffez-les Tous !](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ)
+- [Astérix & Obélix XXL](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG)
+- [Astérix & Obélix XXL 2](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo)
+- [Astérix & Obélix XXL 2 : Mission Ouifix](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq)
+- [Astérix aux Jeux olympiques](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun)
+- [Asura's Wrath](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ)
+- [Avatar : Le Dernier Maître de l'Air](https://www.youtube.com/watch?v=L7R_LBBOPEk)
+- [Batman Arkham City](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw)
+- [Batman The Enemy Within](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG)
+- [Batman The Telltale Series](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q)
+- [Batman Vengeance](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4)
+- [Batman: Arkham Asylum](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv)
+- [Batman: Arkham Knight](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg)
+- [Batman: Arkham Origins](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz)
+- [Batman: Rise of Sin Tzu](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb)
+- [Beyond Good & Evil](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7GRN3EnqBEvfki5uAKiw5Z)
+- [Bionicle](https://www.youtube.com/watch?v=rGnInmyP2s4)
+- [Bully : Scholarship Edition](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4l1G59ZVCUuTuZ-btLpPnm)
+- [Chicken Invaders 5 - Cluck of the dark side](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B)
+- [Child of Eden](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR)
+- [Chili Con Carnage](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7-gVyU44CdXMekwgbm-sNn)
+- [Contra Operation Galuga](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X)
+- [Crash Bandicoot](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe)
+- [Crash Bandicoot 2 : Cortex Strikes Back](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao)
+- [Crash Bandicoot 3 : Warped](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE)
+- [Crash Bandicoot 4: It's About Time](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6AGIBxZa5zvykgQBKSHzd5)
+- [Da Vinci Code](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5)
+- [Danny Fantôme : L'Ultime Ennemi](https://www.youtube.com/watch?v=uDs_7iY6oqw)
+- [Dante's Inferno](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP)
+- [Darksiders I](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs)
+- [Darksiders II](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X)
+- [Daxter](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5AJN9pWW6v6NQSxnK5tGTV)
+- [Dead to Rights](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14)
+- [Dead to Rights : Retribution](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f)
+- [Deadpool](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI)
+- [Def Jam: Fight for NY](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO)
+- [Destroy All Humans! - Remake](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr)
+- [Destroy All Humans! 2](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy)
+- [Destroy All Humans! En route vers Paname !](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR)
+- [Dingo : Une Journée de Dingue !](https://www.youtube.com/watch?v=-LX3ae9m_uU)
+- [Dishonored](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0)
+- [DmC: Devil May Cry](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3)
+- [Dr. Fetus' Mean Meat Machine](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD)
+- [Dragon Ball : Advanced Adventure](https://www.youtube.com/watch?v=5ZHExfdq9F8)
+- [Dragon Ball Z : Buu's Fury](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz)
+- [Dragon Ball Z : L'Héritage de Goku 2](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem)
+- [Driver: San Francisco](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r)
+- [DuckTales Remastered](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO)
+- [Enslaved Odyssey to the West](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn)
+- [Fahrenheit Indigo Prophecy](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2)
+- [Ghost Rider](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8)
+- [God Of War II HD](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6zui2RaBzaZ5zjm768Jzum)
+- [God of War (2018)](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm)
+- [God of War Ascension](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6)
+- [God of War I](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj)
+- [God of War I HD](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc)
+- [God of War III](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO)
+- [God of War: Chains of Olympus](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf)
+- [God of War: Chains of Olympus HD](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX)
+- [God of War: Ghost of Sparta](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7VH9EyPcKvQSCo6FbMUE6g)
+- [God of War: Ghost of Sparta HD](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7TJ1MBUMRg588JQd9p-ub9)
+- [Guns Gore & Cannoli](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I)
+- [Guns Gore and Cannoli 2](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ivg1J2leFzeuABXobVFNO)
+- [Harry Potter et la Chambre des Secrets](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO)
+- [Harry Potter et la Coupe de Feu](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF)
+- [Harry Potter et le Prisonnier d'Azkaban](https://www.youtube.com/watch?v=IOog6QKck6o)
+- [Harry Potter à l'Ecole des Sorciers](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7)
+- [Hercule](https://www.youtube.com/watch?v=Z-hI2U2g_j0)
+- [Hot Pixel](https://www.youtube.com/watch?v=6UzzEQjYA9c)
+- [Jak 3](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc)
+- [Jak II : Hors la Loi](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y)
+- [Jak and Daxter: The Lost Frontier](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5yE1da-5kvYirmxBd7sLEX)
+- [Jak and Daxter: The Precursor Legacy](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv)
+- [Jet Li: Rise to Honour](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5K0xPqtndkObR9g05hHw5h)
+- [Killer Is Dead](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP)
+- [Kirby: Cauchemar au pays des Rêves](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi)
+- [Kya : Dark Lineage](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj)
+- [La Légende de Korra](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4)
+- [La Planète au Trésor](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl)
+- [Le Chat Potté](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4)
+- [Le Parrain : Edition du Don](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO)
+- [Le parrain II](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6ho33uahEjHiIyL5nSi_3O)
+- [Legend of Kay Anniversary](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp)
+- [Les Indestructibles : La Terrible Attaque du Démolisseur](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH)
+- [Les Simpson : Le Jeu](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh)
+- [Les indestructibles Le Jeu](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi)
+- [Lollipop Chainsaw](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7-G7QCx-nB3Oc-TNmIaXMk)
+- [Lucky Luke : Tous à l'Ouest](https://www.youtube.com/watch?v=kDoc1rzc-Zs)
+- [Madagascar](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn)
+- [Mafia 1](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP)
+- [Mafia II](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg)
+- [Mafia: Definitive Edition](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv)
+- [Marc Eckō's Getting Up: Contents Under Pressure](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa)
+- [Max Payne 2 - The Fall of Max Payne](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf)
+- [Max Payne 3](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6qxm-Yidg-RNG6ICJuvll2)
+- [Max Payne I](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J)
+- [Metal Gear Rising Revengeance](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP)
+- [Metal Slug XX](https://www.youtube.com/watch?v=0vTdVPo9I_4)
+- [Need for Speed Carbon](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6MEuVUHAD2HZETNt5cBCZP)
+- [NeverDead](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW)
+- [Operation Flashpoint : Red River](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7)
+- [Pokémon Uranium](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6nITizlIWkG5aiqeF8iJeh)
+- [Prince of Persia 2008](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc)
+- [Prince of Persia : L'Ame du guerrier](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr)
+- [Prince of Persia : Les Deux Royaumes](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg)
+- [Prince of Persia : Les Sables du temps](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO)
+- [Prince of Persia : Les sables oubliés (PSP)](https://www.youtube.com/watch?v=lYIH7XkENSw)
+- [Prince of Persia : Les sables oubliés (PC)](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb)
+- [Psychonauts](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl)
+- [Psychonauts 2](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ)
+- [Pumpkin Jack](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6)
+- [Pursuit Force](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB)
+- [Pursuit Force: Extreme Justice](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ72gRyZBPf23ZfxSlG5h8Em)
+- [Pyjama Sam 2 : Héros Météo](https://www.youtube.com/watch?v=We7-JHU7D7I)
+- [Pyjama Sam : Héros du Goûter](https://www.youtube.com/watch?v=Qsq_q65MwhU)
+- [Quantum Break](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f)
+- [Ratchet & Clank](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo)
+- [Ratchet & Clank 2](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu)
+- [Ratchet & Clank 3](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu)
+- [Ratchet & Clank : A Crack in Time](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M)
+- [Ratchet & Clank : All 4 One](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M)
+- [Ratchet & Clank : La Taille, Ca Compte](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s)
+- [Ratchet & Clank : Opération Destruction](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY)
+- [Ratchet & Clank : QForce](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk)
+- [Ratchet & Clank : Quest for Booty](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo)
+- [Ratchet & Clank Nexus](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf)
+- [Ratchet : Gladiator](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA)
+- [Rayman 2 : Revolution](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX)
+- [Rayman 2: The Great Escape](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm)
+- [Rayman 3 : Hoodlum Havoc HD](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ)
+- [Rayman Legends](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX)
+- [Rayman Origins](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc)
+- [Rayman contre les Lapins Crétins](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F)
+- [Remember Me](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO)
+- [Robots](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR)
+- [Ryse : Son of Rome](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6cs6uc2X0dzBvaNuF-n49i)
+- [Saints Row Gat out of Hell](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO)
+- [Saints Row IV](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB)
+- [Saints Row The Third](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b)
+- [Sam Pyjam : Héros de la Nuit](https://www.youtube.com/watch?v=qaIADIQyr0A)
+- [Samurai Jack: Battle Through Time](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC)
+- [Secret Agent Clank](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY)
+- [Shadows of the Damned](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb)
+- [Shank](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD)
+- [Shank 2](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4)
+- [Shrek 2 Le Jeu](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j)
+- [Shrek Super Slam](https://www.youtube.com/watch?v=AVwWGO0Zocs)
+- [Sigi - Un Pet Pour Mélusina](https://www.youtube.com/watch?v=odnIJiLjqCY)
+- [Sleeping Dogs](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO)
+- [Sly 2 : Association de voleurs](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361)
+- [Sly 3 : Honor Among Thieves](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb)
+- [Sly Cooper : Voleurs à travers le Temps](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL)
+- [Sly Raccoon](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x)
+- [Sonic Adventure 2](https://www.youtube.com/watch?v=a0mr0A8VM9A)
+- [Sonic Adventure DX: Director's Cut](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ)
+- [Sonic Heroes](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx)
+- [South Park - Le baton de la vérité](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT)
+- [South Park : L'Annale du Destin](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU)
+- [Space Invaders Extreme](https://www.youtube.com/watch?v=6wJFMcIHi8k)
+- [Splinter Cell](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN)
+- [Splinter Cell Blacklist](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV)
+- [Splinter Cell Chaos Theory HD](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2)
+- [Splinter Cell Conviction](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3)
+- [Splinter Cell Double Agent HD](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4DjOEslvP3es_dby3reani)
+- [Splinter Cell HD](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-)
+- [Splinter Cell: Pandora Tomorrow](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH)
+- [Spy Fox : Operation Ozone](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A)
+- [Spy Fox : Opération Robot Expo](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx)
+- [Spy fox : Opération Milkshake](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525)
+- [Stranglehold](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq)
+- [TMNT 2007 (GBA)](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU)
+- [The Legend of Zelda: The Minish Cap](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ41LQiFCR00rhaLAyMNy7cR)
+- [The Punisher](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT)
+- [The Simpsons Hit & Run](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV)
+- [The Warriors](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t)
+- [Titeuf : Méga-Compet'](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP)
+- [Total Overdose](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij)
+- [Vanquish](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3)
+- [WET](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV)
+- [Wheelman](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R)
+- [Worms Ultimate Mayhem](https://www.youtube.com/watch?v=Drz_YdmE-yQ)
+- [X-Men Origins : Wolverine](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO)
+- [XIII - le jeu](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8)
+- [Yu-Gi-Oh! Les Cartes Sacrées](https://www.youtube.com/watch?v=NZiAc-mIJuQ)
+- [Yu-Gi-Oh! Reshef le Destructeur](https://www.youtube.com/watch?v=1vvwPVwbACY)
+- [Zapper : Le Criquet Ravageur !](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT)

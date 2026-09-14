@@ -1,4 +1,7 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
+
+vi.mock('next-intl/navigation', () => import('../../src/test/mocks/nextIntlNavigation'));
+
 import * as extractors from './index';
 
 describe('extractors barrel file', () => {
@@ -20,5 +23,6 @@ describe('extractors barrel file', () => {
         expect(typeof extractors.extractAndSaveTierListCategories).toBe('function');
         expect(typeof extractors.extractAndSaveTierListGamesFuture).toBe('function');
         expect(typeof extractors.extractAndSaveTierListTests).toBe('function');
+        expect(typeof extractors.extractAndSaveLlmContext).toBe('function');
     });
 });
