@@ -113,6 +113,9 @@ describe("LLM context extractor", () => {
 
         const output = await readFile(outputPath, "utf-8");
         expect(output).toContain("Published games: 14");
+        expect(output).toContain("Backlog candidates: 3");
+        expect(output).toContain("Planned items: 2");
+        expect(output).toContain("- Alpha (https://www.youtube.com/playlist?list=playlist-a)");
         for (const path of publicPaths) expect(output).toContain(`- ${path}:`);
     });
 });

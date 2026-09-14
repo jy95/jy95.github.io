@@ -2,7 +2,7 @@ import {readFile, writeFile} from "node:fs/promises";
 
 import {buildLlmContext} from "./llms/document";
 import {buildStaticPaths} from "./llms/site-pages";
-import type {LlmContextSourcePaths} from "./llms/types";
+import type {LlmContextData, LlmContextSourcePaths} from "./llms/types";
 
 export {buildLlmContext} from "./llms/document";
 export type {LlmContextData, LlmContextSourcePaths} from "./llms/types";
@@ -15,7 +15,10 @@ export async function extractAndSaveLlmContext(
     paths: LlmContextSourcePaths,
 ): Promise<void> {
     const [games, stats, backlog, planning] = await Promise.all([
-        readJson(paths.games), readJson(paths.stats), readJson(paths.backlog), readJson(paths.planning),
+        readJson<LlmContextData["games"]>(paths.games),
+        readJson<LlmContextData["stats"]>(paths.stats),
+        readJson<LlmContextData["backlog"]>(paths.backlog),
+        readJson<LlmContextData["planning"]>(paths.planning),
     ]);
 
     await writeFile(outputPath, `${buildLlmContext({
