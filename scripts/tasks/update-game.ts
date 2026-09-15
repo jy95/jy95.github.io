@@ -1,12 +1,9 @@
 import type { Database } from "better-sqlite3";
 import type { GamePayload } from "./common/types";
 
-import { platformToInt, genreToInt, identifierKindToDatabaseField, isNonEmptyStringField } from "./common/utils";
-import { makeColumnUpdater } from "./common/columnUpdater";
+import { platformToInt, genreToInt, identifierKindToDatabaseField, isNonEmptyStringField, applyIfPresent } from "./common/utils";
 
 type UpdatePayload = Partial<GamePayload> & { identifierValue: string; identifierKind: GamePayload['identifierKind'] };
-
-const UPDATABLE_COLUMNS = ['title', 'releaseDate', 'duration'] as const;
 
 export async function updateGameInDatabase(db: Database, payload: UpdatePayload) {
     const keyField = identifierKindToDatabaseField(payload.identifierKind);
@@ -14,8 +11,10 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
     const genres = (payload.genres || []).map(genreToInt);
 
     const findGameIdStmt = db.prepare(`SELECT id from games WHERE ${keyField} = ?`);
-    const updater = makeColumnUpdater<UpdatePayload>(db, 'games', UPDATABLE_COLUMNS);
+    const updateTitleStmt = db.prepare("UPDATE games SET title = ? WHERE id = ?");
+    const updateReleaseDateStmt = db.prepare("UPDATE games SET releaseDate = ? WHERE id = ?");
     const updatePlatformStmt = db.prepare("UPDATE games SET platform = ? WHERE id = ?");
+    const updateDurationStmt = db.prepare("UPDATE games SET duration = ? WHERE id = ?");
 
     const hasScheduleStmt = db.prepare("SELECT 1 FROM games_schedules WHERE id = ?");
     const insertScheduleStmt = db.prepare("INSERT INTO games_schedules (id) VALUES (?) ");
@@ -36,24 +35,21 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
 
         const hasScheduleRow = hasScheduleStmt.pluck().get(gameId) !== undefined;
 
-        updater.applyIfPresent(payload, "title", gameId);
-        updater.applyIfPresent(payload, "releaseDate", gameId, (v) => v.trim());
-        updater.applyIfPresent(payload, "duration", gameId);
+        applyIfPresent(payload, "title", (title) => updateTitleStmt.run(title, gameId));
+        applyIfPresent(payload, "releaseDate", (date) => updateReleaseDateStmt.run(date.trim(), gameId));
 
         if (payload.platform !== undefined) {
             updatePlatformStmt.run(platformToInt(payload.platform), gameId);
         }
 
+        applyIfPresent(payload, "duration", (duration) => updateDurationStmt.run(duration, gameId));
+
         if (hasScheduleData && !hasScheduleRow) {
             insertScheduleStmt.run(gameId);
         }
 
-        if (hasAvailableAt) {
-            updateAvailableAtStmt.run(payload.availableAt.trim(), gameId);
-        }
-        if (hasEndAt) {
-            updateEndAtStmt.run(payload.endAt.trim(), gameId);
-        }
+        applyIfPresent(payload, "availableAt", (availableAt) => updateAvailableAtStmt.run(availableAt.trim(), gameId));
+        applyIfPresent(payload, "endAt", (endAt) => updateEndAtStmt.run(endAt.trim(), gameId));
 
         if (genres.length > 0) {
             deleteGenreStmt.run(gameId);
