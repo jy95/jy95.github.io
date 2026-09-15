@@ -15,7 +15,8 @@
     "deploymentEnabled": {
       "gh-pages": false,
       "automated/*": false,
-      "dependabot/*": false
+      "dependabot/*": false,
+      "coderabbitai/*": false
     }
   }
 }
