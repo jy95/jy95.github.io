@@ -1,44 +1,34 @@
-import { platformToInt, identifierKindToDatabaseField, applyIfPresent } from './common/utils';
+import { identifierKindToDatabaseField, platformToInt } from './common/utils';
+import { makeColumnUpdater } from './common/columnUpdater';
 
 import type { Database } from 'better-sqlite3';
 import type { TestPayload } from './common/types';
 
 type UpdateTestParams = { identifierValue: string; identifierKind: TestPayload['identifierKind'] } & Partial<TestPayload>;
 
+const UPDATABLE_COLUMNS = ['title', 'releaseDate', 'duration'] as const;
+
 export async function updateTestInDatabase(db: Database, payload: UpdateTestParams) {
     const keyField = identifierKindToDatabaseField(payload.identifierKind);
     const youtubeIdentifier = payload.identifierValue;
 
-    // Statments
     const findGameIdStmt = db.prepare(`SELECT id from tests WHERE ${keyField} = ?`);
-    const updateTitleStmt = db.prepare("UPDATE tests SET title = ? WHERE id = ?");
-    const updateReleaseDateStmt = db.prepare("UPDATE tests SET releaseDate = ? WHERE id = ?");
+    const updater = makeColumnUpdater<UpdateTestParams>(db, 'tests', UPDATABLE_COLUMNS);
     const updatePlatformStmt = db.prepare("UPDATE tests SET platform = ? WHERE id = ?");
-    const updateDurationStmt = db.prepare("UPDATE tests SET duration = ? WHERE id = ?");
 
-    // Execution time
     const updateGame = db.transaction(() => {
-        // Find game id
-        const gameId = findGameIdStmt.pluck().get(youtubeIdentifier);
+        const gameId = findGameIdStmt.pluck().get(youtubeIdentifier) as number | bigint | undefined;
         if (gameId === undefined) {
             throw new Error(`Test record not found for identifier: ${youtubeIdentifier}`);
         }
 
-        // Update title
-        applyIfPresent(payload, "title", (title) => updateTitleStmt.run(title, gameId));
+        updater.applyIfPresent(payload, 'title', gameId);
+        updater.applyIfPresent(payload, 'releaseDate', gameId, (v) => v.trim());
+        updater.applyIfPresent(payload, 'duration', gameId);
 
-        // Update release date
-        applyIfPresent(payload, "releaseDate", (date) => updateReleaseDateStmt.run(date.trim(), gameId));
-
-        // Update platform
         if (payload.platform !== undefined) {
-            const platform = platformToInt(payload.platform);
-            updatePlatformStmt.run(platform, gameId);
+            updatePlatformStmt.run(platformToInt(payload.platform), gameId);
         }
-
-        // Update duration
-        applyIfPresent(payload, "duration", (duration) => updateDurationStmt.run(duration, gameId));
-
     });
 
     return updateGame();

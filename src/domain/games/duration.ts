@@ -4,7 +4,7 @@
  * This is a business rule (not presentation formatting), so it lives in
  * the domain rather than a UI-facing utils file.
  */
-const NO_DURATION_SENTINEL = "00:00:00";
+export const NO_DURATION_SENTINEL = "00:00:00";
 
 export function isMeaningfulDuration(value: string | undefined): value is string {
     return typeof value === "string" && value !== NO_DURATION_SENTINEL;
