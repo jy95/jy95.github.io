@@ -5,121 +5,69 @@ import type { Database } from 'better-sqlite3';
 import type { TierListPayload } from './common/types';
 
 const TIER_LIST_CATEGORIES = {
-    "tier_masterpiece": 1,
-    "tier_excellent": 2,
-    "tier_good": 3,
-    "tier_average": 4,
-    "tier_poor": 5,
-    "tier_bad": 6,
-    "tier_not_evaluated": 7,
+    tier_masterpiece: 1,
+    tier_excellent: 2,
+    tier_good: 3,
+    tier_average: 4,
+    tier_poor: 5,
+    tier_bad: 6,
+    tier_not_evaluated: 7,
 } satisfies Record<TierListPayload['category'], number>;
 
-export async function updateTierLists(db: Database, payload: TierListPayload) {
-    // Destructure payload
-    const { tierList, category, games_textarea } = payload;
-    
-    console.log(`[DEBUG] Starting updateTierLists for target: ${tierList}, category: ${category}`);
+type TierListTarget = {
+    table: 'tier_list_games' | 'tier_list_backlog' | 'tier_list_tests';
+    itemColumn: 'game_id' | 'backlog_id' | 'test_id';
+    resolveId: (identifier: string) => number | undefined;
+    notFoundMessage: (identifier: string) => string;
+};
 
-    // Parameters
-    const gameIDs = findIdsInTextArea(games_textarea);
-    const categoryId = TIER_LIST_CATEGORIES[category];
+export async function updateTierLists(db: Database, payload: TierListPayload) {
+    const identifiers = findIdsInTextArea(payload.games_textarea);
+    const categoryId = TIER_LIST_CATEGORIES[payload.category];
     const defaultCategoryId = TIER_LIST_CATEGORIES.tier_not_evaluated;
 
-    console.log(`[DEBUG] Found ${gameIDs.length} raw IDs in textarea:`, gameIDs);
-    console.log(`[DEBUG] Category ID mapped to: ${categoryId} (Default: ${defaultCategoryId})`);
+    const targets: Record<TierListPayload['tierList'], TierListTarget> = {
+        GAMES: {
+            table: 'tier_list_games',
+            itemColumn: 'game_id',
+            resolveId: (identifier) => findGameIdByEitherIdentifier(db, identifier),
+            notFoundMessage: (identifier) => `Game not found: ${identifier}`,
+        },
+        BACKLOG: {
+            table: 'tier_list_backlog',
+            itemColumn: 'backlog_id',
+            resolveId: (identifier) => parseInt(identifier, 10),
+            notFoundMessage: (identifier) => `Backlog game not found: ${identifier}`,
+        },
+        TESTS: {
+            table: 'tier_list_tests',
+            itemColumn: 'test_id',
+            resolveId: (identifier) => findTestIdByEitherIdentifier(db, identifier),
+            notFoundMessage: (identifier) => `Test not found: ${identifier}`,
+        },
+    };
 
-    // Statements
-    const insertGameToTierListStmt = db.prepare('INSERT OR IGNORE INTO tier_list_games (game_id, category_id) VALUES (@id, @category)');
-    const insertBacklogGameToTierListStmt = db.prepare('INSERT OR IGNORE INTO tier_list_backlog (backlog_id, category_id) VALUES (@id, @category)');
-    const insertTestToTierListStmt = db.prepare('INSERT OR IGNORE INTO tier_list_tests (test_id, category_id) VALUES (@id, @category)');
+    const target = targets[payload.tierList];
+    const insertTierListItem = db.prepare(
+        `INSERT OR IGNORE INTO ${target.table} (${target.itemColumn}, category_id)
+         VALUES (@id, @category)`
+    );
+    const updateTierListItem = db.prepare(
+        `UPDATE ${target.table}
+         SET category_id = @category
+         WHERE ${target.itemColumn} = @id`
+    );
 
-    const updateGameCategoryStmt = db.prepare('UPDATE tier_list_games SET category_id = @category WHERE game_id = @id');
-    const updateBacklogGameCategoryStmt = db.prepare('UPDATE tier_list_backlog SET category_id = @category WHERE backlog_id = @id');
-    const updateTestCategoryStmt = db.prepare('UPDATE tier_list_tests SET category_id = @category WHERE test_id = @id');
+    return db.transaction(() => {
+        for (const identifier of identifiers) {
+            const id = target.resolveId(identifier);
 
-    // Update games tier list
-    const updateGamesTierList = db.transaction(() => {
-        console.log(`[DEBUG] [Transaction GAMES] Starting processing of ${gameIDs.length} items...`);
-        for (const gameIdentifier of gameIDs) {
-            // Fetch game ID
-            const gameId = findGameIdByEitherIdentifier(db, gameIdentifier);
-
-            if (!gameId) {
-                console.error(`[DEBUG] [Transaction GAMES] Error: Game NOT found in DB for identifier: ${gameIdentifier}`);
-                throw new Error(`Game not found: ${gameIdentifier}`);
+            if (!id) {
+                throw new Error(target.notFoundMessage(identifier));
             }
 
-            console.log(`[DEBUG] [Transaction GAMES] Processing gameIdentifier: "${gameIdentifier}" -> DB internal ID: ${gameId}`);
-
-            // Insert or update game category
-            const insertResult = insertGameToTierListStmt.run({ id: gameId, category: defaultCategoryId });
-            console.log(`[DEBUG] [Transaction GAMES] Insert (Ignore if exists) status - Changes: ${insertResult.changes}`);
-
-            const updateResult = updateGameCategoryStmt.run({ id: gameId, category: categoryId });
-            console.log(`[DEBUG] [Transaction GAMES] Update to category ${categoryId} status - Changes: ${updateResult.changes}`);
+            insertTierListItem.run({ id, category: defaultCategoryId });
+            updateTierListItem.run({ id, category: categoryId });
         }
-        console.log(`[DEBUG] [Transaction GAMES] Transaction completed successfully.`);
-    });
-
-    // Update backlog tier list
-    const updateBacklogTierList = db.transaction(() => {
-        console.log(`[DEBUG] [Transaction BACKLOG] Starting processing of ${gameIDs.length} items...`);
-        for (const gameIdentifier of gameIDs) {
-            // Fetch game ID
-            const backlogId = parseInt(gameIdentifier, 10);
-
-            if (!backlogId) {
-                console.error(`[DEBUG] [Transaction BACKLOG] Error: Failed to parse identifier into valid ID: ${gameIdentifier}`);
-                throw new Error(`Backlog game not found: ${gameIdentifier}`);
-            }
-
-            console.log(`[DEBUG] [Transaction BACKLOG] Processing parsed backlogId: ${backlogId}`);
-
-            // Insert or update backlog game category
-            const insertResult = insertBacklogGameToTierListStmt.run({ id: backlogId, category: defaultCategoryId });
-            console.log(`[DEBUG] [Transaction BACKLOG] Insert (Ignore if exists) status - Changes: ${insertResult.changes}`);
-
-            const updateResult = updateBacklogGameCategoryStmt.run({ id: backlogId, category: categoryId });
-            console.log(`[DEBUG] [Transaction BACKLOG] Update to category ${categoryId} status - Changes: ${updateResult.changes}`);
-        }
-        console.log(`[DEBUG] [Transaction BACKLOG] Transaction completed successfully.`);
-    });
-
-    const updateTestsTierList = db.transaction(() => {
-        console.log(`[DEBUG] [Transaction TESTS] Starting processing of ${gameIDs.length} items...`);
-        for (const testIdentifier of gameIDs) {
-            // Fetch test ID
-            const testId = findTestIdByEitherIdentifier(db, testIdentifier);
-
-            if (!testId) {
-                console.error(`[DEBUG] [Transaction TESTS] Error: Failed to parse identifier into valid ID: ${testIdentifier}`);
-                throw new Error(`Test not found: ${testIdentifier}`);
-            }
-
-            console.log(`[DEBUG] [Transaction TESTS] Processing parsed testId: ${testId}`);
-
-            // Insert or update test category
-            const insertResult = insertTestToTierListStmt.run({ id: testId, category: defaultCategoryId });
-            console.log(`[DEBUG] [Transaction TESTS] Insert (Ignore if exists) status - Changes: ${insertResult.changes}`);
-
-            const updateResult = updateTestCategoryStmt.run({ id: testId, category: categoryId });
-            console.log(`[DEBUG] [Transaction TESTS] Update to category ${categoryId} status - Changes: ${updateResult.changes}`);
-        }
-        console.log(`[DEBUG] [Transaction TESTS] Transaction completed successfully.`);
-    });
-
-    // Execution time
-    switch (tierList) {
-        case "GAMES":
-            console.log(`[DEBUG] Executing updateGamesTierList...`);
-            return updateGamesTierList();
-        case "BACKLOG":
-            console.log(`[DEBUG] Executing updateBacklogTierList...`);
-            return updateBacklogTierList();
-        case "TESTS":
-            console.log(`[DEBUG] Executing updateTestsTierList...`);
-            return updateTestsTierList();
-        default:
-            console.log(`[DEBUG] Warning: Unknown tierList type provided: ${tierList}`);
-    }
+    })();
 }
