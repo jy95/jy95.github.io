@@ -53,6 +53,35 @@ describe.skipIf(!hasRealDb)('updateTierLists', () => {
         ).rejects.toThrow('Game not found: NOT_A_REAL_ID');
     });
 
+    it('TESTS: throws for an identifier matching no test', async () => {
+        await expect(
+            updateTierLists(ctx.db, { tierList: 'TESTS', category: 'tier_good', games_textarea: 'NOT_A_REAL_ID' })
+        ).rejects.toThrow('Test not found: NOT_A_REAL_ID');
+    });
+
+    it('BACKLOG: throws for an identifier matching no backlog item', async () => {
+        await expect(
+            updateTierLists(ctx.db, { tierList: 'BACKLOG', category: 'tier_good', games_textarea: 'NOT_A_REAL_ID' })
+        ).rejects.toThrow('Backlog game not found: NOT_A_REAL_ID');
+    });
+
+    it('BACKLOG: rejects a numeric prefix followed by invalid characters', async () => {
+        const backlogRow = pickOneBacklogRow();
+        const identifier = `${backlogRow.id}invalid`;
+
+        await expect(
+            updateTierLists(ctx.db, { tierList: 'BACKLOG', category: 'tier_good', games_textarea: identifier })
+        ).rejects.toThrow(`Backlog game not found: ${identifier}`);
+    });
+
+    it('BACKLOG: rejects a numeric id missing from the backlog table', async () => {
+        const missingId = (ctx.db.prepare('SELECT MAX(id) FROM backlog').pluck().get() as number) + 1;
+
+        await expect(
+            updateTierLists(ctx.db, { tierList: 'BACKLOG', category: 'tier_good', games_textarea: String(missingId) })
+        ).rejects.toThrow(`Backlog game not found: ${missingId}`);
+    });
+
     it('BACKLOG: assigns the requested category using the numeric backlog id', async () => {
         const backlogRow = pickOneBacklogRow();
         await updateTierLists(ctx.db, { tierList: 'BACKLOG', category: 'tier_bad', games_textarea: String(backlogRow.id) });
