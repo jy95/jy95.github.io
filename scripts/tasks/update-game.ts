@@ -1,63 +1,45 @@
 import type { Database } from "better-sqlite3";
 import type { GamePayload } from "./common/types";
 
-import { platformToInt, genreToInt, identifierKindToDatabaseField, isNonEmptyStringField, applyIfPresent } from "./common/utils";
+import { syncGenres, syncSchedule } from "./common/gameDbOperations";
+import { platformToInt, identifierKindToDatabaseField } from "./common/utils";
 
 type UpdatePayload = Partial<GamePayload> & { identifierValue: string; identifierKind: GamePayload['identifierKind'] };
 
+const valueOrNull = <T>(val: T | undefined): T | null => val ?? null;
+
 export async function updateGameInDatabase(db: Database, payload: UpdatePayload) {
     const keyField = identifierKindToDatabaseField(payload.identifierKind);
-    const youtubeIdentifier = payload.identifierValue;
-    const genres = (payload.genres || []).map(genreToInt);
 
-    const findGameIdStmt = db.prepare(`SELECT id from games WHERE ${keyField} = ?`);
-    const updateTitleStmt = db.prepare("UPDATE games SET title = ? WHERE id = ?");
-    const updateReleaseDateStmt = db.prepare("UPDATE games SET releaseDate = ? WHERE id = ?");
-    const updatePlatformStmt = db.prepare("UPDATE games SET platform = ? WHERE id = ?");
-    const updateDurationStmt = db.prepare("UPDATE games SET duration = ? WHERE id = ?");
+    const findGameIdStmt = db.prepare(`SELECT id FROM games WHERE ${keyField} = ?`);
+    const updateGameStmt = db.prepare(`
+    UPDATE games SET
+      title = COALESCE(@title, title),
+      releaseDate = COALESCE(@releaseDate, releaseDate),
+      duration = COALESCE(@duration, duration),
+      platform = COALESCE(@platform, platform)
+    WHERE id = @id
+  `);
 
-    const hasScheduleStmt = db.prepare("SELECT 1 FROM games_schedules WHERE id = ?");
-    const insertScheduleStmt = db.prepare("INSERT INTO games_schedules (id) VALUES (?) ");
-    const updateAvailableAtStmt = db.prepare("UPDATE games_schedules SET availableAt = ? WHERE id = ?");
-    const updateEndAtStmt = db.prepare("UPDATE games_schedules SET endAt = ? WHERE id = ?");
-    const deleteGenreStmt = db.prepare("DELETE FROM games_genres WHERE game = ?");
-    const insertGenresWithGameStmt = db.prepare("INSERT INTO games_genres (game, genre) VALUES (?, ?)");
-
-    const hasAvailableAt = isNonEmptyStringField(payload, "availableAt");
-    const hasEndAt = isNonEmptyStringField(payload, "endAt");
-    const hasScheduleData = hasAvailableAt || hasEndAt;
-
-    const updateGame = db.transaction(() => {
-        const gameId = findGameIdStmt.pluck().get(youtubeIdentifier) as number | bigint | undefined;
+    const updateTx = db.transaction(async () => {
+        const gameId = findGameIdStmt.pluck().get(payload.identifierValue) as number | bigint | undefined;
         if (gameId === undefined) {
-            throw new Error(`Game record not found for identifier: ${youtubeIdentifier}`);
+            throw new Error(`Game record not found for identifier: ${payload.identifierValue}`);
         }
 
-        const hasScheduleRow = hasScheduleStmt.pluck().get(gameId) !== undefined;
+        updateGameStmt.run({
+            id: gameId,
+            title: valueOrNull(payload.title),
+            releaseDate: valueOrNull(payload.releaseDate?.trim()),
+            duration: valueOrNull(payload.duration),
+            platform: payload.platform !== undefined ? platformToInt(payload.platform) : null,
+        });
 
-        applyIfPresent(payload, "title", (title) => updateTitleStmt.run(title, gameId));
-        applyIfPresent(payload, "releaseDate", (date) => updateReleaseDateStmt.run(date.trim(), gameId));
+        await syncGenres(db, gameId, payload.genres);
+        await syncSchedule(db, gameId, payload.availableAt, payload.endAt);
 
-        if (payload.platform !== undefined) {
-            updatePlatformStmt.run(platformToInt(payload.platform), gameId);
-        }
-
-        applyIfPresent(payload, "duration", (duration) => updateDurationStmt.run(duration, gameId));
-
-        if (hasScheduleData && !hasScheduleRow) {
-            insertScheduleStmt.run(gameId);
-        }
-
-        applyIfPresent(payload, "availableAt", (availableAt) => updateAvailableAtStmt.run(availableAt.trim(), gameId));
-        applyIfPresent(payload, "endAt", (endAt) => updateEndAtStmt.run(endAt.trim(), gameId));
-
-        if (genres.length > 0) {
-            deleteGenreStmt.run(gameId);
-            for (const genre of genres) {
-                insertGenresWithGameStmt.run(gameId, genre);
-            }
-        }
+        return gameId;
     });
 
-    return updateGame();
+    return updateTx();
 }

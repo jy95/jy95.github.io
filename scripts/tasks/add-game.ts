@@ -1,40 +1,32 @@
-import { platformToInt, genreToInt, identifierKindToDatabaseField } from "./common/utils";
+import { platformToInt, identifierKindToDatabaseField } from "./common/utils";
+import { syncGenres, syncSchedule } from "./common/gameDbOperations";
 
 import type { Database } from "better-sqlite3";
 import type { GamePayload } from "./common/types";
 
 export async function addGameToDatabase(db: Database, payload: GamePayload) {
     const keyField = identifierKindToDatabaseField(payload.identifierKind);
-    const gameToInsert = {
-        identifier: payload.identifierValue,
-        title: payload.title,
-        releaseDate: payload.releaseDate,
-        duration: payload.duration || "00:00:00",
-        platform: platformToInt(payload.platform)
-    };
+    const insertGameStmt = db.prepare(`
+        INSERT INTO games (${keyField}, title, releaseDate, duration, platform)
+        VALUES (@identifier, @title, @releaseDate, @duration, @platform)
+    `);
 
-    const genres = (payload.genres || []).map(genreToInt);
+    const saveTx = db.transaction(async () => {
+        const info = insertGameStmt.run({
+            identifier: payload.identifierValue,
+            title: payload.title,
+            releaseDate: payload.releaseDate?.trim(),
+            duration: payload.duration || "00:00:00",
+            platform: platformToInt(payload.platform),
+        });
 
-    const period = (payload.availableAt) ? {
-        availableAt: payload.availableAt,
-        endAt: payload.endAt || null
-    } : undefined;
+        const gameId = info.lastInsertRowid;
 
-    const insertGameStmt = db.prepare(`INSERT INTO games (${keyField}, title, releaseDate, duration, platform) VALUES (@identifier, @title, @releaseDate, @duration, @platform)`);
-    const findInsertedId = db.prepare('SELECT MAX(id) from games where title = ?');
-    const insertGenresWithGameStmt = db.prepare("INSERT INTO games_genres (game, genre) VALUES (?, ?)");
-    const insertAvailabilityStmt = db.prepare("INSERT INTO games_schedules (id, availableAt, endAt) VALUES (?, ?, ?) ");
+        await syncGenres(db, gameId, payload.genres);
+        await syncSchedule(db, gameId, payload.availableAt, payload.endAt);
 
-    const insertOneGame = db.transaction(() => {
-        insertGameStmt.run(gameToInsert);
-        const gameId = findInsertedId.pluck().get(payload.title);
-        for (const genreId of genres) {
-            insertGenresWithGameStmt.run(gameId, genreId);
-        }
-        if (period) {
-            insertAvailabilityStmt.run(gameId, period.availableAt, period.endAt);
-        }
+        return gameId;
     });
 
-    return insertOneGame();
+    return saveTx();
 }
