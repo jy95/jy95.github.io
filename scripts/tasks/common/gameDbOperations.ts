@@ -1,5 +1,4 @@
 import type { Database } from "better-sqlite3";
-import type { GamePayload } from "../common/types";
 import { genreToInt } from "../common/utils";
 
 import type { GameGenre } from "../common/types";
