@@ -21,7 +21,7 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
     WHERE id = @id
   `);
 
-    const updateTx = db.transaction(async () => {
+    const updateTx = db.transaction(() => {
         const gameId = findGameIdStmt.pluck().get(payload.identifierValue) as number | bigint | undefined;
         if (gameId === undefined) {
             throw new Error(`Game record not found for identifier: ${payload.identifierValue}`);
@@ -35,8 +35,8 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
             platform: payload.platform !== undefined ? platformToInt(payload.platform) : null,
         });
 
-        await syncGenres(db, gameId, payload.genres);
-        await syncSchedule(db, gameId, payload.availableAt, payload.endAt);
+        syncGenres(db, gameId, payload.genres);
+        syncSchedule(db, gameId, payload.availableAt, payload.endAt);
 
         return gameId;
     });

@@ -11,7 +11,7 @@ export async function addGameToDatabase(db: Database, payload: GamePayload) {
         VALUES (@identifier, @title, @releaseDate, @duration, @platform)
     `);
 
-    const saveTx = db.transaction(async () => {
+    const saveTx = db.transaction(() => {
         const info = insertGameStmt.run({
             identifier: payload.identifierValue,
             title: payload.title,
@@ -22,8 +22,8 @@ export async function addGameToDatabase(db: Database, payload: GamePayload) {
 
         const gameId = info.lastInsertRowid;
 
-        await syncGenres(db, gameId, payload.genres);
-        await syncSchedule(db, gameId, payload.availableAt, payload.endAt);
+        syncGenres(db, gameId, payload.genres);
+        syncSchedule(db, gameId, payload.availableAt, payload.endAt);
 
         return gameId;
     });

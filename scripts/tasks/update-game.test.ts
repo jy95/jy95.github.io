@@ -67,6 +67,14 @@ describe.skipIf(!hasRealDb)('updateGameInDatabase', () => {
         expect(genreIds).toEqual([1]); // still just Action
     });
 
+    it('leaves existing genres untouched when genres is empty', async () => {
+        await updateGameInDatabase(db, { identifierKind: 'Video', identifierValue: identifier, genres: [] });
+        const genreIds = db.prepare('SELECT genre FROM games_genres WHERE game = ?')
+            .all(gameId)
+            .map((r: any) => r.genre);
+        expect(genreIds).toEqual([1]); // still just Action
+    });
+
     it('creates a games_schedules row on first availableAt update if none existed', async () => {
         await updateGameInDatabase(db, { identifierKind: 'Video', identifierValue: identifier, availableAt: '2026-03-01' });
         const schedule = db.prepare('SELECT availableAt FROM games_schedules WHERE id = ?').get(gameId) as any;
@@ -82,5 +90,29 @@ describe.skipIf(!hasRealDb)('updateGameInDatabase', () => {
         const schedule = rows[0] as any;
         expect(schedule.availableAt).toBe('2026-03-01');
         expect(schedule.endAt).toBe('2026-03-15');
+    });
+
+    it('rolls back the game update when genre synchronization fails', async () => {
+        db.exec(`
+            CREATE TEMP TRIGGER fail_game_genre_insert
+            BEFORE INSERT ON games_genres
+            BEGIN
+                SELECT RAISE(ABORT, 'genre synchronization failed');
+            END
+        `);
+
+        await expect(updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            title: 'Should Roll Back',
+            genres: ['RPG'],
+        })).rejects.toThrow('genre synchronization failed');
+
+        const game = db.prepare('SELECT title FROM games WHERE id = ?').get(gameId) as any;
+        expect(game.title).toBe('Original Game Title');
+        const genreIds = db.prepare('SELECT genre FROM games_genres WHERE game = ?')
+            .all(gameId)
+            .map((row: any) => row.genre);
+        expect(genreIds).toEqual([1]);
     });
 });

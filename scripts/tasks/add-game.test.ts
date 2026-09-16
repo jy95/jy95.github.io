@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { randomUUID } from 'node:crypto';
 import { useExtractorHarness } from '../extractors/common/extractorTestHarness';
-import { hasRealDb } from './testDbHelper';
+import { hasRealDb, openTestDb } from './testDbHelper';
 import { addGameToDatabase } from './add-game';
 
 describe.skipIf(!hasRealDb)('addGameToDatabase', () => {
@@ -109,5 +109,33 @@ describe.skipIf(!hasRealDb)('addGameToDatabase', () => {
         const row = ctx.db.prepare('SELECT * FROM games WHERE playlistId = ?').get(identifier) as any;
         expect(row).toBeDefined();
         expect(row.platform).toBe(6);
+    });
+
+    it('rolls back the game insert when schedule synchronization fails', async () => {
+        const { db, cleanup } = openTestDb();
+        const identifier = `vitest-rollback-${randomUUID()}`;
+
+        try {
+            db.exec(`
+                CREATE TEMP TRIGGER fail_game_schedule_insert
+                BEFORE INSERT ON games_schedules
+                BEGIN
+                    SELECT RAISE(ABORT, 'schedule synchronization failed');
+                END
+            `);
+
+            await expect(addGameToDatabase(db, {
+                title: 'Rollback Game',
+                releaseDate: '2021-06-01',
+                identifierKind: 'Video',
+                identifierValue: identifier,
+                platform: 'PC',
+                availableAt: '2026-01-01',
+            })).rejects.toThrow('schedule synchronization failed');
+
+            expect(db.prepare('SELECT id FROM games WHERE videoId = ?').get(identifier)).toBeUndefined();
+        } finally {
+            cleanup();
+        }
     });
 });

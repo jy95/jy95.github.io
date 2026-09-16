@@ -5,8 +5,8 @@ import { genreToInt } from "../common/utils";
 import type { GameGenre } from "../common/types";
 
 /** Synchronizes genres for a given game ID */
-export async function syncGenres(db: Database, gameId: number | bigint, genres?: GameGenre[]) {
-  if (!genres) return;
+export function syncGenres(db: Database, gameId: number | bigint, genres?: GameGenre[]) {
+  if (!genres?.length) return;
   const genreIds = genres.map(genreToInt);
 
   db.prepare("DELETE FROM games_genres WHERE game = ?").run(gameId);
@@ -18,7 +18,7 @@ export async function syncGenres(db: Database, gameId: number | bigint, genres?:
 }
 
 /** Synchronizes schedule data for a given game ID */
-export async function syncSchedule(
+export function syncSchedule(
   db: Database, 
   gameId: number | bigint, 
   availableAt?: string | null, 
@@ -26,19 +26,23 @@ export async function syncSchedule(
 ) {
   if ([availableAt, endAt].every(s => s === undefined)) return;
 
-  const upsertSchedule = db.prepare(`
-    INSERT INTO games_schedules (id, availableAt, endAt)
-    VALUES (@id, @availableAt, @endAt)
-    ON CONFLICT(id) DO UPDATE SET
-      availableAt = COALESCE(excluded.availableAt, games_schedules.availableAt),
-      endAt = COALESCE(excluded.endAt, games_schedules.endAt)
-  `);
-
   const valueOrNull = (value?: string | null) => value?.trim() ?? null;
-
-  upsertSchedule.run({
+  const schedule = {
     id: gameId,
     availableAt: valueOrNull(availableAt),
     endAt: valueOrNull(endAt),
-  });
+  };
+  const updateResult = db.prepare(`
+    UPDATE games_schedules SET
+      availableAt = COALESCE(@availableAt, availableAt),
+      endAt = COALESCE(@endAt, endAt)
+    WHERE id = @id
+  `).run(schedule);
+
+  if (updateResult.changes === 0) {
+    db.prepare(`
+      INSERT INTO games_schedules (id, availableAt, endAt)
+      VALUES (@id, @availableAt, @endAt)
+    `).run(schedule);
+  }
 }

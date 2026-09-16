@@ -25,6 +25,7 @@ export async function updateTierLists(db: Database, payload: TierListPayload) {
     const identifiers = findIdsInTextArea(payload.games_textarea);
     const categoryId = TIER_LIST_CATEGORIES[payload.category];
     const defaultCategoryId = TIER_LIST_CATEGORIES.tier_not_evaluated;
+    const findBacklogId = db.prepare('SELECT id FROM backlog WHERE id = ?').pluck();
 
     const targets: Record<TierListPayload['tierList'], TierListTarget> = {
         GAMES: {
@@ -36,7 +37,14 @@ export async function updateTierLists(db: Database, payload: TierListPayload) {
         BACKLOG: {
             table: 'tier_list_backlog',
             itemColumn: 'backlog_id',
-            resolveId: (identifier) => parseInt(identifier, 10),
+            resolveId: (identifier) => {
+                if (!/^\d+$/.test(identifier)) return undefined;
+
+                const id = Number(identifier);
+                if (!Number.isSafeInteger(id)) return undefined;
+
+                return findBacklogId.get(id) as number | undefined;
+            },
             notFoundMessage: (identifier) => `Backlog game not found: ${identifier}`,
         },
         TESTS: {
