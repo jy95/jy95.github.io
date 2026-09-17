@@ -12,6 +12,7 @@ import GameToolbar from "./GameToolbar";
 import GameGenres from './GameGenres';
 import VoteSection from "./VoteSection";
 import { CardMediaImage } from '@/components/common/CardMediaImage';
+import RelatedGames from '@/features/games/components/RelatedGames';
 
 // Dynamic Rows Registry
 import { DETAIL_ROWS } from "./rows";
@@ -26,9 +27,16 @@ interface GameDetailViewProps {
     onClose: () => void;
     /** @default true */
     showVoteSection?: boolean;
+    /** @default false */
+    showRelatedGames?: boolean;
 }
 
-export default function GameDetailView({ game: rawGame, onClose, showVoteSection = true }: GameDetailViewProps) {
+export default function GameDetailView({
+    game: rawGame,
+    onClose,
+    showVoteSection = true,
+    showRelatedGames = false,
+}: GameDetailViewProps) {
     const [open, setOpen] = useState(true);
     const game = toGameDetailsEntry(rawGame);
 
@@ -73,6 +81,7 @@ export default function GameDetailView({ game: rawGame, onClose, showVoteSection
                                 <RowComponent key={index} game={game} />
                             ))}
                         </Stack>
+                        {showRelatedGames && <RelatedGames gameId={game.id} />}
                     </Box>
 
                 </Stack>

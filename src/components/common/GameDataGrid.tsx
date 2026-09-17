@@ -14,10 +14,12 @@ type Props<T extends RawGameDetailsEntry> = {
     sortModel: GridSortModel;
     columnVisibilityModel?: GridColumnVisibilityModel;
     showVoteSection?: boolean;
+    /** @default false */
+    showRelatedGames?: boolean;
 };
 
 export function GameDataGrid<T extends RawGameDetailsEntry>({
-    rows, columns, loading, sortModel, columnVisibilityModel, showVoteSection = true,
+    rows, columns, loading, sortModel, columnVisibilityModel, showVoteSection = true, showRelatedGames = false,
 }: Props<T>) {
     const customLocaleText = useMuiXDataGridText();
     const [selectedGame, setSelectedGame] = useState<T | null>(null);
@@ -39,7 +41,12 @@ export function GameDataGrid<T extends RawGameDetailsEntry>({
                 initialState={{ sorting: { sortModel }, columns: { columnVisibilityModel } }}
             />
             {selectedGame && (
-                <GameDetailView game={selectedGame} onClose={() => setSelectedGame(null)} showVoteSection={showVoteSection} />
+                <GameDetailView
+                    game={selectedGame}
+                    onClose={() => setSelectedGame(null)}
+                    showVoteSection={showVoteSection}
+                    showRelatedGames={showRelatedGames}
+                />
             )}
         </>
     );
