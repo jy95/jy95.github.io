@@ -39,21 +39,26 @@ describe.skipIf(!hasRealDb)('extractAndSaveRelatedGames', () => {
         }
     });
 
-    it('every related entry has a valid reason and required card fields', async () => {
+    it('writes only compact card fields without ranking metadata', async () => {
         await extractAndSaveRelatedGames(ctx.db, ctx.outPath);
         const written = JSON.parse(await readFile(ctx.outPath, 'utf-8')) as Record<
             string,
-            { id: string; title: string; imagePath: string; url: string; url_type: string; reason: string }[]
+            Record<string, unknown>[]
         >;
 
-        const validReasons = new Set(['series', 'genres', 'platform', 'duration']);
         for (const related of Object.values(written)) {
             for (const entry of related) {
-                expect(validReasons.has(entry.reason)).toBe(true);
+                expect(Object.keys(entry).sort()).toEqual([
+                    'id', 'imagePath', 'title', 'url', 'url_type',
+                ]);
                 expect(entry.id).toBeTruthy();
                 expect(entry.title).toBeTruthy();
                 expect(entry.imagePath).toBeTruthy();
                 expect(['VIDEO', 'PLAYLIST']).toContain(entry.url_type);
+                expect(entry).not.toHaveProperty('score');
+                expect(entry).not.toHaveProperty('reason');
+                expect(entry).not.toHaveProperty('titleSimilarity');
+                expect(entry).not.toHaveProperty('durationDeltaSeconds');
             }
         }
     });
