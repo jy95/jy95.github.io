@@ -5,24 +5,21 @@
 			"title": "Driver: San Francisco",
 			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
-			"title": "Destroy All Humans! En route vers Paname !",
-			"imagePath": "/covers/PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"title": "Enslaved Odyssey to the West",
+			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
-			"title": "South Park - Le baton de la vérité",
-			"imagePath": "/covers/PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"title": "God of War III",
+			"imagePath": "/covers/PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O": [
@@ -31,24 +28,21 @@
 			"title": "Le Parrain : Edition du Don",
 			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"title": "Driver: San Francisco",
-			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"id": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
+			"title": "Ratchet & Clank 2",
+			"imagePath": "/covers/PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
-			"title": "X-Men Origins : Wolverine",
-			"imagePath": "/covers/PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu",
+			"title": "Ratchet & Clank 3",
+			"imagePath": "/covers/PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ4DAQ8BmgRZFLB8hutraIoU": [
@@ -57,50 +51,44 @@
 			"title": "Le Parrain : Edition du Don",
 			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"title": "Driver: San Francisco",
-			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"title": "The Simpsons Hit & Run",
-			"imagePath": "/covers/PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
-		}
-	],
-	"PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb": [
-		{
-			"id": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"title": "Le Parrain : Edition du Don",
-			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ",
-			"title": "Astérix & Obélix : Baffez-les Tous !",
-			"imagePath": "/covers/PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"url_type": "PLAYLIST"
 		},
 		{
 			"id": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
 			"title": "XIII - le jeu",
 			"imagePath": "/covers/PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"title": "Driver: San Francisco",
+			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"url_type": "PLAYLIST"
+		}
+	],
+	"PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb": [
+		{
+			"id": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"title": "God of War III",
+			"imagePath": "/covers/PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"title": "Enslaved Odyssey to the West",
+			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
+			"title": "Le Parrain : Edition du Don",
+			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN": [
@@ -109,310 +97,274 @@
 			"title": "Le Parrain : Edition du Don",
 			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"title": "Driver: San Francisco",
-			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"id": "PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
+			"title": "Ratchet & Clank : A Crack in Time",
+			"imagePath": "/covers/PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
-			"title": "X-Men Origins : Wolverine",
-			"imagePath": "/covers/PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
+			"title": "XIII - le jeu",
+			"imagePath": "/covers/PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y": [
 		{
-			"id": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"title": "Le Parrain : Edition du Don",
-			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"title": "50 Cent: Blood on the Sand",
+			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
-			"title": "Def Jam: Fight for NY",
-			"imagePath": "/covers/PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"title": "Alan Wake Remastered",
+			"imagePath": "/covers/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
-			"title": "Splinter Cell Chaos Theory HD",
-			"imagePath": "/covers/PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
+			"title": "Afro Samurai",
+			"imagePath": "/covers/PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ5-m-EYS85h0SY9bTkrFMor": [
 		{
-			"id": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"title": "Le Parrain : Edition du Don",
-			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"title": "Enslaved Odyssey to the West",
+			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"title": "Driver: San Francisco",
-			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"title": "50 Cent: Blood on the Sand",
+			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg",
-			"title": "Batman: Arkham Knight",
-			"imagePath": "/covers/PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"title": "Alan Wake Remastered",
+			"imagePath": "/covers/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-": [
 		{
-			"id": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"title": "Le Parrain : Edition du Don",
-			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"title": "50 Cent: Blood on the Sand",
+			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"title": "Driver: San Francisco",
-			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"title": "Alan Wake Remastered",
+			"imagePath": "/covers/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"title": "The Simpsons Hit & Run",
-			"imagePath": "/covers/PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
+			"title": "Afro Samurai",
+			"imagePath": "/covers/PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB": [
 		{
-			"id": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"title": "Le Parrain : Edition du Don",
-			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"title": "50 Cent: Blood on the Sand",
+			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"title": "Driver: San Francisco",
-			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"title": "Alan Wake Remastered",
+			"imagePath": "/covers/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"title": "The Simpsons Hit & Run",
-			"imagePath": "/covers/PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+			"title": "-KLAUS-",
+			"imagePath": "/covers/PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ5DiP_v6xkZGHkg-XOIimKT": [
 		{
-			"id": "PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
-			"title": "Def Jam: Fight for NY",
-			"imagePath": "/covers/PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
+			"title": "Vanquish",
+			"imagePath": "/covers/PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
+			"url_type": "PLAYLIST"
 		},
 		{
 			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
 			"title": "Driver: San Francisco",
 			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"title": "The Simpsons Hit & Run",
-			"imagePath": "/covers/PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"title": "Enslaved Odyssey to the West",
+			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ7xuchAxfBg_Z4RYtbIteZ1": [
 		{
-			"id": "PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B",
-			"title": "Chicken Invaders 5 - Cluck of the dark side",
-			"imagePath": "/covers/PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
 			"title": "Driver: San Francisco",
 			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
-			"title": "Crash Bandicoot",
-			"imagePath": "/covers/PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"title": "Enslaved Odyssey to the West",
+			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"title": "God of War III",
+			"imagePath": "/covers/PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"3rgBcXGCQtU": [
 		{
-			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"title": "Enslaved Odyssey to the West",
-			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"title": "50 Cent: Blood on the Sand",
+			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "AVwWGO0Zocs",
-			"title": "Shrek Super Slam",
-			"imagePath": "/covers/AVwWGO0Zocs/cover.webp",
-			"url": "https://www.youtube.com/watch?v=AVwWGO0Zocs",
-			"url_type": "VIDEO",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"title": "Alan Wake Remastered",
+			"imagePath": "/covers/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
-			"title": "God of War (2018)",
-			"imagePath": "/covers/PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"title": "Aladdin : La Revanche de Nasira",
+			"imagePath": "/covers/PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"aK8LL8r1s0Q": [
 		{
-			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"title": "Enslaved Odyssey to the West",
-			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"title": "50 Cent: Blood on the Sand",
+			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "AVwWGO0Zocs",
-			"title": "Shrek Super Slam",
-			"imagePath": "/covers/AVwWGO0Zocs/cover.webp",
-			"url": "https://www.youtube.com/watch?v=AVwWGO0Zocs",
-			"url_type": "VIDEO",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"title": "Alan Wake Remastered",
+			"imagePath": "/covers/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
-			"title": "God of War (2018)",
-			"imagePath": "/covers/PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"title": "Aladdin : La Revanche de Nasira",
+			"imagePath": "/covers/PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"TJbiGTQQUQY": [
 		{
-			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"title": "Enslaved Odyssey to the West",
-			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"title": "50 Cent: Blood on the Sand",
+			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
-			"title": "Kirby: Cauchemar au pays des Rêves",
-			"imagePath": "/covers/PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"title": "Alan Wake Remastered",
+			"imagePath": "/covers/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
-			"title": "God of War (2018)",
-			"imagePath": "/covers/PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"title": "Aladdin : La Revanche de Nasira",
+			"imagePath": "/covers/PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"8LewlLoYHVY": [
 		{
-			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"title": "Enslaved Odyssey to the West",
-			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"title": "50 Cent: Blood on the Sand",
+			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
-			"title": "Kirby: Cauchemar au pays des Rêves",
-			"imagePath": "/covers/PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"title": "Alan Wake Remastered",
+			"imagePath": "/covers/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
-			"title": "God of War (2018)",
-			"imagePath": "/covers/PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"title": "Aladdin : La Revanche de Nasira",
+			"imagePath": "/covers/PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"BtBWS67mgJM": [
 		{
-			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"title": "Enslaved Odyssey to the West",
-			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"title": "50 Cent: Blood on the Sand",
+			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "AVwWGO0Zocs",
-			"title": "Shrek Super Slam",
-			"imagePath": "/covers/AVwWGO0Zocs/cover.webp",
-			"url": "https://www.youtube.com/watch?v=AVwWGO0Zocs",
-			"url_type": "VIDEO",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"title": "Alan Wake Remastered",
+			"imagePath": "/covers/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
-			"title": "God of War (2018)",
-			"imagePath": "/covers/PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"title": "Aladdin : La Revanche de Nasira",
+			"imagePath": "/covers/PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ4ZG4oDouSRf0-qhG5WMEvn": [
@@ -421,76 +373,67 @@
 			"title": "Rayman Legends",
 			"imagePath": "/covers/PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"title": "Driver: San Francisco",
-			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"id": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
+			"title": "Ratchet & Clank 2",
+			"imagePath": "/covers/PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"title": "The Simpsons Hit & Run",
-			"imagePath": "/covers/PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu",
+			"title": "Ratchet & Clank 3",
+			"imagePath": "/covers/PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"IwBRxURrIDM": [
 		{
-			"id": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"title": "Rayman Legends",
-			"imagePath": "/covers/PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+			"title": "-KLAUS-",
+			"imagePath": "/covers/PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"title": "Driver: San Francisco",
-			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"title": "50 Cent: Blood on the Sand",
+			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
-			"title": "Spy fox : Opération Milkshake",
-			"imagePath": "/covers/PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"title": "Aladdin : La Revanche de Nasira",
+			"imagePath": "/covers/PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX": [
 		{
-			"id": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"title": "Rayman Legends",
-			"imagePath": "/covers/PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+			"title": "-KLAUS-",
+			"imagePath": "/covers/PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"title": "Driver: San Francisco",
-			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"title": "50 Cent: Blood on the Sand",
+			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"title": "XIII - le jeu",
-			"imagePath": "/covers/PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"title": "Aladdin : La Revanche de Nasira",
+			"imagePath": "/covers/PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP": [
@@ -499,24 +442,21 @@
 			"title": "Driver: San Francisco",
 			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
-			"title": "Vanquish",
-			"imagePath": "/covers/PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"title": "Enslaved Odyssey to the West",
+			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
-			"title": "Def Jam: Fight for NY",
-			"imagePath": "/covers/PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"title": "God of War III",
+			"imagePath": "/covers/PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D": [
@@ -525,24 +465,21 @@
 			"title": "Le Parrain : Edition du Don",
 			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"title": "Driver: San Francisco",
-			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"id": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
+			"title": "XIII - le jeu",
+			"imagePath": "/covers/PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
-			"title": "Crash Bandicoot 3 : Warped",
-			"imagePath": "/covers/PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
+			"title": "Ratchet & Clank 2",
+			"imagePath": "/covers/PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLQL0wqwr2bao": [
@@ -551,76 +488,67 @@
 			"title": "Rayman Legends",
 			"imagePath": "/covers/PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
-			"title": "Vanquish",
-			"imagePath": "/covers/PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"title": "Enslaved Odyssey to the West",
+			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "AVwWGO0Zocs",
-			"title": "Shrek Super Slam",
-			"imagePath": "/covers/AVwWGO0Zocs/cover.webp",
-			"url": "https://www.youtube.com/watch?v=AVwWGO0Zocs",
-			"url_type": "VIDEO",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"title": "God of War III",
+			"imagePath": "/covers/PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb": [
+		{
+			"id": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"title": "God of War III",
+			"imagePath": "/covers/PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"url_type": "PLAYLIST"
+		},
 		{
 			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
 			"title": "Driver: San Francisco",
 			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
-			"title": "Vanquish",
-			"imagePath": "/covers/PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
-			"title": "South Park - Le baton de la vérité",
-			"imagePath": "/covers/PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"title": "Enslaved Odyssey to the West",
+			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am": [
 		{
-			"id": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
-			"title": "Shrek 2 Le Jeu",
-			"imagePath": "/covers/PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
-			"url_type": "PLAYLIST",
-			"reason": "series"
+			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"title": "50 Cent: Blood on the Sand",
+			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"title": "Rayman Legends",
-			"imagePath": "/covers/PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"id": "PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+			"title": "-KLAUS-",
+			"imagePath": "/covers/PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
-			"title": "Def Jam: Fight for NY",
-			"imagePath": "/covers/PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"title": "Alan Wake Remastered",
+			"imagePath": "/covers/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57": [
@@ -629,50 +557,44 @@
 			"title": "Le Parrain : Edition du Don",
 			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
+			"title": "XIII - le jeu",
+			"imagePath": "/covers/PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
+			"url_type": "PLAYLIST"
 		},
 		{
 			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
 			"title": "Driver: San Francisco",
 			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"title": "The Simpsons Hit & Run",
-			"imagePath": "/covers/PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ6omOFd-ITLsOCYCYOEf0Nw": [
 		{
+			"id": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+			"title": "Splinter Cell Chaos Theory HD",
+			"imagePath": "/covers/PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
+			"title": "Rayman Legends",
+			"imagePath": "/covers/PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
 			"title": "Driver: San Francisco",
 			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
-			"title": "Destroy All Humans! En route vers Paname !",
-			"imagePath": "/covers/PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD",
-			"title": "Dr. Fetus' Mean Meat Machine",
-			"imagePath": "/covers/PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD",
-			"url_type": "PLAYLIST",
-			"reason": "duration"
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m": [
@@ -681,24 +603,21 @@
 			"title": "Le Parrain : Edition du Don",
 			"imagePath": "/covers/PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"title": "Driver: San Francisco",
-			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST",
-			"reason": "platform"
+			"url_type": "PLAYLIST"
 		},
 		{
 			"id": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
 			"title": "XIII - le jeu",
 			"imagePath": "/covers/PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"url_type": "PLAYLIST",
-			"reason": "genres"
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
+			"title": "Ratchet & Clank 2",
+			"imagePath": "/covers/PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
+			"url_type": "PLAYLIST"
 		}
 	]
 }
