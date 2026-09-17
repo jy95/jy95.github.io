@@ -6,11 +6,16 @@ import { getRelatedGames } from "@/domain/discovery/relatedGames";
 
 import type { Database } from "better-sqlite3";
 import type { BasicGame, CardGame } from "@/domain/games";
-import type { RelatedGamesMap, RelatedGameTier } from "@/domain/discovery/relatedGames";
+
+import type { TierCategoryKey as RelatedGameTier } from '@/types/tierList';
+import type {
+    RelatedGamesMap,
+    SeriesGame,
+} from "@/domain/discovery/relatedGames";
 
 type GameRow = BasicGame & { id: number; genres: string };
 type CandidateRow = GameRow & { category_slug: RelatedGameTier };
-type SeriesLinkRow = { game: number; serie: number };
+type SeriesLinkRow = { game: number; serie: number; order: number };
 
 const TARGETS_QUERY = `
     SELECT g.*,
@@ -22,7 +27,12 @@ const TARGETS_QUERY = `
 `;
 
 const CANDIDATES_QUERY = `
-    SELECT g.*, COALESCE(tc.slug, 'tier_not_evaluated') AS category_slug
+    SELECT g.*,
+        COALESCE(
+            (SELECT json_group_array(genre) FROM games_genres WHERE game = g.id),
+            '[]'
+        ) AS genres,
+        COALESCE(tc.slug, 'tier_not_evaluated') AS category_slug
     FROM games_in_present g
     LEFT JOIN tier_list_games tlg ON tlg.game_id = g.id
     LEFT JOIN tier_categories tc ON tc.id = tlg.category_id
@@ -60,23 +70,29 @@ export async function extractAndSaveRelatedGames(db: Database, outputPath: strin
         candidateRows.map((row, index) => [candidates[index].id, row.category_slug ?? "tier_not_evaluated"])
     ) as Record<string, RelatedGameTier>;
 
-    const seriesLinks = db.prepare("SELECT game, serie FROM series_games").all() as SeriesLinkRow[];
-    const seriesMap: Record<string, string> = {};
+    const seriesLinks = db.prepare(
+        'SELECT game, serie, `order` AS "order" FROM series_games'
+    ).all() as SeriesLinkRow[];
+    const seriesMap: Record<string, SeriesGame> = {};
     for (const link of seriesLinks) {
         const cardId = numericIdToCardId.get(link.game);
-        if (cardId) seriesMap[cardId] = String(link.serie);
+        if (cardId) {
+            seriesMap[cardId] = {
+                id: String(link.serie),
+                order: link.order,
+            };
+        }
     }
 
     const result: RelatedGamesMap = {};
     for (const game of targets) {
         const related = getRelatedGames(game, candidates, { seriesMap, tierMap, limit: 3 });
-        result[game.id] = related.map(({ game: relatedGame, reason }) => ({
+        result[game.id] = related.map(({ game: relatedGame }) => ({
             id: relatedGame.id,
             title: relatedGame.title,
             imagePath: relatedGame.imagePath,
             url: relatedGame.url,
             url_type: relatedGame.url_type,
-            reason,
         }));
     }
 
