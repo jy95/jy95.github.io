@@ -25,15 +25,32 @@ describe("getRelatedGames", () => {
         }).map(({ game: result }) => result.id)).toEqual(["masterpiece", "good"]);
     });
 
-    it("selects other available relation types before additional genre matches", () => {
-        const results = getRelatedGames(target, [
-            game("genre-a", "Genre A", { genres: [1] }),
-            game("genre-b", "Genre B", { genres: [1] }),
-            game("platform", "Platform", { platform: 1 }),
-            game("duration", "Duration", { duration: "11:00:00" }),
-        ]);
+    it("puts the immediate previous and next series games first", () => {
+        const candidates = [
+            game("previous", "Previous", { genres: [1] }),
+            game("next", "Next", { genres: [1] }),
+            game("distant", "Distant", { genres: [1] }),
+            game("other", "Other", { genres: [1], platform: 1 }),
+        ];
+        const seriesMap = {
+            target: { id: "series", order: 3 },
+            previous: { id: "series", order: 2 },
+            next: { id: "series", order: 4 },
+            distant: { id: "series", order: 10 },
+        };
 
-        expect(results.map(({ reason }) => reason)).toEqual(["genres", "platform", "duration"]);
+        expect(getRelatedGames(target, candidates, { seriesMap, limit: 3 })
+            .map(({ game: result }) => result.id))
+            .toEqual(["next", "previous", "distant"]);
+    });
+
+    it("uses configured weights to change the ranking", () => {
+        const genreMatch = game("genre", "Genre", { genres: [1] });
+        const platformMatch = game("platform", "Platform", { platform: 1 });
+
+        expect(getRelatedGames(target, [genreMatch, platformMatch], {
+            weights: { genres: 0, genre: 0, platform: 1_000 },
+        }).map(({ game: result }) => result.id)).toEqual(["platform", "genre"]);
     });
 
     it("selects duplicate candidate ids only once", () => {
@@ -57,5 +74,12 @@ describe("getRelatedGames", () => {
         const bad = game("bad", "Zulu", { genres: [1] });
         expect(getRelatedGames(target, [unranked, bad], { tierMap: { bad: "tier_bad" } })
             .map(({ game: result }) => result.id)).toEqual(["bad", "unranked"]);
+    });
+
+    it("does not use tier score alone to recommend an unrelated game", () => {
+        const unrelated = game("unrelated", "Unrelated");
+        expect(getRelatedGames(target, [unrelated], {
+            tierMap: { unrelated: "tier_masterpiece" },
+        })).toEqual([]);
     });
 });
