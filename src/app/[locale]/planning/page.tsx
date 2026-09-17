@@ -53,6 +53,7 @@ function PlanningViewerInner() {
                 sortModel={[{ field: 'availableAt', sort: 'asc' }]}
                 columnVisibilityModel={{ endAt: false }}
                 showVoteSection={false}
+                showRelatedGames
             />
         </>
     );

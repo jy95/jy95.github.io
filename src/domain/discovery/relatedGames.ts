@@ -2,6 +2,14 @@ import { timeToSeconds } from "@/domain/games";
 import type { CardGame } from "@/domain/games";
 
 export type RelatedGameReason = "series" | "genres" | "platform" | "duration";
+export type RelatedGameTier =
+    | "tier_masterpiece"
+    | "tier_excellent"
+    | "tier_good"
+    | "tier_average"
+    | "tier_poor"
+    | "tier_bad"
+    | "tier_not_evaluated";
 
 export interface RelatedGameResult {
     game: CardGame;
@@ -12,6 +20,8 @@ export interface RelatedGameResult {
 export interface RelatedGamesOptions {
     /** Maps a game id to its series id, when known. Omit if series data isn't available. */
     seriesMap?: Record<string, string>;
+    /** Maps candidate game ids to their tier-list category. */
+    tierMap?: Record<string, RelatedGameTier>;
     /** Max number of results to return. @default 3 */
     limit?: number;
 }
@@ -19,6 +29,16 @@ export interface RelatedGamesOptions {
 // Two games are considered "similar duration" if they differ by no more
 // than this many seconds (2 hours).
 const DURATION_SIMILARITY_THRESHOLD_SECONDS = 2 * 3600;
+const REASON_PRIORITY: RelatedGameReason[] = ["series", "genres", "platform", "duration"];
+const TIER_PRIORITY: RelatedGameTier[] = [
+    "tier_masterpiece",
+    "tier_excellent",
+    "tier_good",
+    "tier_average",
+    "tier_poor",
+    "tier_bad",
+    "tier_not_evaluated",
+];
 
 /**
  * Deterministic "you might also like" candidate scoring.
@@ -36,7 +56,7 @@ export function getRelatedGames(
     candidates: CardGame[],
     options: RelatedGamesOptions = {}
 ): RelatedGameResult[] {
-    const { seriesMap = {}, limit = 3 } = options;
+    const { seriesMap = {}, tierMap = {}, limit = 3 } = options;
 
     const targetSeries = seriesMap[target.id];
     const targetGenres = new Set(target.genres ?? []);
@@ -51,29 +71,52 @@ export function getRelatedGames(
         if (result) scored.push(result);
     }
 
-    // Deterministic ordering: highest score first, alphabetical tiebreak.
-    scored.sort((a, b) => {
-        if (b.score !== a.score) return b.score - a.score;
-        return a.game.title.localeCompare(b.game.title);
-    });
+    const unique = dedupeById(scored);
+    const selected: RelatedGameResult[] = [];
+    const selectedIds = new Set<string>();
 
-    return dedupeById(scored).slice(0, limit);
+    // Reserve one slot for each available reason before filling from the
+    // remaining candidates. Reason priority keeps the output stable when the
+    // result limit is smaller than the number of available reasons.
+    for (const reason of REASON_PRIORITY) {
+        const best = unique.filter((result) => result.reason === reason).sort(compareCandidates)[0];
+        if (best && selected.length < limit) {
+            selected.push(best);
+            selectedIds.add(best.game.id);
+        }
+    }
+
+    const remaining = unique.filter((result) => !selectedIds.has(result.game.id)).sort(compareCandidates);
+    return selected.concat(remaining).slice(0, limit);
+
+    function compareCandidates(a: RelatedGameResult, b: RelatedGameResult): number {
+        const tierDifference = tierRank(a.game.id) - tierRank(b.game.id);
+        if (tierDifference !== 0) return tierDifference;
+        if (b.score !== a.score) return b.score - a.score;
+        const titleDifference = compareText(a.game.title, b.game.title);
+        return titleDifference || compareText(a.game.id, b.game.id);
+    }
+
+    function tierRank(gameId: string): number {
+        return TIER_PRIORITY.indexOf(tierMap[gameId] ?? "tier_not_evaluated");
+    }
 
     function scoreCandidate(candidate: CardGame): RelatedGameResult | undefined {
+        const relations: RelatedGameResult[] = [];
         const candidateSeries = seriesMap[candidate.id];
         if (targetSeries && candidateSeries && candidateSeries === targetSeries) {
-            return { game: candidate, reason: "series", score: 100 };
+            relations.push({ game: candidate, reason: "series", score: 100 });
         }
 
         if (targetGenres.size > 0 && candidate.genres?.length) {
             const sharedCount = candidate.genres.filter((g) => targetGenres.has(g)).length;
             if (sharedCount > 0) {
-                return { game: candidate, reason: "genres", score: 50 + sharedCount };
+                relations.push({ game: candidate, reason: "genres", score: 50 + sharedCount });
             }
         }
 
         if (target.platform !== undefined && candidate.platform === target.platform) {
-            return { game: candidate, reason: "platform", score: 30 };
+            relations.push({ game: candidate, reason: "platform", score: 30 });
         }
 
         if (
@@ -82,11 +125,22 @@ export function getRelatedGames(
             Math.abs(timeToSeconds(candidate.duration) - targetDurationSeconds) <=
                 DURATION_SIMILARITY_THRESHOLD_SECONDS
         ) {
-            return { game: candidate, reason: "duration", score: 10 };
+            const difference = Math.abs(timeToSeconds(candidate.duration) - targetDurationSeconds);
+            relations.push({
+                game: candidate,
+                reason: "duration",
+                score: 10 + (DURATION_SIMILARITY_THRESHOLD_SECONDS - difference) / DURATION_SIMILARITY_THRESHOLD_SECONDS,
+            });
         }
 
-        return undefined;
+        return relations.sort(
+            (a, b) => REASON_PRIORITY.indexOf(a.reason) - REASON_PRIORITY.indexOf(b.reason)
+        )[0];
     }
+}
+
+function compareText(a: string, b: string): number {
+    return a < b ? -1 : a > b ? 1 : 0;
 }
 
 function dedupeById(results: RelatedGameResult[]): RelatedGameResult[] {

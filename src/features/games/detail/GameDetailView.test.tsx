@@ -45,6 +45,10 @@ vi.mock('@/redux/services/votesAPI', () => ({
     useToggleVoteMutation: () => [vi.fn(), { isLoading: false }],
 }));
 
+vi.mock('@/features/games/components/RelatedGames', () => ({
+    default: ({ gameId }: { gameId: string }) => <div>related-games:{gameId}</div>,
+}));
+
 import GameDetailView from './GameDetailView';
 import type { CardGame } from '@/domain/games';
 
@@ -72,6 +76,16 @@ describe('GameDetailView', () => {
     it('hides the vote section when showVoteSection is false', () => {
         render(<GameDetailView game={game} onClose={vi.fn()} showVoteSection={false} />);
         expect(screen.queryByText('vote.disclaimer')).not.toBeInTheDocument();
+    });
+
+    it('does not show related games by default', () => {
+        render(<GameDetailView game={game} onClose={vi.fn()} />);
+        expect(screen.queryByText('related-games:abc123')).not.toBeInTheDocument();
+    });
+
+    it('shows related games for the selected game when enabled', () => {
+        render(<GameDetailView game={game} onClose={vi.fn()} showRelatedGames />);
+        expect(screen.getByText('related-games:abc123')).toBeInTheDocument();
     });
 
     it('calls onClose when the toolbar close button is clicked', () => {
