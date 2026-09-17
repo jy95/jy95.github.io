@@ -21,12 +21,12 @@ describe.skipIf(!hasRealDb)('extractAndSaveRelatedGames', () => {
         expect(Object.keys(written).sort()).toEqual(planningIds.sort());
     });
 
-    it('never lists more than 3 related games per entry', async () => {
+    it('never lists more than 12 related games per entry', async () => {
         await extractAndSaveRelatedGames(ctx.db, ctx.outPath);
         const written = JSON.parse(await readFile(ctx.outPath, 'utf-8')) as Record<string, unknown[]>;
 
         for (const related of Object.values(written)) {
-            expect(related.length).toBeLessThanOrEqual(3);
+            expect(related.length).toBeLessThanOrEqual(12);
         }
     });
 

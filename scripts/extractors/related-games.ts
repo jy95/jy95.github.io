@@ -86,7 +86,7 @@ export async function extractAndSaveRelatedGames(db: Database, outputPath: strin
 
     const result: RelatedGamesMap = {};
     for (const game of targets) {
-        const related = getRelatedGames(game, candidates, { seriesMap, tierMap, limit: 3 });
+        const related = getRelatedGames(game, candidates, { seriesMap, tierMap, limit: 12 });
         result[game.id] = related.map(({ game: relatedGame }) => ({
             id: relatedGame.id,
             title: relatedGame.title,

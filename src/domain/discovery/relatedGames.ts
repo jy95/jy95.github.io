@@ -102,7 +102,7 @@ export function getRelatedGames(
 
     function scoreCandidate(candidate: CardGame): RelatedGameResult | undefined {
         const candidateSeries = seriesMap[candidate.id];
-        let score = weights.tier[tierMap[candidate.id]] ?? "tier_not_evaluated";
+        let score = weights.tier[tierMap[candidate.id]] ?? weights.tier.tier_not_evaluated;
         let hasRelation = false;
 
         if (targetSeries && candidateSeries && targetSeries.id === candidateSeries.id) {
