@@ -197,5 +197,24 @@
             "tier_bad": "Deeply flawed or uninteresting games.",
             "tier_not_evaluated": "Titles I need to explore further before giving a verdict."
         }
+    },
+    "discovery": {
+        "continueExploring": {
+            "title": "Continue exploring"
+        },
+        "relatedGames": {
+            "title": "You might also like",
+            "reasons": {
+                "series": "Same series",
+                "genres": "Shared genres",
+                "platform": "Same platform",
+                "duration": "Similar duration"
+            }
+        },
+        "seriesNavigation": {
+            "position": "{position} / {total}",
+            "previous": "Previous",
+            "next": "Next"
+        }
     }
 }
