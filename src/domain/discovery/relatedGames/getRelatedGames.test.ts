@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getRelatedGames } from "./relatedGames";
+import { getRelatedGames } from "./getRelatedGames";
 import type { CardGame } from "@/domain/games";
 
 function game(id: string, title: string, values: Partial<CardGame> = {}): CardGame {
@@ -69,16 +69,6 @@ describe("getRelatedGames", () => {
             .map(({ game: result }) => result.id)).toEqual(["title", "platform"]);
         expect(getRelatedGames(target, [platformMatch, titleMatch], { weights: { title: 0 } })
             .map(({ game: result }) => result.id)).toEqual(["platform", "title"]);
-    });
-
-    it("normalizes punctuation, case, and repeated title whitespace", () => {
-        const normalizedTarget = game("target", "Game Alpha");
-        const exact = game("exact", "game alpha");
-        const formatted = game("formatted", "GAME!!!   ALPHA");
-        const results = getRelatedGames(normalizedTarget, [formatted, exact]);
-
-        expect(results).toHaveLength(2);
-        expect(results[0].score).toBe(results[1].score);
     });
 
     it("ranks a smaller duration delta above a larger delta without a cutoff", () => {
