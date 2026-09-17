@@ -36,9 +36,6 @@ export default function RelatedGames({ gameId }: Props) {
                 {results.map((entry) => (
                     <Box key={entry.id} sx={{ width: 160 }}>
                         <CardEntry game={entry as CardGame} />
-                        <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 0.5 }}>
-                            {t(`reasons.${entry.reason}`)}
-                        </Typography>
                     </Box>
                 ))}
             </Stack>

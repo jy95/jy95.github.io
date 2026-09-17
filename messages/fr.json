@@ -203,13 +203,7 @@
             "title": "Continuer l'exploration"
         },
         "relatedGames": {
-            "title": "Vous pourriez aussi aimer",
-            "reasons": {
-                "series": "Même série",
-                "genres": "Genres en commun",
-                "platform": "Même plateforme",
-                "duration": "Durée similaire"
-            }
+            "title": "Vous pourriez aussi aimer"
         },
         "seriesNavigation": {
             "position": "{position} / {total}",

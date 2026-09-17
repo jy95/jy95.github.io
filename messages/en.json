@@ -203,13 +203,7 @@
             "title": "Continue exploring"
         },
         "relatedGames": {
-            "title": "You might also like",
-            "reasons": {
-                "series": "Same series",
-                "genres": "Shared genres",
-                "platform": "Same platform",
-                "duration": "Similar duration"
-            }
+            "title": "You might also like"
         },
         "seriesNavigation": {
             "position": "{position} / {total}",
