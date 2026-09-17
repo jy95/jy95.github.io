@@ -85,8 +85,6 @@ export default function GameDetailView({
                             <RelatedGames
                                 key={game.id}
                                 gameId={game.id}
-                                initialLimit={4}
-                                loadMoreIncrement={4}
                             />
                         )}
                     </Box>

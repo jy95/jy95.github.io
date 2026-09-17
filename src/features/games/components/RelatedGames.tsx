@@ -3,18 +3,17 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import CardEntry from "./CardEntry";
+import LoadingButton from "@/app/[locale]/games/_client/LoadingButton";
+import { CardGrid } from "./CardGrid";
 import { useGetRelatedGamesQuery } from "@/redux/services/relatedGamesAPI";
-import type { CardGame } from "@/domain/games";
 
 type Props = {
     gameId: string;
-    initialLimit: number;
-    loadMoreIncrement: number;
 };
+
+const PAGE_SIZE = 4;
 
 /**
  * Data is precomputed at build time (scripts/extractors/related-games.ts)
@@ -22,12 +21,12 @@ type Props = {
  * This component only does an O(1) lookup by id — no client-side scoring,
  * regardless of how large the catalog grows.
  */
-export default function RelatedGames({ gameId, initialLimit, loadMoreIncrement }: Props) {
+export default function RelatedGames({ gameId }: Props) {
     const t = useTranslations("discovery.relatedGames");
     const commonT = useTranslations("common");
     const { data } = useGetRelatedGamesQuery();
     const results = data?.[gameId] ?? [];
-    const [visibleCount, setVisibleCount] = useState(initialLimit);
+    const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
     if (results.length === 0) {
         return null;
@@ -38,22 +37,19 @@ export default function RelatedGames({ gameId, initialLimit, loadMoreIncrement }
             <Typography variant="h6" gutterBottom>
                 {t("title")}
             </Typography>
-            <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
-                {results.slice(0, visibleCount).map((entry) => (
-                    <Box key={entry.id} sx={{ width: 160 }}>
-                        <CardEntry game={entry as CardGame} />
-                    </Box>
-                ))}
-            </Stack>
+            <CardGrid
+                items={results.slice(0, visibleCount)}
+                size={{ xs: 6, md: 4, lg: 2 }}
+            />
             {visibleCount < results.length && (
-                <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-                    <Button
-                        variant="outlined"
-                        onClick={() => setVisibleCount((count) => count + loadMoreIncrement)}
-                    >
-                        {commonT("loadMore")}
-                    </Button>
-                </Box>
+                <Grid container sx={{ justifyContent: "center" }}>
+                    <LoadingButton
+                        loading={false}
+                        disabled={false}
+                        onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
+                        label={commonT("loadMore")}
+                    />
+                </Grid>
             )}
         </Box>
     );
