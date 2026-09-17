@@ -3,6 +3,8 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { echoTranslations } from "@/test/mocks/nextIntl";
 
 const getRelatedGamesQueryMock = vi.fn();
+const cardGridMock = vi.fn();
+const loadingButtonMock = vi.fn();
 
 vi.mock("next-intl", () => echoTranslations());
 
@@ -10,8 +12,18 @@ vi.mock("@/redux/services/relatedGamesAPI", () => ({
     useGetRelatedGamesQuery: () => getRelatedGamesQueryMock(),
 }));
 
-vi.mock("./CardEntry", () => ({
-    default: ({ game }: { game: { title: string } }) => <div>{game.title}</div>,
+vi.mock("./CardGrid", () => ({
+    CardGrid: (props: { items: typeof results; size: { xs: number; md: number; lg: number } }) => {
+        cardGridMock(props);
+        return <div data-testid="card-grid">{props.items.map(({ title }) => title).join(",")}</div>;
+    },
+}));
+
+vi.mock("@/app/[locale]/games/_client/LoadingButton", () => ({
+    default: (props: { onClick: () => void; disabled: boolean; loading: boolean; label: string }) => {
+        loadingButtonMock(props);
+        return <button onClick={props.onClick}>{props.label}</button>;
+    },
 }));
 
 import RelatedGames from "./RelatedGames";
@@ -26,30 +38,49 @@ const results = Array.from({ length: 9 }, (_, index) => ({
 
 describe("RelatedGames", () => {
     beforeEach(() => {
+        cardGridMock.mockClear();
+        loadingButtonMock.mockClear();
         getRelatedGamesQueryMock.mockReturnValue({ data: { target: results } });
     });
 
-    it("shows four games initially and four more per load-more action", () => {
-        render(<RelatedGames gameId="target" initialLimit={4} loadMoreIncrement={4} />);
+    it("uses the games gallery grid and shows four more games per load-more action", () => {
+        render(<RelatedGames gameId="target" />);
 
-        expect(screen.getByText("Game 4")).toBeInTheDocument();
-        expect(screen.queryByText("Game 5")).not.toBeInTheDocument();
+        expect(cardGridMock).toHaveBeenLastCalledWith(expect.objectContaining({
+            items: results.slice(0, 4),
+            size: { xs: 6, md: 4, lg: 2 },
+        }));
+        expect(loadingButtonMock).toHaveBeenLastCalledWith(expect.objectContaining({
+            loading: false,
+            disabled: false,
+            label: "common.loadMore",
+        }));
 
         fireEvent.click(screen.getByRole("button", { name: "common.loadMore" }));
-        expect(screen.getByText("Game 8")).toBeInTheDocument();
-        expect(screen.queryByText("Game 9")).not.toBeInTheDocument();
+        expect(cardGridMock).toHaveBeenLastCalledWith(expect.objectContaining({
+            items: results.slice(0, 8),
+        }));
 
         fireEvent.click(screen.getByRole("button", { name: "common.loadMore" }));
-        expect(screen.getByText("Game 9")).toBeInTheDocument();
+        expect(cardGridMock).toHaveBeenLastCalledWith(expect.objectContaining({ items: results }));
         expect(screen.queryByRole("button", { name: "common.loadMore" })).not.toBeInTheDocument();
     });
 
     it("shows every result without load more when there are four or fewer", () => {
         getRelatedGamesQueryMock.mockReturnValue({ data: { target: results.slice(0, 4) } });
 
-        render(<RelatedGames gameId="target" initialLimit={4} loadMoreIncrement={4} />);
+        render(<RelatedGames gameId="target" />);
 
-        expect(screen.getByText("Game 4")).toBeInTheDocument();
+        expect(cardGridMock).toHaveBeenLastCalledWith(expect.objectContaining({ items: results.slice(0, 4) }));
         expect(screen.queryByRole("button", { name: "common.loadMore" })).not.toBeInTheDocument();
+    });
+
+    it("renders no section when the selected game has no recommendations", () => {
+        getRelatedGamesQueryMock.mockReturnValue({ data: {} });
+
+        const { container } = render(<RelatedGames gameId="target" />);
+
+        expect(container).toBeEmptyDOMElement();
+        expect(cardGridMock).not.toHaveBeenCalled();
     });
 });

@@ -46,15 +46,7 @@ vi.mock('@/redux/services/votesAPI', () => ({
 }));
 
 vi.mock('@/features/games/components/RelatedGames', () => ({
-    default: ({
-        gameId,
-        initialLimit,
-        loadMoreIncrement,
-    }: {
-        gameId: string;
-        initialLimit: number;
-        loadMoreIncrement: number;
-    }) => <div>related-games:{gameId}:{initialLimit}:{loadMoreIncrement}</div>,
+    default: ({ gameId }: { gameId: string }) => <div>related-games:{gameId}</div>,
 }));
 
 import GameDetailView from './GameDetailView';
@@ -88,12 +80,12 @@ describe('GameDetailView', () => {
 
     it('does not show related games by default', () => {
         render(<GameDetailView game={game} onClose={vi.fn()} />);
-        expect(screen.queryByText('related-games:abc123:4:4')).not.toBeInTheDocument();
+        expect(screen.queryByText('related-games:abc123')).not.toBeInTheDocument();
     });
 
     it('shows related games for the selected game when enabled', () => {
         render(<GameDetailView game={game} onClose={vi.fn()} showRelatedGames />);
-        expect(screen.getByText('related-games:abc123:4:4')).toBeInTheDocument();
+        expect(screen.getByText('related-games:abc123')).toBeInTheDocument();
     });
 
     it('calls onClose when the toolbar close button is clicked', () => {
