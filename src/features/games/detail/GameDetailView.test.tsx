@@ -46,7 +46,7 @@ vi.mock('@/redux/services/votesAPI', () => ({
 }));
 
 vi.mock('@/features/games/components/RelatedGames', () => ({
-    default: ({ gameId }: { gameId: string }) => <div>related-games:{gameId}</div>,
+    default: ({ gameId }: { gameId: string }) => <div data-testid="related-games">related-games:{gameId}</div>,
 }));
 
 import GameDetailView from './GameDetailView';
@@ -86,6 +86,16 @@ describe('GameDetailView', () => {
     it('shows related games for the selected game when enabled', () => {
         render(<GameDetailView game={game} onClose={vi.fn()} showRelatedGames />);
         expect(screen.getByText('related-games:abc123')).toBeInTheDocument();
+    });
+
+    it('renders related games as a sibling of the top two-column layout', () => {
+        render(<GameDetailView game={game} onClose={vi.fn()} showRelatedGames />);
+        const relatedGames = screen.getByTestId('related-games');
+        const topLayout = relatedGames.previousElementSibling;
+
+        expect(topLayout).toHaveClass('MuiStack-root');
+        expect(topLayout).not.toContainElement(relatedGames);
+        expect(topLayout?.parentElement).toBe(relatedGames.parentElement);
     });
 
     it('calls onClose when the toolbar close button is clicked', () => {

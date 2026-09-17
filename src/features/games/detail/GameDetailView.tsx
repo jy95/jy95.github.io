@@ -81,15 +81,15 @@ export default function GameDetailView({
                                 <RowComponent key={index} game={game} />
                             ))}
                         </Stack>
-                        {showRelatedGames && (
-                            <RelatedGames
-                                key={game.id}
-                                gameId={game.id}
-                            />
-                        )}
                     </Box>
 
                 </Stack>
+                {showRelatedGames && (
+                    <RelatedGames
+                        key={game.id}
+                        gameId={game.id}
+                    />
+                )}
             </Box>
         </Dialog>
     );
