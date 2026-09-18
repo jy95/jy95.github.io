@@ -4,11 +4,64 @@ import { loadSeriesGameLinks } from "./series";
 import { getRelatedGames } from "@/domain/discovery/relatedGames";
 
 import type { Database } from "better-sqlite3";
-import type { TierCategoryKey as RelatedGameTier } from '@/types/tierList';
+import type { CardGame } from "@/domain/games";
+import type { TierListCardGame } from "./common/games-tier-list-extractor";
+import type { SeriesGameLink } from "./series";
+import type { TierCategoryKey as RelatedGameTier } from "@/types/tierList";
 import type {
+    RelatedGameEntry,
+    RelatedGameResult,
     RelatedGamesMap,
     SeriesGame,
 } from "@/domain/discovery/relatedGames";
+
+function buildSeriesMap(
+    entries: TierListCardGame[],
+    links: SeriesGameLink[]
+): Record<string, SeriesGame> {
+    const cardIdByDatabaseId = new Map(
+        entries.map(({ databaseId, game }) => [databaseId, game.id])
+    );
+
+    return Object.fromEntries(
+        links.flatMap((link) => {
+            const cardId = cardIdByDatabaseId.get(link.game);
+            return cardId
+                ? [[cardId, { id: String(link.series), order: link.order }]]
+                : [];
+        })
+    );
+}
+
+function buildTierMap(entries: TierListCardGame[]): Record<string, RelatedGameTier> {
+    return Object.fromEntries(entries.map(({ game, category }) => [game.id, category]));
+}
+
+function toRelatedGameEntry({ game }: RelatedGameResult): RelatedGameEntry {
+    return {
+        id: game.id,
+        title: game.title,
+        imagePath: game.imagePath,
+        url: game.url,
+        url_type: game.url_type,
+    };
+}
+
+function buildRelatedGamesMap(
+    targets: CardGame[],
+    candidates: CardGame[],
+    seriesMap: Record<string, SeriesGame>,
+    tierMap: Record<string, RelatedGameTier>
+): RelatedGamesMap {
+    return Object.fromEntries(
+        targets.map((target) => [
+            target.id,
+            getRelatedGames(target, candidates, { seriesMap, tierMap, limit: 12 }).map(
+                toRelatedGameEntry
+            ),
+        ])
+    );
+}
 
 /**
  * Precomputes "you might also like" candidates for every future game, using
@@ -23,35 +76,12 @@ export async function extractAndSaveRelatedGames(db: Database, outputPath: strin
     const candidateEntries = loadTierListCardGames(db, "games_in_present", true);
     const targets = targetEntries.map(({ game }) => game);
     const candidates = candidateEntries.map(({ game }) => game);
-    const numericIdToCardId = new Map(
-        [...targetEntries, ...candidateEntries].map(({ databaseId, game }) => [databaseId, game.id])
+    const seriesMap = buildSeriesMap(
+        [...targetEntries, ...candidateEntries],
+        loadSeriesGameLinks(db)
     );
-    const tierMap = Object.fromEntries(
-        candidateEntries.map(({ game, category }) => [game.id, category])
-    ) as Record<string, RelatedGameTier>;
-
-    const seriesMap: Record<string, SeriesGame> = {};
-    for (const link of loadSeriesGameLinks(db)) {
-        const cardId = numericIdToCardId.get(link.game);
-        if (cardId) {
-            seriesMap[cardId] = {
-                id: String(link.series),
-                order: link.order,
-            };
-        }
-    }
-
-    const result: RelatedGamesMap = {};
-    for (const game of targets) {
-        const related = getRelatedGames(game, candidates, { seriesMap, tierMap, limit: 12 });
-        result[game.id] = related.map(({ game: relatedGame }) => ({
-            id: relatedGame.id,
-            title: relatedGame.title,
-            imagePath: relatedGame.imagePath,
-            url: relatedGame.url,
-            url_type: relatedGame.url_type,
-        }));
-    }
+    const tierMap = buildTierMap(candidateEntries);
+    const result = buildRelatedGamesMap(targets, candidates, seriesMap, tierMap);
 
     await writeJsonFile(outputPath, result);
 }

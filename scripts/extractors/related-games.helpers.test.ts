@@ -41,6 +41,7 @@ describe("extractAndSaveRelatedGames shared helpers", () => {
         mocks.loadSeriesGameLinks.mockReturnValue([
             { game: 1, series: 7, order: 2 },
             { game: 2, series: 7, order: 1 },
+            { game: 999, series: 8, order: 1 },
         ]);
         mocks.getRelatedGames.mockReturnValue([{ game: candidate, score: 123 }]);
 
