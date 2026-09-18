@@ -1,35 +1,53 @@
-import { writeFile } from "node:fs/promises";
-import { stringifyJSON } from "./utils";
+import { writeJsonFile } from "./runExtractor";
 import { buildCardGame } from "@/domain/games";
 import { COVER_PATHS } from "@/domain/games/coverPaths";
 
 import type { Database } from "better-sqlite3";
 import type { BasicGame, CardGame } from "@/domain/games";
+import type { TierCategoryKey as RelatedGameTier } from "@/types/tierList";
 
 type GameRow = BasicGame & {
-    category_slug: string;
+    id: number;
+    genres: string;
+    category_slug: RelatedGameTier;
+};
+
+export type TierListCardGame = {
+    databaseId: number;
+    game: CardGame;
+    category: RelatedGameTier;
 };
 
 type TierListResult = Record<string, CardGame[]>;
 
-// Queries
-const gamesInPresentQuery = `
-    SELECT g.*, COALESCE(tc.slug, 'tier_not_evaluated') AS category_slug
-    FROM games_in_present g
+export function loadTierListCardGames(
+    db: Database,
+    gamesTableName: "games_in_present" | "games_in_future",
+    includeGenres = false
+): TierListCardGame[] {
+    const rows = db.prepare(`
+    SELECT g.*,
+        COALESCE((SELECT json_group_array(genre) FROM games_genres WHERE game = g.id), '[]') AS genres,
+        COALESCE(tc.slug, 'tier_not_evaluated') AS category_slug
+    FROM ${gamesTableName} selected_games
+    JOIN games g ON selected_games.id = g.id
     LEFT JOIN tier_list_games tlg ON g.id = tlg.game_id
     LEFT JOIN tier_categories tc ON tlg.category_id = tc.id
     WHERE g.id NOT IN (SELECT dlc FROM games_dlcs) 
     ORDER BY g.title ASC
-`;
-const gamesInFutureQuery = `
-    SELECT g.*, COALESCE(tc.slug, 'tier_not_evaluated') AS category_slug
-    FROM games_in_future gf 
-    LEFT JOIN tier_list_games tlg ON gf.id = tlg.game_id 
-    LEFT JOIN tier_categories tc ON tlg.category_id = tc.id 
-    JOIN games g ON gf.id = g.id
-    WHERE g.id NOT IN (SELECT dlc FROM games_dlcs) 
-    ORDER BY g.title ASC
-`;
+    `).all() as GameRow[];
+
+    return rows.map(({ id, genres, category_slug, ...gameData }) => {
+        const cardSource = includeGenres
+            ? { ...gameData, genres: JSON.parse(genres || "[]") }
+            : gameData;
+        return {
+            databaseId: id,
+            game: buildCardGame(cardSource as BasicGame, COVER_PATHS.games),
+            category: category_slug,
+        };
+    });
+}
 
 export async function genericExtractAndSaveTierListGames(
     db: Database,
@@ -44,17 +62,9 @@ export async function genericExtractAndSaveTierListGames(
         result[cat.slug] = [];
     }
 
-    const query = (gamesTableName === "games_in_present") 
-        ? gamesInPresentQuery 
-        : gamesInFutureQuery;
-
-    const rows = db.prepare(query).all() as GameRow[];
-
-    for (const row of rows) {
-        const { category_slug, ...gameData } = row;
-        result[category_slug].push(buildCardGame(gameData, COVER_PATHS.games));
+    for (const { category, game } of loadTierListCardGames(db, gamesTableName)) {
+        result[category].push(game);
     }
 
-    await writeFile(outputPath, stringifyJSON(result), "utf-8");
-    console.log(`${outputPath} successfully written`);
+    await writeJsonFile(outputPath, result);
 }

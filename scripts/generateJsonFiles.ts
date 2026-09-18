@@ -21,6 +21,7 @@ import {
     extractAndSaveTierListCategories,
     extractAndSaveTierListGamesFuture,
     extractAndSaveTierListTests,
+    extractAndSaveRelatedGames,
     extractAndSaveLlmContext
 } from "./extractors"
 
@@ -47,6 +48,7 @@ const FILES = {
     "TIER_LIST_CATEGORIES": resolve(__dirname, '..', 'src/app/api/tier-lists/categories/categories.json'),
     "TIER_LIST_GAMES_FUTURE": resolve(__dirname, '..', 'src/app/api/tier-lists/games/future-games.json'),
     "TIER_LIST_TESTS": resolve(__dirname, '..', 'src/app/api/tier-lists/tests/tests.json'),
+    "RELATED_GAMES": resolve(__dirname, '..', 'src/app/api/related-games/related-games.json'),
     "LLMS": resolve(__dirname, '..', 'src/app/llms.txt/llms.txt')
 }
 
@@ -73,6 +75,7 @@ try {
     await extractAndSaveTierListCategories(db, FILES.TIER_LIST_CATEGORIES);
     await extractAndSaveTierListGamesFuture(db, FILES.TIER_LIST_GAMES_FUTURE);
     await extractAndSaveTierListTests(db, FILES.TIER_LIST_TESTS);
+    await extractAndSaveRelatedGames(db, FILES.RELATED_GAMES);
     await extractAndSaveLlmContext(FILES.LLMS, {
         games: FILES.GAMES,
         platforms: FILES.PLATFORMS,

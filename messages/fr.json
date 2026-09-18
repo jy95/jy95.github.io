@@ -197,5 +197,18 @@
             "tier_bad": "Des jeux profondément ratés ou sans grand intérêt.",
             "tier_not_evaluated": "Des titres sur lesquels je dois me pencher plus longuement avant de me prononcer."
         }
+    },
+    "discovery": {
+        "continueExploring": {
+            "title": "Continuer l'exploration"
+        },
+        "relatedGames": {
+            "title": "Vous pourriez aussi aimer"
+        },
+        "seriesNavigation": {
+            "position": "{position} / {total}",
+            "previous": "Précédent",
+            "next": "Suivant"
+        }
     }
 }

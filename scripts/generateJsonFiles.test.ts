@@ -19,6 +19,7 @@ describe('generateJsonFiles script', () => {
         'extractAndSaveTierListCategories',
         'extractAndSaveTierListGamesFuture',
         'extractAndSaveTierListTests',
+        'extractAndSaveRelatedGames',
         'extractAndSaveLlmContext',
     ];
 
@@ -49,6 +50,9 @@ describe('generateJsonFiles script', () => {
         ],
         extractAndSaveTierListTests: [
             'src/app/api/tier-lists/tests/tests.json',
+        ],
+        extractAndSaveRelatedGames: [
+            'src/app/api/related-games/related-games.json',
         ],
         extractAndSaveLlmContext: ['src/app/llms.txt/llms.txt'],
     };

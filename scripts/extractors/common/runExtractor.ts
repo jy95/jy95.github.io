@@ -9,6 +9,10 @@ export async function extractAndSaveQuery(
     ...params: unknown[]
 ): Promise<void> {
     const rows = db.prepare(sql).all(...params);
-    await writeFile(outputPath, stringifyJSON(rows), "utf-8");
+    await writeJsonFile(outputPath, rows);
+}
+
+export async function writeJsonFile(outputPath: string, payload: unknown): Promise<void> {
+    await writeFile(outputPath, stringifyJSON(payload), "utf-8");
     console.log(`${outputPath} successfully written`);
 }
