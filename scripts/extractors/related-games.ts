@@ -11,9 +11,10 @@ import type {
 } from "@/domain/discovery/relatedGames";
 
 /**
- * Precomputes "you might also like" candidates for every published game at
- * build time. This keeps the runtime cost of the feature to a single small
- * JSON fetch (cached client-side) plus an O(1) lookup by game id — no
+ * Precomputes "you might also like" candidates for every future game, using
+ * published non-DLC games as candidates, at build time. This keeps the runtime
+ * cost of the feature to a single small JSON fetch (cached client-side) plus
+ * an O(1) lookup by game id — no
  * per-view scoring against the whole catalog, so it stays cheap on
  * low-end devices as the number of games grows.
  */

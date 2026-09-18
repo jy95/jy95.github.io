@@ -29,6 +29,13 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
+			"title": "South Park - Le baton de la vérité",
+			"imagePath": "/covers/PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
 			"title": "X-Men Origins : Wolverine",
 			"imagePath": "/covers/PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO/cover.webp",
@@ -75,13 +82,6 @@
 			"title": "Sly 2 : Association de voleurs",
 			"imagePath": "/covers/PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"title": "Rayman Legends",
-			"imagePath": "/covers/PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
 			"url_type": "PLAYLIST"
 		}
 	],
@@ -259,27 +259,6 @@
 	],
 	"PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb": [
 		{
-			"id": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
-			"title": "God of War III",
-			"imagePath": "/covers/PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"title": "Enslaved Odyssey to the West",
-			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
-			"title": "Splinter Cell Chaos Theory HD",
-			"imagePath": "/covers/PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
 			"title": "Ratchet & Clank : Opération Destruction",
 			"imagePath": "/covers/PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY/cover.webp",
@@ -294,13 +273,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
-			"title": "X-Men Origins : Wolverine",
-			"imagePath": "/covers/PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
 			"title": "Ratchet & Clank 2",
 			"imagePath": "/covers/PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu/cover.webp",
@@ -308,38 +280,66 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ6zui2RaBzaZ5zjm768Jzum",
-			"title": "God Of War II HD",
-			"imagePath": "/covers/PLRfhDHeBTBJ6zui2RaBzaZ5zjm768Jzum/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6zui2RaBzaZ5zjm768Jzum",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
-			"title": "NeverDead",
-			"imagePath": "/covers/PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"title": "Rayman Legends",
-			"imagePath": "/covers/PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
-			"title": "Metal Gear Rising Revengeance",
-			"imagePath": "/covers/PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
 			"title": "Ratchet & Clank : A Crack in Time",
 			"imagePath": "/covers/PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"title": "God of War III",
+			"imagePath": "/covers/PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
+			"title": "XIII - le jeu",
+			"imagePath": "/covers/PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"title": "Enslaved Odyssey to the West",
+			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
+			"title": "Dead to Rights : Retribution",
+			"imagePath": "/covers/PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
+			"title": "Ratchet : Gladiator",
+			"imagePath": "/covers/PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+			"title": "Splinter Cell Chaos Theory HD",
+			"imagePath": "/covers/PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
+			"title": "Jak 3",
+			"imagePath": "/covers/PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
+			"title": "Mafia: Definitive Edition",
+			"imagePath": "/covers/PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
 			"url_type": "PLAYLIST"
 		}
 	],
@@ -947,20 +947,6 @@
 	],
 	"3rgBcXGCQtU": [
 		{
-			"id": "We7-JHU7D7I",
-			"title": "Pyjama Sam 2 : Héros Météo",
-			"imagePath": "/covers/We7-JHU7D7I/cover.webp",
-			"url": "https://www.youtube.com/watch?v=We7-JHU7D7I",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "qaIADIQyr0A",
-			"title": "Sam Pyjam : Héros de la Nuit",
-			"imagePath": "/covers/qaIADIQyr0A/cover.webp",
-			"url": "https://www.youtube.com/watch?v=qaIADIQyr0A",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
 			"title": "Spy fox : Opération Milkshake",
 			"imagePath": "/covers/PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525/cover.webp",
@@ -980,6 +966,20 @@
 			"imagePath": "/covers/PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx",
 			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "We7-JHU7D7I",
+			"title": "Pyjama Sam 2 : Héros Météo",
+			"imagePath": "/covers/We7-JHU7D7I/cover.webp",
+			"url": "https://www.youtube.com/watch?v=We7-JHU7D7I",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "qaIADIQyr0A",
+			"title": "Sam Pyjam : Héros de la Nuit",
+			"imagePath": "/covers/qaIADIQyr0A/cover.webp",
+			"url": "https://www.youtube.com/watch?v=qaIADIQyr0A",
+			"url_type": "VIDEO"
 		},
 		{
 			"id": "Qsq_q65MwhU",
@@ -1010,6 +1010,13 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "6wJFMcIHi8k",
+			"title": "Space Invaders Extreme",
+			"imagePath": "/covers/6wJFMcIHi8k/cover.webp",
+			"url": "https://www.youtube.com/watch?v=6wJFMcIHi8k",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
 			"title": "The Simpsons Hit & Run",
 			"imagePath": "/covers/PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV/cover.webp",
@@ -1022,23 +1029,9 @@
 			"imagePath": "/covers/PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
 			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"title": "XIII - le jeu",
-			"imagePath": "/covers/PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"url_type": "PLAYLIST"
 		}
 	],
 	"aK8LL8r1s0Q": [
-		{
-			"id": "qaIADIQyr0A",
-			"title": "Sam Pyjam : Héros de la Nuit",
-			"imagePath": "/covers/qaIADIQyr0A/cover.webp",
-			"url": "https://www.youtube.com/watch?v=qaIADIQyr0A",
-			"url_type": "VIDEO"
-		},
 		{
 			"id": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
 			"title": "Spy fox : Opération Milkshake",
@@ -1059,6 +1052,13 @@
 			"imagePath": "/covers/PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx",
 			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "qaIADIQyr0A",
+			"title": "Sam Pyjam : Héros de la Nuit",
+			"imagePath": "/covers/qaIADIQyr0A/cover.webp",
+			"url": "https://www.youtube.com/watch?v=qaIADIQyr0A",
+			"url_type": "VIDEO"
 		},
 		{
 			"id": "Qsq_q65MwhU",
@@ -1182,6 +1182,13 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"title": "Driver: San Francisco",
+			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "We7-JHU7D7I",
 			"title": "Pyjama Sam 2 : Héros Météo",
 			"imagePath": "/covers/We7-JHU7D7I/cover.webp",
@@ -1194,13 +1201,6 @@
 			"imagePath": "/covers/qaIADIQyr0A/cover.webp",
 			"url": "https://www.youtube.com/watch?v=qaIADIQyr0A",
 			"url_type": "VIDEO"
-		},
-		{
-			"id": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"title": "XIII - le jeu",
-			"imagePath": "/covers/PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"url_type": "PLAYLIST"
 		}
 	],
 	"8LewlLoYHVY": [
@@ -1305,18 +1305,18 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "qaIADIQyr0A",
-			"title": "Sam Pyjam : Héros de la Nuit",
-			"imagePath": "/covers/qaIADIQyr0A/cover.webp",
-			"url": "https://www.youtube.com/watch?v=qaIADIQyr0A",
-			"url_type": "VIDEO"
-		},
-		{
 			"id": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
 			"title": "Spy fox : Opération Milkshake",
 			"imagePath": "/covers/PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
 			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "qaIADIQyr0A",
+			"title": "Sam Pyjam : Héros de la Nuit",
+			"imagePath": "/covers/qaIADIQyr0A/cover.webp",
+			"url": "https://www.youtube.com/watch?v=qaIADIQyr0A",
+			"url_type": "VIDEO"
 		},
 		{
 			"id": "We7-JHU7D7I",
@@ -1361,17 +1361,17 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "6wJFMcIHi8k",
+			"title": "Space Invaders Extreme",
+			"imagePath": "/covers/6wJFMcIHi8k/cover.webp",
+			"url": "https://www.youtube.com/watch?v=6wJFMcIHi8k",
+			"url_type": "VIDEO"
+		},
+		{
 			"id": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
 			"title": "Rayman Legends",
 			"imagePath": "/covers/PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"title": "XIII - le jeu",
-			"imagePath": "/covers/PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
 			"url_type": "PLAYLIST"
 		}
 	],
@@ -1463,6 +1463,13 @@
 	],
 	"IwBRxURrIDM": [
 		{
+			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"title": "Driver: San Francisco",
+			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
 			"title": "Rayman Legends",
 			"imagePath": "/covers/PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX/cover.webp",
@@ -1470,24 +1477,17 @@
 			"url_type": "PLAYLIST"
 		},
 		{
+			"id": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+			"title": "Splinter Cell Chaos Theory HD",
+			"imagePath": "/covers/PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+			"url_type": "PLAYLIST"
+		},
+		{
 			"id": "PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao",
 			"title": "Crash Bandicoot 2 : Cortex Strikes Back",
 			"imagePath": "/covers/PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
-			"title": "Crash Bandicoot",
-			"imagePath": "/covers/PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
-			"title": "Crash Bandicoot 3 : Warped",
-			"imagePath": "/covers/PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1505,45 +1505,45 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "5ZHExfdq9F8",
-			"title": "Dragon Ball : Advanced Adventure",
-			"imagePath": "/covers/5ZHExfdq9F8/cover.webp",
-			"url": "https://www.youtube.com/watch?v=5ZHExfdq9F8",
+			"id": "PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
+			"title": "Pumpkin Jack",
+			"imagePath": "/covers/PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
+			"title": "Shank 2",
+			"imagePath": "/covers/PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
+			"title": "Sly Raccoon",
+			"imagePath": "/covers/PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
+			"title": "Shank",
+			"imagePath": "/covers/PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "0vTdVPo9I_4",
+			"title": "Metal Slug XX",
+			"imagePath": "/covers/0vTdVPo9I_4/cover.webp",
+			"url": "https://www.youtube.com/watch?v=0vTdVPo9I_4",
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"title": "Driver: San Francisco",
-			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
-			"title": "Kirby: Cauchemar au pays des Rêves",
-			"imagePath": "/covers/PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "L7R_LBBOPEk",
-			"title": "Avatar : Le Dernier Maître de l'Air",
-			"imagePath": "/covers/L7R_LBBOPEk/cover.webp",
-			"url": "https://www.youtube.com/watch?v=L7R_LBBOPEk",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
-			"title": "Ratchet & Clank : Quest for Booty",
-			"imagePath": "/covers/PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ",
-			"title": "Rayman 3 : Hoodlum Havoc HD",
-			"imagePath": "/covers/PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ",
+			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"title": "Enslaved Odyssey to the West",
+			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
 			"url_type": "PLAYLIST"
 		}
 	],
@@ -1821,31 +1821,10 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"title": "Driver: San Francisco",
-			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
-			"title": "Splinter Cell Chaos Theory HD",
-			"imagePath": "/covers/PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
 			"title": "Crash Bandicoot",
 			"imagePath": "/covers/PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"title": "The Simpsons Hit & Run",
-			"imagePath": "/covers/PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -1863,32 +1842,53 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "6wJFMcIHi8k",
-			"title": "Space Invaders Extreme",
-			"imagePath": "/covers/6wJFMcIHi8k/cover.webp",
-			"url": "https://www.youtube.com/watch?v=6wJFMcIHi8k",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
-			"title": "Sly Raccoon",
-			"imagePath": "/covers/PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
+			"id": "PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
+			"title": "Ratchet & Clank : A Crack in Time",
+			"imagePath": "/covers/PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
-			"title": "Enslaved Odyssey to the West",
-			"imagePath": "/covers/PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+			"id": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
+			"title": "Ratchet & Clank : Quest for Booty",
+			"imagePath": "/covers/PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "odnIJiLjqCY",
-			"title": "Sigi - Un Pet Pour Mélusina",
-			"imagePath": "/covers/odnIJiLjqCY/cover.webp",
-			"url": "https://www.youtube.com/watch?v=odnIJiLjqCY",
-			"url_type": "VIDEO"
+			"id": "PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT",
+			"title": "Zapper : Le Criquet Ravageur !",
+			"imagePath": "/covers/PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
+			"title": "Rayman Origins",
+			"imagePath": "/covers/PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
+			"title": "TMNT 2007 (GBA)",
+			"imagePath": "/covers/PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
+			"title": "Ratchet & Clank Nexus",
+			"imagePath": "/covers/PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"title": "Driver: San Francisco",
+			"imagePath": "/covers/PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+			"url_type": "PLAYLIST"
 		}
 	],
 	"PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb": [
@@ -1993,13 +1993,6 @@
 			"url_type": "VIDEO"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"title": "The Simpsons Hit & Run",
-			"imagePath": "/covers/PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
 			"title": "Rayman Legends",
 			"imagePath": "/covers/PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX/cover.webp",
@@ -2007,31 +2000,10 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"title": "XIII - le jeu",
-			"imagePath": "/covers/PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
-			"title": "Splinter Cell Chaos Theory HD",
-			"imagePath": "/covers/PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
 			"title": "Rayman 2 : Revolution",
 			"imagePath": "/covers/PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
-			"title": "Sly Raccoon",
-			"imagePath": "/covers/PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2060,6 +2032,34 @@
 			"title": "Astérix aux Jeux olympiques",
 			"imagePath": "/covers/PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun/cover.webp",
 			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao",
+			"title": "Crash Bandicoot 2 : Cortex Strikes Back",
+			"imagePath": "/covers/PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6AGIBxZa5zvykgQBKSHzd5",
+			"title": "Crash Bandicoot 4: It's About Time",
+			"imagePath": "/covers/PLRfhDHeBTBJ6AGIBxZa5zvykgQBKSHzd5/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6AGIBxZa5zvykgQBKSHzd5",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
+			"title": "Crash Bandicoot",
+			"imagePath": "/covers/PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
+			"title": "Crash Bandicoot 3 : Warped",
+			"imagePath": "/covers/PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
 			"url_type": "PLAYLIST"
 		}
 	],
@@ -2207,13 +2207,6 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"title": "XIII - le jeu",
-			"imagePath": "/covers/PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
-			"url_type": "PLAYLIST"
-		},
-		{
 			"id": "PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
 			"title": "X-Men Origins : Wolverine",
 			"imagePath": "/covers/PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO/cover.webp",
@@ -2228,10 +2221,17 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
-			"title": "The Simpsons Hit & Run",
-			"imagePath": "/covers/PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
+			"id": "PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
+			"title": "Metal Gear Rising Revengeance",
+			"imagePath": "/covers/PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu",
+			"title": "Ratchet & Clank 3",
+			"imagePath": "/covers/PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu",
 			"url_type": "PLAYLIST"
 		}
 	],
