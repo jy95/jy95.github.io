@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getRelatedGames } from "./getRelatedGames";
+import { getRelatedGames } from ".";
 import type { CardGame } from "@/domain/games";
 
 function game(id: string, title: string, values: Partial<CardGame> = {}): CardGame {
@@ -58,6 +58,15 @@ describe("getRelatedGames", () => {
         const partialMatch = game("partial", "Zulu", { genres: [1] });
 
         expect(getRelatedGames(multiGenreTarget, [partialMatch])).toEqual([]);
+    });
+
+    it("requires full target genre coverage through the public API", () => {
+        const multiGenreTarget = game("target", "Opaque", { genres: [1, 2, 3] });
+        const partialMatch = game("partial", "Unrelated", { genres: [1, 2] });
+        const fullMatch = game("full", "Unrelated", { genres: [3, 2, 1, 1] });
+
+        expect(getRelatedGames(multiGenreTarget, [partialMatch, fullMatch])
+            .map(({ game: result }) => result.id)).toEqual(["full"]);
     });
 
     it("scores a candidate that contains the full target genre set", () => {
