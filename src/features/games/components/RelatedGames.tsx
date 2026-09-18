@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import LoadingButton from "@/app/[locale]/games/_client/LoadingButton";
 import { CardGrid } from "./CardGrid";
@@ -34,9 +36,12 @@ export default function RelatedGames({ gameId }: Props) {
 
     return (
         <Box sx={{ mt: 4 }}>
-            <Typography variant="h6" gutterBottom>
-                {t("title")}
-            </Typography>
+            <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
+                <AutoAwesomeIcon aria-hidden="true" fontSize="small" color="primary" />
+                <Typography variant="h6">
+                    {t("title")}
+                </Typography>
+            </Stack>
             <CardGrid
                 items={results.slice(0, visibleCount)}
                 size={{ xs: 6, md: 4, lg: 2 }}

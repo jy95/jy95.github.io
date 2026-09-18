@@ -43,6 +43,13 @@ describe("RelatedGames", () => {
         getRelatedGamesQueryMock.mockReturnValue({ data: { target: results } });
     });
 
+    it("renders a decorative icon without changing the accessible heading", () => {
+        render(<RelatedGames gameId="target" />);
+
+        expect(screen.getByTestId("AutoAwesomeIcon")).toHaveAttribute("aria-hidden", "true");
+        expect(screen.getByRole("heading", { name: "discovery.relatedGames.title" })).toBeInTheDocument();
+    });
+
     it("uses the games gallery grid and shows four more games per load-more action", () => {
         render(<RelatedGames gameId="target" />);
 

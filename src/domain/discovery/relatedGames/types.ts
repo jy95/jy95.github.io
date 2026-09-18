@@ -36,12 +36,6 @@ export interface RelatedGamesOptions {
     limit?: number;
 }
 
-export type RelatedGameEntry = {
-    id: string;
-    title: string;
-    imagePath: string;
-    url: string;
-    url_type: CardGame["url_type"];
-};
+export type RelatedGameEntry = Pick<CardGame, "id" | "title" | "imagePath" | "url" | "url_type">;
 
 export type RelatedGamesMap = Record<string, RelatedGameEntry[]>;
