@@ -15,7 +15,9 @@ export type RelatedGamesWeights = {
     series: number;
     adjacentSeries: number;
     title: number;
+    /** Applied when a candidate contains the full set of target genres. */
     genres: number;
+    /** Applied once per unique target genre after a full genre-set match. */
     genre: number;
     platform: number;
     duration: number;

@@ -64,12 +64,9 @@ export function getRelatedGames(
             hasRelation = true;
         }
 
-        if (targetGenres.size > 0 && candidate.genres && candidate.genres.length > 0) {
-            const sharedCount = candidate.genres.filter((genre) => targetGenres.has(genre)).length;
-            if (sharedCount > 0) {
-                score += weights.genres + sharedCount * weights.genre;
-                hasRelation = true;
-            }
+        if (hasAllGenres(targetGenres, candidate.genres)) {
+            score += weights.genres + targetGenres.size * weights.genre;
+            hasRelation = true;
         }
 
         if (target.platform !== undefined && candidate.platform === target.platform) {
@@ -92,6 +89,13 @@ export function getRelatedGames(
 
         return hasRelation ? { game: candidate, score } : undefined;
     }
+}
+
+function hasAllGenres(targetGenres: Set<number>, candidateGenres?: number[]): boolean {
+    if (targetGenres.size === 0 || !candidateGenres?.length) return false;
+
+    const uniqueCandidateGenres = new Set(candidateGenres);
+    return [...targetGenres].every((genre) => uniqueCandidateGenres.has(genre));
 }
 
 function compareText(a: string, b: string): number {

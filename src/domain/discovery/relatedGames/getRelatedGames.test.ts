@@ -53,6 +53,34 @@ describe("getRelatedGames", () => {
         }).map(({ game: result }) => result.id)).toEqual(["platform", "genre"]);
     });
 
+    it("does not relate a candidate by genres when it only matches part of the target set", () => {
+        const multiGenreTarget = game("target", "Alpha", { genres: [1, 2] });
+        const partialMatch = game("partial", "Zulu", { genres: [1] });
+
+        expect(getRelatedGames(multiGenreTarget, [partialMatch])).toEqual([]);
+    });
+
+    it("scores a candidate that contains the full target genre set", () => {
+        const multiGenreTarget = game("target", "Alpha", { genres: [1, 2] });
+        const fullMatch = game("full", "Zulu", { genres: [1, 2, 3] });
+
+        const [result] = getRelatedGames(multiGenreTarget, [fullMatch]);
+
+        expect(result.game.id).toBe("full");
+        expect(result.score).toBe(150);
+    });
+
+    it("does not let duplicate candidate genres inflate the score", () => {
+        const multiGenreTarget = game("target", "Alpha", { genres: [1, 2] });
+        const uniqueGenres = game("unique", "Zulu", { genres: [1, 2] });
+        const duplicateGenres = game("duplicate", "Zulu", { genres: [1, 1, 2, 2] });
+
+        const results = getRelatedGames(multiGenreTarget, [uniqueGenres, duplicateGenres]);
+
+        expect(results.map(({ game: result }) => result.id)).toEqual(["duplicate", "unique"]);
+        expect(results[0].score).toBe(results[1].score);
+    });
+
     it("ranks a stronger Sørensen-Dice title match above a weaker match", () => {
         const close = game("close", "Target Two", { genres: [1] });
         const weak = game("weak", "Tangent", { genres: [1] });

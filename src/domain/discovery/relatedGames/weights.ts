@@ -7,9 +7,9 @@ export const DEFAULT_WEIGHTS: RelatedGamesWeights = {
     adjacentSeries: 2_000,
     // Adds up to 300 points based on normalized title similarity.
     title: 300,
-    // Adds 100 points when at least one genre is shared.
+    // Adds 100 points when every target genre is present on the candidate.
     genres: 100,
-    // Adds 25 points for each shared genre.
+    // Adds 25 points for each unique target genre in that full match.
     genre: 25,
     // Adds 75 points for a shared platform.
     platform: 75,
