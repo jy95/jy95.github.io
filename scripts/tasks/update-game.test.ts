@@ -12,7 +12,7 @@ describe.skipIf(!hasRealDb)('updateGameInDatabase', () => {
     let gameId: number;
 
     beforeEach(async () => {
-        ({ db, cleanup } = openTestDb());
+        ({ db, cleanup } = await openTestDb());
         identifier = `vitest-updategame-${randomUUID()}`;
         await addGameToDatabase(db, {
             title: 'Original Game Title',
