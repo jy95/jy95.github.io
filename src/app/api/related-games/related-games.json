@@ -2237,73 +2237,10 @@
 	],
 	"PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m": [
 		{
-			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
-			"title": "50 Cent: Blood on the Sand",
-			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
-			"title": "Afro Samurai",
-			"imagePath": "/covers/PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
-			"title": "Aladdin : La Revanche de Nasira",
-			"imagePath": "/covers/PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
-			"title": "Alan Wake Remastered",
-			"imagePath": "/covers/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
-			"title": "Asura's Wrath",
-			"imagePath": "/covers/PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "L7R_LBBOPEk",
-			"title": "Avatar : Le Dernier Maître de l'Air",
-			"imagePath": "/covers/L7R_LBBOPEk/cover.webp",
-			"url": "https://www.youtube.com/watch?v=L7R_LBBOPEk",
-			"url_type": "VIDEO"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
-			"title": "Batman Arkham City",
-			"imagePath": "/covers/PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
-			"title": "Batman The Enemy Within",
-			"imagePath": "/covers/PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
-			"title": "Batman The Telltale Series",
-			"imagePath": "/covers/PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
-			"url_type": "PLAYLIST"
-		},
-		{
-			"id": "PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
-			"title": "Batman: Arkham Asylum",
-			"imagePath": "/covers/PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
+			"id": "PLRfhDHeBTBJ7GRN3EnqBEvfki5uAKiw5Z",
+			"title": "Beyond Good & Evil",
+			"imagePath": "/covers/PLRfhDHeBTBJ7GRN3EnqBEvfki5uAKiw5Z/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7GRN3EnqBEvfki5uAKiw5Z",
 			"url_type": "PLAYLIST"
 		},
 		{
@@ -2314,10 +2251,73 @@
 			"url_type": "PLAYLIST"
 		},
 		{
-			"id": "PLRfhDHeBTBJ7GRN3EnqBEvfki5uAKiw5Z",
-			"title": "Beyond Good & Evil",
-			"imagePath": "/covers/PLRfhDHeBTBJ7GRN3EnqBEvfki5uAKiw5Z/cover.webp",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7GRN3EnqBEvfki5uAKiw5Z",
+			"id": "PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
+			"title": "Batman: Arkham Asylum",
+			"imagePath": "/covers/PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
+			"title": "Batman The Telltale Series",
+			"imagePath": "/covers/PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
+			"title": "Batman The Enemy Within",
+			"imagePath": "/covers/PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
+			"title": "Batman Arkham City",
+			"imagePath": "/covers/PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "L7R_LBBOPEk",
+			"title": "Avatar : Le Dernier Maître de l'Air",
+			"imagePath": "/covers/L7R_LBBOPEk/cover.webp",
+			"url": "https://www.youtube.com/watch?v=L7R_LBBOPEk",
+			"url_type": "VIDEO"
+		},
+		{
+			"id": "PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
+			"title": "Asura's Wrath",
+			"imagePath": "/covers/PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"title": "Alan Wake Remastered",
+			"imagePath": "/covers/PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"title": "Aladdin : La Revanche de Nasira",
+			"imagePath": "/covers/PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
+			"title": "Afro Samurai",
+			"imagePath": "/covers/PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
+			"url_type": "PLAYLIST"
+		},
+		{
+			"id": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+			"title": "50 Cent: Blood on the Sand",
+			"imagePath": "/covers/PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY/cover.webp",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
 			"url_type": "PLAYLIST"
 		}
 	]
