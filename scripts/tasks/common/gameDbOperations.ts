@@ -66,12 +66,12 @@ export function syncCompanies(
     role: CompanyRole,
     companyTextArea?: string
 ) {
-    const requestedCompanies = parseMultilineList(companyTextArea);
-    const names = normalizeCompanyNames(requestedCompanies);
-
-    if (names.length === 0) {
+    if (companyTextArea === undefined) {
       return;
     }
+
+    const requestedCompanies = parseMultilineList(companyTextArea);
+    const names = normalizeCompanyNames(requestedCompanies);
 
     const insertCompanyStmt = db.prepare(`
         INSERT INTO companies (name)
@@ -97,6 +97,10 @@ export function syncCompanies(
     `);
 
     deleteRelationsStmt.run(gameId, role);
+
+    if (names.length === 0) {
+      return;
+    }
 
     for (const name of names) {
         insertCompanyStmt.run(name);
