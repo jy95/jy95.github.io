@@ -112,7 +112,7 @@ describe.skipIf(!hasRealDb)('addGameToDatabase', () => {
     });
 
     it('rolls back the game insert when schedule synchronization fails', async () => {
-        const { db, cleanup } = openTestDb();
+        const { db, cleanup } = await openTestDb();
         const identifier = `vitest-rollback-${randomUUID()}`;
 
         try {

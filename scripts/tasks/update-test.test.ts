@@ -11,7 +11,7 @@ describe.skipIf(!hasRealDb)('updateTestInDatabase', () => {
     let identifier: string;
 
     beforeEach(async () => {
-        ({ db, cleanup } = openTestDb());
+        ({ db, cleanup } = await openTestDb());
         identifier = `vitest-update-${randomUUID()}`;
         await addTestToDatabase(db, {
             title: 'Original Title',

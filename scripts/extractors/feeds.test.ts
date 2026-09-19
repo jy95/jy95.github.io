@@ -13,8 +13,8 @@ describe.skipIf(!hasRealDb)('extractAndSavePastGamesToFeeds', () => {
     let jsonFeedPath: string;
     let cleanupJsonFeed: () => void;
 
-    beforeEach(() => {
-        ({ db, cleanup: cleanupDb } = openTestDb() as any);
+    beforeEach(async () => {
+        ({ db, cleanup: cleanupDb } = await openTestDb() as any);
         ({ path: rssPath, cleanup: cleanupRss } = tempOutputPath('feed', 'xml'));
         ({ path: jsonFeedPath, cleanup: cleanupJsonFeed } = tempOutputPath('feed', 'json'));
     });

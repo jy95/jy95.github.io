@@ -15,7 +15,8 @@
     "generate-playlist-data-report": "npx tsx scripts/generate-playlists-stats.ts",
     "generate-playlist-csv": "npx tsx scripts/generate-playlist-csv.ts",
     "find-published-games": "npx tsx scripts/findPublishedGames.ts",
-    "generate-api-json-files": "npx tsx scripts/generateJsonFiles.ts"
+    "generate-api-json-files": "npx tsx scripts/generateJsonFiles.ts",
+    "db:sync-views": "npx tsx scripts/db-sync-views.ts"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

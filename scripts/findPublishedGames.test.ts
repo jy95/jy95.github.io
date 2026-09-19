@@ -8,8 +8,8 @@ describe.skipIf(!hasRealDb)('findPublishedGames', () => {
         let db: SQLDatabase;
         let cleanup: () => void;
 
-        beforeEach(() => {
-            const opened = openTestDb();
+        beforeEach(async () => {
+            const opened = await openTestDb();
             db = opened.db;
             cleanup = opened.cleanup;
         });

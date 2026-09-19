@@ -9,7 +9,7 @@ describe.skipIf(!hasRealDb)('deleteTestFromDatabase', () => {
     let db: Database;
     let cleanup: () => void;
 
-    beforeEach(() => { ({ db, cleanup } = openTestDb()); });
+    beforeEach(async () => { ({ db, cleanup } = await openTestDb()); });
     afterEach(() => { cleanup(); });
 
     it('removes a row that was just inserted', async () => {

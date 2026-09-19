@@ -26,8 +26,8 @@ describe.skipIf(!hasRealDb)('cleanBacklog', () => {
     let db: Database;
     let cleanup: () => void;
 
-    beforeEach(() => {
-        ({ db, cleanup } = openTestDb());
+    beforeEach(async () => {
+        ({ db, cleanup } = await openTestDb());
         readdirMock.mockReset();
         rmMock.mockReset();
         rmMock.mockResolvedValue(undefined);

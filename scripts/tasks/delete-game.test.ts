@@ -24,8 +24,8 @@ describe.skipIf(!hasRealDb)('deleteGameFromDatabase', () => {
     let db: Database;
     let cleanup: () => void;
 
-    beforeEach(() => {
-        ({ db, cleanup } = openTestDb());
+    beforeEach(async () => {
+        ({ db, cleanup } = await openTestDb());
         rmMock.mockReset();
         rmMock.mockResolvedValue(undefined);
     });

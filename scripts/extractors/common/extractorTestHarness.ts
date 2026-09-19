@@ -8,8 +8,8 @@ export function useExtractorHarness(name: string) {
     let cleanupDb: () => void;
     let cleanupFile: () => void;
 
-    beforeEach(() => {
-        ({ db: ctx.db, cleanup: cleanupDb } = openTestDb());
+    beforeEach(async () => {
+        ({ db: ctx.db, cleanup: cleanupDb } = await openTestDb());
         ({ path: ctx.outPath, cleanup: cleanupFile } = tempOutputPath(name));
     });
     afterEach(() => { cleanupDb(); cleanupFile(); });
