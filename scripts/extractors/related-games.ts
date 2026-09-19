@@ -1,7 +1,7 @@
 import { loadTierListCardGames } from "./common/games-tier-list-extractor";
 import { writeJsonFile } from "./common/runExtractor";
 import { loadSeriesGameLinks } from "./series";
-import { getRelatedGames } from "@/domain/discovery/relatedGames";
+import { getRelatedGames, buildCandidateIndex } from "@/domain/discovery/relatedGames";
 
 import type { Database } from "better-sqlite3";
 import type { CardGame } from "@/domain/games";
@@ -53,10 +53,15 @@ function buildRelatedGamesMap(
     seriesMap: Record<string, SeriesGame>,
     tierMap: Record<string, RelatedGameTier>
 ): RelatedGamesMap {
+    // Built once, outside the loop — title bigrams for every candidate are
+    // computed a single time and reused across all `targets.length` calls
+    // below, instead of once per target.
+    const candidateIndex = buildCandidateIndex(candidates);
+
     return Object.fromEntries(
         targets.map((target) => [
             target.id,
-            getRelatedGames(target, candidates, { seriesMap, tierMap, limit: 12 }).map(
+            getRelatedGames(target, candidateIndex, { seriesMap, tierMap, limit: 12 }).map(
                 toRelatedGameEntry
             ),
         ])
