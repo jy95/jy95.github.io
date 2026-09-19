@@ -78,7 +78,7 @@ body:
         - Strategy
         - Misc
   - type: textarea
-    id: developers
+    id: developers_textarea
     attributes:
       label: Developers
       description: List the companies that developed the game, one per line.
@@ -87,7 +87,7 @@ body:
         Capcom Production Studio 4
 
   - type: textarea
-    id: publishers
+    id: publishers_textarea
     attributes:
       label: Publishers
       description: List the companies that published the game, one per line.

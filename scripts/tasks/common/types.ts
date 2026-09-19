@@ -52,8 +52,8 @@ export interface GamePayload {
   identifierValue: string;
   platform: Platform;
   genres?: GameGenre[];
-  developers?: string[];
-  publishers?: string[];
+  developers_textarea?: string;
+  publishers_textarea?: string;
   duration?: string;
   availableAt?: string;
   endAt?: string;

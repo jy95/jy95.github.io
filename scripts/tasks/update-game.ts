@@ -37,8 +37,8 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
 
         syncGenres(db, gameId, payload.genres);
         syncSchedule(db, gameId, payload.availableAt, payload.endAt);
-        syncCompanies(db, gameId, "developer", payload.developers);
-        syncCompanies(db, gameId, "publisher", payload.publishers);
+        syncCompanies(db, gameId, "developer", payload.developers_textarea);
+        syncCompanies(db, gameId, "publisher", payload.publishers_textarea);
 
         return gameId;
     });

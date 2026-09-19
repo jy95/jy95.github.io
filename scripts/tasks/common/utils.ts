@@ -131,3 +131,16 @@ export function applyIfPresent<T extends object, K extends keyof T>(
     apply(payload[key]);
   }
 }
+
+export function parseMultilineList(value?: string): string[] | undefined {
+    if (!value?.trim()) {
+        return undefined;
+    }
+
+    return [...new Set(
+        value
+            .split(/\r?\n/)
+            .map(value => value.trim())
+            .filter(Boolean)
+    )];
+}

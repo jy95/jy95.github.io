@@ -1,5 +1,6 @@
 import type { Database } from "better-sqlite3";
 import { genreToInt } from "../common/utils";
+import { parseMultilineList } from "./utils";
 
 import type { GameGenre, CompanyRole } from "../common/types";
 
@@ -63,13 +64,14 @@ export function syncCompanies(
     db: Database,
     gameId: number | bigint,
     role: CompanyRole,
-    companyNames?: string[]
+    companyTextArea?: string
 ) {
-    if (!companyNames?.length) {
-        return;
-    }
+    const requestedCompanies = parseMultilineList(companyTextArea);
+    const names = normalizeCompanyNames(requestedCompanies);
 
-    const names = normalizeCompanyNames(companyNames);
+    if (names.length === 0) {
+      return;
+    }
 
     const insertCompanyStmt = db.prepare(`
         INSERT INTO companies (name)

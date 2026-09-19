@@ -23,8 +23,8 @@ export async function addGameToDatabase(db: Database, payload: GamePayload) {
         const gameId = info.lastInsertRowid;
 
         syncGenres(db, gameId, payload.genres);
-        syncCompanies(db, gameId, "developer", payload.developers);
-        syncCompanies(db, gameId, "publisher", payload.publishers);
+        syncCompanies(db, gameId, "developer", payload.developers_textarea);
+        syncCompanies(db, gameId, "publisher", payload.publishers_textarea);
         syncSchedule(db, gameId, payload.availableAt, payload.endAt);
 
         return gameId;
