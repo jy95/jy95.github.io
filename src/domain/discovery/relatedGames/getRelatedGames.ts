@@ -2,21 +2,19 @@ import { timeToSeconds } from "@/domain/games";
 import { compareRelatedGames } from "./compareRelatedGames";
 import { scoreCandidate } from "./scoreCandidate";
 import { titleBigrams } from "./titleSimilarity";
+import { buildCandidateIndex } from "./candidateIndex";
 import { DEFAULT_WEIGHTS } from "./weights";
 
 import type { CardGame } from "@/domain/games";
-import type {
-    RelatedGameResult,
-    RelatedGamesOptions,
-    RelatedGamesWeights,
-} from "./types";
-
-type CandidateScoringContext = Parameters<typeof scoreCandidate>[1];
+import type { CandidateIndex } from "./candidateIndex";
+import type { RelatedGameResult, RelatedGamesOptions, RelatedGamesWeights } from "./types";
+import type { ScoringContext } from "./scorers/types";
 
 function buildScoringContext(
     target: CardGame,
-    options: RelatedGamesOptions
-): CandidateScoringContext {
+    options: RelatedGamesOptions,
+    candidateBigrams: ReadonlyMap<string, string[]>
+): ScoringContext {
     const { seriesMap = {}, tierMap = {} } = options;
     const weights: RelatedGamesWeights = {
         ...DEFAULT_WEIGHTS,
@@ -33,13 +31,14 @@ function buildScoringContext(
         seriesMap,
         tierMap,
         weights,
+        candidateBigrams,
     };
 }
 
 function rankCandidates(
     target: CardGame,
     candidates: CardGame[],
-    context: CandidateScoringContext
+    context: ScoringContext
 ): RelatedGameResult[] {
     const byId = new Map<string, RelatedGameResult>();
     for (const candidate of candidates) {
@@ -58,15 +57,21 @@ function rankCandidates(
 
 /**
  * Returns deterministic related-game results.
+ *
+ * `candidates` accepts either a plain array — bigrams are then computed
+ * once, internally, for this single call — or a pre-built `CandidateIndex`
+ * (see candidateIndex.ts), whose bigrams are computed once up front and
+ * reused. Callers scoring many targets against the same candidate pool
+ * (e.g. the build-time extractor) should always pass a pre-built index.
+ *
  * Scores are internal ranking data. Callers must not expose them to users.
  */
 export function getRelatedGames(
     target: CardGame,
-    candidates: CardGame[],
+    candidates: CardGame[] | CandidateIndex,
     options: RelatedGamesOptions = {}
 ): RelatedGameResult[] {
-    return rankCandidates(target, candidates, buildScoringContext(target, options)).slice(
-        0,
-        options.limit ?? 3
-    );
+    const index = Array.isArray(candidates) ? buildCandidateIndex(candidates) : candidates;
+    const context = buildScoringContext(target, options, index.bigramsById);
+    return rankCandidates(target, index.candidates, context).slice(0, options.limit ?? 3);
 }

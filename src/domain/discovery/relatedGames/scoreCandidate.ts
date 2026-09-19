@@ -1,74 +1,36 @@
-import { timeToSeconds } from "@/domain/games";
-import { hasAllGenres } from "./genreMatching";
-import { diceCoefficient, titleBigrams } from "./titleSimilarity";
+import { scoreSeries } from "./scorers/seriesScorer";
+import { scoreGenres } from "./scorers/genreScorer";
+import { scorePlatform } from "./scorers/platformScorer";
+import { scoreTitle } from "./scorers/titleScorer";
+import { scoreDurationPenalty } from "./scorers/durationScorer";
 
 import type { CardGame } from "@/domain/games";
-import type {
-    RelatedGameResult,
-    RelatedGamesWeights,
-    SeriesGame,
-} from "./types";
-import type { TierCategoryKey as RelatedGameTier } from "@/types/tierList";
+import type { RelatedGameResult } from "./types";
+import type { Scorer, ScoringContext } from "./scorers/types";
 
-type CandidateScoringContext = {
-    target: CardGame;
-    targetSeries?: SeriesGame;
-    targetGenres: Set<number>;
-    targetDurationSeconds?: number;
-    targetTitleBigrams: string[];
-    seriesMap: Record<string, SeriesGame>;
-    tierMap: Record<string, RelatedGameTier>;
-    weights: RelatedGamesWeights;
-};
+// Each entry is an independent relation rule (see scorers/types.ts). Adding
+// or removing a way for two games to be "related" is a one-line change
+// here, instead of editing a function with shared mutable state.
+const RELATION_SCORERS: Scorer[] = [scoreSeries, scoreGenres, scorePlatform, scoreTitle];
 
 export function scoreCandidate(
     candidate: CardGame,
-    context: CandidateScoringContext
+    context: ScoringContext
 ): RelatedGameResult | undefined {
-    const {
-        target,
-        targetSeries,
-        targetGenres,
-        targetDurationSeconds,
-        targetTitleBigrams,
-        seriesMap,
-        tierMap,
-        weights,
-    } = context;
-    const candidateSeries = seriesMap[candidate.id];
-    let score = weights.tier[tierMap[candidate.id]] ?? weights.tier.tier_not_evaluated;
+    let score = context.weights.tier[context.tierMap[candidate.id]] ?? context.weights.tier.tier_not_evaluated;
     let hasRelation = false;
 
-    if (targetSeries && candidateSeries && targetSeries.id === candidateSeries.id) {
-        const distance = Math.abs(targetSeries.order - candidateSeries.order);
-        score += weights.series;
-        // A zero distance is handled safely if imported series data contains duplicate positions.
-        score += weights.adjacentSeries / Math.max(1, distance);
-        hasRelation = true;
+    for (const scorer of RELATION_SCORERS) {
+        const result = scorer(candidate, context);
+        if (result) {
+            score += result.points;
+            hasRelation = true;
+        }
     }
 
-    if (hasAllGenres(targetGenres, candidate.genres)) {
-        score += weights.genres + targetGenres.size * weights.genre;
-        hasRelation = true;
-    }
-
-    if (target.platform !== undefined && candidate.platform === target.platform) {
-        score += weights.platform;
-        hasRelation = true;
-    }
-
-    const titleSimilarity = diceCoefficient(targetTitleBigrams, titleBigrams(candidate.title));
-    if (titleSimilarity > 0) {
-        score += weights.title * titleSimilarity;
-        hasRelation = true;
-    }
-
-    if (targetDurationSeconds !== undefined && candidate.duration) {
-        const durationDeltaSeconds = Math.abs(
-            timeToSeconds(candidate.duration) - targetDurationSeconds
-        );
-        score -= (durationDeltaSeconds / 3600) * weights.duration;
-    }
+    // Applied regardless of hasRelation — it's a quality adjustment on an
+    // already-related candidate, not a relation in its own right.
+    score -= scoreDurationPenalty(candidate, context);
 
     return hasRelation ? { game: candidate, score } : undefined;
 }

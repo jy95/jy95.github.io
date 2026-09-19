@@ -14,7 +14,10 @@ vi.mock("./common/games-tier-list-extractor", () => ({
 }));
 vi.mock("./common/runExtractor", () => ({ writeJsonFile: mocks.writeJsonFile }));
 vi.mock("./series", () => ({ loadSeriesGameLinks: mocks.loadSeriesGameLinks }));
-vi.mock("@/domain/discovery/relatedGames", () => ({ getRelatedGames: mocks.getRelatedGames }));
+vi.mock("@/domain/discovery/relatedGames", async (importOriginal) => {
+    const actual = await importOriginal<typeof import("@/domain/discovery/relatedGames")>();
+    return { ...actual, getRelatedGames: mocks.getRelatedGames };
+});
 
 import { extractAndSaveRelatedGames } from "./related-games";
 
@@ -50,14 +53,18 @@ describe("extractAndSaveRelatedGames shared helpers", () => {
         expect(mocks.loadTierListCardGames).toHaveBeenNthCalledWith(1, {}, "games_in_future", true);
         expect(mocks.loadTierListCardGames).toHaveBeenNthCalledWith(2, {}, "games_in_present", true);
         expect(mocks.loadSeriesGameLinks).toHaveBeenCalledWith({});
-        expect(mocks.getRelatedGames).toHaveBeenCalledWith(target, [candidate], {
-            seriesMap: {
-                target: { id: "7", order: 2 },
-                candidate: { id: "7", order: 1 },
-            },
-            tierMap: { candidate: "tier_good" },
-            limit: 12,
-        });
+        expect(mocks.getRelatedGames).toHaveBeenCalledWith(
+            target,
+            { candidates: [candidate], bigramsById: expect.any(Map) },
+            {
+                seriesMap: {
+                    target: { id: "7", order: 2 },
+                    candidate: { id: "7", order: 1 },
+                },
+                tierMap: { candidate: "tier_good" },
+                limit: 12,
+            }
+        );
         expect(mocks.writeJsonFile).toHaveBeenCalledWith("/tmp/related-games.json", {
             target: [{
                 id: "candidate",
