@@ -1,7 +1,7 @@
 import type { Database } from "better-sqlite3";
 import type { GamePayload } from "./common/types";
 
-import { syncGenres, syncSchedule } from "./common/gameDbOperations";
+import { syncGenres, syncSchedule, syncCompanies } from "./common/gameDbOperations";
 import { platformToInt, identifierKindToDatabaseField } from "./common/utils";
 
 type UpdatePayload = Partial<GamePayload> & { identifierValue: string; identifierKind: GamePayload['identifierKind'] };
@@ -37,6 +37,8 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
 
         syncGenres(db, gameId, payload.genres);
         syncSchedule(db, gameId, payload.availableAt, payload.endAt);
+        syncCompanies(db, gameId, "developer", payload.developers_textarea);
+        syncCompanies(db, gameId, "publisher", payload.publishers_textarea);
 
         return gameId;
     });

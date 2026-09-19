@@ -1,7 +1,8 @@
 import type { Database } from "better-sqlite3";
 import { genreToInt } from "../common/utils";
+import { parseMultilineList } from "./utils";
 
-import type { GameGenre } from "../common/types";
+import type { GameGenre, CompanyRole } from "../common/types";
 
 /** Synchronizes genres for a given game ID */
 export function syncGenres(db: Database, gameId: number | bigint, genres?: GameGenre[]) {
@@ -44,4 +45,72 @@ export function syncSchedule(
       VALUES (@id, @availableAt, @endAt)
     `).run(schedule);
   }
+}
+
+
+function normalizeCompanyNames(names?: string[]): string[] {
+    if (!names?.length) {
+        return [];
+    }
+
+    return [...new Set(
+        names
+            .map(name => name.trim())
+            .filter(Boolean)
+    )];
+}
+
+export function syncCompanies(
+    db: Database,
+    gameId: number | bigint,
+    role: CompanyRole,
+    companyTextArea?: string
+) {
+    if (companyTextArea === undefined) {
+      return;
+    }
+
+    const requestedCompanies = parseMultilineList(companyTextArea);
+    const names = normalizeCompanyNames(requestedCompanies);
+
+    const insertCompanyStmt = db.prepare(`
+        INSERT INTO companies (name)
+        VALUES (?)
+        ON CONFLICT(name) DO NOTHING
+    `);
+
+    const findCompanyStmt = db.prepare(`
+        SELECT id
+        FROM companies
+        WHERE name = ?
+    `);
+
+    const deleteRelationsStmt = db.prepare(`
+        DELETE FROM games_companies
+        WHERE game = ?
+          AND role = ?
+    `);
+
+    const insertRelationStmt = db.prepare(`
+        INSERT INTO games_companies (game, company, role)
+        VALUES (?, ?, ?)
+    `);
+
+    deleteRelationsStmt.run(gameId, role);
+
+    if (names.length === 0) {
+      return;
+    }
+
+    for (const name of names) {
+        insertCompanyStmt.run(name);
+
+        const companyId = findCompanyStmt.pluck().get(name);
+
+        if (companyId === undefined) {
+            throw new Error(`Company not found after insert: ${name}`);
+        }
+
+        insertRelationStmt.run(gameId, companyId, role);
+    }
 }
