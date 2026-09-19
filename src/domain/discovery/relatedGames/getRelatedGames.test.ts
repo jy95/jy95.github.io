@@ -144,6 +144,17 @@ describe("getRelatedGames", () => {
         expect(getRelatedGames(target, [duplicate, duplicate])).toHaveLength(1);
     });
 
+    it("normalizes invalid and fractional result limits", () => {
+        const candidates = [
+            game("first", "First", { genres: [1] }),
+            game("second", "Second", { genres: [1] }),
+        ];
+
+        expect(getRelatedGames(target, candidates, { limit: 1.5 })).toHaveLength(1);
+        expect(getRelatedGames(target, candidates, { limit: -1 })).toEqual([]);
+        expect(getRelatedGames(target, candidates, { limit: Number.NaN })).toEqual([]);
+    });
+
     it("is deterministic regardless of candidate input order", () => {
         const candidates = [
             game("z", "Zulu", { genres: [1] }),

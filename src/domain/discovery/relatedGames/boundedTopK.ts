@@ -16,7 +16,9 @@ export class BoundedTopK {
     private readonly items: RelatedGameResult[] = [];  
     private readonly indexById = new Map<string, number>();  
   
-    constructor(private readonly limit: number) {}  
+    constructor(private readonly limit: number) {
+        this.limit = Number.isNaN(limit) ? 0 : Math.max(0, Math.trunc(limit));
+    }
   
     add(result: RelatedGameResult): void {  
         if (this.limit <= 0) return;  
