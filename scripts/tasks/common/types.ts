@@ -43,6 +43,8 @@ export type GameGenre =
   | 'Strategy'
   | 'Misc';
 
+export type CompanyRole = "developer" | "publisher";
+
 export interface GamePayload {
   title: string;
   releaseDate: string;
@@ -50,6 +52,8 @@ export interface GamePayload {
   identifierValue: string;
   platform: Platform;
   genres?: GameGenre[];
+  developers?: string[];
+  publishers?: string[];
   duration?: string;
   availableAt?: string;
   endAt?: string;
