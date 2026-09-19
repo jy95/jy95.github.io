@@ -143,4 +143,83 @@ describe.skipIf(!hasRealDb)('updateGameInDatabase', () => {
             .map((row: any) => row.genre);
         expect(genreIds).toEqual([1]);
     });
+
+    it('replaces developers and publishers when provided', async () => {
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            developers_textarea: 'Capcom',
+            publishers_textarea: 'Capcom',
+        });
+
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            developers_textarea: 'M-Two\nPlatinumGames',
+            publishers_textarea: 'Konami',
+        });
+
+        const companies = db.prepare(`
+            SELECT c.name, gc.role
+            FROM games_companies gc
+            JOIN companies c ON c.id = gc.company
+            WHERE gc.game = ?
+            ORDER BY gc.role, c.name
+        `).all(gameId) as Array<{ name: string; role: string }>;
+
+        expect(companies).toEqual([
+            { name: 'M-Two', role: 'developer' },
+            { name: 'PlatinumGames', role: 'developer' },
+            { name: 'Konami', role: 'publisher' },
+        ]);
+    });
+
+    it('leaves existing developers untouched when developers is omitted', async () => {
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            developers_textarea: 'Capcom',
+        });
+
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            title: 'Updated Title',
+        });
+
+        const developers = db.prepare(`
+            SELECT c.name
+            FROM games_companies gc
+            JOIN companies c ON c.id = gc.company
+            WHERE gc.game = ?
+            AND gc.role = 'developer'
+            ORDER BY c.name
+        `).all(gameId).map((row: any) => row.name);
+
+        expect(developers).toEqual(['Capcom']);
+    });
+
+    it('leaves existing publishers untouched when publishers is omitted', async () => {
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            publishers_textarea: 'Capcom',
+        });
+
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            duration: '02:00:00',
+        });
+
+        const publishers = db.prepare(`
+            SELECT c.name
+            FROM games_companies gc
+            JOIN companies c ON c.id = gc.company
+            WHERE gc.game = ?
+            AND gc.role = 'publisher'
+        `).all(gameId).map((row: any) => row.name);
+
+        expect(publishers).toEqual(['Capcom']);
+    });
 });
