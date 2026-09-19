@@ -222,4 +222,28 @@ describe.skipIf(!hasRealDb)('updateGameInDatabase', () => {
 
         expect(publishers).toEqual(['Capcom']);
     });
+
+    it('leaves existing developers untouched when developers is empty', async () => {
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            developers_textarea: 'Capcom',
+        });
+
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            developers_textarea: undefined,
+        });
+
+        const developers = db.prepare(`
+            SELECT c.name
+            FROM games_companies gc
+            JOIN companies c ON c.id = gc.company
+            WHERE gc.game = ?
+            AND gc.role = 'developer'
+        `).all(gameId).map((row: any) => row.name);
+
+        expect(developers).toEqual(['Capcom']);
+    });
 });
