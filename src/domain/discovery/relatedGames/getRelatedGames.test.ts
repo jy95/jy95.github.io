@@ -139,9 +139,44 @@ describe("getRelatedGames", () => {
         expect(first.map(({ game: result }) => result.id)).toEqual(["a", "z"]);
     });
 
-    it("selects duplicate candidate ids only once", () => {
-        const duplicate = game("same", "Same", { genres: [1] });
-        expect(getRelatedGames(target, [duplicate, duplicate])).toHaveLength(1);
+    it("replaces a duplicate candidate id with its better-scoring result", () => {
+        const weaker = game("same", "Same", { genres: [1] });
+        const better = game("same", "Same", { genres: [1], platform: 1 });
+
+        const results = getRelatedGames(target, [weaker, better]);
+
+        expect(results).toHaveLength(1);
+        expect(results[0].game).toBe(better);
+    });
+
+    it("keeps the retained result when duplicate candidate ids score equally or worse", () => {
+        const retained = game("same", "Same", {
+            genres: [1],
+            platform: 1,
+            imagePath: "/covers/retained.webp",
+        });
+        const equal = game("same", "Same", {
+            genres: [1],
+            platform: 1,
+            imagePath: "/covers/equal.webp",
+        });
+        const worse = game("same", "Same", { genres: [1] });
+
+        const results = getRelatedGames(target, [retained, equal, worse]);
+
+        expect(results).toHaveLength(1);
+        expect(results[0].game).toBe(retained);
+    });
+
+    it("normalizes invalid and fractional result limits", () => {
+        const candidates = [
+            game("first", "First", { genres: [1] }),
+            game("second", "Second", { genres: [1] }),
+        ];
+
+        expect(getRelatedGames(target, candidates, { limit: 1.5 })).toHaveLength(1);
+        expect(getRelatedGames(target, candidates, { limit: -1 })).toEqual([]);
+        expect(getRelatedGames(target, candidates, { limit: Number.NaN })).toEqual([]);
     });
 
     it("is deterministic regardless of candidate input order", () => {
