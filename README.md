@@ -167,6 +167,20 @@ There is a [database](GamesPassionFR.db) for managing video games, their genres,
 | `test_id` | Foreign key referencing the `test` table (Primary Key). | Required | 1 |
 | `category_id` | Foreign key referencing the `tier_categories` table. | Required | 3 |
 
+### `companies` Table
+| Field | Description | Required/Optional | Example |
+|-------|-------------|-------------------|---------|
+| `id` | Unique identifier for each company (Primary Key). | Required | `1` |
+| `name` | The name of the company. | Required | `Capcom` |
+
+### `games_companies` Table
+| Field | Description | Required/Optional | Example |
+|-------|-------------|-------------------|---------|
+| `game` | Foreign key referencing the `games` table. | Required | `1` |
+| `company` | Foreign key referencing the `companies` table. | Required | `1` |
+| `role` | The company's role for the game: `developer` or `publisher`. | Required | `developer` |
+
+
 This project is tested with BrowserStack
 
 [YoutubeChannel]: https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ
