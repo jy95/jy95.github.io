@@ -11,6 +11,11 @@ export async function extractAndSavePastGamesToFeeds(db: Database, rssPath: stri
     const extractGamesList = db.prepare("SELECT * FROM games_in_past ORDER BY availableAt DESC, endAt DESC LIMIT 15");
     const gamesList = extractGamesList.all() as PastGameRow[];
 
+    // Determine the "updated" date for the feed:  
+    // use the most recent item's availableAt (list is already ordered DESC),  
+    // so lastBuildDate only changes when new items actually appear.  
+    const updatedAt = gamesList[0]?.availableAt ? new Date(gamesList[0].availableAt) : new Date();
+
     // Create RSS feed
     const feed = new Feed({
         id: "yt:channel:G0N7IV-C43AM9psxslejCQ",
@@ -19,6 +24,7 @@ export async function extractAndSavePastGamesToFeeds(db: Database, rssPath: stri
         link: "https://www.youtube.com/@GPFR1",
         language: "en",
         image: "https://yt3.ggpht.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s176-c-k-c0x00ffffff-no-rj",
+        updated: updatedAt,
         author: {
             name: "GamesPassionFR",
             link: "http://jy95.github.io/"
@@ -40,8 +46,8 @@ export async function extractAndSavePastGamesToFeeds(db: Database, rssPath: stri
     // Create entries
     for (const game of gamesList) {
         const identifier = game.playlistId ?? game.videoId;
-        const url = game.playlistId 
-            ? `https://www.youtube.com/playlist?list=${game.playlistId}` 
+        const url = game.playlistId
+            ? `https://www.youtube.com/playlist?list=${game.playlistId}`
             : `https://www.youtube.com/watch?v=${game.videoId}`;
         const image = `https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/${identifier}/cover.webp`;
 
