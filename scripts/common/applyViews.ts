@@ -61,8 +61,6 @@ function createViews(db: Database, views: ViewDefinition[]): void {
  */
 export async function applyViews(db: Database): Promise<void> {
   const files = await getSortedViewFiles();
-  if (files.length === 0) return;
-
   const views = await loadViewDefinitions(files);
 
   const syncApply = db.transaction(() => {
