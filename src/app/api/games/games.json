@@ -404,8 +404,14 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Argonaut Games",
+			"Argonaut Sheffield"
+		],
+		"publishers": [
+			"Electronic Arts",
+			"Lego Interactive"
+		]
 	},
 	{
 		"id": 44,
