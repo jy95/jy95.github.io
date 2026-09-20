@@ -11,10 +11,10 @@
 			13
 		],
 		"developers": [
-			1
+			"La Cosa"
 		],
 		"publishers": [
-			1
+			"La Cosa"
 		]
 	},
 	{
@@ -30,10 +30,10 @@
 			16
 		],
 		"developers": [
-			3
+			"Swordfish Studios"
 		],
 		"publishers": [
-			4
+			"THQ"
 		]
 	},
 	{
@@ -48,10 +48,10 @@
 			9
 		],
 		"developers": [
-			5
+			"Namco Bandai Games"
 		],
 		"publishers": [
-			5
+			"Namco Bandai Games"
 		]
 	},
 	{
@@ -67,10 +67,10 @@
 			12
 		],
 		"developers": [
-			7
+			"Argonaut Games"
 		],
 		"publishers": [
-			8
+			"Disney Interactive"
 		]
 	},
 	{
@@ -86,10 +86,10 @@
 			16
 		],
 		"developers": [
-			9
+			"Remedy Entertainment"
 		],
 		"publishers": [
-			10
+			"Epic Games Publishing"
 		]
 	},
 	{
@@ -103,10 +103,10 @@
 			9
 		],
 		"developers": [
-			11
+			"Mr. Nutz Studio"
 		],
 		"publishers": [
-			12
+			"Microids"
 		]
 	},
 	{
@@ -122,10 +122,10 @@
 			12
 		],
 		"developers": [
-			13
+			"Étranges Libellules"
 		],
 		"publishers": [
-			14
+			"Atari"
 		]
 	},
 	{
@@ -141,10 +141,10 @@
 			12
 		],
 		"developers": [
-			15
+			"OSome Studio"
 		],
 		"publishers": [
-			12
+			"Microids"
 		]
 	},
 	{
@@ -160,10 +160,10 @@
 			12
 		],
 		"developers": [
-			13
+			"Étranges Libellules"
 		],
 		"publishers": [
-			14
+			"Atari"
 		]
 	},
 	{
@@ -179,10 +179,10 @@
 			12
 		],
 		"developers": [
-			13
+			"Étranges Libellules"
 		],
 		"publishers": [
-			14
+			"Atari"
 		]
 	},
 	{
@@ -197,10 +197,10 @@
 			2
 		],
 		"developers": [
-			21
+			"CyberConnect2"
 		],
 		"publishers": [
-			22
+			"Capcom"
 		]
 	},
 	{
@@ -217,11 +217,11 @@
 			13
 		],
 		"developers": [
-			24,
-			23
+			"Halfbrick",
+			"THQ Studio Oz"
 		],
 		"publishers": [
-			4
+			"THQ"
 		]
 	},
 	{
@@ -237,10 +237,10 @@
 			12
 		],
 		"developers": [
-			26
+			"Rocksteady Studios"
 		],
 		"publishers": [
-			27
+			"WB Games"
 		]
 	},
 	{
@@ -255,10 +255,10 @@
 			2
 		],
 		"developers": [
-			28
+			"Telltale Games"
 		],
 		"publishers": [
-			28
+			"Telltale Games"
 		]
 	},
 	{
@@ -272,8 +272,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Telltale Games"
+		],
+		"publishers": [
+			"Telltale Games"
+		]
 	},
 	{
 		"id": 117,
