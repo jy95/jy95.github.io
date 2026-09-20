@@ -102,8 +102,12 @@
 		"genres": [
 			9
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			11
+		],
+		"publishers": [
+			12
+		]
 	},
 	{
 		"id": 17,
