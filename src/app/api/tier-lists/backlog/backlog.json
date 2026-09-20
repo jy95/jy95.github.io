@@ -1627,6 +1627,12 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
+			"id": "210",
+			"title": "Brothers in Arms: Hell's Highway",
+			"platform": 6,
+			"imagePath": "/backlogcovers/210/cover.webp"
+		},
+		{
 			"id": "204",
 			"title": "Grabbed by the Ghoulies",
 			"hltb_main": "06:13:34",

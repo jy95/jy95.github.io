@@ -39,7 +39,7 @@ GamesPassionFR is a bilingual French and English catalog for the GamesPassionFR 
 - Published games: 191
 - Available walkthrough duration: 1027 hours 56 minutes 2 seconds
 - Total catalog duration: 1122 hours 31 minutes 27 seconds
-- Backlog candidates: 185
+- Backlog candidates: 186
 - Planned items: 27
 
 ## Published games
