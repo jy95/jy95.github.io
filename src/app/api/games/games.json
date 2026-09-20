@@ -366,8 +366,12 @@
 		"genres": [
 			1
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Ubisoft Montréal"
+		],
+		"publishers": [
+			"Ubisoft"
+		]
 	},
 	{
 		"id": 85,
