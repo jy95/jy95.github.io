@@ -384,8 +384,13 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Ubisoft Montpellier",
+			"Ubisoft Shanghai"
+		],
+		"publishers": [
+			"Ubisoft"
+		]
 	},
 	{
 		"id": 145,
