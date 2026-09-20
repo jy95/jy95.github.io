@@ -42,7 +42,7 @@ jobs:
                 - Please review if tests are failling.
 
                 @coderabbitai ignore
-            branch: auto-sync-db-views
+            branch: "automated/auto-sync-db-views"
             delete-branch: true
             labels: |
                 database
