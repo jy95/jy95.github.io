@@ -1635,6 +1635,12 @@
 			"imagePath": "/backlogcovers/204/cover.webp"
 		},
 		{
+			"id": "208",
+			"title": "Kaan: Barbarian's Blade",
+			"platform": 5,
+			"imagePath": "/backlogcovers/208/cover.webp"
+		},
+		{
 			"id": "206",
 			"title": "MX vs. ATV: Reflex",
 			"platform": 6,
