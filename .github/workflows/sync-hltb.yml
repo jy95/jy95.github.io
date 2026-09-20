@@ -4,9 +4,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 10 * * *'
-  push:
-    paths:
-      - 'src/app/api/backlog/backlog.json'
 
 jobs:
   update_stats:
