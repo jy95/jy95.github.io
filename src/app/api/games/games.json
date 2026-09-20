@@ -460,8 +460,12 @@
 		"genres": [
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Q Entertainment"
+		],
+		"publishers": [
+			"Ubisoft"
+		]
 	},
 	{
 		"id": 156,
