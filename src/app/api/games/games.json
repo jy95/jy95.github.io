@@ -310,8 +310,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Rocksteady Studios"
+		],
+		"publishers": [
+			"Square Enix Europe"
+		]
 	},
 	{
 		"id": 7,
