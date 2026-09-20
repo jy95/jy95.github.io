@@ -156,7 +156,7 @@ describe.skipIf(!hasRealDb)('updateGameInDatabase', () => {
             identifierKind: 'Video',
             identifierValue: identifier,
             developers_textarea: 'M-Two\nPlatinumGames',
-            publishers_textarea: 'Konami',
+            publishers_textarea: 'KONAMI',
         });
 
         const companies = db.prepare(`
@@ -170,7 +170,7 @@ describe.skipIf(!hasRealDb)('updateGameInDatabase', () => {
         expect(companies).toEqual([
             { name: 'M-Two', role: 'developer' },
             { name: 'PlatinumGames', role: 'developer' },
-            { name: 'Konami', role: 'publisher' },
+            { name: 'KONAMI', role: 'publisher' },
         ]);
     });
 
