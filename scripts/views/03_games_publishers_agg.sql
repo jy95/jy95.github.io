@@ -1,10 +1,10 @@
 SELECT
     gc.game,
-    JSON_GROUP_ARRAY(gc.company) AS publishers
+    JSON_GROUP_ARRAY(gc.name) AS publishers
 FROM (
     SELECT
         gc.game,
-        gc.company
+        c.name
     FROM games_companies AS gc
     INNER JOIN companies AS c ON c.id = gc.company
     WHERE gc.role = 'publisher'
