@@ -424,8 +424,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Rockstar New England"
+		],
+		"publishers": [
+			"Rockstar Games"
+		]
 	},
 	{
 		"id": 56,
