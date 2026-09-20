@@ -479,8 +479,12 @@
 			2,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Deadline Games"
+		],
+		"publishers": [
+			"Square Enix Europe"
+		]
 	},
 	{
 		"id": 178,
