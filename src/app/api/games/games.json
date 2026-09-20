@@ -178,8 +178,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			13
+		],
+		"publishers": [
+			14
+		]
 	},
 	{
 		"id": 181,
