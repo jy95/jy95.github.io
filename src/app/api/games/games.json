@@ -348,8 +348,13 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Iron Galaxy Studios",
+			"WB Games Montréal"
+		],
+		"publishers": [
+			"WB Games"
+		]
 	},
 	{
 		"id": 31,
