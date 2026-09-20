@@ -1641,6 +1641,12 @@
 			"imagePath": "/backlogcovers/204/cover.webp"
 		},
 		{
+			"id": "213",
+			"title": "Hunted: The Demon's Forge",
+			"platform": 6,
+			"imagePath": "/backlogcovers/213/cover.webp"
+		},
+		{
 			"id": "208",
 			"title": "Kaan: Barbarian's Blade",
 			"platform": 5,
