@@ -173,4 +173,34 @@ describe.skipIf(!hasRealDb)('addGameToDatabase', () => {
         ]);
     });
 
+    it('rolls back the game insert when company synchronization fails', async () => {
+        const { db, cleanup } = await openTestDb();
+        const identifier = `vitest-company-rollback-${randomUUID()}`;
+
+        try {
+            db.exec(`
+            CREATE TEMP TRIGGER fail_game_company_insert
+            BEFORE INSERT ON games_companies
+            BEGIN
+                SELECT RAISE(ABORT, 'company synchronization failed');
+            END
+        `);
+
+            await expect(addGameToDatabase(db, {
+                title: 'Company Rollback Game',
+                releaseDate: '2021-06-01',
+                identifierKind: 'Video',
+                identifierValue: identifier,
+                platform: 'PC',
+                developers_textarea: 'Capcom',
+            })).rejects.toThrow('company synchronization failed');
+
+            expect(
+                db.prepare('SELECT id FROM games WHERE videoId = ?').get(identifier)
+            ).toBeUndefined();
+        } finally {
+            cleanup();
+        }
+    });
+
 });
