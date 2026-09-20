@@ -9,7 +9,9 @@
 		"genres": [
 			12,
 			13
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 126,
@@ -22,7 +24,9 @@
 			1,
 			2,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 138,
@@ -34,7 +38,9 @@
 		"genres": [
 			1,
 			9
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 127,
@@ -47,7 +53,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 128,
@@ -60,7 +68,9 @@
 			1,
 			2,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 130,
@@ -71,7 +81,9 @@
 		"platform": 1,
 		"genres": [
 			9
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 17,
@@ -84,7 +96,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 18,
@@ -97,7 +111,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 70,
@@ -110,7 +126,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 149,
@@ -123,7 +141,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 181,
@@ -135,7 +155,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 87,
@@ -149,7 +171,9 @@
 			2,
 			14,
 			13
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 8,
@@ -162,7 +186,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 170,
@@ -174,7 +200,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 153,
@@ -186,7 +214,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 117,
@@ -199,7 +229,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 6,
@@ -212,7 +244,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 7,
@@ -225,7 +259,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 4,
@@ -237,7 +273,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 31,
@@ -248,7 +286,9 @@
 		"platform": 5,
 		"genres": [
 			1
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 85,
@@ -260,7 +300,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 145,
@@ -273,7 +315,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 44,
@@ -285,7 +329,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 56,
@@ -298,7 +344,9 @@
 			1,
 			6,
 			10
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 184,
@@ -309,7 +357,9 @@
 		"platform": 6,
 		"genres": [
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 156,
@@ -322,7 +372,9 @@
 			1,
 			2,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 178,
@@ -334,7 +386,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 80,
@@ -347,7 +401,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 81,
@@ -360,7 +416,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 79,
@@ -373,7 +431,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 106,
@@ -386,7 +446,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 16,
@@ -399,7 +461,9 @@
 			1,
 			2,
 			13
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 93,
@@ -410,7 +474,9 @@
 		"platform": 2,
 		"genres": [
 			9
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 160,
@@ -422,7 +488,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 50,
@@ -435,7 +503,9 @@
 			1,
 			2,
 			14
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 42,
@@ -448,7 +518,9 @@
 			1,
 			2,
 			14
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 155,
@@ -461,7 +533,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 122,
@@ -474,7 +548,9 @@
 			1,
 			16,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 124,
@@ -487,7 +563,9 @@
 			1,
 			16,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 179,
@@ -499,7 +577,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 14,
@@ -510,7 +590,9 @@
 		"platform": 5,
 		"genres": [
 			9
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 3,
@@ -522,7 +604,9 @@
 		"genres": [
 			1,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 15,
@@ -533,7 +617,9 @@
 		"platform": 5,
 		"genres": [
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 98,
@@ -545,7 +631,9 @@
 		"genres": [
 			16,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 97,
@@ -557,7 +645,9 @@
 		"genres": [
 			13,
 			7
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 29,
@@ -571,7 +661,9 @@
 			2,
 			16,
 			14
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 109,
@@ -583,7 +675,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 159,
@@ -594,7 +688,9 @@
 		"platform": 1,
 		"genres": [
 			13
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 86,
@@ -606,7 +702,9 @@
 		"genres": [
 			1,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 131,
@@ -619,7 +717,9 @@
 			1,
 			2,
 			14
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 107,
@@ -632,7 +732,9 @@
 			1,
 			2,
 			14
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 206,
@@ -644,7 +746,9 @@
 		"genres": [
 			1,
 			15
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 166,
@@ -656,7 +760,9 @@
 		"genres": [
 			1,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 168,
@@ -668,7 +774,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 171,
@@ -679,7 +787,9 @@
 		"platform": 5,
 		"genres": [
 			1
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 173,
@@ -691,7 +801,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 12,
@@ -703,7 +815,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 125,
@@ -716,7 +830,9 @@
 			1,
 			2,
 			14
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 40,
@@ -728,7 +844,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 53,
@@ -740,7 +858,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 148,
@@ -752,7 +872,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 41,
@@ -764,7 +886,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 51,
@@ -776,7 +900,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 147,
@@ -788,7 +914,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 52,
@@ -800,7 +928,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 150,
@@ -812,7 +942,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 5,
@@ -826,7 +958,9 @@
 			16,
 			3,
 			10
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 43,
@@ -840,7 +974,9 @@
 			16,
 			3,
 			10
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 120,
@@ -853,7 +989,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 95,
@@ -865,7 +1003,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 123,
@@ -878,7 +1018,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 119,
@@ -891,7 +1033,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 84,
@@ -903,7 +1047,9 @@
 		"genres": [
 			1,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 88,
@@ -914,7 +1060,9 @@
 		"platform": 3,
 		"genres": [
 			13
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 105,
@@ -928,7 +1076,9 @@
 			2,
 			12,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 103,
@@ -942,7 +1092,9 @@
 			2,
 			12,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 152,
@@ -955,7 +1107,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 101,
@@ -968,7 +1122,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 143,
@@ -980,7 +1136,9 @@
 		"genres": [
 			1,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 208,
@@ -991,7 +1149,9 @@
 		"platform": 6,
 		"genres": [
 			1
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 48,
@@ -1002,7 +1162,9 @@
 		"platform": 2,
 		"genres": [
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 144,
@@ -1015,7 +1177,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 164,
@@ -1029,7 +1193,9 @@
 			2,
 			12,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 175,
@@ -1041,7 +1207,9 @@
 		"genres": [
 			1,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 187,
@@ -1052,7 +1220,9 @@
 		"platform": 6,
 		"genres": [
 			1
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 26,
@@ -1065,7 +1235,9 @@
 			1,
 			2,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 55,
@@ -1078,7 +1250,9 @@
 			1,
 			2,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 158,
@@ -1091,7 +1265,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 36,
@@ -1103,7 +1279,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 134,
@@ -1116,7 +1294,9 @@
 			1,
 			2,
 			14
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 30,
@@ -1128,7 +1308,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 161,
@@ -1141,7 +1323,9 @@
 			1,
 			2,
 			14
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 151,
@@ -1153,7 +1337,9 @@
 		"genres": [
 			3,
 			6
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 99,
@@ -1165,7 +1351,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 27,
@@ -1178,7 +1366,9 @@
 			1,
 			2,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 25,
@@ -1191,7 +1381,9 @@
 			1,
 			2,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 1,
@@ -1204,7 +1396,9 @@
 			1,
 			2,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 111,
@@ -1216,7 +1410,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 45,
@@ -1228,7 +1424,9 @@
 		"genres": [
 			1,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 82,
@@ -1240,7 +1438,9 @@
 		"genres": [
 			1,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 46,
@@ -1252,7 +1452,9 @@
 		"genres": [
 			1,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 172,
@@ -1264,7 +1466,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 142,
@@ -1275,7 +1479,9 @@
 		"platform": 3,
 		"genres": [
 			1
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 76,
@@ -1288,7 +1494,9 @@
 			1,
 			15,
 			3
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 190,
@@ -1300,7 +1508,9 @@
 		"genres": [
 			1,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 186,
@@ -1311,7 +1521,9 @@
 		"platform": 6,
 		"genres": [
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 47,
@@ -1323,7 +1535,9 @@
 		"genres": [
 			2,
 			14
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 68,
@@ -1336,7 +1550,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 24,
@@ -1349,7 +1565,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 11,
@@ -1362,7 +1580,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 10,
@@ -1375,7 +1595,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 89,
@@ -1388,7 +1610,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 61,
@@ -1401,7 +1625,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 63,
@@ -1413,7 +1639,9 @@
 		"genres": [
 			1,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 112,
@@ -1425,7 +1653,9 @@
 		"genres": [
 			1,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 96,
@@ -1437,7 +1667,9 @@
 		"genres": [
 			12,
 			13
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 140,
@@ -1449,7 +1681,9 @@
 		"genres": [
 			1,
 			15
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 146,
@@ -1461,7 +1695,9 @@
 		"genres": [
 			1,
 			15
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 21,
@@ -1473,7 +1709,9 @@
 		"genres": [
 			2,
 			7
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 22,
@@ -1485,7 +1723,9 @@
 		"genres": [
 			2,
 			7
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 77,
@@ -1498,7 +1738,9 @@
 			1,
 			2,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 38,
@@ -1512,7 +1754,9 @@
 			2,
 			12,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 37,
@@ -1526,7 +1770,9 @@
 			2,
 			12,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 35,
@@ -1540,7 +1786,9 @@
 			2,
 			12,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 114,
@@ -1554,7 +1802,9 @@
 			2,
 			12,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 182,
@@ -1568,7 +1818,9 @@
 			2,
 			12,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 33,
@@ -1582,7 +1834,9 @@
 			2,
 			12,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 94,
@@ -1596,7 +1850,9 @@
 			16,
 			2,
 			1
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 185,
@@ -1610,7 +1866,9 @@
 			2,
 			12,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 162,
@@ -1624,7 +1882,9 @@
 			2,
 			12,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 163,
@@ -1638,7 +1898,9 @@
 			2,
 			12,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 39,
@@ -1652,7 +1914,9 @@
 			2,
 			12,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 73,
@@ -1665,7 +1929,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 60,
@@ -1678,7 +1944,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 116,
@@ -1691,7 +1959,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 136,
@@ -1704,7 +1974,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 92,
@@ -1717,7 +1989,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 75,
@@ -1730,7 +2004,9 @@
 			1,
 			2,
 			8
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 23,
@@ -1743,7 +2019,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 157,
@@ -1756,7 +2034,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 71,
@@ -1768,7 +2048,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 64,
@@ -1780,7 +2062,9 @@
 		"genres": [
 			1,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 62,
@@ -1792,7 +2076,9 @@
 		"genres": [
 			1,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 66,
@@ -1804,7 +2090,9 @@
 		"genres": [
 			1,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 20,
@@ -1816,7 +2104,9 @@
 		"genres": [
 			2,
 			7
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 2,
@@ -1829,7 +2119,9 @@
 			1,
 			2,
 			9
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 32,
@@ -1842,7 +2134,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 209,
@@ -1853,7 +2147,9 @@
 		"platform": 6,
 		"genres": [
 			1
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 188,
@@ -1867,7 +2163,9 @@
 			3,
 			9,
 			10
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 189,
@@ -1881,7 +2179,9 @@
 			3,
 			9,
 			10
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 19,
@@ -1893,7 +2193,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 90,
@@ -1904,7 +2206,9 @@
 		"platform": 5,
 		"genres": [
 			9
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 83,
@@ -1916,7 +2220,9 @@
 		"genres": [
 			1,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 74,
@@ -1929,7 +2235,9 @@
 			1,
 			2,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 169,
@@ -1941,7 +2249,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 174,
@@ -1953,7 +2263,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 180,
@@ -1965,7 +2277,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 165,
@@ -1977,7 +2291,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 121,
@@ -1991,7 +2307,9 @@
 			2,
 			12,
 			14
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 118,
@@ -2005,7 +2323,9 @@
 			2,
 			12,
 			14
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 34,
@@ -2018,7 +2338,9 @@
 			3,
 			12,
 			15
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 67,
@@ -2030,7 +2352,9 @@
 		"genres": [
 			2,
 			14
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 72,
@@ -2042,7 +2366,9 @@
 		"genres": [
 			2,
 			14
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 132,
@@ -2054,7 +2380,9 @@
 		"genres": [
 			1,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 49,
@@ -2066,7 +2394,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 9,
@@ -2077,7 +2407,9 @@
 		"platform": 1,
 		"genres": [
 			1
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 102,
@@ -2089,7 +2421,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 78,
@@ -2101,7 +2435,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 167,
@@ -2113,7 +2449,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 154,
@@ -2125,7 +2463,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 104,
@@ -2137,7 +2477,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 57,
@@ -2151,7 +2493,9 @@
 			2,
 			7,
 			6
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 58,
@@ -2165,7 +2509,9 @@
 			2,
 			7,
 			6
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 69,
@@ -2179,7 +2525,9 @@
 			2,
 			7,
 			6
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 141,
@@ -2191,7 +2539,9 @@
 		"genres": [
 			1,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 28,
@@ -2204,7 +2554,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 91,
@@ -2217,7 +2569,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 129,
@@ -2230,7 +2584,9 @@
 			1,
 			16,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 113,
@@ -2242,7 +2598,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 176,
@@ -2254,7 +2612,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 100,
@@ -2266,7 +2626,9 @@
 		"genres": [
 			6,
 			13
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 54,
@@ -2279,7 +2641,9 @@
 			1,
 			2,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 183,
@@ -2291,7 +2655,9 @@
 		"genres": [
 			9,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 177,
@@ -2303,7 +2669,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 207,
@@ -2315,7 +2683,9 @@
 		"genres": [
 			1,
 			15
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 135,
@@ -2327,7 +2697,9 @@
 		"genres": [
 			1,
 			19
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 133,
@@ -2339,7 +2711,9 @@
 		"genres": [
 			1,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 65,
@@ -2352,7 +2726,9 @@
 			1,
 			2,
 			16
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 137,
@@ -2364,7 +2740,9 @@
 		"genres": [
 			14,
 			5
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 139,
@@ -2376,7 +2754,9 @@
 		"genres": [
 			14,
 			5
-		]
+		],
+		"developers": [],
+		"publishers": []
 	},
 	{
 		"id": 108,
@@ -2389,6 +2769,8 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": []
 	}
 ]
