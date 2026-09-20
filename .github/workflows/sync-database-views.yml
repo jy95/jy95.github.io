@@ -1,6 +1,7 @@
 name: Sync Database Views
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
