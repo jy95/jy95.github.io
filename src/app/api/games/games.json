@@ -66,8 +66,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			7
+		],
+		"publishers": [
+			8
+		]
 	},
 	{
 		"id": 128,
