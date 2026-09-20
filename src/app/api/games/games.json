@@ -236,8 +236,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			26
+		],
+		"publishers": [
+			27
+		]
 	},
 	{
 		"id": 170,
