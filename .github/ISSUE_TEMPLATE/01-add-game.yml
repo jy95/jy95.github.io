@@ -86,6 +86,22 @@ body:
         - Sports
         - Strategy
         - Misc
+  - type: textarea
+    id: developers_textarea
+    attributes:
+      label: Developers
+      description: List the companies that developed the game, one per line.
+      placeholder: |
+        Capcom
+        Capcom Production Studio 4
+
+  - type: textarea
+    id: publishers_textarea
+    attributes:
+      label: Publishers
+      description: List the companies that published the game, one per line.
+      placeholder: |
+        Capcom
   - type: input
     id: duration
     attributes:

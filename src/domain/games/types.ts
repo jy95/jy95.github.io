@@ -29,6 +29,10 @@ export type BasicEntry = {
     endAt?: string;
     /** @description Name of the main cover file, such as "cover.webp" */
     coverFile?: string;
+    /** @description Array of developer studio names that worked on the game (e.g. ["Ubisoft Reflections"]) */
+    developers?: string[];
+    /** @description Optional array of publisher names (e.g. ["Ubisoft"]) */
+    publishers?: string[];
 }
 
 export type BasicVideo = BasicEntry & {

@@ -2,15 +2,15 @@ import { describe, it, expect } from 'vitest';
 import { openTestDb, hasRealDb } from './testDbHelper';
 
 describe.skipIf(!hasRealDb)('openTestDb', () => {
-    it('opens a usable database connection backed by a temp copy of the fixture db', () => {
-        const { db, cleanup } = openTestDb();
+    it('opens a usable database connection backed by a temp copy of the fixture db', async () => {
+        const { db, cleanup } = await openTestDb();
         expect(() => db.prepare('SELECT 1').get()).not.toThrow();
         cleanup();
     });
 
-    it('gives each call its own independent temp file (writes do not leak across instances)', () => {
-        const first = openTestDb();
-        const second = openTestDb();
+    it('gives each call its own independent temp file (writes do not leak across instances)', async () => {
+        const first = await openTestDb();
+        const second = await openTestDb();
         try {
             first.db.prepare("INSERT INTO series (name) VALUES ('Isolation Test Fixture')").run();
             const leaked = second.db
@@ -23,14 +23,14 @@ describe.skipIf(!hasRealDb)('openTestDb', () => {
         }
     });
 
-    it('cleanup closes the connection so further queries throw', () => {
-        const { db, cleanup } = openTestDb();
+    it('cleanup closes the connection so further queries throw', async () => {
+        const { db, cleanup } = await openTestDb();
         cleanup();
         expect(() => db.prepare('SELECT 1').get()).toThrow();
     });
 
-    it('cleanup can be called without throwing even if invoked once already (idempotent-ish for the fs part)', () => {
-        const { db, cleanup } = openTestDb();
+    it('cleanup can be called without throwing even if invoked once already (idempotent-ish for the fs part)', async () => {
+        const { db, cleanup } = await openTestDb();
         cleanup();
         // second cleanup: db.close() would throw (already closed), but our
         // helper's unlink guard is only reached if the file still exists,

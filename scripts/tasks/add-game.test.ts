@@ -112,7 +112,7 @@ describe.skipIf(!hasRealDb)('addGameToDatabase', () => {
     });
 
     it('rolls back the game insert when schedule synchronization fails', async () => {
-        const { db, cleanup } = openTestDb();
+        const { db, cleanup } = await openTestDb();
         const identifier = `vitest-rollback-${randomUUID()}`;
 
         try {
@@ -138,4 +138,69 @@ describe.skipIf(!hasRealDb)('addGameToDatabase', () => {
             cleanup();
         }
     });
+
+    it('links provided developers and publishers to the newly inserted game', async () => {
+        const title = `Vitest Game Companies ${randomUUID()}`;
+        const identifier = `vitest-companies-${randomUUID()}`;
+
+        await addGameToDatabase(ctx.db, {
+            title,
+            releaseDate: '2021-06-01',
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            platform: 'PC',
+            developers_textarea: 'Capcom\nM-Two',
+            publishers_textarea: 'Capcom',
+        });
+
+        const gameId = ctx.db
+            .prepare('SELECT id FROM games WHERE videoId = ?')
+            .pluck()
+            .get(identifier) as number;
+
+        const companies = ctx.db.prepare(`
+            SELECT c.name, gc.role
+            FROM games_companies gc
+            JOIN companies c ON c.id = gc.company
+            WHERE gc.game = ?
+            ORDER BY gc.role, c.name
+        `).all(gameId) as Array<{ name: string; role: string }>;
+
+        expect(companies).toEqual([
+            { name: 'Capcom', role: 'developer' },
+            { name: 'M-Two', role: 'developer' },
+            { name: 'Capcom', role: 'publisher' },
+        ]);
+    });
+
+    it('rolls back the game insert when company synchronization fails', async () => {
+        const { db, cleanup } = await openTestDb();
+        const identifier = `vitest-company-rollback-${randomUUID()}`;
+
+        try {
+            db.exec(`
+            CREATE TEMP TRIGGER fail_game_company_insert
+            BEFORE INSERT ON games_companies
+            BEGIN
+                SELECT RAISE(ABORT, 'company synchronization failed');
+            END
+        `);
+
+            await expect(addGameToDatabase(db, {
+                title: 'Company Rollback Game',
+                releaseDate: '2021-06-01',
+                identifierKind: 'Video',
+                identifierValue: identifier,
+                platform: 'PC',
+                developers_textarea: 'Capcom',
+            })).rejects.toThrow('company synchronization failed');
+
+            expect(
+                db.prepare('SELECT id FROM games WHERE videoId = ?').get(identifier)
+            ).toBeUndefined();
+        } finally {
+            cleanup();
+        }
+    });
+
 });

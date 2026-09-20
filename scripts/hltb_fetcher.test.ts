@@ -16,12 +16,12 @@ describe.skipIf(!hasRealDb)('hltb_fetcher', () => {
     let db: SQLDatabase;
     let cleanup: () => void;
 
-    beforeEach(() => {
+    beforeEach(async () => {
         vi.resetModules();
         searchOneMock.mockReset();
 
         // 1. Initialize real test DB instance
-        ({ db, cleanup } = openTestDb());
+        ({ db, cleanup } = await openTestDb());
 
         // 2. Prevent hltb_fetcher's finally block from closing the database connection
         (db as any).close = () => {};

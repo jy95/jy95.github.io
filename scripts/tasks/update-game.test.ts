@@ -12,7 +12,7 @@ describe.skipIf(!hasRealDb)('updateGameInDatabase', () => {
     let gameId: number;
 
     beforeEach(async () => {
-        ({ db, cleanup } = openTestDb());
+        ({ db, cleanup } = await openTestDb());
         identifier = `vitest-updategame-${randomUUID()}`;
         await addGameToDatabase(db, {
             title: 'Original Game Title',
@@ -75,6 +75,34 @@ describe.skipIf(!hasRealDb)('updateGameInDatabase', () => {
         expect(genreIds).toEqual([1]); // still just Action
     });
 
+    it('removes developer relations when the developer field is explicitly empty', async () => {
+        const companyId = db.prepare('INSERT INTO companies (name) VALUES (?)').run('Existing Developer').lastInsertRowid;
+        db.prepare('INSERT INTO games_companies (game, company, role) VALUES (?, ?, ?)')
+            .run(gameId, companyId, 'developer');
+
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            developers_textarea: '',
+        });
+
+        const relations = db.prepare('SELECT * FROM games_companies WHERE game = ? AND role = ?')
+            .all(gameId, 'developer');
+        expect(relations).toHaveLength(0);
+    });
+
+    it('leaves developer relations untouched when the developer field is omitted', async () => {
+        const companyId = db.prepare('INSERT INTO companies (name) VALUES (?)').run('Existing Developer').lastInsertRowid;
+        db.prepare('INSERT INTO games_companies (game, company, role) VALUES (?, ?, ?)')
+            .run(gameId, companyId, 'developer');
+
+        await updateGameInDatabase(db, { identifierKind: 'Video', identifierValue: identifier });
+
+        const relations = db.prepare('SELECT * FROM games_companies WHERE game = ? AND role = ?')
+            .all(gameId, 'developer');
+        expect(relations).toHaveLength(1);
+    });
+
     it('creates a games_schedules row on first availableAt update if none existed', async () => {
         await updateGameInDatabase(db, { identifierKind: 'Video', identifierValue: identifier, availableAt: '2026-03-01' });
         const schedule = db.prepare('SELECT availableAt FROM games_schedules WHERE id = ?').get(gameId) as any;
@@ -114,5 +142,108 @@ describe.skipIf(!hasRealDb)('updateGameInDatabase', () => {
             .all(gameId)
             .map((row: any) => row.genre);
         expect(genreIds).toEqual([1]);
+    });
+
+    it('replaces developers and publishers when provided', async () => {
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            developers_textarea: 'Capcom',
+            publishers_textarea: 'Capcom',
+        });
+
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            developers_textarea: 'M-Two\nPlatinumGames',
+            publishers_textarea: 'Konami',
+        });
+
+        const companies = db.prepare(`
+            SELECT c.name, gc.role
+            FROM games_companies gc
+            JOIN companies c ON c.id = gc.company
+            WHERE gc.game = ?
+            ORDER BY gc.role, c.name
+        `).all(gameId) as Array<{ name: string; role: string }>;
+
+        expect(companies).toEqual([
+            { name: 'M-Two', role: 'developer' },
+            { name: 'PlatinumGames', role: 'developer' },
+            { name: 'Konami', role: 'publisher' },
+        ]);
+    });
+
+    it('leaves existing developers untouched when developers is omitted', async () => {
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            developers_textarea: 'Capcom',
+        });
+
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            title: 'Updated Title',
+        });
+
+        const developers = db.prepare(`
+            SELECT c.name
+            FROM games_companies gc
+            JOIN companies c ON c.id = gc.company
+            WHERE gc.game = ?
+            AND gc.role = 'developer'
+            ORDER BY c.name
+        `).all(gameId).map((row: any) => row.name);
+
+        expect(developers).toEqual(['Capcom']);
+    });
+
+    it('leaves existing publishers untouched when publishers is omitted', async () => {
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            publishers_textarea: 'Capcom',
+        });
+
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            duration: '02:00:00',
+        });
+
+        const publishers = db.prepare(`
+            SELECT c.name
+            FROM games_companies gc
+            JOIN companies c ON c.id = gc.company
+            WHERE gc.game = ?
+            AND gc.role = 'publisher'
+        `).all(gameId).map((row: any) => row.name);
+
+        expect(publishers).toEqual(['Capcom']);
+    });
+
+    it('leaves existing developers untouched when developers is empty', async () => {
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            developers_textarea: 'Capcom',
+        });
+
+        await updateGameInDatabase(db, {
+            identifierKind: 'Video',
+            identifierValue: identifier,
+            developers_textarea: undefined,
+        });
+
+        const developers = db.prepare(`
+            SELECT c.name
+            FROM games_companies gc
+            JOIN companies c ON c.id = gc.company
+            WHERE gc.game = ?
+            AND gc.role = 'developer'
+        `).all(gameId).map((row: any) => row.name);
+
+        expect(developers).toEqual(['Capcom']);
     });
 });

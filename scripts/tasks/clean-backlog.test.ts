@@ -9,11 +9,23 @@ const { readdirMock, rmMock } = vi.hoisted(() => ({
 
 vi.mock('node:fs/promises', async (importOriginal) => {
     const actual = await importOriginal<typeof import('node:fs/promises')>();
+    
+    const readdirWrapper = (...args: Parameters<typeof actual.readdir>) => {
+        const pathStr = String(args[0]);
+        // Intercept only calls meant for backlogcovers
+        if (pathStr.includes('backlogcovers')) {
+            return readdirMock(...args);
+        }
+        // Fall back to the original Node.js implementation for other paths (e.g. views)
+        return actual.readdir(...args);
+    };
+
     const mock = {
         ...actual,
-        readdir: readdirMock,
+        readdir: readdirWrapper,
         rm: rmMock,
     };
+
     return {
         ...mock,
         default: mock,
@@ -26,8 +38,8 @@ describe.skipIf(!hasRealDb)('cleanBacklog', () => {
     let db: Database;
     let cleanup: () => void;
 
-    beforeEach(() => {
-        ({ db, cleanup } = openTestDb());
+    beforeEach(async () => {
+        ({ db, cleanup } = await openTestDb());
         readdirMock.mockReset();
         rmMock.mockReset();
         rmMock.mockResolvedValue(undefined);
