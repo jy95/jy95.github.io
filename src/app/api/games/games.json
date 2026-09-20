@@ -497,8 +497,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"WayForward"
+		],
+		"publishers": [
+			"KONAMI"
+		]
 	},
 	{
 		"id": 80,
