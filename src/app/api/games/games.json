@@ -329,8 +329,13 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Iron Galaxy Studios",
+			"Rocksteady Studios"
+		],
+		"publishers": [
+			"WB Games"
+		]
 	},
 	{
 		"id": 4,
