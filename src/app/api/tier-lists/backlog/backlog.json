@@ -1648,6 +1648,12 @@
 			"hltb_extra": "19:11:54",
 			"hltb_completionist": "29:00:33",
 			"imagePath": "/backlogcovers/206/cover.webp"
+		},
+		{
+			"id": "209",
+			"title": "Made Man: Confessions of the Family Blood",
+			"platform": 5,
+			"imagePath": "/backlogcovers/209/cover.webp"
 		}
 	]
 }
