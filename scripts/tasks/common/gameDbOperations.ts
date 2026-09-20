@@ -104,13 +104,7 @@ export function syncCompanies(
 
     for (const name of names) {
         insertCompanyStmt.run(name);
-
         const companyId = findCompanyStmt.pluck().get(name);
-
-        if (companyId === undefined) {
-            throw new Error(`Company not found after insert: ${name}`);
-        }
-
         insertRelationStmt.run(gameId, companyId, role);
     }
 }
