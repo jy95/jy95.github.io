@@ -832,8 +832,13 @@
 			13,
 			7
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"The Code Monkeys"
+		],
+		"publishers": [
+			"Disney Interactive",
+			"NewKidCo"
+		]
 	},
 	{
 		"id": 29,
