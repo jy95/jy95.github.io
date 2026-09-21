@@ -2623,8 +2623,12 @@
 			1,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"pixel games SARL-S"
+		],
+		"publishers": [
+			"pixel games SARL-S"
+		]
 	},
 	{
 		"id": 74,
