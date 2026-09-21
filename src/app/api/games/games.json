@@ -1472,8 +1472,13 @@
 			1,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Bizarre Creations"
+		],
+		"publishers": [
+			"Disney Interactive",
+			"Sony Computer Entertainment"
+		]
 	},
 	{
 		"id": 187,
