@@ -1493,5 +1493,10 @@
 		"hltb_main": "12:05:55",
 		"hltb_extra": "14:30:11",
 		"hltb_completionist": "16:01:07"
+	},
+	{
+		"id": 214,
+		"title": "Akimbot",
+		"platform": 1
 	}
 ]
