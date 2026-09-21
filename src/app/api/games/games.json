@@ -871,8 +871,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Ninja Theory"
+		],
+		"publishers": [
+			"Capcom"
+		]
 	},
 	{
 		"id": 159,
