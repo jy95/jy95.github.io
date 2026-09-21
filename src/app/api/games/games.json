@@ -576,8 +576,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Toys for Bob"
+		],
+		"publishers": [
+			"Activision"
+		]
 	},
 	{
 		"id": 16,
