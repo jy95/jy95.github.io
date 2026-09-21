@@ -725,8 +725,12 @@
 			16,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Volatile Games"
+		],
+		"publishers": [
+			"Namco"
+		]
 	},
 	{
 		"id": 179,
