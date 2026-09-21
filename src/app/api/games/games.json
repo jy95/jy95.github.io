@@ -1033,8 +1033,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Climax Group"
+		],
+		"publishers": [
+			"2K Games"
+		]
 	},
 	{
 		"id": 12,
