@@ -3009,8 +3009,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Radical Entertainment"
+		],
+		"publishers": [
+			"Sierra Entertainment"
+		]
 	},
 	{
 		"id": 176,
