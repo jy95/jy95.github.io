@@ -743,8 +743,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"High Moon Studios"
+		],
+		"publishers": [
+			"Activision"
+		]
 	},
 	{
 		"id": 14,
