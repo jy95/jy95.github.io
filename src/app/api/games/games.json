@@ -630,8 +630,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Visceral Games"
+		],
+		"publishers": [
+			"Electronic Arts"
+		]
 	},
 	{
 		"id": 50,
