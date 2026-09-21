@@ -2160,8 +2160,12 @@
 			12,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Insomniac Games"
+		],
+		"publishers": [
+			"Sony Computer Entertainment"
+		]
 	},
 	{
 		"id": 33,
