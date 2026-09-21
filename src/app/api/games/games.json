@@ -2061,8 +2061,13 @@
 			12,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Idol Minds",
+			"Insomniac Games"
+		],
+		"publishers": [
+			"Sony Interactive Entertainment"
+		]
 	},
 	{
 		"id": 114,
