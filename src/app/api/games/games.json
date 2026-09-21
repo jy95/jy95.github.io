@@ -1901,8 +1901,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Ubisoft Québec"
+		],
+		"publishers": [
+			"Ubisoft"
+		]
 	},
 	{
 		"id": 61,
