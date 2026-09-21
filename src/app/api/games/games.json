@@ -1015,8 +1015,12 @@
 		"genres": [
 			1
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Quantic Dream"
+		],
+		"publishers": [
+			"Atari"
+		]
 	},
 	{
 		"id": 173,
