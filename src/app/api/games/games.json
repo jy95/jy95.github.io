@@ -2390,8 +2390,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Dontnod Entertainment"
+		],
+		"publishers": [
+			"Capcom"
+		]
 	},
 	{
 		"id": 157,
