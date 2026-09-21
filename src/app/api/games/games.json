@@ -2057,8 +2057,12 @@
 			2,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Remedy Entertainment"
+		],
+		"publishers": [
+			"Xbox Game Studios"
+		]
 	},
 	{
 		"id": 38,
