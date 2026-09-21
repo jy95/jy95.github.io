@@ -1938,8 +1938,12 @@
 			1,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Double Fine Productions"
+		],
+		"publishers": [
+			"Double Fine Productions"
+		]
 	},
 	{
 		"id": 112,
