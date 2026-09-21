@@ -888,8 +888,12 @@
 		"genres": [
 			13
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Headup"
+		],
+		"publishers": [
+			"Headup"
+		]
 	},
 	{
 		"id": 86,
