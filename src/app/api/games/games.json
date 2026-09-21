@@ -1956,8 +1956,12 @@
 			1,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Double Fine Productions"
+		],
+		"publishers": [
+			"Xbox Game Studios"
+		]
 	},
 	{
 		"id": 96,
