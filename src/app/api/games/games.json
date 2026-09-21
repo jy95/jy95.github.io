@@ -814,8 +814,12 @@
 			16,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Sandblast Games"
+		],
+		"publishers": [
+			"THQ"
+		]
 	},
 	{
 		"id": 97,
