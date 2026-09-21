@@ -980,8 +980,12 @@
 			1,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"WayForward Technologies"
+		],
+		"publishers": [
+			"Capcom"
+		]
 	},
 	{
 		"id": 168,
