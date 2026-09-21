@@ -536,8 +536,13 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Iron Galaxy Studios",
+			"Vicarious Visions"
+		],
+		"publishers": [
+			"Activision"
+		]
 	},
 	{
 		"id": 79,
