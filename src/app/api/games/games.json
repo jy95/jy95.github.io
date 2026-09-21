@@ -760,8 +760,13 @@
 		"genres": [
 			9
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"AKI Corporation",
+			"EA Vancouver"
+		],
+		"publishers": [
+			"Electronic Arts"
+		]
 	},
 	{
 		"id": 3,
