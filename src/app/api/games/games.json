@@ -1070,8 +1070,13 @@
 			2,
 			14
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Jetpack Interactive",
+			"Santa Monica Studio"
+		],
+		"publishers": [
+			"Sony Interactive Entertainment"
+		]
 	},
 	{
 		"id": 40,
