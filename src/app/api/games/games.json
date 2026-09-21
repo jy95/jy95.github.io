@@ -2019,8 +2019,13 @@
 			12,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Idol Minds",
+			"Insomniac Games"
+		],
+		"publishers": [
+			"Sony Computer Entertainment"
+		]
 	},
 	{
 		"id": 37,
