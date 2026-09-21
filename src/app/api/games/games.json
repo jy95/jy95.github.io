@@ -3034,7 +3034,11 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Blitz Games"
+		],
+		"publishers": [
+			"Infogrames"
+		]
 	}
 ]
