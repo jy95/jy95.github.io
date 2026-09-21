@@ -796,8 +796,12 @@
 		"genres": [
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Pandemic Studios"
+		],
+		"publishers": [
+			"THQ"
+		]
 	},
 	{
 		"id": 98,
