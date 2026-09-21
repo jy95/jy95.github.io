@@ -2502,8 +2502,12 @@
 			2,
 			9
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Soleil"
+		],
+		"publishers": [
+			"Adult Swim Games"
+		]
 	},
 	{
 		"id": 32,
