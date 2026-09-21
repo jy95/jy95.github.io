@@ -2934,8 +2934,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Artificial Mind & Movement"
+		],
+		"publishers": [
+			"Bethesda Softworks"
+		]
 	},
 	{
 		"id": 207,
