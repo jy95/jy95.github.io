@@ -612,8 +612,12 @@
 		"genres": [
 			9
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Altron"
+		],
+		"publishers": [
+			"THQ"
+		]
 	},
 	{
 		"id": 160,
