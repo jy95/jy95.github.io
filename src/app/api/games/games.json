@@ -944,8 +944,12 @@
 			2,
 			14
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Webfoot Technologies"
+		],
+		"publishers": [
+			"Infogrames"
+		]
 	},
 	{
 		"id": 206,
