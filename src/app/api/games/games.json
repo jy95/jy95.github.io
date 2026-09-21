@@ -2558,8 +2558,12 @@
 			9,
 			10
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Klei Entertainment"
+		],
+		"publishers": [
+			"Electronic Arts"
+		]
 	},
 	{
 		"id": 189,
