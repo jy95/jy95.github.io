@@ -2299,8 +2299,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Eurocom"
+		],
+		"publishers": [
+			"Sierra Entertainment"
+		]
 	},
 	{
 		"id": 71,
