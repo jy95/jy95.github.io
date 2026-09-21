@@ -706,8 +706,12 @@
 			16,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Namco"
+		],
+		"publishers": [
+			"Namco"
+		]
 	},
 	{
 		"id": 124,
