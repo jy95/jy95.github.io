@@ -906,8 +906,12 @@
 			1,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Dimps"
+		],
+		"publishers": [
+			"Atari"
+		]
 	},
 	{
 		"id": 131,
