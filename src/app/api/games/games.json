@@ -2976,8 +2976,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Raven Software"
+		],
+		"publishers": [
+			"Activision"
+		]
 	},
 	{
 		"id": 65,
