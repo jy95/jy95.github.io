@@ -668,8 +668,12 @@
 			2,
 			14
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Vigil Games"
+		],
+		"publishers": [
+			"THQ"
+		]
 	},
 	{
 		"id": 155,
