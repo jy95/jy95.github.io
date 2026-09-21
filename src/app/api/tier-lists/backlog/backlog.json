@@ -1627,6 +1627,12 @@
 	"tier_bad": [],
 	"tier_not_evaluated": [
 		{
+			"id": "214",
+			"title": "Akimbot",
+			"platform": 1,
+			"imagePath": "/backlogcovers/214/cover.webp"
+		},
+		{
 			"id": "210",
 			"title": "Brothers in Arms: Hell's Highway",
 			"platform": 6,
