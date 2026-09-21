@@ -3019,8 +3019,12 @@
 			14,
 			5
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"KONAMI"
+		],
+		"publishers": [
+			"KONAMI"
+		]
 	},
 	{
 		"id": 108,
