@@ -1951,8 +1951,12 @@
 			1,
 			15
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Bigbig Studios"
+		],
+		"publishers": [
+			"Sony Computer Entertainment"
+		]
 	},
 	{
 		"id": 146,
