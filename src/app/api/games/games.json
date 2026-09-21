@@ -1862,8 +1862,13 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Ubisoft Casablanca",
+			"Ubisoft Montréal"
+		],
+		"publishers": [
+			"Ubisoft"
+		]
 	},
 	{
 		"id": 10,
