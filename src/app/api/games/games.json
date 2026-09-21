@@ -1824,8 +1824,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Ubisoft Montreal"
+		],
+		"publishers": [
+			"Ubisoft"
+		]
 	},
 	{
 		"id": 24,
