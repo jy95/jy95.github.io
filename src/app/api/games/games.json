@@ -1778,8 +1778,12 @@
 			1,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Rebellion Developments"
+		],
+		"publishers": [
+			"KONAMI"
+		]
 	},
 	{
 		"id": 186,
