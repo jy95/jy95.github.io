@@ -853,8 +853,12 @@
 			16,
 			14
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Arkane Studios"
+		],
+		"publishers": [
+			"Bethesda Softworks"
+		]
 	},
 	{
 		"id": 109,
