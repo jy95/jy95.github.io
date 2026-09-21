@@ -925,8 +925,12 @@
 			2,
 			14
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Webfoot Technologies"
+		],
+		"publishers": [
+			"Atari"
+		]
 	},
 	{
 		"id": 107,
