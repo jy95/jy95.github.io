@@ -2538,8 +2538,12 @@
 		"genres": [
 			1
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Grasshopper Manufacture"
+		],
+		"publishers": [
+			"Electronic Arts"
+		]
 	},
 	{
 		"id": 188,
