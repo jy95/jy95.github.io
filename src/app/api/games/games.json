@@ -1974,8 +1974,12 @@
 			12,
 			13
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Evil Raptor"
+		],
+		"publishers": [
+			"Headup"
+		]
 	},
 	{
 		"id": 140,
