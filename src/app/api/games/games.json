@@ -595,8 +595,12 @@
 			2,
 			13
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"The Collective"
+		],
+		"publishers": [
+			"2K Games"
+		]
 	},
 	{
 		"id": 93,
