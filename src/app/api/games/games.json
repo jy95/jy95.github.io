@@ -779,8 +779,12 @@
 			1,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Black Forest Games"
+		],
+		"publishers": [
+			"THQ Nordic"
+		]
 	},
 	{
 		"id": 15,
