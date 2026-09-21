@@ -2427,8 +2427,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Crytek"
+		],
+		"publishers": [
+			"Crytek"
+		]
 	},
 	{
 		"id": 64,
