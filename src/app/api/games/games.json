@@ -2962,8 +2962,12 @@
 			1,
 			19
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Team17"
+		],
+		"publishers": [
+			"Team17"
+		]
 	},
 	{
 		"id": 133,
