@@ -1451,31 +1451,47 @@
 	{
 		"id": 208,
 		"title": "Kaan: Barbarian's Blade",
-		"platform": 5
+		"platform": 5,
+		"hltb_completionist": "06:34:00"
 	},
 	{
 		"id": 209,
 		"title": "Made Man: Confessions of the Family Blood",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "05:13:49",
+		"hltb_extra": "06:06:23",
+		"hltb_completionist": "07:53:38"
 	},
 	{
 		"id": 210,
 		"title": "Brothers in Arms: Hell's Highway",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "07:47:35",
+		"hltb_extra": "09:06:05",
+		"hltb_completionist": "13:51:04"
 	},
 	{
 		"id": 211,
 		"title": "Primal",
-		"platform": 5
+		"platform": 5,
+		"hltb_main": "15:35:26",
+		"hltb_extra": "19:24:08",
+		"hltb_completionist": "23:21:05"
 	},
 	{
 		"id": 212,
 		"title": "Viking: Battle for Asgard",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "13:18:21",
+		"hltb_extra": "16:09:49",
+		"hltb_completionist": "19:43:18"
 	},
 	{
 		"id": 213,
 		"title": "Hunted: The Demon's Forge",
-		"platform": 6
+		"platform": 6,
+		"hltb_main": "12:05:55",
+		"hltb_extra": "14:30:11",
+		"hltb_completionist": "16:01:07"
 	}
 ]
