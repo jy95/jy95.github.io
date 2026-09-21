@@ -2920,8 +2920,12 @@
 			9,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"PlatinumGames"
+		],
+		"publishers": [
+			"Sega"
+		]
 	},
 	{
 		"id": 177,
