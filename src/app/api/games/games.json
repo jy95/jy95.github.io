@@ -2956,8 +2956,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Ubisoft Shanghai"
+		],
+		"publishers": [
+			"Ubisoft"
+		]
 	},
 	{
 		"id": 57,
