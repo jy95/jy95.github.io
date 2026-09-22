@@ -2745,8 +2745,12 @@
 			12,
 			15
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Sonic Team"
+		],
+		"publishers": [
+			"Sega"
+		]
 	},
 	{
 		"id": 67,
