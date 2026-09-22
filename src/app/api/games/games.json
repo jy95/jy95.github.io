@@ -3315,8 +3315,12 @@
 			2,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Deadline Games"
+		],
+		"publishers": [
+			"Eidos Interactive"
+		]
 	},
 	{
 		"id": 183,
