@@ -2515,8 +2515,12 @@
 			1,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Volition"
+		],
+		"publishers": [
+			"Deep Silver"
+		]
 	},
 	{
 		"id": 66,
