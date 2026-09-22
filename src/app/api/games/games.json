@@ -1651,8 +1651,12 @@
 			2,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"2K Czech"
+		],
+		"publishers": [
+			"2K Games"
+		]
 	},
 	{
 		"id": 1,
