@@ -3417,8 +3417,12 @@
 			1,
 			15
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Tigon Studios"
+		],
+		"publishers": [
+			"Midway"
+		]
 	},
 	{
 		"id": 135,
