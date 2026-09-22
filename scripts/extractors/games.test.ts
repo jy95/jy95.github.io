@@ -22,7 +22,7 @@ describe.skipIf(!hasRealDb)('extractAndSaveGames', () => {
 
     it('matches the count of games_in_present minus known dlc rows', async () => {
         const expectedCount = ctx.db
-            .prepare('SELECT COUNT(*) AS n FROM games_in_present WHERE id NOT IN (SELECT dlc FROM games_dlcs)')
+            .prepare('SELECT COUNT(*) AS n FROM games_in_present')
             .get() as { n: number };
 
         await extractAndSaveGames(ctx.db, ctx.outPath);

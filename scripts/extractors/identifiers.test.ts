@@ -7,8 +7,13 @@ import { extractAndSaveRandomList } from './identifiers';
 describe.skipIf(!hasRealDb)('extractAndSaveRandomList', () => {
     const ctx = useExtractorHarness('extractAndSaveRandomList');
 
-    it('matches the row count of games_in_present exactly', async () => {
-        const expectedCount = ctx.db.prepare('SELECT COUNT(*) AS n FROM games_in_present').get() as { n: number };
+    it('matches the row count of all available games (including dlcs)', async () => {
+        const expectedCount = ctx.db.prepare(`SELECT COUNT(*) AS n FROM games
+         WHERE id NOT IN (
+             SELECT id
+             FROM games_schedules
+             WHERE DATE('now') <= availableAt
+         )`).get() as { n: number };
 
         await extractAndSaveRandomList(ctx.db, ctx.outPath);
         const written = JSON.parse(await readFile(ctx.outPath, 'utf-8'));

@@ -12,8 +12,7 @@ describe.skipIf(!hasRealDb)('extractAndSaveRelatedGames', () => {
         const written = JSON.parse(await readFile(ctx.outPath, 'utf-8')) as Record<string, unknown>;
         const planningIds = (ctx.db.prepare(`
             SELECT COALESCE(g.videoId, g.playlistId) AS identifier
-            FROM games_in_future gif JOIN games g ON g.id = gif.id
-            WHERE g.id NOT IN (SELECT dlc FROM games_dlcs)
+            FROM games_in_future g
         `).all() as { identifier: string }[]).map(({ identifier }) => identifier);
 
         expect(typeof written).toBe('object');
@@ -72,7 +71,6 @@ describe.skipIf(!hasRealDb)('extractAndSaveRelatedGames', () => {
             FROM games_in_present g
             LEFT JOIN tier_list_games tlg ON tlg.game_id = g.id
             LEFT JOIN tier_categories tc ON tc.id = tlg.category_id
-            WHERE g.id NOT IN (SELECT dlc FROM games_dlcs)
         `).all() as { identifier: string; category: string }[];
         const validTiers = new Set([
             'tier_masterpiece', 'tier_excellent', 'tier_good', 'tier_average',
