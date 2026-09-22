@@ -1462,8 +1462,12 @@
 			12,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"PlatinumGames"
+		],
+		"publishers": [
+			"Activision"
+		]
 	},
 	{
 		"id": 175,
