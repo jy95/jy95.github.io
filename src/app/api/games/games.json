@@ -1742,8 +1742,12 @@
 			1,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Remedy Entertainment"
+		],
+		"publishers": [
+			"Take 2 Interactive"
+		]
 	},
 	{
 		"id": 82,
