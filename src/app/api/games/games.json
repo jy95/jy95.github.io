@@ -1840,8 +1840,12 @@
 		"genres": [
 			1
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"SNK Playmore"
+		],
+		"publishers": [
+			"SNK Playmore"
+		]
 	},
 	{
 		"id": 76,
