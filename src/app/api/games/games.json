@@ -2431,8 +2431,12 @@
 			2,
 			8
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Ubisoft Sofia"
+		],
+		"publishers": [
+			"Ubisoft"
+		]
 	},
 	{
 		"id": 23,
