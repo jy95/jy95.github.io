@@ -1613,8 +1613,12 @@
 			2,
 			14
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Grasshopper Manufacture"
+		],
+		"publishers": [
+			"WB Games"
+		]
 	},
 	{
 		"id": 151,
