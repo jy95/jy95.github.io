@@ -2076,8 +2076,12 @@
 			2,
 			7
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Humongous"
+		],
+		"publishers": [
+			"Humongous"
+		]
 	},
 	{
 		"id": 22,
