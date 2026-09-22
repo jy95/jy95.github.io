@@ -2808,8 +2808,12 @@
 		"genres": [
 			9
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Shaba Games"
+		],
+		"publishers": [
+			"Activision"
+		]
 	},
 	{
 		"id": 83,
