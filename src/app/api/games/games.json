@@ -1770,8 +1770,12 @@
 			1,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Remedy Entertainment"
+		],
+		"publishers": [
+			"Gathering of Developers"
+		]
 	},
 	{
 		"id": 172,
