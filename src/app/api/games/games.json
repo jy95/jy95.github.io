@@ -1312,8 +1312,12 @@
 			1,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Eurocom"
+		],
+		"publishers": [
+			"Disney Interactive"
+		]
 	},
 	{
 		"id": 88,
