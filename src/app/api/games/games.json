@@ -2730,8 +2730,12 @@
 			12,
 			14
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Sonic Team"
+		],
+		"publishers": [
+			"Sega"
+		]
 	},
 	{
 		"id": 34,
