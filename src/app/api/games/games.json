@@ -2841,8 +2841,12 @@
 			2,
 			14
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Ubisoft San Francisco"
+		],
+		"publishers": [
+			"Ubisoft"
+		]
 	},
 	{
 		"id": 132,
