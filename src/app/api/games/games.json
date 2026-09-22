@@ -1598,8 +1598,13 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Beenox",
+			"Heavy Iron Studios"
+		],
+		"publishers": [
+			"THQ"
+		]
 	},
 	{
 		"id": 161,
