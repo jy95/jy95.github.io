@@ -3233,8 +3233,12 @@
 			1,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Tiger Hill Entertainment"
+		],
+		"publishers": [
+			"Midway"
+		]
 	},
 	{
 		"id": 28,
