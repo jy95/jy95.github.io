@@ -1636,8 +1636,12 @@
 			2,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Illusion Softworks"
+		],
+		"publishers": [
+			"Gathering of Developers"
+		]
 	},
 	{
 		"id": 25,
