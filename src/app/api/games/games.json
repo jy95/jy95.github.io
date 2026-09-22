@@ -1442,8 +1442,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Eden Games"
+		],
+		"publishers": [
+			"Atari"
+		]
 	},
 	{
 		"id": 164,
