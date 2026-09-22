@@ -1243,8 +1243,13 @@
 			3,
 			10
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Claeys Brothers",
+			"Crazy Monkey Studios"
+		],
+		"publishers": [
+			"Crazy Monkey Studios"
+		]
 	},
 	{
 		"id": 120,
