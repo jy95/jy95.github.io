@@ -89,8 +89,8 @@ jobs:
                restore-keys: |
                   ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
           - name: 💻 Install npm packages
-            #run: npm ci
-            run: npm install
+            run: npm ci
+            #run: npm install
           - name: 💿 Do requested action
             run: |
                 npx tsx scripts/automatedTasks.ts "$OPERATION" "$REQUEST"
