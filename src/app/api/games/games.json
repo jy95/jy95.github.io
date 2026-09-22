@@ -1680,8 +1680,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"The Collective"
+		],
+		"publishers": [
+			"Atari"
+		]
 	},
 	{
 		"id": 45,
