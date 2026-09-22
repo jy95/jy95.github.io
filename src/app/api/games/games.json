@@ -3030,8 +3030,12 @@
 			1,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Gulti"
+		],
+		"publishers": [
+			"Square Enix"
+		]
 	},
 	{
 		"id": 49,
