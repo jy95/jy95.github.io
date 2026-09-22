@@ -2972,8 +2972,12 @@
 			7,
 			6
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Humongous"
+		],
+		"publishers": [
+			"Infogrames"
+		]
 	},
 	{
 		"id": 58,
