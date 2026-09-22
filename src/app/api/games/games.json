@@ -3215,8 +3215,12 @@
 			7,
 			6
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Humongous"
+		],
+		"publishers": [
+			"Humongous"
+		]
 	},
 	{
 		"id": 141,
