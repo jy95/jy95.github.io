@@ -1403,8 +1403,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Naughty Dog"
+		],
+		"publishers": [
+			"Sony Computer Entertainment"
+		]
 	},
 	{
 		"id": 143,
