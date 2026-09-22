@@ -1497,6 +1497,9 @@
 	{
 		"id": 214,
 		"title": "Akimbot",
-		"platform": 1
+		"platform": 1,
+		"hltb_main": "09:09:59",
+		"hltb_extra": "09:46:36",
+		"hltb_completionist": "11:13:42"
 	}
 ]
