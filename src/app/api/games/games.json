@@ -3231,8 +3231,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Capcom"
+		],
+		"publishers": [
+			"Nintendo"
+		]
 	},
 	{
 		"id": 129,
