@@ -1388,8 +1388,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"High Impact Games"
+		],
+		"publishers": [
+			"Sony Computer Entertainment"
+		]
 	},
 	{
 		"id": 101,
