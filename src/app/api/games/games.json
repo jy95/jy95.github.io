@@ -1584,8 +1584,12 @@
 			2,
 			14
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Visceral Games"
+		],
+		"publishers": [
+			"Electronic Arts"
+		]
 	},
 	{
 		"id": 30,
