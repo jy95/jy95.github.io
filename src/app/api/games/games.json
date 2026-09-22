@@ -1414,8 +1414,12 @@
 		"genres": [
 			1
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Grasshopper Manufacture"
+		],
+		"publishers": [
+			"Deep Silver"
+		]
 	},
 	{
 		"id": 48,
