@@ -1627,8 +1627,12 @@
 			3,
 			6
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Tate Interactive"
+		],
+		"publishers": [
+			"Atari"
+		]
 	},
 	{
 		"id": 99,
