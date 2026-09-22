@@ -2529,8 +2529,12 @@
 			1,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Volition"
+		],
+		"publishers": [
+			"THQ"
+		]
 	},
 	{
 		"id": 20,
