@@ -2730,8 +2730,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Sucker Punch Productions"
+		],
+		"publishers": [
+			"Sony Computer Entertainment"
+		]
 	},
 	{
 		"id": 180,
