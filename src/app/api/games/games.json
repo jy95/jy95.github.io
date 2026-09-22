@@ -1227,8 +1227,13 @@
 			3,
 			10
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Claeys Brothers",
+			"Rogueside"
+		],
+		"publishers": [
+			"Rogueside"
+		]
 	},
 	{
 		"id": 43,
