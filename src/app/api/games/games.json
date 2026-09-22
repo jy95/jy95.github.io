@@ -2652,8 +2652,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"KnowWonder"
+		],
+		"publishers": [
+			"Activision"
+		]
 	},
 	{
 		"id": 90,
