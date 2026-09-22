@@ -1784,8 +1784,13 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Kojima Productions",
+			"PlatinumGames"
+		],
+		"publishers": [
+			"KONAMI"
+		]
 	},
 	{
 		"id": 142,
