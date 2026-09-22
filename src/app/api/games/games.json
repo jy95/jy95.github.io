@@ -2378,8 +2378,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Ubisoft Paris"
+		],
+		"publishers": [
+			"Ubisoft"
+		]
 	},
 	{
 		"id": 136,
