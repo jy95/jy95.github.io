@@ -1567,8 +1567,13 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"KAIKO Games",
+			"Neon Studios"
+		],
+		"publishers": [
+			"THQ Nordic"
+		]
 	},
 	{
 		"id": 36,
