@@ -3282,8 +3282,12 @@
 			1,
 			2
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Rockstar Toronto"
+		],
+		"publishers": [
+			"Rockstar Games"
+		]
 	},
 	{
 		"id": 100,
