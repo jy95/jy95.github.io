@@ -16,8 +16,8 @@ export async function extractAndSaveStats(db: Database, outputPath: string): Pro
     
     // where condition needed to exclude dlc from game resultset
     const total_games = db.prepare("SELECT COUNT(*) FROM games WHERE id NOT IN (SELECT dlc FROM games_dlcs)").pluck().get();
-    const total_game_available = db.prepare("SELECT COUNT(*) FROM games_in_present WHERE id NOT IN (SELECT dlc FROM games_dlcs)").pluck().get();
-    const total_game_unavailable = db.prepare("SELECT COUNT(*) FROM games_in_future WHERE id NOT IN (SELECT dlc FROM games_dlcs)").pluck().get();
+    const total_game_available = db.prepare("SELECT COUNT(*) FROM games_in_present").pluck().get();
+    const total_game_unavailable = db.prepare("SELECT COUNT(*) FROM games_in_future").pluck().get();
 
     // Whereas counting dlcs is easy
     const total_dlcs = db.prepare("SELECT COUNT(*) FROM games_dlcs").pluck().get();

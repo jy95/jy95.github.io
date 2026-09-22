@@ -1,8 +1,8 @@
-SELECT 
-    COALESCE(g.playlistId,g.videoId) AS id,
+SELECT
+    COALESCE(g.playlistId, g.videoId) AS id,
     g.title AS game_title,
     (
-        SELECT 
+        SELECT
             '[' || GROUP_CONCAT(
                 JSON_OBJECT(
                     'id', dlc.id,
@@ -12,16 +12,18 @@ SELECT
                     'duration', dlc.duration,
                     'platform', dlc.platform
                 ) ORDER BY gd."order"
-            ) || ']' 
-        FROM games_dlcs gd
-        INNER JOIN games_in_present dlc ON dlc.id = gd.dlc
+            ) || ']'
+        FROM games_dlcs AS gd
+        INNER JOIN dlcs_in_present AS dlc
+            ON dlc.id = gd.dlc
         WHERE gd.game = g.id
     ) AS dlcs
-FROM games_in_present g
+FROM games_in_present AS g
 WHERE EXISTS (
     SELECT 1
-    FROM games_dlcs gd
-    INNER JOIN games_in_present dlc ON dlc.id = gd.dlc
+    FROM games_dlcs AS gd
+    INNER JOIN dlcs_in_present AS dlc
+        ON dlc.id = gd.dlc
     WHERE gd.game = g.id
 )
-ORDER BY g.title
+ORDER BY g.title;
