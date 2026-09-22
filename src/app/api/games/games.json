@@ -1760,8 +1760,12 @@
 			1,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Rockstar Studios"
+		],
+		"publishers": [
+			"Rockstar Games"
+		]
 	},
 	{
 		"id": 46,
