@@ -2360,8 +2360,12 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Ubisoft Montpellier"
+		],
+		"publishers": [
+			"Ubisoft"
+		]
 	},
 	{
 		"id": 75,
