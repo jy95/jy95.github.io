@@ -1666,8 +1666,12 @@
 			2,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Hangar 13"
+		],
+		"publishers": [
+			"2K Games"
+		]
 	},
 	{
 		"id": 111,
