@@ -2845,8 +2845,12 @@
 			2,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"United Front Games"
+		],
+		"publishers": [
+			"Square Enix"
+		]
 	},
 	{
 		"id": 169,
