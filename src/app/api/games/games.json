@@ -1349,8 +1349,12 @@
 		"genres": [
 			13
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"zSlide"
+		],
+		"publishers": [
+			"Atari"
+		]
 	},
 	{
 		"id": 105,
