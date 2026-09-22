@@ -1471,8 +1471,12 @@
 		"genres": [
 			12
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"HAL Laboratory"
+		],
+		"publishers": [
+			"Nintendo"
+		]
 	},
 	{
 		"id": 144,
