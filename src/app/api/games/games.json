@@ -2090,8 +2090,14 @@
 			2,
 			7
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Humongous"
+		],
+		"publishers": [
+			"Atari",
+			"Humongous",
+			"Infogrames"
+		]
 	},
 	{
 		"id": 77,
