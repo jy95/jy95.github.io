@@ -2827,8 +2827,12 @@
 			2,
 			14
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Obsidian Entertainment"
+		],
+		"publishers": [
+			"Ubisoft"
+		]
 	},
 	{
 		"id": 72,
