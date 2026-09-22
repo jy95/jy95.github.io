@@ -2501,8 +2501,13 @@
 			1,
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"High Voltage Software",
+			"Volition"
+		],
+		"publishers": [
+			"Deep Silver"
+		]
 	},
 	{
 		"id": 62,
