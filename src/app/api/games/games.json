@@ -1843,8 +1843,12 @@
 		"genres": [
 			16
 		],
-		"developers": [],
-		"publishers": []
+		"developers": [
+			"Codemasters"
+		],
+		"publishers": [
+			"Codemasters"
+		]
 	},
 	{
 		"id": 47,
