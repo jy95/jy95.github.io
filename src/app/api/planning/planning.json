@@ -66,8 +66,12 @@
 		"genres": [
 			16
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"Bizarre Creations"
+		],
+		"publishers": [
+			"Sega"
+		],
 		"availableAt": "2026-11-16",
 		"endAt": "2026-12-02"
 	},
