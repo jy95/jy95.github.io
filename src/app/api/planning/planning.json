@@ -47,8 +47,12 @@
 		"genres": [
 			16
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"Ryū ga Gotoku Studio"
+		],
+		"publishers": [
+			"Sega"
+		],
 		"availableAt": "2026-11-02",
 		"endAt": "2026-11-13"
 	},
