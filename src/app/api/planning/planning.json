@@ -411,8 +411,12 @@
 			1,
 			9
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"Namco Bandai Games"
+		],
+		"publishers": [
+			"Namco Bandai Games"
+		],
 		"availableAt": "2028-01-12",
 		"endAt": "2028-02-07"
 	},
