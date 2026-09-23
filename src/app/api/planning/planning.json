@@ -251,8 +251,12 @@
 			9,
 			1
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"PlatinumGames"
+		],
+		"publishers": [
+			"Sega"
+		],
 		"availableAt": "2027-06-25",
 		"endAt": "2027-08-06"
 	},
