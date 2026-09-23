@@ -380,8 +380,12 @@
 		"genres": [
 			9
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"NetherRealm Studios"
+		],
+		"publishers": [
+			"WB Games"
+		],
 		"availableAt": "2027-11-26",
 		"endAt": "2027-12-22"
 	},
