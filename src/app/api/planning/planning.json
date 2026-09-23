@@ -222,8 +222,12 @@
 			12,
 			2
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"Luxoflux"
+		],
+		"publishers": [
+			"Activision"
+		],
 		"availableAt": "2027-05-05",
 		"endAt": "2027-05-28"
 	},
