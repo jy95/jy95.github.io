@@ -28,8 +28,12 @@
 		"genres": [
 			1
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"Heavy Iron Studios"
+		],
+		"publishers": [
+			"THQ"
+		],
 		"availableAt": "2026-10-16",
 		"endAt": "2026-10-28"
 	},
