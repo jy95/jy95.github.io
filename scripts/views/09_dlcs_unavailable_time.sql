@@ -7,6 +7,6 @@ FROM (
         CAST(substr(duration, 1, 2) AS INTEGER) AS hours,
         CAST(substr(duration, 4, 2) AS INTEGER) AS minutes,
         CAST(substr(duration, 7, 2) AS INTEGER) AS seconds
-    FROM games_in_present
+    FROM dlcs_in_future
     WHERE duration IS NOT NULL
 );
