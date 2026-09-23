@@ -7,11 +7,23 @@ import { extractAndSavePastGames } from './past-games';
 describe.skipIf(!hasRealDb)('extractAndSavePastGames', () => {
     const ctx = useExtractorHarness('extractAndSavePastGames');
 
-    it('matches the row count of the games_in_past view exactly', async () => {
-        const expectedCount = ctx.db.prepare('SELECT COUNT(*) AS n FROM games_in_past').get() as { n: number };
+    it("matches the row count of games and DLCs included in past planning", async () => {
+        const expectedCount = ctx.db
+            .prepare(`
+            SELECT
+                (
+                    SELECT COUNT(*)
+                    FROM games_in_past
+                ) +
+                (
+                    SELECT COUNT(*)
+                    FROM dlcs_in_present
+                ) AS n
+        `)
+            .get() as { n: number };
 
         await extractAndSavePastGames(ctx.db, ctx.outPath);
-        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
+        const written = JSON.parse(await readFile(ctx.outPath, "utf-8"));
 
         expect(written).toHaveLength(expectedCount.n);
     });

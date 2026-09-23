@@ -36,4 +36,37 @@ describe.skipIf(!hasRealDb)('extractAndSaveDLCS', () => {
             expect(entry.dlcs.length).toBeGreaterThan(0);
         }
     });
+
+    it("dlcs_in_present contains no future DLC", () => {
+        const result = ctx.db
+            .prepare(`
+            SELECT COUNT(*) AS n
+            FROM dlcs_in_present
+            WHERE availability_status = 'future'
+               OR parent_availability_status = 'future'
+        `)
+            .get() as { n: number };
+
+        expect(result.n).toBe(0);
+    });
+
+    it("dlcs_in_future contains only scheduled DLCs", () => {
+        const expected = ctx.db
+            .prepare(`
+            SELECT COUNT(*) AS n
+            FROM dlcs_full
+            WHERE availability_status IN ('present', 'future')
+        `)
+            .get() as { n: number };
+
+        const actual = ctx.db
+            .prepare(`
+            SELECT COUNT(*) AS n
+            FROM dlcs_in_future
+        `)
+            .get() as { n: number };
+
+        expect(actual.n).toBe(expected.n);
+    });
+
 });

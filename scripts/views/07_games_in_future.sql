@@ -8,14 +8,13 @@ SELECT
     platform,
     genres,
     developers,
-    publishers
+    publishers,
+    "availableAt",
+    "endAt"
 FROM games_full
 WHERE availability_status IN (
-    'unscheduled',
     'present',
-    'past'
+    'future'
 )
 ORDER BY
-    title ASC,
-    "releaseDate" ASC,
-    duration ASC;
+    "availableAt" ASC;

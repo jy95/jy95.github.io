@@ -39,9 +39,6 @@
 		"playlistId": "PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw"
 	},
 	{
-		"videoId": "XGEgNG67oXA"
-	},
-	{
 		"playlistId": "PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG"
 	},
 	{
@@ -57,40 +54,7 @@
 		"playlistId": "PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg"
 	},
 	{
-		"videoId": "mu3quLXf9qI"
-	},
-	{
-		"videoId": "eLrB7e_YZVY"
-	},
-	{
-		"videoId": "xIauiKHhmyc"
-	},
-	{
-		"videoId": "iwCa1cg64xM"
-	},
-	{
-		"videoId": "f9Wbtz7QkaA"
-	},
-	{
-		"videoId": "Vp0sgyaiDAg"
-	},
-	{
-		"videoId": "EgjsB1yKP78"
-	},
-	{
-		"videoId": "D6VzVqJ_mVY"
-	},
-	{
-		"videoId": "ln_Pnp1zOQw"
-	},
-	{
-		"videoId": "FO8cYct2Bkw"
-	},
-	{
 		"playlistId": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz"
-	},
-	{
-		"videoId": "xq7VqOwVOcE"
 	},
 	{
 		"playlistId": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb"
@@ -174,9 +138,6 @@
 		"playlistId": "PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0"
 	},
 	{
-		"playlistId": "PLRfhDHeBTBJ7U7XHzOSTBvaVkkd0dOAE8"
-	},
-	{
 		"playlistId": "PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3"
 	},
 	{
@@ -199,9 +160,6 @@
 	},
 	{
 		"playlistId": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn"
-	},
-	{
-		"videoId": "ZTfstKEM4Ko"
 	},
 	{
 		"playlistId": "PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2"
@@ -381,9 +339,6 @@
 		"playlistId": "PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb"
 	},
 	{
-		"playlistId": "PLRfhDHeBTBJ4hCgXVdIqLpBkTKS9q1JN6"
-	},
-	{
 		"playlistId": "PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl"
 	},
 	{
@@ -534,12 +489,6 @@
 		"playlistId": "PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU"
 	},
 	{
-		"videoId": "t-Tu3OW97x0"
-	},
-	{
-		"videoId": "YyUSdoL6y5Q"
-	},
-	{
 		"videoId": "6wJFMcIHi8k"
 	},
 	{
@@ -622,5 +571,56 @@
 	},
 	{
 		"playlistId": "PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT"
+	},
+	{
+		"videoId": "XGEgNG67oXA"
+	},
+	{
+		"videoId": "mu3quLXf9qI"
+	},
+	{
+		"videoId": "eLrB7e_YZVY"
+	},
+	{
+		"videoId": "xIauiKHhmyc"
+	},
+	{
+		"videoId": "iwCa1cg64xM"
+	},
+	{
+		"videoId": "f9Wbtz7QkaA"
+	},
+	{
+		"videoId": "Vp0sgyaiDAg"
+	},
+	{
+		"videoId": "EgjsB1yKP78"
+	},
+	{
+		"videoId": "D6VzVqJ_mVY"
+	},
+	{
+		"videoId": "ln_Pnp1zOQw"
+	},
+	{
+		"videoId": "FO8cYct2Bkw"
+	},
+	{
+		"videoId": "xq7VqOwVOcE"
+	},
+	{
+		"playlistId": "PLRfhDHeBTBJ7U7XHzOSTBvaVkkd0dOAE8"
+	},
+	{
+		"videoId": "ZTfstKEM4Ko"
+	},
+	{
+		"playlistId": "PLRfhDHeBTBJ4hCgXVdIqLpBkTKS9q1JN6"
+	},
+	{
+		"videoId": "t-Tu3OW97x0"
+	},
+	{
+		"videoId": "YyUSdoL6y5Q"
 	}
 ]

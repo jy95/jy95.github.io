@@ -11,7 +11,7 @@ describe.skipIf(!hasRealDb)('extractAndSaveTierListGamesFuture', () => {
     it('the total number of games across all categories equals games_in_future minus dlcs', async () => {
         const expectedCount = ctx.db
             .prepare(
-                `SELECT COUNT(*) AS n FROM games_in_future gf JOIN games g ON gf.id = g.id WHERE g.id NOT IN (SELECT dlc FROM games_dlcs)`
+                `SELECT COUNT(*) AS n FROM games_in_future gf`
             )
             .get() as { n: number };
 

@@ -50,17 +50,23 @@ describe.skipIf(!hasRealDb)('extractAndSaveStats', () => {
         expect(written.general.games.total_unavailable).toBe(unavailable.n);
     });
 
-    it('dlcs total equals available + unavailable, matching independently-run counts', async () => {
-        const total = ctx.db.prepare('SELECT COUNT(*) AS n FROM games_dlcs').get() as { n: number };
-        const available = ctx.db
-            .prepare('SELECT COUNT(*) AS n FROM games_in_present WHERE id IN (SELECT dlc FROM games_dlcs)')
+    it("dlcs total equals available + unavailable, matching DLC views", async () => {
+        const total = ctx.db
+            .prepare("SELECT COUNT(*) AS n FROM dlcs_full")
             .get() as { n: number };
+
+        const available = ctx.db
+            .prepare("SELECT COUNT(*) AS n FROM dlcs_in_present")
+            .get() as { n: number };
+
         const unavailable = ctx.db
-            .prepare('SELECT COUNT(*) AS n FROM games_in_future WHERE id IN (SELECT dlc FROM games_dlcs)')
+            .prepare("SELECT COUNT(*) AS n FROM dlcs_in_future")
             .get() as { n: number };
 
         await extractAndSaveStats(ctx.db, ctx.outPath);
-        const written: StatsOutput = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
+        const written: StatsOutput = JSON.parse(
+            await readFile(ctx.outPath, "utf-8")
+        );
 
         expect(written.general.dlcs.total).toBe(total.n);
         expect(written.general.dlcs.total_available).toBe(available.n);

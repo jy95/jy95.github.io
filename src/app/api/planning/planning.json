@@ -1,289 +1,255 @@
 [
 	{
 		"id": 209,
-		"availableAt": "2026-09-02",
-		"endAt": "2026-10-14",
-		"playlistId": "PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
 		"title": "Shadows of the Damned",
+		"playlistId": "PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
 		"releaseDate": "2023-06-23",
 		"duration": "07:32:11",
 		"platform": 6,
 		"genres": [
 			1
-		]
+		],
+		"developers": [
+			"Grasshopper Manufacture"
+		],
+		"publishers": [
+			"Electronic Arts"
+		],
+		"availableAt": "2026-09-02",
+		"endAt": "2026-10-14"
 	},
 	{
 		"id": 210,
-		"availableAt": "2026-10-16",
-		"endAt": "2026-10-28",
-		"playlistId": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
 		"title": "Ratatouille",
+		"playlistId": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
 		"releaseDate": "2007-08-10",
 		"duration": "03:18:45",
 		"platform": 6,
 		"genres": [
 			1
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2026-10-16",
+		"endAt": "2026-10-28"
 	},
 	{
 		"id": 211,
-		"availableAt": "2026-11-02",
-		"endAt": "2026-11-13",
-		"playlistId": "PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
 		"title": "Binary Domain",
+		"playlistId": "PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
 		"releaseDate": "2024-02-12",
 		"duration": "07:21:57",
 		"platform": 6,
 		"genres": [
 			16
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2026-11-02",
+		"endAt": "2026-11-13"
 	},
 	{
 		"id": 212,
-		"availableAt": "2026-11-16",
-		"endAt": "2026-12-02",
-		"playlistId": "PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m",
 		"title": "The Club",
+		"playlistId": "PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m",
 		"releaseDate": "2008-02-08",
 		"duration": "02:23:03​",
 		"platform": 6,
 		"genres": [
 			16
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2026-11-16",
+		"endAt": "2026-12-02"
 	},
 	{
 		"id": 213,
-		"availableAt": "2026-12-04",
-		"endAt": "2026-12-04",
-		"videoId": "IwBRxURrIDM",
 		"title": "Portal",
+		"videoId": "IwBRxURrIDM",
 		"releaseDate": "2008-01-17",
 		"duration": "01:36:53",
 		"platform": 6,
 		"genres": [
 			12,
 			13
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2026-12-04",
+		"endAt": "2026-12-04"
 	},
 	{
 		"id": 214,
-		"availableAt": "2026-12-07",
-		"endAt": "2027-01-15",
-		"playlistId": "PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
 		"title": "Half-Life",
+		"playlistId": "PLRfhDHeBTBJ7L1GF1v5dpn8wLtuaEJm7y",
 		"releaseDate": "2001-11-30",
 		"duration": "05:44:19",
 		"platform": 5,
 		"genres": [
 			16
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2026-12-07",
+		"endAt": "2027-01-15"
 	},
 	{
 		"id": 215,
-		"availableAt": "2027-01-18",
-		"endAt": "2027-02-08",
-		"playlistId": "PLRfhDHeBTBJ4ZG4oDouSRf0-qhG5WMEvn",
 		"title": "Mirror's Edge",
+		"playlistId": "PLRfhDHeBTBJ4ZG4oDouSRf0-qhG5WMEvn",
 		"releaseDate": "2008-11-14",
 		"duration": "02:53:13",
 		"platform": 6,
 		"genres": [
 			12
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-01-18",
+		"endAt": "2027-02-08"
 	},
 	{
 		"id": 216,
-		"availableAt": "2027-02-10",
-		"endAt": "2027-02-26",
-		"playlistId": "PLRfhDHeBTBJ7xuchAxfBg_Z4RYtbIteZ1",
 		"title": "Journey",
+		"playlistId": "PLRfhDHeBTBJ7xuchAxfBg_Z4RYtbIteZ1",
 		"releaseDate": "2012-03-14",
 		"duration": "01:32:10",
 		"platform": 6,
 		"genres": [
 			10
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-02-10",
+		"endAt": "2027-02-26"
 	},
 	{
 		"id": 217,
-		"availableAt": "2027-03-01",
-		"endAt": "2027-03-19",
-		"playlistId": "PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX",
 		"title": "Portal 2",
+		"playlistId": "PLRfhDHeBTBJ5dyasj5yk0nQJCbhRFPGOX",
 		"releaseDate": "2011-04-21",
 		"duration": "04:34:28",
 		"platform": 6,
 		"genres": [
 			12
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-03-01",
+		"endAt": "2027-03-19"
 	},
 	{
 		"id": 218,
-		"availableAt": "2027-03-22",
-		"endAt": "2027-04-21",
-		"playlistId": "PLRfhDHeBTBJ5-m-EYS85h0SY9bTkrFMor",
 		"title": "Half-Life 2",
+		"playlistId": "PLRfhDHeBTBJ5-m-EYS85h0SY9bTkrFMor",
 		"releaseDate": "2008-01-17",
 		"duration": "08:47:35",
 		"platform": 6,
 		"genres": [
 			16
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-03-22",
+		"endAt": "2027-04-21"
 	},
 	{
 		"id": 219,
-		"availableAt": "2027-04-23",
-		"endAt": "2027-05-03",
-		"playlistId": "PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-",
 		"title": "Half-Life 2: Episode One",
+		"playlistId": "PLRfhDHeBTBJ5KDoHmDZpEkos5dgvTwHR-",
 		"releaseDate": "2006-06-01",
 		"duration": "02:45:11",
 		"platform": 6,
 		"genres": [
 			16
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-04-23",
+		"endAt": "2027-05-03"
 	},
 	{
 		"id": 220,
-		"availableAt": "2027-05-05",
-		"endAt": "2027-05-28",
-		"playlistId": "PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
 		"title": "Shrek 2",
+		"playlistId": "PLRfhDHeBTBJ4eY43198z6eTzy3qoO_7am",
 		"releaseDate": "2004-06-18",
 		"duration": "03:52:28",
 		"platform": 5,
 		"genres": [
 			12,
 			2
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-05-05",
+		"endAt": "2027-05-28"
 	},
 	{
 		"id": 221,
-		"availableAt": "2027-05-31",
-		"endAt": "2027-06-14",
-		"playlistId": "PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB",
 		"title": "Half-Life 2: Episode Two",
+		"playlistId": "PLRfhDHeBTBJ62ZYUUxF6M2NyjpoRN_CEB",
 		"releaseDate": "2007-10-07",
 		"duration": "04:02:36",
 		"platform": 6,
 		"genres": [
 			16
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-05-31",
+		"endAt": "2027-06-14"
 	},
 	{
 		"id": 222,
-		"availableAt": "2027-06-16",
-		"endAt": "2027-06-21",
-		"playlistId": "PLRfhDHeBTBJ4DAQ8BmgRZFLB8hutraIoU",
 		"title": "Bionic Commando",
+		"playlistId": "PLRfhDHeBTBJ4DAQ8BmgRZFLB8hutraIoU",
 		"releaseDate": "2009-05-22",
 		"duration": "04:28:41",
 		"platform": 6,
 		"genres": [
 			16
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-06-16",
+		"endAt": "2027-06-21"
 	},
 	{
 		"id": 223,
-		"availableAt": "2027-06-25",
-		"endAt": "2027-08-06",
-		"playlistId": "PLRfhDHeBTBJ7W7XcSZIOukj-hyjckT5Ca",
 		"title": "Bayonetta",
+		"playlistId": "PLRfhDHeBTBJ7W7XcSZIOukj-hyjckT5Ca",
 		"releaseDate": "2010-01-08",
 		"duration": "09:14:07",
 		"platform": 6,
 		"genres": [
 			9,
 			1
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-06-25",
+		"endAt": "2027-08-06"
 	},
 	{
 		"id": 224,
-		"availableAt": "2027-08-09",
-		"endAt": "2027-09-15",
-		"playlistId": "PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
 		"title": "Spec Ops: The Line",
+		"playlistId": "PLRfhDHeBTBJ5cVeSyQKXFghxhgSjbQk57",
 		"releaseDate": "2012-06-29",
 		"duration": "04:24:37",
 		"platform": 6,
 		"genres": [
 			16
-		]
-	},
-	{
-		"id": 225,
-		"availableAt": "2027-09-20",
-		"endAt": "2027-10-20",
-		"playlistId": "PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN",
-		"title": "F.E.A.R. 2 : Project Origin",
-		"releaseDate": "2009-02-13",
-		"duration": "05:55:33",
-		"platform": 6,
-		"genres": [
-			16
-		]
-	},
-	{
-		"id": 226,
-		"availableAt": "2027-10-22",
-		"endAt": "2027-11-24",
-		"playlistId": "PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb",
-		"title": "Dead Space 2",
-		"releaseDate": "2011-01-27",
-		"duration": "06:54:25",
-		"platform": 6,
-		"genres": [
-			1,
-			2,
-			16
-		]
-	},
-	{
-		"id": 227,
-		"availableAt": "2027-11-26",
-		"endAt": "2027-12-22",
-		"playlistId": "PLRfhDHeBTBJ5DiP_v6xkZGHkg-XOIimKT",
-		"title": "Injustice: Gods Among Us",
-		"releaseDate": "2013-04-18",
-		"duration": "03:10:20",
-		"platform": 6,
-		"genres": [
-			9
-		]
-	},
-	{
-		"id": 228,
-		"availableAt": "2027-12-24",
-		"endAt": "2028-01-10",
-		"playlistId": "PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D",
-		"title": "Rogue Warrior",
-		"releaseDate": "2009-11-27",
-		"duration": "01:56:29",
-		"platform": 6,
-		"genres": [
-			16
-		]
-	},
-	{
-		"id": 229,
-		"availableAt": "2028-01-12",
-		"endAt": "2028-02-07",
-		"playlistId": "PLRfhDHeBTBJ6omOFd-ITLsOCYCYOEf0Nw",
-		"title": "Splatterhouse",
-		"releaseDate": "2010-11-26",
-		"duration": "05:16:15",
-		"platform": 6,
-		"genres": [
-			1,
-			9
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-08-09",
+		"endAt": "2027-09-15"
 	},
 	{
 		"id": 230,
-		"availableAt": "2027-09-17",
-		"endAt": "2027-09-17",
-		"videoId": "BtBWS67mgJM",
 		"title": "Marine Malice et le mystère des graines d'algues",
+		"videoId": "BtBWS67mgJM",
 		"releaseDate": "1994-10-28",
 		"duration": "00:40:38",
 		"platform": 7,
@@ -292,14 +258,94 @@
 			2,
 			6,
 			7
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-09-17",
+		"endAt": "2027-09-17"
+	},
+	{
+		"id": 225,
+		"title": "F.E.A.R. 2 : Project Origin",
+		"playlistId": "PLRfhDHeBTBJ5zbvsI2J07gjhb9G-XbRRN",
+		"releaseDate": "2009-02-13",
+		"duration": "05:55:33",
+		"platform": 6,
+		"genres": [
+			16
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-09-20",
+		"endAt": "2027-10-20"
+	},
+	{
+		"id": 226,
+		"title": "Dead Space 2",
+		"playlistId": "PLRfhDHeBTBJ7GxEpXOnmAH4oJ0TmK4bzb",
+		"releaseDate": "2011-01-27",
+		"duration": "06:54:25",
+		"platform": 6,
+		"genres": [
+			1,
+			2,
+			16
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-10-22",
+		"endAt": "2027-11-24"
+	},
+	{
+		"id": 227,
+		"title": "Injustice: Gods Among Us",
+		"playlistId": "PLRfhDHeBTBJ5DiP_v6xkZGHkg-XOIimKT",
+		"releaseDate": "2013-04-18",
+		"duration": "03:10:20",
+		"platform": 6,
+		"genres": [
+			9
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-11-26",
+		"endAt": "2027-12-22"
+	},
+	{
+		"id": 228,
+		"title": "Rogue Warrior",
+		"playlistId": "PLRfhDHeBTBJ5ix5sQ3oGHOgXLd1PZy74D",
+		"releaseDate": "2009-11-27",
+		"duration": "01:56:29",
+		"platform": 6,
+		"genres": [
+			16
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2027-12-24",
+		"endAt": "2028-01-10"
+	},
+	{
+		"id": 229,
+		"title": "Splatterhouse",
+		"playlistId": "PLRfhDHeBTBJ6omOFd-ITLsOCYCYOEf0Nw",
+		"releaseDate": "2010-11-26",
+		"duration": "05:16:15",
+		"platform": 6,
+		"genres": [
+			1,
+			9
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2028-01-12",
+		"endAt": "2028-02-07"
 	},
 	{
 		"id": 231,
-		"availableAt": "2028-02-09",
-		"endAt": "2028-02-09",
-		"videoId": "3rgBcXGCQtU",
 		"title": "Marine Malice 2 : Le Mystère de l'école hantée",
+		"videoId": "3rgBcXGCQtU",
 		"releaseDate": "1996-03-29",
 		"duration": "00:30:54",
 		"platform": 7,
@@ -308,14 +354,16 @@
 			2,
 			6,
 			7
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2028-02-09",
+		"endAt": "2028-02-09"
 	},
 	{
 		"id": 232,
-		"availableAt": "2028-02-11",
-		"endAt": "2028-02-11",
-		"videoId": "aK8LL8r1s0Q",
 		"title": "Marine Malice 3 : Le Mystère du coquillage volé",
+		"videoId": "aK8LL8r1s0Q",
 		"releaseDate": "1998-03-06",
 		"duration": "00:43:19",
 		"platform": 7,
@@ -324,14 +372,16 @@
 			2,
 			6,
 			7
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2028-02-11",
+		"endAt": "2028-02-11"
 	},
 	{
 		"id": 233,
-		"availableAt": "2028-02-13",
-		"endAt": "2028-02-13",
-		"videoId": "TJbiGTQQUQY",
 		"title": "Marine Malice 4 : Le Mystère du ranch aux cochons",
+		"videoId": "TJbiGTQQUQY",
 		"releaseDate": "1999-11-05",
 		"duration": "01:14:05",
 		"platform": 7,
@@ -340,14 +390,16 @@
 			2,
 			6,
 			7
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2028-02-13",
+		"endAt": "2028-02-13"
 	},
 	{
 		"id": 234,
-		"availableAt": "2028-02-16",
-		"endAt": "2028-02-16",
-		"videoId": "8LewlLoYHVY",
 		"title": "Marine Malice 5 : Le Mystère du monstre du lagon",
+		"videoId": "8LewlLoYHVY",
 		"releaseDate": "2001-07-19",
 		"duration": "01:13:24",
 		"platform": 7,
@@ -356,13 +408,16 @@
 			2,
 			6,
 			7
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2028-02-16",
+		"endAt": "2028-02-16"
 	},
 	{
 		"id": 235,
-		"availableAt": "2028-02-18",
-		"playlistId": "PLQL0wqwr2bao",
 		"title": "Ruff Trigger: The Vanocore Conspiracy",
+		"playlistId": "PLQL0wqwr2bao",
 		"releaseDate": "2026-08-26",
 		"duration": "00:00:00",
 		"platform": 6,
@@ -370,6 +425,9 @@
 			1,
 			2,
 			12
-		]
+		],
+		"developers": [],
+		"publishers": [],
+		"availableAt": "2028-02-18"
 	}
 ]

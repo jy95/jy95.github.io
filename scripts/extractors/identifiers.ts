@@ -4,5 +4,20 @@ import type { Database } from "better-sqlite3";
 /**
  * Extracts game identifiers from the database and saves them to a file.
  */
-export const extractAndSaveRandomList = (db: Database, outputPath: string) => 
-    extractAndSaveQuery(db, outputPath, "SELECT videoId, playlistId FROM games_in_present");
+export const extractAndSaveRandomList = (
+    db: Database,
+    outputPath: string
+) =>
+    extractAndSaveQuery(
+        db,
+        outputPath,
+        `
+        SELECT "videoId", "playlistId"
+        FROM games_in_present
+
+        UNION ALL
+
+        SELECT "videoId", "playlistId"
+        FROM dlcs_in_present
+        `
+    );
