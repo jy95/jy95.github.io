@@ -144,8 +144,13 @@
 		"genres": [
 			10
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"Santa Monica Studio",
+			"thatgamecompany"
+		],
+		"publishers": [
+			"Sony Computer Entertainment"
+		],
 		"availableAt": "2027-02-10",
 		"endAt": "2027-02-26"
 	},
