@@ -74,8 +74,12 @@
 			12,
 			13
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"Valve"
+		],
+		"publishers": [
+			"Valve"
+		],
 		"availableAt": "2026-12-04",
 		"endAt": "2026-12-04"
 	},
