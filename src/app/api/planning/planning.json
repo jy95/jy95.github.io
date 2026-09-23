@@ -528,8 +528,13 @@
 			2,
 			12
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"Playstos Entertainment"
+		],
+		"publishers": [
+			"Natsume",
+			"Zushi Games"
+		],
 		"availableAt": "2028-02-18"
 	}
 ]
