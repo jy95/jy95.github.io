@@ -65,6 +65,7 @@ jobs:
             contents: write
             pull-requests: write
             issues: write
+            actions: write
         env:
           OPERATION: ${{ needs.process_issue.outputs.issue_type }}
           REQUEST: ${{ needs.process_issue.outputs.issue_json }}
