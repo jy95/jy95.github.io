@@ -235,8 +235,12 @@
 		"genres": [
 			16
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"GRIN"
+		],
+		"publishers": [
+			"Capcom"
+		],
 		"availableAt": "2027-06-16",
 		"endAt": "2027-06-21"
 	},
