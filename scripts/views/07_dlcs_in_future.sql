@@ -1,6 +1,9 @@
 SELECT *
 FROM dlcs_full
-WHERE availability_status = 'future'
+WHERE availability_status IN (
+    'present',
+    'future'
+)
 ORDER BY
-    dlc_availableAt ASC,
+    "availableAt" ASC,
     title ASC;

@@ -1,8 +1,21 @@
-SELECT *
+SELECT
+    id,
+    title,
+    "videoId",
+    "playlistId",
+    "releaseDate",
+    duration,
+    platform,
+    genres,
+    developers,
+    publishers
 FROM games_full
-WHERE id NOT IN (
-    SELECT gs.id
-    FROM games_schedules AS gs
-    WHERE DATE('now') <= gs."availableAt"
+WHERE availability_status IN (
+    'unscheduled',
+    'present',
+    'past'
 )
-ORDER BY title ASC, "releaseDate" ASC, duration ASC
+ORDER BY
+    title ASC,
+    "releaseDate" ASC,
+    duration ASC;

@@ -1,27 +1,58 @@
-SELECT 
+WITH present_content AS (
+    SELECT
+        id,
+        title,
+        "videoId",
+        "playlistId",
+        duration,
+        platform
+    FROM games_in_present
+
+    UNION ALL
+
+    SELECT
+        id,
+        title,
+        "videoId",
+        "playlistId",
+        duration,
+        platform
+    FROM dlcs_in_present
+)
+SELECT
     s.id,
     s.name,
+
     (
-        SELECT 
+        SELECT
             '[' || GROUP_CONCAT(
                 JSON_OBJECT(
-                    'id', g.id,
-                    'title', g.title,
-                    'videoId', g.videoId,
-                    'playlistId', g.playlistId,
-                    'duration', g.duration,
-                    'platform', g.platform
+                    'id', content.id,
+                    'title', content.title,
+                    'videoId', content."videoId",
+                    'playlistId', content."playlistId",
+                    'duration', content.duration,
+                    'platform', content.platform
                 ) ORDER BY sg."order"
-            ) || ']' 
-        FROM series_games sg
-        INNER JOIN games_in_present g ON g.id = sg.game
+            ) || ']'
+        FROM series_games AS sg
+
+        INNER JOIN present_content AS content
+            ON content.id = sg.game
+
         WHERE sg.serie = s.id
     ) AS items
-FROM series s
+
+FROM series AS s
+
 WHERE EXISTS (
     SELECT 1
-    FROM series_games sg
-    INNER JOIN games_in_present g ON g.id = sg.game
+    FROM series_games AS sg
+
+    INNER JOIN present_content AS content
+        ON content.id = sg.game
+
     WHERE sg.serie = s.id
-) 
-ORDER BY s.name
+)
+
+ORDER BY s.name;
