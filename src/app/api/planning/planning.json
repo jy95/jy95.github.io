@@ -113,8 +113,12 @@
 		"genres": [
 			12
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"DICE"
+		],
+		"publishers": [
+			"Electronic Arts"
+		],
 		"availableAt": "2027-01-18",
 		"endAt": "2027-02-08"
 	},
