@@ -350,8 +350,12 @@
 		"genres": [
 			16
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"Rebellion"
+		],
+		"publishers": [
+			"Bethesda Softworks"
+		],
 		"availableAt": "2027-12-24",
 		"endAt": "2028-01-10"
 	},
