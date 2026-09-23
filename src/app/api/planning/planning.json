@@ -89,8 +89,13 @@
 		"genres": [
 			16
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"Gearbox Software",
+			"Valve"
+		],
+		"publishers": [
+			"Sierra Entertainment"
+		],
 		"availableAt": "2026-12-07",
 		"endAt": "2027-01-15"
 	},
