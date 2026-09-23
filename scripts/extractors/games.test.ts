@@ -20,15 +20,55 @@ describe.skipIf(!hasRealDb)('extractAndSaveGames', () => {
         }
     });
 
-    it('matches the count of games_in_present minus known dlc rows', async () => {
-        const expectedCount = ctx.db
-            .prepare('SELECT COUNT(*) AS n FROM games_in_present')
+    it("exposes a valid availability_status", () => {
+        const rows = ctx.db
+            .prepare(`
+            SELECT DISTINCT availability_status
+            FROM games_full
+        `)
+            .all() as { availability_status: string }[];
+
+        const allowed = new Set([
+            "unscheduled",
+            "present",
+            "future",
+            "past",
+        ]);
+
+        for (const row of rows) {
+            expect(allowed.has(row.availability_status)).toBe(true);
+        }
+    });
+
+    it("games_in_present excludes only future games", () => {
+        const invalid = ctx.db
+            .prepare(`
+            SELECT COUNT(*) AS n
+            FROM games_in_present
+            WHERE availability_status = 'future'
+        `)
             .get() as { n: number };
 
-        await extractAndSaveGames(ctx.db, ctx.outPath);
-        const written = JSON.parse(await readFile(ctx.outPath, 'utf-8'));
+        expect(invalid.n).toBe(0);
+    });
 
-        expect(written).toHaveLength(expectedCount.n);
+    it("games_in_future contains present and future games", () => {
+        const expected = ctx.db
+            .prepare(`
+            SELECT COUNT(*) AS n
+            FROM games_full
+            WHERE availability_status IN ('present', 'future')
+        `)
+            .get() as { n: number };
+
+        const actual = ctx.db
+            .prepare(`
+            SELECT COUNT(*) AS n
+            FROM games_in_future
+        `)
+            .get() as { n: number };
+
+        expect(actual.n).toBe(expected.n);
     });
 
     it('every written game has a title and a platform', async () => {

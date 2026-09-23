@@ -13,17 +13,38 @@ export async function extractAndSaveStats(db: Database, outputPath: string): Pro
     const games_total_time = db.prepare<[], Duration>("SELECT * FROM games_total_time").get();
     const games_total_time_available = db.prepare<[], Duration>("SELECT * FROM games_available_time").get();
     const games_total_time_unavailable = db.prepare<[], Duration>("SELECT * FROM games_unavailable_time").get();
-    
-    // where condition needed to exclude dlc from game resultset
-    const total_games = db.prepare("SELECT COUNT(*) FROM games WHERE id NOT IN (SELECT dlc FROM games_dlcs)").pluck().get();
-    const total_game_available = db.prepare("SELECT COUNT(*) FROM games_in_present").pluck().get();
-    const total_game_unavailable = db.prepare("SELECT COUNT(*) FROM games_in_future").pluck().get();
 
-    // Whereas counting dlcs is easy
-    const total_dlcs = db.prepare("SELECT COUNT(*) FROM games_dlcs").pluck().get();
-    const total_dlcs_available = db.prepare("SELECT COUNT(*) FROM games_in_present WHERE id IN (SELECT dlc FROM games_dlcs)").pluck().get();
-    const total_dlcs_unavailable = db.prepare("SELECT COUNT(*) FROM games_in_future WHERE id IN (SELECT dlc FROM games_dlcs)").pluck().get();
-    
+    // counts
+    const total_games = db
+        .prepare("SELECT COUNT(*) FROM games_full")
+        .pluck()
+        .get();
+
+    const total_game_available = db
+        .prepare("SELECT COUNT(*) FROM games_in_present")
+        .pluck()
+        .get();
+
+    const total_game_unavailable = db
+        .prepare("SELECT COUNT(*) FROM games_in_future")
+        .pluck()
+        .get();
+
+    const total_dlcs = db
+        .prepare("SELECT COUNT(*) FROM dlcs_full")
+        .pluck()
+        .get();
+
+    const total_dlcs_available = db
+        .prepare("SELECT COUNT(*) FROM dlcs_in_present")
+        .pluck()
+        .get();
+
+    const total_dlcs_unavailable = db
+        .prepare("SELECT COUNT(*) FROM dlcs_in_future")
+        .pluck()
+        .get();
+
     const result = {
         "platforms": platformStats,
         "genres": genresStats,
@@ -51,6 +72,6 @@ export async function extractAndSaveStats(db: Database, outputPath: string): Pro
         outputPath,
         stringifyJSON(result),
         "utf-8"
-    ); 
+    );
     console.log(`${outputPath} successfully written`);
 }
