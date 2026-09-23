@@ -384,8 +384,12 @@
 			6,
 			7
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"Humongous"
+		],
+		"publishers": [
+			"Humongous"
+		],
 		"availableAt": "2028-02-09",
 		"endAt": "2028-02-09"
 	},
