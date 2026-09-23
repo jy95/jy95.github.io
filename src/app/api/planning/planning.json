@@ -274,8 +274,12 @@
 		"genres": [
 			16
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"Yager Development"
+		],
+		"publishers": [
+			"2K Games"
+		],
 		"availableAt": "2027-08-09",
 		"endAt": "2027-09-15"
 	},
