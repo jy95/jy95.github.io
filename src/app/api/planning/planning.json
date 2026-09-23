@@ -340,8 +340,12 @@
 		"genres": [
 			16
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"Monolith Productions"
+		],
+		"publishers": [
+			"WB Games"
+		],
 		"availableAt": "2027-09-20",
 		"endAt": "2027-10-20"
 	},
