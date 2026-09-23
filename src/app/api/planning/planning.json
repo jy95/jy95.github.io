@@ -216,8 +216,12 @@
 		"genres": [
 			16
 		],
-		"developers": [],
-		"publishers": [],
+		"developers": [
+			"Valve"
+		],
+		"publishers": [
+			"Valve"
+		],
 		"availableAt": "2027-05-31",
 		"endAt": "2027-06-14"
 	},
