@@ -46,7 +46,7 @@ describe('CompanyCard', () => {
         render(<CompanyCard company={baseCompany} />);
         fireEvent.click(screen.getByRole('button'));
         expect(pushMock).toHaveBeenCalledWith({
-            pathname: '/games/companies/[id]',
+            pathname: '/companies/[id]',
             params: { id: '1' },
         });
     });

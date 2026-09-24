@@ -1,6 +1,7 @@
 "use client";
 
 import { use, useMemo } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import { notFound } from "next/navigation";
 
@@ -13,7 +14,7 @@ export default function CompanyDetail({ params }: { params: Promise<{ id: string
     const { data, error, isLoading, refetch } = useGetCompaniesQuery();
 
     return (
-        <QueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch}>
+        <QueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch} loadingFallback={<CircularProgress />}>
             {(companies) => {
                 const company = companies.find((c) => String(c.id) === id);
                 if (!company) return notFound();

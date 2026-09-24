@@ -65,6 +65,15 @@ describe('syncCoversBySearch', () => {
         expect(imageSearchMock).not.toHaveBeenCalled();
     });
 
+    it('searches again when only an unfinished cover file exists', async () => {
+        existsSyncMock.mockReturnValue(true);
+        readdirSyncMock.mockReturnValue(['cover.webp.tmp']);
+
+        await syncCoversBySearch([{ id: 1, label: 'Game A', searchQuery: 'Game A box art' }], baseOptions);
+
+        expect(imageSearchMock).toHaveBeenCalledWith('Game A box art', { engines: ['bing', 'ddg'], n: 5 });
+    });
+
     /**
      * Verifies that `imageSearch` is called with the requested query and default search engines and result count.
      */

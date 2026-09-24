@@ -80,7 +80,6 @@ describe('CompaniesGallery', () => {
     it('excludes a company entirely once its filtered games count reaches zero', () => {
         render(<CompaniesGallery />);
         fireEvent.click(screen.getByText('companies.roles.publisher'));
-        expect(screen.queryByTestId('company-card')).toHaveLength?.(1); // sanity - only capcom card remains
         expect(screen.getAllByTestId('company-card')).toHaveLength(1);
     });
 });

@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import Grid from "@mui/material/Grid";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { useGetCompaniesQuery } from "@/redux/services/companiesAPI";
 import { QueryBoundary } from "@/components/common/QueryBoundary";
@@ -27,7 +28,7 @@ export default function CompaniesGallery() {
                     publisher: t("roles.publisher"),
                 }}
             />
-            <QueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch}>
+            <QueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch} loadingFallback={<CircularProgress />}>
                 {(companies) => <CompaniesGrid companies={companies} role={role} />}
             </QueryBoundary>
         </>

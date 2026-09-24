@@ -1,9 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 
-vi.mock('next/navigation', () => ({
-    notFound: vi.fn(() => { throw new Error('NEXT_NOT_FOUND'); }),
-}));
+const { notFoundMock } = vi.hoisted(() => ({ notFoundMock: vi.fn() }));
+vi.mock('next/navigation', () => ({ notFound: notFoundMock }));
 
 const useGetCompaniesQueryMock = vi.fn();
 vi.mock('@/redux/services/companiesAPI', () => ({
@@ -32,6 +31,7 @@ function paramsFor(id: string) {
 
 describe('CompanyDetail', () => {
     beforeEach(() => {
+        notFoundMock.mockReset();
         useGetCompaniesQueryMock.mockReset().mockReturnValue({
             data: [company],
             isLoading: false,
@@ -40,25 +40,34 @@ describe('CompanyDetail', () => {
         });
     });
 
-    it('renders the company name as a heading', () => {
-        render(<CompanyDetail params={paramsFor('1')} />);
+    it('renders the company name as a heading', async () => {
+        await act(async () => {
+            render(<CompanyDetail params={paramsFor('1')} />);
+        });
         expect(screen.getByText('Capcom')).toBeInTheDocument();
     });
 
     it('merges developer and publisher games, deduplicating by id', async () => {
-        render(<CompanyDetail params={paramsFor('1')} />);
-        const grid = await screen.findByTestId('card-grid');
+        await act(async () => {
+            render(<CompanyDetail params={paramsFor('1')} />);
+        });
+        const grid = screen.getByTestId('card-grid');
         // a, b, c — b appears in both lists but only once here
         expect(grid.textContent).toBe('Game A,Game B,Game C');
     });
 
-    it('shows a loading spinner while the query is pending', () => {
+    it('shows a loading spinner while the query is pending', async () => {
         useGetCompaniesQueryMock.mockReturnValue({ data: undefined, isLoading: true, error: undefined, refetch: vi.fn() });
-        render(<CompanyDetail params={paramsFor('1')} />);
+        await act(async () => {
+            render(<CompanyDetail params={paramsFor('1')} />);
+        });
         expect(screen.getByRole('progressbar')).toBeInTheDocument();
     });
 
-    it('calls notFound when no company matches the given id', () => {
-        expect(() => render(<CompanyDetail params={paramsFor('999')} />)).toThrow('NEXT_NOT_FOUND');
+    it('calls notFound when no company matches the given id', async () => {
+        await act(async () => {
+            render(<CompanyDetail params={paramsFor('999')} />);
+        });
+        expect(notFoundMock).toHaveBeenCalledOnce();
     });
 });

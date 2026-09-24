@@ -56,16 +56,16 @@ export default function NavigationMenu(): Navigation {
                     titleKey: "gamesTabs.dlc"
                 },
                 {
-                    segment: "companies",
-                    icon: <BusinessIcon />,
-                    titleKey: "gamesTabs.companies"
-                },
-                {
                     segment: "random",
                     icon: <CasinoIcon />,
                     titleKey: "gamesTabs.random"
                 }
             ]
+        },
+        {
+            segment: "companies",
+            icon: <BusinessIcon />,
+            titleKey: "gamesTabs.companies"
         },
         {
             icon: <ScheduleIcon />,

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
-const { readFileSyncMock } = vi.hoisted(() => ({ readFileSyncMock: vi.fn() }));
+const { readFileSyncMock } = vi.hoisted(() => ({ readFileSyncMock: vi.fn().mockReturnValue('[]') }));
 vi.mock('node:fs', () => ({ default: { readFileSync: readFileSyncMock } }));
 
 const { syncCoversBySearchMock } = vi.hoisted(() => ({ syncCoversBySearchMock: vi.fn().mockResolvedValue(undefined) }));

@@ -55,7 +55,7 @@ export async function syncCoversBySearch(items: CoverSearchItem[], options: Cove
             const itemDir = path.join(outputRoot, String(item.id));
             const existingFiles = fs.existsSync(itemDir) ? fs.readdirSync(itemDir) : [];
 
-            if (existingFiles.some((file) => file.startsWith('cover.'))) {
+            if (existingFiles.some((file) => /^cover\.(?:webp|png|jpe?g|gif|avif|bmp|svg)$/i.test(file))) {
                 console.log(`⏩ [${item.id}] ${item.label} (Already exists)`);
                 continue;
             }

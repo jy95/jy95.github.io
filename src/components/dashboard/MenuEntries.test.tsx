@@ -11,14 +11,14 @@ describe('NavigationMenu', () => {
         const nav = NavigationMenu();
         const segments = nav.map((item) => item.segment);
         expect(segments).toEqual(
-            expect.arrayContaining(['games', 'planning', 'backlog', 'tier', 'tests', 'stats', 'links'])
+            expect.arrayContaining(['games', 'companies', 'planning', 'backlog', 'tier', 'tests', 'stats', 'links'])
         );
     });
 
     it('gives the games entry the expected children tabs', () => {
         const nav = NavigationMenu();
         const games = nav.find((item) => item.segment === 'games');
-        expect(games?.children?.map((c) => c.segment)).toEqual([undefined, 'series', 'dlcs', 'companies', 'random']);
+        expect(games?.children?.map((c) => c.segment)).toEqual([undefined, 'series', 'dlcs', 'random']);
     });
 
     it('gives the tier entry three children: games, backlog, tests', () => {
