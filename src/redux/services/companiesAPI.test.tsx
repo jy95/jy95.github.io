@@ -44,6 +44,16 @@ describe('companiesAPI', () => {
         expect(calledUrl(fetchMock, 3).searchParams.get('page')).toBe('1');
     });
 
+    it('forwards count ascending and role filters across pages', async () => {
+        fetchMock.mockImplementation(async (input: Request) => response({ items: [], total_pages: 2, page: Number(new URL(input.url).searchParams.get('page')) }));
+        const store = makeStore();
+        const queryArg = { role: 'developer' as const, sort: 'countAsc' as const, pageSize: 12 };
+        await store.dispatch(companiesAPI.endpoints.getCompanies.initiate(queryArg));
+        await store.dispatch(companiesAPI.endpoints.getCompanies.initiate(queryArg, { direction: 'forward', forceRefetch: true }));
+        expect([calledUrl(fetchMock, 0), calledUrl(fetchMock, 1)].map((url) => [url.searchParams.get('role'), url.searchParams.get('sort'), url.searchParams.get('page')]))
+            .toEqual([['developer', 'countAsc', '1'], ['developer', 'countAsc', '2']]);
+    });
+
     it('queries a single company directly', async () => {
         const payload = { id: 1, name: 'Both', developerGames: [], publisherGames: [] };
         fetchMock.mockImplementation(async () => response(payload));

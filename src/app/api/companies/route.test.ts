@@ -54,6 +54,27 @@ describe('GET /api/companies', () => {
         expect(fallback.items.map((company: { id: number }) => company.id)).toEqual([4, 1, 5, 2, 3]);
     });
 
+    it('sorts ascending counts before pagination, breaking ties by name then ID', async () => {
+        const pages = [];
+        for (const page of [1, 2, 3]) {
+            pages.push(await (await GET(request(`?sort=countAsc&pageSize=2&page=${page}`))).json());
+        }
+        expect(pages.map((page) => page.items.map((company: { id: number }) => company.id))).toEqual([[4, 1], [5, 3], [2]]);
+        expect(pages[0]).toMatchObject({ total_items: 5, total_pages: 3 });
+    });
+
+    it.each([
+        ['developer', [[1], [5], [2]]],
+        ['publisher', [[4], [1], [3]]],
+    ])('sorts %s counts ascending across page boundaries', async (role, expected) => {
+        const pages = [];
+        for (const page of [1, 2, 3]) {
+            pages.push(await (await GET(request(`?role=${role}&sort=countAsc&pageSize=1&page=${page}`))).json());
+        }
+        expect(pages.map((page) => page.items.map((company: { id: number }) => company.id))).toEqual(expected);
+        expect(pages[0]).toMatchObject({ total_items: 3, total_pages: 3 });
+    });
+
     it('bounds invalid page inputs', async () => {
         const body = await (await GET(request('?page=bad&pageSize=-1'))).json();
         expect(body).toMatchObject({ page: 1, pageSize: 12 });

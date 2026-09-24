@@ -228,7 +228,8 @@
             "label": "Trier les entreprises",
             "nameAsc": "Nom (A–Z)",
             "nameDesc": "Nom (Z–A)",
-            "countDesc": "Nombre de jeux (décroissant)"
+            "countDesc": "Nombre de jeux (décroissant)",
+            "countAsc": "Nombre de jeux (croissant)"
         },
         "gamesCount": "{count, plural, =0 {Aucun jeu} one {# jeu} other {# jeux}}",
         "roles": {

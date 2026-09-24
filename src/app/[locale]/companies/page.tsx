@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import type { CompanySort } from "@/app/api/companies/route";
 
@@ -31,27 +32,29 @@ export default function CompaniesGallery() {
 
     return (
         <>
-            <RoleToggle
-                value={role}
-                onChange={(nextRole) => {
-                    resetPages(nextRole, sort);
-                    setRole(nextRole);
-                }}
-                labels={{
-                    all: t("roles.all"),
-                    developer: t("roles.developer"),
-                    publisher: t("roles.publisher"),
-                }}
-            />
-            <TextField select slotProps={{ select: { native: true } }} label={t("sortCompanies.label")}
-                value={sort} onChange={(event) => {
-                    const nextSort = event.target.value as CompanySort;
-                    resetPages(role, nextSort);
-                    setSort(nextSort);
-                }}>
-                {(["nameAsc", "nameDesc", "countDesc"] as const).map((option) =>
-                    <option key={option} value={option}>{t(`sortCompanies.${option}`)}</option>)}
-            </TextField>
+            <Box data-testid="companies-controls" sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+                <RoleToggle
+                    value={role}
+                    onChange={(nextRole) => {
+                        resetPages(nextRole, sort);
+                        setRole(nextRole);
+                    }}
+                    labels={{
+                        all: t("roles.all"),
+                        developer: t("roles.developer"),
+                        publisher: t("roles.publisher"),
+                    }}
+                />
+                <TextField select slotProps={{ select: { native: true } }} label={t("sortCompanies.label")}
+                    value={sort} onChange={(event) => {
+                        const nextSort = event.target.value as CompanySort;
+                        resetPages(role, nextSort);
+                        setSort(nextSort);
+                    }}>
+                    {(["nameAsc", "nameDesc", "countDesc", "countAsc"] as const).map((option) =>
+                        <option key={option} value={option}>{t(`sortCompanies.${option}`)}</option>)}
+                </TextField>
+            </Box>
             {isError && !data ? <QueryErrorState onRetry={refetch} /> : (
                 <>
                     <Grid container spacing={1} rowSpacing={1}>
