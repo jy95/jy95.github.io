@@ -1,11 +1,11 @@
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
-import { mkdir, rm, rename } from 'node:fs/promises';
-import { randomBytes } from 'node:crypto';
-import sharp from 'sharp';
 
 import { validateFolder } from './common/utils';
 import { resolveWithin } from './common/pathSafety';
+import { downloadImageBuffer } from '../common/imageDownload';
+import { convertBufferToWebp } from '../common/imageConvert';
+import { replaceCoverAtomically } from '../common/coverReplace';
 
 import type { Database } from 'better-sqlite3';
 import type { AddCoverPayload } from './common/types';
@@ -13,128 +13,74 @@ import type { AddCoverPayload } from './common/types';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
- * Downloads an image from a URL using native Node.js fetch.
+ * Downloads an image from a given URL and returns its binary buffer.
+ *
+ * Wraps `downloadImageBuffer` to provide contextual error messaging upon failure.
+ *
+ * @param url - The direct remote URL of the image to download.
+ * @returns A promise that resolves to the raw image buffer.
+ * @throws {Error} Throws an error if the image fails to download.
  */
 async function downloadImage(url: string): Promise<Buffer> {
-  try {
-    const response = await fetch(url, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    try {
+        const { buffer } = await downloadImageBuffer(url);
+        return buffer;
+    } catch (error) {
+        throw new Error(`Failed to download image from ${url}: ${error}`);
     }
-
-    return Buffer.from(await response.arrayBuffer());
-  } catch (error) {
-    throw new Error(`Failed to download image from ${url}: ${error}`);
-  }
 }
 
 /**
- * Converts and resizes an image to WebP format using sharp.
- * 
- * @param imageBuffer The image buffer to process
- * @param outputPath The path where the WebP file will be saved
+ * Converts a raw image buffer to WebP format, resizes it to 250x250 pixels,
+ * and saves it to the specified output path.
+ *
+ * @param imageBuffer - The raw binary buffer of the source image.
+ * @param outputPath - The target file path on disk where the processed `.webp` file will be saved.
+ * @returns A promise that resolves when conversion and file writing are complete.
+ * @throws {Error} Throws an error if image processing or writing fails.
  */
-async function convertAndResizeImage(
-  imageBuffer: Buffer,
-  outputPath: string
-): Promise<void> {
-  try {
-    await sharp(imageBuffer)
-      .resize(250, 250, { fit: 'inside' })
-      .webp()
-      .toFile(outputPath);
-  } catch (error) {
-    throw new Error(`Failed to convert and resize image: ${error}`);
-  }
+async function convertAndResizeImage(imageBuffer: Buffer, outputPath: string): Promise<void> {
+    try {
+        await convertBufferToWebp(imageBuffer, outputPath, { width: 250, height: 250 });
+    } catch (error) {
+        throw new Error(`Failed to convert and resize image: ${error}`);
+    }
 }
 
 /**
- * Adds a cover image for a game or backlog entry.
+ * Downloads an image from a URL, converts and resizes it to a 250x250 WebP,
+ * and replaces the target entity's cover directory atomically within the static `public` assets folder.
  *
- * Process:
- * 1. Validate the folder parameter and identifier value
- * 2. Create a staging directory for the new cover
- * 3. Download the image from the provided URL
- * 4. Convert and resize to WebP format (250x250)
- * 5. Atomically replace the original folder with the staging directory
- *
- * This approach ensures the original cover is never deleted before the replacement
- * succeeds, preventing data loss on failure.
+ * @param _db - The SQLite database instance (unused in this handler, preserved for signature consistency).
+ * @param payload - The request payload containing necessary cover addition metadata.
+ * @param payload.imageURL - The remote URL of the cover image to download.
+ * @param payload.folder - The base folder category (e.g., `'games'`, `'companies'`).
+ * @param payload.identifierValue - The unique identifier or slug used as the subdirectory name.
+ * @returns A promise that resolves when the cover replacement process finishes successfully.
+ * @throws {Error} Throws an error if required payload fields are missing, folder validation fails,
+ *                 or any step in downloading, converting, or swapping the cover encounters an error.
  */
-export async function addCover(
-  _db: Database,
-  payload: AddCoverPayload
-): Promise<void> {
-  const { imageURL, folder, identifierValue } = payload;
+export async function addCover(_db: Database, payload: AddCoverPayload): Promise<void> {
+    const { imageURL, folder, identifierValue } = payload;
 
-  // Validate inputs
-  if (!imageURL || !folder || !identifierValue) {
-    throw new Error('Missing required fields: imageURL, folder, identifierValue');
-  }
+    if (!imageURL || !folder || !identifierValue) {
+        throw new Error('Missing required fields: imageURL, folder, identifierValue');
+    }
+    validateFolder(folder);
 
-  validateFolder(folder);
+    const publicPath = resolve(__dirname, '..', '..', 'public');
+    const folderRoot = resolve(publicPath, folder);
+    const folderPath = resolveWithin(folderRoot, identifierValue);
 
-  // Define paths
-  const publicPath = resolve(__dirname, '..', '..', 'public');
-  const folderRoot = resolve(publicPath, folder);
-
-  // Validate identifier before constructing paths
-  const folderPath = resolveWithin(folderRoot, identifierValue);
-
-  // Create a unique staging directory (sibling to target, not inside it)
-  const stagingDirName = `.staging-${identifierValue}-${randomBytes(8).toString('hex')}`;
-  const stagingPath = resolve(folderRoot, stagingDirName);
-  const stagingFilePath = resolve(stagingPath, 'cover.webp');
-
-  let shouldCleanupStaging = true;
-
-  try {
     console.log(`📁 Processing cover for ${folder}/${identifierValue}...`);
 
-    // Create staging directory
-    console.log(`📂 Creating staging directory...`);
-    await mkdir(stagingPath, { recursive: true });
+    await replaceCoverAtomically(folderPath, async (stagingDir) => {
+        console.log(`⬇️ Downloading image from ${imageURL}...`);
+        const imageBuffer = await downloadImage(imageURL);
 
-    // Download the image
-    console.log(`⬇️  Downloading image from ${imageURL}...`);
-    const imageBuffer = await downloadImage(imageURL);
+        console.log(`🔄 Converting and resizing image to WebP (250x250)...`);
+        await convertAndResizeImage(imageBuffer, resolve(stagingDir, 'cover.webp'));
+    });
 
-    // Convert and resize to WebP in staging directory
-    console.log(`🔄 Converting and resizing image to WebP (250x250)...`);
-    await convertAndResizeImage(imageBuffer, stagingFilePath);
-
-    // Successfully created the new cover in staging directory
-    // Now perform the atomic swap - this is in a separate try/catch to preserve staging on swap failure
-    console.log(`🔄 Replacing original folder with new cover...`);
-
-    try {
-      // Remove the original folder if it exists
-      await rm(folderPath, { recursive: true, force: true });
-
-      // Rename staging directory to target (atomic operation)
-      await rename(stagingPath, folderPath);
-
-      console.log(`✅ Cover added successfully: ${resolve(folderPath, 'cover.webp')}`);
-    } catch (swapError) {
-      // If the swap fails, preserve staging directory for manual recovery
-      shouldCleanupStaging = false;
-      console.error(`Failed to complete cover replacement. Staging directory preserved at: ${stagingPath}`);
-      throw new Error(`Failed to complete cover replacement: ${swapError}`);
-    }
-  } catch (error) {
-    // Clean up staging directory only on early failures (before swap attempt)
-    if (shouldCleanupStaging) {
-      try {
-        await rm(stagingPath, { recursive: true, force: true });
-      } catch {
-        // Ignore cleanup errors
-      }
-    }
-    throw error;
-  }
+    console.log(`✅ Cover added successfully: ${resolve(folderPath, 'cover.webp')}`);
 }
