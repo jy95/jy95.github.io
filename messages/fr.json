@@ -214,6 +214,16 @@
     },
     "companies": {
         "title": "Entreprises",
+        "back": "Retour",
+        "sort": {
+            "label": "Trier les jeux",
+            "title-asc": "Titre (A–Z)",
+            "title-desc": "Titre (Z–A)",
+            "duration-asc": "Durée (la plus courte)",
+            "duration-desc": "Durée (la plus longue)",
+            "tier-asc": "Catégorie (meilleure d'abord)",
+            "tier-desc": "Catégorie (moins bonne d'abord)"
+        },
         "gamesCount": "{count, plural, =0 {Aucun jeu} one {# jeu} other {# jeux}}",
         "roles": {
             "all": "Tous",

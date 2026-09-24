@@ -7,7 +7,14 @@ WITH present_content AS (
             'videoId', "videoId",
             'playlistId', "playlistId",
             'duration', duration,
-            'platform', platform
+            'platform', platform,
+            'tierCategory', COALESCE((
+                SELECT tc.slug
+                FROM tier_list_games tlg
+                INNER JOIN tier_categories tc ON tc.id = tlg.category_id
+                WHERE tlg.game_id = games_in_present.id
+                LIMIT 1
+            ), 'tier_not_evaluated')
         ) AS json_data
     FROM games_in_present
 )

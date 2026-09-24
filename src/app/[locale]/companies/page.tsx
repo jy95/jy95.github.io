@@ -1,77 +1,58 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Grid from "@mui/material/Grid";
-import CircularProgress from "@mui/material/CircularProgress";
 
-import { useGetCompaniesQuery } from "@/redux/services/companiesAPI";
-import { QueryBoundary } from "@/components/common/QueryBoundary";
+import { companiesAPI, useGetCompaniesInfiniteQuery } from "@/redux/services/companiesAPI";
+import { useAppDispatch } from "@/redux/hooks";
+import QueryErrorState from "@/components/common/QueryErrorState";
 import CompanyCard from "@/features/companies/CompanyCard";
+import LoadingButton from "../games/_client/LoadingButton";
 import RoleToggle, { type RoleFilter } from "./_client/RoleToggle";
 
-import type { CompanyType as Company } from "@/app/api/companies/route";
-
 export default function CompaniesGallery() {
-    const { data, error, isLoading, refetch } = useGetCompaniesQuery();
     const [role, setRole] = useState<RoleFilter>("all");
     const t = useTranslations("companies");
+    const common = useTranslations("common");
+    const dispatch = useAppDispatch();
+    const { data, isFetching, isError, refetch, hasNextPage, fetchNextPage } =
+        useGetCompaniesInfiniteQuery({ role, pageSize: 12 });
 
     return (
         <>
             <RoleToggle
                 value={role}
-                onChange={setRole}
+                onChange={(nextRole) => {
+                    dispatch(companiesAPI.util.updateQueryData("getCompanies", { role: nextRole, pageSize: 12 }, (cached) => {
+                        cached.pages.splice(1);
+                        cached.pageParams.splice(1);
+                    }));
+                    setRole(nextRole);
+                }}
                 labels={{
                     all: t("roles.all"),
                     developer: t("roles.developer"),
                     publisher: t("roles.publisher"),
                 }}
             />
-            <QueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch} loadingFallback={<CircularProgress />}>
-                {(companies) => <CompaniesGrid companies={companies} role={role} />}
-            </QueryBoundary>
+            {isError && !data ? <QueryErrorState onRetry={refetch} /> : (
+                <>
+                    <Grid container spacing={1} rowSpacing={1}>
+                        {data?.pages.flatMap((page) => page.items).map((company) => (
+                            <Grid key={company.id} size={{ xs: 6, md: 4, lg: 2 }}>
+                                <CompanyCard company={{
+                                    id: company.id, title: company.name,
+                                    imagePath: company.imagePath, gamesCount: company.gamesCount,
+                                }} />
+                            </Grid>
+                        ))}
+                    </Grid>
+                    <Grid container sx={{ justifyContent: "center" }}>
+                        <LoadingButton loading={isFetching} disabled={!hasNextPage} onClick={() => { void fetchNextPage(); }} label={common("loadMore")} />
+                    </Grid>
+                </>
+            )}
         </>
-    );
-}
-
-function getGamesCount(company: Company, role: RoleFilter): number {
-    if (role === "developer") return company.developerGames.length;
-    if (role === "publisher") return company.publisherGames.length;
-
-    // Deduplicate IDs directly to avoid allocating intermediate spread arrays
-    const uniqueIds = new Set<string>();
-    company.developerGames.forEach((g) => uniqueIds.add(g.id));
-    company.publisherGames.forEach((g) => uniqueIds.add(g.id));
-
-    return uniqueIds.size;
-}
-
-function CompaniesGrid({ companies, role }: { companies: Company[]; role: RoleFilter }) {
-    const visibleCompanies = useMemo(() => {
-        return companies.reduce<Array<Company & { gamesCount: number }>>((acc, company) => {
-            const gamesCount = getGamesCount(company, role);
-            if (gamesCount > 0) {
-                acc.push({ ...company, gamesCount });
-            }
-            return acc;
-        }, []);
-    }, [companies, role]);
-
-    return (
-        <Grid container spacing={1} rowSpacing={1}>
-            {visibleCompanies.map((company) => (
-                <Grid key={company.id} size={{ xs: 6, md: 4, lg: 2 }}>
-                    <CompanyCard
-                        company={{
-                            id: company.id,
-                            title: company.name,
-                            imagePath: company.imagePath,
-                            gamesCount: company.gamesCount,
-                        }}
-                    />
-                </Grid>
-            ))}
-        </Grid>
     );
 }
