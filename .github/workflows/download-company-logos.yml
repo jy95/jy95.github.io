@@ -1,0 +1,48 @@
+name: Download Company Logos
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'src/app/api/companies/companies.json'
+
+jobs:
+  update_logos:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: 🛎️ Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js ✨
+        uses: actions/setup-node@v7
+        with:
+          node-version: "lts/*"
+
+      - name: 💻 Install dependencies
+        run: npm install
+
+      - name: 🤖 Run downloader script
+        run: npx tsx scripts/company-logo-downloader.ts
+
+      - name: 🚀 Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.PAT }}
+          commit-message: "chore: update company logos"
+          title: "Update Company Logos"
+          branch: "automated/update-company-logos"
+          labels: |
+           automerge
+          body: |
+            This PR automatically fetches missing company (developer/publisher) logos.
+
+            - Generated via `imgsearch-api`
+            - Targets: `public/companies/`
+
+            @coderabbitai ignore
+          base: master
+          delete-branch: true

@@ -10,6 +10,7 @@ const PAGE_PURPOSES: Readonly<Record<string, string>> = {
     "/planning": "See games planned for future publication.",
     "/backlog": "Browse games being considered for future walkthroughs.",
     "/tests": "Browse game tests and reviews.",
+    "/companies": "Browse video game developers and publishers featured in the catalog",
     "/stats": "View statistics about the published catalog.",
     "/tier": "Choose a GamesPassionFR tier-list collection.",
     "/tier/games": "View the ranking of published games.",
@@ -18,6 +19,7 @@ const PAGE_PURPOSES: Readonly<Record<string, string>> = {
     "/links": "Find GamesPassionFR's external and social links.",
     "/video/:id": "Watch the YouTube video identified by id.",
     "/playlist/:id": "Watch the YouTube walkthrough playlist identified by id.",
+    "/companies/:id": "View details & games associated with a specific company"
 };
 
 export function buildStaticPaths(): string[] {
