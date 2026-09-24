@@ -20,17 +20,17 @@ export function CardBadgesLayer({ children }: { children: ReactNode }) {
 }
 
 // 2. Overlay Layer (Revealed on Hover / Keyboard Focus)
-export function CardOverlayLayer({ children }: { children: ReactNode }) {
+export function CardOverlayLayer({ children, persistent = false }: { children: ReactNode; persistent?: boolean }) {
     return (
         <Box 
-            className="card-overlay"
+            className={persistent ? undefined : 'card-overlay'}
             sx={{ 
                 position: 'absolute', 
-                top: 0, left: 0, right: 0, bottom: 0,
+                top: persistent ? 'auto' : 0, left: 0, right: 0, bottom: 0,
                 zIndex: 3,
                 backgroundColor: 'rgba(0, 0, 0, 0.8)',
                 color: 'common.white',
-                opacity: 0, // Hidden by default
+                opacity: persistent ? 1 : 0,
                 transition: 'opacity 0.2s ease-in-out',
                 display: 'flex',
                 flexDirection: 'column',

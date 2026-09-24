@@ -12,6 +12,7 @@
                 "grid": "Jeux",
                 "list": "Séries",
                 "dlc": "DLCS",
+                "companies": "Entreprises",
                 "random": "Au hasard"
             },
             "tierTabs": "Tops"
@@ -210,5 +211,32 @@
             "previous": "Précédent",
             "next": "Suivant"
         }
+    },
+    "companies": {
+        "title": "Entreprises",
+        "back": "Retour aux résultats",
+        "sort": {
+            "label": "Trier les jeux",
+            "titleAsc": "Titre (A–Z)",
+            "titleDesc": "Titre (Z–A)",
+            "durationAsc": "Durée (croissante)",
+            "durationDesc": "Durée (décroissante)",
+            "tierAsc": "Catégorie (meilleure d’abord)",
+            "tierDesc": "Catégorie (moins bonne d’abord)"
+        },
+        "sortCompanies": {
+            "label": "Trier les entreprises",
+            "nameAsc": "Nom (A–Z)",
+            "nameDesc": "Nom (Z–A)",
+            "countDesc": "Nombre de jeux (décroissant)",
+            "countAsc": "Nombre de jeux (croissant)"
+        },
+        "gamesCount": "{count, plural, =0 {Aucun jeu} one {# jeu} other {# jeux}}",
+        "roles": {
+            "all": "Tous",
+            "developer": "Développeurs",
+            "publisher": "Éditeurs"
+        },
+        "empty": "Aucun jeu trouvé pour cette entreprise pour le moment."
     }
 }

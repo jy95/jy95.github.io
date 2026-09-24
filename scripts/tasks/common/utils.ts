@@ -36,6 +36,7 @@ const allowedFolders = new Set<Folder>([
   'covers',
   'testscovers',
   'backlogcovers',
+  'companies'
 ]);
 
 // Converts a string value to its corresponding integer based on the provided mapping.

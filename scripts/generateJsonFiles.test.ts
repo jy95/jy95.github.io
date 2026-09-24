@@ -21,6 +21,7 @@ describe('generateJsonFiles script', () => {
         'extractAndSaveTierListTests',
         'extractAndSaveRelatedGames',
         'extractAndSaveLlmContext',
+        'extractAndSaveCompanies'
     ];
 
     const expectedSuffixes: Record<string, string[]> = {
@@ -55,6 +56,7 @@ describe('generateJsonFiles script', () => {
             'src/app/api/related-games/related-games.json',
         ],
         extractAndSaveLlmContext: ['src/app/llms.txt/llms.txt'],
+        extractAndSaveCompanies: ['src/app/api/companies/companies.json']
     };
 
     /**

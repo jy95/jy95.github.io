@@ -4,7 +4,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 vi.mock('next/image', () => ({
     default: (props: Record<string, unknown>) => (
         // eslint-disable-next-line @next/next/no-img-element
-        <img alt={props.alt as string} src={props.src as string} />
+        <img alt={props.alt as string} src={props.src as string} style={props.style as React.CSSProperties} />
     ),
 }));
 
@@ -48,6 +48,15 @@ describe('BaseCard', () => {
     it('renders overlaySlot content when provided', () => {
         render(<BaseCard item={item} overlaySlot={() => <span>Overlay</span>} />);
         expect(screen.getByText('Overlay')).toBeInTheDocument();
+        expect(screen.getByText('Overlay').parentElement).toHaveClass('card-overlay');
+        expect(screen.getByAltText('My Item')).toHaveStyle({ objectFit: 'fill' });
+    });
+
+    it('supports a persistent bottom overlay and contained image without changing defaults', () => {
+        render(<BaseCard item={item} objectFit="contain" overlayPersistent overlaySlot={() => <span>Visible</span>} />);
+        expect(screen.getByText('Visible').parentElement).not.toHaveClass('card-overlay');
+        expect(screen.getByText('Visible').parentElement).toHaveStyle({ opacity: '1', top: 'auto' });
+        expect(screen.getByAltText('My Item')).toHaveStyle({ objectFit: 'contain' });
     });
 
     it('renders nothing extra when overlaySlot is omitted', () => {

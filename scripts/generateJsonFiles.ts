@@ -22,7 +22,8 @@ import {
     extractAndSaveTierListGamesFuture,
     extractAndSaveTierListTests,
     extractAndSaveRelatedGames,
-    extractAndSaveLlmContext
+    extractAndSaveLlmContext,
+    extractAndSaveCompanies
 } from "./extractors"
 
 // Directory of the current script
@@ -49,7 +50,8 @@ const FILES = {
     "TIER_LIST_GAMES_FUTURE": resolve(__dirname, '..', 'src/app/api/tier-lists/games/future-games.json'),
     "TIER_LIST_TESTS": resolve(__dirname, '..', 'src/app/api/tier-lists/tests/tests.json'),
     "RELATED_GAMES": resolve(__dirname, '..', 'src/app/api/related-games/related-games.json'),
-    "LLMS": resolve(__dirname, '..', 'src/app/llms.txt/llms.txt')
+    "LLMS": resolve(__dirname, '..', 'src/app/llms.txt/llms.txt'),
+    "COMPANIES": resolve(__dirname, '..', 'src/app/api/companies/companies.json')
 }
 
 const db = openDatabase({ readonly: true });
@@ -76,6 +78,7 @@ try {
     await extractAndSaveTierListGamesFuture(db, FILES.TIER_LIST_GAMES_FUTURE);
     await extractAndSaveTierListTests(db, FILES.TIER_LIST_TESTS);
     await extractAndSaveRelatedGames(db, FILES.RELATED_GAMES);
+    await extractAndSaveCompanies(db, FILES.COMPANIES);
     await extractAndSaveLlmContext(FILES.LLMS, {
         games: FILES.GAMES,
         platforms: FILES.PLATFORMS,

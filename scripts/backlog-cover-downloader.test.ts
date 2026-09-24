@@ -1,737 +1,89 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
-const {
-    existsSyncMock,
-    mkdirSyncMock,
-    writeFileSyncMock,
-    renameSyncMock,
-    unlinkSyncMock,
-    readFileSyncMock,
-    readdirSyncMock,
-} = vi.hoisted(() => ({
-    existsSyncMock: vi.fn(),
-    mkdirSyncMock: vi.fn(),
-    writeFileSyncMock: vi.fn(),
-    renameSyncMock: vi.fn(),
-    unlinkSyncMock: vi.fn(),
-    readFileSyncMock: vi.fn().mockReturnValue('[]'),
-    readdirSyncMock: vi.fn(),
-}));
+const { readFileSyncMock } = vi.hoisted(() => ({ readFileSyncMock: vi.fn().mockReturnValue('[]') }));
+vi.mock('node:fs', () => ({ default: { readFileSync: readFileSyncMock } }));
 
-vi.mock('node:fs', () => ({
-    default: {
-        existsSync: existsSyncMock,
-        mkdirSync: mkdirSyncMock,
-        writeFileSync: writeFileSyncMock,
-        renameSync: renameSyncMock,
-        unlinkSync: unlinkSyncMock,
-        readFileSync: readFileSyncMock,
-        readdirSync: readdirSyncMock,
-    },
-}));
+const { syncCoversBySearchMock } = vi.hoisted(() => ({ syncCoversBySearchMock: vi.fn().mockResolvedValue(undefined) }));
+vi.mock('./common/coverSearchRunner', () => ({ syncCoversBySearch: syncCoversBySearchMock }));
 
-const { imageSearchMock, closeBrowserMock } = vi.hoisted(() => ({
-    imageSearchMock: vi.fn(),
-    closeBrowserMock: vi.fn().mockResolvedValue(undefined),
-}));
+const { run } = await import('./backlog-cover-downloader');
 
-vi.mock('imgsearch-api', () => ({
-    imageSearch: imageSearchMock,
-    closeBrowser: closeBrowserMock,
-}));
-
-// Helper to construct a mocked Fetch Response with working headers.get()
-function createMockResponse(
-    status = 200,
-    headersMap: Record<string, string> = {},
-    arrayBufferData = new ArrayBuffer(8)
-) {
-    return {
-        ok: status >= 200 && status < 300,
-        status,
-        headers: {
-            get: (key: string) => {
-                const lowerKey = key.toLowerCase();
-
-                for (const [k, v] of Object.entries(headersMap)) {
-                    if (k.toLowerCase() === lowerKey) {
-                        return v;
-                    }
-                }
-
-                return null;
-            },
-        },
-        arrayBuffer: async () => arrayBufferData,
-    };
-}
-
-// Suppress console output during initial module import execution
-const initialLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-const initialErrorSpy = vi
-    .spyOn(console, 'error')
-    .mockImplementation(() => {});
-
-// Import module (triggers top-level await run())
-const { downloadImage, run } = await import('./backlog-cover-downloader');
-
-initialLogSpy.mockRestore();
-initialErrorSpy.mockRestore();
-
+/**
+ * Unit test suite for `backlog-cover-downloader`.
+ * Tests reading and parsing `backlog.json`, building search items with titles and platform names,
+ * handling missing platforms cleanly, error throwing on invalid files, and delegating execution to `syncCoversBySearch`.
+ */
 describe('backlog-cover-downloader', () => {
     beforeEach(() => {
         vi.clearAllMocks();
+        vi.spyOn(console, 'error').mockImplementation(() => {});
+    });
 
-        existsSyncMock.mockReturnValue(false);
-        mkdirSyncMock.mockReturnValue(undefined);
-        writeFileSyncMock.mockReturnValue(undefined);
-        renameSyncMock.mockReturnValue(undefined);
-        unlinkSyncMock.mockReturnValue(undefined);
+    afterEach(() => vi.restoreAllMocks());
+
+    /**
+     * Verifies that the downloader attempts to read `backlog.json` as UTF-8 text from disk.
+     */
+    it('reads backlog.json', async () => {
         readFileSyncMock.mockReturnValue('[]');
-        readdirSyncMock.mockReturnValue([]);
-
-        imageSearchMock.mockResolvedValue([]);
-        closeBrowserMock.mockResolvedValue(undefined);
-
-        vi.stubGlobal('fetch', vi.fn());
+        await run();
+        expect(readFileSyncMock).toHaveBeenCalledWith(expect.stringContaining('backlog.json'), 'utf-8');
     });
 
-    afterEach(() => {
-        vi.unstubAllGlobals();
+    /**
+     * Verifies that an error is rethrown and search execution is aborted when `backlog.json` cannot be read.
+     */
+    it('throws when backlog.json cannot be read', async () => {
+        readFileSyncMock.mockImplementation(() => { throw new Error('ENOENT'); });
+        await expect(run()).rejects.toThrow('ENOENT');
+        expect(syncCoversBySearchMock).not.toHaveBeenCalled();
     });
 
-    describe('downloadImage', () => {
-        it('creates the game directory if it does not exist', async () => {
-            existsSyncMock.mockReturnValue(false);
-
-            (global.fetch as any).mockResolvedValue(
-                createMockResponse(200, {
-                    'content-type': 'image/jpeg',
-                })
-            );
-
-            await downloadImage(
-                'https://example.com/cover.jpg',
-                123
-            );
-
-            expect(mkdirSyncMock).toHaveBeenCalledWith(
-                expect.stringContaining('123'),
-                { recursive: true }
-            );
-        });
-
-        it('skips directory creation when the game directory already exists', async () => {
-            existsSyncMock.mockReturnValue(true);
-
-            (global.fetch as any).mockResolvedValue(
-                createMockResponse(200, {
-                    'content-type': 'image/png',
-                })
-            );
-
-            await downloadImage(
-                'https://example.com/cover.png',
-                456
-            );
-
-            expect(mkdirSyncMock).not.toHaveBeenCalled();
-        });
-
-        it('fetches the image with a valid User-Agent header', async () => {
-            existsSyncMock.mockReturnValue(true);
-
-            (global.fetch as any).mockResolvedValue(
-                createMockResponse(200, {
-                    'content-type': 'image/webp',
-                })
-            );
-
-            await downloadImage(
-                'https://example.com/cover.webp',
-                789
-            );
-
-            expect(global.fetch).toHaveBeenCalledWith(
-                'https://example.com/cover.webp',
-                expect.objectContaining({
-                    method: 'GET',
-                    headers: expect.objectContaining({
-                        'User-Agent': expect.stringContaining(
-                            'Mozilla'
-                        ),
-                    }),
-                })
-            );
-        });
-
-        it('detects and uses the correct file extension from Content-Type', async () => {
-            existsSyncMock.mockReturnValue(true);
-
-            const testCases = [
-                {
-                    contentType: 'image/jpeg',
-                    expected: 'jpg',
-                },
-                {
-                    contentType: 'image/png',
-                    expected: 'png',
-                },
-                {
-                    contentType: 'image/webp',
-                    expected: 'webp',
-                },
-                {
-                    contentType: 'image/gif',
-                    expected: 'gif',
-                },
-            ];
-
-            for (let i = 0; i < testCases.length; i++) {
-                const { contentType, expected } =
-                    testCases[i];
-
-                (global.fetch as any).mockResolvedValueOnce(
-                    createMockResponse(200, {
-                        'content-type': contentType,
-                    })
-                );
-
-                const result = await downloadImage(
-                    'https://example.com/cover',
-                    100 + i
-                );
-
-                expect(result).toBe(`cover.${expected}`);
-            }
-        });
-
-        it('defaults to jpg extension when Content-Type is unknown', async () => {
-            existsSyncMock.mockReturnValue(true);
-
-            (global.fetch as any).mockResolvedValue(
-                createMockResponse(200, {
-                    'content-type':
-                        'application/octet-stream',
-                })
-            );
-
-            const result = await downloadImage(
-                'https://example.com/cover',
-                999
-            );
-
-            expect(result).toBe('cover.jpg');
-        });
-
-        it('writes image data to a temporary file then renames it atomically', async () => {
-            existsSyncMock.mockReturnValue(true);
-
-            const mockBuffer = Buffer.from([
-                1,
-                2,
-                3,
-                4,
-            ]);
-
-            (global.fetch as any).mockResolvedValue(
-                createMockResponse(
-                    200,
-                    {
-                        'content-type': 'image/jpeg',
-                    },
-                    mockBuffer.buffer
-                )
-            );
-
-            await downloadImage(
-                'https://example.com/cover.jpg',
-                555
-            );
-
-            expect(writeFileSyncMock).toHaveBeenCalledWith(
-                expect.stringContaining('.tmp'),
-                expect.any(Buffer)
-            );
-
-            expect(renameSyncMock).toHaveBeenCalledWith(
-                expect.stringContaining('.tmp'),
-                expect.stringContaining('cover.jpg')
-            );
-        });
-
-        it('cleans up temporary file if fetch fails', async () => {
-            existsSyncMock
-                .mockReturnValueOnce(false)
-                .mockReturnValueOnce(true);
-
-            (global.fetch as any).mockRejectedValue(
-                new Error('Network error')
-            );
-
-            const errSpy = vi
-                .spyOn(console, 'error')
-                .mockImplementation(() => {});
-
-            const result = await downloadImage(
-                'https://example.com/cover.jpg',
-                111
-            );
-
-            errSpy.mockRestore();
-
-            expect(result).toBeNull();
-            expect(unlinkSyncMock).toHaveBeenCalled();
-        });
-
-        it('handles AbortError timeout gracefully', async () => {
-            existsSyncMock.mockReturnValue(true);
-
-            const abortError = new Error('Aborted');
-            abortError.name = 'AbortError';
-
-            (global.fetch as any).mockRejectedValue(
-                abortError
-            );
-
-            const errSpy = vi
-                .spyOn(console, 'error')
-                .mockImplementation(() => {});
-
-            const result = await downloadImage(
-                'https://example.com/cover.jpg',
-                222
-            );
-
-            expect(errSpy).toHaveBeenCalledWith(
-                expect.stringContaining(
-                    "délai d’attente (timeout) a expiré"
-                )
-            );
-
-            expect(result).toBeNull();
-
-            errSpy.mockRestore();
-        });
-
-        it('returns null and logs error when fetch response is not ok', async () => {
-            existsSyncMock.mockReturnValue(true);
-
-            (global.fetch as any).mockResolvedValue(
-                createMockResponse(404)
-            );
-
-            const errSpy = vi
-                .spyOn(console, 'error')
-                .mockImplementation(() => {});
-
-            const result = await downloadImage(
-                'https://example.com/missing.jpg',
-                333
-            );
-
-            expect(result).toBeNull();
-
-            expect(errSpy).toHaveBeenCalledWith(
-                expect.stringContaining(
-                    'HTTP error! status: 404'
-                )
-            );
-
-            errSpy.mockRestore();
-        });
-
-        it('strips charset from Content-Type header', async () => {
-            existsSyncMock.mockReturnValue(true);
-
-            (global.fetch as any).mockResolvedValue(
-                createMockResponse(200, {
-                    'content-type':
-                        'image/jpeg; charset=utf-8',
-                })
-            );
-
-            const result = await downloadImage(
-                'https://example.com/cover.jpg',
-                444
-            );
-
-            expect(result).toBe('cover.jpg');
-        });
-
-        it('handles missing Content-Type header', async () => {
-            existsSyncMock.mockReturnValue(true);
-
-            (global.fetch as any).mockResolvedValue(
-                createMockResponse(200)
-            );
-
-            const result = await downloadImage(
-                'https://example.com/cover',
-                555
-            );
-
-            expect(result).toBe('cover.jpg');
-        });
+    /**
+     * Verifies that an error is thrown when `backlog.json` contains malformed or unparseable JSON.
+     */
+    it('throws when backlog.json contains invalid JSON', async () => {
+        readFileSyncMock.mockReturnValue('{ not json');
+        await expect(run()).rejects.toThrow();
     });
 
-    describe('run', () => {
-        it('reads the backlog JSON file', async () => {
-            readFileSyncMock.mockReturnValue(
-                JSON.stringify([])
-            );
-
-            await run();
-
-            expect(readFileSyncMock).toHaveBeenCalledWith(
-                expect.stringContaining('backlog.json'),
-                'utf-8'
-            );
-        });
-
-        it('throws when backlog.json cannot be read', async () => {
-            readFileSyncMock.mockImplementation(() => {
-                throw new Error(
-                    'ENOENT: no such file'
-                );
-            });
-
-            const errSpy = vi
-                .spyOn(console, 'error')
-                .mockImplementation(() => {});
-
-            await expect(run()).rejects.toThrow();
-
-            errSpy.mockRestore();
-        });
-
-        it('throws when backlog.json contains invalid JSON', async () => {
-            readFileSyncMock.mockReturnValue(
-                '{ invalid json }'
-            );
-
-            const errSpy = vi
-                .spyOn(console, 'error')
-                .mockImplementation(() => {});
-
-            await expect(run()).rejects.toThrow();
-
-            errSpy.mockRestore();
-        });
-
-        it('skips games that already have a cover', async () => {
-            const games = [
-                {
-                    id: 1,
-                    title: 'Game 1',
-                    platform: 1,
-                },
-                {
-                    id: 2,
-                    title: 'Game 2',
-                    platform: 2,
-                },
-            ];
-
-            readFileSyncMock.mockReturnValue(
-                JSON.stringify(games)
-            );
-
-            existsSyncMock.mockReturnValue(true);
-
-            readdirSyncMock
-                .mockReturnValueOnce(['cover.jpg'])
-                .mockReturnValueOnce([]);
-
-            imageSearchMock.mockResolvedValue([]);
-
-            const logSpy = vi
-                .spyOn(console, 'log')
-                .mockImplementation(() => {});
-
-            await run();
-
-            logSpy.mockRestore();
-
-            expect(imageSearchMock).toHaveBeenCalledTimes(1);
-        });
-
-        it('constructs the correct image search query with platform name', async () => {
-            const games = [
-                {
-                    id: 1,
-                    title: 'Mario Kart',
-                    platform: 2,
-                },
-            ];
-
-            readFileSyncMock.mockReturnValue(
-                JSON.stringify(games)
-            );
-
-            readdirSyncMock.mockReturnValue([]);
-            existsSyncMock.mockReturnValue(false);
-
-            imageSearchMock.mockResolvedValue([]);
-
-            await run();
-
-            expect(imageSearchMock).toHaveBeenCalledWith(
-                'Mario Kart GBA official box art',
-                {
-                    engines: ['bing', 'ddg'],
-                    n: 5,
-                }
-            );
-        });
-
-        it('handles games with unknown platform gracefully', async () => {
-            const games = [
-                {
-                    id: 1,
-                    title: 'Unknown Game',
-                    platform: 999,
-                },
-            ];
-
-            readFileSyncMock.mockReturnValue(
-                JSON.stringify(games)
-            );
-
-            readdirSyncMock.mockReturnValue([]);
-            existsSyncMock.mockReturnValue(false);
-
-            imageSearchMock.mockResolvedValue([]);
-
-            const logSpy = vi
-                .spyOn(console, 'log')
-                .mockImplementation(() => {});
-
-            await run();
-
-            logSpy.mockRestore();
-
-            expect(imageSearchMock).toHaveBeenCalledWith(
-                'Unknown Game  official box art',
-                {
-                    engines: ['bing', 'ddg'],
-                    n: 5,
-                }
-            );
-        });
-
-        it('downloads the first image result when found', async () => {
-            const games = [
-                {
-                    id: 1,
-                    title: 'Game 1',
-                    platform: 1,
-                },
-            ];
-
-            const imageUrl =
-                'https://example.com/box.jpg';
-
-            readFileSyncMock.mockReturnValue(
-                JSON.stringify(games)
-            );
-
-            readdirSyncMock.mockReturnValue([]);
-            existsSyncMock.mockReturnValue(true);
-
-            imageSearchMock.mockResolvedValue([
-                imageUrl,
-                'https://example.com/other.jpg',
-            ]);
-
-            (global.fetch as any).mockResolvedValue(
-                createMockResponse(200, {
-                    'content-type': 'image/jpeg',
-                })
-            );
-
-            const logSpy = vi
-                .spyOn(console, 'log')
-                .mockImplementation(() => {});
-
-            await run();
-
-            logSpy.mockRestore();
-
-            expect(global.fetch).toHaveBeenCalledWith(
-                imageUrl,
-                expect.any(Object)
-            );
-        });
-
-        it('logs warning when no image is found for a game', async () => {
-            const games = [
-                {
-                    id: 1,
-                    title: 'Obscure Game',
-                    platform: 5,
-                },
-            ];
-
-            readFileSyncMock.mockReturnValue(
-                JSON.stringify(games)
-            );
-
-            readdirSyncMock.mockReturnValue([]);
-
-            imageSearchMock.mockResolvedValue([]);
-
-            const logSpy = vi
-                .spyOn(console, 'log')
-                .mockImplementation(() => {});
-
-            await run();
-
-            expect(logSpy).toHaveBeenCalledWith(
-                expect.stringContaining(
-                    'Aucune image trouvée'
-                )
-            );
-
-            logSpy.mockRestore();
-        });
-
-        it('logs error when image search fails for a game', async () => {
-            const games = [
-                {
-                    id: 1,
-                    title: 'Game 1',
-                    platform: 1,
-                },
-            ];
-
-            readFileSyncMock.mockReturnValue(
-                JSON.stringify(games)
-            );
-
-            readdirSyncMock.mockReturnValue([]);
-
-            imageSearchMock.mockRejectedValue(
-                new Error('Search failed')
-            );
-
-            const errSpy = vi
-                .spyOn(console, 'error')
-                .mockImplementation(() => {});
-
-            await run();
-
-            expect(errSpy).toHaveBeenCalledWith(
-                expect.stringContaining(
-                    'Erreur lors de la recherche'
-                )
-            );
-
-            errSpy.mockRestore();
-        });
-
-        it('waits a random delay between game searches', async () => {
-            const games = [
-                { id: 1, title: 'Game 1', platform: 1 },
-                { id: 2, title: 'Game 2', platform: 1 },
-            ];
-
-            readFileSyncMock.mockReturnValue(JSON.stringify(games));
-            readdirSyncMock.mockReturnValue([]);
-            imageSearchMock.mockResolvedValue([]);
-
-            const setTimeoutSpy = vi.spyOn(global, 'setTimeout');
-
-            await run();
-
-            expect(setTimeoutSpy).toHaveBeenCalledWith(
-                expect.any(Function),
-                expect.any(Number)
-            );
-
-            // Get the delay passed to the first call
-            const delay = setTimeoutSpy.mock.calls[0][1];
-            
-            // Verify that the delay is within the expected dynamic range
-            expect(delay).toBeGreaterThanOrEqual(1000);
-            expect(delay).toBeLessThanOrEqual(2000);
-
-            setTimeoutSpy.mockRestore();
-        });
-
-        it('processes all games in the backlog sequentially', async () => {
-            vi.useFakeTimers();
-
-            const games = [
-                {
-                    id: 1,
-                    title: 'Game 1',
-                    platform: 1,
-                },
-                {
-                    id: 2,
-                    title: 'Game 2',
-                    platform: 2,
-                },
-                {
-                    id: 3,
-                    title: 'Game 3',
-                    platform: 3,
-                },
-            ];
-
-            readFileSyncMock.mockReturnValue(
-                JSON.stringify(games)
-            );
-
-            readdirSyncMock.mockReturnValue([]);
-
-            imageSearchMock.mockResolvedValue([]);
-
-            const logSpy = vi
-                .spyOn(console, 'log')
-                .mockImplementation(() => {});
-
-            const runPromise = run();
-
-            await vi.advanceTimersByTimeAsync(2000);
-            await vi.advanceTimersByTimeAsync(2000);
-            await vi.advanceTimersByTimeAsync(2000);
-
-            await runPromise;
-
-            logSpy.mockRestore();
-            vi.useRealTimers();
-
-            expect(imageSearchMock).toHaveBeenCalledTimes(3);
-        });
-
-        it('closes the image search browser after processing', async () => {
-            readFileSyncMock.mockReturnValue(
-                JSON.stringify([])
-            );
-
-            await run();
-
-            expect(closeBrowserMock).toHaveBeenCalledTimes(1);
-        });
-
-        it('logs completion message at the end', async () => {
-            readFileSyncMock.mockReturnValue(
-                JSON.stringify([])
-            );
-
-            const logSpy = vi
-                .spyOn(console, 'log')
-                .mockImplementation(() => {});
-
-            await run();
-
-            expect(logSpy).toHaveBeenCalledWith(
-                expect.stringContaining('✨ Terminé !')
-            );
-
-            logSpy.mockRestore();
-        });
+    /**
+     * Verifies that each entry in `backlog.json` is mapped to a search item, appending platform names when known.
+     */
+    it('builds one search item per game, with title + platform name in the query', async () => {
+        readFileSyncMock.mockReturnValue(JSON.stringify([
+            { id: 1, title: 'Mario Kart', platform: 2 },
+            { id: 2, title: 'Unknown Platform Game', platform: 999 },
+        ]));
+
+        await run();
+
+        expect(syncCoversBySearchMock).toHaveBeenCalledWith(
+            [
+                { id: 1, label: 'Mario Kart', searchQuery: 'Mario Kart GBA official box art' },
+                { id: 2, label: 'Unknown Platform Game', searchQuery: 'Unknown Platform Game official box art' },
+            ],
+            expect.objectContaining({ outputRoot: expect.stringContaining('backlogcovers') })
+        );
+    });
+
+    /**
+     * Verifies that when a platform ID is unknown or omitted, the query string is trimmed cleanly without double spaces.
+     */
+    it('trims a missing platform name cleanly (no double space)', async () => {
+        readFileSyncMock.mockReturnValue(JSON.stringify([{ id: 3, title: 'No Platform', platform: 999 }]));
+        await run();
+
+        const [items] = syncCoversBySearchMock.mock.calls[0];
+        expect(items[0].searchQuery).toBe('No Platform official box art');
+    });
+
+    /**
+     * Verifies that an empty item array is forwarded to `syncCoversBySearch` when `backlog.json` contains an empty list.
+     */
+    it('passes an empty item list through when backlog.json is an empty array', async () => {
+        readFileSyncMock.mockReturnValue('[]');
+        await run();
+        expect(syncCoversBySearchMock).toHaveBeenCalledWith([], expect.any(Object));
     });
 });

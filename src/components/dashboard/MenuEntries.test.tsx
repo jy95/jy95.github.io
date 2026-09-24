@@ -11,7 +11,7 @@ describe('NavigationMenu', () => {
         const nav = NavigationMenu();
         const segments = nav.map((item) => item.segment);
         expect(segments).toEqual(
-            expect.arrayContaining(['games', 'planning', 'backlog', 'tier', 'tests', 'stats', 'links'])
+            expect.arrayContaining(['games', 'companies', 'planning', 'backlog', 'tier', 'tests', 'stats', 'links'])
         );
     });
 
