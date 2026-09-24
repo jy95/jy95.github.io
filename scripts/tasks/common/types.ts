@@ -15,7 +15,7 @@ export type TaskType =
   | "COPY_COVERS" 
   | "ADD_COVER";
 
-export type Folder = "covers" | "testscovers" | "backlogcovers";
+export type Folder = "covers" | "testscovers" | "backlogcovers" | "companies";
 
 export type IdentifierKind = 'Playlist' | 'Video';
 
