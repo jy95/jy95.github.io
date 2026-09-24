@@ -9,6 +9,7 @@ GamesPassionFR is a bilingual French and English catalog for the GamesPassionFR 
 - /games/series: Browse published games grouped by series.
 - /games/dlcs: Browse published downloadable-content walkthroughs.
 - /games/random: Open a randomly selected published game.
+- /companies: Browse video game developers and publishers featured in the catalog
 - /planning: See games planned for future publication.
 - /backlog: Browse games being considered for future walkthroughs.
 - /tests: Browse game tests and reviews.
@@ -20,6 +21,7 @@ GamesPassionFR is a bilingual French and English catalog for the GamesPassionFR 
 - /tier/tests: View the ranking of tested games.
 - /playlist/:id: Watch the YouTube walkthrough playlist identified by id.
 - /video/:id: Watch the YouTube video identified by id.
+- /companies/:id: View details & games associated with a specific company
 
 ## Feeds
 
