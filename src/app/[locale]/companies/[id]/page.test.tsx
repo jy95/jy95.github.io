@@ -1,73 +1,74 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { act, render, screen } from '@testing-library/react';
+import { act, render, screen, fireEvent } from '@testing-library/react';
+import { echoTranslations } from '@/test/mocks/nextIntl';
 
-const { notFoundMock } = vi.hoisted(() => ({ notFoundMock: vi.fn() }));
+const { notFoundMock, backMock } = vi.hoisted(() => ({ notFoundMock: vi.fn(), backMock: vi.fn() }));
 vi.mock('next/navigation', () => ({ notFound: notFoundMock }));
-
-const useGetCompaniesQueryMock = vi.fn();
-vi.mock('@/redux/services/companiesAPI', () => ({
-    useGetCompaniesQuery: () => useGetCompaniesQueryMock(),
-}));
-
+vi.mock('@/i18n/routing', () => ({ useRouter: () => ({ back: backMock }) }));
+vi.mock('next-intl', () => echoTranslations());
+const useGetCompanyQueryMock = vi.fn();
+vi.mock('@/redux/services/companiesAPI', () => ({ useGetCompanyQuery: (id: string) => useGetCompanyQueryMock(id) }));
 vi.mock('@/features/games/components/CardGrid', () => ({
-    CardGrid: ({ items }: { items: { id: string; title: string }[] }) => (
-        <div data-testid="card-grid">{items.map((i) => i.title).join(',')}</div>
-    ),
+    CardGrid: ({ items }: { items: { id: string; title: string }[] }) =>
+        <div data-testid="card-grid">{items.map((item) => item.title).join(',')}</div>,
 }));
 
 import CompanyDetail from './page';
 
+const game = (id: string, title: string, duration: string, tierCategory: string) => ({ id, title, duration, tierCategory });
 const company = {
-    id: 1,
-    name: 'Capcom',
-    imagePath: '/companies/1/cover.webp',
-    developerGames: [{ id: 'a', title: 'Game A' }, { id: 'b', title: 'Game B' }],
-    publisherGames: [{ id: 'b', title: 'Game B' }, { id: 'c', title: 'Game C' }],
+    id: 1, name: 'Capcom', imagePath: '/companies/1/cover.webp',
+    developerGames: [game('b', 'Bravo', '01:00:00', 'tier_good'), game('a', 'Alpha', '03:00:00', 'tier_bad')],
+    publisherGames: [game('b', 'Bravo', '01:00:00', 'tier_good'), game('c', 'Charlie', '02:00:00', 'tier_masterpiece')],
 };
 
-function paramsFor(id: string) {
-    return Promise.resolve({ id });
+async function renderDetail(data = company) {
+    useGetCompanyQueryMock.mockReturnValue({ data, isLoading: false, error: undefined, refetch: vi.fn() });
+    await act(async () => { render(<CompanyDetail params={Promise.resolve({ id: '1' })} />); });
 }
 
 describe('CompanyDetail', () => {
-    beforeEach(() => {
-        notFoundMock.mockReset();
-        useGetCompaniesQueryMock.mockReset().mockReturnValue({
-            data: [company],
-            isLoading: false,
-            error: undefined,
-            refetch: vi.fn(),
-        });
-    });
+    beforeEach(() => { useGetCompanyQueryMock.mockReset(); notFoundMock.mockReset(); backMock.mockReset(); });
 
-    it('renders the company name as a heading', async () => {
-        await act(async () => {
-            render(<CompanyDetail params={paramsFor('1')} />);
-        });
+    it('loads the company by ID, merges duplicate games, and navigates back', async () => {
+        await renderDetail();
+        expect(useGetCompanyQueryMock).toHaveBeenCalledWith('1');
         expect(screen.getByText('Capcom')).toBeInTheDocument();
+        expect(screen.getByTestId('card-grid')).toHaveTextContent('Alpha,Bravo,Charlie');
+        fireEvent.click(screen.getByText('companies.back'));
+        expect(backMock).toHaveBeenCalledOnce();
     });
 
-    it('merges developer and publisher games, deduplicating by id', async () => {
-        await act(async () => {
-            render(<CompanyDetail params={paramsFor('1')} />);
-        });
-        const grid = screen.getByTestId('card-grid');
-        // a, b, c — b appears in both lists but only once here
-        expect(grid.textContent).toBe('Game A,Game B,Game C');
-    });
-
-    it('shows a loading spinner while the query is pending', async () => {
-        useGetCompaniesQueryMock.mockReturnValue({ data: undefined, isLoading: true, error: undefined, refetch: vi.fn() });
-        await act(async () => {
-            render(<CompanyDetail params={paramsFor('1')} />);
-        });
+    it('shows loading and treats 404 as not found', async () => {
+        useGetCompanyQueryMock.mockReturnValueOnce({ isLoading: true });
+        await act(async () => { render(<CompanyDetail params={Promise.resolve({ id: '1' })} />); });
         expect(screen.getByRole('progressbar')).toBeInTheDocument();
+        useGetCompanyQueryMock.mockReturnValue({ error: { status: 404 }, isLoading: false });
+        await act(async () => { render(<CompanyDetail params={Promise.resolve({ id: '999' })} />); });
+        expect(notFoundMock).toHaveBeenCalled();
     });
 
-    it('calls notFound when no company matches the given id', async () => {
-        await act(async () => {
-            render(<CompanyDetail params={paramsFor('999')} />);
-        });
-        expect(notFoundMock).toHaveBeenCalledOnce();
+    it.each([
+        ['title-asc', 'Alpha,Bravo,Charlie'],
+        ['title-desc', 'Charlie,Bravo,Alpha'],
+        ['duration-asc', 'Bravo,Charlie,Alpha'],
+        ['duration-desc', 'Alpha,Charlie,Bravo'],
+        ['tier-asc', 'Charlie,Bravo,Alpha'],
+        ['tier-desc', 'Alpha,Bravo,Charlie'],
+    ])('sorts all games by %s', async (choice, expected) => {
+        await renderDetail();
+        fireEvent.change(screen.getByLabelText('companies.sort.label'), { target: { value: choice } });
+        expect(screen.getByTestId('card-grid')).toHaveTextContent(expected);
+    });
+
+    it('sorts before loading more and resets pagination on sort change', async () => {
+        const many = Array.from({ length: 14 }, (_, index) => game(String(index), `Game ${String(index).padStart(2, '0')}`, `${String(index).padStart(2, '0')}:00:00`, 'tier_good'));
+        await renderDetail({ ...company, developerGames: many, publisherGames: [many[0]] });
+        fireEvent.change(screen.getByLabelText('companies.sort.label'), { target: { value: 'title-desc' } });
+        expect(screen.getByTestId('card-grid').textContent?.split(',')).toEqual(many.slice(2).reverse().map((item) => item.title));
+        fireEvent.click(screen.getByText('common.loadMore'));
+        expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(14);
+        fireEvent.change(screen.getByLabelText('companies.sort.label'), { target: { value: 'duration-asc' } });
+        expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(12);
     });
 });

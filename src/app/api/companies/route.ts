@@ -1,40 +1,38 @@
 import { NextResponse } from "next/server";
-import { buildCardEntry } from "@/domain/games";
-import { COVER_PATHS } from "@/domain/games/coverPaths";
-import type { RawGame, CardGame } from "@/domain/games";
+import { loadCompanies, toCompanySummary } from "./data";
+import type { CompanyRole, CompanySummary } from "./data";
 
-type rawEntry = {
-    id: number,
-    name: string,
-    developerItems: RawGame[],
-    publisherItems: RawGame[],
-};
-export type RawPayload = rawEntry[];
+export type { CompanyType, CompanyGame, CompanySummary, CompanyRole } from "./data";
 
-export type CompanyType = {
-    id: number,
-    name: string,
-    imagePath: string,
-    developerGames: CardGame[],
-    publisherGames: CardGame[],
+export type ResponseBody = {
+    items: CompanySummary[];
+    total_items: number;
+    total_pages: number;
+    pageSize: number;
+    page: number;
 };
 
-export async function GET() {
-    const data = (await import("./companies.json")).default;
+export async function GET(request: Request) {
+    const params = new URL(request.url).searchParams;
+    const roleParam = params.get("role");
+    const role: CompanyRole = roleParam === "developer" || roleParam === "publisher" ? roleParam : "all";
+    const parsePositive = (value: string | null, fallback: number) => {
+        const number = Number(value);
+        return Number.isSafeInteger(number) && number > 0 ? number : fallback;
+    };
+    const page = parsePositive(params.get("page"), 1);
+    const pageSize = Math.min(parsePositive(params.get("pageSize"), 12), 100);
+    const summaries = (await loadCompanies()).map((company) => toCompanySummary(company, role))
+        .filter((company) => company.gamesCount > 0);
 
-    const companies: CompanyType[] = data.map((company) => ({
-        id: company.id,
-        name: company.name,
-        imagePath: `${COVER_PATHS.companies}/${company.id}/cover.webp`,
-        developerGames: toCardGames(company.developerItems as RawGame[]),
-        publisherGames: toCardGames(company.publisherItems as RawGame[]),
-    }));
-
-    return NextResponse.json(companies, {
+    const response: ResponseBody = {
+        items: summaries.slice((page - 1) * pageSize, page * pageSize),
+        total_items: summaries.length,
+        total_pages: Math.ceil(summaries.length / pageSize),
+        pageSize,
+        page,
+    };
+    return NextResponse.json(response, {
         headers: { "Cache-Control": "public, max-age=86400, must-revalidate" },
     });
-}
-
-function toCardGames(gamesData: RawGame[]): CardGame[] {
-    return gamesData.map((game) => ({ ...game, ...buildCardEntry(game, COVER_PATHS.games) }));
 }

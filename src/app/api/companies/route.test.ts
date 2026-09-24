@@ -1,82 +1,67 @@
 import { describe, it, expect, vi } from 'vitest';
 
 const mockCompanies = [
-    {
-        id: 1,
-        name: 'Capcom',
-        developerItems: [
-            { id: 6, title: 'Batman: Arkham Asylum', playlistId: 'PL_ASYLUM', duration: '05:59:51', platform: 1 },
-        ],
-        publisherItems: [
-            { id: 8, title: 'Batman Arkham City', playlistId: 'PL_CITY', duration: '06:47:41', platform: 1 },
-        ],
-    },
-    {
-        id: 2,
-        name: 'Insomniac Games',
-        developerItems: [
-            { id: 41, title: 'God of War III', playlistId: 'PL_GOW3', duration: '06:46:19', platform: 6 },
-        ],
-        publisherItems: [],
-    },
+    { id: 1, name: 'Both', developerItems: [{ id: 1, title: 'A', playlistId: 'one', tierCategory: 'tier_good' }], publisherItems: [{ id: 1, title: 'A', playlistId: 'one' }] },
+    { id: 2, name: 'Developer only', developerItems: [{ id: 2, title: 'B', playlistId: 'two' }], publisherItems: [] },
+    { id: 3, name: 'Publisher only', developerItems: [], publisherItems: [{ id: 3, title: 'C', videoId: 'three' }] },
+    { id: 4, name: 'Another publisher', developerItems: [], publisherItems: [{ id: 4, title: 'D', videoId: 'four' }] },
 ];
 
 vi.mock('./companies.json', () => ({ default: mockCompanies }));
-
 vi.mock('@/domain/games', () => ({
     buildCardEntry: (game: { videoId?: string; playlistId?: string }, base: string) => {
-        const id = game.videoId ?? game.playlistId!;
-        return {
-            id,
-            url: game.videoId
-                ? `https://www.youtube.com/watch?v=${id}`
-                : `https://www.youtube.com/playlist?list=${id}`,
-            url_type: game.videoId ? 'VIDEO' : 'PLAYLIST',
-            imagePath: `${base}/${id}/cover.webp`,
-        };
+        const id = game.videoId ?? game.playlistId;
+        return { id, url: `https://example.com/${id}`, imagePath: `${base}/${id}/cover.webp`, url_type: 'VIDEO' };
     },
 }));
 
 import { GET } from './route';
+import { GET as getDetail } from './[id]/route';
+
+const request = (query = '') => new Request(`https://example.com/api/companies${query}`);
 
 describe('GET /api/companies', () => {
-    it('preserves company names and count', async () => {
-        const res = await GET();
-        const data = await res.json();
-        expect(data.map((c: { name: string }) => c.name)).toEqual(['Capcom', 'Insomniac Games']);
+    it('returns summaries with unique game counts, but no full game lists', async () => {
+        const response = await GET(request('?pageSize=2'));
+        const body = await response.json();
+        expect(body).toMatchObject({ page: 1, pageSize: 2, total_items: 4, total_pages: 2 });
+        expect(body.items[0]).toEqual({ id: 1, name: 'Both', imagePath: '/companies/1/cover.webp', developerCount: 1, publisherCount: 1, gamesCount: 1 });
+        expect(body.items[0]).not.toHaveProperty('developerGames');
+        expect(response.headers.get('Cache-Control')).toContain('max-age=86400');
     });
 
-    it('derives imagePath from the company id under /companies', async () => {
-        const res = await GET();
-        const data = await res.json();
-        expect(data[0].imagePath).toBe('/companies/1/cover.webp');
-        expect(data[1].imagePath).toBe('/companies/2/cover.webp');
+    it('filters before slicing, so publisher pages have no empty slots', async () => {
+        const first = await (await GET(request('?role=publisher&page=1&pageSize=2'))).json();
+        const second = await (await GET(request('?role=publisher&page=2&pageSize=2'))).json();
+        expect(first.items.map((company: { id: number }) => company.id)).toEqual([1, 3]);
+        expect(second.items.map((company: { id: number }) => company.id)).toEqual([4]);
+        expect(first.total_items).toBe(3);
+        expect(first.total_pages).toBe(2);
+        const developers = await (await GET(request('?role=developer&pageSize=1&page=2'))).json();
+        expect(developers.items.map((company: { id: number }) => company.id)).toEqual([2]);
     });
 
-    it('builds valid card entries for developer games', async () => {
-        const res = await GET();
-        const data = await res.json();
-        expect(data[0].developerGames).toHaveLength(1);
-        expect(data[0].developerGames[0].url).toMatch(/^https:\/\/www\.youtube\.com\/playlist\?list=/);
-        expect(data[0].developerGames[0].imagePath.startsWith('/covers/')).toBe(true);
+    it('bounds invalid page inputs', async () => {
+        const body = await (await GET(request('?page=bad&pageSize=-1'))).json();
+        expect(body).toMatchObject({ page: 1, pageSize: 12 });
+    });
+});
+
+describe('GET /api/companies/[id]', () => {
+    it('returns full games including tier and card fields for the requested company', async () => {
+        const response = await getDetail(request(), { params: Promise.resolve({ id: '1' }) });
+        const body = await response.json();
+        expect(body).toMatchObject({ name: 'Both', imagePath: '/companies/1/cover.webp' });
+        expect(body.developerGames[0]).toMatchObject({ id: 'one', tierCategory: 'tier_good', imagePath: '/covers/one/cover.webp' });
+        expect(body.publisherGames).toHaveLength(1);
     });
 
-    it('builds valid card entries for publisher games', async () => {
-        const res = await GET();
-        const data = await res.json();
-        expect(data[0].publisherGames).toHaveLength(1);
-        expect(data[0].publisherGames[0].id).toBe('PL_CITY');
+    it('returns 404 for an unknown company', async () => {
+        expect((await getDetail(request(), { params: Promise.resolve({ id: '999' }) })).status).toBe(404);
     });
 
-    it('handles a company with no publisher games (empty array, not omitted)', async () => {
-        const res = await GET();
-        const data = await res.json();
-        expect(data[1].publisherGames).toEqual([]);
-        expect(data[1].developerGames).toHaveLength(1);
-    });
-
-    it('sets a long-lived Cache-Control header', async () => {
-        const res = await GET();
-        expect(res.headers.get('Cache-Control')).toContain('max-age=86400');
+    it('assigns the not-evaluated tier to games missing a stored category', async () => {
+        const body = await (await getDetail(request(), { params: Promise.resolve({ id: '2' }) })).json();
+        expect(body.developerGames[0].tierCategory).toBe('tier_not_evaluated');
     });
 });
