@@ -32,6 +32,12 @@ vi.mock('sharp', () => ({ default: sharpMock }));
 
 const { addCover } = await import('./add-cover');
 
+const successfulResponse = () => ({
+    ok: true,
+    headers: { get: () => 'image/jpeg' },
+    arrayBuffer: async () => new ArrayBuffer(8),
+});
+
 describe('addCover', () => {
     beforeEach(() => {
         mkdirMock.mockReset().mockResolvedValue(undefined);
@@ -63,10 +69,7 @@ describe('addCover', () => {
     });
 
     it('downloads, converts and swaps the cover on success', async () => {
-        (global.fetch as any).mockResolvedValue({
-            ok: true,
-            arrayBuffer: async () => new ArrayBuffer(8),
-        });
+        (global.fetch as any).mockResolvedValue(successfulResponse());
 
         await addCover({} as any, {
             imageURL: 'https://example.com/img.jpg',
@@ -111,10 +114,7 @@ describe('addCover', () => {
     });
 
     it('throws when image conversion fails', async () => {
-        (global.fetch as any).mockResolvedValue({
-            ok: true,
-            arrayBuffer: async () => new ArrayBuffer(8),
-        });
+        (global.fetch as any).mockResolvedValue(successfulResponse());
         toFileMock.mockRejectedValueOnce(new Error('bad image'));
 
         await expect(
@@ -124,13 +124,12 @@ describe('addCover', () => {
                 identifierValue: 'test-game-convert-fail',
             })
         ).rejects.toThrow(/Failed to convert and resize image/);
+        expect(rmMock).toHaveBeenCalled();
+        expect(renameMock).not.toHaveBeenCalled();
     });
 
     it('throws and preserves staging when the atomic rename swap fails', async () => {
-        (global.fetch as any).mockResolvedValue({
-            ok: true,
-            arrayBuffer: async () => new ArrayBuffer(8),
-        });
+        (global.fetch as any).mockResolvedValue(successfulResponse());
         renameMock.mockRejectedValueOnce(new Error('EBUSY'));
 
         await expect(
@@ -140,6 +139,8 @@ describe('addCover', () => {
                 identifierValue: 'test-game-swap-fail',
             })
         ).rejects.toThrow(/Failed to complete cover replacement/);
+        expect(renameMock).toHaveBeenCalledOnce();
+        expect(rmMock).toHaveBeenCalledOnce();
     });
 
     it('rejects an identifier that attempts path traversal', async () => {
@@ -153,12 +154,9 @@ describe('addCover', () => {
     });
 
     it('accepts every valid folder value', async () => {
-        (global.fetch as any).mockResolvedValue({
-            ok: true,
-            arrayBuffer: async () => new ArrayBuffer(8),
-        });
+        (global.fetch as any).mockResolvedValue(successfulResponse());
 
-        for (const folder of ['covers', 'testscovers', 'backlogcovers'] as const) {
+        for (const folder of ['covers', 'testscovers', 'backlogcovers', 'companies'] as const) {
             await expect(
                 addCover({} as any, {
                     imageURL: 'https://example.com/img.jpg',

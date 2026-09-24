@@ -40,7 +40,7 @@ export async function run(): Promise<void> {
         games.map((game) => ({
             id: game.id,
             label: game.title,
-            searchQuery: `${game.title} ${PLATFORMS_MAP[game.platform] || ''} official box art`.trim(),
+            searchQuery: [game.title, PLATFORMS_MAP[game.platform], 'official box art'].filter(Boolean).join(' '),
         })),
         { outputRoot: OUTPUT_ROOT }
     );

@@ -34,16 +34,11 @@ export function companyImagePath(id: number): string {
 }
 
 export async function toCompanyDetail(company: RawCompany): Promise<CompanyType> {
-    const tierLists = (await import("../tier-lists/games/games.json")).default;
-    const tiers = new Map<string, string>();
-    for (const [category, games] of Object.entries(tierLists)) {
-        for (const game of games) tiers.set(game.id, category);
-    }
     const toGames = (games: RawCompanyGame[]): CompanyGame[] =>
         games.map((game) => ({
             ...game,
             ...buildCardEntry(game, COVER_PATHS.games),
-            tierCategory: game.tierCategory ?? tiers.get("videoId" in game ? game.videoId : game.playlistId) ?? "tier_not_evaluated",
+            tierCategory: game.tierCategory ?? "tier_not_evaluated",
         }));
 
     return {

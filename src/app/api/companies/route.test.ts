@@ -8,6 +8,7 @@ const mockCompanies = [
 ];
 
 vi.mock('./companies.json', () => ({ default: mockCompanies }));
+vi.mock('../tier-lists/games/games.json', () => { throw new Error('Tier-list games JSON must not be loaded for company details'); });
 vi.mock('@/domain/games', () => ({
     buildCardEntry: (game: { videoId?: string; playlistId?: string }, base: string) => {
         const id = game.videoId ?? game.playlistId;
@@ -60,7 +61,7 @@ describe('GET /api/companies/[id]', () => {
         expect((await getDetail(request(), { params: Promise.resolve({ id: '999' }) })).status).toBe(404);
     });
 
-    it('assigns the not-evaluated tier to games missing a stored category', async () => {
+    it('uses only company JSON for tiers, falling back when a category is missing', async () => {
         const body = await (await getDetail(request(), { params: Promise.resolve({ id: '2' }) })).json();
         expect(body.developerGames[0].tierCategory).toBe('tier_not_evaluated');
     });
