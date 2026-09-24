@@ -23,9 +23,10 @@ describe('companiesAPI', () => {
     it('requests the first role-filtered page and preserves metadata', async () => {
         const payload = { items: [{ id: 1, name: 'Both' }], page: 1, total_pages: 2 };
         fetchMock.mockImplementation(async () => response(payload));
-        const result = await makeStore().dispatch(companiesAPI.endpoints.getCompanies.initiate({ role: 'publisher', pageSize: 12 }));
+        const result = await makeStore().dispatch(companiesAPI.endpoints.getCompanies.initiate({ role: 'publisher', sort: 'countDesc', pageSize: 12 }));
         expect(calledUrl(fetchMock).pathname).toBe('/api/companies');
         expect(calledUrl(fetchMock).searchParams.get('role')).toBe('publisher');
+        expect(calledUrl(fetchMock).searchParams.get('sort')).toBe('countDesc');
         expect(calledUrl(fetchMock).searchParams.get('page')).toBe('1');
         expect(result.data?.pages).toEqual([payload]);
     });
@@ -33,9 +34,14 @@ describe('companiesAPI', () => {
     it('fetches the next page using metadata', async () => {
         fetchMock.mockImplementation(async (input: Request) => response({ items: [], total_pages: 2, page: Number(new URL(input.url).searchParams.get('page')) }));
         const store = makeStore();
-        await store.dispatch(companiesAPI.endpoints.getCompanies.initiate({ role: 'all', pageSize: 12 }));
-        await store.dispatch(companiesAPI.endpoints.getCompanies.initiate({ role: 'all', pageSize: 12 }, { direction: 'forward', forceRefetch: true }));
+        await store.dispatch(companiesAPI.endpoints.getCompanies.initiate({ role: 'all', sort: 'nameAsc', pageSize: 12 }));
+        await store.dispatch(companiesAPI.endpoints.getCompanies.initiate({ role: 'all', sort: 'nameAsc', pageSize: 12 }, { direction: 'forward', forceRefetch: true }));
         expect(calledUrl(fetchMock, 1).searchParams.get('page')).toBe('2');
+        await store.dispatch(companiesAPI.endpoints.getCompanies.initiate({ role: 'all', sort: 'nameDesc', pageSize: 12 }));
+        expect(calledUrl(fetchMock, 2).searchParams.get('page')).toBe('1');
+        expect(calledUrl(fetchMock, 2).searchParams.get('sort')).toBe('nameDesc');
+        await store.dispatch(companiesAPI.endpoints.getCompanies.initiate({ role: 'publisher', sort: 'nameAsc', pageSize: 12 }));
+        expect(calledUrl(fetchMock, 3).searchParams.get('page')).toBe('1');
     });
 
     it('queries a single company directly', async () => {

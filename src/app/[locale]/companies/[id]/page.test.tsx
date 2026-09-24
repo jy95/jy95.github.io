@@ -10,7 +10,7 @@ const useGetCompanyQueryMock = vi.fn();
 vi.mock('@/redux/services/companiesAPI', () => ({ useGetCompanyQuery: (id: string) => useGetCompanyQueryMock(id) }));
 vi.mock('@/features/games/components/CardGrid', () => ({
     CardGrid: ({ items }: { items: { id: string; title: string }[] }) =>
-        <div data-testid="card-grid">{items.map((item) => item.title).join(',')}</div>,
+        <div data-testid="card-grid" data-ids={items.map((item) => item.id).join(',')}>{items.map((item) => item.title).join(',')}</div>,
 }));
 
 import CompanyDetail from './page';
@@ -34,10 +34,13 @@ describe('CompanyDetail', () => {
         await renderDetail();
         expect(useGetCompanyQueryMock).toHaveBeenCalledWith('1');
         expect(screen.getByText('Capcom')).toBeInTheDocument();
+        expect(screen.getByTestId('company-header')).toContainElement(screen.getByText('Capcom'));
+        expect(screen.getByTestId('company-header')).toContainElement(screen.getByRole('button', { name: 'companies.back' }));
+        expect(getComputedStyle(screen.getByTestId('company-header')).flexWrap).toBe('wrap');
         expect(screen.getByTestId('card-grid')).toHaveTextContent('Alpha,Bravo,Charlie');
         fireEvent.click(screen.getByRole('button', { name: 'companies.back' }));
         expect(backMock).toHaveBeenCalledOnce();
-        expect(screen.getByRole('button', { name: 'companies.sort.descending' })).toBeInTheDocument();
+        expect(screen.getByLabelText('companies.sort.label')).toHaveValue('titleAsc');
     });
 
     it('shows loading and treats 404 as not found', async () => {
@@ -50,34 +53,38 @@ describe('CompanyDetail', () => {
     });
 
     it.each([
-        ['title', false, 'Alpha,Bravo,Charlie'],
-        ['title', true, 'Charlie,Bravo,Alpha'],
-        ['duration', false, 'Bravo,Charlie,Alpha'],
-        ['duration', true, 'Alpha,Charlie,Bravo'],
-        ['tier', false, 'Charlie,Bravo,Alpha'],
-        ['tier', true, 'Alpha,Bravo,Charlie'],
-    ])('sorts all games by %s descending=%s', async (field, descending, expected) => {
+        ['titleAsc', 'Alpha,Bravo,Charlie'],
+        ['titleDesc', 'Charlie,Bravo,Alpha'],
+        ['durationAsc', 'Bravo,Charlie,Alpha'],
+        ['durationDesc', 'Alpha,Charlie,Bravo'],
+        ['tierAsc', 'Charlie,Bravo,Alpha'],
+        ['tierDesc', 'Alpha,Bravo,Charlie'],
+    ])('sorts all games by %s', async (option, expected) => {
         await renderDetail();
-        fireEvent.change(screen.getByLabelText('companies.sort.label'), { target: { value: field } });
-        if (descending) {
-            fireEvent.click(screen.getByRole('button', { name: 'companies.sort.descending' }));
-            expect(screen.getByRole('button', { name: 'companies.sort.ascending' })).toBeInTheDocument();
-        }
+        fireEvent.change(screen.getByLabelText('companies.sort.label'), { target: { value: option } });
+        expect(screen.getByLabelText('companies.sort.label')).toHaveValue(option);
         expect(screen.getByTestId('card-grid')).toHaveTextContent(expected);
     });
 
     it('sorts before loading more and resets pagination on sort change', async () => {
         const many = Array.from({ length: 14 }, (_, index) => game(String(index), `Game ${String(index).padStart(2, '0')}`, `${String(index).padStart(2, '0')}:00:00`, 'tier_good'));
         await renderDetail({ ...company, developerGames: many, publisherGames: [many[0]] });
-        fireEvent.click(screen.getByRole('button', { name: 'companies.sort.descending' }));
+        fireEvent.change(screen.getByLabelText('companies.sort.label'), { target: { value: 'titleDesc' } });
         expect(screen.getByTestId('card-grid').textContent?.split(',')).toEqual(many.slice(2).reverse().map((item) => item.title));
         fireEvent.click(screen.getByText('common.loadMore'));
         expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(14);
-        fireEvent.change(screen.getByLabelText('companies.sort.label'), { target: { value: 'duration' } });
+        fireEvent.change(screen.getByLabelText('companies.sort.label'), { target: { value: 'durationAsc' } });
         expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(12);
         fireEvent.click(screen.getByText('common.loadMore'));
         expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(14);
-        fireEvent.click(screen.getByRole('button', { name: 'companies.sort.ascending' }));
+        fireEvent.change(screen.getByLabelText('companies.sort.label'), { target: { value: 'durationDesc' } });
         expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(12);
+    });
+
+    it('breaks equal titles by game ID regardless of source ordering', async () => {
+        await renderDetail({ ...company, developerGames: [game('b', 'Same', '01:00:00', 'tier_good'), game('a', 'Same', '01:00:00', 'tier_good')], publisherGames: [] });
+        expect(screen.getByTestId('card-grid')).toHaveAttribute('data-ids', 'a,b');
+        fireEvent.change(screen.getByLabelText('companies.sort.label'), { target: { value: 'titleDesc' } });
+        expect(screen.getByTestId('card-grid')).toHaveAttribute('data-ids', 'a,b');
     });
 });

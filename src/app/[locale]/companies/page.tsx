@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import type { CompanySort } from "@/app/api/companies/route";
 
 import { companiesAPI, useGetCompaniesInfiniteQuery } from "@/redux/services/companiesAPI";
 import { useAppDispatch } from "@/redux/hooks";
@@ -13,21 +15,26 @@ import RoleToggle, { type RoleFilter } from "./_client/RoleToggle";
 
 export default function CompaniesGallery() {
     const [role, setRole] = useState<RoleFilter>("all");
+    const [sort, setSort] = useState<CompanySort>("nameAsc");
     const t = useTranslations("companies");
     const common = useTranslations("common");
     const dispatch = useAppDispatch();
     const { data, isFetching, isError, refetch, hasNextPage, fetchNextPage } =
-        useGetCompaniesInfiniteQuery({ role, pageSize: 12 });
+        useGetCompaniesInfiniteQuery({ role, sort, pageSize: 12 });
+
+    const resetPages = (nextRole: RoleFilter, nextSort: CompanySort) => {
+        dispatch(companiesAPI.util.updateQueryData("getCompanies", { role: nextRole, sort: nextSort, pageSize: 12 }, (cached) => {
+            cached.pages.splice(1);
+            cached.pageParams.splice(1);
+        }));
+    };
 
     return (
         <>
             <RoleToggle
                 value={role}
                 onChange={(nextRole) => {
-                    dispatch(companiesAPI.util.updateQueryData("getCompanies", { role: nextRole, pageSize: 12 }, (cached) => {
-                        cached.pages.splice(1);
-                        cached.pageParams.splice(1);
-                    }));
+                    resetPages(nextRole, sort);
                     setRole(nextRole);
                 }}
                 labels={{
@@ -36,6 +43,15 @@ export default function CompaniesGallery() {
                     publisher: t("roles.publisher"),
                 }}
             />
+            <TextField select slotProps={{ select: { native: true } }} label={t("sortCompanies.label")}
+                value={sort} onChange={(event) => {
+                    const nextSort = event.target.value as CompanySort;
+                    resetPages(role, nextSort);
+                    setSort(nextSort);
+                }}>
+                {(["nameAsc", "nameDesc", "countDesc"] as const).map((option) =>
+                    <option key={option} value={option}>{t(`sortCompanies.${option}`)}</option>)}
+            </TextField>
             {isError && !data ? <QueryErrorState onRetry={refetch} /> : (
                 <>
                     <Grid container spacing={1} rowSpacing={1}>

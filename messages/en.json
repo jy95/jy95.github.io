@@ -217,11 +217,18 @@
         "back": "Back to results",
         "sort": {
             "label": "Sort games",
-            "title": "Title",
-            "duration": "Duration",
-            "tier": "Tier",
-            "ascending": "Sort ascending",
-            "descending": "Sort descending"
+            "titleAsc": "Title (A–Z)",
+            "titleDesc": "Title (Z–A)",
+            "durationAsc": "Duration (shortest first)",
+            "durationDesc": "Duration (longest first)",
+            "tierAsc": "Tier (best first)",
+            "tierDesc": "Tier (worst first)"
+        },
+        "sortCompanies": {
+            "label": "Sort companies",
+            "nameAsc": "Name (A–Z)",
+            "nameDesc": "Name (Z–A)",
+            "countDesc": "Game count (most first)"
         },
         "gamesCount": "{count, plural, =0 {No games} =1 {1 game} other {# games}}",
         "roles": {
