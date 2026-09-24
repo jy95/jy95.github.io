@@ -37,6 +37,10 @@ describe('CompanyDetail', () => {
         expect(screen.getByTestId('company-header')).toContainElement(screen.getByText('Capcom'));
         expect(screen.getByTestId('company-header')).toContainElement(screen.getByRole('button', { name: 'companies.back' }));
         expect(getComputedStyle(screen.getByTestId('company-header')).flexWrap).toBe('wrap');
+        const controls = screen.getByTestId('company-sort-controls');
+        expect(controls).toContainElement(screen.getByLabelText('companies.sort.label'));
+        expect(getComputedStyle(controls).justifyContent).toBe('flex-end');
+        expect(getComputedStyle(controls).flexWrap).toBe('wrap');
         expect(screen.getByTestId('card-grid')).toHaveTextContent('Alpha,Bravo,Charlie');
         fireEvent.click(screen.getByRole('button', { name: 'companies.back' }));
         expect(backMock).toHaveBeenCalledOnce();

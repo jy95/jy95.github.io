@@ -228,7 +228,8 @@
             "label": "Sort companies",
             "nameAsc": "Name (A–Z)",
             "nameDesc": "Name (Z–A)",
-            "countDesc": "Game count (most first)"
+            "countDesc": "Game count (most first)",
+            "countAsc": "Game count (fewest first)"
         },
         "gamesCount": "{count, plural, =0 {No games} =1 {1 game} other {# games}}",
         "roles": {

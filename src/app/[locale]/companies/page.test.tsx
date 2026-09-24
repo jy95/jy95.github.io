@@ -1,6 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { echoTranslations } from '@/test/mocks/nextIntl';
+import en from '../../../../messages/en.json';
+import fr from '../../../../messages/fr.json';
 
 vi.mock('next-intl', () => echoTranslations());
 const useCompaniesMock = vi.fn();
@@ -54,6 +56,22 @@ describe('CompaniesGallery', () => {
         expect(useCompaniesMock).toHaveBeenCalledWith({ role: 'all', sort: 'nameAsc', pageSize: 12 });
     });
 
+    it('keeps the role toggle left and the sort select right in a wrapping row', () => {
+        render(<CompaniesGallery />);
+        const controls = screen.getByTestId('companies-controls');
+        expect(controls).toContainElement(screen.getByText('companies.roles.all'));
+        expect(controls).toContainElement(screen.getByLabelText('companies.sortCompanies.label'));
+        expect(getComputedStyle(controls).justifyContent).toBe('space-between');
+        expect(getComputedStyle(controls).flexWrap).toBe('wrap');
+    });
+
+    it('offers game count ascending with English and French labels', () => {
+        render(<CompaniesGallery />);
+        expect(screen.getByRole('option', { name: 'companies.sortCompanies.countAsc' })).toHaveValue('countAsc');
+        expect(en.companies.sortCompanies.countAsc).toBe('Game count (fewest first)');
+        expect(fr.companies.sortCompanies.countAsc).toBe('Nombre de jeux (croissant)');
+    });
+
     it('resets to the first page of the new role instead of keeping earlier role pages', () => {
         render(<CompaniesGallery />);
         fireEvent.click(screen.getByText('companies.roles.publisher'));
@@ -77,5 +95,17 @@ describe('CompaniesGallery', () => {
         const cached = { pages: [...pages], pageParams: [1, 2] };
         updateQueryDataMock.mock.calls[0][2](cached);
         expect(cached.pageParams).toEqual([1]);
+    });
+
+    it('keeps count ascending when changing roles and resets loaded pages', () => {
+        render(<CompaniesGallery />);
+        fireEvent.change(screen.getByLabelText('companies.sortCompanies.label'), { target: { value: 'countAsc' } });
+        expect(useCompaniesMock).toHaveBeenLastCalledWith({ role: 'all', sort: 'countAsc', pageSize: 12 });
+        expect(updateQueryDataMock).toHaveBeenCalledWith('getCompanies', { role: 'all', sort: 'countAsc', pageSize: 12 }, expect.any(Function));
+        fireEvent.click(screen.getByText('companies.roles.publisher'));
+        expect(useCompaniesMock).toHaveBeenLastCalledWith({ role: 'publisher', sort: 'countAsc', pageSize: 12 });
+        const cached = { pages: [...pages], pageParams: [1, 2] };
+        updateQueryDataMock.mock.calls[1][2](cached);
+        expect(cached).toEqual({ pages: [pages[0]], pageParams: [1] });
     });
 });

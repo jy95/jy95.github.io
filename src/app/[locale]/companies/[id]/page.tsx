@@ -67,11 +67,13 @@ function CompanyGames({ company }: { company: CompanyType }) {
                 <IconButton aria-label={t("back")} onClick={() => router.back()}><ArrowBackIcon /></IconButton>
                 <Typography variant="h5" sx={{ overflowWrap: "anywhere", minWidth: 0 }}>{company.name}</Typography>
             </Box>
-            <TextField select slotProps={{ select: { native: true } }} label={t("sort.label")}
-                value={sort} onChange={(event) => { setSort(event.target.value as GameSort); setVisibleCount(PAGE_SIZE); }}>
-                {(["titleAsc", "titleDesc", "durationAsc", "durationDesc", "tierAsc", "tierDesc"] as const)
-                    .map((option) => <option key={option} value={option}>{t(`sort.${option}`)}</option>)}
-            </TextField>
+            <Box data-testid="company-sort-controls" sx={{ display: "flex", justifyContent: "flex-end", flexWrap: "wrap", gap: 1 }}>
+                <TextField select slotProps={{ select: { native: true } }} label={t("sort.label")}
+                    value={sort} onChange={(event) => { setSort(event.target.value as GameSort); setVisibleCount(PAGE_SIZE); }}>
+                    {(["titleAsc", "titleDesc", "durationAsc", "durationDesc", "tierAsc", "tierDesc"] as const)
+                        .map((option) => <option key={option} value={option}>{t(`sort.${option}`)}</option>)}
+                </TextField>
+            </Box>
             <CardGrid items={games.slice(0, visibleCount)} size={{ xs: 6, md: 4, lg: 2 }} />
             {visibleCount < games.length && <Grid container sx={{ justifyContent: "center" }}>
                 <LoadingButton onClick={() => setVisibleCount((count) => count + PAGE_SIZE)} label={common("loadMore")} />
