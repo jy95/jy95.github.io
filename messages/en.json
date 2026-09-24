@@ -214,15 +214,14 @@
     },
     "companies": {
         "title": "Companies",
-        "back": "Back",
+        "back": "Back to results",
         "sort": {
             "label": "Sort games",
-            "title-asc": "Title (A–Z)",
-            "title-desc": "Title (Z–A)",
-            "duration-asc": "Duration (shortest first)",
-            "duration-desc": "Duration (longest first)",
-            "tier-asc": "Tier (best first)",
-            "tier-desc": "Tier (lowest first)"
+            "title": "Title",
+            "duration": "Duration",
+            "tier": "Tier",
+            "ascending": "Sort ascending",
+            "descending": "Sort descending"
         },
         "gamesCount": "{count, plural, =0 {No games} =1 {1 game} other {# games}}",
         "roles": {
