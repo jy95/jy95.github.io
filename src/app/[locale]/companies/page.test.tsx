@@ -51,18 +51,31 @@ describe('CompaniesGallery', () => {
         expect(screen.getAllByTestId('company-card')).toHaveLength(2);
         fireEvent.click(screen.getByText('common.loadMore'));
         expect(fetchNextPage).toHaveBeenCalledOnce();
-        expect(useCompaniesMock).toHaveBeenCalledWith({ role: 'all', pageSize: 12 });
+        expect(useCompaniesMock).toHaveBeenCalledWith({ role: 'all', sort: 'nameAsc', pageSize: 12 });
     });
 
     it('resets to the first page of the new role instead of keeping earlier role pages', () => {
         render(<CompaniesGallery />);
         fireEvent.click(screen.getByText('companies.roles.publisher'));
-        expect(useCompaniesMock).toHaveBeenLastCalledWith({ role: 'publisher', pageSize: 12 });
-        expect(updateQueryDataMock).toHaveBeenCalledWith('getCompanies', { role: 'publisher', pageSize: 12 }, expect.any(Function));
+        expect(useCompaniesMock).toHaveBeenLastCalledWith({ role: 'publisher', sort: 'nameAsc', pageSize: 12 });
+        expect(updateQueryDataMock).toHaveBeenCalledWith('getCompanies', { role: 'publisher', sort: 'nameAsc', pageSize: 12 }, expect.any(Function));
         expect(screen.getAllByTestId('company-card')).toHaveLength(1);
         expect(screen.getByText('Both:1')).toBeInTheDocument();
         const cached = { pages: [...pages], pageParams: [1, 2] };
         updateQueryDataMock.mock.calls[0][2](cached);
         expect(cached).toEqual({ pages: [pages[0]], pageParams: [1] });
+    });
+
+    it('resets the selected sort query to page one, including when switching role', () => {
+        render(<CompaniesGallery />);
+        fireEvent.change(screen.getByLabelText('companies.sortCompanies.label'), { target: { value: 'countDesc' } });
+        expect(useCompaniesMock).toHaveBeenLastCalledWith({ role: 'all', sort: 'countDesc', pageSize: 12 });
+        expect(updateQueryDataMock).toHaveBeenCalledWith('getCompanies', { role: 'all', sort: 'countDesc', pageSize: 12 }, expect.any(Function));
+        fireEvent.click(screen.getByText('companies.roles.developer'));
+        expect(useCompaniesMock).toHaveBeenLastCalledWith({ role: 'developer', sort: 'countDesc', pageSize: 12 });
+        expect(updateQueryDataMock).toHaveBeenCalledWith('getCompanies', { role: 'developer', sort: 'countDesc', pageSize: 12 }, expect.any(Function));
+        const cached = { pages: [...pages], pageParams: [1, 2] };
+        updateQueryDataMock.mock.calls[0][2](cached);
+        expect(cached.pageParams).toEqual([1]);
     });
 });

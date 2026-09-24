@@ -14,6 +14,8 @@ export default function BaseCard<T extends CommonProps>({
     onClick,
     badgesSlot,
     overlaySlot,
+    overlayPersistent = false,
+    objectFit,
     aspectRatio = 'square'
 }: BaseCardProps<T>) {
 
@@ -32,7 +34,7 @@ export default function BaseCard<T extends CommonProps>({
                 sx={{ position: 'relative', display: 'block' }}
             >
                 {/* Layer 1: Background Cover Image */}
-                <CardMediaImage src={imagePath} alt={title} ratio={aspectRatio} />
+                <CardMediaImage src={imagePath} alt={title} ratio={aspectRatio} objectFit={objectFit} />
 
                 {/* Layer 2: Permanent Badges */}
                 {badgesSlot && (
@@ -43,7 +45,7 @@ export default function BaseCard<T extends CommonProps>({
 
                 {/* Layer 3: Hover/Focus Details Overlay */}
                 {overlaySlot && (
-                    <CardOverlayLayer>
+                    <CardOverlayLayer persistent={overlayPersistent}>
                         {overlaySlot(item)}
                     </CardOverlayLayer>
                 )}

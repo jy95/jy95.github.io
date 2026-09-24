@@ -3,6 +3,7 @@ import { loadCompanies, toCompanySummary } from "./data";
 import type { CompanyRole, CompanySummary } from "./data";
 
 export type { CompanyType, CompanyGame, CompanySummary, CompanyRole } from "./data";
+export type CompanySort = "nameAsc" | "nameDesc" | "countDesc";
 
 export type ResponseBody = {
     items: CompanySummary[];
@@ -16,6 +17,9 @@ export async function GET(request: Request) {
     const params = new URL(request.url).searchParams;
     const roleParam = params.get("role");
     const role: CompanyRole = roleParam === "developer" || roleParam === "publisher" ? roleParam : "all";
+    const sortParam = params.get("sort");
+    // Missing or unknown sort values default to name ascending.
+    const sort: CompanySort = sortParam === "nameDesc" || sortParam === "countDesc" ? sortParam : "nameAsc";
     const parsePositive = (value: string | null, fallback: number) => {
         const number = Number(value);
         return Number.isSafeInteger(number) && number > 0 ? number : fallback;
@@ -23,7 +27,13 @@ export async function GET(request: Request) {
     const page = parsePositive(params.get("page"), 1);
     const pageSize = Math.min(parsePositive(params.get("pageSize"), 12), 100);
     const summaries = (await loadCompanies()).map((company) => toCompanySummary(company, role))
-        .filter((company) => company.gamesCount > 0);
+        .filter((company) => company.gamesCount > 0)
+        .sort((first, second) => {
+            const nameOrder = first.name.localeCompare(second.name) || first.id - second.id;
+            if (sort === "nameDesc") return second.name.localeCompare(first.name) || first.id - second.id;
+            if (sort === "countDesc") return second.gamesCount - first.gamesCount || nameOrder;
+            return nameOrder;
+        });
 
     const response: ResponseBody = {
         items: summaries.slice((page - 1) * pageSize, page * pageSize),
