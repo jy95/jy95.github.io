@@ -18,7 +18,7 @@ describe('NavigationMenu', () => {
     it('gives the games entry the expected children tabs', () => {
         const nav = NavigationMenu();
         const games = nav.find((item) => item.segment === 'games');
-        expect(games?.children?.map((c) => c.segment)).toEqual([undefined, 'series', 'dlcs', 'random']);
+        expect(games?.children?.map((c) => c.segment)).toEqual([undefined, 'series', 'dlcs', 'companies', 'random']);
     });
 
     it('gives the tier entry three children: games, backlog, tests', () => {

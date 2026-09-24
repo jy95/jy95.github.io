@@ -10,6 +10,7 @@ import ListIcon from '@mui/icons-material/List';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import CasinoIcon from '@mui/icons-material/Casino';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+import BusinessIcon from '@mui/icons-material/Business';
 
 // Types
 import type { Navigation } from '@/components/toolpad/types';
@@ -53,6 +54,11 @@ export default function NavigationMenu(): Navigation {
                     segment: "dlcs",
                     icon: <ExtensionIcon />,
                     titleKey: "gamesTabs.dlc"
+                },
+                {
+                    segment: "companies",
+                    icon: <BusinessIcon />,
+                    titleKey: "gamesTabs.companies"
                 },
                 {
                     segment: "random",
