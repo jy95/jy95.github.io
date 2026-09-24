@@ -26,7 +26,8 @@ export const routing = defineRouting({
     '/tier/tests': '/tier/tests',
     // Dynamic params are supported via square brackets
     '/playlist/[id]': '/playlist/[id]',
-    '/video/[id]': '/video/[id]'
+    '/video/[id]': '/video/[id]',
+    '/companies/[id]': '/companies/[id]'
   }
 });
  

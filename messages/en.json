@@ -210,5 +210,15 @@
             "previous": "Previous",
             "next": "Next"
         }
+    },
+    "companies": {
+        "title": "Companies",
+        "gamesCount": "{count, plural, =0 {No games} =1 {1 game} other {# games}}",
+        "roles": {
+            "all": "All",
+            "developer": "Developers",
+            "publisher": "Publishers"
+        },
+        "empty": "No games found for this company yet."
     }
 }
