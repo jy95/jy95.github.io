@@ -1,0 +1,3896 @@
+[
+	{
+		"id": 83,
+		"name": "Sony Computer Entertainment",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 155,
+				"title": "Daxter",
+				"playlistId": "PLRfhDHeBTBJ5AJN9pWW6v6NQSxnK5tGTV",
+				"duration": "05:12:35",
+				"platform": 3
+			},
+			{
+				"id": 12,
+				"title": "God Of War II HD",
+				"playlistId": "PLRfhDHeBTBJ6zui2RaBzaZ5zjm768Jzum",
+				"duration": "06:20:04",
+				"platform": 6
+			},
+			{
+				"id": 40,
+				"title": "God of War Ascension",
+				"playlistId": "PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
+				"duration": "06:20:52",
+				"platform": 6
+			},
+			{
+				"id": 53,
+				"title": "God of War I",
+				"playlistId": "PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj",
+				"duration": "07:02:42",
+				"platform": 5
+			},
+			{
+				"id": 148,
+				"title": "God of War I HD",
+				"playlistId": "PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc",
+				"duration": "06:48:04",
+				"platform": 6
+			},
+			{
+				"id": 41,
+				"title": "God of War III",
+				"playlistId": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+				"duration": "06:46:19",
+				"platform": 6
+			},
+			{
+				"id": 51,
+				"title": "God of War: Chains of Olympus",
+				"playlistId": "PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf",
+				"duration": "03:34:18",
+				"platform": 3
+			},
+			{
+				"id": 38,
+				"title": "Ratchet & Clank",
+				"playlistId": "PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo",
+				"duration": "07:03:58",
+				"platform": 6
+			},
+			{
+				"id": 37,
+				"title": "Ratchet & Clank 2",
+				"playlistId": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
+				"duration": "07:48:33",
+				"platform": 6
+			},
+			{
+				"id": 175,
+				"title": "La Planète au Trésor",
+				"playlistId": "PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
+				"duration": "04:54:34",
+				"platform": 6
+			},
+			{
+				"id": 140,
+				"title": "Pursuit Force",
+				"playlistId": "PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB",
+				"duration": "03:06:59",
+				"platform": 3
+			},
+			{
+				"id": 146,
+				"title": "Pursuit Force: Extreme Justice",
+				"playlistId": "PLRfhDHeBTBJ72gRyZBPf23ZfxSlG5h8Em",
+				"duration": "04:35:22",
+				"platform": 3
+			},
+			{
+				"id": 114,
+				"title": "Ratchet & Clank : A Crack in Time",
+				"playlistId": "PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
+				"duration": "05:45:00",
+				"platform": 6
+			},
+			{
+				"id": 182,
+				"title": "Ratchet & Clank : All 4 One",
+				"playlistId": "PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
+				"duration": "07:56:23",
+				"platform": 6
+			},
+			{
+				"id": 33,
+				"title": "Ratchet & Clank : La Taille, Ca Compte",
+				"playlistId": "PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s",
+				"duration": "04:05:03",
+				"platform": 3
+			},
+			{
+				"id": 94,
+				"title": "Ratchet & Clank : Opération Destruction",
+				"playlistId": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
+				"duration": "06:49:19",
+				"platform": 6
+			},
+			{
+				"id": 185,
+				"title": "Ratchet & Clank : QForce",
+				"playlistId": "PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
+				"duration": "02:44:35",
+				"platform": 6
+			},
+			{
+				"id": 162,
+				"title": "Ratchet & Clank : Quest for Booty",
+				"playlistId": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
+				"duration": "01:48:22",
+				"platform": 6
+			},
+			{
+				"id": 163,
+				"title": "Ratchet & Clank Nexus",
+				"playlistId": "PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
+				"duration": "03:39:10",
+				"platform": 6
+			},
+			{
+				"id": 39,
+				"title": "Ratchet : Gladiator",
+				"playlistId": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
+				"duration": "06:07:43",
+				"platform": 6
+			},
+			{
+				"id": 32,
+				"title": "Secret Agent Clank",
+				"playlistId": "PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY",
+				"duration": "06:22:48",
+				"platform": 3
+			},
+			{
+				"id": 143,
+				"title": "Jet Li: Rise to Honour",
+				"playlistId": "PLRfhDHeBTBJ5K0xPqtndkObR9g05hHw5h",
+				"duration": "03:35:54",
+				"platform": 5
+			},
+			{
+				"id": 165,
+				"title": "Sly Raccoon",
+				"playlistId": "PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
+				"duration": "04:05:13",
+				"platform": 6
+			},
+			{
+				"id": 169,
+				"title": "Sly 2 : Association de voleurs",
+				"playlistId": "PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
+				"duration": "11:26:08",
+				"platform": 6
+			},
+			{
+				"id": 174,
+				"title": "Sly 3 : Honor Among Thieves",
+				"playlistId": "PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
+				"duration": "09:46:28",
+				"platform": 6
+			},
+			{
+				"id": 180,
+				"title": "Sly Cooper : Voleurs à travers le Temps",
+				"playlistId": "PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
+				"duration": "08:55:44",
+				"platform": 6
+			},
+			{
+				"id": 101,
+				"title": "Jak and Daxter: The Precursor Legacy",
+				"playlistId": "PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
+				"duration": "05:07:21",
+				"platform": 6
+			},
+			{
+				"id": 152,
+				"title": "Jak and Daxter: The Lost Frontier",
+				"playlistId": "PLRfhDHeBTBJ5yE1da-5kvYirmxBd7sLEX",
+				"duration": "05:16:27",
+				"platform": 3
+			},
+			{
+				"id": 103,
+				"title": "Jak II : Hors la Loi",
+				"playlistId": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
+				"duration": "06:25:22",
+				"platform": 6
+			},
+			{
+				"id": 105,
+				"title": "Jak 3",
+				"playlistId": "PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
+				"duration": "06:27:02",
+				"platform": 6
+			},
+			{
+				"id": 52,
+				"title": "God of War: Ghost of Sparta",
+				"playlistId": "PLRfhDHeBTBJ7VH9EyPcKvQSCo6FbMUE6g",
+				"duration": "04:53:25",
+				"platform": 3
+			},
+			{
+				"id": 150,
+				"title": "God of War: Ghost of Sparta HD",
+				"playlistId": "PLRfhDHeBTBJ7TJ1MBUMRg588JQd9p-ub9",
+				"duration": "04:30:40",
+				"platform": 6
+			},
+			{
+				"id": 147,
+				"title": "God of War: Chains of Olympus HD",
+				"playlistId": "PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX",
+				"duration": "03:20:24",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 33,
+		"name": "Ubisoft",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 117,
+				"title": "Batman Vengeance",
+				"playlistId": "PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
+				"duration": "02:32:02",
+				"platform": 5
+			},
+			{
+				"id": 31,
+				"title": "Batman: Rise of Sin Tzu",
+				"playlistId": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
+				"duration": "04:25:24",
+				"platform": 5
+			},
+			{
+				"id": 85,
+				"title": "Beyond Good & Evil",
+				"playlistId": "PLRfhDHeBTBJ7GRN3EnqBEvfki5uAKiw5Z",
+				"duration": "05:52:22",
+				"platform": 6
+			},
+			{
+				"id": 184,
+				"title": "Child of Eden",
+				"playlistId": "PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
+				"duration": "01:18:06",
+				"platform": 6
+			},
+			{
+				"id": 206,
+				"title": "Driver: San Francisco",
+				"playlistId": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+				"duration": "04:37:43",
+				"platform": 6
+			},
+			{
+				"id": 65,
+				"title": "XIII - le jeu",
+				"playlistId": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
+				"duration": "04:34:35",
+				"platform": 1
+			},
+			{
+				"id": 68,
+				"title": "Prince of Persia 2008",
+				"playlistId": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
+				"duration": "10:18:10",
+				"platform": 1
+			},
+			{
+				"id": 24,
+				"title": "Prince of Persia : L'Ame du guerrier",
+				"playlistId": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
+				"duration": "05:52:06",
+				"platform": 6
+			},
+			{
+				"id": 11,
+				"title": "Prince of Persia : Les Deux Royaumes",
+				"playlistId": "PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg",
+				"duration": "04:39:35",
+				"platform": 6
+			},
+			{
+				"id": 10,
+				"title": "Prince of Persia : Les Sables du temps",
+				"playlistId": "PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO",
+				"duration": "05:01:34",
+				"platform": 6
+			},
+			{
+				"id": 89,
+				"title": "Prince of Persia : Les sables oubliés",
+				"videoId": "lYIH7XkENSw",
+				"duration": "03:23:14",
+				"platform": 3
+			},
+			{
+				"id": 61,
+				"title": "Prince of Persia : Les sables oubliés",
+				"playlistId": "PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb",
+				"duration": "05:16:11",
+				"platform": 1
+			},
+			{
+				"id": 28,
+				"title": "TMNT 2007 (GBA)",
+				"playlistId": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
+				"duration": "01:10:46",
+				"platform": 2
+			},
+			{
+				"id": 78,
+				"title": "Splinter Cell Conviction",
+				"playlistId": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
+				"duration": "04:02:12",
+				"platform": 1
+			},
+			{
+				"id": 92,
+				"title": "Rayman Origins",
+				"playlistId": "PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
+				"duration": "04:40:15",
+				"platform": 1
+			},
+			{
+				"id": 136,
+				"title": "Rayman Legends",
+				"playlistId": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
+				"duration": "04:41:01",
+				"platform": 6
+			},
+			{
+				"id": 104,
+				"title": "Splinter Cell: Pandora Tomorrow",
+				"playlistId": "PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH",
+				"duration": "03:11:52",
+				"platform": 6
+			},
+			{
+				"id": 154,
+				"title": "Splinter Cell HD",
+				"playlistId": "PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
+				"duration": "04:40:45",
+				"platform": 6
+			},
+			{
+				"id": 167,
+				"title": "Splinter Cell Double Agent HD",
+				"playlistId": "PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
+				"duration": "04:06:45",
+				"platform": 6
+			},
+			{
+				"id": 102,
+				"title": "Splinter Cell Chaos Theory HD",
+				"playlistId": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+				"duration": "05:22:51",
+				"platform": 6
+			},
+			{
+				"id": 9,
+				"title": "Splinter Cell Blacklist",
+				"playlistId": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
+				"duration": "06:34:25",
+				"platform": 1
+			},
+			{
+				"id": 49,
+				"title": "Splinter Cell",
+				"playlistId": "PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN",
+				"duration": "04:34:58",
+				"platform": 1
+			},
+			{
+				"id": 72,
+				"title": "South Park : L'Annale du Destin",
+				"playlistId": "PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU",
+				"duration": "12:25:40",
+				"platform": 1
+			},
+			{
+				"id": 67,
+				"title": "South Park - Le baton de la vérité",
+				"playlistId": "PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
+				"duration": "09:16:21",
+				"platform": 1
+			},
+			{
+				"id": 75,
+				"title": "Rayman contre les Lapins Crétins",
+				"playlistId": "PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
+				"duration": "03:05:12",
+				"platform": 1
+			},
+			{
+				"id": 116,
+				"title": "Rayman 3 : Hoodlum Havoc HD",
+				"playlistId": "PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ",
+				"duration": "05:27:54",
+				"platform": 6
+			},
+			{
+				"id": 73,
+				"title": "Rayman 2 : Revolution",
+				"playlistId": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
+				"duration": "04:59:15",
+				"platform": 5
+			},
+			{
+				"id": 60,
+				"title": "Rayman 2: The Great Escape",
+				"playlistId": "PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
+				"duration": "04:18:06",
+				"platform": 4
+			}
+		]
+	},
+	{
+		"id": 50,
+		"name": "Electronic Arts",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 145,
+				"title": "Bionicle",
+				"videoId": "rGnInmyP2s4",
+				"duration": "01:20:42",
+				"platform": 1
+			},
+			{
+				"id": 160,
+				"title": "Dante's Inferno",
+				"playlistId": "PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP",
+				"duration": "05:48:59",
+				"platform": 6
+			},
+			{
+				"id": 14,
+				"title": "Def Jam: Fight for NY",
+				"playlistId": "PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
+				"duration": "04:19:35",
+				"platform": 5
+			},
+			{
+				"id": 209,
+				"title": "Shadows of the Damned",
+				"playlistId": "PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
+				"duration": "07:32:11",
+				"platform": 6
+			},
+			{
+				"id": 188,
+				"title": "Shank",
+				"playlistId": "PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
+				"duration": "02:07:05",
+				"platform": 6
+			},
+			{
+				"id": 189,
+				"title": "Shank 2",
+				"playlistId": "PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
+				"duration": "02:04:10",
+				"platform": 6
+			},
+			{
+				"id": 134,
+				"title": "Les Simpson : Le Jeu",
+				"playlistId": "PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh",
+				"duration": "04:05:46",
+				"platform": 6
+			},
+			{
+				"id": 120,
+				"title": "Harry Potter et la Chambre des Secrets",
+				"playlistId": "PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
+				"duration": "04:06:59",
+				"platform": 1
+			},
+			{
+				"id": 119,
+				"title": "Harry Potter à l'Ecole des Sorciers",
+				"playlistId": "PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7",
+				"duration": "03:36:33",
+				"platform": 1
+			},
+			{
+				"id": 123,
+				"title": "Harry Potter et le Prisonnier d'Azkaban",
+				"videoId": "IOog6QKck6o",
+				"duration": "03:01:32",
+				"platform": 1
+			},
+			{
+				"id": 55,
+				"title": "Le parrain II",
+				"playlistId": "PLRfhDHeBTBJ6ho33uahEjHiIyL5nSi_3O",
+				"duration": "08:24:01",
+				"platform": 1
+			},
+			{
+				"id": 26,
+				"title": "Le Parrain : Edition du Don",
+				"playlistId": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
+				"duration": "15:05:17",
+				"platform": 6
+			},
+			{
+				"id": 95,
+				"title": "Harry Potter et la Coupe de Feu",
+				"playlistId": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
+				"duration": "02:17:52",
+				"platform": 1
+			},
+			{
+				"id": 76,
+				"title": "Need for Speed Carbon",
+				"playlistId": "PLRfhDHeBTBJ6MEuVUHAD2HZETNt5cBCZP",
+				"duration": "05:12:32",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 14,
+		"name": "Atari",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 17,
+				"title": "Astérix & Obélix XXL",
+				"playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
+				"duration": "06:21:55",
+				"platform": 5
+			},
+			{
+				"id": 70,
+				"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
+				"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
+				"duration": "04:08:28",
+				"platform": 3
+			},
+			{
+				"id": 149,
+				"title": "Astérix aux Jeux olympiques",
+				"playlistId": "PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
+				"duration": "03:23:11",
+				"platform": 5
+			},
+			{
+				"id": 86,
+				"title": "Dragon Ball : Advanced Adventure",
+				"videoId": "5ZHExfdq9F8",
+				"duration": "01:50:53",
+				"platform": 2
+			},
+			{
+				"id": 131,
+				"title": "Dragon Ball Z : Buu's Fury",
+				"playlistId": "PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz",
+				"duration": "04:36:11",
+				"platform": 2
+			},
+			{
+				"id": 171,
+				"title": "Fahrenheit Indigo Prophecy",
+				"playlistId": "PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
+				"duration": "05:38:37",
+				"platform": 5
+			},
+			{
+				"id": 111,
+				"title": "Marc Eckō's Getting Up: Contents Under Pressure",
+				"playlistId": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
+				"duration": "07:26:19",
+				"platform": 5
+			},
+			{
+				"id": 100,
+				"title": "Titeuf : Méga-Compet'",
+				"playlistId": "PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
+				"duration": "01:26:00",
+				"platform": 5
+			},
+			{
+				"id": 144,
+				"title": "Kya : Dark Lineage",
+				"playlistId": "PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj",
+				"duration": "07:34:50",
+				"platform": 5
+			},
+			{
+				"id": 151,
+				"title": "Lucky Luke : Tous à l'Ouest",
+				"videoId": "kDoc1rzc-Zs",
+				"duration": "01:21:01",
+				"platform": 1
+			},
+			{
+				"id": 22,
+				"title": "Pyjama Sam : Héros du Goûter",
+				"videoId": "Qsq_q65MwhU",
+				"duration": "01:07:54",
+				"platform": 7
+			},
+			{
+				"id": 88,
+				"title": "Hot Pixel",
+				"videoId": "6UzzEQjYA9c",
+				"duration": "00:27:38",
+				"platform": 3
+			}
+		]
+	},
+	{
+		"id": 4,
+		"name": "THQ",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 126,
+				"title": "50 Cent: Blood on the Sand",
+				"playlistId": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+				"duration": "03:52:13",
+				"platform": 6
+			},
+			{
+				"id": 87,
+				"title": "Avatar : Le Dernier Maître de l'Air",
+				"videoId": "L7R_LBBOPEk",
+				"duration": "02:13:24",
+				"platform": 2
+			},
+			{
+				"id": 93,
+				"title": "Danny Fantôme : L'Ultime Ennemi",
+				"videoId": "uDs_7iY6oqw",
+				"duration": "00:52:53",
+				"platform": 2
+			},
+			{
+				"id": 50,
+				"title": "Darksiders I",
+				"playlistId": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
+				"duration": "11:59:57",
+				"platform": 1
+			},
+			{
+				"id": 42,
+				"title": "Darksiders II",
+				"playlistId": "PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X",
+				"duration": "14:35:48",
+				"platform": 6
+			},
+			{
+				"id": 15,
+				"title": "Destroy All Humans! 2",
+				"playlistId": "PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy",
+				"duration": "11:22:25",
+				"platform": 5
+			},
+			{
+				"id": 98,
+				"title": "Destroy All Humans! En route vers Paname !",
+				"playlistId": "PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
+				"duration": "06:44:54",
+				"platform": 6
+			},
+			{
+				"id": 129,
+				"title": "The Punisher",
+				"playlistId": "PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT",
+				"duration": "05:36:21",
+				"platform": 1
+			},
+			{
+				"id": 66,
+				"title": "Saints Row The Third",
+				"playlistId": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
+				"duration": "13:53:03",
+				"platform": 1
+			},
+			{
+				"id": 30,
+				"title": "Les indestructibles Le Jeu",
+				"playlistId": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
+				"duration": "03:42:26",
+				"platform": 1
+			},
+			{
+				"id": 36,
+				"title": "Les Indestructibles : La Terrible Attaque du Démolisseur",
+				"playlistId": "PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
+				"duration": "02:11:24",
+				"platform": 1
+			},
+			{
+				"id": 187,
+				"title": "Le Chat Potté",
+				"playlistId": "PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
+				"duration": "01:38:54",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 273,
+		"name": "Humongous",
+		"developerItems": [
+			{
+				"id": 57,
+				"title": "Spy Fox : Operation Ozone",
+				"playlistId": "PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A",
+				"duration": "01:09:17",
+				"platform": 7
+			},
+			{
+				"id": 20,
+				"title": "Sam Pyjam : Héros de la Nuit",
+				"videoId": "qaIADIQyr0A",
+				"duration": "00:44:11",
+				"platform": 7
+			},
+			{
+				"id": 22,
+				"title": "Pyjama Sam : Héros du Goûter",
+				"videoId": "Qsq_q65MwhU",
+				"duration": "01:07:54",
+				"platform": 7
+			},
+			{
+				"id": 21,
+				"title": "Pyjama Sam 2 : Héros Météo",
+				"videoId": "We7-JHU7D7I",
+				"duration": "00:53:45",
+				"platform": 7
+			},
+			{
+				"id": 58,
+				"title": "Spy Fox : Opération Robot Expo",
+				"playlistId": "PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx",
+				"duration": "01:12:15",
+				"platform": 7
+			},
+			{
+				"id": 69,
+				"title": "Spy fox : Opération Milkshake",
+				"playlistId": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
+				"duration": "01:17:20",
+				"platform": 7
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 20,
+				"title": "Sam Pyjam : Héros de la Nuit",
+				"videoId": "qaIADIQyr0A",
+				"duration": "00:44:11",
+				"platform": 7
+			},
+			{
+				"id": 22,
+				"title": "Pyjama Sam : Héros du Goûter",
+				"videoId": "Qsq_q65MwhU",
+				"duration": "01:07:54",
+				"platform": 7
+			},
+			{
+				"id": 21,
+				"title": "Pyjama Sam 2 : Héros Météo",
+				"videoId": "We7-JHU7D7I",
+				"duration": "00:53:45",
+				"platform": 7
+			},
+			{
+				"id": 58,
+				"title": "Spy Fox : Opération Robot Expo",
+				"playlistId": "PLRfhDHeBTBJ4AAsZf91kxWWrQEKHae4Wx",
+				"duration": "01:12:15",
+				"platform": 7
+			},
+			{
+				"id": 69,
+				"title": "Spy fox : Opération Milkshake",
+				"playlistId": "PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525",
+				"duration": "01:17:20",
+				"platform": 7
+			}
+		]
+	},
+	{
+		"id": 63,
+		"name": "Activision",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 80,
+				"title": "Crash Bandicoot",
+				"playlistId": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
+				"duration": "01:48:31",
+				"platform": 1
+			},
+			{
+				"id": 81,
+				"title": "Crash Bandicoot 2 : Cortex Strikes Back",
+				"playlistId": "PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao",
+				"duration": "02:13:19",
+				"platform": 1
+			},
+			{
+				"id": 79,
+				"title": "Crash Bandicoot 3 : Warped",
+				"playlistId": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
+				"duration": "01:57:55",
+				"platform": 1
+			},
+			{
+				"id": 106,
+				"title": "Crash Bandicoot 4: It's About Time",
+				"playlistId": "PLRfhDHeBTBJ6AGIBxZa5zvykgQBKSHzd5",
+				"duration": "05:34:31",
+				"platform": 1
+			},
+			{
+				"id": 179,
+				"title": "Deadpool",
+				"playlistId": "PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
+				"duration": "05:23:02",
+				"platform": 1
+			},
+			{
+				"id": 133,
+				"title": "X-Men Origins : Wolverine",
+				"playlistId": "PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
+				"duration": "06:43:09",
+				"platform": 1
+			},
+			{
+				"id": 99,
+				"title": "Madagascar",
+				"playlistId": "PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn",
+				"duration": "03:24:49",
+				"platform": 5
+			},
+			{
+				"id": 164,
+				"title": "La Légende de Korra",
+				"playlistId": "PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
+				"duration": "02:33:20",
+				"platform": 6
+			},
+			{
+				"id": 19,
+				"title": "Shrek 2 Le Jeu",
+				"playlistId": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
+				"duration": "02:24:35",
+				"platform": 1
+			},
+			{
+				"id": 90,
+				"title": "Shrek Super Slam",
+				"videoId": "AVwWGO0Zocs",
+				"duration": "00:31:13",
+				"platform": 5
+			}
+		]
+	},
+	{
+		"id": 157,
+		"name": "Insomniac Games",
+		"developerItems": [
+			{
+				"id": 38,
+				"title": "Ratchet & Clank",
+				"playlistId": "PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo",
+				"duration": "07:03:58",
+				"platform": 6
+			},
+			{
+				"id": 37,
+				"title": "Ratchet & Clank 2",
+				"playlistId": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
+				"duration": "07:48:33",
+				"platform": 6
+			},
+			{
+				"id": 35,
+				"title": "Ratchet & Clank 3",
+				"playlistId": "PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu",
+				"duration": "06:55:09",
+				"platform": 6
+			},
+			{
+				"id": 114,
+				"title": "Ratchet & Clank : A Crack in Time",
+				"playlistId": "PLRfhDHeBTBJ5ysRbqhFaSSapvvuEVOu7M",
+				"duration": "05:45:00",
+				"platform": 6
+			},
+			{
+				"id": 182,
+				"title": "Ratchet & Clank : All 4 One",
+				"playlistId": "PLRfhDHeBTBJ5o809T1bcqRrEC_uoOtT_M",
+				"duration": "07:56:23",
+				"platform": 6
+			},
+			{
+				"id": 94,
+				"title": "Ratchet & Clank : Opération Destruction",
+				"playlistId": "PLRfhDHeBTBJ4uA4ArliLWDLuJgaykBcIY",
+				"duration": "06:49:19",
+				"platform": 6
+			},
+			{
+				"id": 185,
+				"title": "Ratchet & Clank : QForce",
+				"playlistId": "PLRfhDHeBTBJ67w1KXTXw5Da_taWmFUQCk",
+				"duration": "02:44:35",
+				"platform": 6
+			},
+			{
+				"id": 162,
+				"title": "Ratchet & Clank : Quest for Booty",
+				"playlistId": "PLRfhDHeBTBJ4cSitG0GgcyOxbL54oqvgo",
+				"duration": "01:48:22",
+				"platform": 6
+			},
+			{
+				"id": 163,
+				"title": "Ratchet & Clank Nexus",
+				"playlistId": "PLRfhDHeBTBJ5l6LcIoNR1rUTAaGp8WPDf",
+				"duration": "03:39:10",
+				"platform": 6
+			},
+			{
+				"id": 39,
+				"title": "Ratchet : Gladiator",
+				"playlistId": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
+				"duration": "06:07:43",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 42,
+		"name": "Ubisoft Montréal",
+		"developerItems": [
+			{
+				"id": 31,
+				"title": "Batman: Rise of Sin Tzu",
+				"playlistId": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
+				"duration": "04:25:24",
+				"platform": 5
+			},
+			{
+				"id": 24,
+				"title": "Prince of Persia : L'Ame du guerrier",
+				"playlistId": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
+				"duration": "05:52:06",
+				"platform": 6
+			},
+			{
+				"id": 11,
+				"title": "Prince of Persia : Les Deux Royaumes",
+				"playlistId": "PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg",
+				"duration": "04:39:35",
+				"platform": 6
+			},
+			{
+				"id": 10,
+				"title": "Prince of Persia : Les Sables du temps",
+				"playlistId": "PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO",
+				"duration": "05:01:34",
+				"platform": 6
+			},
+			{
+				"id": 61,
+				"title": "Prince of Persia : Les sables oubliés",
+				"playlistId": "PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb",
+				"duration": "05:16:11",
+				"platform": 1
+			},
+			{
+				"id": 28,
+				"title": "TMNT 2007 (GBA)",
+				"playlistId": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
+				"duration": "01:10:46",
+				"platform": 2
+			},
+			{
+				"id": 78,
+				"title": "Splinter Cell Conviction",
+				"playlistId": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
+				"duration": "04:02:12",
+				"platform": 1
+			},
+			{
+				"id": 154,
+				"title": "Splinter Cell HD",
+				"playlistId": "PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
+				"duration": "04:40:45",
+				"platform": 6
+			},
+			{
+				"id": 102,
+				"title": "Splinter Cell Chaos Theory HD",
+				"playlistId": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+				"duration": "05:22:51",
+				"platform": 6
+			},
+			{
+				"id": 49,
+				"title": "Splinter Cell",
+				"playlistId": "PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN",
+				"duration": "04:34:58",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 60,
+		"name": "KONAMI",
+		"developerItems": [
+			{
+				"id": 139,
+				"title": "Yu-Gi-Oh! Reshef le Destructeur",
+				"videoId": "1vvwPVwbACY",
+				"duration": "05:04:19",
+				"platform": 2
+			},
+			{
+				"id": 137,
+				"title": "Yu-Gi-Oh! Les Cartes Sacrées",
+				"videoId": "NZiAc-mIJuQ",
+				"duration": "02:57:48",
+				"platform": 2
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 178,
+				"title": "Contra Operation Galuga",
+				"playlistId": "PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X",
+				"duration": "02:04:32",
+				"platform": 1
+			},
+			{
+				"id": 139,
+				"title": "Yu-Gi-Oh! Reshef le Destructeur",
+				"videoId": "1vvwPVwbACY",
+				"duration": "05:04:19",
+				"platform": 2
+			},
+			{
+				"id": 137,
+				"title": "Yu-Gi-Oh! Les Cartes Sacrées",
+				"videoId": "NZiAc-mIJuQ",
+				"duration": "02:57:48",
+				"platform": 2
+			},
+			{
+				"id": 190,
+				"title": "NeverDead",
+				"playlistId": "PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
+				"duration": "06:48:05",
+				"platform": 6
+			},
+			{
+				"id": 172,
+				"title": "Metal Gear Rising Revengeance",
+				"playlistId": "PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
+				"duration": "05:59:03",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 124,
+		"name": "Santa Monica Studio",
+		"developerItems": [
+			{
+				"id": 12,
+				"title": "God Of War II HD",
+				"playlistId": "PLRfhDHeBTBJ6zui2RaBzaZ5zjm768Jzum",
+				"duration": "06:20:04",
+				"platform": 6
+			},
+			{
+				"id": 125,
+				"title": "God of War (2018)",
+				"playlistId": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
+				"duration": "17:41:07",
+				"platform": 1
+			},
+			{
+				"id": 40,
+				"title": "God of War Ascension",
+				"playlistId": "PLRfhDHeBTBJ7oa6cAMnUL_Qec1nkK6Oi6",
+				"duration": "06:20:52",
+				"platform": 6
+			},
+			{
+				"id": 53,
+				"title": "God of War I",
+				"playlistId": "PLRfhDHeBTBJ4zvv9b7-EaycdD6x_YtIkj",
+				"duration": "07:02:42",
+				"platform": 5
+			},
+			{
+				"id": 148,
+				"title": "God of War I HD",
+				"playlistId": "PLRfhDHeBTBJ5EYj5y6ByrLTuhqyKV4dpc",
+				"duration": "06:48:04",
+				"platform": 6
+			},
+			{
+				"id": 41,
+				"title": "God of War III",
+				"playlistId": "PLRfhDHeBTBJ7FqF_Z2hOQZE4JP7CmvSdO",
+				"duration": "06:46:19",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 22,
+		"name": "Capcom",
+		"developerItems": [
+			{
+				"id": 91,
+				"title": "The Legend of Zelda: The Minish Cap",
+				"playlistId": "PLRfhDHeBTBJ41LQiFCR00rhaLAyMNy7cR",
+				"duration": "06:10:03",
+				"platform": 2
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 181,
+				"title": "Asura's Wrath",
+				"playlistId": "PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
+				"duration": "08:49:28",
+				"platform": 6
+			},
+			{
+				"id": 109,
+				"title": "DmC: Devil May Cry",
+				"playlistId": "PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3",
+				"duration": "06:08:09",
+				"platform": 1
+			},
+			{
+				"id": 166,
+				"title": "DuckTales Remastered",
+				"playlistId": "PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
+				"duration": "02:34:47",
+				"platform": 6
+			},
+			{
+				"id": 23,
+				"title": "Remember Me",
+				"playlistId": "PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO",
+				"duration": "06:41:04",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 37,
+		"name": "Iron Galaxy Studios",
+		"developerItems": [
+			{
+				"id": 7,
+				"title": "Batman: Arkham Knight",
+				"playlistId": "PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg",
+				"duration": "08:33:35",
+				"platform": 1
+			},
+			{
+				"id": 4,
+				"title": "Batman: Arkham Origins",
+				"playlistId": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz",
+				"duration": "06:48:06",
+				"platform": 1
+			},
+			{
+				"id": 80,
+				"title": "Crash Bandicoot",
+				"playlistId": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
+				"duration": "01:48:31",
+				"platform": 1
+			},
+			{
+				"id": 81,
+				"title": "Crash Bandicoot 2 : Cortex Strikes Back",
+				"playlistId": "PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao",
+				"duration": "02:13:19",
+				"platform": 1
+			},
+			{
+				"id": 79,
+				"title": "Crash Bandicoot 3 : Warped",
+				"playlistId": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
+				"duration": "01:57:55",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 82,
+		"name": "Ready at Dawn Studios",
+		"developerItems": [
+			{
+				"id": 155,
+				"title": "Daxter",
+				"playlistId": "PLRfhDHeBTBJ5AJN9pWW6v6NQSxnK5tGTV",
+				"duration": "05:12:35",
+				"platform": 3
+			},
+			{
+				"id": 51,
+				"title": "God of War: Chains of Olympus",
+				"playlistId": "PLRfhDHeBTBJ6aLzxXL6JLStPjrxFH7nkf",
+				"duration": "03:34:18",
+				"platform": 3
+			},
+			{
+				"id": 52,
+				"title": "God of War: Ghost of Sparta",
+				"playlistId": "PLRfhDHeBTBJ7VH9EyPcKvQSCo6FbMUE6g",
+				"duration": "04:53:25",
+				"platform": 3
+			},
+			{
+				"id": 150,
+				"title": "God of War: Ghost of Sparta HD",
+				"playlistId": "PLRfhDHeBTBJ7TJ1MBUMRg588JQd9p-ub9",
+				"duration": "04:30:40",
+				"platform": 6
+			},
+			{
+				"id": 147,
+				"title": "God of War: Chains of Olympus HD",
+				"playlistId": "PLRfhDHeBTBJ5BASLY5Kgof-1fgRxNVkOX",
+				"duration": "03:20:24",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 44,
+		"name": "Ubisoft Montpellier",
+		"developerItems": [
+			{
+				"id": 85,
+				"title": "Beyond Good & Evil",
+				"playlistId": "PLRfhDHeBTBJ7GRN3EnqBEvfki5uAKiw5Z",
+				"duration": "05:52:22",
+				"platform": 6
+			},
+			{
+				"id": 92,
+				"title": "Rayman Origins",
+				"playlistId": "PLRfhDHeBTBJ703-Pyf2BZmJC0dM8Uu4Wc",
+				"duration": "04:40:15",
+				"platform": 1
+			},
+			{
+				"id": 136,
+				"title": "Rayman Legends",
+				"playlistId": "PLRfhDHeBTBJ4GoSaMs-BqHumiPqUHU3OX",
+				"duration": "04:41:01",
+				"platform": 6
+			},
+			{
+				"id": 73,
+				"title": "Rayman 2 : Revolution",
+				"playlistId": "PLRfhDHeBTBJ5iBOO8LgF8L_AvxX91jbaX",
+				"duration": "04:59:15",
+				"platform": 5
+			},
+			{
+				"id": 60,
+				"title": "Rayman 2: The Great Escape",
+				"playlistId": "PLRfhDHeBTBJ7O8QVtJw10sNcDen6yARFm",
+				"duration": "04:18:06",
+				"platform": 4
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 73,
+		"name": "2K Games",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 16,
+				"title": "Da Vinci Code",
+				"playlistId": "PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5",
+				"duration": "05:49:40",
+				"platform": 5
+			},
+			{
+				"id": 173,
+				"title": "Ghost Rider",
+				"playlistId": "PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
+				"duration": "03:29:44",
+				"platform": 5
+			},
+			{
+				"id": 1,
+				"title": "Mafia: Definitive Edition",
+				"playlistId": "PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
+				"duration": "06:59:14",
+				"platform": 1
+			},
+			{
+				"id": 25,
+				"title": "Mafia II",
+				"playlistId": "PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg",
+				"duration": "07:56:28",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 8,
+		"name": "Disney Interactive",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 127,
+				"title": "Aladdin : La Revanche de Nasira",
+				"playlistId": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+				"duration": "03:51:25",
+				"platform": 4
+			},
+			{
+				"id": 97,
+				"title": "Dingo : Une Journée de Dingue !",
+				"videoId": "-LX3ae9m_uU",
+				"duration": "00:53:20",
+				"platform": 4
+			},
+			{
+				"id": 175,
+				"title": "La Planète au Trésor",
+				"playlistId": "PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
+				"duration": "04:54:34",
+				"platform": 6
+			},
+			{
+				"id": 84,
+				"title": "Hercule",
+				"videoId": "Z-hI2U2g_j0",
+				"duration": "01:08:37",
+				"platform": 4
+			}
+		]
+	},
+	{
+		"id": 158,
+		"name": "Idol Minds",
+		"developerItems": [
+			{
+				"id": 38,
+				"title": "Ratchet & Clank",
+				"playlistId": "PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo",
+				"duration": "07:03:58",
+				"platform": 6
+			},
+			{
+				"id": 37,
+				"title": "Ratchet & Clank 2",
+				"playlistId": "PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu",
+				"duration": "07:48:33",
+				"platform": 6
+			},
+			{
+				"id": 35,
+				"title": "Ratchet & Clank 3",
+				"playlistId": "PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu",
+				"duration": "06:55:09",
+				"platform": 6
+			},
+			{
+				"id": 39,
+				"title": "Ratchet : Gladiator",
+				"playlistId": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
+				"duration": "06:07:43",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 113,
+		"name": "Infogrames",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 107,
+				"title": "Dragon Ball Z : L'Héritage de Goku 2",
+				"playlistId": "PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem",
+				"duration": "04:38:54",
+				"platform": 2
+			},
+			{
+				"id": 108,
+				"title": "Zapper : Le Criquet Ravageur !",
+				"playlistId": "PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT",
+				"duration": "02:45:50",
+				"platform": 5
+			},
+			{
+				"id": 57,
+				"title": "Spy Fox : Operation Ozone",
+				"playlistId": "PLRfhDHeBTBJ5VLwcplFFMaHjd5eKC4p2A",
+				"duration": "01:09:17",
+				"platform": 7
+			},
+			{
+				"id": 22,
+				"title": "Pyjama Sam : Héros du Goûter",
+				"videoId": "Qsq_q65MwhU",
+				"duration": "01:07:54",
+				"platform": 7
+			}
+		]
+	},
+	{
+		"id": 299,
+		"name": "KnowWonder",
+		"developerItems": [
+			{
+				"id": 19,
+				"title": "Shrek 2 Le Jeu",
+				"playlistId": "PLRfhDHeBTBJ53mxvj3I9ZwNfn38vQSI3j",
+				"duration": "02:24:35",
+				"platform": 1
+			},
+			{
+				"id": 120,
+				"title": "Harry Potter et la Chambre des Secrets",
+				"playlistId": "PLRfhDHeBTBJ4zV33TJt9y--cp84eD7ivO",
+				"duration": "04:06:59",
+				"platform": 1
+			},
+			{
+				"id": 119,
+				"title": "Harry Potter à l'Ecole des Sorciers",
+				"playlistId": "PLRfhDHeBTBJ6Dbl3hku6SlyybSN86clQ7",
+				"duration": "03:36:33",
+				"platform": 1
+			},
+			{
+				"id": 123,
+				"title": "Harry Potter et le Prisonnier d'Azkaban",
+				"videoId": "IOog6QKck6o",
+				"duration": "03:01:32",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 9,
+		"name": "Remedy Entertainment",
+		"developerItems": [
+			{
+				"id": 128,
+				"title": "Alan Wake Remastered",
+				"playlistId": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+				"duration": "09:33:04",
+				"platform": 1
+			},
+			{
+				"id": 77,
+				"title": "Quantum Break",
+				"playlistId": "PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f",
+				"duration": "05:29:07",
+				"platform": 1
+			},
+			{
+				"id": 46,
+				"title": "Max Payne I",
+				"playlistId": "PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
+				"duration": "04:10:57",
+				"platform": 1
+			},
+			{
+				"id": 45,
+				"title": "Max Payne 2 - The Fall of Max Payne",
+				"playlistId": "PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf",
+				"duration": "03:35:54",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 398,
+		"name": "Rogueside",
+		"developerItems": [
+			{
+				"id": 43,
+				"title": "Guns Gore and Cannoli 2",
+				"playlistId": "PLRfhDHeBTBJ4ivg1J2leFzeuABXobVFNO",
+				"duration": "02:31:53",
+				"platform": 1
+			},
+			{
+				"id": 5,
+				"title": "Guns Gore & Cannoli",
+				"playlistId": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
+				"duration": "02:10:05",
+				"platform": 1
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 43,
+				"title": "Guns Gore and Cannoli 2",
+				"playlistId": "PLRfhDHeBTBJ4ivg1J2leFzeuABXobVFNO",
+				"duration": "02:31:53",
+				"platform": 1
+			},
+			{
+				"id": 5,
+				"title": "Guns Gore & Cannoli",
+				"playlistId": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
+				"duration": "02:10:05",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 154,
+		"name": "Sega",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 183,
+				"title": "Vanquish",
+				"playlistId": "PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
+				"duration": "06:26:37",
+				"platform": 6
+			},
+			{
+				"id": 34,
+				"title": "Sonic Heroes",
+				"playlistId": "PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx",
+				"duration": "02:55:04",
+				"platform": 5
+			},
+			{
+				"id": 118,
+				"title": "Sonic Adventure DX: Director's Cut",
+				"playlistId": "PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
+				"duration": "06:25:57",
+				"platform": 1
+			},
+			{
+				"id": 121,
+				"title": "Sonic Adventure 2",
+				"videoId": "a0mr0A8VM9A",
+				"duration": "03:50:39",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 28,
+		"name": "Telltale Games",
+		"developerItems": [
+			{
+				"id": 170,
+				"title": "Batman The Enemy Within",
+				"playlistId": "PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
+				"duration": "08:10:21",
+				"platform": 1
+			},
+			{
+				"id": 153,
+				"title": "Batman The Telltale Series",
+				"playlistId": "PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
+				"duration": "07:08:15",
+				"platform": 1
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 170,
+				"title": "Batman The Enemy Within",
+				"playlistId": "PLRfhDHeBTBJ7acyVd3rXz6TsMphHkQKHG",
+				"duration": "08:10:21",
+				"platform": 1
+			},
+			{
+				"id": 153,
+				"title": "Batman The Telltale Series",
+				"playlistId": "PLRfhDHeBTBJ6_wunnzhRIaBhtF3aiuS7q",
+				"duration": "07:08:15",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 229,
+		"name": "Volition",
+		"developerItems": [
+			{
+				"id": 129,
+				"title": "The Punisher",
+				"playlistId": "PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT",
+				"duration": "05:36:21",
+				"platform": 1
+			},
+			{
+				"id": 66,
+				"title": "Saints Row The Third",
+				"playlistId": "PLRfhDHeBTBJ5BcOJy0BEPvdPbZSfi1P1b",
+				"duration": "13:53:03",
+				"platform": 1
+			},
+			{
+				"id": 62,
+				"title": "Saints Row IV",
+				"playlistId": "PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
+				"duration": "20:55:30",
+				"platform": 1
+			},
+			{
+				"id": 64,
+				"title": "Saints Row Gat out of Hell",
+				"playlistId": "PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO",
+				"duration": "05:45:04",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 27,
+		"name": "WB Games",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 8,
+				"title": "Batman Arkham City",
+				"playlistId": "PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
+				"duration": "06:47:41",
+				"platform": 1
+			},
+			{
+				"id": 7,
+				"title": "Batman: Arkham Knight",
+				"playlistId": "PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg",
+				"duration": "08:33:35",
+				"platform": 1
+			},
+			{
+				"id": 4,
+				"title": "Batman: Arkham Origins",
+				"playlistId": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz",
+				"duration": "06:48:06",
+				"platform": 1
+			},
+			{
+				"id": 161,
+				"title": "Lollipop Chainsaw",
+				"playlistId": "PLRfhDHeBTBJ7-G7QCx-nB3Oc-TNmIaXMk",
+				"duration": "04:26:45",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 264,
+		"name": "Deep Silver",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 208,
+				"title": "Killer Is Dead",
+				"playlistId": "PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
+				"duration": "04:58:20",
+				"platform": 6
+			},
+			{
+				"id": 62,
+				"title": "Saints Row IV",
+				"playlistId": "PLRfhDHeBTBJ4QdQseb6rQyYe_lybyI5LB",
+				"duration": "20:55:30",
+				"platform": 1
+			},
+			{
+				"id": 64,
+				"title": "Saints Row Gat out of Hell",
+				"playlistId": "PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO",
+				"duration": "05:45:04",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 188,
+		"name": "Double Fine Productions",
+		"developerItems": [
+			{
+				"id": 63,
+				"title": "Psychonauts",
+				"playlistId": "PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
+				"duration": "13:35:45",
+				"platform": 1
+			},
+			{
+				"id": 112,
+				"title": "Psychonauts 2",
+				"playlistId": "PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ",
+				"duration": "10:59:44",
+				"platform": 1
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 63,
+				"title": "Psychonauts",
+				"playlistId": "PLRfhDHeBTBJ6NqC2O9ojqqUv91ARBqUkl",
+				"duration": "13:35:45",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 221,
+		"name": "Grasshopper Manufacture",
+		"developerItems": [
+			{
+				"id": 209,
+				"title": "Shadows of the Damned",
+				"playlistId": "PLRfhDHeBTBJ42rG5GdWtl0-eGra79freb",
+				"duration": "07:32:11",
+				"platform": 6
+			},
+			{
+				"id": 208,
+				"title": "Killer Is Dead",
+				"playlistId": "PLRfhDHeBTBJ5BK74zQ6os3B_kFVHz3YOP",
+				"duration": "04:58:20",
+				"platform": 6
+			},
+			{
+				"id": 161,
+				"title": "Lollipop Chainsaw",
+				"playlistId": "PLRfhDHeBTBJ7-G7QCx-nB3Oc-TNmIaXMk",
+				"duration": "04:26:45",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 106,
+		"name": "Headup",
+		"developerItems": [
+			{
+				"id": 159,
+				"title": "Dr. Fetus' Mean Meat Machine",
+				"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD",
+				"duration": "05:28:02",
+				"platform": 1
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 159,
+				"title": "Dr. Fetus' Mean Meat Machine",
+				"playlistId": "PLRfhDHeBTBJ5QMoekvhUMtxdWRNHEMAbD",
+				"duration": "05:28:02",
+				"platform": 1
+			},
+			{
+				"id": 96,
+				"title": "Pumpkin Jack",
+				"playlistId": "PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
+				"duration": "03:33:36",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 200,
+		"name": "High Impact Games",
+		"developerItems": [
+			{
+				"id": 33,
+				"title": "Ratchet & Clank : La Taille, Ca Compte",
+				"playlistId": "PLRfhDHeBTBJ5J7kgKwUQGOnru8DZhKi6s",
+				"duration": "04:05:03",
+				"platform": 3
+			},
+			{
+				"id": 32,
+				"title": "Secret Agent Clank",
+				"playlistId": "PLRfhDHeBTBJ70A5fWB1qpafjMvJ2w1IxY",
+				"duration": "06:22:48",
+				"platform": 3
+			},
+			{
+				"id": 152,
+				"title": "Jak and Daxter: The Lost Frontier",
+				"playlistId": "PLRfhDHeBTBJ5yE1da-5kvYirmxBd7sLEX",
+				"duration": "05:16:27",
+				"platform": 3
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 84,
+		"name": "Namco",
+		"developerItems": [
+			{
+				"id": 122,
+				"title": "Dead to Rights",
+				"playlistId": "PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
+				"duration": "06:19:09",
+				"platform": 1
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 122,
+				"title": "Dead to Rights",
+				"playlistId": "PLRfhDHeBTBJ7y3xsVkTNRYORp_mX0ag14",
+				"duration": "06:19:09",
+				"platform": 1
+			},
+			{
+				"id": 124,
+				"title": "Dead to Rights : Retribution",
+				"playlistId": "PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
+				"duration": "05:50:51",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 5,
+		"name": "Namco Bandai Games",
+		"developerItems": [
+			{
+				"id": 138,
+				"title": "Afro Samurai",
+				"playlistId": "PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
+				"duration": "04:46:22",
+				"platform": 6
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 138,
+				"title": "Afro Samurai",
+				"playlistId": "PLRfhDHeBTBJ6PHF-BH9dFug86rb877o2y",
+				"duration": "04:46:22",
+				"platform": 6
+			},
+			{
+				"id": 168,
+				"title": "Enslaved Odyssey to the West",
+				"playlistId": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+				"duration": "06:29:47",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 356,
+		"name": "Naughty Dog",
+		"developerItems": [
+			{
+				"id": 101,
+				"title": "Jak and Daxter: The Precursor Legacy",
+				"playlistId": "PLRfhDHeBTBJ5QvrTXXZ64vl8sRngbgkDv",
+				"duration": "05:07:21",
+				"platform": 6
+			},
+			{
+				"id": 103,
+				"title": "Jak II : Hors la Loi",
+				"playlistId": "PLRfhDHeBTBJ5omqALCFYK0zrIANxO8d2y",
+				"duration": "06:25:22",
+				"platform": 6
+			},
+			{
+				"id": 105,
+				"title": "Jak 3",
+				"playlistId": "PLRfhDHeBTBJ5KZm9-LWr5C-Iet5dyGGSc",
+				"duration": "06:27:02",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 153,
+		"name": "PlatinumGames",
+		"developerItems": [
+			{
+				"id": 183,
+				"title": "Vanquish",
+				"playlistId": "PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
+				"duration": "06:26:37",
+				"platform": 6
+			},
+			{
+				"id": 164,
+				"title": "La Légende de Korra",
+				"playlistId": "PLRfhDHeBTBJ544INoLqRwd2WxbcFBJxz4",
+				"duration": "02:33:20",
+				"platform": 6
+			},
+			{
+				"id": 172,
+				"title": "Metal Gear Rising Revengeance",
+				"playlistId": "PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
+				"duration": "05:59:03",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 52,
+		"name": "Rockstar Games",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 44,
+				"title": "Bully : Scholarship Edition",
+				"playlistId": "PLRfhDHeBTBJ4l1G59ZVCUuTuZ-btLpPnm",
+				"duration": "11:38:17",
+				"platform": 1
+			},
+			{
+				"id": 82,
+				"title": "Max Payne 3",
+				"playlistId": "PLRfhDHeBTBJ6qxm-Yidg-RNG6ICJuvll2",
+				"duration": "07:01:05",
+				"platform": 1
+			},
+			{
+				"id": 176,
+				"title": "The Warriors",
+				"playlistId": "PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
+				"duration": "06:11:20",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 26,
+		"name": "Rocksteady Studios",
+		"developerItems": [
+			{
+				"id": 8,
+				"title": "Batman Arkham City",
+				"playlistId": "PLRfhDHeBTBJ6RBqsJ0WYOOaL5wohZTbxw",
+				"duration": "06:47:41",
+				"platform": 1
+			},
+			{
+				"id": 6,
+				"title": "Batman: Arkham Asylum",
+				"playlistId": "PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
+				"duration": "05:59:51",
+				"platform": 1
+			},
+			{
+				"id": 7,
+				"title": "Batman: Arkham Knight",
+				"playlistId": "PLRfhDHeBTBJ6POjMkqqeCliq5jrCWagcg",
+				"duration": "08:33:35",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 237,
+		"name": "Sonic Team",
+		"developerItems": [
+			{
+				"id": 34,
+				"title": "Sonic Heroes",
+				"playlistId": "PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx",
+				"duration": "02:55:04",
+				"platform": 5
+			},
+			{
+				"id": 118,
+				"title": "Sonic Adventure DX: Director's Cut",
+				"playlistId": "PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
+				"duration": "06:25:57",
+				"platform": 1
+			},
+			{
+				"id": 121,
+				"title": "Sonic Adventure 2",
+				"videoId": "a0mr0A8VM9A",
+				"duration": "03:50:39",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 291,
+		"name": "Sucker Punch Productions",
+		"developerItems": [
+			{
+				"id": 165,
+				"title": "Sly Raccoon",
+				"playlistId": "PLRfhDHeBTBJ4ZNp1r0Rlsc2yopGcndh3x",
+				"duration": "04:05:13",
+				"platform": 6
+			},
+			{
+				"id": 169,
+				"title": "Sly 2 : Association de voleurs",
+				"playlistId": "PLRfhDHeBTBJ6WKXcBeMcBP7JVfRmbc361",
+				"duration": "11:26:08",
+				"platform": 6
+			},
+			{
+				"id": 174,
+				"title": "Sly 3 : Honor Among Thieves",
+				"playlistId": "PLRfhDHeBTBJ78Irx7Gb3-f07ApP4Ybvvb",
+				"duration": "09:46:28",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 45,
+		"name": "Ubisoft Shanghai",
+		"developerItems": [
+			{
+				"id": 85,
+				"title": "Beyond Good & Evil",
+				"playlistId": "PLRfhDHeBTBJ7GRN3EnqBEvfki5uAKiw5Z",
+				"duration": "05:52:22",
+				"platform": 6
+			},
+			{
+				"id": 104,
+				"title": "Splinter Cell: Pandora Tomorrow",
+				"playlistId": "PLRfhDHeBTBJ7xvQe1Jbs8Kv9ie_uQhdJH",
+				"duration": "03:11:52",
+				"platform": 6
+			},
+			{
+				"id": 167,
+				"title": "Splinter Cell Double Agent HD",
+				"playlistId": "PLRfhDHeBTBJ4DjOEslvP3es_dby3reani",
+				"duration": "04:06:45",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 61,
+		"name": "Vicarious Visions",
+		"developerItems": [
+			{
+				"id": 80,
+				"title": "Crash Bandicoot",
+				"playlistId": "PLRfhDHeBTBJ6uNb7KhMn-zU-slBk-HPbe",
+				"duration": "01:48:31",
+				"platform": 1
+			},
+			{
+				"id": 81,
+				"title": "Crash Bandicoot 2 : Cortex Strikes Back",
+				"playlistId": "PLRfhDHeBTBJ7gvlHCEXz7XFPkHVTCZpao",
+				"duration": "02:13:19",
+				"platform": 1
+			},
+			{
+				"id": 79,
+				"title": "Crash Bandicoot 3 : Warped",
+				"playlistId": "PLRfhDHeBTBJ4s03iZ1UDggaenmv_YDqzE",
+				"duration": "01:57:55",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 13,
+		"name": "Étranges Libellules",
+		"developerItems": [
+			{
+				"id": 17,
+				"title": "Astérix & Obélix XXL",
+				"playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
+				"duration": "06:21:55",
+				"platform": 5
+			},
+			{
+				"id": 70,
+				"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
+				"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
+				"duration": "04:08:28",
+				"platform": 3
+			},
+			{
+				"id": 149,
+				"title": "Astérix aux Jeux olympiques",
+				"playlistId": "PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
+				"duration": "03:23:11",
+				"platform": 5
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 7,
+		"name": "Argonaut Games",
+		"developerItems": [
+			{
+				"id": 127,
+				"title": "Aladdin : La Revanche de Nasira",
+				"playlistId": "PLRfhDHeBTBJ49XIAdTq1YJ5ozgKjaUM6E",
+				"duration": "03:51:25",
+				"platform": 4
+			},
+			{
+				"id": 145,
+				"title": "Bionicle",
+				"videoId": "rGnInmyP2s4",
+				"duration": "01:20:42",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 332,
+		"name": "Beenox",
+		"developerItems": [
+			{
+				"id": 30,
+				"title": "Les indestructibles Le Jeu",
+				"playlistId": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
+				"duration": "03:42:26",
+				"platform": 1
+			},
+			{
+				"id": 36,
+				"title": "Les Indestructibles : La Terrible Attaque du Démolisseur",
+				"playlistId": "PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
+				"duration": "02:11:24",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 103,
+		"name": "Bethesda Softworks",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 29,
+				"title": "Dishonored",
+				"playlistId": "PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0",
+				"duration": "05:25:12",
+				"platform": 6
+			},
+			{
+				"id": 177,
+				"title": "WET",
+				"playlistId": "PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
+				"duration": "04:12:24",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 169,
+		"name": "Bigbig Studios",
+		"developerItems": [
+			{
+				"id": 140,
+				"title": "Pursuit Force",
+				"playlistId": "PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB",
+				"duration": "03:06:59",
+				"platform": 3
+			},
+			{
+				"id": 146,
+				"title": "Pursuit Force: Extreme Justice",
+				"playlistId": "PLRfhDHeBTBJ72gRyZBPf23ZfxSlG5h8Em",
+				"duration": "04:35:22",
+				"platform": 3
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 139,
+		"name": "Blitz Games",
+		"developerItems": [
+			{
+				"id": 108,
+				"title": "Zapper : Le Criquet Ravageur !",
+				"playlistId": "PLRfhDHeBTBJ63WnP22tTxS7SMXx_SyMDT",
+				"duration": "02:45:50",
+				"platform": 5
+			},
+			{
+				"id": 187,
+				"title": "Le Chat Potté",
+				"playlistId": "PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
+				"duration": "01:38:54",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 399,
+		"name": "Claeys Brothers",
+		"developerItems": [
+			{
+				"id": 43,
+				"title": "Guns Gore and Cannoli 2",
+				"playlistId": "PLRfhDHeBTBJ4ivg1J2leFzeuABXobVFNO",
+				"duration": "02:31:53",
+				"platform": 1
+			},
+			{
+				"id": 5,
+				"title": "Guns Gore & Cannoli",
+				"playlistId": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
+				"duration": "02:10:05",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 320,
+		"name": "Codemasters",
+		"developerItems": [
+			{
+				"id": 186,
+				"title": "Operation Flashpoint : Red River",
+				"playlistId": "PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
+				"duration": "10:25:18",
+				"platform": 6
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 186,
+				"title": "Operation Flashpoint : Red River",
+				"playlistId": "PLRfhDHeBTBJ6f5QrjCB29OvgA784vgiQ7",
+				"duration": "10:25:18",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 215,
+		"name": "Crytek",
+		"developerItems": [
+			{
+				"id": 71,
+				"title": "Ryse : Son of Rome",
+				"playlistId": "PLRfhDHeBTBJ6cs6uc2X0dzBvaNuF-n49i",
+				"duration": "04:52:11",
+				"platform": 1
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 71,
+				"title": "Ryse : Son of Rome",
+				"playlistId": "PLRfhDHeBTBJ6cs6uc2X0dzBvaNuF-n49i",
+				"duration": "04:52:11",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 57,
+		"name": "Deadline Games",
+		"developerItems": [
+			{
+				"id": 156,
+				"title": "Chili Con Carnage",
+				"playlistId": "PLRfhDHeBTBJ7-gVyU44CdXMekwgbm-sNn",
+				"duration": "03:19:49",
+				"platform": 3
+			},
+			{
+				"id": 54,
+				"title": "Total Overdose",
+				"playlistId": "PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
+				"duration": "06:54:30",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 350,
+		"name": "EA Redwood Shores",
+		"developerItems": [
+			{
+				"id": 55,
+				"title": "Le parrain II",
+				"playlistId": "PLRfhDHeBTBJ6ho33uahEjHiIyL5nSi_3O",
+				"duration": "08:24:01",
+				"platform": 1
+			},
+			{
+				"id": 26,
+				"title": "Le Parrain : Edition du Don",
+				"playlistId": "PLRfhDHeBTBJ4OEBaFpx7GHRdCN7tVYhLO",
+				"duration": "15:05:17",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 257,
+		"name": "Eden Games",
+		"developerItems": [
+			{
+				"id": 100,
+				"title": "Titeuf : Méga-Compet'",
+				"playlistId": "PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
+				"duration": "01:26:00",
+				"platform": 5
+			},
+			{
+				"id": 144,
+				"title": "Kya : Dark Lineage",
+				"playlistId": "PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj",
+				"duration": "07:34:50",
+				"platform": 5
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 155,
+		"name": "Eurocom",
+		"developerItems": [
+			{
+				"id": 157,
+				"title": "Robots",
+				"playlistId": "PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR",
+				"duration": "03:28:59",
+				"platform": 5
+			},
+			{
+				"id": 84,
+				"title": "Hercule",
+				"videoId": "Z-hI2U2g_j0",
+				"duration": "01:08:37",
+				"platform": 4
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 254,
+		"name": "Gathering of Developers",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 27,
+				"title": "Mafia 1",
+				"playlistId": "PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP",
+				"duration": "09:00:04",
+				"platform": 5
+			},
+			{
+				"id": 46,
+				"title": "Max Payne I",
+				"playlistId": "PLRfhDHeBTBJ5LaRTqHGdoOWrQM8Uck35J",
+				"duration": "04:10:57",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 331,
+		"name": "Heavy Iron Studios",
+		"developerItems": [
+			{
+				"id": 30,
+				"title": "Les indestructibles Le Jeu",
+				"playlistId": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
+				"duration": "03:42:26",
+				"platform": 1
+			},
+			{
+				"id": 36,
+				"title": "Les Indestructibles : La Terrible Attaque du Démolisseur",
+				"playlistId": "PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
+				"duration": "02:11:24",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 53,
+		"name": "InterAction studios",
+		"developerItems": [
+			{
+				"id": 56,
+				"title": "Chicken Invaders 5 - Cluck of the dark side",
+				"playlistId": "PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B",
+				"duration": "02:13:36",
+				"platform": 1
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 56,
+				"title": "Chicken Invaders 5 - Cluck of the dark side",
+				"playlistId": "PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B",
+				"duration": "02:13:36",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 223,
+		"name": "Klei Entertainment",
+		"developerItems": [
+			{
+				"id": 188,
+				"title": "Shank",
+				"playlistId": "PLRfhDHeBTBJ4F-GZjLSr2u2-R3Nz1PYWD",
+				"duration": "02:07:05",
+				"platform": 6
+			},
+			{
+				"id": 189,
+				"title": "Shank 2",
+				"playlistId": "PLRfhDHeBTBJ6QMB-9U4E7_YjsWjphueI4",
+				"duration": "02:04:10",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 1,
+		"name": "La Cosa",
+		"developerItems": [
+			{
+				"id": 115,
+				"title": "-KLAUS-",
+				"playlistId": "PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+				"duration": "04:32:14",
+				"platform": 1
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 115,
+				"title": "-KLAUS-",
+				"playlistId": "PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA",
+				"duration": "04:32:14",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 12,
+		"name": "Microids",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 130,
+				"title": "Astérix & Obélix : Baffez-les Tous !",
+				"playlistId": "PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ",
+				"duration": "05:43:21",
+				"platform": 1
+			},
+			{
+				"id": 18,
+				"title": "Astérix & Obélix XXL 2",
+				"playlistId": "PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo",
+				"duration": "04:53:56",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 391,
+		"name": "Midway",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 141,
+				"title": "Stranglehold",
+				"playlistId": "PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq",
+				"duration": "04:00:42",
+				"platform": 1
+			},
+			{
+				"id": 207,
+				"title": "Wheelman",
+				"playlistId": "PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R",
+				"duration": "05:06:21",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 104,
+		"name": "Ninja Theory",
+		"developerItems": [
+			{
+				"id": 109,
+				"title": "DmC: Devil May Cry",
+				"playlistId": "PLRfhDHeBTBJ6KPgu5IETjWe7YLFYjRzx3",
+				"duration": "06:08:09",
+				"platform": 1
+			},
+			{
+				"id": 168,
+				"title": "Enslaved Odyssey to the West",
+				"playlistId": "PLRfhDHeBTBJ7Mc84qhoazY9gu0EgHPSAn",
+				"duration": "06:29:47",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 371,
+		"name": "Nintendo",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 91,
+				"title": "The Legend of Zelda: The Minish Cap",
+				"playlistId": "PLRfhDHeBTBJ41LQiFCR00rhaLAyMNy7cR",
+				"duration": "06:10:03",
+				"platform": 2
+			},
+			{
+				"id": 48,
+				"title": "Kirby: Cauchemar au pays des Rêves",
+				"playlistId": "PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
+				"duration": "01:38:08",
+				"platform": 2
+			}
+		]
+	},
+	{
+		"id": 227,
+		"name": "pixel games SARL-S",
+		"developerItems": [
+			{
+				"id": 83,
+				"title": "Sigi - Un Pet Pour Mélusina",
+				"videoId": "odnIJiLjqCY",
+				"duration": "00:26:00",
+				"platform": 1
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 83,
+				"title": "Sigi - Un Pet Pour Mélusina",
+				"videoId": "odnIJiLjqCY",
+				"duration": "00:26:00",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 156,
+		"name": "Sierra Entertainment",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 157,
+				"title": "Robots",
+				"playlistId": "PLRfhDHeBTBJ56jE5Kb3Wb6vBZZKLgM0dR",
+				"duration": "03:28:59",
+				"platform": 5
+			},
+			{
+				"id": 113,
+				"title": "The Simpsons Hit & Run",
+				"playlistId": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
+				"duration": "04:04:20",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 345,
+		"name": "SNK Playmore",
+		"developerItems": [
+			{
+				"id": 142,
+				"title": "Metal Slug XX",
+				"videoId": "0vTdVPo9I_4",
+				"duration": "01:10:06",
+				"platform": 3
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 142,
+				"title": "Metal Slug XX",
+				"videoId": "0vTdVPo9I_4",
+				"duration": "01:10:06",
+				"platform": 3
+			}
+		]
+	},
+	{
+		"id": 128,
+		"name": "Sony Interactive Entertainment",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 125,
+				"title": "God of War (2018)",
+				"playlistId": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
+				"duration": "17:41:07",
+				"platform": 1
+			},
+			{
+				"id": 35,
+				"title": "Ratchet & Clank 3",
+				"playlistId": "PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu",
+				"duration": "06:55:09",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 383,
+		"name": "Square Enix",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 74,
+				"title": "Sleeping Dogs",
+				"playlistId": "PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO",
+				"duration": "07:22:10",
+				"platform": 1
+			},
+			{
+				"id": 132,
+				"title": "Space Invaders Extreme",
+				"videoId": "6wJFMcIHi8k",
+				"duration": "00:30:04",
+				"platform": 3
+			}
+		]
+	},
+	{
+		"id": 35,
+		"name": "Square Enix Europe",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 6,
+				"title": "Batman: Arkham Asylum",
+				"playlistId": "PLRfhDHeBTBJ4FHOgX8bYRe8alwgNKIpYv",
+				"duration": "05:59:51",
+				"platform": 1
+			},
+			{
+				"id": 156,
+				"title": "Chili Con Carnage",
+				"playlistId": "PLRfhDHeBTBJ7-gVyU44CdXMekwgbm-sNn",
+				"duration": "03:19:49",
+				"platform": 3
+			}
+		]
+	},
+	{
+		"id": 149,
+		"name": "Team17",
+		"developerItems": [
+			{
+				"id": 135,
+				"title": "Worms Ultimate Mayhem",
+				"videoId": "Drz_YdmE-yQ",
+				"duration": "03:43:44",
+				"platform": 6
+			}
+		],
+		"publisherItems": [
+			{
+				"id": 135,
+				"title": "Worms Ultimate Mayhem",
+				"videoId": "Drz_YdmE-yQ",
+				"duration": "03:43:44",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 72,
+		"name": "The Collective",
+		"developerItems": [
+			{
+				"id": 16,
+				"title": "Da Vinci Code",
+				"playlistId": "PLRfhDHeBTBJ4LD3P49nfFel3sLPMw7Kl5",
+				"duration": "05:49:40",
+				"platform": 5
+			},
+			{
+				"id": 111,
+				"title": "Marc Eckō's Getting Up: Contents Under Pressure",
+				"playlistId": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
+				"duration": "07:26:19",
+				"platform": 5
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 94,
+		"name": "THQ Nordic",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 3,
+				"title": "Destroy All Humans! - Remake",
+				"playlistId": "PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr",
+				"duration": "04:25:44",
+				"platform": 1
+			},
+			{
+				"id": 158,
+				"title": "Legend of Kay Anniversary",
+				"playlistId": "PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
+				"duration": "09:06:52",
+				"platform": 6
+			}
+		]
+	},
+	{
+		"id": 70,
+		"name": "Toys for Bob",
+		"developerItems": [
+			{
+				"id": 106,
+				"title": "Crash Bandicoot 4: It's About Time",
+				"playlistId": "PLRfhDHeBTBJ6AGIBxZa5zvykgQBKSHzd5",
+				"duration": "05:34:31",
+				"platform": 1
+			},
+			{
+				"id": 99,
+				"title": "Madagascar",
+				"playlistId": "PLRfhDHeBTBJ4ifDoD5QUnc2O-bFyHWGDn",
+				"duration": "03:24:49",
+				"platform": 5
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 32,
+		"name": "Ubisoft Montreal",
+		"developerItems": [
+			{
+				"id": 117,
+				"title": "Batman Vengeance",
+				"playlistId": "PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
+				"duration": "02:32:02",
+				"platform": 5
+			},
+			{
+				"id": 68,
+				"title": "Prince of Persia 2008",
+				"playlistId": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
+				"duration": "10:18:10",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 145,
+		"name": "Ubisoft Paris",
+		"developerItems": [
+			{
+				"id": 65,
+				"title": "XIII - le jeu",
+				"playlistId": "PLRfhDHeBTBJ67wrk9BvDqa4pGRwq4jO-8",
+				"duration": "04:34:35",
+				"platform": 1
+			},
+			{
+				"id": 116,
+				"title": "Rayman 3 : Hoodlum Havoc HD",
+				"playlistId": "PLRfhDHeBTBJ7bQV45KKQ7Japc7Z9uLvgJ",
+				"duration": "05:27:54",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 78,
+		"name": "Vigil Games",
+		"developerItems": [
+			{
+				"id": 50,
+				"title": "Darksiders I",
+				"playlistId": "PLRfhDHeBTBJ61QLZkvjtKvsYx3muPHVjs",
+				"duration": "11:59:57",
+				"platform": 1
+			},
+			{
+				"id": 42,
+				"title": "Darksiders II",
+				"playlistId": "PLRfhDHeBTBJ6Pp3ukQM6-F8LYtOmXmy9X",
+				"duration": "14:35:48",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 76,
+		"name": "Visceral Games",
+		"developerItems": [
+			{
+				"id": 160,
+				"title": "Dante's Inferno",
+				"playlistId": "PLRfhDHeBTBJ7TcJC0sKdnIpnebpXtemRP",
+				"duration": "05:48:59",
+				"platform": 6
+			},
+			{
+				"id": 134,
+				"title": "Les Simpson : Le Jeu",
+				"playlistId": "PLRfhDHeBTBJ6aLNhmxhZdrI2dz0Bavlkh",
+				"duration": "04:05:46",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 110,
+		"name": "Webfoot Technologies",
+		"developerItems": [
+			{
+				"id": 131,
+				"title": "Dragon Ball Z : Buu's Fury",
+				"playlistId": "PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz",
+				"duration": "04:36:11",
+				"platform": 2
+			},
+			{
+				"id": 107,
+				"title": "Dragon Ball Z : L'Héritage de Goku 2",
+				"playlistId": "PLRfhDHeBTBJ73iy4EC825y_EZ4cmrneem",
+				"duration": "04:38:54",
+				"platform": 2
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 191,
+		"name": "Xbox Game Studios",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 112,
+				"title": "Psychonauts 2",
+				"playlistId": "PLRfhDHeBTBJ4PRXxtpRjP_o3PUzSQ0-nQ",
+				"duration": "10:59:44",
+				"platform": 1
+			},
+			{
+				"id": 77,
+				"title": "Quantum Break",
+				"playlistId": "PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f",
+				"duration": "05:29:07",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 251,
+		"name": "2K Czech",
+		"developerItems": [
+			{
+				"id": 25,
+				"title": "Mafia II",
+				"playlistId": "PLRfhDHeBTBJ5KzX5CFJUfNs_Y8_Xi-dhg",
+				"duration": "07:56:28",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 218,
+		"name": "Adult Swim Games",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 2,
+				"title": "Samurai Jack: Battle Through Time",
+				"playlistId": "PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC",
+				"duration": "03:51:35",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 91,
+		"name": "AKI Corporation",
+		"developerItems": [
+			{
+				"id": 14,
+				"title": "Def Jam: Fight for NY",
+				"playlistId": "PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
+				"duration": "04:19:35",
+				"platform": 5
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 74,
+		"name": "Altron",
+		"developerItems": [
+			{
+				"id": 93,
+				"title": "Danny Fantôme : L'Ultime Ennemi",
+				"videoId": "uDs_7iY6oqw",
+				"duration": "00:52:53",
+				"platform": 2
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 48,
+		"name": "Argonaut Sheffield",
+		"developerItems": [
+			{
+				"id": 145,
+				"title": "Bionicle",
+				"videoId": "rGnInmyP2s4",
+				"duration": "01:20:42",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 102,
+		"name": "Arkane Studios",
+		"developerItems": [
+			{
+				"id": 29,
+				"title": "Dishonored",
+				"playlistId": "PLRfhDHeBTBJ7aXxD52b-jsEk7WzKzsdy0",
+				"duration": "05:25:12",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 151,
+		"name": "Artificial Mind & Movement",
+		"developerItems": [
+			{
+				"id": 177,
+				"title": "WET",
+				"playlistId": "PLRfhDHeBTBJ46OsqsAwhbnzBqCPryYeuV",
+				"duration": "04:12:24",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 166,
+		"name": "Bizarre Creations",
+		"developerItems": [
+			{
+				"id": 175,
+				"title": "La Planète au Trésor",
+				"playlistId": "PLRfhDHeBTBJ5m5_crztm7tu7HwJiRpLSl",
+				"duration": "04:54:34",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 93,
+		"name": "Black Forest Games",
+		"developerItems": [
+			{
+				"id": 3,
+				"title": "Destroy All Humans! - Remake",
+				"playlistId": "PLRfhDHeBTBJ76V2inJIW484ZQZZyKKejr",
+				"duration": "04:25:44",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 122,
+		"name": "Climax Group",
+		"developerItems": [
+			{
+				"id": 173,
+				"title": "Ghost Rider",
+				"playlistId": "PLRfhDHeBTBJ4KQEvirhf9p1o_xuFysva8",
+				"duration": "03:29:44",
+				"platform": 5
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 21,
+		"name": "CyberConnect2",
+		"developerItems": [
+			{
+				"id": 181,
+				"title": "Asura's Wrath",
+				"playlistId": "PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ",
+				"duration": "08:49:28",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 108,
+		"name": "Dimps",
+		"developerItems": [
+			{
+				"id": 86,
+				"title": "Dragon Ball : Advanced Adventure",
+				"videoId": "5ZHExfdq9F8",
+				"duration": "01:50:53",
+				"platform": 2
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 213,
+		"name": "Dontnod Entertainment",
+		"developerItems": [
+			{
+				"id": 23,
+				"title": "Remember Me",
+				"playlistId": "PLRfhDHeBTBJ4AFRA0rUuICqeb7QJf8-jO",
+				"duration": "06:41:04",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 374,
+		"name": "EA Black Box",
+		"developerItems": [
+			{
+				"id": 76,
+				"title": "Need for Speed Carbon",
+				"playlistId": "PLRfhDHeBTBJ6MEuVUHAD2HZETNt5cBCZP",
+				"duration": "05:12:32",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 364,
+		"name": "EA UK",
+		"developerItems": [
+			{
+				"id": 95,
+				"title": "Harry Potter et la Coupe de Feu",
+				"playlistId": "PLRfhDHeBTBJ5nRIWD5BCLi7NaQCYc6PpF",
+				"duration": "02:17:52",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 90,
+		"name": "EA Vancouver",
+		"developerItems": [
+			{
+				"id": 14,
+				"title": "Def Jam: Fight for NY",
+				"playlistId": "PLRfhDHeBTBJ63YC9KZywNsOoLCgX7EXsO",
+				"duration": "04:19:35",
+				"platform": 5
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 367,
+		"name": "Eidos Interactive",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 54,
+				"title": "Total Overdose",
+				"playlistId": "PLRfhDHeBTBJ6JUtolPUXj2YXNHLOMXbij",
+				"duration": "06:54:30",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 10,
+		"name": "Epic Games Publishing",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 128,
+				"title": "Alan Wake Remastered",
+				"playlistId": "PLRfhDHeBTBJ6L_uo8nMekfbJRE_ixUG5H",
+				"duration": "09:33:04",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 192,
+		"name": "Evil Raptor",
+		"developerItems": [
+			{
+				"id": 96,
+				"title": "Pumpkin Jack",
+				"playlistId": "PLRfhDHeBTBJ4Aam6TaY3Z22rby8dr0TR6",
+				"duration": "03:33:36",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 384,
+		"name": "Gulti",
+		"developerItems": [
+			{
+				"id": 132,
+				"title": "Space Invaders Extreme",
+				"videoId": "6wJFMcIHi8k",
+				"duration": "00:30:04",
+				"platform": 3
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 372,
+		"name": "HAL Laboratory",
+		"developerItems": [
+			{
+				"id": 48,
+				"title": "Kirby: Cauchemar au pays des Rêves",
+				"playlistId": "PLRfhDHeBTBJ5g1jcrLLDl5Azwux73Edsi",
+				"duration": "01:38:08",
+				"platform": 2
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 24,
+		"name": "Halfbrick",
+		"developerItems": [
+			{
+				"id": 87,
+				"title": "Avatar : Le Dernier Maître de l'Air",
+				"videoId": "L7R_LBBOPEk",
+				"duration": "02:13:24",
+				"platform": 2
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 249,
+		"name": "Hangar 13",
+		"developerItems": [
+			{
+				"id": 1,
+				"title": "Mafia: Definitive Edition",
+				"playlistId": "PLRfhDHeBTBJ6SEXdQnTM4OHRH9mDIRocv",
+				"duration": "06:59:14",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 88,
+		"name": "High Moon Studios",
+		"developerItems": [
+			{
+				"id": 179,
+				"title": "Deadpool",
+				"playlistId": "PLRfhDHeBTBJ4o4JXHAX93JXwXw_lazgqI",
+				"duration": "05:23:02",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 308,
+		"name": "High Voltage Software",
+		"developerItems": [
+			{
+				"id": 64,
+				"title": "Saints Row Gat out of Hell",
+				"playlistId": "PLRfhDHeBTBJ6qA11nZAq1HtkkuE98F0iO",
+				"duration": "05:45:04",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 253,
+		"name": "Illusion Softworks",
+		"developerItems": [
+			{
+				"id": 27,
+				"title": "Mafia 1",
+				"playlistId": "PLRfhDHeBTBJ65md00lEyYxa_K8qf8mPbP",
+				"duration": "09:00:04",
+				"platform": 5
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 127,
+		"name": "Jetpack Interactive",
+		"developerItems": [
+			{
+				"id": 125,
+				"title": "God of War (2018)",
+				"playlistId": "PLRfhDHeBTBJ4axkTXH5Ty8shlzKlR86Wm",
+				"duration": "17:41:07",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 348,
+		"name": "KAIKO Games",
+		"developerItems": [
+			{
+				"id": 158,
+				"title": "Legend of Kay Anniversary",
+				"playlistId": "PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
+				"duration": "09:06:52",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 322,
+		"name": "Kojima Productions",
+		"developerItems": [
+			{
+				"id": 172,
+				"title": "Metal Gear Rising Revengeance",
+				"playlistId": "PLRfhDHeBTBJ5hcdTpev5IgERHhgFaIDbP",
+				"duration": "05:59:03",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 49,
+		"name": "Lego Interactive",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 145,
+				"title": "Bionicle",
+				"videoId": "rGnInmyP2s4",
+				"duration": "01:20:42",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 11,
+		"name": "Mr. Nutz Studio",
+		"developerItems": [
+			{
+				"id": 130,
+				"title": "Astérix & Obélix : Baffez-les Tous !",
+				"playlistId": "PLRfhDHeBTBJ5hLNQ3UBKtImQLXkR1bChZ",
+				"duration": "05:43:21",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 347,
+		"name": "Neon Studios",
+		"developerItems": [
+			{
+				"id": 158,
+				"title": "Legend of Kay Anniversary",
+				"playlistId": "PLRfhDHeBTBJ4wnTcJ3vXDERleACuvRLPp",
+				"duration": "09:06:52",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 101,
+		"name": "NewKidCo",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 97,
+				"title": "Dingo : Une Journée de Dingue !",
+				"videoId": "-LX3ae9m_uU",
+				"duration": "00:53:20",
+				"platform": 4
+			}
+		]
+	},
+	{
+		"id": 289,
+		"name": "Obsidian Entertainment",
+		"developerItems": [
+			{
+				"id": 67,
+				"title": "South Park - Le baton de la vérité",
+				"playlistId": "PLRfhDHeBTBJ6PP1XZO-tM70wPQyPBBGmT",
+				"duration": "09:16:21",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 15,
+		"name": "OSome Studio",
+		"developerItems": [
+			{
+				"id": 18,
+				"title": "Astérix & Obélix XXL 2",
+				"playlistId": "PLRfhDHeBTBJ6FTJ2LSrdL4MaFM1Pl5nfo",
+				"duration": "04:53:56",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 95,
+		"name": "Pandemic Studios",
+		"developerItems": [
+			{
+				"id": 15,
+				"title": "Destroy All Humans! 2",
+				"playlistId": "PLRfhDHeBTBJ7aGxJBcsSJXKe1l_sRAMPy",
+				"duration": "11:22:25",
+				"platform": 5
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 55,
+		"name": "Q Entertainment",
+		"developerItems": [
+			{
+				"id": 184,
+				"title": "Child of Eden",
+				"playlistId": "PLRfhDHeBTBJ7bt9lfpD3nzQKdyoN01UYR",
+				"duration": "01:18:06",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 120,
+		"name": "Quantic Dream",
+		"developerItems": [
+			{
+				"id": 171,
+				"title": "Fahrenheit Indigo Prophecy",
+				"playlistId": "PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
+				"duration": "05:38:37",
+				"platform": 5
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 231,
+		"name": "Radical Entertainment",
+		"developerItems": [
+			{
+				"id": 113,
+				"title": "The Simpsons Hit & Run",
+				"playlistId": "PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV",
+				"duration": "04:04:20",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 147,
+		"name": "Raven Software",
+		"developerItems": [
+			{
+				"id": 133,
+				"title": "X-Men Origins : Wolverine",
+				"playlistId": "PLRfhDHeBTBJ6FOWzD8YONj2LoxCxPNJzO",
+				"duration": "06:43:09",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 173,
+		"name": "Rebellion Developments",
+		"developerItems": [
+			{
+				"id": 190,
+				"title": "NeverDead",
+				"playlistId": "PLRfhDHeBTBJ4SmSeWcd6XmhEQqYwo9jLW",
+				"duration": "06:48:05",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 51,
+		"name": "Rockstar New England",
+		"developerItems": [
+			{
+				"id": 44,
+				"title": "Bully : Scholarship Edition",
+				"playlistId": "PLRfhDHeBTBJ4l1G59ZVCUuTuZ-btLpPnm",
+				"duration": "11:38:17",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 329,
+		"name": "Rockstar Studios",
+		"developerItems": [
+			{
+				"id": 82,
+				"title": "Max Payne 3",
+				"playlistId": "PLRfhDHeBTBJ6qxm-Yidg-RNG6ICJuvll2",
+				"duration": "07:01:05",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 368,
+		"name": "Rockstar Toronto",
+		"developerItems": [
+			{
+				"id": 176,
+				"title": "The Warriors",
+				"playlistId": "PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
+				"duration": "06:11:20",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 97,
+		"name": "Sandblast Games",
+		"developerItems": [
+			{
+				"id": 98,
+				"title": "Destroy All Humans! En route vers Paname !",
+				"playlistId": "PLRfhDHeBTBJ5PxtGm8Pwm7PNMhPVhIugR",
+				"duration": "06:44:54",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 297,
+		"name": "Sanzaru Games",
+		"developerItems": [
+			{
+				"id": 180,
+				"title": "Sly Cooper : Voleurs à travers le Temps",
+				"playlistId": "PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
+				"duration": "08:55:44",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 380,
+		"name": "Shaba Games",
+		"developerItems": [
+			{
+				"id": 90,
+				"title": "Shrek Super Slam",
+				"videoId": "AVwWGO0Zocs",
+				"duration": "00:31:13",
+				"platform": 5
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 217,
+		"name": "Soleil",
+		"developerItems": [
+			{
+				"id": 2,
+				"title": "Samurai Jack: Battle Through Time",
+				"playlistId": "PLRfhDHeBTBJ5PoDOIMqIEoWuC-woSa4iC",
+				"duration": "03:51:35",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 265,
+		"name": "Sony Computer Entertainment America",
+		"developerItems": [
+			{
+				"id": 143,
+				"title": "Jet Li: Rise to Honour",
+				"playlistId": "PLRfhDHeBTBJ5K0xPqtndkObR9g05hHw5h",
+				"duration": "03:35:54",
+				"platform": 5
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 3,
+		"name": "Swordfish Studios",
+		"developerItems": [
+			{
+				"id": 126,
+				"title": "50 Cent: Blood on the Sand",
+				"playlistId": "PLRfhDHeBTBJ44bSU0cT2G0m4srnTO2gZY",
+				"duration": "03:52:13",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 328,
+		"name": "Take 2 Interactive",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 45,
+				"title": "Max Payne 2 - The Fall of Max Payne",
+				"playlistId": "PLRfhDHeBTBJ4ZHSeesVGZle5F3OOA6ERf",
+				"duration": "03:35:54",
+				"platform": 1
+			}
+		]
+	},
+	{
+		"id": 269,
+		"name": "Tate Interactive",
+		"developerItems": [
+			{
+				"id": 151,
+				"title": "Lucky Luke : Tous à l'Ouest",
+				"videoId": "kDoc1rzc-Zs",
+				"duration": "01:21:01",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 99,
+		"name": "The Code Monkeys",
+		"developerItems": [
+			{
+				"id": 97,
+				"title": "Dingo : Une Journée de Dingue !",
+				"videoId": "-LX3ae9m_uU",
+				"duration": "00:53:20",
+				"platform": 4
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 23,
+		"name": "THQ Studio Oz",
+		"developerItems": [
+			{
+				"id": 87,
+				"title": "Avatar : Le Dernier Maître de l'Air",
+				"videoId": "L7R_LBBOPEk",
+				"duration": "02:13:24",
+				"platform": 2
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 390,
+		"name": "Tiger Hill Entertainment",
+		"developerItems": [
+			{
+				"id": 141,
+				"title": "Stranglehold",
+				"playlistId": "PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq",
+				"duration": "04:00:42",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 392,
+		"name": "Tigon Studios",
+		"developerItems": [
+			{
+				"id": 207,
+				"title": "Wheelman",
+				"playlistId": "PLRfhDHeBTBJ62EUDxgX9knxjtgwDrxI-R",
+				"duration": "05:06:21",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 180,
+		"name": "Ubisoft Casablanca",
+		"developerItems": [
+			{
+				"id": 11,
+				"title": "Prince of Persia : Les Deux Royaumes",
+				"playlistId": "PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg",
+				"duration": "04:39:35",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 184,
+		"name": "Ubisoft Québec",
+		"developerItems": [
+			{
+				"id": 89,
+				"title": "Prince of Persia : Les sables oubliés",
+				"videoId": "lYIH7XkENSw",
+				"duration": "03:23:14",
+				"platform": 3
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 114,
+		"name": "Ubisoft Reflections",
+		"developerItems": [
+			{
+				"id": 206,
+				"title": "Driver: San Francisco",
+				"playlistId": "PLRfhDHeBTBJ5bpp-skVu2TQLD4oAkcN2r",
+				"duration": "04:37:43",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 287,
+		"name": "Ubisoft San Francisco",
+		"developerItems": [
+			{
+				"id": 72,
+				"title": "South Park : L'Annale du Destin",
+				"playlistId": "PLRfhDHeBTBJ4WXhWDhZCsIp3k6JxR7HpU",
+				"duration": "12:25:40",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 310,
+		"name": "Ubisoft Sofia",
+		"developerItems": [
+			{
+				"id": 75,
+				"title": "Rayman contre les Lapins Crétins",
+				"playlistId": "PLRfhDHeBTBJ7zlVdm21oc8ndiRGxQJy6F",
+				"duration": "03:05:12",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 283,
+		"name": "Ubisoft Toronto",
+		"developerItems": [
+			{
+				"id": 9,
+				"title": "Splinter Cell Blacklist",
+				"playlistId": "PLRfhDHeBTBJ7JOqVieOgK3RrNvDRMC5cV",
+				"duration": "06:34:25",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 382,
+		"name": "United Front Games",
+		"developerItems": [
+			{
+				"id": 74,
+				"title": "Sleeping Dogs",
+				"playlistId": "PLRfhDHeBTBJ70QO5aD5fbYmlbSdvZdmQO",
+				"duration": "07:22:10",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 86,
+		"name": "Volatile Games",
+		"developerItems": [
+			{
+				"id": 124,
+				"title": "Dead to Rights : Retribution",
+				"playlistId": "PLRfhDHeBTBJ6sm2gbS9qtdovdSGygP-3f",
+				"duration": "05:50:51",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 59,
+		"name": "WayForward",
+		"developerItems": [
+			{
+				"id": 178,
+				"title": "Contra Operation Galuga",
+				"playlistId": "PLRfhDHeBTBJ7q8Vq-WzXu8bRhv82qbR2X",
+				"duration": "02:04:32",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 116,
+		"name": "WayForward Technologies",
+		"developerItems": [
+			{
+				"id": 166,
+				"title": "DuckTales Remastered",
+				"playlistId": "PLRfhDHeBTBJ6PHLRDp5qi_ZCfVy-Lg8OO",
+				"duration": "02:34:47",
+				"platform": 6
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 39,
+		"name": "WB Games Montréal",
+		"developerItems": [
+			{
+				"id": 4,
+				"title": "Batman: Arkham Origins",
+				"playlistId": "PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz",
+				"duration": "06:48:06",
+				"platform": 1
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 396,
+		"name": "zSlide",
+		"developerItems": [
+			{
+				"id": 88,
+				"title": "Hot Pixel",
+				"videoId": "6UzzEQjYA9c",
+				"duration": "00:27:38",
+				"platform": 3
+			}
+		],
+		"publisherItems": []
+	}
+]

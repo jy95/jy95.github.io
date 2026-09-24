@@ -17,3 +17,4 @@ export { extractAndSaveTierListGamesFuture } from "./tier-list-games-future";
 export { extractAndSaveTierListTests } from "./tier-list-tests";
 export { extractAndSaveRelatedGames } from "./related-games";
 export { extractAndSaveLlmContext } from "./llms";
+export { extractAndSaveCompanies } from "./companies";
