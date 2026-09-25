@@ -11,6 +11,7 @@ Currently, we have the following pages :
 * [`/backlog`](https://jy95.github.io/backlog) - Games backlog on [GamesPassionFR][YoutubeChannel] YT channel
 * [`/links`](https://jy95.github.io/links) - Links related to [GamesPassionFR][YoutubeChannel] YT channel
 * [`/tier`](https://jy95.github.io/tier) - Tier lists grouping and ranking games, backlog entries and tests related to the [GamesPassionFR][YoutubeChannel] YT channel
+* [`/companies`](https://jy95.github.io/companies) - List of game developers and publishers, with the games associated with each company on the [GamesPassionFR][YoutubeChannel] YT channel
 
 ## Getting Started
 
