@@ -827,6 +827,109 @@
 		]
 	},
 	{
+		"id": 32,
+		"name": "Ubisoft Montréal",
+		"developerItems": [
+			{
+				"id": 117,
+				"title": "Batman Vengeance",
+				"playlistId": "PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
+				"duration": "02:32:02",
+				"platform": 5,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 31,
+				"title": "Batman: Rise of Sin Tzu",
+				"playlistId": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
+				"duration": "04:25:24",
+				"platform": 5,
+				"tierCategory": "tier_average"
+			},
+			{
+				"id": 68,
+				"title": "Prince of Persia 2008",
+				"playlistId": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
+				"duration": "10:18:10",
+				"platform": 1,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 24,
+				"title": "Prince of Persia : L'Ame du guerrier",
+				"playlistId": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
+				"duration": "05:52:06",
+				"platform": 6,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 11,
+				"title": "Prince of Persia : Les Deux Royaumes",
+				"playlistId": "PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg",
+				"duration": "04:39:35",
+				"platform": 6,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 10,
+				"title": "Prince of Persia : Les Sables du temps",
+				"playlistId": "PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO",
+				"duration": "05:01:34",
+				"platform": 6,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 61,
+				"title": "Prince of Persia : Les sables oubliés",
+				"playlistId": "PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb",
+				"duration": "05:16:11",
+				"platform": 1,
+				"tierCategory": "tier_average"
+			},
+			{
+				"id": 28,
+				"title": "TMNT 2007 (GBA)",
+				"playlistId": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
+				"duration": "01:10:46",
+				"platform": 2,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 78,
+				"title": "Splinter Cell Conviction",
+				"playlistId": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
+				"duration": "04:02:12",
+				"platform": 1,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 154,
+				"title": "Splinter Cell HD",
+				"playlistId": "PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
+				"duration": "04:40:45",
+				"platform": 6,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 102,
+				"title": "Splinter Cell Chaos Theory HD",
+				"playlistId": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
+				"duration": "05:22:51",
+				"platform": 6,
+				"tierCategory": "tier_masterpiece"
+			},
+			{
+				"id": 49,
+				"title": "Splinter Cell",
+				"playlistId": "PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN",
+				"duration": "04:34:58",
+				"platform": 1,
+				"tierCategory": "tier_good"
+			}
+		],
+		"publisherItems": []
+	},
+	{
 		"id": 273,
 		"name": "Humongous",
 		"developerItems": [
@@ -1091,93 +1194,6 @@
 				"playlistId": "PLRfhDHeBTBJ7AoUspxANPSVOxoKEC0hRA",
 				"duration": "06:07:43",
 				"platform": 6,
-				"tierCategory": "tier_good"
-			}
-		],
-		"publisherItems": []
-	},
-	{
-		"id": 42,
-		"name": "Ubisoft Montréal",
-		"developerItems": [
-			{
-				"id": 31,
-				"title": "Batman: Rise of Sin Tzu",
-				"playlistId": "PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb",
-				"duration": "04:25:24",
-				"platform": 5,
-				"tierCategory": "tier_average"
-			},
-			{
-				"id": 24,
-				"title": "Prince of Persia : L'Ame du guerrier",
-				"playlistId": "PLRfhDHeBTBJ5FBZQLKtgH6QsC536I4ggr",
-				"duration": "05:52:06",
-				"platform": 6,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 11,
-				"title": "Prince of Persia : Les Deux Royaumes",
-				"playlistId": "PLRfhDHeBTBJ6ptBn3Rkq74O50hly24Gqg",
-				"duration": "04:39:35",
-				"platform": 6,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 10,
-				"title": "Prince of Persia : Les Sables du temps",
-				"playlistId": "PLRfhDHeBTBJ53K1nOu8IEXqZltsLtffGO",
-				"duration": "05:01:34",
-				"platform": 6,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 61,
-				"title": "Prince of Persia : Les sables oubliés",
-				"playlistId": "PLRfhDHeBTBJ7EmZWmBJjwVfrNo4c2OGnb",
-				"duration": "05:16:11",
-				"platform": 1,
-				"tierCategory": "tier_average"
-			},
-			{
-				"id": 28,
-				"title": "TMNT 2007 (GBA)",
-				"playlistId": "PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU",
-				"duration": "01:10:46",
-				"platform": 2,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 78,
-				"title": "Splinter Cell Conviction",
-				"playlistId": "PLRfhDHeBTBJ48YBgwV9lobG0Ddo4EN9I3",
-				"duration": "04:02:12",
-				"platform": 1,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 154,
-				"title": "Splinter Cell HD",
-				"playlistId": "PLRfhDHeBTBJ7Do88fiav23gsXrV-0SHn-",
-				"duration": "04:40:45",
-				"platform": 6,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 102,
-				"title": "Splinter Cell Chaos Theory HD",
-				"playlistId": "PLRfhDHeBTBJ7gViU4fNr0LhQvSAWk55T2",
-				"duration": "05:22:51",
-				"platform": 6,
-				"tierCategory": "tier_masterpiece"
-			},
-			{
-				"id": 49,
-				"title": "Splinter Cell",
-				"playlistId": "PLRfhDHeBTBJ6hq_3hyZpacsJt6ZUJPTTN",
-				"duration": "04:34:58",
-				"platform": 1,
 				"tierCategory": "tier_good"
 			}
 		],
@@ -3138,29 +3154,6 @@
 				"duration": "03:24:49",
 				"platform": 5,
 				"tierCategory": "tier_average"
-			}
-		],
-		"publisherItems": []
-	},
-	{
-		"id": 32,
-		"name": "Ubisoft Montreal",
-		"developerItems": [
-			{
-				"id": 117,
-				"title": "Batman Vengeance",
-				"playlistId": "PLRfhDHeBTBJ53yF5vIimEuhh4JbBQF5l4",
-				"duration": "02:32:02",
-				"platform": 5,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 68,
-				"title": "Prince of Persia 2008",
-				"playlistId": "PLRfhDHeBTBJ4H78MI_RvItygKp29dg0bc",
-				"duration": "10:18:10",
-				"platform": 1,
-				"tierCategory": "tier_good"
 			}
 		],
 		"publisherItems": []
