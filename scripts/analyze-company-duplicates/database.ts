@@ -9,6 +9,7 @@ export function loadCompanies(
         SELECT
             c.id AS id,
             c.name AS name,
+            COUNT(DISTINCT gc.game) AS totalGames,
             COUNT(
                 DISTINCT CASE
                     WHEN gc.role = 'developer'

@@ -1,6 +1,7 @@
 export interface CompanyRecord {
     id: number;
     name: string;
+    totalGames: number;
     developerGames: number;
     publisherGames: number;
 }
