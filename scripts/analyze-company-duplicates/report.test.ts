@@ -47,6 +47,34 @@ describe("company duplicate report", () => {
         expect(markdown).toContain("0 games — 0 developer — 0 publisher");
     });
 
+    it("preserves complete exact and normalized duplicate sections", () => {
+        const report = analyzeCompanies([
+            company(1, "Acme", 1),
+            company(2, "Acme"),
+            company(3, "ACME"),
+        ]);
+        const markdown = formatMarkdown(report);
+
+        expect(markdown).toContain([
+            "## Exact duplicates",
+            "",
+            "### 1. Acme",
+            "",
+            "- ID 1 — `Acme` — 1 game — 1 developer — 0 publisher",
+            "- ID 2 — `Acme` — 0 games — 0 developer — 0 publisher",
+            "",
+            "## Normalized duplicates",
+            "",
+            "### 1. `acme`",
+            "",
+            "- ID 1 — `Acme` — 1 game — 1 developer — 0 publisher",
+            "- ID 2 — `Acme` — 0 games — 0 developer — 0 publisher",
+            "- ID 3 — `ACME` — 0 games — 0 developer — 0 publisher",
+            "",
+            "## Alias / name-variant candidates",
+        ].join("\n"));
+    });
+
     it("escapes Markdown punctuation and embedded code delimiters", () => {
         const name = "`A` & <B> [x](y) *_{}#+.!|~-\\\n## heading";
         const report = analyzeCompanies([company(1, name), company(2, name)]);
