@@ -14,7 +14,7 @@ jobs:
 # Not needed as Next.js isn't used to build the site statically atm because of missing features: 
 # https://nextjs.org/docs/app/guides/static-exports#unsupported-features
 #      - name: Set up Node.js ✨
-#        uses: actions/setup-node@v5
+#        uses: actions/setup-node@v7
 #        with:
 #          node-version: "lts/*"
 #          cache: 'npm'

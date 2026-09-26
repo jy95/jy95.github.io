@@ -1,0 +1,36 @@
+name: Analyze Company Duplicates
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    name: Analyze company duplicates
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run analysis
+        run: npm run analyze:company-duplicates
+
+      - name: Upload JSON report
+        uses: actions/upload-artifact@v7
+        with:
+          name: company-duplicate-analysis
+          path: company-duplicate-analysis.json
+          if-no-files-found: error
+          retention-days: 1
