@@ -119,12 +119,17 @@ function findComponents(
 
         visited.add(start);
 
-        while (queue.length > 0) {
-            const current = queue.shift()!;
-
+        for (let index = 0; index < queue.length; index += 1) {
+            const current = queue[index];
             component.push(current);
 
-            for (const next of graph.get(current)!) {
+            const neighbors = graph.get(current);
+
+            if (!neighbors) {
+                throw new Error(`Missing graph entry for company name: ${current}`);
+            }
+
+            for (const next of neighbors) {
                 if (!visited.has(next)) {
                     visited.add(next);
                     queue.push(next);
@@ -246,8 +251,15 @@ export function analyzeCompanies(
                 )
         );
 
-        const componentGroups = component
-            .map(name => groupsByName.get(name)!);
+        const componentGroups = component.map(name => {
+            const group = groupsByName.get(name);
+
+            if (!group) {
+                throw new Error(`Missing company group for normalized name: ${name}`);
+            }
+
+            return group;
+        });
 
         if (component.length === 2) {
             aliases.push(...pairs);

@@ -62,6 +62,33 @@ function formatGroup(
         .join("\n");
 }
 
+function appendDuplicateSection<T extends { companies: CompanyRecord[] }>(
+    lines: string[],
+    title: string,
+    groups: T[],
+    formatHeading: (group: T) => string
+): void {
+    lines.push(title);
+    lines.push("");
+
+    if (!groups.length) {
+        lines.push("None.");
+        lines.push("");
+        return;
+    }
+
+    groups.forEach((group, index) => {
+        lines.push(`### ${index + 1}. ${formatHeading(group)}`);
+        lines.push("");
+
+        for (const company of group.companies) {
+            lines.push(`- ${formatCompany(company)}`);
+        }
+
+        lines.push("");
+    });
+}
+
 export function formatMarkdown(
     report: CompanyDuplicateAnalysisReport
 ): string {
@@ -96,55 +123,19 @@ export function formatMarkdown(
     );
     lines.push("");
 
-    lines.push("## Exact duplicates");
-    lines.push("");
+    appendDuplicateSection(
+        lines,
+        "## Exact duplicates",
+        report.exactDuplicates,
+        group => escapeMarkdownText(group.name)
+    );
 
-    if (!report.exactDuplicates.length) {
-        lines.push("None.");
-        lines.push("");
-    } else {
-        report.exactDuplicates.forEach(
-            (group, index) => {
-                lines.push(
-                    `### ${index + 1}. ${escapeMarkdownText(group.name)}`
-                );
-                lines.push("");
-
-                for (const company of group.companies) {
-                    lines.push(
-                        `- ${formatCompany(company)}`
-                    );
-                }
-
-                lines.push("");
-            }
-        );
-    }
-
-    lines.push("## Normalized duplicates");
-    lines.push("");
-
-    if (!report.normalizedDuplicates.length) {
-        lines.push("None.");
-        lines.push("");
-    } else {
-        report.normalizedDuplicates.forEach(
-            (group, index) => {
-                lines.push(
-                    `### ${index + 1}. ${formatInlineCode(group.normalizedName)}`
-                );
-                lines.push("");
-
-                for (const company of group.companies) {
-                    lines.push(
-                        `- ${formatCompany(company)}`
-                    );
-                }
-
-                lines.push("");
-            }
-        );
-    }
+    appendDuplicateSection(
+        lines,
+        "## Normalized duplicates",
+        report.normalizedDuplicates,
+        group => formatInlineCode(group.normalizedName)
+    );
 
     lines.push(
         "## Alias / name-variant candidates"
