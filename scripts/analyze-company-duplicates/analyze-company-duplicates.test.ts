@@ -152,6 +152,26 @@ describe("company duplicate analysis", () => {
             .toBeGreaterThan(Math.max(...second.pairs.map(pair => pair.score)));
     });
 
+    it("groups connected name variants without inventing a missing similarity link", () => {
+        const report = analyzeCompanies([
+            company(1, "Acme Studio"),
+            company(2, "Acme Studios"),
+            company(3, "Acme Studios Games"),
+        ]);
+
+        expect(report.aliasCandidates).toHaveLength(0);
+        expect(report.ambiguousCandidates).toHaveLength(1);
+        expect(report.ambiguousCandidates[0].companies.map(group => group.normalizedName))
+            .toEqual(["acme studio", "acme studios", "acme studios games"]);
+        expect(report.ambiguousCandidates[0].pairs.map(pair => [
+            pair.left.normalizedName,
+            pair.right.normalizedName,
+        ])).toEqual([
+            ["acme studio", "acme studios"],
+            ["acme studios", "acme studios games"],
+        ]);
+    });
+
     it("counts a game in both roles only once in the total", () => {
         const db = new Database(":memory:");
 
