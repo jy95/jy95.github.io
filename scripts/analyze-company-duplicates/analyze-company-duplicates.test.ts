@@ -172,6 +172,27 @@ describe("company duplicate analysis", () => {
         ]);
     });
 
+    it("keeps every similarity link in a fully connected candidate group", () => {
+        const report = analyzeCompanies([
+            company(1, "Acme Studio"),
+            company(2, "Acme Studios"),
+            company(3, "Acme Studioz"),
+        ], { fuzzyScore: 0.7 });
+
+        expect(report.aliasCandidates).toHaveLength(0);
+        expect(report.ambiguousCandidates).toHaveLength(1);
+        expect(report.ambiguousCandidates[0].companies.map(group => group.normalizedName))
+            .toEqual(["acme studio", "acme studios", "acme studioz"]);
+        expect(report.ambiguousCandidates[0].pairs.map(pair => [
+            pair.left.normalizedName,
+            pair.right.normalizedName,
+        ])).toEqual([
+            ["acme studio", "acme studios"],
+            ["acme studio", "acme studioz"],
+            ["acme studios", "acme studioz"],
+        ]);
+    });
+
     it("counts a game in both roles only once in the total", () => {
         const db = new Database(":memory:");
 
