@@ -142,6 +142,15 @@ function findComponents(
     return result;
 }
 
+function maxPairScore(
+    group: AmbiguousCandidateGroup
+): number {
+    return group.pairs.reduce(
+        (max, pair) => Math.max(max, pair.score),
+        0
+    );
+}
+
 export function analyzeCompanies(
     companies: CompanyRecord[],
     options: {
@@ -263,9 +272,7 @@ export function analyzeCompanies(
     );
 
     ambiguous.sort(
-        (a, b) =>
-            (b.pairs[0]?.score ?? 0) -
-            (a.pairs[0]?.score ?? 0)
+        (a, b) => maxPairScore(b) - maxPairScore(a)
     );
 
     return {

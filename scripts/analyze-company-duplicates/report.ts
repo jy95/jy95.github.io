@@ -14,22 +14,41 @@ const OUTPUT_PATH =
     process.env.COMPANY_DUPLICATE_REPORT_PATH ??
     "company-duplicate-analysis.json";
 
-function gameCount(
-    company: CompanyRecord
-): number {
-    return (
-        company.developerGames +
-        company.publisherGames
+function singleLine(value: string): string {
+    return value.replace(/\s+/g, " ");
+}
+
+function escapeMarkdownText(value: string): string {
+    return singleLine(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/([\\`*_{}\[\]()#+.!|~\-])/g, "\\$1");
+}
+
+function formatInlineCode(value: string): string {
+    const name = singleLine(value);
+    const longestRun = Math.max(
+        0,
+        ...[...name.matchAll(/`+/g)].map(
+            match => match[0].length
+        )
     );
+    const delimiter = "`".repeat(longestRun + 1);
+    const padding = name.startsWith("`") || name.endsWith("`")
+        ? " "
+        : "";
+
+    return `${delimiter}${padding}${name}${padding}${delimiter}`;
 }
 
 function formatCompany(
     company: CompanyRecord
 ): string {
-    const total = gameCount(company);
+    const total = company.totalGames;
 
     return (
-        `ID ${company.id} — \`${company.name}\` — ` +
+        `ID ${company.id} — ${formatInlineCode(company.name)} — ` +
         `${total} game${total === 1 ? "" : "s"} — ` +
         `${company.developerGames} developer — ` +
         `${company.publisherGames} publisher`
@@ -88,7 +107,7 @@ export function formatMarkdown(
         report.exactDuplicates.forEach(
             (group, index) => {
                 lines.push(
-                    `### ${index + 1}. ${group.name}`
+                    `### ${index + 1}. ${escapeMarkdownText(group.name)}`
                 );
                 lines.push("");
 
@@ -113,7 +132,7 @@ export function formatMarkdown(
         report.normalizedDuplicates.forEach(
             (group, index) => {
                 lines.push(
-                    `### ${index + 1}. \`${group.normalizedName}\``
+                    `### ${index + 1}. ${formatInlineCode(group.normalizedName)}`
                 );
                 lines.push("");
 
@@ -193,8 +212,8 @@ export function formatMarkdown(
 
                 for (const pair of group.pairs) {
                     lines.push(
-                        `- ${pair.left.normalizedName} ↔ ` +
-                        `${pair.right.normalizedName} — ` +
+                        `- ${escapeMarkdownText(pair.left.normalizedName)} ↔ ` +
+                        `${escapeMarkdownText(pair.right.normalizedName)} — ` +
                         `${(pair.score * 100).toFixed(1)}%`
                     );
                 }
