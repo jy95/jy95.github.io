@@ -4,9 +4,11 @@ const { writeFileMock } = vi.hoisted(() => ({
     writeFileMock: vi.fn().mockResolvedValue(undefined),
 }));
 
-vi.mock('node:fs/promises', () => ({
-    writeFile: writeFileMock,
-}));
+vi.mock('node:fs/promises', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('node:fs/promises')>();
+    const mock = { ...actual, writeFile: writeFileMock };
+    return { ...mock, default: mock };
+});
 
 import { extractAndSaveCompanies } from './companies';
 
