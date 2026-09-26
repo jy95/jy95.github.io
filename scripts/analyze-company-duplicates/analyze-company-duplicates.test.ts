@@ -11,6 +11,7 @@ import {
 
 import {
     calculateSimilarity,
+    jaroWinkler,
 } from "./similarity";
 
 import {
@@ -18,14 +19,20 @@ import {
 } from "./analyze";
 import { loadCompanies } from "./database";
 import { formatMarkdown } from "./report";
+import type { CompanyRecord } from "./types";
 
-function company(id: number, name: string) {
+function company(
+    id: number,
+    name: string,
+    counts: Partial<Pick<CompanyRecord, "totalGames" | "developerGames" | "publisherGames">> = {}
+): CompanyRecord {
     return {
         id,
         name,
         totalGames: 0,
         developerGames: 0,
         publisherGames: 0,
+        ...counts,
     };
 }
 
@@ -40,20 +47,14 @@ describe("company duplicate analysis", () => {
 
     it("detects normalized duplicates", () => {
         const report = analyzeCompanies([
-            {
-                id: 1,
-                name: "Ubisoft Montreal",
+            company(1, "Ubisoft Montreal", {
                 totalGames: 10,
                 developerGames: 10,
-                publisherGames: 0,
-            },
-            {
-                id: 2,
-                name: "Ubisoft Montréal",
+            }),
+            company(2, "Ubisoft Montréal", {
                 totalGames: 2,
                 developerGames: 2,
-                publisherGames: 0,
-            },
+            }),
         ]);
 
         expect(
@@ -81,6 +82,54 @@ describe("company duplicate analysis", () => {
 
         expect(result.score)
             .toBeLessThan(0.85);
+    });
+
+    it("handles empty, identical, unrelated, and transposed Jaro inputs", () => {
+        expect(jaroWinkler("", "")).toBe(1);
+        expect(jaroWinkler("", "Acme")).toBe(0);
+        expect(jaroWinkler("Acme", "")).toBe(0);
+        expect(jaroWinkler("abc", "xyz")).toBe(0);
+        expect(jaroWinkler("MARTHA", "MARHTA")).toBeGreaterThan(0.9);
+    });
+
+    it("reports identity, containment, prefix, and partial overlap signals", () => {
+        expect(calculateSimilarity("ACME", "Acme")).toEqual({
+            score: 1,
+            signals: ["normalized names are identical"],
+        });
+        expect(calculateSimilarity("", "Acme")).toEqual({ score: 0, signals: [] });
+        expect(calculateSimilarity("Acme", "Acme Studio").signals)
+            .toContain("all shorter-name tokens are contained");
+        expect(calculateSimilarity("Acme Studio", "Acme").signals)
+            .toContain("all shorter-name tokens are contained");
+        expect(calculateSimilarity("Acme Blue", "Acme Red").signals)
+            .toContain("partial token overlap");
+        expect(calculateSimilarity("Nintendo", "Ubisoft").signals)
+            .not.toContain("strong shared prefix");
+    });
+
+    it("applies configurable fuzzy thresholds to short and blank names", () => {
+        const records = [company(1, ""), company(2, "A")];
+        expect(analyzeCompanies(records).aliasCandidates).toHaveLength(0);
+        const report = analyzeCompanies(records, {
+            fuzzyScore: 0,
+            minFuzzyNameLength: 0,
+        });
+        expect(report.aliasCandidates).toHaveLength(1);
+        expect(report.aliasCandidates[0].left.normalizedName).toBe("");
+        expect(report.thresholds).toEqual({ fuzzyScore: 0, minFuzzyNameLength: 0 });
+    });
+
+    it("sorts separate alias pairs by score", () => {
+        const report = analyzeCompanies([
+            company(1, "WayForward"),
+            company(2, "WayForward Technologies"),
+            company(3, "Acme Studio"),
+            company(4, "Acme Studios"),
+        ]);
+        expect(report.aliasCandidates).toHaveLength(2);
+        expect(report.aliasCandidates[0].score)
+            .toBeGreaterThanOrEqual(report.aliasCandidates[1].score);
     });
 
     it("orders ambiguous groups by their highest pair score", () => {

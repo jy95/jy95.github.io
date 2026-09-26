@@ -120,15 +120,11 @@ function findComponents(
         visited.add(start);
 
         while (queue.length > 0) {
-            const current = queue.shift();
-
-            if (!current) {
-                continue;
-            }
+            const current = queue.shift()!;
 
             component.push(current);
 
-            for (const next of graph.get(current) ?? []) {
+            for (const next of graph.get(current)!) {
                 if (!visited.has(next)) {
                     visited.add(next);
                     queue.push(next);
@@ -251,15 +247,11 @@ export function analyzeCompanies(
         );
 
         const componentGroups = component
-            .map(name => groupsByName.get(name))
-            .filter(
-                (group): group is CompanyGroup =>
-                    group !== undefined
-            );
+            .map(name => groupsByName.get(name)!);
 
         if (component.length === 2) {
             aliases.push(...pairs);
-        } else if (component.length >= 3) {
+        } else {
             ambiguous.push({
                 companies: componentGroups,
                 pairs,

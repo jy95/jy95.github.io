@@ -7,7 +7,6 @@ import type {
     CompanyDuplicateAnalysisReport,
     CompanyRecord,
     CompanyGroup,
-    SimilarityCandidate,
 } from "./types";
 
 const OUTPUT_PATH =
@@ -23,7 +22,7 @@ function escapeMarkdownText(value: string): string {
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
-        .replace(/([\\`*_{}\[\]()#+.!|~\-])/g, "\\$1");
+        .replace(/([\\`*_{}[\]()#+.!|~-])/g, "\\$1");
 }
 
 function formatInlineCode(value: string): string {
