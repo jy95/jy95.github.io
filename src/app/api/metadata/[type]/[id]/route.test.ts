@@ -13,6 +13,7 @@ describe('media metadata API', () => {
             });
             expect(response.status).toBe(200);
             expect(await response.json()).toEqual({ title, imagePath });
+            expect(response.headers.get('Cache-Control')).toBe('public, max-age=86400, must-revalidate');
         });
     }
 
@@ -22,6 +23,7 @@ describe('media metadata API', () => {
                 params: Promise.resolve({ type, id }),
             });
             expect(response.status).toBe(404);
+            expect(await response.json()).toEqual({ error: 'Media not found' });
         }
     });
 });

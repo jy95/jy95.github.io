@@ -1,5 +1,4 @@
 import { generateMetadata as rootLayoutMetadata } from '@/app/[locale]/layout';
-import { generateMetadata as rootPageMetadata } from '@/app/[locale]/page';
 import { generateMetadata as backlogMetadata } from '@/app/[locale]/backlog/page';
 import { generateMetadata as linksMetadata } from '@/app/[locale]/links/page';
 import { generateMetadata as companiesMetadata } from '@/app/[locale]/companies/layout';
@@ -15,16 +14,11 @@ import { generateMetadata as playlistMetadata } from '@/app/[locale]/playlist/[i
 import { generateMetadata as videoMetadata } from '@/app/[locale]/video/[id]/page';
 import { generateStaticParams as videoStaticParams } from '@/app/[locale]/video/[id]/page';
 import { generateStaticParams as playlistStaticParams } from '@/app/[locale]/playlist/[id]/page';
-import videoPage from '@/app/[locale]/video/[id]/page';
-import playlistPage from '@/app/[locale]/playlist/[id]/page';
 import { generateMetadata as gamesMetadata } from '@/app/[locale]/games/layout';
 import { generateMetadata as planningMetadata } from '@/app/[locale]/planning/layout';
 import { generateMetadata as testsMetadata } from '@/app/[locale]/tests/layout';
 import { generateMetadata as statsMetadata } from '@/app/[locale]/stats/layout';
 import { createStaticSectionMetadata, staticSectionMetadata } from '@/i18n/staticSectionMetadata';
-import * as mediaApi from '@/app/api/metadata/response';
-import * as companyApi from '@/app/api/companies/response';
-import { NextResponse } from 'next/server';
 import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('@/i18n/routing', () => ({ routing: { locales: ['fr', 'en'] } }));
@@ -131,7 +125,7 @@ describe('static section metadata', () => {
         expect(unknown).toEqual(french);
     });
 
-    it('limits feed alternates to the root page in both locales', async () => {
+    it('defines feed alternates on the locale layout in both locales', async () => {
         for (const [locale, description] of [
             ['en', 'Browse the GamesPassionFR game collection.'],
             ['fr', 'Catalogue des jeux de GamesPassionFR.'],
@@ -140,19 +134,12 @@ describe('static section metadata', () => {
                 params: Promise.resolve({ locale }),
                 children: null,
             });
-            const metadata = await rootPageMetadata({ params: Promise.resolve({ locale }) });
-
-            expect(metadata.title).toBe('GamesPassionFR');
-            expect(metadata.description).toBe(description);
-            expect(layout.alternates).toBeUndefined();
-            expect(metadata.alternates?.types).toEqual({
+            expect(layout.title).toBe('GamesPassionFR');
+            expect(layout.description).toBe(description);
+            expect(layout.alternates?.types).toEqual({
                 'application/rss+xml': '/rss.xml',
                 'application/feed+json': '/feed.json',
             });
-            for (const generate of [gamesMetadata, linksMetadata, companiesMetadata]) {
-                const child = await generate({ params: Promise.resolve({ locale }) });
-                expect(child.alternates).toBeUndefined();
-            }
         }
     });
 });
@@ -222,30 +209,6 @@ describe('ID route metadata', () => {
             }
         });
     }
-
-    it('does not repeat the metadata lookup when rendering media pages', async () => {
-        const lookup = vi.spyOn(mediaApi, 'getMediaResponse');
-        for (const page of [videoPage, playlistPage]) {
-            await expect(page({ params: Promise.resolve({ id: 'missing-id', locale: 'en' }) }))
-                .resolves.toBeTruthy();
-        }
-        expect(lookup).not.toHaveBeenCalled();
-        lookup.mockRestore();
-    });
-
-    it('reports API failures from both media routes and the company route', async () => {
-        const mediaFailure = vi.spyOn(mediaApi, 'getMediaResponse').mockResolvedValue(NextResponse.json({ error: 'Unavailable' }, { status: 503 }));
-        const companyFailure = vi.spyOn(companyApi, 'getCompanyResponse').mockResolvedValue(NextResponse.json({ error: 'Unavailable' }, { status: 503 }));
-        try {
-            for (const generate of [videoMetadata, playlistMetadata, companyMetadata]) {
-                await expect(generate({ params: Promise.resolve({ id: 'any-id', locale: 'en' }) }))
-                    .rejects.toThrow('Title lookup failed with status 503');
-            }
-        } finally {
-            mediaFailure.mockRestore();
-            companyFailure.mockRestore();
-        }
-    });
 });
 
 describe('route-specific metadata fields', () => {

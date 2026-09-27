@@ -1,7 +1,8 @@
 import YTPlayer from '@/components/YTPlayer/Player';
+import { findMediaMetadata } from '@/domain/games/mediaTitles';
 import RandomButton from '@/features/games/components/RandomButton';
 import { staticSectionMetadata } from '@/i18n/staticSectionMetadata';
-import { getMediaApiMetadata } from '@/lib/server/apiTitles';
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import type { Locale } from 'next-intl';
@@ -12,7 +13,9 @@ type Props = { params: Promise<{ id: string; locale: Locale }> };
 export function createMediaPage(type: MediaType) {
     async function generateMetadata({ params }: Props) {
         const { id, locale } = await params;
-        const { title, imagePath } = await getMediaApiMetadata(type, id);
+        const metadata = await findMediaMetadata(type === 'video' ? 'videoId' : 'playlistId', id);
+        if (!metadata) notFound();
+        const { title, imagePath } = metadata;
         return staticSectionMetadata(locale, type, {
             title: `${title} | GamesPassionFR`,
             openGraph: { images: [imagePath] },
