@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { renderHook } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import type { ReactNode } from 'react';
 
@@ -8,6 +8,7 @@ vi.mock('@/lib/supabase/client', () => ({
 }));
 
 import { makeStore } from './Store';
+import { filterByPlatform } from './features/gamesSlice';
 import { useAppDispatch, useAppSelector, useAppStore } from './hooks';
 
 describe('typed redux hooks', () => {
@@ -17,38 +18,59 @@ describe('typed redux hooks', () => {
         store = makeStore();
     });
 
-    function wrapper({ children }: { children: ReactNode }) {
-        return <Provider store={store}>{children}</Provider>;
+    function wrapperFor(providedStore: ReturnType<typeof makeStore>) {
+        return function wrapper({ children }: { children: ReactNode }) {
+            return <Provider store={providedStore}>{children}</Provider>;
+        };
     }
 
-    it('useAppSelector reads state from the nearest store', () => {
+    it('useAppSelector updates its mounted result when the store changes', () => {
         const { result } = renderHook(
-            () => useAppSelector((state) => state.games.activeFilters),
-            { wrapper }
+            () => useAppSelector((state) => state.games.activeFilters.length),
+            { wrapper: wrapperFor(store) }
         );
-        expect(result.current).toEqual([]);
+        expect(result.current).toBe(0);
+
+        act(() => {
+            store.dispatch(filterByPlatform(6));
+        });
+        expect(result.current).toBe(1);
     });
 
-    it('useAppSelector reflects state after a dispatch', () => {
-        store.dispatch({ type: 'games/filterByTitle', payload: 'zelda' });
-        const { result } = renderHook(
-            () => useAppSelector((state) => state.games.activeFilters),
-            { wrapper }
-        );
-        expect(result.current).toEqual([{ key: 'selected_title', value: 'zelda' }]);
+    it('useAppSelector subscribes to the store in its own provider', () => {
+        const otherStore = makeStore();
+        const selector = () => useAppSelector((state) => state.games.activeFilters.length);
+        const first = renderHook(selector, { wrapper: wrapperFor(store) });
+        const second = renderHook(selector, { wrapper: wrapperFor(otherStore) });
+
+        act(() => {
+            store.dispatch(filterByPlatform(6));
+        });
+        expect(first.result.current).toBe(1);
+        expect(second.result.current).toBe(0);
+
+        act(() => {
+            otherStore.dispatch(filterByPlatform(1));
+        });
+        expect(first.result.current).toBe(1);
+        expect(second.result.current).toBe(1);
     });
 
-    it('useAppDispatch returns a callable dispatch function bound to the store', () => {
-        const { result } = renderHook(() => useAppDispatch(), { wrapper });
-        expect(typeof result.current).toBe('function');
-        result.current({ type: 'games/filterByTitle', payload: 'mario' });
-        expect(store.getState().games.activeFilters).toEqual([
-            { key: 'selected_title', value: 'mario' },
-        ]);
+    it('useAppDispatch returns the dispatch function from its provider', () => {
+        const { result } = renderHook(() => useAppDispatch(), {
+            wrapper: wrapperFor(store),
+        });
+        expect(result.current).toBe(store.dispatch);
+        act(() => {
+            result.current(filterByPlatform(6));
+        });
+        expect(store.getState().games.activeFilters).toHaveLength(1);
     });
 
     it('useAppStore returns the exact store instance from context', () => {
-        const { result } = renderHook(() => useAppStore(), { wrapper });
+        const { result } = renderHook(() => useAppStore(), {
+            wrapper: wrapperFor(store),
+        });
         expect(result.current).toBe(store);
     });
 });

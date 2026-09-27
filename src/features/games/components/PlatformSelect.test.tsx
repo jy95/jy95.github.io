@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { echoTranslations } from '@/test/mocks/nextIntl';
 
 vi.mock('next-intl', () => echoTranslations());
@@ -78,5 +78,16 @@ describe('PlatformSelect', () => {
     it('does not dispatch anything on initial render', () => {
         render(<PlatformSelect />);
         expect(dispatchMock).not.toHaveBeenCalled();
+    });
+
+    it('dispatches the selected platform when an option is chosen', async () => {
+        render(<PlatformSelect />);
+
+        fireEvent.mouseDown(screen.getByLabelText('gamesLibrary.filtersLabels.platform'));
+        fireEvent.click(await screen.findByRole('option', { name: 'PS3' }));
+
+        expect(dispatchMock).toHaveBeenCalledWith(
+            expect.objectContaining({ type: 'games/filterByPlatform', payload: 6 })
+        );
     });
 });
