@@ -1,4 +1,22 @@
 {
+    "pageMetadata": {
+        "games": {
+            "title": "Jeux | GamesPassionFR",
+            "description": "Parcourez la collection de jeux GamesPassionFR et retrouvez leurs vidéos."
+        },
+        "planning": {
+            "title": "Planning | GamesPassionFR",
+            "description": "Découvrez les prochains jeux et vidéos dans le planning GamesPassionFR."
+        },
+        "tests": {
+            "title": "Tests de jeux | GamesPassionFR",
+            "description": "Découvrez les tests de jeux de GamesPassionFR."
+        },
+        "stats": {
+            "title": "Statistiques | GamesPassionFR",
+            "description": "Explorez les statistiques de la collection de jeux GamesPassionFR."
+        }
+    },
     "dashboard": {
         "menuEntries": {
             "gamesKey": "Jeux",

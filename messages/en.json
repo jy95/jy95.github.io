@@ -1,4 +1,22 @@
 {
+    "pageMetadata": {
+        "games": {
+            "title": "Games | GamesPassionFR",
+            "description": "Browse the GamesPassionFR game collection and find videos for your favorite games."
+        },
+        "planning": {
+            "title": "Calendar | GamesPassionFR",
+            "description": "See the upcoming games and videos on the GamesPassionFR calendar."
+        },
+        "tests": {
+            "title": "Game Reviews | GamesPassionFR",
+            "description": "Explore game reviews and tests from GamesPassionFR."
+        },
+        "stats": {
+            "title": "Statistics | GamesPassionFR",
+            "description": "Explore statistics about the GamesPassionFR game collection."
+        }
+    },
     "dashboard": {
         "menuEntries": {
             "gamesKey": "Games",
