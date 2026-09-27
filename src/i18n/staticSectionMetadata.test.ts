@@ -1,4 +1,5 @@
-import { generateMetadata as rootMetadata } from '@/app/[locale]/layout';
+import { generateMetadata as rootLayoutMetadata } from '@/app/[locale]/layout';
+import { generateMetadata as rootPageMetadata } from '@/app/[locale]/page';
 import { generateMetadata as backlogMetadata } from '@/app/[locale]/backlog/page';
 import { generateMetadata as linksMetadata } from '@/app/[locale]/links/page';
 import { generateMetadata as companiesMetadata } from '@/app/[locale]/companies/layout';
@@ -12,6 +13,8 @@ import { generateMetadata as tierBacklogMetadata } from '@/app/[locale]/tier/bac
 import { generateMetadata as tierTestsMetadata } from '@/app/[locale]/tier/tests/layout';
 import { generateMetadata as playlistMetadata } from '@/app/[locale]/playlist/[id]/page';
 import { generateMetadata as videoMetadata } from '@/app/[locale]/video/[id]/page';
+import { generateStaticParams as videoStaticParams } from '@/app/[locale]/video/[id]/page';
+import { generateStaticParams as playlistStaticParams } from '@/app/[locale]/playlist/[id]/page';
 import videoPage from '@/app/[locale]/video/[id]/page';
 import playlistPage from '@/app/[locale]/playlist/[id]/page';
 import { generateMetadata as gamesMetadata } from '@/app/[locale]/games/layout';
@@ -19,7 +22,9 @@ import { generateMetadata as planningMetadata } from '@/app/[locale]/planning/la
 import { generateMetadata as testsMetadata } from '@/app/[locale]/tests/layout';
 import { generateMetadata as statsMetadata } from '@/app/[locale]/stats/layout';
 import { createStaticSectionMetadata, staticSectionMetadata } from '@/i18n/staticSectionMetadata';
-import type { ResolvingMetadata } from 'next';
+import * as mediaApi from '@/app/api/media/[type]/[id]/route';
+import * as companyApi from '@/app/api/companies/[id]/route';
+import { NextResponse } from 'next/server';
 import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('@/i18n/routing', () => ({ routing: { locales: ['fr', 'en'] } }));
@@ -122,27 +127,49 @@ describe('static section metadata', () => {
         expect(unknown).toEqual(french);
     });
 
-    it('keeps the root feed alternates for both locales', async () => {
+    it('limits feed alternates to the root page in both locales', async () => {
         for (const [locale, description] of [
             ['en', 'Browse the GamesPassionFR game collection.'],
             ['fr', 'Catalogue des jeux de GamesPassionFR.'],
         ] as const) {
-            const metadata = await rootMetadata({
+            const layout = await rootLayoutMetadata({
                 params: Promise.resolve({ locale }),
                 children: null,
             });
+            const metadata = await rootPageMetadata({ params: Promise.resolve({ locale }) });
 
             expect(metadata.title).toBe('GamesPassionFR');
             expect(metadata.description).toBe(description);
+            expect(layout.alternates).toBeUndefined();
             expect(metadata.alternates?.types).toEqual({
                 'application/rss+xml': '/rss.xml',
                 'application/feed+json': '/feed.json',
             });
+            for (const generate of [gamesMetadata, linksMetadata, companiesMetadata]) {
+                const child = await generate({ params: Promise.resolve({ locale }) });
+                expect(child.alternates).toBeUndefined();
+            }
         }
     });
 });
 
 describe('ID route metadata', () => {
+    it('resolves titles for generated media parameters without an HTTP server', async () => {
+        const fetch = vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('No HTTP server is available'));
+        try {
+            for (const { generate, staticParams, id } of [
+                { generate: videoMetadata, staticParams: videoStaticParams, id: 'FO8cYct2Bkw' },
+                { generate: playlistMetadata, staticParams: playlistStaticParams, id: 'PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA' },
+            ]) {
+                expect(await staticParams()).toContainEqual({ id });
+                expect((await generate({ params: Promise.resolve({ id, locale: 'en' }) })).title).toBeTruthy();
+            }
+            expect(fetch).not.toHaveBeenCalled();
+        } finally {
+            fetch.mockRestore();
+        }
+    });
+
     const cases = [
         { generate: videoMetadata, id: 'RMgDUMubFsM', title: 'Nova Drift' },
         { generate: videoMetadata, id: 'IwBRxURrIDM', title: 'Portal' },
@@ -194,19 +221,33 @@ describe('ID route metadata', () => {
                 .rejects.toMatchObject({ digest: 'NEXT_HTTP_ERROR_FALLBACK;404' });
         }
     });
+
+    it('reports API failures from both media routes and the company route', async () => {
+        const mediaFailure = vi.spyOn(mediaApi, 'GET').mockResolvedValue(NextResponse.json({ error: 'Unavailable' }, { status: 503 }));
+        const companyFailure = vi.spyOn(companyApi, 'GET').mockResolvedValue(NextResponse.json({ error: 'Unavailable' }, { status: 503 }));
+        try {
+            for (const generate of [videoMetadata, playlistMetadata, companyMetadata]) {
+                await expect(generate({ params: Promise.resolve({ id: 'any-id', locale: 'en' }) }))
+                    .rejects.toThrow('Title lookup failed with status 503');
+            }
+            for (const page of [videoPage, playlistPage]) {
+                await expect(page({ params: Promise.resolve({ id: 'any-id', locale: 'en' }) }))
+                    .rejects.toThrow('Title lookup failed with status 503');
+            }
+        } finally {
+            mediaFailure.mockRestore();
+            companyFailure.mockRestore();
+        }
+    });
 });
 
 describe('route-specific metadata fields', () => {
-    it('merges child alternates with both root feed types and keeps other fields', async () => {
-        const root = await rootMetadata({ params: Promise.resolve({ locale: 'en' }), children: null });
+    it('keeps route-specific alternates and other fields', async () => {
         const generate = createStaticSectionMetadata('links', {
             robots: { index: false },
             alternates: { canonical: '/en/links', types: { 'text/plain': '/links.txt' } },
         });
-        const metadata = await generate(
-            { params: Promise.resolve({ locale: 'en' }) },
-            Promise.resolve(root) as ResolvingMetadata,
-        );
+        const metadata = await generate({ params: Promise.resolve({ locale: 'en' }) });
 
         expect(metadata.title).toBe('Links | GamesPassionFR');
         expect(metadata.description).toBe('Find links related to the GamesPassionFR YouTube channel.');
@@ -214,8 +255,6 @@ describe('route-specific metadata fields', () => {
         expect(metadata.alternates).toEqual({
             canonical: '/en/links',
             types: {
-                'application/rss+xml': '/rss.xml',
-                'application/feed+json': '/feed.json',
                 'text/plain': '/links.txt',
             },
         });
