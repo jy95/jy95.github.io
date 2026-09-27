@@ -13,7 +13,7 @@ vi.mock('@/features/games/components/CardGrid', () => ({
         <div data-testid="card-grid" data-ids={items.map((item) => item.id).join(',')}>{items.map((item) => item.title).join(',')}</div>,
 }));
 
-import CompanyDetail from './page';
+import CompanyDetailClient from './CompanyDetailClient';
 
 const game = (id: string, title: string, duration: string, tierCategory: string) => ({ id, title, duration, tierCategory });
 const company = {
@@ -24,10 +24,10 @@ const company = {
 
 async function renderDetail(data = company) {
     useGetCompanyQueryMock.mockReturnValue({ data, isLoading: false, error: undefined, refetch: vi.fn() });
-    await act(async () => { render(<CompanyDetail params={Promise.resolve({ id: '1' })} />); });
+    await act(async () => { render(<CompanyDetailClient id="1" />); });
 }
 
-describe('CompanyDetail', () => {
+describe('CompanyDetailClient', () => {
     beforeEach(() => { useGetCompanyQueryMock.mockReset(); notFoundMock.mockReset(); backMock.mockReset(); });
 
     it('loads the company by ID, merges duplicate games, and navigates back', async () => {
@@ -49,10 +49,10 @@ describe('CompanyDetail', () => {
 
     it('shows loading and treats 404 as not found', async () => {
         useGetCompanyQueryMock.mockReturnValueOnce({ isLoading: true });
-        await act(async () => { render(<CompanyDetail params={Promise.resolve({ id: '1' })} />); });
+        await act(async () => { render(<CompanyDetailClient id="1" />); });
         expect(screen.getByRole('progressbar')).toBeInTheDocument();
         useGetCompanyQueryMock.mockReturnValue({ error: { status: 404 }, isLoading: false });
-        await act(async () => { render(<CompanyDetail params={Promise.resolve({ id: '999' })} />); });
+        await act(async () => { render(<CompanyDetailClient id="999" />); });
         expect(notFoundMock).toHaveBeenCalled();
     });
 
