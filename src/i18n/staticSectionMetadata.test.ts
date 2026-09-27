@@ -22,8 +22,8 @@ import { generateMetadata as planningMetadata } from '@/app/[locale]/planning/la
 import { generateMetadata as testsMetadata } from '@/app/[locale]/tests/layout';
 import { generateMetadata as statsMetadata } from '@/app/[locale]/stats/layout';
 import { createStaticSectionMetadata, staticSectionMetadata } from '@/i18n/staticSectionMetadata';
-import * as mediaApi from '@/app/api/media/[type]/[id]/route';
-import * as companyApi from '@/app/api/companies/[id]/route';
+import * as mediaApi from '@/app/api/metadata/response';
+import * as companyApi from '@/app/api/companies/response';
 import { NextResponse } from 'next/server';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -33,6 +33,10 @@ vi.mock('@/providers/ThemeProvider', () => ({ ThemeProvider: () => null }));
 vi.mock('@/providers/StoreProvider', () => ({ default: () => null }));
 vi.mock('@/components/dashboard/DashboardAppProvider', () => ({ default: () => null }));
 vi.mock('@/components/Footer', () => ({ default: () => null }));
+vi.mock('next-intl/server', async importOriginal => ({
+    ...await importOriginal<typeof import('next-intl/server')>(),
+    getTranslations: async () => () => 'Random',
+}));
 
 const sections = [
     {
@@ -171,20 +175,22 @@ describe('ID route metadata', () => {
     });
 
     const cases = [
-        { generate: videoMetadata, id: 'RMgDUMubFsM', title: 'Nova Drift' },
-        { generate: videoMetadata, id: 'IwBRxURrIDM', title: 'Portal' },
+        { generate: videoMetadata, id: 'RMgDUMubFsM', title: 'Nova Drift', imagePath: '/testscovers/RMgDUMubFsM/cover.webp' },
+        { generate: videoMetadata, id: 'IwBRxURrIDM', title: 'Portal', imagePath: '/covers/IwBRxURrIDM/cover.webp' },
         // Past planning takes priority over the DLC entry for this shared video ID.
-        { generate: videoMetadata, id: 'FO8cYct2Bkw', title: 'Batman: Arkham Knight - Red Hood Story Pack' },
-        { generate: playlistMetadata, id: 'PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA', title: '-KLAUS-' },
-        { generate: playlistMetadata, id: 'PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP', title: 'Ratatouille' },
-        { generate: playlistMetadata, id: 'PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M', title: 'Creepy Road' },
+        { generate: videoMetadata, id: 'FO8cYct2Bkw', title: 'Batman: Arkham Knight - Red Hood Story Pack', imagePath: '/covers/FO8cYct2Bkw/cover.webp' },
+        { generate: playlistMetadata, id: 'PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA', title: '-KLAUS-', imagePath: '/covers/PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA/cover.webp' },
+        { generate: playlistMetadata, id: 'PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP', title: 'Ratatouille', imagePath: '/covers/PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP/cover.webp' },
+        { generate: playlistMetadata, id: 'PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M', title: 'Creepy Road', imagePath: '/testscovers/PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M/cover.webp' },
     ];
 
-    for (const { generate, id, title } of cases) {
+    for (const { generate, id, title, imagePath } of cases) {
         it(`uses the entry title for ${id} in both locales`, async () => {
             for (const locale of ['en', 'fr']) {
                 const metadata = await generate({ params: Promise.resolve({ id, locale: locale as 'en' | 'fr' }) });
                 expect(metadata.title).toBe(`${title} | GamesPassionFR`);
+                expect(metadata.openGraph?.images).toEqual([imagePath]);
+                expect(metadata.alternates).toBeUndefined();
                 expect(metadata.description).toBe(generate === videoMetadata
                     ? (locale === 'en' ? 'Watch a GamesPassionFR game video.' : 'Regardez une vidéo de jeu de GamesPassionFR.')
                     : (locale === 'en' ? 'Watch a GamesPassionFR game playlist.' : 'Regardez une playlist de jeu de GamesPassionFR.'));
@@ -196,6 +202,8 @@ describe('ID route metadata', () => {
         for (const locale of ['en', 'fr']) {
             const metadata = await companyMetadata({ params: Promise.resolve({ id: '83', locale }) });
             expect(metadata.title).toBe('Sony Computer Entertainment | GamesPassionFR');
+            expect(metadata.openGraph?.images).toEqual(['/companies/83/cover.webp']);
+            expect(metadata.alternates).toBeUndefined();
             expect(metadata.description).toBe(locale === 'en'
                 ? 'Explore games by this developer or publisher in the GamesPassionFR collection.'
                 : 'Découvrez les jeux de ce développeur ou éditeur dans le catalogue GamesPassionFR.');
@@ -215,23 +223,22 @@ describe('ID route metadata', () => {
         });
     }
 
-    it('returns not found from the media pages for unknown IDs', async () => {
+    it('does not repeat the metadata lookup when rendering media pages', async () => {
+        const lookup = vi.spyOn(mediaApi, 'getMediaResponse');
         for (const page of [videoPage, playlistPage]) {
             await expect(page({ params: Promise.resolve({ id: 'missing-id', locale: 'en' }) }))
-                .rejects.toMatchObject({ digest: 'NEXT_HTTP_ERROR_FALLBACK;404' });
+                .resolves.toBeTruthy();
         }
+        expect(lookup).not.toHaveBeenCalled();
+        lookup.mockRestore();
     });
 
     it('reports API failures from both media routes and the company route', async () => {
-        const mediaFailure = vi.spyOn(mediaApi, 'GET').mockResolvedValue(NextResponse.json({ error: 'Unavailable' }, { status: 503 }));
-        const companyFailure = vi.spyOn(companyApi, 'GET').mockResolvedValue(NextResponse.json({ error: 'Unavailable' }, { status: 503 }));
+        const mediaFailure = vi.spyOn(mediaApi, 'getMediaResponse').mockResolvedValue(NextResponse.json({ error: 'Unavailable' }, { status: 503 }));
+        const companyFailure = vi.spyOn(companyApi, 'getCompanyResponse').mockResolvedValue(NextResponse.json({ error: 'Unavailable' }, { status: 503 }));
         try {
             for (const generate of [videoMetadata, playlistMetadata, companyMetadata]) {
                 await expect(generate({ params: Promise.resolve({ id: 'any-id', locale: 'en' }) }))
-                    .rejects.toThrow('Title lookup failed with status 503');
-            }
-            for (const page of [videoPage, playlistPage]) {
-                await expect(page({ params: Promise.resolve({ id: 'any-id', locale: 'en' }) }))
                     .rejects.toThrow('Title lookup failed with status 503');
             }
         } finally {

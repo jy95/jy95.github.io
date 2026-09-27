@@ -1,7 +1,7 @@
 import YTPlayer from '@/components/YTPlayer/Player';
 import RandomButton from '@/features/games/components/RandomButton';
 import { staticSectionMetadata } from '@/i18n/staticSectionMetadata';
-import { getMediaApiTitle } from '@/lib/server/apiTitles';
+import { getMediaApiMetadata } from '@/lib/server/apiTitles';
 import { getTranslations } from 'next-intl/server';
 
 import type { Locale } from 'next-intl';
@@ -12,8 +12,11 @@ type Props = { params: Promise<{ id: string; locale: Locale }> };
 export function createMediaPage(type: MediaType) {
     async function generateMetadata({ params }: Props) {
         const { id, locale } = await params;
-        const title = await getMediaApiTitle(type, id);
-        return staticSectionMetadata(locale, type, { title: `${title} | GamesPassionFR` });
+        const { title, imagePath } = await getMediaApiMetadata(type, id);
+        return staticSectionMetadata(locale, type, {
+            title: `${title} | GamesPassionFR`,
+            openGraph: { images: [imagePath] },
+        });
     }
 
     async function generateStaticParams() {
@@ -24,7 +27,6 @@ export function createMediaPage(type: MediaType) {
 
     async function Page({ params }: Props) {
         const { id } = await params;
-        await getMediaApiTitle(type, id);
         const t = await getTranslations('gamesLibrary');
 
         return (
