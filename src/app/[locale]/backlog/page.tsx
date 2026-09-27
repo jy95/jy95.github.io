@@ -1,3 +1,5 @@
+import { createStaticSectionMetadata } from '@/i18n/staticSectionMetadata';
+
 // Hooks
 import { getTranslations} from 'next-intl/server';
 
@@ -23,3 +25,5 @@ export default async function BacklogViewer() {
     )
 
 }
+
+export const generateMetadata = createStaticSectionMetadata('backlog');

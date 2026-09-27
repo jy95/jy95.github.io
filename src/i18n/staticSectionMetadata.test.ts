@@ -1,21 +1,25 @@
 import { generateMetadata as rootMetadata } from '@/app/[locale]/layout';
-import { generateMetadata as backlogMetadata } from '@/app/[locale]/backlog/layout';
-import { generateMetadata as linksMetadata } from '@/app/[locale]/links/layout';
+import { generateMetadata as backlogMetadata } from '@/app/[locale]/backlog/page';
+import { generateMetadata as linksMetadata } from '@/app/[locale]/links/page';
 import { generateMetadata as companiesMetadata } from '@/app/[locale]/companies/layout';
 import { generateMetadata as companyMetadata } from '@/app/[locale]/companies/[id]/layout';
 import { generateMetadata as seriesMetadata } from '@/app/[locale]/games/series/layout';
 import { generateMetadata as dlcsMetadata } from '@/app/[locale]/games/dlcs/layout';
 import { generateMetadata as randomMetadata } from '@/app/[locale]/games/random/layout';
-import { generateMetadata as tierMetadata } from '@/app/[locale]/tier/layout';
+import { generateMetadata as tierMetadata } from '@/app/[locale]/tier/page';
 import { generateMetadata as tierGamesMetadata } from '@/app/[locale]/tier/games/layout';
 import { generateMetadata as tierBacklogMetadata } from '@/app/[locale]/tier/backlog/layout';
 import { generateMetadata as tierTestsMetadata } from '@/app/[locale]/tier/tests/layout';
-import { generateMetadata as playlistMetadata } from '@/app/[locale]/playlist/[id]/layout';
-import { generateMetadata as videoMetadata } from '@/app/[locale]/video/[id]/layout';
+import { generateMetadata as playlistMetadata } from '@/app/[locale]/playlist/[id]/page';
+import { generateMetadata as videoMetadata } from '@/app/[locale]/video/[id]/page';
+import videoPage from '@/app/[locale]/video/[id]/page';
+import playlistPage from '@/app/[locale]/playlist/[id]/page';
 import { generateMetadata as gamesMetadata } from '@/app/[locale]/games/layout';
 import { generateMetadata as planningMetadata } from '@/app/[locale]/planning/layout';
 import { generateMetadata as testsMetadata } from '@/app/[locale]/tests/layout';
 import { generateMetadata as statsMetadata } from '@/app/[locale]/stats/layout';
+import { createStaticSectionMetadata, staticSectionMetadata } from '@/i18n/staticSectionMetadata';
+import type { ResolvingMetadata } from 'next';
 import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('@/i18n/routing', () => ({ routing: { locales: ['fr', 'en'] } }));
@@ -40,11 +44,6 @@ const sections = [
         generate: companiesMetadata, en: 'Companies', fr: 'Entreprises',
         enDescription: 'Browse game developers and publishers with the games associated with each company on the GamesPassionFR YouTube channel.',
         frDescription: 'Parcourez les développeurs et éditeurs de jeux ainsi que les jeux associés à chaque entreprise sur la chaîne YouTube GamesPassionFR.',
-    },
-    {
-        generate: companyMetadata, en: 'Company Games', fr: 'Jeux de l’entreprise',
-        enDescription: 'Explore games by this developer or publisher in the GamesPassionFR collection.',
-        frDescription: 'Découvrez les jeux de ce développeur ou éditeur dans le catalogue GamesPassionFR.',
     },
     {
         generate: seriesMetadata, en: 'Game Series', fr: 'Séries de jeux',
@@ -80,16 +79,6 @@ const sections = [
         generate: tierTestsMetadata, en: 'Game Reviews Tier List', fr: 'Classement des tests de jeux',
         enDescription: 'Explore the GamesPassionFR tier list of reviewed games.',
         frDescription: 'Découvrez le classement des jeux testés de GamesPassionFR.',
-    },
-    {
-        generate: playlistMetadata, en: 'Game Playlist', fr: 'Playlist de jeu',
-        enDescription: 'Watch a GamesPassionFR game playlist.',
-        frDescription: 'Regardez une playlist de jeu de GamesPassionFR.',
-    },
-    {
-        generate: videoMetadata, en: 'Game Video', fr: 'Vidéo de jeu',
-        enDescription: 'Watch a GamesPassionFR game video.',
-        frDescription: 'Regardez une vidéo de jeu de GamesPassionFR.',
     },
     {
         generate: gamesMetadata, en: 'Games', fr: 'Jeux',
@@ -150,5 +139,93 @@ describe('static section metadata', () => {
                 'application/feed+json': '/feed.json',
             });
         }
+    });
+});
+
+describe('ID route metadata', () => {
+    const cases = [
+        { generate: videoMetadata, id: 'RMgDUMubFsM', title: 'Nova Drift' },
+        { generate: videoMetadata, id: 'IwBRxURrIDM', title: 'Portal' },
+        // Past planning takes priority over the DLC entry for this shared video ID.
+        { generate: videoMetadata, id: 'FO8cYct2Bkw', title: 'Batman: Arkham Knight - Red Hood Story Pack' },
+        { generate: playlistMetadata, id: 'PLRfhDHeBTBJ7MU5DX4P_oBIRN457ah9lA', title: '-KLAUS-' },
+        { generate: playlistMetadata, id: 'PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP', title: 'Ratatouille' },
+        { generate: playlistMetadata, id: 'PLRfhDHeBTBJ7kgZQ8pv1-OByUypdJLr8M', title: 'Creepy Road' },
+    ];
+
+    for (const { generate, id, title } of cases) {
+        it(`uses the entry title for ${id} in both locales`, async () => {
+            for (const locale of ['en', 'fr']) {
+                const metadata = await generate({ params: Promise.resolve({ id, locale: locale as 'en' | 'fr' }) });
+                expect(metadata.title).toBe(`${title} | GamesPassionFR`);
+                expect(metadata.description).toBe(generate === videoMetadata
+                    ? (locale === 'en' ? 'Watch a GamesPassionFR game video.' : 'Regardez une vidéo de jeu de GamesPassionFR.')
+                    : (locale === 'en' ? 'Watch a GamesPassionFR game playlist.' : 'Regardez une playlist de jeu de GamesPassionFR.'));
+            }
+        });
+    }
+
+    it('uses the company name in both locales', async () => {
+        for (const locale of ['en', 'fr']) {
+            const metadata = await companyMetadata({ params: Promise.resolve({ id: '83', locale }) });
+            expect(metadata.title).toBe('Sony Computer Entertainment | GamesPassionFR');
+            expect(metadata.description).toBe(locale === 'en'
+                ? 'Explore games by this developer or publisher in the GamesPassionFR collection.'
+                : 'Découvrez les jeux de ce développeur ou éditeur dans le catalogue GamesPassionFR.');
+        }
+    });
+
+    for (const [route, generate] of [
+        ['video', videoMetadata],
+        ['playlist', playlistMetadata],
+        ['company', companyMetadata],
+    ] as const) {
+        it(`returns not found for an unknown ${route} ID in both locales`, async () => {
+            for (const locale of ['en', 'fr']) {
+                await expect(generate({ params: Promise.resolve({ id: 'missing-id', locale: locale as 'en' | 'fr' }) }))
+                    .rejects.toMatchObject({ digest: 'NEXT_HTTP_ERROR_FALLBACK;404' });
+            }
+        });
+    }
+
+    it('returns not found from the media pages for unknown IDs', async () => {
+        for (const page of [videoPage, playlistPage]) {
+            await expect(page({ params: Promise.resolve({ id: 'missing-id', locale: 'en' }) }))
+                .rejects.toMatchObject({ digest: 'NEXT_HTTP_ERROR_FALLBACK;404' });
+        }
+    });
+});
+
+describe('route-specific metadata fields', () => {
+    it('merges child alternates with both root feed types and keeps other fields', async () => {
+        const root = await rootMetadata({ params: Promise.resolve({ locale: 'en' }), children: null });
+        const generate = createStaticSectionMetadata('links', {
+            robots: { index: false },
+            alternates: { canonical: '/en/links', types: { 'text/plain': '/links.txt' } },
+        });
+        const metadata = await generate(
+            { params: Promise.resolve({ locale: 'en' }) },
+            Promise.resolve(root) as ResolvingMetadata,
+        );
+
+        expect(metadata.title).toBe('Links | GamesPassionFR');
+        expect(metadata.description).toBe('Find links related to the GamesPassionFR YouTube channel.');
+        expect(metadata.robots).toEqual({ index: false });
+        expect(metadata.alternates).toEqual({
+            canonical: '/en/links',
+            types: {
+                'application/rss+xml': '/rss.xml',
+                'application/feed+json': '/feed.json',
+                'text/plain': '/links.txt',
+            },
+        });
+    });
+
+    it('allows route-specific titles without replacing the localized description', () => {
+        expect(staticSectionMetadata('fr', 'video', { title: 'Nova Drift | GamesPassionFR' }))
+            .toMatchObject({
+                title: 'Nova Drift | GamesPassionFR',
+                description: 'Regardez une vidéo de jeu de GamesPassionFR.',
+            });
     });
 });

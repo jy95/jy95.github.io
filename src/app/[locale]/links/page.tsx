@@ -1,3 +1,5 @@
+import { createStaticSectionMetadata } from '@/i18n/staticSectionMetadata';
+
 // Components
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -82,3 +84,5 @@ export default function LinksViewer() {
         </Box>
     );
 }
+
+export const generateMetadata = createStaticSectionMetadata('links');
