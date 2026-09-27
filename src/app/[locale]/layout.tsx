@@ -23,7 +23,14 @@ import type { Metadata } from 'next/types';
 import type { ReactNode } from "react";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  return staticSectionMetadata((await params).locale, 'site');
+  return staticSectionMetadata((await params).locale, 'site', {
+    alternates: {
+      types: {
+        'application/rss+xml': '/rss.xml',
+        'application/feed+json': '/feed.json',
+      },
+    },
+  });
 }
 
 type Props = {

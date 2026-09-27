@@ -19,6 +19,7 @@ vi.mock('@/domain/games', () => ({
 
 import { GET } from './route';
 import { GET as getDetail } from './[id]/route';
+import { getCompanyMetadata } from './data';
 
 const request = (query = '') => new Request(`https://example.com/api/companies${query}`);
 
@@ -88,10 +89,15 @@ describe('GET /api/companies/[id]', () => {
         expect(body).toMatchObject({ name: 'Both', imagePath: '/companies/1/cover.webp' });
         expect(body.developerGames[0]).toMatchObject({ id: 'one', tierCategory: 'tier_good', imagePath: '/covers/one/cover.webp' });
         expect(body.publisherGames).toHaveLength(1);
+        expect(response.headers.get('Cache-Control')).toBe('public, max-age=86400, must-revalidate');
+        expect(await getCompanyMetadata('1')).toEqual({ title: body.name, imagePath: body.imagePath });
     });
 
     it('returns 404 for an unknown company', async () => {
-        expect((await getDetail(request(), { params: Promise.resolve({ id: '999' }) })).status).toBe(404);
+        const response = await getDetail(request(), { params: Promise.resolve({ id: '999' }) });
+        expect(response.status).toBe(404);
+        expect(await response.json()).toEqual({ error: 'Company not found' });
+        expect(await getCompanyMetadata('999')).toBeUndefined();
     });
 
     it('uses only company JSON for tiers, falling back when a category is missing', async () => {

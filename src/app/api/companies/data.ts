@@ -29,8 +29,19 @@ export async function loadCompanies(): Promise<RawCompany[]> {
     return (await import("./companies.json")).default as RawCompany[];
 }
 
+export async function getCompany(id: string): Promise<RawCompany | undefined> {
+    return (await loadCompanies()).find((entry) => String(entry.id) === id);
+}
+
 export function companyImagePath(id: number): string {
     return `${COVER_PATHS.companies}/${id}/cover.webp`;
+}
+
+export async function getCompanyMetadata(id: string): Promise<{ title: string; imagePath: string } | undefined> {
+    const company = await getCompany(id);
+    if (!company) return undefined;
+
+    return { title: company.name, imagePath: companyImagePath(company.id) };
 }
 
 export async function toCompanyDetail(company: RawCompany): Promise<CompanyType> {
