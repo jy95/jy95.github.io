@@ -15,6 +15,62 @@
         "stats": {
             "title": "Statistiques | GamesPassionFR",
             "description": "Explorez les statistiques de la collection de jeux GamesPassionFR."
+        },
+        "site": {
+            "title": "GamesPassionFR",
+            "description": "Catalogue des jeux de GamesPassionFR."
+        },
+        "backlog": {
+            "title": "Backlog | GamesPassionFR",
+            "description": "Découvrez les jeux prévus sur GamesPassionFR et votez pour les prochaines vidéos."
+        },
+        "links": {
+            "title": "Liens | GamesPassionFR",
+            "description": "Retrouvez GamesPassionFR sur YouTube, Discord, Bluesky et GitHub."
+        },
+        "companies": {
+            "title": "Entreprises | GamesPassionFR",
+            "description": "Parcourez les développeurs et éditeurs de jeux du catalogue GamesPassionFR."
+        },
+        "company": {
+            "title": "Jeux de l’entreprise | GamesPassionFR",
+            "description": "Découvrez les jeux de ce développeur ou éditeur dans le catalogue GamesPassionFR."
+        },
+        "series": {
+            "title": "Séries de jeux | GamesPassionFR",
+            "description": "Explorez les séries de jeux du catalogue GamesPassionFR."
+        },
+        "dlcs": {
+            "title": "Contenus additionnels | GamesPassionFR",
+            "description": "Découvrez les contenus additionnels et extensions du catalogue GamesPassionFR."
+        },
+        "random": {
+            "title": "Jeu aléatoire | GamesPassionFR",
+            "description": "Découvrez une vidéo ou une playlist de jeu au hasard sur GamesPassionFR."
+        },
+        "tier": {
+            "title": "Tier lists | GamesPassionFR",
+            "description": "Découvrez les classements de jeux de GamesPassionFR."
+        },
+        "tierGames": {
+            "title": "Classement des jeux terminés | GamesPassionFR",
+            "description": "Découvrez le classement des jeux terminés de GamesPassionFR."
+        },
+        "tierBacklog": {
+            "title": "Classement du backlog | GamesPassionFR",
+            "description": "Découvrez le classement du backlog de GamesPassionFR."
+        },
+        "tierTests": {
+            "title": "Classement des tests de jeux | GamesPassionFR",
+            "description": "Découvrez le classement des jeux testés de GamesPassionFR."
+        },
+        "playlist": {
+            "title": "Playlist de jeu | GamesPassionFR",
+            "description": "Regardez une playlist de jeu de GamesPassionFR."
+        },
+        "video": {
+            "title": "Vidéo de jeu | GamesPassionFR",
+            "description": "Regardez une vidéo de jeu de GamesPassionFR."
         }
     },
     "dashboard": {

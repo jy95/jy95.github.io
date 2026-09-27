@@ -1,3 +1,4 @@
+import { staticSectionMetadata } from '@/i18n/staticSectionMetadata';
 // Providers
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import StoreProvider from "@/providers/StoreProvider";
@@ -21,15 +22,16 @@ import type {Locale} from 'next-intl';
 import type { Metadata } from 'next/types';
 import type { ReactNode } from "react";
 
-export const metadata: Metadata = {
-  title: 'GamesPassionFR',
-  description: 'Catalogue des jeux de GamesPassionFR',
-  alternates: {
-    types: {
-      'application/rss+xml': '/rss.xml',
-      'application/feed+json': '/feed.json'
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  return {
+    ...staticSectionMetadata((await params).locale, 'site'),
+    alternates: {
+      types: {
+        'application/rss+xml': '/rss.xml',
+        'application/feed+json': '/feed.json'
+      },
     },
-  },
+  };
 }
 
 type Props = {

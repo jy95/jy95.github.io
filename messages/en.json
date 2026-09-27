@@ -15,6 +15,62 @@
         "stats": {
             "title": "Statistics | GamesPassionFR",
             "description": "Explore statistics about the GamesPassionFR game collection."
+        },
+        "site": {
+            "title": "GamesPassionFR",
+            "description": "Browse the GamesPassionFR game collection."
+        },
+        "backlog": {
+            "title": "Backlog | GamesPassionFR",
+            "description": "Discover games planned for GamesPassionFR and vote for upcoming videos."
+        },
+        "links": {
+            "title": "Links | GamesPassionFR",
+            "description": "Find GamesPassionFR on YouTube, Discord, Bluesky and GitHub."
+        },
+        "companies": {
+            "title": "Companies | GamesPassionFR",
+            "description": "Browse game developers and publishers in the GamesPassionFR collection."
+        },
+        "company": {
+            "title": "Company Games | GamesPassionFR",
+            "description": "Explore games by this developer or publisher in the GamesPassionFR collection."
+        },
+        "series": {
+            "title": "Game Series | GamesPassionFR",
+            "description": "Explore game series in the GamesPassionFR collection."
+        },
+        "dlcs": {
+            "title": "DLCs | GamesPassionFR",
+            "description": "Explore downloadable content and expansions in the GamesPassionFR collection."
+        },
+        "random": {
+            "title": "Random Game | GamesPassionFR",
+            "description": "Discover a random game video or playlist from GamesPassionFR."
+        },
+        "tier": {
+            "title": "Tier Lists | GamesPassionFR",
+            "description": "Explore GamesPassionFR game rankings."
+        },
+        "tierGames": {
+            "title": "Completed Games Tier List | GamesPassionFR",
+            "description": "Explore the GamesPassionFR tier list of completed games."
+        },
+        "tierBacklog": {
+            "title": "Backlog Tier List | GamesPassionFR",
+            "description": "Explore the GamesPassionFR backlog tier list."
+        },
+        "tierTests": {
+            "title": "Game Reviews Tier List | GamesPassionFR",
+            "description": "Explore the GamesPassionFR tier list of reviewed games."
+        },
+        "playlist": {
+            "title": "Game Playlist | GamesPassionFR",
+            "description": "Watch a GamesPassionFR game playlist."
+        },
+        "video": {
+            "title": "Game Video | GamesPassionFR",
+            "description": "Watch a GamesPassionFR game video."
         }
     },
     "dashboard": {
