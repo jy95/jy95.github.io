@@ -2,19 +2,19 @@
     "pageMetadata": {
         "games": {
             "title": "Jeux | GamesPassionFR",
-            "description": "Parcourez la collection de jeux GamesPassionFR et retrouvez leurs vidéos."
+            "description": "Parcourez les jeux, séries et contenus additionnels publiés sur la chaîne YouTube GamesPassionFR."
         },
         "planning": {
             "title": "Planning | GamesPassionFR",
-            "description": "Découvrez les prochains jeux et vidéos dans le planning GamesPassionFR."
+            "description": "Découvrez les prochains jeux qui seront publiés sur la chaîne YouTube GamesPassionFR."
         },
         "tests": {
             "title": "Tests de jeux | GamesPassionFR",
-            "description": "Découvrez les tests de jeux de GamesPassionFR."
+            "description": "Découvrez les tests de jeux sur la chaîne YouTube GamesPassionFR."
         },
         "stats": {
             "title": "Statistiques | GamesPassionFR",
-            "description": "Explorez les statistiques de la collection de jeux GamesPassionFR."
+            "description": "Explorez les statistiques de la chaîne YouTube GamesPassionFR."
         },
         "site": {
             "title": "GamesPassionFR",
@@ -22,15 +22,15 @@
         },
         "backlog": {
             "title": "Backlog | GamesPassionFR",
-            "description": "Découvrez les jeux prévus sur GamesPassionFR et votez pour les prochaines vidéos."
+            "description": "Parcourez le backlog de jeux de la chaîne YouTube GamesPassionFR."
         },
         "links": {
             "title": "Liens | GamesPassionFR",
-            "description": "Retrouvez GamesPassionFR sur YouTube, Discord, Bluesky et GitHub."
+            "description": "Retrouvez les liens liés à la chaîne YouTube GamesPassionFR."
         },
         "companies": {
             "title": "Entreprises | GamesPassionFR",
-            "description": "Parcourez les développeurs et éditeurs de jeux du catalogue GamesPassionFR."
+            "description": "Parcourez les développeurs et éditeurs de jeux ainsi que les jeux associés à chaque entreprise sur la chaîne YouTube GamesPassionFR."
         },
         "company": {
             "title": "Jeux de l’entreprise | GamesPassionFR",
@@ -50,7 +50,7 @@
         },
         "tier": {
             "title": "Tier lists | GamesPassionFR",
-            "description": "Découvrez les classements de jeux de GamesPassionFR."
+            "description": "Explorez les tier lists qui regroupent et classent les jeux, les entrées du backlog et les tests liés à la chaîne YouTube GamesPassionFR."
         },
         "tierGames": {
             "title": "Classement des jeux terminés | GamesPassionFR",

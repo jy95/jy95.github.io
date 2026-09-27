@@ -2,19 +2,19 @@
     "pageMetadata": {
         "games": {
             "title": "Games | GamesPassionFR",
-            "description": "Browse the GamesPassionFR game collection and find videos for your favorite games."
+            "description": "Browse games, series, and DLCs published on the GamesPassionFR YouTube channel."
         },
         "planning": {
             "title": "Calendar | GamesPassionFR",
-            "description": "See the upcoming games and videos on the GamesPassionFR calendar."
+            "description": "See upcoming games to be published on the GamesPassionFR YouTube channel."
         },
         "tests": {
             "title": "Game Reviews | GamesPassionFR",
-            "description": "Explore game reviews and tests from GamesPassionFR."
+            "description": "Explore game reviews on the GamesPassionFR YouTube channel."
         },
         "stats": {
             "title": "Statistics | GamesPassionFR",
-            "description": "Explore statistics about the GamesPassionFR game collection."
+            "description": "Explore statistics for the GamesPassionFR YouTube channel."
         },
         "site": {
             "title": "GamesPassionFR",
@@ -22,15 +22,15 @@
         },
         "backlog": {
             "title": "Backlog | GamesPassionFR",
-            "description": "Discover games planned for GamesPassionFR and vote for upcoming videos."
+            "description": "Browse the game backlog for the GamesPassionFR YouTube channel."
         },
         "links": {
             "title": "Links | GamesPassionFR",
-            "description": "Find GamesPassionFR on YouTube, Discord, Bluesky and GitHub."
+            "description": "Find links related to the GamesPassionFR YouTube channel."
         },
         "companies": {
             "title": "Companies | GamesPassionFR",
-            "description": "Browse game developers and publishers in the GamesPassionFR collection."
+            "description": "Browse game developers and publishers with the games associated with each company on the GamesPassionFR YouTube channel."
         },
         "company": {
             "title": "Company Games | GamesPassionFR",
@@ -50,7 +50,7 @@
         },
         "tier": {
             "title": "Tier Lists | GamesPassionFR",
-            "description": "Explore GamesPassionFR game rankings."
+            "description": "Explore tier lists grouping and ranking games, backlog entries, and tests related to the GamesPassionFR YouTube channel."
         },
         "tierGames": {
             "title": "Completed Games Tier List | GamesPassionFR",
