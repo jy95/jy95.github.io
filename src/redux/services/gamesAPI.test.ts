@@ -36,11 +36,37 @@ describe('gamesAPI query building (getGames)', () => {
         fetchMock.mockImplementation(async () => jsonResponse(emptyPage));
     });
 
+    it('shares one cache entry for equivalent filter selections', async () => {
+        const store = makeStore();
+        const first = store.dispatch(gamesAPI.endpoints.getGames.initiate({
+            filters: {
+                genres: [10, 2, 2],
+                platform: 1,
+            }, pageSize: 12,
+        }));
+        await first;
+        const second = store.dispatch(gamesAPI.endpoints.getGames.initiate({
+            filters: {
+                title: '',
+                platform: 1,
+                genres: [2, 10],
+            }, pageSize: 12,
+        }));
+        await second;
+        expect(fetchMock).toHaveBeenCalledTimes(1);
+        expect(Object.keys(store.getState()[gamesAPI.reducerPath].queries)).toHaveLength(1);
+        await store.dispatch(gamesAPI.endpoints.getGames.initiate({ filters: {}, pageSize: 24 }));
+        expect(fetchMock).toHaveBeenCalledTimes(2);
+        first.unsubscribe();
+        second.unsubscribe();
+        store.dispatch(gamesAPI.util.resetApiState());
+    });
+
     it('includes page and pageSize even with no filters', async () => {
         const store = makeStore();
         await store.dispatch(
             gamesAPI.endpoints.getGames.initiate({
-                filters: [],
+                filters: {},
                 pageSize: 12,
             })
         );
@@ -54,7 +80,7 @@ describe('gamesAPI query building (getGames)', () => {
         const store = makeStore();
         await store.dispatch(
             gamesAPI.endpoints.getGames.initiate({
-                filters: [],
+                filters: {},
                 pageSize: 12,
             })
         );
@@ -66,7 +92,7 @@ describe('gamesAPI query building (getGames)', () => {
         const store = makeStore();
         await store.dispatch(
             gamesAPI.endpoints.getGames.initiate({
-                filters: [{ key: 'selected_title', value: 'zelda' }],
+                filters: {title: 'zelda'},
                 pageSize: 12,
             })
         );
@@ -78,7 +104,7 @@ describe('gamesAPI query building (getGames)', () => {
         const store = makeStore();
         await store.dispatch(
             gamesAPI.endpoints.getGames.initiate({
-                filters: [{ key: 'selected_platform', value: 6 }],
+                filters: {platform: 6},
                 pageSize: 12,
             })
         );
@@ -90,7 +116,7 @@ describe('gamesAPI query building (getGames)', () => {
         const store = makeStore();
         await store.dispatch(
             gamesAPI.endpoints.getGames.initiate({
-                filters: [{ key: 'selected_genres', value: [1, 2, 3] }],
+                filters: {genres: [1, 2, 3]},
                 pageSize: 12,
             })
         );
@@ -106,7 +132,7 @@ describe('gamesAPI query building (getGames)', () => {
         const store = makeStore();
         await store.dispatch(
             gamesAPI.endpoints.getGames.initiate({
-                filters: [{ key: 'selected_genres', value: [] }],
+                filters: {genres: []},
                 pageSize: 12,
             })
         );
@@ -118,11 +144,11 @@ describe('gamesAPI query building (getGames)', () => {
         const store = makeStore();
         await store.dispatch(
             gamesAPI.endpoints.getGames.initiate({
-                filters: [
-                    { key: 'selected_title', value: 'mario' },
-                    { key: 'selected_platform', value: 1 },
-                    { key: 'selected_genres', value: [5] },
-                ],
+                filters: {
+                    title: 'mario',
+                    platform: 1,
+                    genres: [5],
+                },
                 pageSize: 12,
             })
         );
@@ -137,7 +163,7 @@ describe('gamesAPI query building (getGames)', () => {
         const store = makeStore();
         await store.dispatch(
             gamesAPI.endpoints.getGames.initiate({
-                filters: [],
+                filters: {},
                 pageSize: 24,
             })
         );
@@ -149,7 +175,7 @@ describe('gamesAPI query building (getGames)', () => {
         const store = makeStore();
         await store.dispatch(
             gamesAPI.endpoints.getGames.initiate({
-                filters: [],
+                filters: {},
                 pageSize: 12,
             })
         );

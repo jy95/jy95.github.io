@@ -1,3 +1,4 @@
+import type { GameFilters } from '@/types/gamesFilters';
 import { lazy, Suspense } from "react";
 
 // MUI
@@ -14,7 +15,12 @@ const GenresSelect = lazy(() => import("@/features/games/components/GenresSelect
 const PlatformSelect = lazy(() => import("@/features/games/components/PlatformSelect"));
 const TitleFilter = lazy(() => import("@/features/games/components/TitleFilter"));
 
-export default function GamesFilters() {
+type Props = {
+    filters: GameFilters;
+    onChange: (changes: Partial<GameFilters>) => void;
+};
+
+export default function GamesFilters({ filters, onChange }: Props) {
 
     return (
         <Accordion>
@@ -30,13 +36,13 @@ export default function GamesFilters() {
                 <Suspense fallback={<CircularProgress />}>
                     <Grid container spacing={1}>
                         <Grid size={{ xs: 12, md: 5 }}>
-                            <TitleFilter />
+                            <TitleFilter value={filters.title ?? ""} onChange={title => onChange({ title })} />
                         </Grid>
                         <Grid size={{ xs: 12, md: 3 }}>
-                            <PlatformSelect />
+                            <PlatformSelect value={filters.platform} onChange={platform => onChange({ platform })} />
                         </Grid>
                         <Grid size={{ xs: 12, md: 4 }}>
-                            <GenresSelect />
+                            <GenresSelect value={filters.genres ?? []} onChange={genres => onChange({ genres })} />
                         </Grid>
                     </Grid>
                 </Suspense>
