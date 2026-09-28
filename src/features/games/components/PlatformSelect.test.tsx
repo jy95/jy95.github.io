@@ -1,13 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { echoTranslations } from '@/test/mocks/nextIntl';
 
 vi.mock('next-intl', () => echoTranslations());
 
 const onChange = vi.fn();
 let mockSelectedPlatform: number | undefined;
-
-
 
 const getPlatformsQueryMock = vi.fn();
 vi.mock('@/redux/services/platformsAPI', () => ({
@@ -39,16 +37,18 @@ describe('PlatformSelect', () => {
         expect(screen.getByLabelText('gamesLibrary.filtersLabels.platform')).toHaveValue('');
     });
 
-    it('shows the matching platform name when a platform filter is active', () => {
-        mockSelectedPlatform = 6;
-        render(<PlatformSelect value={mockSelectedPlatform} onChange={onChange} />);
-        expect(screen.getByLabelText('gamesLibrary.filtersLabels.platform')).toHaveValue('PS3');
-    });
+    it('selects and clears a platform through the autocomplete', async () => {
+        const { rerender } = render(<PlatformSelect value={mockSelectedPlatform} onChange={onChange} />);
+        const input = screen.getByLabelText('gamesLibrary.filtersLabels.platform');
+        fireEvent.mouseDown(input);
+        fireEvent.click(await screen.findByRole('option', { name: 'PS3' }));
+        expect(onChange).toHaveBeenLastCalledWith(6);
 
-    it('shows a different platform name for a different selected id', () => {
-        mockSelectedPlatform = 1;
-        render(<PlatformSelect value={mockSelectedPlatform} onChange={onChange} />);
-        expect(screen.getByLabelText('gamesLibrary.filtersLabels.platform')).toHaveValue('PC');
+        mockSelectedPlatform = 6;
+        rerender(<PlatformSelect value={mockSelectedPlatform} onChange={onChange} />);
+        expect(input).toHaveValue('PS3');
+        fireEvent.click(screen.getByTitle('Clear'));
+        expect(onChange).toHaveBeenLastCalledWith(undefined);
     });
 
     it('falls back to an empty name when the selected platform id is not in the fetched list', () => {

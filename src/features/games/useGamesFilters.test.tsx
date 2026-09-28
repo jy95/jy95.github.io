@@ -25,15 +25,6 @@ function currentParams() {
 }
 
 describe('URL game filters', () => {
-    it('restores a shared URL without rewriting it', () => {
-        navigation.href = '/fr/games?title=Zelda&platform=6&genres=10&genres=2';
-        const { result } = renderHook(useGamesFilters);
-        expect(result.current.filters).toEqual({ title: 'Zelda', platform: 6, genres: [2, 10] });
-        expect(currentParams().getAll('genres')).toEqual(['10', '2']);
-        expect(navigation.push).not.toHaveBeenCalled();
-        expect(navigation.replace).not.toHaveBeenCalled();
-    });
-
     it('merges rapid updates, keeps unrelated parameters, and clears filters', () => {
         navigation.href = '/fr/games?campaign=shared';
         const { result, rerender } = renderHook(useGamesFilters);

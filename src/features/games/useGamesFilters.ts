@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useReducer, useRef } from 'react';
 import { GAME_FILTER_KEYS, filtersToSearchParams, searchParamsToFilters } from '@/lib/gamesFilterUtils';
 import type { GameFilters } from '@/types/gamesFilters';
 
@@ -10,7 +10,7 @@ export function useGamesFilters() {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    const [draft, setDraft] = useState<GameFilters | null>(null);
+    const [, refresh] = useReducer(count => count + 1, 0);
     const observed = searchParams.toString();
     const pending = useRef({ observed, params: new URLSearchParams(observed), requests: [] as string[] });
     if (pending.current.observed !== observed) {
@@ -21,9 +21,9 @@ export function useGamesFilters() {
             pending.current = { observed, params: new URLSearchParams(observed), requests: [] };
         }
     }
-    const filters = pending.current.requests.length && draft
-        ? draft
-        : searchParamsToFilters(new URLSearchParams(observed));
+    const filters = searchParamsToFilters(
+        pending.current.requests.length ? pending.current.params : new URLSearchParams(observed)
+    );
 
     function updateFilters(changes: Partial<GameFilters>) {
         const params = new URLSearchParams(pending.current.params);
@@ -33,7 +33,7 @@ export function useGamesFilters() {
         if (params.toString() === pending.current.params.toString()) return;
         pending.current.params = params;
         pending.current.requests.push(params.toString());
-        setDraft(searchParamsToFilters(params));
+        refresh();
 
         const href = `${pathname}${params.size ? `?${params}` : ''}`;
         if ('title' in changes) router.replace(href, { scroll: false });
