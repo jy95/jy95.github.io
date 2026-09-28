@@ -31,7 +31,7 @@ describe('makeStore', () => {
     it('dispatching a gamesSlice action only touches that slice', () => {
         const store = makeStore();
         store.dispatch({ type: 'games/filterByTitle', payload: 'mario' });
-        expect(store.getState().games.activeFilters).toEqual([{ key: 'selected_title', value: 'mario' }]);
+        expect(store.getState().games.activeFilters).toEqual([{ key: 'title', value: 'mario' }]);
 
         const apiState = store.getState()[api.reducerPath];
         expect(apiState.queries).toEqual({});

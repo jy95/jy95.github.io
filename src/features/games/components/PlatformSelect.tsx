@@ -2,8 +2,6 @@
 
 // Hooks
 import { useTranslations } from "next-intl";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { filterByPlatform, selectSelectedPlatform } from "@/redux/features/gamesSlice";
 import { useGetPlatformsQuery } from "@/redux/services/platformsAPI";
 
 // React Material UI
@@ -13,14 +11,12 @@ import { renderAutocompleteInput } from "./renderAutocompleteInput";
 
 import type { Platform_Entry } from "@/app/api/platforms/route";
 
-function PlatformSelect() {
+type Props = { value?: number; onChange: (platform: number | undefined) => void };
+
+function PlatformSelect({ value: selectedPlatform, onChange }: Props) {
 
     const t = useTranslations("gamesLibrary.filtersLabels")
-    const dispatch = useAppDispatch();
     const { data, isFetching } = useGetPlatformsQuery();
-    const selectedPlatform = useAppSelector(
-        (state) => selectSelectedPlatform(state)
-    )
 
     return (
         <Autocomplete<Platform_Entry, false>
@@ -38,10 +34,10 @@ function PlatformSelect() {
             )}
             onChange={(_event, value) => {
                 const platform = (value) ? value.id : undefined;
-                dispatch(filterByPlatform(platform));
+                onChange(platform);
             }}
             value={
-                selectedPlatform ? {
+                selectedPlatform !== undefined ? {
                     id: selectedPlatform,
                     name: (data || [] ).find(p => p.id === selectedPlatform)?.name || ""
                 } : null

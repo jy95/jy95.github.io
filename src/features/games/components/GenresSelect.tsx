@@ -2,7 +2,6 @@
 
 // Hooks
 import { useTranslations } from "next-intl";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 // React Material UI
 import Autocomplete from "@mui/material/Autocomplete";
@@ -10,7 +9,6 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { renderAutocompleteInput } from "./renderAutocompleteInput";
 
 // actions
-import { filteringByGenre, selectSelectedGenres } from "@/redux/features/gamesSlice";
 import { useGetGenresQuery } from "@/redux/services/genresAPI"
 
 // Generate list of values for game genre
@@ -18,12 +16,10 @@ import type { Genre } from "@/app/api/genres/route"
 import type { GameGenreId } from "@/types/genres";
 
 // Genres filter of GamesGallery
-function GenresSelect() {
+type Props = { value: number[]; onChange: (genres: number[]) => void };
 
-    const dispatch = useAppDispatch();
-    const selectedGenres = useAppSelector(
-        (state) => selectSelectedGenres(state)
-    )
+function GenresSelect({ value: selectedGenres, onChange }: Props) {
+
     const { data, isFetching } = useGetGenresQuery();
     const t = useTranslations("gamesLibrary")
 
@@ -36,21 +32,21 @@ function GenresSelect() {
             name: idToName(genre.id.toString() as GameGenreId),
             id: genre.id
         }))
-        .sort( 
-            (a, b) => (a.name < b.name) ? -1 : (a.name > b.name ? 1 : 0) 
+        .sort(
+            (a, b) => (a.name < b.name) ? -1 : (a.name > b.name ? 1 : 0)
         );
 
     return <>
         <Autocomplete<Genre, true, true>
             multiple
             openOnFocus
-            filterSelectedOptions 
+            filterSelectedOptions
             id="select-game-genre"
             limitTags={3}
             loading={isFetching}
             options={genre_options}
             getOptionLabel={(option) => option.name}
-            isOptionEqualToValue={(option, value) => 
+            isOptionEqualToValue={(option, value) =>
                 Array.isArray(value) ? value.some(v => v.id === option.id) : value.id === option.id
             }
             value={selectedGenres.map(genre => ({
@@ -59,7 +55,7 @@ function GenresSelect() {
             }))}
             renderInput={renderAutocompleteInput(t("filtersLabels.genres"))}
             onChange={(_event, value) => {
-                dispatch(filteringByGenre(value.map(v => v.id)));
+                onChange(value.map(v => v.id));
             }}
         />
     </>;
