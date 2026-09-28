@@ -1,50 +1,71 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import type { GameFilters } from '@/types/gamesFilters';
 
-vi.mock('@/features/games/components/GenresSelect', () => ({
-    default: () => <div>Genres Component</div>,
+vi.mock('@/features/games/components/TitleFilter', () => ({
+    default: ({ value, onChange }: { value: string; onChange: (value: string) => void }) => (
+        <input aria-label="Title" value={value} onChange={event => onChange(event.target.value)} />
+    ),
 }));
 vi.mock('@/features/games/components/PlatformSelect', () => ({
-    default: () => <div>Platform Component</div>,
+    default: ({ value, onChange }: { value?: number; onChange: (value: number | undefined) => void }) => (
+        <div>
+            <output aria-label="Platform value">{value ?? 'none'}</output>
+            <button onClick={() => onChange(6)}>Select platform</button>
+            <button onClick={() => onChange(undefined)}>Clear platform</button>
+        </div>
+    ),
 }));
-vi.mock('@/features/games/components/TitleFilter', () => ({
-    default: () => <div>Title Component</div>,
+vi.mock('@/features/games/components/GenresSelect', () => ({
+    default: ({ value, onChange }: { value: number[]; onChange: (value: number[]) => void }) => (
+        <div>
+            <output aria-label="Genres value">{value.join(',')}</output>
+            <button onClick={() => onChange([2, 13])}>Select genres</button>
+            <button onClick={() => onChange([])}>Clear genres</button>
+        </div>
+    ),
 }));
 
 import GamesFilters from './GamesFilters';
 
 describe('GamesFilters', () => {
-    it('renders the accordion summary with the Options label', async () => {
-        render(<GamesFilters filters={{}} onChange={vi.fn()} />);
-        await screen.findByText('Title Component');
-        expect(screen.getByText('Options')).toBeInTheDocument();
-    });
+    it('passes default values to all filters and forwards their changes', async () => {
+        const onChange = vi.fn();
+        render(<GamesFilters filters={{}} onChange={onChange} />);
 
-    it('exposes the summary as an accessible "Options" control', async () => {
-        render(<GamesFilters filters={{}} onChange={vi.fn()} />);
-        await screen.findByText('Title Component');
         expect(screen.getByRole('button', { name: /Options/i })).toBeInTheDocument();
+        fireEvent.click(screen.getByRole('button', { name: /Options/i }));
+        expect(await screen.findByRole('textbox', { name: 'Title' })).toHaveValue('');
+        expect(screen.getByLabelText('Platform value')).toHaveTextContent('none');
+        expect(screen.getByLabelText('Genres value')).toHaveTextContent('');
+
+        fireEvent.change(screen.getByRole('textbox', { name: 'Title' }), { target: { value: 'Mario' } });
+        fireEvent.click(screen.getByRole('button', { name: 'Select platform' }));
+        fireEvent.click(screen.getByRole('button', { name: 'Select genres' }));
+        expect(onChange.mock.calls).toEqual([
+            [{ title: 'Mario' }],
+            [{ platform: 6 }],
+            [{ genres: [2, 13] }],
+        ]);
     });
 
-    it('eventually renders the lazily-loaded TitleFilter', async () => {
-        render(<GamesFilters filters={{}} onChange={vi.fn()} />);
-        expect(await screen.findByText('Title Component')).toBeInTheDocument();
-    });
+    it('passes selected values and forwards clearing each filter', async () => {
+        const filters: GameFilters = { title: 'Zelda', platform: 1, genres: [13] };
+        const onChange = vi.fn();
+        render(<GamesFilters filters={filters} onChange={onChange} />);
 
-    it('eventually renders the lazily-loaded PlatformSelect', async () => {
-        render(<GamesFilters filters={{}} onChange={vi.fn()} />);
-        expect(await screen.findByText('Platform Component')).toBeInTheDocument();
-    });
+        fireEvent.click(screen.getByRole('button', { name: /Options/i }));
+        expect(await screen.findByRole('textbox', { name: 'Title' })).toHaveValue('Zelda');
+        expect(screen.getByLabelText('Platform value')).toHaveTextContent('1');
+        expect(screen.getByLabelText('Genres value')).toHaveTextContent('13');
 
-    it('eventually renders the lazily-loaded GenresSelect', async () => {
-        render(<GamesFilters filters={{}} onChange={vi.fn()} />);
-        expect(await screen.findByText('Genres Component')).toBeInTheDocument();
-    });
-
-    it('renders all three filter components together once resolved', async () => {
-        render(<GamesFilters filters={{}} onChange={vi.fn()} />);
-        expect(await screen.findByText('Title Component')).toBeInTheDocument();
-        expect(screen.getByText('Platform Component')).toBeInTheDocument();
-        expect(screen.getByText('Genres Component')).toBeInTheDocument();
+        fireEvent.change(screen.getByRole('textbox', { name: 'Title' }), { target: { value: '' } });
+        fireEvent.click(screen.getByRole('button', { name: 'Clear platform' }));
+        fireEvent.click(screen.getByRole('button', { name: 'Clear genres' }));
+        expect(onChange.mock.calls).toEqual([
+            [{ title: '' }],
+            [{ platform: undefined }],
+            [{ genres: [] }],
+        ]);
     });
 });
