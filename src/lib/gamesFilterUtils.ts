@@ -1,6 +1,9 @@
 import { GAME_SORT_OPTIONS } from '@/types/gamesFilters';
 import type { GameFilters, GameSort } from '@/types/gamesFilters';
 
+/** Keys owned by game filters; other query parameters belong to the page. */
+export const GAME_FILTER_KEYS = ['title', 'platform', 'genres', 'sort'] as const satisfies readonly (keyof GameFilters)[];
+
 const isId = (value: unknown): value is number =>
     typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
 
@@ -24,13 +27,13 @@ export function normalizeGameFilters(filters: GameFilters): GameFilters {
     return result;
 }
 
-/** Uses the existing API's repeated selected_genres parameter convention. */
+/** Genres use repeated query parameters. */
 export function filtersToSearchParams(filters: GameFilters): URLSearchParams {
     const normalized = normalizeGameFilters(filters);
     const params = new URLSearchParams();
-    if (normalized.title !== undefined) params.set('selected_title', normalized.title);
-    if (normalized.platform !== undefined) params.set('selected_platform', String(normalized.platform));
-    for (const genre of normalized.genres ?? []) params.append('selected_genres', String(genre));
+    if (normalized.title !== undefined) params.set('title', normalized.title);
+    if (normalized.platform !== undefined) params.set('platform', String(normalized.platform));
+    for (const genre of normalized.genres ?? []) params.append('genres', String(genre));
     if (normalized.sort !== undefined) params.set('sort', normalized.sort);
     return params;
 }
@@ -45,10 +48,9 @@ function parseId(value: string | null): number | undefined {
 export function searchParamsToFilters(params: URLSearchParams): GameFilters {
     const sort = params.get('sort');
     return normalizeGameFilters({
-        title: params.get('selected_title') ?? undefined,
-        platform: parseId(params.get('selected_platform')),
-        genres: params.getAll('selected_genres').map(parseId).filter(isId),
+        title: params.get('title') ?? undefined,
+        platform: parseId(params.get('platform')),
+        genres: params.getAll('genres').map(parseId).filter(isId),
         sort: isSort(sort) ? sort : undefined,
     });
 }
-

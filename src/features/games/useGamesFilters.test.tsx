@@ -2,23 +2,40 @@ import { act, renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { useGamesFilters } from './useGamesFilters';
 
-// Next updates this snapshot after history changes and popstate navigation.
-vi.mock('next/navigation', () => ({
-    useSearchParams: () => new URLSearchParams(window.location.search),
+const navigation = vi.hoisted(() => ({
+    href: '/fr/games',
+    push: vi.fn(),
+    replace: vi.fn(),
 }));
 
-beforeEach(() => window.history.replaceState(null, '', '/fr/games'));
+vi.mock('next/navigation', () => ({
+    usePathname: () => new URL(navigation.href, 'http://localhost').pathname,
+    useSearchParams: () => new URLSearchParams(new URL(navigation.href, 'http://localhost').search),
+    useRouter: () => ({ push: navigation.push, replace: navigation.replace }),
+}));
+
+beforeEach(() => {
+    navigation.href = '/fr/games';
+    navigation.push.mockReset().mockImplementation((href: string) => { navigation.href = href; });
+    navigation.replace.mockReset().mockImplementation((href: string) => { navigation.href = href; });
+});
+
+function currentParams() {
+    return new URL(navigation.href, 'http://localhost').searchParams;
+}
 
 describe('URL game filters', () => {
-    it('restores a shared URL on first render without rewriting it', () => {
-        window.history.replaceState(null, '', '/fr/games?selected_title=Zelda&selected_platform=6&selected_genres=10&selected_genres=2');
+    it('restores a shared URL without rewriting it', () => {
+        navigation.href = '/fr/games?title=Zelda&platform=6&genres=10&genres=2';
         const { result } = renderHook(useGamesFilters);
         expect(result.current.filters).toEqual({ title: 'Zelda', platform: 6, genres: [2, 10] });
-        expect(window.location.search).toContain('selected_genres=10&selected_genres=2');
+        expect(currentParams().getAll('genres')).toEqual(['10', '2']);
+        expect(navigation.push).not.toHaveBeenCalled();
+        expect(navigation.replace).not.toHaveBeenCalled();
     });
 
-    it('merges rapid updates, preserves path, unrelated parameters and hash, and clears filters', () => {
-        window.history.replaceState(null, '', '/fr/games?campaign=shared#library');
+    it('merges rapid updates, keeps unrelated parameters, and clears filters', () => {
+        navigation.href = '/fr/games?campaign=shared';
         const { result, rerender } = renderHook(useGamesFilters);
         act(() => {
             result.current.updateFilters({ title: 'Mario & Luigi' });
@@ -27,30 +44,67 @@ describe('URL game filters', () => {
         });
         rerender();
         expect(result.current.filters).toEqual({ title: 'Mario & Luigi', platform: 6, genres: [2, 10] });
-        expect(window.location.pathname).toBe('/fr/games');
-        expect(window.location.hash).toBe('#library');
-        expect(new URLSearchParams(window.location.search).get('campaign')).toBe('shared');
+        expect(navigation.replace).toHaveBeenCalledTimes(1);
+        expect(navigation.push).toHaveBeenCalledTimes(2);
+        expect(navigation.href).toMatch(/^\/fr\/games\?/);
+        expect(currentParams().get('campaign')).toBe('shared');
+        expect(currentParams().getAll('genres')).toEqual(['2', '10']);
+
         act(() => result.current.updateFilters({ title: '', platform: undefined, genres: [] }));
         rerender();
         expect(result.current.filters).toEqual({});
-        expect(window.location.search).toBe('?campaign=shared');
+        expect(currentParams().toString()).toBe('campaign=shared');
     });
 
-    it('responds to browser back and forward', async () => {
+    it('uses the observed URL after back and forward navigation', () => {
         const { result, rerender } = renderHook(useGamesFilters);
         act(() => result.current.updateFilters({ platform: 1 }));
+        const first = navigation.href;
+        rerender();
         act(() => result.current.updateFilters({ platform: 6 }));
-        async function navigate(direction: 'back' | 'forward') {
-            await act(async () => {
-                const navigated = new Promise(resolve => window.addEventListener('popstate', resolve, { once: true }));
-                window.history[direction]();
-                await navigated;
-            });
-            rerender();
-        }
-        await navigate('back');
+        const second = navigation.href;
+        rerender();
+
+        navigation.href = first;
+        rerender();
         expect(result.current.filters.platform).toBe(1);
-        await navigate('forward');
+        navigation.href = second;
+        rerender();
         expect(result.current.filters.platform).toBe(6);
+        act(() => result.current.updateFilters({ genres: [2] }));
+        expect(currentParams().get('platform')).toBe('6');
+    });
+
+    it('keeps pending changes when an earlier navigation resolves first', () => {
+        navigation.push.mockImplementation(() => {});
+        navigation.replace.mockImplementation(() => {});
+        const { result, rerender } = renderHook(useGamesFilters);
+        act(() => {
+            result.current.updateFilters({ title: 'Mario' });
+            result.current.updateFilters({ platform: 6 });
+        });
+        navigation.href = navigation.replace.mock.calls[0][0];
+        rerender();
+        act(() => result.current.updateFilters({ genres: [2] }));
+        const final = new URL(navigation.push.mock.lastCall![0], 'http://localhost').searchParams;
+        expect(final.get('title')).toBe('Mario');
+        expect(final.get('platform')).toBe('6');
+        expect(final.getAll('genres')).toEqual(['2']);
+        expect(navigation.push.mock.calls[0][0]).toContain('platform=6');
+    });
+
+    it('shows a pending filter before the router updates its search params', () => {
+        navigation.replace.mockImplementation(() => {});
+        const { result } = renderHook(useGamesFilters);
+        act(() => result.current.updateFilters({ title: 'Mario' }));
+        expect(result.current.filters.title).toBe('Mario');
+        expect(navigation.href).toBe('/fr/games');
+    });
+
+    it('does not navigate when an update leaves the query unchanged', () => {
+        const { result } = renderHook(useGamesFilters);
+        act(() => result.current.updateFilters({ title: '' }));
+        expect(navigation.push).not.toHaveBeenCalled();
+        expect(navigation.replace).not.toHaveBeenCalled();
     });
 });
