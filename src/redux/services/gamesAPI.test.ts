@@ -62,6 +62,30 @@ describe('gamesAPI query building (getGames)', () => {
         store.dispatch(gamesAPI.util.resetApiState());
     });
 
+    it('starts a new infinite result at page one when filters change', async () => {
+        fetchMock.mockImplementation(async (request: Request) => {
+            const params = new URL(request.url).searchParams;
+            const page = Number(params.get('page'));
+            return jsonResponse({ ...emptyPage, page, total_pages: 2, total_items: params.get('title') === 'Zelda' ? 20 : 10 });
+        });
+        const store = makeStore();
+        const zelda = { filters: { title: 'Zelda' }, pageSize: 12 };
+        const mario = { filters: { title: 'Mario' }, pageSize: 12 };
+        const first = store.dispatch(gamesAPI.endpoints.getGames.initiate(zelda));
+        await first;
+        await store.dispatch(gamesAPI.endpoints.getGames.initiate(zelda, { direction: 'forward' }));
+        expect(gamesAPI.endpoints.getGames.select(zelda)(store.getState()).data?.pages).toHaveLength(2);
+
+        const changed = store.dispatch(gamesAPI.endpoints.getGames.initiate(mario));
+        await changed;
+        expect(gamesAPI.endpoints.getGames.select(mario)(store.getState()).data?.pages).toHaveLength(1);
+        expect(gamesAPI.endpoints.getGames.select(mario)(store.getState()).data?.pages[0].total_items).toBe(10);
+        expect(fetchMock.mock.calls.map((_, index) => calledUrl(fetchMock, index).searchParams.get('page'))).toEqual(['1', '2', '1']);
+        first.unsubscribe();
+        changed.unsubscribe();
+        store.dispatch(gamesAPI.util.resetApiState());
+    });
+
     it('includes page and pageSize even with no filters', async () => {
         const store = makeStore();
         await store.dispatch(
@@ -88,7 +112,7 @@ describe('gamesAPI query building (getGames)', () => {
         expect(calledUrl(fetchMock).pathname).toBe('/api/games');
     });
 
-    it('serializes a selected_title filter as a plain query param', async () => {
+    it('serializes a title filter as a plain query param', async () => {
         const store = makeStore();
         await store.dispatch(
             gamesAPI.endpoints.getGames.initiate({
@@ -97,10 +121,10 @@ describe('gamesAPI query building (getGames)', () => {
             })
         );
 
-        expect(calledUrl(fetchMock).searchParams.get('selected_title')).toBe('zelda');
+        expect(calledUrl(fetchMock).searchParams.get('title')).toBe('zelda');
     });
 
-    it('serializes a selected_platform filter, converting the number to a string', async () => {
+    it('serializes a platform filter, converting the number to a string', async () => {
         const store = makeStore();
         await store.dispatch(
             gamesAPI.endpoints.getGames.initiate({
@@ -109,10 +133,10 @@ describe('gamesAPI query building (getGames)', () => {
             })
         );
 
-        expect(calledUrl(fetchMock).searchParams.get('selected_platform')).toBe('6');
+        expect(calledUrl(fetchMock).searchParams.get('platform')).toBe('6');
     });
 
-    it('serializes selected_genres as one repeated param per genre, in order', async () => {
+    it('serializes genres as one repeated param per genre, in order', async () => {
         const store = makeStore();
         await store.dispatch(
             gamesAPI.endpoints.getGames.initiate({
@@ -121,14 +145,14 @@ describe('gamesAPI query building (getGames)', () => {
             })
         );
 
-        expect(calledUrl(fetchMock).searchParams.getAll('selected_genres')).toEqual([
+        expect(calledUrl(fetchMock).searchParams.getAll('genres')).toEqual([
             '1',
             '2',
             '3',
         ]);
     });
 
-    it('omits selected_genres entirely when the array is empty', async () => {
+    it('omits genres entirely when the array is empty', async () => {
         const store = makeStore();
         await store.dispatch(
             gamesAPI.endpoints.getGames.initiate({
@@ -137,7 +161,7 @@ describe('gamesAPI query building (getGames)', () => {
             })
         );
 
-        expect(calledUrl(fetchMock).searchParams.getAll('selected_genres')).toEqual([]);
+        expect(calledUrl(fetchMock).searchParams.getAll('genres')).toEqual([]);
     });
 
     it('combines title, platform and genre filters together in a single request', async () => {
@@ -154,9 +178,9 @@ describe('gamesAPI query building (getGames)', () => {
         );
 
         const url = calledUrl(fetchMock);
-        expect(url.searchParams.get('selected_title')).toBe('mario');
-        expect(url.searchParams.get('selected_platform')).toBe('1');
-        expect(url.searchParams.getAll('selected_genres')).toEqual(['5']);
+        expect(url.searchParams.get('title')).toBe('mario');
+        expect(url.searchParams.get('platform')).toBe('1');
+        expect(url.searchParams.getAll('genres')).toEqual(['5']);
     });
 
     it('respects a different pageSize value in the query string', async () => {

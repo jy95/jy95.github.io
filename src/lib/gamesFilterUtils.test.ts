@@ -19,21 +19,21 @@ describe('game filter conversion', () => {
     it.each(GAME_SORT_OPTIONS)('round-trips %s with encoded title and numeric IDs', sort => {
         const filters = { title: ' Pokémon & Zelda + ', platform: 0, genres: [10, 2, 2], sort };
         const params = filtersToSearchParams(filters);
-        expect(params.getAll('selected_genres')).toEqual(['2', '10']);
+        expect(params.getAll('genres')).toEqual(['2', '10']);
         expect(searchParamsToFilters(new URLSearchParams(params.toString()))).toEqual({ ...filters, genres: [2, 10] });
     });
 
     it('ignores invalid numeric values, unknown keys and unsupported sorts', () => {
-        const params = new URLSearchParams('selected_platform=12abc&selected_genres=2&selected_genres=-1&selected_genres=1.5&selected_genres=&selected_genres=NaN&selected_genres=9007199254740992&selected_genres=02&sort=bogus&page=2');
+        const params = new URLSearchParams('platform=12abc&genres=2&genres=-1&genres=1.5&genres=&genres=NaN&genres=9007199254740992&genres=02&sort=bogus&page=2');
         expect(searchParamsToFilters(params)).toEqual({ genres: [2] });
         expect(normalizeGameFilters({ platform: Infinity, genres: [NaN, -1, 1.5, 2] })).toEqual({ genres: [2] });
     });
 
     it('uses the first scalar value and is idempotent', () => {
-        const params = new URLSearchParams('selected_title=first&selected_title=second&selected_platform=2&selected_platform=3');
+        const params = new URLSearchParams('title=first&title=second&platform=2&platform=3');
         const filters = searchParamsToFilters(params);
         expect(filters).toEqual({ title: 'first', platform: 2 });
         expect(normalizeGameFilters(normalizeGameFilters(filters))).toEqual(filters);
-        expect(params.getAll('selected_title')).toEqual(['first', 'second']);
+        expect(params.getAll('title')).toEqual(['first', 'second']);
     });
 });

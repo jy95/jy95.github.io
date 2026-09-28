@@ -88,18 +88,18 @@ describe("GET /api/games", () => {
   });
 
   it("filters by platform", async () => {
-    const req = makeRequest({ selected_platform: "1" });
+    const req = makeRequest({ platform: "1" });
     const data = await callGET(req);
     expect(data.items.length).toBeGreaterThan(0);
     expect(data.items.length).toBeLessThan(mockGames.length);
     for (const item of data.items) {
       expect(item.platform).toBe(1);
     }
-    expect(data.filters).toEqual({ platform: 1, genres: undefined, title: undefined });
+    expect(data.filters).toEqual({ platform: 1 });
   });
 
   it("filters by multiple genres using OR semantics", async () => {
-    const req = makeRequest({ selected_genres: ["1", "2"] });
+    const req = makeRequest({ genres: ["1", "2"] });
     const data = await callGET(req);
     expect(data.items.length).toBeGreaterThan(0);
     for (const item of data.items) {
@@ -108,8 +108,17 @@ describe("GET /api/games", () => {
     expect(data.filters?.genres).toEqual([1, 2]);
   });
 
+  it("ignores malformed IDs and canonicalizes repeated genres", async () => {
+    const data = await callGET(makeRequest({
+      platform: "1oops",
+      genres: ["16", "16", "-2", "2oops", "3"],
+    }));
+    expect(data.filters).toEqual({ genres: [3, 16] });
+    expect(data.items.every(item => item.genres?.some(genre => [3, 16].includes(genre)))).toBe(true);
+  });
+
   it("combines platform and genre filters using AND semantics", async () => {
-    const req = makeRequest({ selected_platform: "1", selected_genres: ["16"] });
+    const req = makeRequest({ platform: "1", genres: ["16"] });
     const data = await callGET(req);
     expect(data.items.length).toBeGreaterThan(0);
     for (const item of data.items) {
@@ -119,14 +128,14 @@ describe("GET /api/games", () => {
   });
 
   it("fuzzy-searches by title", async () => {
-    const req = makeRequest({ selected_title: "Zelda" });
+    const req = makeRequest({ title: "Zelda" });
     const data = await callGET(req);
     expect(data.items.length).toBeGreaterThan(0);
     expect(data.items.some((i) => i.title.includes("Zelda"))).toBe(true);
   });
 
   it("returns no filters object when the title query is an empty string", async () => {
-    const req = makeRequest({ selected_title: "" });
+    const req = makeRequest({ title: "" });
     const data = await callGET(req);
     expect(data.filters).toBeUndefined();
     expect(data.total_items).toBe(mockGames.length);
@@ -147,6 +156,16 @@ describe("GET /api/games", () => {
     const idsPage1 = page1.items.map((i) => i.id);
     const idsPage2 = page2.items.map((i) => i.id);
     expect(idsPage1).not.toEqual(idsPage2);
+  });
+
+  it("paginates within the changed filter result", async () => {
+    const first = await callGET(makeRequest({ platform: "1", pageSize: "2", page: "1" }));
+    const second = await callGET(makeRequest({ platform: "1", pageSize: "2", page: "2" }));
+    expect(first.total_items).toBe(3);
+    expect(first.total_pages).toBe(2);
+    expect(first.items).toHaveLength(2);
+    expect(second.items).toHaveLength(1);
+    expect(second.items[0].id).not.toBe(first.items[0].id);
   });
 
   it("returns an empty items array for a page beyond the last page", async () => {
@@ -171,7 +190,7 @@ describe("GET /api/games", () => {
   });
 
   it("returns no results for a platform with no matching games", async () => {
-    const data = await callGET(makeRequest({ selected_platform: "999" }));
+    const data = await callGET(makeRequest({ platform: "999" }));
     expect(data.items).toHaveLength(0);
     expect(data.total_items).toBe(0);
     // route treats non-positive pageSize as a single (empty) page

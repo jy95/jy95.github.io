@@ -1,29 +1,43 @@
 "use client";
 
-import { useSearchParams } from 'next/navigation';
-import { filtersToSearchParams, searchParamsToFilters } from '@/lib/gamesFilterUtils';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRef, useState } from 'react';
+import { GAME_FILTER_KEYS, filtersToSearchParams, searchParamsToFilters } from '@/lib/gamesFilterUtils';
 import type { GameFilters } from '@/types/gamesFilters';
-
-const FILTER_PARAMS = ['selected_title', 'selected_platform', 'selected_genres', 'sort'] as const;
 
 /** The URL is the filter state, including on refresh and browser navigation. */
 export function useGamesFilters() {
+    const router = useRouter();
+    const pathname = usePathname();
     const searchParams = useSearchParams();
-    const filters = searchParamsToFilters(new URLSearchParams(searchParams.toString()));
+    const [draft, setDraft] = useState<GameFilters | null>(null);
+    const observed = searchParams.toString();
+    const pending = useRef({ observed, params: new URLSearchParams(observed), requests: [] as string[] });
+    if (pending.current.observed !== observed) {
+        if (pending.current.requests.includes(observed)) {
+            pending.current.observed = observed;
+            if (observed === pending.current.requests.at(-1)) pending.current.requests = [];
+        } else {
+            pending.current = { observed, params: new URLSearchParams(observed), requests: [] };
+        }
+    }
+    const filters = pending.current.requests.length && draft
+        ? draft
+        : searchParamsToFilters(new URLSearchParams(observed));
 
     function updateFilters(changes: Partial<GameFilters>) {
-        // Read the latest URL so consecutive changes cannot overwrite one another.
-        const url = new URL(window.location.href);
-        const next = filtersToSearchParams({ ...searchParamsToFilters(url.searchParams), ...changes });
-        for (const key of FILTER_PARAMS) url.searchParams.delete(key);
-        next.forEach((value, key) => url.searchParams.append(key, value));
-        const href = `${url.pathname}${url.search}${url.hash}`;
-        if (href === `${window.location.pathname}${window.location.search}${window.location.hash}`) return;
+        const params = new URLSearchParams(pending.current.params);
+        const next = filtersToSearchParams({ ...searchParamsToFilters(params), ...changes });
+        for (const key of GAME_FILTER_KEYS) params.delete(key);
+        next.forEach((value, key) => { params.append(key, value); });
+        if (params.toString() === pending.current.params.toString()) return;
+        pending.current.params = params;
+        pending.current.requests.push(params.toString());
+        setDraft(searchParamsToFilters(params));
 
-        // Next's native history integration updates useSearchParams without a server navigation.
-        // Typing replaces the current entry to avoid one history entry per character.
-        if ('title' in changes) window.history.replaceState(null, '', href);
-        else window.history.pushState(null, '', href);
+        const href = `${pathname}${params.size ? `?${params}` : ''}`;
+        if ('title' in changes) router.replace(href, { scroll: false });
+        else router.push(href, { scroll: false });
     }
 
     return { filters, updateFilters };

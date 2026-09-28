@@ -2,25 +2,21 @@ import { NextResponse } from "next/server";
 import Fuse from 'fuse.js';
 import { buildCardGame } from "@/domain/games";
 import { COVER_PATHS } from "@/domain/games/coverPaths";
+import { searchParamsToFilters } from "@/lib/gamesFilterUtils";
 
 import type { RawGame, CardGame } from "@/domain/games";
+import type { GameFilters } from "@/types/gamesFilters";
 
 // Types
-type gamesFilters = {
-    platform?: number,
-    title?: string,
-    genres?: number[]
-};
-
 type RequestParams = {
-    filters?: gamesFilters,
+    filters?: GameFilters,
     pageSize?: number,
     page: number
 };
 
 export type ResponseBody = {
     items: CardGame[],
-    filters?: gamesFilters,
+    filters?: GameFilters,
     total_items: number,
     total_pages: number,
     pageSize: number,
@@ -86,22 +82,12 @@ function extractParameters(params: URLSearchParams): RequestParams {
     const pageSizeParam = params.get("pageSize");
     const pageSize = (pageSizeParam) ? parseInt(pageSizeParam, 10) : undefined;
 
-    const selected_platform = params.get("selected_platform");
-    const selected_genres = params.getAll("selected_genres");
-    const title = params.get("selected_title") || undefined;
-    const genres = selected_genres ? selected_genres.map(v => parseInt(v, 10)) : [];
-
-    const filters: gamesFilters = {
-        platform: selected_platform ? parseInt(selected_platform, 10) : undefined,
-        genres: genres.length > 0 ? genres : undefined,
-        title,
-    };
-    const hasDefinedValues = Object.values(filters).some(value => value !== undefined);
+    const filters = searchParamsToFilters(params);
 
     return {
         page,
         pageSize,
-        filters: hasDefinedValues ? filters : undefined
+        filters: Object.keys(filters).length > 0 ? filters : undefined
     }
 }
 

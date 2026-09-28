@@ -5,16 +5,15 @@ import type { RootState } from "../Store"
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 // To compute new filtering function
-//type gamesFilterKeys = "selected_platform" | "selected_title" | "selected_genres";
 export type gamesFilters = ({
     value: string,
-    key: "selected_title"
+    key: "title"
 } | {
     value: number[],
-    key: "selected_genres"
+    key: "genres"
 } | {
     value: number,
-    key: "selected_platform"
+    key: "platform"
 })[];
 
 export interface GamesState {
@@ -62,10 +61,10 @@ const gamesSlice = createSlice({
         filteringByGenre(state: GamesState, action: PayloadAction<number[]>) {
             state.activeFilters = replaceFilter(
                 state.activeFilters,
-                "selected_genres",
+                "genres",
                 action.payload.length > 0
                     ? {
-                        key: "selected_genres",
+                        key: "genres",
                         value: action.payload
                     }
                     : undefined
@@ -74,10 +73,10 @@ const gamesSlice = createSlice({
         filterByTitle(state : GamesState, action: PayloadAction<string>) {
             state.activeFilters = replaceFilter(
                 state.activeFilters,
-                "selected_title",
+                "title",
                 action.payload.length !== 0
                     ? {
-                        key: "selected_title",
+                        key: "title",
                         value: action.payload
                     }
                     : undefined
@@ -86,10 +85,10 @@ const gamesSlice = createSlice({
         filterByPlatform(state: GamesState, action: PayloadAction<number | undefined>) {
             state.activeFilters = replaceFilter(
                 state.activeFilters,
-                "selected_platform",
+                "platform",
                 action.payload !== undefined
                     ? {
-                        key: "selected_platform",
+                        key: "platform",
                         value: action.payload
                     }
                     : undefined
@@ -112,13 +111,13 @@ function makeFilterSelector<K extends gamesFilters[number]["key"], Default>(
 }
 
 // Selected genres
-export const selectSelectedGenres = makeFilterSelector("selected_genres", [] as number[]);
+export const selectSelectedGenres = makeFilterSelector("genres", [] as number[]);
 
 // Selected platform
-export const selectSelectedPlatform = makeFilterSelector("selected_platform", undefined);
+export const selectSelectedPlatform = makeFilterSelector("platform", undefined);
 
 // Selected title
-export const selectSelectedTitle = makeFilterSelector("selected_title", "");
+export const selectSelectedTitle = makeFilterSelector("title", "");
 
 // Action creators are generated for each case reducer function
 export const { filteringByGenre, filterByTitle, filterByPlatform } = gamesSlice.actions;
