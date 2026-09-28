@@ -1,43 +1,51 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useReducer, useRef } from 'react';
+import { useMemo, useState } from 'react';
 import { GAME_FILTER_KEYS, filtersToSearchParams, searchParamsToFilters } from '@/lib/gamesFilterUtils';
 import type { GameFilters } from '@/types/gamesFilters';
 
-/** The URL is the filter state, including on refresh and browser navigation. */
+const NONE: string[] = [];
+
+/**
+ * Game filters stored in the URL query string (shareable, survives refresh and back/forward).
+ *
+ * `router.push` is asynchronous, so right after a change the URL still holds the old
+ * query. Reading it directly would make a controlled input (the title field) jump back
+ * while the user types. To avoid that we remember, in order, the queries we asked the
+ * router for (`queue`) and display the newest one until the URL catches up.
+ */
 export function useGamesFilters() {
     const router = useRouter();
     const pathname = usePathname();
-    const searchParams = useSearchParams();
-    const [, refresh] = useReducer(count => count + 1, 0);
-    const observed = searchParams.toString();
-    const pending = useRef({ observed, params: new URLSearchParams(observed), requests: [] as string[] });
-    if (pending.current.observed !== observed) {
-        if (pending.current.requests.includes(observed)) {
-            pending.current.observed = observed;
-            if (observed === pending.current.requests.at(-1)) pending.current.requests = [];
-        } else {
-            pending.current = { observed, params: new URLSearchParams(observed), requests: [] };
-        }
+    const query = useSearchParams().toString();
+
+    const [{ seen, queue }, setState] = useState({ seen: query, queue: NONE });
+
+    // The URL changed: drop the requests it has reached. If it is not one of ours
+    // (back/forward, external link) nothing is pending anymore.
+    if (seen !== query) {
+        const reached = queue.indexOf(query);
+        setState({ seen: query, queue: reached === -1 ? NONE : queue.slice(reached + 1) });
     }
-    const filters = searchParamsToFilters(
-        pending.current.requests.length ? pending.current.params : new URLSearchParams(observed)
-    );
+
+    const current = queue.at(-1) ?? query;
+    const filters = useMemo(() => searchParamsToFilters(new URLSearchParams(current)), [current]);
 
     function updateFilters(changes: Partial<GameFilters>) {
-        const params = new URLSearchParams(pending.current.params);
-        const next = filtersToSearchParams({ ...searchParamsToFilters(params), ...changes });
-        for (const key of GAME_FILTER_KEYS) params.delete(key);
-        next.forEach((value, key) => { params.append(key, value); });
-        if (params.toString() === pending.current.params.toString()) return;
-        pending.current.params = params;
-        pending.current.requests.push(params.toString());
-        refresh();
+        // Keep unrelated params (e.g. ?campaign=x), replace only the filter ones.
+        const params = new URLSearchParams(current);
+        GAME_FILTER_KEYS.forEach(key => params.delete(key));
+        filtersToSearchParams({ ...filters, ...changes }).forEach((value, key) => params.append(key, value));
 
-        const href = `${pathname}${params.size ? `?${params}` : ''}`;
-        if ('title' in changes) router.replace(href, { scroll: false });
-        else router.push(href, { scroll: false });
+        const next = params.toString();
+        if (next === current) return;
+
+        setState(state => ({ ...state, queue: [...state.queue, next] }));
+
+        // Typing replaces the history entry (no entry per keystroke); other changes add one.
+        const navigate = 'title' in changes ? router.replace : router.push;
+        navigate(next ? `${pathname}?${next}` : pathname, { scroll: false });
     }
 
     return { filters, updateFilters };

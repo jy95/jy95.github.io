@@ -1,12 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import games from "./features/gamesSlice";
 import { api } from "./services/api";
 
 export const makeStore = () => {
     return configureStore({
         reducer: {
-            games,
             [api.reducerPath]: api.reducer,
         },
         middleware: (getDefaultMiddleware) =>

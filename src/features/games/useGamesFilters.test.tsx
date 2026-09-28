@@ -25,15 +25,15 @@ function currentParams() {
 }
 
 describe('URL game filters', () => {
-    it('merges rapid updates, keeps unrelated parameters, and clears filters', () => {
+    it('merges successive updates, keeps unrelated parameters, and clears filters', () => {
         navigation.href = '/fr/games?campaign=shared';
         const { result, rerender } = renderHook(useGamesFilters);
-        act(() => {
-            result.current.updateFilters({ title: 'Mario & Luigi' });
-            result.current.updateFilters({ platform: 6 });
-            result.current.updateFilters({ genres: [10, 2, 10] });
-        });
+
+        act(() => result.current.updateFilters({ title: 'Mario & Luigi' }));
+        act(() => result.current.updateFilters({ platform: 6 }));
+        act(() => result.current.updateFilters({ genres: [10, 2, 10] }));
         rerender();
+
         expect(result.current.filters).toEqual({ title: 'Mario & Luigi', platform: 6, genres: [2, 10] });
         expect(navigation.replace).toHaveBeenCalledTimes(1);
         expect(navigation.push).toHaveBeenCalledTimes(2);
@@ -70,18 +70,32 @@ describe('URL game filters', () => {
         navigation.push.mockImplementation(() => {});
         navigation.replace.mockImplementation(() => {});
         const { result, rerender } = renderHook(useGamesFilters);
-        act(() => {
-            result.current.updateFilters({ title: 'Mario' });
-            result.current.updateFilters({ platform: 6 });
-        });
+
+        act(() => result.current.updateFilters({ title: 'Mario' }));
+        act(() => result.current.updateFilters({ platform: 6 }));
+
+        // The router only reached the first request so far.
         navigation.href = navigation.replace.mock.calls[0][0];
         rerender();
+        expect(result.current.filters).toEqual({ title: 'Mario', platform: 6 });
+
         act(() => result.current.updateFilters({ genres: [2] }));
         const final = new URL(navigation.push.mock.lastCall![0], 'http://localhost').searchParams;
         expect(final.get('title')).toBe('Mario');
         expect(final.get('platform')).toBe('6');
         expect(final.getAll('genres')).toEqual(['2']);
         expect(navigation.push.mock.calls[0][0]).toContain('platform=6');
+    });
+
+    it('drops pending changes when the URL changes to something we did not request', () => {
+        navigation.push.mockImplementation(() => {});
+        const { result, rerender } = renderHook(useGamesFilters);
+        act(() => result.current.updateFilters({ platform: 6 }));
+        expect(result.current.filters.platform).toBe(6);
+
+        navigation.href = '/fr/games?platform=9';
+        rerender();
+        expect(result.current.filters.platform).toBe(9);
     });
 
     it('shows a pending filter before the router updates its search params', () => {

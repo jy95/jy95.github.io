@@ -1,7 +1,7 @@
 import { GAME_SORT_OPTIONS } from '@/types/gamesFilters';
 import type { GameFilters, GameSort } from '@/types/gamesFilters';
 
-/** Keys owned by game filters; other query parameters belong to the page. */
+/** Query-string keys owned by the game filters; any other key belongs to the page. */
 export const GAME_FILTER_KEYS = ['title', 'platform', 'genres', 'sort'] as const satisfies readonly (keyof GameFilters)[];
 
 const isId = (value: unknown): value is number =>
@@ -10,47 +10,42 @@ const isId = (value: unknown): value is number =>
 const isSort = (value: unknown): value is GameSort =>
     GAME_SORT_OPTIONS.some(sort => sort === value);
 
-/** Copies, deduplicates, and orders numeric IDs without mutating the input. */
-export function canonicalizeGenres(genres: readonly number[]): number[] {
-    return [...new Set(genres.filter(isId))].sort((a, b) => a - b);
+/** Drops invalid ids, removes duplicates and sorts ascending, without mutating the input. */
+export const canonicalizeGenres = (genres: readonly number[]): number[] =>
+    [...new Set(genres.filter(isId))].sort((a, b) => a - b);
+
+/**
+ * Canonical, sparse filters: every empty or invalid field is left out.
+ * No `sort` means "keep the API's natural order". The title is kept as typed (spaces included).
+ */
+export function normalizeGameFilters({ title, platform, genres, sort }: GameFilters): GameFilters {
+    const cleanGenres = canonicalizeGenres(genres ?? []);
+    return {
+        ...(title ? { title } : {}),
+        ...(isId(platform) ? { platform } : {}),
+        ...(cleanGenres.length ? { genres: cleanGenres } : {}),
+        ...(isSort(sort) ? { sort } : {}),
+    };
 }
 
-/** Canonical sparse state. No explicit sort is the default (API result order). */
-export function normalizeGameFilters(filters: GameFilters): GameFilters {
-    const result: GameFilters = {};
-    // Preserve nonempty title text, including spaces, for existing search semantics.
-    if (typeof filters.title === 'string' && filters.title.length > 0) result.title = filters.title;
-    if (isId(filters.platform)) result.platform = filters.platform;
-    const genres = canonicalizeGenres(filters.genres ?? []);
-    if (genres.length > 0) result.genres = genres;
-    if (isSort(filters.sort)) result.sort = filters.sort;
-    return result;
-}
-
-/** Genres use repeated query parameters. */
+/** Scalars become one param each; genres become one repeated `genres` param per id. */
 export function filtersToSearchParams(filters: GameFilters): URLSearchParams {
-    const normalized = normalizeGameFilters(filters);
-    const params = new URLSearchParams();
-    if (normalized.title !== undefined) params.set('title', normalized.title);
-    if (normalized.platform !== undefined) params.set('platform', String(normalized.platform));
-    for (const genre of normalized.genres ?? []) params.append('genres', String(genre));
-    if (normalized.sort !== undefined) params.set('sort', normalized.sort);
+    const { genres = [], ...scalars } = normalizeGameFilters(filters);
+    const params = new URLSearchParams(
+        Object.entries(scalars).map(([key, value]) => [key, String(value)])
+    );
+    genres.forEach(genre => params.append('genres', String(genre)));
     return params;
 }
 
-function parseId(value: string | null): number | undefined {
-    if (value === null || !/^\d+$/.test(value)) return undefined;
-    const number = Number(value);
-    return isId(number) ? number : undefined;
-}
+/** Only plain non-negative integers are accepted; anything else becomes NaN and is dropped by normalize. */
+const parseId = (value: string | null) => (/^\d+$/.test(value ?? '') ? Number(value) : NaN);
 
-/** Invalid IDs/sorts and unknown keys are ignored; duplicate scalar keys use the first value. */
-export function searchParamsToFilters(params: URLSearchParams): GameFilters {
-    const sort = params.get('sort');
-    return normalizeGameFilters({
+/** Unknown keys and invalid values are ignored; for duplicated scalar keys the first value wins. */
+export const searchParamsToFilters = (params: URLSearchParams): GameFilters =>
+    normalizeGameFilters({
         title: params.get('title') ?? undefined,
         platform: parseId(params.get('platform')),
-        genres: params.getAll('genres').map(parseId).filter(isId),
-        sort: isSort(sort) ? sort : undefined,
+        genres: params.getAll('genres').map(parseId),
+        sort: (params.get('sort') ?? undefined) as GameSort | undefined,
     });
-}
