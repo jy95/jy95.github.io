@@ -1,5 +1,5 @@
 import type { GameFilters } from '@/types/gamesFilters';
-import { lazy, Suspense } from "react";
+import { useTranslations } from "next-intl";
 
 // MUI
 import Grid from '@mui/material/Grid';
@@ -7,13 +7,13 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import CircularProgress from '@mui/material/CircularProgress';
 import SearchIcon from '@mui/icons-material/Search';
 
 // Custom
-const GenresSelect = lazy(() => import("@/features/games/components/GenresSelect"));
-const PlatformSelect = lazy(() => import("@/features/games/components/PlatformSelect"));
-const TitleFilter = lazy(() => import("@/features/games/components/TitleFilter"));
+import GenresSelect from "@/features/games/components/GenresSelect";
+import PlatformSelect from "@/features/games/components/PlatformSelect";
+import TitleFilter from "@/features/games/components/TitleFilter";
+import SortSelect from "@/features/games/components/SortSelect";
 
 type Props = {
     filters: GameFilters;
@@ -21,6 +21,7 @@ type Props = {
 };
 
 export default function GamesFilters({ filters, onChange }: Props) {
+    const t = useTranslations("gamesLibrary");
 
     return (
         <Accordion>
@@ -29,24 +30,25 @@ export default function GamesFilters({ filters, onChange }: Props) {
                 aria-controls="panel1-content"
                 id="panel1-header"
             >
-                <SearchIcon aria-label="Options"/>
-                {"Options"}
+                <SearchIcon aria-label={t("filtersButtonLabel")} />
+                {t("filtersButtonLabel")}
             </AccordionSummary>
             <AccordionDetails>
-                <Suspense fallback={<CircularProgress />}>
-                    <Grid container spacing={1}>
-                        <Grid size={{ xs: 12, md: 5 }}>
-                            <TitleFilter value={filters.title ?? ""} onChange={title => onChange({ title })} />
-                        </Grid>
-                        <Grid size={{ xs: 12, md: 3 }}>
-                            <PlatformSelect value={filters.platform} onChange={platform => onChange({ platform })} />
-                        </Grid>
-                        <Grid size={{ xs: 12, md: 4 }}>
-                            <GenresSelect value={filters.genres ?? []} onChange={genres => onChange({ genres })} />
-                        </Grid>
+                <Grid container spacing={1}>
+                    <Grid size={{ xs: 12, md: 4 }}>
+                        <TitleFilter value={filters.title ?? ""} onChange={title => onChange({ title })} />
                     </Grid>
-                </Suspense>
+                    <Grid size={{ xs: 12, md: 2 }}>
+                        <PlatformSelect value={filters.platform} onChange={platform => onChange({ platform })} />
+                    </Grid>
+                    <Grid size={{ xs: 12, md: 3 }}>
+                        <GenresSelect value={filters.genres ?? []} onChange={genres => onChange({ genres })} />
+                    </Grid>
+                    <Grid size={{ xs: 12, md: 3 }}>
+                        <SortSelect value={filters.sort} onChange={sort => onChange({ sort })} />
+                    </Grid>
+                </Grid>
             </AccordionDetails>
-      </Accordion>
+        </Accordion>
     );
 }

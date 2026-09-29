@@ -5,35 +5,19 @@ interface LoadingButtonProps {
     onClick: () => void;
     disabled?: boolean;
     loading?: boolean;
-    label: string
+    label: string;
 }
 
-const LoadingButton = ({ onClick, disabled, loading, label } : LoadingButtonProps) => {
-
-
-  const handleClick = async () => {
-    onClick();
-  };
-
-  return (
-    <Button 
-      variant="outlined" 
-      size="large" 
-      onClick={handleClick}
-      disabled={disabled || loading}
-      sx={{
-        margin: 1,
-        position: "relative"
-      }}
-    >
-      {loading && (
-        <CircularProgress size={24}/>
-      )}
-      {!loading && (
-        <span>{label}</span>
-      )}
-    </Button>
-  );
-};
-
-export default LoadingButton;
+export default function LoadingButton({ onClick, disabled, loading, label }: LoadingButtonProps) {
+    return (
+        <Button
+            variant="outlined"
+            size="large"
+            onClick={onClick}
+            disabled={disabled || loading}
+            sx={{ m: 1 }}
+        >
+            {loading ? <CircularProgress size={24} /> : label}
+        </Button>
+    );
+}

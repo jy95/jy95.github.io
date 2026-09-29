@@ -70,7 +70,6 @@
     },
     "gamesLibrary": {
         "randomButtonLabel": "Cliquez pour découvrir un nouveau jeu !",
-        "sortButtonLabel": "Tris",
         "sortLabels": {
             "name": "Nom",
             "releaseDate": "Date de sortie",
@@ -83,15 +82,6 @@
             "criteria": "Critère",
             "cancelButton": "Annuler",
             "sortButton": "Trier"
-        },
-        "actionsButton": {
-            "watchHere": "Regarder {gameName}",
-            "watchOnYt": "Regarder {gameName} sur Youtube",
-            "copyLink": "Copier le lien",
-            "shareOnTwitter": "Partager sur Twitter",
-            "shareOnFacebook": "Partager sur Facebook",
-            "shareOnReddit": "Partager sur Reddit",
-            "closeContextMenu": "Fermer"
         },
         "filtersButtonLabel": "Filtres",
         "filtersLabels": {

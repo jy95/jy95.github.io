@@ -141,6 +141,34 @@ describe("GET /api/games", () => {
     expect(data.total_items).toBe(mockGames.length);
   });
 
+  it("sorts before paginating", async () => {
+    const data = await callGET(makeRequest({ sort: "title_asc", pageSize: "3" }));
+
+    expect(data.items.map(i => i.title)).toEqual(["Celeste", "Doom", "Halo"]);
+    expect(data.filters).toEqual({ sort: "title_asc" });
+  });
+
+  it("sorts descending across pages consistently", async () => {
+    const p1 = await callGET(makeRequest({ sort: "title_desc", pageSize: "2", page: "1" }));
+    const p2 = await callGET(makeRequest({ sort: "title_desc", pageSize: "2", page: "2" }));
+
+    expect(p1.items.map(i => i.title)).toEqual(["Zelda: Tears", "Zelda: Breath"]);
+    expect(p2.items.map(i => i.title)).toEqual(["Undertale", "Terraria"]);
+  });
+
+  it("applies sort on top of filters", async () => {
+    const data = await callGET(makeRequest({ platform: "1", sort: "title_asc" }));
+
+    expect(data.items.map(i => i.title)).toEqual(["Mario Kart", "Zelda: Breath", "Zelda: Tears"]);
+  });
+
+  it("ignores an unsupported sort value", async () => {
+    const data = await callGET(makeRequest({ sort: "bogus" }));
+
+    expect(data.items.map(i => i.title)).toEqual(mockGames.map(g => g.title));
+    expect(data.filters).toBeUndefined();
+  });
+
   it("paginates results according to pageSize and page", async () => {
     const req = makeRequest({ pageSize: "5", page: "2" });
     const data = await callGET(req);
