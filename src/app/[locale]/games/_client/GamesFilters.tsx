@@ -12,7 +12,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -34,37 +35,48 @@ export default function GamesFilters({ filters, onChange }: Props) {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [filtersOpen, setFiltersOpen] = useState(false);
+    // Only secondary filters are staged; the URL remains the applied source of truth.
+    const [draft, setDraft] = useState<Pick<GameFilters, 'platform' | 'genres'>>({});
+    const [previousMobile, setPreviousMobile] = useState(isMobile);
+    if (previousMobile !== isMobile) {
+        setPreviousMobile(isMobile);
+        setFiltersOpen(false);
+    }
     const filtersId = useId();
     const triggerId = useId();
     const titleId = useId();
-    const activeFilterCount = Number(Boolean(filters.title?.trim()))
-        + Number(filters.platform !== undefined)
+    const activeFilterCount = Number(filters.platform !== undefined)
         + Number(Boolean(filters.genres?.length));
+    const displayedFilters = isMobile ? draft : filters;
+    const changeSecondaryFilters = (changes: Pick<GameFilters, 'platform' | 'genres'>) => {
+        if (isMobile) setDraft(current => ({ ...current, ...changes }));
+        else onChange(changes);
+    };
 
     const filterControls = (
-        <Grid container spacing={{ xs: 2, md: 1.5 }} sx={{ minWidth: 0 }}>
-            <Grid size={{ xs: 12, md: 5 }} sx={{ minWidth: 0 }}>
-                <TitleFilter value={filters.title ?? ""} onChange={title => onChange({ title })} />
-            </Grid>
-            <Grid size={{ xs: 12, md: 3 }} sx={{ minWidth: 0 }}>
-                <PlatformSelect value={filters.platform} onChange={platform => onChange({ platform })} />
-            </Grid>
-            <Grid size={{ xs: 12, md: 4 }} sx={{ minWidth: 0, '& .MuiChip-root': { maxWidth: '100%' } }}>
-                <GenresSelect value={filters.genres ?? []} onChange={genres => onChange({ genres })} />
-            </Grid>
-        </Grid>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3, minWidth: 0 }}>
+            <Box sx={{ flex: 1, minWidth: 0 }}>
+                <PlatformSelect value={displayedFilters.platform} onChange={platform => changeSecondaryFilters({ platform })} />
+            </Box>
+            <Box sx={{ flex: 2, minWidth: 0, '& .MuiChip-root': { maxWidth: '100%' } }}>
+                <GenresSelect value={displayedFilters.genres ?? []} onChange={genres => changeSecondaryFilters({ genres })} />
+            </Box>
+        </Box>
     );
 
     return (
-        <Box sx={{ mb: 2, pb: 2, borderBottom: 1, borderColor: 'divider', minWidth: 0 }}>
+        <Box sx={{ pt: { xs: 3, sm: 1 }, mb: 2, pb: 2, borderBottom: 1, borderColor: 'divider', minWidth: 0 }}>
             <Box
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'space-between',
+                    flexWrap: 'wrap',
                     gap: { xs: 1, sm: 2 },
                 }}
             >
+                <Box sx={{ flex: { xs: '1 1 100%', md: '1 1 300px' }, maxWidth: { md: 560 }, minWidth: 0 }}>
+                    <TitleFilter value={filters.title ?? ''} onChange={title => onChange({ title })} />
+                </Box>
                 <Button
                     id={triggerId}
                     variant="outlined"
@@ -73,7 +85,10 @@ export default function GamesFilters({ filters, onChange }: Props) {
                     aria-expanded={filtersOpen}
                     aria-controls={filtersOpen ? filtersId : undefined}
                     aria-haspopup={isMobile ? 'dialog' : undefined}
-                    onClick={() => setFiltersOpen(open => !open)}
+                    onClick={() => {
+                        if (isMobile) setDraft({ platform: filters.platform, genres: filters.genres });
+                        setFiltersOpen(open => !open);
+                    }}
                     sx={{ minHeight: 44, flexShrink: 0 }}
                 >
                     {t("filtersButtonLabel")}
@@ -86,8 +101,8 @@ export default function GamesFilters({ filters, onChange }: Props) {
                         </Box>
                     )}
                 </Button>
-                <Box sx={{ width: { xs: '100%', md: 280 }, maxWidth: 280, minWidth: 0 }}>
-                    <SortSelect value={filters.sort} onChange={sort => onChange({ sort })} />
+                <Box sx={{ ml: 'auto', width: { md: 240 }, minWidth: 0 }}>
+                    <SortSelect compact={isMobile} value={filters.sort} onChange={sort => onChange({ sort })} />
                 </Box>
             </Box>
             {isMobile ? (
@@ -96,17 +111,25 @@ export default function GamesFilters({ filters, onChange }: Props) {
                     open={filtersOpen}
                     onClose={() => setFiltersOpen(false)}
                     aria-labelledby={titleId}
-                    fullWidth
-                    maxWidth="sm"
-                    slotProps={{ paper: { sx: { m: 2, width: 'calc(100% - 32px)' } } }}
+                    fullScreen
+                    slotProps={{ paper: { sx: { height: '100dvh', maxHeight: '100dvh' } } }}
                 >
-                    <DialogTitle id={titleId}>{t("filtersButtonLabel")}</DialogTitle>
-                    <DialogContent dividers sx={{ px: { xs: 2, sm: 3 }, py: 2, overflowX: 'hidden' }}>
+                    <DialogTitle component="div" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <FilterListIcon />
+                        <Box component="h2" id={titleId} sx={{ m: 0, font: 'inherit' }}>{t("filtersButtonLabel")}</Box>
+                        <IconButton aria-label={t('filterActions.close')} onClick={() => setFiltersOpen(false)} sx={{ ml: 'auto', minWidth: 44, minHeight: 44 }}>
+                            <CloseIcon />
+                        </IconButton>
+                    </DialogTitle>
+                    <DialogContent dividers sx={{ px: { xs: 2, sm: 3 }, py: 3, overflowX: 'hidden' }}>
                         {filterControls}
                     </DialogContent>
-                    <DialogActions sx={{ px: 2, pb: 2 }}>
-                        <Button onClick={() => setFiltersOpen(false)} sx={{ minHeight: 44 }}>
-                            {t("sortForm.cancelButton")}
+                    <DialogActions sx={{ p: 2, pb: 'max(16px, env(safe-area-inset-bottom))', gap: 1, flexShrink: 0 }}>
+                        <Button variant="outlined" onClick={() => setDraft({ platform: undefined, genres: [] })} sx={{ minHeight: 44, flex: 1 }}>
+                            {t('filterActions.clear')}
+                        </Button>
+                        <Button variant="contained" onClick={() => { onChange(draft); setFiltersOpen(false); }} sx={{ minHeight: 44, flex: 1 }}>
+                            {t('filterActions.apply')}
                         </Button>
                     </DialogActions>
                 </Dialog>

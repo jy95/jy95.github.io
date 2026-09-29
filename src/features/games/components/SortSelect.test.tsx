@@ -27,7 +27,19 @@ describe('SortSelect', () => {
         const select = screen.getByRole('combobox');
         expect(select).toHaveTextContent('gamesLibrary.sortLabels.duration ↓');
         fireEvent.mouseDown(select);
-        fireEvent.click(screen.getByRole('option', { name: '—' }));
+        fireEvent.click(screen.getByRole('option', { name: 'gamesLibrary.sortLabels.default' }));
         expect(onChange).toHaveBeenLastCalledWith(undefined);
     });
+});
+
+it('opens a compact sort menu with the current selection and preserves all options', () => {
+    const onChange = vi.fn();
+    render(<SortSelect compact value="duration_desc" onChange={onChange} />);
+    expect(screen.queryByRole('combobox')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'gamesLibrary.sortForm.firstSort: gamesLibrary.sortLabels.duration ↓' }));
+    expect(screen.getAllByRole('menuitemradio')).toHaveLength(GAME_SORT_OPTIONS.length + 1);
+    expect(screen.getByRole('menuitemradio', { name: 'gamesLibrary.sortLabels.duration ↓' })).toHaveAttribute('aria-checked', 'true');
+    fireEvent.click(screen.getByRole('menuitemradio', { name: 'gamesLibrary.sortLabels.default' }));
+    expect(onChange).toHaveBeenCalledExactlyOnceWith(undefined);
+    expect(screen.getByRole('button')).toHaveAttribute('aria-expanded', 'false');
 });

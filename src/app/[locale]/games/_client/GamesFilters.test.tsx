@@ -1,7 +1,11 @@
-import { describe, it, expect, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { fireEvent, render, screen, within, waitFor } from '@testing-library/react';
 import type { GameFilters } from '@/types/gamesFilters';
 import { echoTranslations } from '@/test/mocks/nextIntl';
+
+const responsive = vi.hoisted(() => ({ mobile: false }));
+vi.mock('@mui/material/useMediaQuery', () => ({ default: () => responsive.mobile }));
+beforeEach(() => { responsive.mobile = false; });
 
 vi.mock('next-intl', () => echoTranslations());
 
@@ -85,4 +89,64 @@ describe('GamesFilters', () => {
             [{ genres: [] }],
         ]);
     });
+});
+
+describe('mobile filters', () => {
+    beforeEach(() => { responsive.mobile = true; });
+
+    it('keeps search visible and batches edits until Apply', async () => {
+        const onChange = vi.fn();
+        const { rerender } = render(<GamesFilters filters={{ title: 'Zelda', sort: 'duration_desc' }} onChange={onChange} />);
+        expect(screen.getByRole('textbox', { name: 'Title' })).toBeVisible();
+        const trigger = screen.getByRole('button', { name: 'gamesLibrary.filtersButtonLabel' });
+        trigger.focus();
+        fireEvent.click(trigger);
+        const dialog = screen.getByRole('dialog', { name: 'gamesLibrary.filtersButtonLabel' });
+        expect(within(dialog).queryByRole('textbox', { name: 'Title' })).not.toBeInTheDocument();
+        expect(within(dialog).queryByLabelText('Sort value')).not.toBeInTheDocument();
+        fireEvent.click(within(dialog).getByRole('button', { name: 'Select platform' }));
+        fireEvent.click(within(dialog).getByRole('button', { name: 'Select genres' }));
+        expect(onChange).not.toHaveBeenCalled();
+        fireEvent.click(within(dialog).getByRole('button', { name: 'gamesLibrary.filterActions.apply' }));
+        expect(onChange).toHaveBeenCalledExactlyOnceWith({ platform: 6, genres: [2, 13] });
+        rerender(<GamesFilters filters={{ title: 'Zelda', sort: 'duration_desc', platform: 6, genres: [2, 13] }} onChange={onChange} />);
+        await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+        expect(trigger).toHaveFocus();
+        expect(trigger).toHaveTextContent('2');
+    });
+
+    it('clears only the draft secondary filters, then applies the reset', () => {
+        const onChange = vi.fn();
+        render(<GamesFilters filters={{ title: 'Zelda', sort: 'duration_desc', platform: 6, genres: [2] }} onChange={onChange} />);
+        fireEvent.click(screen.getByRole('button', { name: /filtersButtonLabel/ }));
+        fireEvent.click(screen.getByRole('button', { name: 'gamesLibrary.filterActions.clear' }));
+        expect(screen.getByLabelText('Platform value')).toHaveTextContent('none');
+        expect(screen.getByLabelText('Genres value')).toBeEmptyDOMElement();
+        expect(onChange).not.toHaveBeenCalled();
+        fireEvent.click(screen.getByRole('button', { name: 'gamesLibrary.filterActions.apply' }));
+        expect(onChange).toHaveBeenCalledExactlyOnceWith({ platform: undefined, genres: [] });
+    });
+
+    it('discards edits on close or Escape and initializes each opening from applied filters', async () => {
+        const onChange = vi.fn();
+        const { rerender } = render(<GamesFilters filters={{ platform: 1 }} onChange={onChange} />);
+        fireEvent.click(screen.getByRole('button', { name: /filtersButtonLabel/ }));
+        fireEvent.click(screen.getByRole('button', { name: 'Select platform' }));
+        fireEvent.click(screen.getByRole('button', { name: 'gamesLibrary.filterActions.close' }));
+        await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+        rerender(<GamesFilters filters={{ platform: 9 }} onChange={onChange} />);
+        fireEvent.click(screen.getByRole('button', { name: /filtersButtonLabel/ }));
+        expect(screen.getByLabelText('Platform value')).toHaveTextContent('9');
+        fireEvent.click(screen.getByRole('button', { name: 'Select genres' }));
+        fireEvent.keyDown(screen.getByRole('dialog'), { key: 'Escape' });
+        await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+        expect(onChange).not.toHaveBeenCalled();
+    });
+});
+
+it('counts applied secondary filter groups, excluding title and sort, and removes the count after reset', () => {
+    const { rerender } = render(<GamesFilters filters={{ platform: 6, genres: [2, 13] }} onChange={vi.fn()} />);
+    expect(screen.getByRole('button', { name: /filtersButtonLabel/ })).toHaveTextContent('2');
+    rerender(<GamesFilters filters={{ title: 'Zelda', sort: 'title_asc' }} onChange={vi.fn()} />);
+    expect(screen.getByRole('button', { name: /filtersButtonLabel/ })).toHaveTextContent(/^gamesLibrary.filtersButtonLabel$/);
 });
