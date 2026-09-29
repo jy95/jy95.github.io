@@ -70,7 +70,6 @@
     },
     "gamesLibrary": {
         "randomButtonLabel": "Click to unveil a new game !",
-        "sortButtonLabel": "Sorts",
         "sortForm": {
             "firstSort": "Sort by",
             "nextSort": "Then by",
@@ -83,15 +82,6 @@
             "name": "Name",
             "releaseDate": "Release date",
             "duration": "Duration"
-        },
-        "actionsButton": {
-            "watchHere": "Watch {gameName}",
-            "watchOnYt": "Watch {gameName} on Youtube",
-            "copyLink": "Copy link",
-            "shareOnTwitter": "Share on Twitter",
-            "shareOnFacebook": "Share on Facebook",
-            "shareOnReddit": "Share on Reddit",
-            "closeContextMenu": "Close"
         },
         "filtersButtonLabel": "Filter",
         "filtersLabels": {

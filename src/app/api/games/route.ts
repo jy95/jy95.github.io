@@ -3,6 +3,7 @@ import Fuse from 'fuse.js';
 import { buildCardGame } from "@/domain/games";
 import { COVER_PATHS } from "@/domain/games/coverPaths";
 import { searchParamsToFilters } from "@/lib/gamesFilterUtils";
+import { sortGames } from "@/lib/gamesSort";
 
 import type { RawGame, CardGame } from "@/domain/games";
 import type { GameFilters } from "@/types/gamesFilters";
@@ -57,6 +58,8 @@ function generateResponse(params: RequestParams, gamesData: RawPayload): Respons
         ? filtered_games
         : new Fuse(filtered_games, { keys: ["title"] }).search(filters.title).map(s => s.item);
 
+    const sortedResults = sortGames(results, filters?.sort);
+
     const pageSize = params.pageSize || results.length;
     const total_items = results.length;
     const total_pages = pageSize > 0 ? Math.ceil(total_items / pageSize) : 1;
@@ -64,7 +67,7 @@ function generateResponse(params: RequestParams, gamesData: RawPayload): Respons
     const endOffset = startOffset + pageSize;
 
     return {
-        items: sortedAndFilteredResultset(startOffset, endOffset, results),
+        items: sortedAndFilteredResultset(startOffset, endOffset, sortedResults),
         total_items,
         total_pages,
         pageSize,
