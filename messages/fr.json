@@ -71,6 +71,7 @@
     "gamesLibrary": {
         "randomButtonLabel": "Cliquez pour découvrir un nouveau jeu !",
         "sortLabels": {
+            "default": "Ordre par défaut",
             "name": "Nom",
             "releaseDate": "Date de sortie",
             "duration": "Durée"
@@ -84,10 +85,15 @@
             "sortButton": "Trier"
         },
         "filtersButtonLabel": "Filtres",
+        "filterActions": {
+            "close": "Fermer les filtres",
+            "clear": "Effacer les filtres",
+            "apply": "Appliquer les filtres"
+        },
         "filtersLabels": {
             "genres": "Genres",
             "platform": "Plateforme",
-            "title": "Titre"
+            "title": "Rechercher par titre"
         },
         "gamesGenres": {
             "1": "Action",

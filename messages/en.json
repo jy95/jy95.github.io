@@ -79,15 +79,21 @@
             "sortButton": "Sort"
         },
         "sortLabels": {
+            "default": "Default order",
             "name": "Name",
             "releaseDate": "Release date",
             "duration": "Duration"
         },
-        "filtersButtonLabel": "Filter",
+        "filtersButtonLabel": "Filters",
+        "filterActions": {
+            "close": "Close filters",
+            "clear": "Clear filters",
+            "apply": "Apply filters"
+        },
         "filtersLabels": {
             "genres": "Genres",
-            "platform": "Plateform",
-            "title": "Title"
+            "platform": "Platform",
+            "title": "Search by title"
         },
         "gamesGenres": {
             "1": "Action",
