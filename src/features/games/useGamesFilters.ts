@@ -35,8 +35,14 @@ export function useGamesFilters() {
     function updateFilters(changes: Partial<GameFilters>) {
         // Keep unrelated params (e.g. ?campaign=x), replace only the filter ones.
         const params = new URLSearchParams(current);
-        GAME_FILTER_KEYS.forEach(key => params.delete(key));
-        filtersToSearchParams({ ...filters, ...changes }).forEach((value, key) => params.append(key, value));
+
+        GAME_FILTER_KEYS.forEach(key => {
+            params.delete(key);
+        });
+
+        filtersToSearchParams({ ...filters, ...changes }).forEach((value, key) => {
+            params.append(key, value);
+        });
 
         const next = params.toString();
         if (next === current) return;
