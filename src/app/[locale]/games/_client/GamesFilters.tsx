@@ -101,20 +101,19 @@ export default function GamesFilters({ filters, onChange }: Props) {
                         </Box>
                     )}
                 </Button>
-                <Box sx={{ ml: 'auto', width: { md: 240 }, minWidth: 0 }}>
-                    <SortSelect compact={isMobile} value={filters.sort} onChange={sort => onChange({ sort })} />
+                <Box sx={{ ml: 'auto', flex: { xs: '1 1 160px', md: '0 0 280px' }, maxWidth: { xs: 240, md: 280 }, minWidth: 0 }}>
+                    <SortSelect value={filters.sort} onChange={sort => onChange({ sort })} />
                 </Box>
             </Box>
             {isMobile ? (
                 <Dialog
-                    id={filtersId}
                     open={filtersOpen}
                     onClose={() => setFiltersOpen(false)}
                     aria-labelledby={titleId}
                     fullScreen
-                    slotProps={{ paper: { sx: { height: '100dvh', maxHeight: '100dvh' } } }}
+                    slotProps={{ paper: { id: filtersId, sx: { height: '100dvh', maxHeight: '100dvh' } } }}
                 >
-                    <DialogTitle component="div" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <DialogTitle component="div" id={`${titleId}-container`} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <FilterListIcon />
                         <Box component="h2" id={titleId} sx={{ m: 0, font: 'inherit' }}>{t("filtersButtonLabel")}</Box>
                         <IconButton aria-label={t('filterActions.close')} onClick={() => setFiltersOpen(false)} sx={{ ml: 'auto', minWidth: 44, minHeight: 44 }}>

@@ -1,91 +1,60 @@
 "use client";
 
-import { useId, useState } from 'react';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import CheckIcon from '@mui/icons-material/Check';
-import { useTranslations } from 'next-intl';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
-import InputAdornment from '@mui/material/InputAdornment';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import SortIcon from '@mui/icons-material/Sort';
+import { useTranslations } from 'next-intl';
+import ResponsiveSelect from '@/components/common/ResponsiveSelect';
 import { GAME_SORT_OPTIONS } from '@/types/gamesFilters';
 import type { GameSort } from '@/types/gamesFilters';
 
-type Props = { compact?: boolean; value?: GameSort; onChange: (sort: GameSort | undefined) => void };
+type SortField = GameSort extends `${infer Field}_${'asc' | 'desc'}` ? Field : never;
+const SORT_FIELDS = [...new Set(GAME_SORT_OPTIONS.map(sort => sort.split('_')[0] as SortField))];
 
-export default function SortSelect({ value, onChange, compact = false }: Props) {
+type Props = { value?: GameSort; onChange: (sort: GameSort | undefined) => void };
+
+export default function SortSelect({ value, onChange }: Props) {
     const t = useTranslations('gamesLibrary');
-    const [anchor, setAnchor] = useState<HTMLElement | null>(null);
-    const menuId = useId();
-    const triggerId = useId();
+    const field = value?.split('_')[0] ?? '';
+    const direction = value?.endsWith('_desc') ? 'desc' : 'asc';
+    const nextDirection = direction === 'asc' ? 'desc' : 'asc';
+    const directionAction = t(`sortDirection.${nextDirection}`);
     const labels = {
-        title_asc: `${t('sortLabels.name')} ↑`,
-        title_desc: `${t('sortLabels.name')} ↓`,
-        releaseDate_asc: `${t('sortLabels.releaseDate')} ↑`,
-        releaseDate_desc: `${t('sortLabels.releaseDate')} ↓`,
-        duration_asc: `${t('sortLabels.duration')} ↑`,
-        duration_desc: `${t('sortLabels.duration')} ↓`,
+        title: t('sortLabels.name'),
+        releaseDate: t('sortLabels.releaseDate'),
+        duration: t('sortLabels.duration'),
+    } satisfies Record<SortField, string>;
+    const changeSort = (nextField: string, nextDirection: 'asc' | 'desc') => {
+        onChange(GAME_SORT_OPTIONS.find(option => option === `${nextField}_${nextDirection}`));
     };
 
-    if (compact) return (
-        <>
-            <Button
-                id={triggerId}
-                startIcon={<SortIcon />}
-                aria-label={`${t('sortForm.firstSort')}: ${value ? labels[value] : t('sortLabels.default')}`}
-                aria-haspopup="menu"
-                aria-expanded={Boolean(anchor)}
-                aria-controls={anchor ? menuId : undefined}
-                onClick={event => setAnchor(event.currentTarget)}
-                sx={{ minHeight: 44 }}
-            >
-                {t('sortForm.sortButton')}
-            </Button>
-            <Menu id={menuId} anchorEl={anchor} open={Boolean(anchor)} onClose={() => setAnchor(null)} slotProps={{ list: { 'aria-labelledby': triggerId } }}>
-                {[undefined, ...GAME_SORT_OPTIONS].map(option => (
-                    <MenuItem
-                        key={option ?? 'default'}
-                        selected={value === option}
-                        role="menuitemradio"
-                        aria-checked={value === option}
-                        onClick={() => { onChange(option); setAnchor(null); }}
-                        sx={{ gap: 1, minHeight: 44 }}
-                    >
-                        <CheckIcon fontSize="small" sx={{ visibility: value === option ? 'visible' : 'hidden' }} />
-                        {option ? labels[option] : t('sortLabels.default')}
-                    </MenuItem>
-                ))}
-            </Menu>
-        </>
-    );
-
     return (
-        <TextField
-            select
-            fullWidth
-            size="small"
-            id="select-game-sort"
-            label={t('sortForm.firstSort')}
-            value={value ?? ''}
-            onChange={event => onChange(GAME_SORT_OPTIONS.find(option => option === event.target.value))}
-            slotProps={{
-                inputLabel: { shrink: true },
-                input: {
-                    startAdornment: <InputAdornment position="start"><SortIcon fontSize="small" /></InputAdornment>,
-                },
-                select: { displayEmpty: true },
-            }}
-            sx={{
-                minWidth: 0,
-                '& .MuiInputBase-root': { minHeight: 44 },
-                '& .MuiSelect-select': { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' },
-            }}
-        >
-            <MenuItem value="">{t("sortLabels.default")}</MenuItem>
-            {GAME_SORT_OPTIONS.map(option => (
-                <MenuItem key={option} value={option}>{labels[option]}</MenuItem>
-            ))}
-        </TextField>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, minWidth: 0 }}>
+            <ResponsiveSelect
+                label={t('sortForm.firstSort')}
+                value={field}
+                options={[
+                    { value: '', label: t('sortLabels.default') },
+                    ...SORT_FIELDS.map(value => ({ value, label: labels[value] })),
+                ]}
+                onChange={field => changeSort(field, direction)}
+                startIcon={<SortIcon fontSize="small" />}
+            />
+            <Tooltip title={directionAction} describeChild>
+                <span>
+                    <IconButton
+                        aria-label={directionAction}
+                        disabled={!value}
+                        onClick={() => changeSort(field, nextDirection)}
+                        sx={{ minWidth: 44, minHeight: 44 }}
+                    >
+                        {direction === 'asc' ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
+                    </IconButton>
+                </span>
+            </Tooltip>
+        </Box>
     );
 }
