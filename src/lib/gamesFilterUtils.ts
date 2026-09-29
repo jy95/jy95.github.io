@@ -34,7 +34,9 @@ export function filtersToSearchParams(filters: GameFilters): URLSearchParams {
     const params = new URLSearchParams(
         Object.entries(scalars).map(([key, value]) => [key, String(value)])
     );
-    genres.forEach(genre => params.append('genres', String(genre)));
+    genres.forEach(genre => {
+        params.append('genres', String(genre));
+    });
     return params;
 }
 
