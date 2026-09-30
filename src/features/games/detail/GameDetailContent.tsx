@@ -55,17 +55,10 @@ export default function GameDetailContent({
                         </>
                     )}
 
-                    {game.platform !== undefined && <GamePlatform platformId={game.platform} />}
-
-                    {hasGenres(game) && (
-                        <>
-                            <GameGenres genreIds={game.genres} />
-                            <Divider sx={{ mb: 3 }} />
-                        </>
-                    )}
-
                     {/* --- Detail Rows */}
                     <Stack spacing={3}>
+                        {game.platform !== undefined && <GamePlatform platformId={game.platform} />}
+                        {hasGenres(game) && <GameGenres genreIds={game.genres} />}
                         {DETAIL_ROWS.map((RowComponent, index) => (
                             <RowComponent key={index} game={game} />
                         ))}
