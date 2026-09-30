@@ -22,6 +22,7 @@ GamesPassionFR is a bilingual French and English catalog for the GamesPassionFR 
 - /playlist/:id: Watch the YouTube walkthrough playlist identified by id.
 - /video/:id: Watch the YouTube video identified by id.
 - /companies/:id: View details & games associated with a specific company
+- /games/detail/:id: undefined
 
 ## Feeds
 
