@@ -23,12 +23,13 @@ export function syncSchedule(
   availableAt?: string | null, 
   endAt?: string | null
 ) {
-  if (availableAt === undefined && endAt === undefined) return;
+  if ([availableAt, endAt].every(s => s === undefined)) return;
 
+  const valueOrNull = (value?: string | null) => value?.trim() ?? null;
   const schedule = {
     id: gameId,
-    availableAt: availableAt?.trim() ?? null,
-    endAt: endAt?.trim() ?? null,
+    availableAt: valueOrNull(availableAt),
+    endAt: valueOrNull(endAt),
   };
   const updateResult = db.prepare(`
     UPDATE games_schedules SET
