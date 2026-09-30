@@ -1,6 +1,5 @@
 import type { Database } from "better-sqlite3";
-import { genreToInt } from "../common/utils";
-import { parseMultilineList } from "./utils";
+import { genreToInt, parseMultilineList } from "./utils";
 
 import type { GameGenre, CompanyRole } from "../common/types";
 
@@ -24,13 +23,12 @@ export function syncSchedule(
   availableAt?: string | null, 
   endAt?: string | null
 ) {
-  if ([availableAt, endAt].every(s => s === undefined)) return;
+  if (availableAt === undefined && endAt === undefined) return;
 
-  const valueOrNull = (value?: string | null) => value?.trim() ?? null;
   const schedule = {
     id: gameId,
-    availableAt: valueOrNull(availableAt),
-    endAt: valueOrNull(endAt),
+    availableAt: availableAt?.trim() ?? null,
+    endAt: endAt?.trim() ?? null,
   };
   const updateResult = db.prepare(`
     UPDATE games_schedules SET
@@ -48,18 +46,6 @@ export function syncSchedule(
 }
 
 
-function normalizeCompanyNames(names?: string[]): string[] {
-    if (!names?.length) {
-        return [];
-    }
-
-    return [...new Set(
-        names
-            .map(name => name.trim())
-            .filter(Boolean)
-    )];
-}
-
 export function syncCompanies(
     db: Database,
     gameId: number | bigint,
@@ -70,8 +56,7 @@ export function syncCompanies(
       return;
     }
 
-    const requestedCompanies = parseMultilineList(companyTextArea);
-    const names = normalizeCompanyNames(requestedCompanies);
+    const names = parseMultilineList(companyTextArea) ?? [];
 
     const insertCompanyStmt = db.prepare(`
         INSERT INTO companies (name)
@@ -97,10 +82,6 @@ export function syncCompanies(
     `);
 
     deleteRelationsStmt.run(gameId, role);
-
-    if (names.length === 0) {
-      return;
-    }
 
     for (const name of names) {
         insertCompanyStmt.run(name);

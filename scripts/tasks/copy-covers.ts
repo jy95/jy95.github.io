@@ -1,9 +1,8 @@
-import { findIdsInTextArea } from './common/utils';
+import { findIdsInTextArea, validateFolder } from './common/utils';
 
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 import { access, cp } from 'node:fs/promises';
-import { validateFolder } from "./common/utils";
 import { resolveWithin } from './common/pathSafety';
 
 import type { Database } from 'better-sqlite3';
@@ -41,20 +40,6 @@ async function pathExists(filePath: string): Promise<boolean> {
   } catch {
     return false;
   }
-}
-
-/**
- * Copies a directory recursively using Node.js native fs.cp.
- */
-async function copyDirectory(
-  srcPath: string,
-  destPath: string
-): Promise<void> {
-  await cp(srcPath, destPath, {
-    recursive: true,
-    force: true,
-    errorOnExist: false,
-  });
 }
 
 /**
@@ -102,9 +87,12 @@ async function processPair(
         return summary;
     }
 
-    // File copy operation
     try {
-        await copyDirectory(srcPath, destPath);
+        await cp(srcPath, destPath, {
+            recursive: true,
+            force: true,
+            errorOnExist: false,
+        });
         summary.success = true;
         console.log(`✅ Copied from ${srcPath} to ${destPath}`);
     } catch (error) {
@@ -117,55 +105,6 @@ async function processPair(
 }
 
 /**
- * Resolves source and destination base directories on disk.
- */
-function resolveBasePaths(sourceFolder: string, destinationFolder: string) {
-  const basePublic = resolve(__dirname, '..', '..', 'public');
-  return {
-    baseSrc: resolveWithin(basePublic, sourceFolder),
-    baseDest: resolveWithin(basePublic, destinationFolder),
-  };
-}
-
-/**
- * Executes the copy process sequentially for all pairs.
- */
-async function processAllPairs(
-  pairs: ValidatedPairs,
-  baseSrc: string,
-  baseDest: string
-): Promise<PairSummary[]> {
-  const summaries: PairSummary[] = [];
-
-  for (let i = 0; i < pairs.count; i++) {
-    const summary = await processPair(
-      pairs.sources[i],
-      pairs.destinations[i],
-      baseSrc,
-      baseDest
-    );
-    summaries.push(summary);
-  }
-
-  return summaries;
-}
-
-/**
- * Builds the final result metrics from pair summaries.
- */
-function buildResult(summaries: PairSummary[]): CopyCoversResult {
-  const successCount = summaries.filter((s) => s.success).length;
-  const totalPairs = summaries.length;
-
-  return {
-    totalPairs,
-    successCount,
-    errorCount: totalPairs - successCount,
-    details: summaries,
-  };
-}
-
-/**
  * Main orchestrator function to copy covers between folders.
  */
 export async function copyCovers(_db: Database, payload: CopyCoversPayload) {
@@ -173,13 +112,27 @@ export async function copyCovers(_db: Database, payload: CopyCoversPayload) {
     validateFolder(payload.destinationFolder);
 
     const pairs = parseAndValidatePairs(payload);
-    const { baseSrc, baseDest } = resolveBasePaths(
-        payload.sourceFolder,
-        payload.destinationFolder
-    );
+    const basePublic = resolve(__dirname, '..', '..', 'public');
+    const baseSrc = resolveWithin(basePublic, payload.sourceFolder);
+    const baseDest = resolveWithin(basePublic, payload.destinationFolder);
+    const summaries: PairSummary[] = [];
 
-    const summaries = await processAllPairs(pairs, baseSrc, baseDest);
-    const result = buildResult(summaries);
+    for (let i = 0; i < pairs.count; i++) {
+        summaries.push(await processPair(
+            pairs.sources[i],
+            pairs.destinations[i],
+            baseSrc,
+            baseDest
+        ));
+    }
+
+    const successCount = summaries.filter((summary) => summary.success).length;
+    const result: CopyCoversResult = {
+        totalPairs: summaries.length,
+        successCount,
+        errorCount: summaries.length - successCount,
+        details: summaries,
+    };
 
     console.log(
         `\nSummary: ${result.successCount}/${result.totalPairs} cover pairs processed successfully.`
