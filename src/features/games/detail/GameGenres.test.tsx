@@ -1,6 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+
+const push = vi.fn();
+vi.mock('@/i18n/routing', () => ({ useRouter: () => ({ push }) }));
 
 vi.mock('next-intl', () => ({
     useTranslations: () => (key: string) => `translated:${key}`,
@@ -9,6 +12,20 @@ vi.mock('next-intl', () => ({
 import GameGenres from './GameGenres';
 
 describe('GameGenres', () => {
+    it.each(['click', 'Enter', ' '])('opens the numeric genre filter with %s', (activation) => {
+        push.mockClear();
+        render(<GameGenres genreIds={[1, 2]} />);
+        const chip = screen.getByRole('button', { name: 'translated:gamesLibrary.gamesGenres.2' });
+        expect(chip).toHaveAttribute('tabindex', '0');
+        expect(chip).toHaveClass('MuiChip-clickable');
+        if (activation === 'click') fireEvent.click(chip);
+        else {
+            fireEvent.keyDown(chip, { key: activation });
+            fireEvent.keyUp(chip, { key: activation });
+        }
+        expect(push).toHaveBeenCalledExactlyOnceWith({ pathname: '/games', query: { genres: '2' } });
+    });
+
     it('renders one chip per genre id', () => {
         render(<GameGenres genreIds={[1, 2, 3]} />);
         expect(screen.getByText('translated:gamesLibrary.gamesGenres.1')).toBeInTheDocument();

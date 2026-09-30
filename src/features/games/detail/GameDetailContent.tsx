@@ -7,6 +7,7 @@ import Divider from '@mui/material/Divider';
 
 // Components
 import GameGenres from './GameGenres';
+import GamePlatform from './GamePlatform';
 import VoteSection from "./VoteSection";
 import { CardMediaImage } from '@/components/common/CardMediaImage';
 import RelatedGames from '@/features/games/components/RelatedGames';
@@ -53,6 +54,8 @@ export default function GameDetailContent({
                             <Divider sx={{ mb: 3 }} />
                         </>
                     )}
+
+                    {game.platform !== undefined && <GamePlatform platformId={game.platform} />}
 
                     {hasGenres(game) && (
                         <>

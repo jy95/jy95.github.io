@@ -2,6 +2,11 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { echoTranslations } from '@/test/mocks/nextIntl';
 
+const push = vi.fn();
+vi.mock('@/redux/services/platformsAPI', () => ({
+    useGetPlatformsQuery: () => ({ data: [{ id: 1, name: 'PC' }] }),
+}));
+
 // 1. Bloquer le chargement interne ESM de next/navigation dans next-intl
 vi.mock('next-intl/navigation', () => ({
     defineRouting: (config: unknown) => config,
@@ -9,7 +14,7 @@ vi.mock('next-intl/navigation', () => ({
         Link: ({ children, href }: { children: React.ReactNode; href: string }) => <a href={href}>{children}</a>,
         redirect: vi.fn(),
         usePathname: () => '',
-        useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
+        useRouter: () => ({ push, replace: vi.fn() }),
         getPathname: vi.fn(),
     }),
 }));
@@ -19,7 +24,7 @@ vi.mock('@/i18n/routing', () => ({
     Link: ({ children, href }: { children: React.ReactNode; href: string }) => <a href={href}>{children}</a>,
     redirect: vi.fn(),
     usePathname: () => '',
-    useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
+    useRouter: () => ({ push, replace: vi.fn() }),
     getPathname: vi.fn(),
 }));
 
@@ -50,6 +55,7 @@ vi.mock('@/features/games/components/RelatedGames', () => ({
 }));
 
 import GameDetailView from './GameDetailView';
+import GameDetailContent from './GameDetailContent';
 import type { CardGame } from '@/domain/games';
 
 const game: CardGame = {
@@ -60,6 +66,28 @@ const game: CardGame = {
     url_type: 'VIDEO',
     imagePath: '/covers/abc123/cover.webp',
 };
+
+describe.each(['page content', 'dialog'])('filter chips in %s', (context) => {
+    it.each([
+        ['gamesLibrary.gamesGenres.2', { genres: '2' }, 'Enter'],
+        ['PC', { platform: '1' }, ' '],
+    ])('navigates from %s using keyboard and pointer', (name, query, key) => {
+        const entry = { ...game, platform: 1 };
+        render(context === 'dialog'
+            ? <GameDetailView game={entry} onClose={vi.fn()} showVoteSection={false} />
+            : <GameDetailContent game={entry} showVoteSection={false} />);
+        const chip = screen.getByRole('button', { name });
+        expect(chip).toHaveAttribute('tabindex', '0');
+        expect(chip).toHaveClass('MuiChip-clickable', 'MuiChip-outlined', 'MuiChip-sizeSmall');
+        push.mockClear();
+        fireEvent.keyDown(chip, { key });
+        fireEvent.keyUp(chip, { key });
+        expect(push).toHaveBeenCalledExactlyOnceWith({ pathname: '/games', query });
+        push.mockClear();
+        fireEvent.click(chip);
+        expect(push).toHaveBeenCalledExactlyOnceWith({ pathname: '/games', query });
+    });
+});
 
 describe('GameDetailView', () => {
     it('renders the game title in the toolbar', () => {
