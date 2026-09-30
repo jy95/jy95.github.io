@@ -42,6 +42,7 @@ function GameToolbar({ game, onClose, presentation = "dialog", isPublished = fal
 
     function isPublic() {
         if (!isCardGame(game)) return false;
+        if (isPage) return isPublished;
         if (isPublished) return true;
         const availableAt = game.availableAt;
         if (!availableAt) return false;
