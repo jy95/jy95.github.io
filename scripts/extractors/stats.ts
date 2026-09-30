@@ -1,5 +1,5 @@
-import { writeFile } from "node:fs/promises";
-import { normaliazeDuration, stringifyJSON } from "./common/utils";
+import { writeJsonFile } from "./common/runExtractor";
+import { normaliazeDuration } from "./common/utils";
 
 import type { Database } from "better-sqlite3";
 import type { Duration } from "./common/types";
@@ -68,10 +68,5 @@ export async function extractAndSaveStats(db: Database, outputPath: string): Pro
         }
     }
 
-    await writeFile(
-        outputPath,
-        stringifyJSON(result),
-        "utf-8"
-    );
-    console.log(`${outputPath} successfully written`);
+    await writeJsonFile(outputPath, result);
 }

@@ -1,6 +1,5 @@
-import { writeFile } from "node:fs/promises";
+import { writeJsonFile } from "./runExtractor";
 import type { Database } from "better-sqlite3";
-import { stringifyJSON } from "../common/utils";
 
 interface TierCategory {
   slug: string;
@@ -45,6 +44,5 @@ export async function extractAndSaveTierList<
   }
 
   // 4. Persist to disk
-  await writeFile(outputPath, stringifyJSON(result), "utf-8");
-  console.log(`${outputPath} successfully written`);
+  await writeJsonFile(outputPath, result);
 }
