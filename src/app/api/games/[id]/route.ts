@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { extractGameCardProps } from "@/domain/games";
 import type { GameDetailsResponse } from "@/domain/games/details";
 import {
-    loadPublishedGames, loadPlanningGames, loadBacklogGames,
+    loadPublishedGames, loadDlcGroups, loadPlanningGames, loadBacklogGames,
     toPublishedGame, toPlanningEntry, toBacklogEntry,
 } from "@/lib/gamesData";
 import { cachedJson } from "@/lib/http/cachedJson";
@@ -12,6 +12,12 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
     const published = (await loadPublishedGames()).find((game) => extractGameCardProps(game).id === id);
     if (published) {
         return cachedJson<GameDetailsResponse>({ source: "published", game: toPublishedGame(published) });
+    }
+
+    const dlc = (await loadDlcGroups()).flatMap((group) => group.dlcs)
+        .find((game) => extractGameCardProps(game).id === id);
+    if (dlc) {
+        return cachedJson<GameDetailsResponse>({ source: "published", game: toPublishedGame(dlc) });
     }
 
     const planning = (await loadPlanningGames()).find((game) => extractGameCardProps(game).id === id);

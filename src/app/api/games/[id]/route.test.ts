@@ -6,18 +6,33 @@ vi.mock('../games.json', () => ({ default: [
     { id: 10, title: 'Published playlist', playlistId: 'shared', platform: 1, genres: [2], coverFile: 'custom.webp', duration: '01:00:00', developers: [{ id: 1, name: 'Developer' }] },
     { id: 11, title: 'Published video', videoId: 'video-id', platform: 2, genres: [3] },
 ] }));
+vi.mock('../../dlcs/dlcs.json', () => ({ default: [
+    { id: 'dlc-parent', game_title: 'Batman Arkham City', dlcs: [
+        { id: 203, title: "Harley Quinn's Revenge", videoId: 'XGEgNG67oXA', duration: '01:12:35', platform: 1, releaseDate: '2012-05-29', developers: [{ id: 1, name: 'Developer' }] },
+        { id: 204, title: 'Overlapping DLC', playlistId: 'shared', platform: 1 },
+    ] },
+    { id: 'second-parent', game_title: 'Playlist game', dlcs: [
+        { id: 205, title: 'Playlist DLC', playlistId: 'dlc-playlist', duration: '02:00:00', platform: 2, coverFile: 'dlc.webp', publishers: [{ id: 2, name: 'Publisher' }] },
+        { id: 206, title: 'DLC before planning', videoId: '207', platform: 3 },
+        { id: 208, title: 'DLC before backlog', videoId: '209', platform: 4 },
+    ] },
+] }));
 vi.mock('../../planning/planning.json', () => ({ default: [
     { title: 'Overlapping planning', playlistId: 'shared', platform: 1 },
     { title: 'Recorded planning', videoId: '42', platform: 2, endAt: '2020-01-01', coverFile: 'planned.webp' },
     { title: 'Pending planning', playlistId: 'pending', platform: 3, availableAt: '2099-01-01' },
+    { title: 'Planning behind DLC', videoId: '207', platform: 3 },
 ] }));
 vi.mock('../../backlog/backlog.json', () => ({ default: [
     { id: 42, title: 'Overlapping backlog' },
     { id: 101, title: 'Backlog game', notes: 'Keep notes', hltb_main: '10:00:00', platform: 4 },
+    { id: 207, title: 'Backlog behind DLC and planning' },
+    { id: 209, title: 'Backlog behind DLC' },
 ] }));
 
 import { GET } from './route';
 import { GET as getGames } from '../route';
+import { GET as getDlcs } from '../../dlcs/route';
 import { GET as getPlanning } from '../../planning/route';
 import { GET as getBacklog } from '../../backlog/route';
 import * as gamesData from '@/lib/gamesData';
@@ -51,10 +66,47 @@ describe('GET /api/games/[id]', () => {
         expect((await request('11')).status).toBe(404);
     });
 
-    it('prefers published over planning for an overlapping string ID', async () => {
+    it('prefers published games over DLCs and planning for an overlapping string ID', async () => {
+        const dlcLoader = vi.spyOn(gamesData, 'loadDlcGroups');
         const planningLoader = vi.spyOn(gamesData, 'loadPlanningGames');
         const backlogLoader = vi.spyOn(gamesData, 'loadBacklogGames');
-        expect((await details('shared')).source).toBe('published');
+        expect(await details('shared')).toMatchObject({ source: 'published', game: { title: 'Published playlist' } });
+        expect(dlcLoader).not.toHaveBeenCalled();
+        expect(planningLoader).not.toHaveBeenCalled();
+        expect(backlogLoader).not.toHaveBeenCalled();
+    });
+
+    it('resolves a nested video DLC as published and preserves its fields and canonical cover', async () => {
+        const data = await details('XGEgNG67oXA');
+        expect(data).toMatchObject({ source: 'published', game: {
+            id: 'XGEgNG67oXA', title: "Harley Quinn's Revenge", videoId: 'XGEgNG67oXA',
+            url_type: 'VIDEO', url: 'https://www.youtube.com/watch?v=XGEgNG67oXA',
+            imagePath: '/covers/XGEgNG67oXA/cover.webp', duration: '01:12:35', platform: 1,
+            releaseDate: '2012-05-29', developers: [{ id: 1, name: 'Developer' }],
+        } });
+        const catalogue = await (await getDlcs()).json();
+        expect(data.game).toEqual(catalogue[0].items[0]);
+    });
+
+    it('resolves playlist DLCs in later groups with the same conversion as the DLC catalogue', async () => {
+        const data = await details('dlc-playlist');
+        expect(data).toMatchObject({ source: 'published', game: {
+            id: 'dlc-playlist', title: 'Playlist DLC', playlistId: 'dlc-playlist',
+            url_type: 'PLAYLIST', url: 'https://www.youtube.com/playlist?list=dlc-playlist',
+            imagePath: '/covers/dlc-playlist/dlc.webp', coverFile: 'dlc.webp', duration: '02:00:00',
+            platform: 2, publishers: [{ id: 2, name: 'Publisher' }],
+        } });
+        const catalogue = await (await getDlcs()).json();
+        expect(data.game).toEqual(catalogue[1].items[0]);
+    });
+
+    it.each([
+        { id: '207', title: 'DLC before planning' },
+        { id: '209', title: 'DLC before backlog' },
+    ])('prefers DLC $id over planning and backlog', async ({ id, title }) => {
+        const planningLoader = vi.spyOn(gamesData, 'loadPlanningGames');
+        const backlogLoader = vi.spyOn(gamesData, 'loadBacklogGames');
+        expect(await details(id)).toMatchObject({ source: 'published', game: { id, title } });
         expect(planningLoader).not.toHaveBeenCalled();
         expect(backlogLoader).not.toHaveBeenCalled();
     });
@@ -80,10 +132,15 @@ describe('GET /api/games/[id]', () => {
         expect((await request('1')).status).toBe(404);
     });
 
-    it.each(['unknown', '0101', '101suffix'])('returns HTTP 404 for unmatched ID %s', async (id) => {
+    it.each(['unknown', '0101', '101suffix', '203', '205', 'dlc-parent', 'second-parent'])('returns HTTP 404 for unmatched ID %s', async (id) => {
+        const loaders = [
+            vi.spyOn(gamesData, 'loadPublishedGames'), vi.spyOn(gamesData, 'loadDlcGroups'),
+            vi.spyOn(gamesData, 'loadPlanningGames'), vi.spyOn(gamesData, 'loadBacklogGames'),
+        ];
         const response = await request(id);
         expect(response.status).toBe(404);
         expect(await response.json()).toEqual({ error: 'Game not found' });
+        for (const loader of loaders) expect(loader).toHaveBeenCalledOnce();
     });
 
     it('associates each source discriminator with its game type', () => {
@@ -92,8 +149,8 @@ describe('GET /api/games/[id]', () => {
         expectTypeOf<Extract<GameDetailsResponse, { source: 'backlog' }>['game']>().toEqualTypeOf<BacklogEntry>();
     });
 
-    it('does not treat data loading failures as missing games', async () => {
-        vi.spyOn(gamesData, 'loadPublishedGames').mockRejectedValueOnce(new Error('Data unavailable'));
+    it.each(['loadPublishedGames', 'loadDlcGroups', 'loadPlanningGames', 'loadBacklogGames'] as const)('does not treat %s failures as missing games', async (loader) => {
+        vi.spyOn(gamesData, loader).mockRejectedValueOnce(new Error('Data unavailable'));
         await expect(request('unknown')).rejects.toThrow('Data unavailable');
     });
 });

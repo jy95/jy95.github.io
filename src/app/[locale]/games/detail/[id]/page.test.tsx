@@ -26,6 +26,10 @@ const game: CardGame = {
     url: 'https://www.youtube.com/playlist?list=PL123', url_type: 'PLAYLIST',
     genres: [1], releaseDate: '2019-01-01',
 };
+const dlcs: CardGame[] = [
+    { id: 'XGEgNG67oXA', title: "Harley Quinn's Revenge", imagePath: '/covers/XGEgNG67oXA/cover.webp', url: 'https://www.youtube.com/watch?v=XGEgNG67oXA', url_type: 'VIDEO', duration: '01:12:35', platform: 1 },
+    { id: 'dlc-playlist', title: 'Playlist DLC', imagePath: '/covers/dlc-playlist/dlc.webp', url: 'https://www.youtube.com/playlist?list=dlc-playlist', url_type: 'PLAYLIST' },
+];
 const planned: PlanningEntry = { ...game, id: 'upcoming', title: 'Planned game', availableAt: '2099-01-01', status: 'PENDING' };
 const backlog: BacklogEntry = { id: '42', title: 'Backlog game', imagePath: '/backlogcovers/42/cover.webp', notes: 'My notes', hltb_main: '10:00:00' };
 let store: ReturnType<typeof makeStore>;
@@ -36,7 +40,9 @@ function makeStore() {
 function respond(request: Request) {
     const id = decodeURIComponent(new URL(request.url).pathname.slice('/api/games/'.length));
     if (failedStatus) return new Response('{}', { status: failedStatus });
+    const dlc = dlcs.find((item) => item.id === id);
     const data: GameDetailsResponse | undefined = id === game.id ? { source: 'published', game }
+        : dlc ? { source: 'published', game: dlc }
         : id === planned.id ? { source: 'planning', game: planned }
         : id === backlog.id ? { source: 'backlog', game: backlog } : undefined;
     if (!data) return new Response('{}', { status: 404 });
@@ -72,6 +78,20 @@ describe('canonical game detail page', () => {
         expect(fetchMock).toHaveBeenCalledTimes(1);
         expect(calledUrl(fetchMock).pathname).toBe(`/api/games/${game.id}`);
         expect(calledUrl(fetchMock).search).toBe('');
+    });
+
+    it.each(dlcs)('loads DLC $id with one request and preserves its published watch action', async (dlc) => {
+        await show(dlc.id);
+        expect(await screen.findByRole('heading', { name: dlc.title, level: 1 })).toBeInTheDocument();
+        expect(screen.getByAltText(dlc.title)).toHaveAttribute('src', dlc.imagePath);
+        expect(screen.getByText(`Related:${dlc.id}`)).toBeInTheDocument();
+        expect(screen.queryByText(/^Vote:/)).not.toBeInTheDocument();
+        fireEvent.click(screen.getByRole('button', { name: 'Watch the game' }));
+        expect(push).toHaveBeenCalledWith({ pathname: dlc.url_type === 'VIDEO' ? '/video/[id]' : '/playlist/[id]', params: { id: dlc.id } });
+        expect(fetchMock).toHaveBeenCalledTimes(1);
+        expect(calledUrl(fetchMock).pathname).toBe(`/api/games/${dlc.id}`);
+        expect(calledUrl(fetchMock).search).toBe('');
+        expect(notFound).not.toHaveBeenCalled();
     });
 
     it('resolves planning entries with one request and preserves related games', async () => {
