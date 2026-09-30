@@ -176,14 +176,11 @@ it('exposes the desktop disclosure relationship and closes it on viewport change
 });
 
 
-it('counts the release period once and clears it through its active chip', () => {
+it('counts the release period once without rendering a cancellation chip', () => {
     const onChange = vi.fn();
     render(<GamesFilters filters={{ platform: 6, genres: [1], releaseDateFrom: 2000, releaseDateTo: 2005 }} onChange={onChange} />);
     expect(screen.getByRole('button', { name: /filtersButtonLabel/ })).toHaveTextContent('3');
-    const chip = screen.getByRole('button', { name: /releasePeriod.active/ });
-    chip.focus();
-    fireEvent.keyUp(chip, { key: 'Delete' });
-    expect(onChange).toHaveBeenCalledExactlyOnceWith({ releaseDateFrom: undefined, releaseDateTo: undefined });
+    expect(screen.queryByRole('button', { name: /releasePeriod.active/ })).not.toBeInTheDocument();
 });
 
 it('stages release years in the mobile dialog, discards them on close and clears on Apply', async () => {
