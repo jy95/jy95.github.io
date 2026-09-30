@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { cachedJson } from "@/lib/http/cachedJson";
 import Fuse from 'fuse.js';
 import { loadPublishedGames, toPublishedGame } from "@/lib/gamesData";
 import type { RawPublishedGame } from "@/lib/gamesData";
@@ -32,11 +32,7 @@ export async function GET(request: Request) {
     const gamesData = await loadPublishedGames();
     const response = generateResponse(params, gamesData);
 
-    return NextResponse.json(response, {
-        headers: {
-            "Cache-Control": "public, max-age=86400, must-revalidate"
-        }
-    });
+    return cachedJson(response);
 }
 
 function generateResponse(params: RequestParams, gamesData: RawPayload): ResponseBody {

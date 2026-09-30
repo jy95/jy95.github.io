@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { cachedJson } from "@/lib/http/cachedJson";
 import { buildCardEntry } from "@/domain/games";
 import { COVER_PATHS } from "@/domain/games/coverPaths";
 import type { RawGame, CardGame } from "@/domain/games";
@@ -28,11 +28,7 @@ export async function GET() {
         items: fromRawGamesToCardGames(serie.items as RawGame[])
     }));
 
-    return NextResponse.json(series, {
-        headers: {
-            "Cache-Control": "public, max-age=86400, must-revalidate"
-        }
-    });
+    return cachedJson(series);
 }
 
 function fromRawGamesToCardGames(gamesData: RawGame[]): CardGame[] {

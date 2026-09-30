@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { cachedJson } from "@/lib/http/cachedJson";
 import { buildCardGame } from "@/domain/games";
 import { COVER_PATHS } from "@/domain/games/coverPaths";
 import type { BasicGame, CardGame } from "@/domain/games";
@@ -21,15 +21,11 @@ export async function GET(request: Request) {
     const offset = parseInt(searchParams.get("offset") ?? "0", 10);
     const games = (limit === -1) ? gamesData : gamesData.slice(offset, limit);
 
-    return NextResponse.json({
+    return cachedJson({
         items: games.map(enhanceGameItem),
         total_items: gamesData.length,
         limit,
         offset
-    }, {
-        headers: {
-            "Cache-Control": "public, max-age=86400, must-revalidate"
-        }
     });
 }
 

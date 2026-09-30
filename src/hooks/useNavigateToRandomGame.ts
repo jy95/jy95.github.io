@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/routing';
+import { buildWatchRoute } from "@/domain/games/youtube";
 import type { RandomAnswer } from "@/app/api/random/route";
 
 type UseNavigateToRandomGameResult = {
@@ -95,10 +96,7 @@ export function useNavigateToRandomGame(): UseNavigateToRandomGameResult {
                     return;
                 }
 
-                contextRef.current.router.push({
-                    pathname: data.type === "PLAYLIST" ? "/playlist/[id]" : "/video/[id]",
-                    params: { id: data.identifier }
-                });
+                contextRef.current.router.push(buildWatchRoute(data.type, data.identifier));
             } catch (error) {
                 if (controller.signal.aborted) {
                     // Expected when locale/pathname changed mid-request —

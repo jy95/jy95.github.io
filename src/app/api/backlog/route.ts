@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { cachedJson } from "@/lib/http/cachedJson";
 import { loadBacklogGames, toBacklogEntry } from "@/lib/gamesData";
 import type { RawBacklogEntry } from "@/lib/gamesData";
 
@@ -9,9 +9,5 @@ export async function GET() {
     const gamesData = await loadBacklogGames();
     const games = gamesData.map(toBacklogEntry);
 
-    return NextResponse.json(games, {
-        headers: {
-            "Cache-Control": "public, max-age=86400, must-revalidate"
-        }
-    });
+    return cachedJson(games);
 }
