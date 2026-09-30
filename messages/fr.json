@@ -88,6 +88,12 @@
             "cancelButton": "Annuler",
             "sortButton": "Trier"
         },
+        "releasePeriod": {
+            "label": "Date de sortie",
+            "from": "Année de sortie de début",
+            "to": "Année de sortie de fin",
+            "active": "Sortie : {from}–{to}"
+        },
         "filtersButtonLabel": "Filtres",
         "filterActions": {
             "close": "Fermer les filtres",

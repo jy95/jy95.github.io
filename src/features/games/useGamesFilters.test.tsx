@@ -156,3 +156,23 @@ describe.each([false, true])('sort controls and URL (mobile: %s)', mobile => {
         expect(navigation.replace).not.toHaveBeenCalled();
     });
 });
+
+
+it.each(['/games', '/en/games', '/fr/games'])('restores, updates and clears release years on %s', path => {
+    navigation.href = `${path}?title=Zelda&platform=6&genres=2&releaseDateFrom=2000&releaseDateTo=2005&campaign=shared`;
+    const { result, rerender } = renderHook(useGamesFilters);
+    expect(result.current.filters).toEqual({ title: 'Zelda', platform: 6, genres: [2], releaseDateFrom: 2000, releaseDateTo: 2005 });
+    act(() => result.current.updateFilters({ releaseDateFrom: 2001, releaseDateTo: 2010 }));
+    rerender();
+    expect(navigation.href).toMatch(new RegExp(`^${path}\\?`));
+    expect(currentParams().get('releaseDateFrom')).toBe('2001');
+    expect(currentParams().get('releaseDateTo')).toBe('2010');
+    const { result: reloaded } = renderHook(useGamesFilters);
+    expect(reloaded.current.filters).toEqual(result.current.filters);
+    act(() => result.current.updateFilters({ releaseDateFrom: undefined, releaseDateTo: undefined }));
+    rerender();
+    expect(result.current.filters).toEqual({ title: 'Zelda', platform: 6, genres: [2] });
+    expect(currentParams().has('releaseDateFrom')).toBe(false);
+    expect(currentParams().has('releaseDateTo')).toBe(false);
+    expect(currentParams().get('campaign')).toBe('shared');
+});

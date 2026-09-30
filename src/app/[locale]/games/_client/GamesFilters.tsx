@@ -24,6 +24,9 @@ import GenresSelect from "@/features/games/components/GenresSelect";
 import PlatformSelect from "@/features/games/components/PlatformSelect";
 import TitleFilter from "@/features/games/components/TitleFilter";
 import SortSelect from "@/features/games/components/SortSelect";
+import ReleaseDateFilter from "@/features/games/components/ReleaseDateFilter";
+
+type SecondaryFilters = Pick<GameFilters, 'platform' | 'genres' | 'releaseDateFrom' | 'releaseDateTo'>;
 
 type Props = {
     filters: GameFilters;
@@ -36,7 +39,7 @@ export default function GamesFilters({ filters, onChange }: Props) {
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [filtersOpen, setFiltersOpen] = useState(false);
     // Only secondary filters are staged; the URL remains the applied source of truth.
-    const [draft, setDraft] = useState<Pick<GameFilters, 'platform' | 'genres'>>({});
+    const [draft, setDraft] = useState<SecondaryFilters>({});
     const [previousMobile, setPreviousMobile] = useState(isMobile);
     if (previousMobile !== isMobile) {
         setPreviousMobile(isMobile);
@@ -45,21 +48,26 @@ export default function GamesFilters({ filters, onChange }: Props) {
     const filtersId = useId();
     const triggerId = useId();
     const titleId = useId();
+    const hasReleasePeriod = filters.releaseDateFrom !== undefined || filters.releaseDateTo !== undefined;
     const activeFilterCount = Number(filters.platform !== undefined)
-        + Number(Boolean(filters.genres?.length));
+        + Number(Boolean(filters.genres?.length))
+        + Number(hasReleasePeriod);
     const displayedFilters = isMobile ? draft : filters;
-    const changeSecondaryFilters = (changes: Pick<GameFilters, 'platform' | 'genres'>) => {
+    const changeSecondaryFilters = (changes: SecondaryFilters) => {
         if (isMobile) setDraft(current => ({ ...current, ...changes }));
         else onChange(changes);
     };
 
     const filterControls = (
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3, minWidth: 0 }}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, flexWrap: 'wrap', gap: 3, minWidth: 0 }}>
             <Box sx={{ flex: 1, minWidth: 0 }}>
                 <PlatformSelect value={displayedFilters.platform} onChange={platform => changeSecondaryFilters({ platform })} />
             </Box>
             <Box sx={{ flex: 2, minWidth: 0, '& .MuiChip-root': { maxWidth: '100%' } }}>
                 <GenresSelect value={displayedFilters.genres ?? []} onChange={genres => changeSecondaryFilters({ genres })} />
+            </Box>
+            <Box sx={{ flex: { md: '2 1 280px' }, minWidth: 0 }}>
+                <ReleaseDateFilter filters={displayedFilters} onChange={changeSecondaryFilters} />
             </Box>
         </Box>
     );
@@ -86,7 +94,7 @@ export default function GamesFilters({ filters, onChange }: Props) {
                     aria-controls={filtersOpen ? filtersId : undefined}
                     aria-haspopup={isMobile ? 'dialog' : undefined}
                     onClick={() => {
-                        if (isMobile) setDraft({ platform: filters.platform, genres: filters.genres });
+                        if (isMobile) setDraft({ platform: filters.platform, genres: filters.genres, releaseDateFrom: filters.releaseDateFrom, releaseDateTo: filters.releaseDateTo });
                         setFiltersOpen(open => !open);
                     }}
                     sx={{ minHeight: 44, flexShrink: 0 }}
@@ -124,7 +132,7 @@ export default function GamesFilters({ filters, onChange }: Props) {
                         {filterControls}
                     </DialogContent>
                     <DialogActions sx={{ p: 2, pb: 'max(16px, env(safe-area-inset-bottom))', gap: 1, flexShrink: 0 }}>
-                        <Button variant="outlined" onClick={() => setDraft({ platform: undefined, genres: [] })} sx={{ minHeight: 44, flex: 1 }}>
+                        <Button variant="outlined" onClick={() => setDraft({ platform: undefined, genres: [], releaseDateFrom: undefined, releaseDateTo: undefined })} sx={{ minHeight: 44, flex: 1 }}>
                             {t('filterActions.clear')}
                         </Button>
                         <Button variant="contained" onClick={() => { onChange(draft); setFiltersOpen(false); }} sx={{ minHeight: 44, flex: 1 }}>

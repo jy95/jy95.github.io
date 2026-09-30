@@ -225,3 +225,40 @@ describe("GET /api/games", () => {
     expect(data.total_pages).toBe(1);
   });
 });
+
+
+describe('release period API filtering', () => {
+  it('includes both boundary dates and combines with title/platform/genres before pagination', async () => {
+    const fixtures = [
+      { title: 'Period lower', platform: 20, genres: [1], releaseDate: '2000-01-01' },
+      { title: 'Period middle', platform: 20, genres: [1], releaseDate: '2003-06-15' },
+      { title: 'Period upper', platform: 20, genres: [1], releaseDate: '2005-12-31' },
+      { title: 'Period before', platform: 20, genres: [1], releaseDate: '1999-12-31' },
+      { title: 'Period after', platform: 20, genres: [1], releaseDate: '2006-01-01' },
+      { title: 'Period absent', platform: 20, genres: [1] },
+      { title: 'Period invalid', platform: 20, genres: [1], releaseDate: 'invalid' },
+      { title: 'Period overflow', platform: 20, genres: [1], releaseDate: '2001-02-29' },
+      { title: 'Period empty', platform: 20, genres: [1], releaseDate: '' },
+      { title: 'Period other platform', platform: 21, genres: [1], releaseDate: '2002-01-01' },
+      { title: 'Period other genre', platform: 20, genres: [2], releaseDate: '2002-01-01' },
+      { title: 'ZZZZZZZZZZ', platform: 20, genres: [1], releaseDate: '2002-01-01' },
+    ];
+    const originalLength = mockGames.length;
+    mockGames.push(...fixtures);
+    try {
+      const params = { title: 'Period', platform: '20', genres: ['1'], releaseDateFrom: '2000', releaseDateTo: '2005', sort: 'releaseDate_asc', pageSize: '2' };
+      const first = await callGET(makeRequest(params));
+      const second = await callGET(makeRequest({ ...params, page: '2' }));
+      expect(first.total_items).toBe(3);
+      expect(first.items.map(game => game.title)).toEqual(['Period lower', 'Period middle']);
+      expect(second.items.map(game => game.title)).toEqual(['Period upper']);
+      const singleYear = await callGET(makeRequest({ ...params, releaseDateTo: '2000' }));
+      expect(singleYear.items.map(game => game.title)).toEqual(['Period lower']);
+      const cleared = await callGET(makeRequest({ platform: '20' }));
+      expect(cleared.items.map(game => game.title)).toContain('Period absent');
+      expect(cleared.items.map(game => game.title)).toContain('Period invalid');
+    } finally {
+      mockGames.splice(originalLength);
+    }
+  });
+});

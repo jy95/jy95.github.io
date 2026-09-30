@@ -11,6 +11,7 @@ export interface GameFilters {
     title?: string;
     platform?: number;
     genres?: number[];
+    releaseDateFrom?: number;
+    releaseDateTo?: number;
     sort?: GameSort;
 }
-
