@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import CodeIcon from "@mui/icons-material/Code";
 import BusinessIcon from "@mui/icons-material/Business";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
@@ -23,7 +24,7 @@ export default function CompaniesRow({ game }: { game: GameDetailsEntry }) {
                     <InfoRow
                         key={role}
                         label={t(role, { count: companies.length })}
-                        icon={<BusinessIcon fontSize="small" />}
+                        icon={role === "developers" ? <CodeIcon fontSize="small" /> : <BusinessIcon fontSize="small" />}
                         value={
                             <Stack component="span" direction="row" useFlexGap spacing={1} sx={{ flexWrap: "wrap" }}>
                                 {companies.map((company) => (

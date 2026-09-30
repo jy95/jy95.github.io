@@ -54,6 +54,10 @@ describe('CompaniesRow', () => {
                 expect(screen.getByText(labels[role][count - 1])).toBeInTheDocument();
                 expect(screen.queryByText(labels[role][count === 1 ? 1 : 0])).not.toBeInTheDocument();
                 expect(screen.getAllByRole('button')).toHaveLength(count);
+                const icon = role === 'developers' ? 'CodeIcon' : 'BusinessIcon';
+                const otherIcon = role === 'developers' ? 'BusinessIcon' : 'CodeIcon';
+                expect(screen.getByTestId(icon)).toHaveClass('MuiSvgIcon-fontSizeSmall');
+                expect(screen.queryByTestId(otherIcon)).not.toBeInTheDocument();
 
                 for (const company of companies.slice(0, count)) {
                     const chip = screen.getByRole('button', { name: company.name });
