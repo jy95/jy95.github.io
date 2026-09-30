@@ -42,3 +42,13 @@ export function CardOverlayLayer({ children, persistent = false }: { children: R
         </Box>
     );
 }
+
+
+// Independent controls stay visible on touch screens and outside the main card button.
+export function CardActionsLayer({ children }: { children: ReactNode }) {
+    return (
+        <Box sx={{ position: 'absolute', top: 0, right: 0, zIndex: 4, p: 1 }}>
+            {children}
+        </Box>
+    );
+}

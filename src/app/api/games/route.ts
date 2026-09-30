@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import Fuse from 'fuse.js';
-import { buildCardGame } from "@/domain/games";
-import { COVER_PATHS } from "@/domain/games/coverPaths";
+import { loadPublishedGames, toPublishedGame } from "@/lib/gamesData";
+import type { RawPublishedGame } from "@/lib/gamesData";
 import { searchParamsToFilters } from "@/lib/gamesFilterUtils";
 import { sortGames } from "@/lib/gamesSort";
 
-import type { RawGame, CardGame } from "@/domain/games";
+import type { CardGame } from "@/domain/games";
 import type { GameFilters } from "@/types/gamesFilters";
 
 // Types
@@ -24,14 +24,13 @@ export type ResponseBody = {
     page: number
 };
 
-type rawEntry = RawGame & { genres: number[] };
-export type RawPayload = rawEntry[];
+export type RawPayload = RawPublishedGame[];
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const params = extractParameters(searchParams);
-    const gamesData = (await import("./games.json")).default;
-    const response = generateResponse(params, gamesData as RawPayload);
+    const gamesData = await loadPublishedGames();
+    const response = generateResponse(params, gamesData);
 
     return NextResponse.json(response, {
         headers: {
@@ -77,7 +76,7 @@ function generateResponse(params: RequestParams, gamesData: RawPayload): Respons
 }
 
 function sortedAndFilteredResultset(startOffset: number, endOffset: number, games: RawPayload): CardGame[] {
-    return games.slice(startOffset, endOffset).map(enhanceGameItem);
+    return games.slice(startOffset, endOffset).map(toPublishedGame);
 }
 
 function extractParameters(params: URLSearchParams): RequestParams {
@@ -92,9 +91,4 @@ function extractParameters(params: URLSearchParams): RequestParams {
         pageSize,
         filters: Object.keys(filters).length > 0 ? filters : undefined
     }
-}
-
-// Return an enhanced payload for a single game
-function enhanceGameItem(game: rawEntry): CardGame {
-    return buildCardGame(game, COVER_PATHS.games);
 }

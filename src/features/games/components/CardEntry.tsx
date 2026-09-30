@@ -1,7 +1,11 @@
 "use client";
 
 // Hooks
-import { useRouter } from '@/i18n/routing';
+import { useLocale, useTranslations } from "next-intl";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { Link, useRouter } from '@/i18n/routing';
 
 // Reusable functions
 import { buildWatchRoute } from "@/domain/games/youtube";
@@ -19,6 +23,8 @@ function CardEntry(props : {
 
     // hooks
     const router = useRouter();
+    const locale = useLocale();
+    const t = useTranslations("gameDetail");
 
     // props
     const {game} = props;
@@ -37,6 +43,20 @@ function CardEntry(props : {
         <BaseCard 
             item={game}
             onClick={() => watchGame()}
+            actionsSlot={(item) => (
+                <Tooltip title={t("details", { title: item.title })}>
+                    <IconButton
+                        component={Link}
+                        locale={locale}
+                        href={{ pathname: "/games/detail/[id]", params: { id: item.id } }}
+                        aria-label={t("details", { title: item.title })}
+                        onClick={(event) => event.stopPropagation()}
+                        sx={{ bgcolor: 'background.paper', color: 'text.primary', '&:hover': { bgcolor: 'background.paper', color: 'primary.main' } }}
+                    >
+                        <InfoOutlinedIcon />
+                    </IconButton>
+                </Tooltip>
+            )}
             overlaySlot={(item) => <GameCardOverlay game={item} />}
         />
     );

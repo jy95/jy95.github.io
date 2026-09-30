@@ -7,13 +7,14 @@ import CardActionArea from '@mui/material/CardActionArea';
 // Types & Components locaux
 import type { CommonProps, BaseCardProps } from './types';
 import { CardMediaImage } from '@/components/common/CardMediaImage';
-import { CardBadgesLayer, CardOverlayLayer } from './CardBadgesLayer';
+import { CardBadgesLayer, CardOverlayLayer, CardActionsLayer } from './CardBadgesLayer';
 
 export default function BaseCard<T extends CommonProps>({ 
     item, 
     onClick,
     badgesSlot,
     overlaySlot,
+    actionsSlot,
     overlayPersistent = false,
     objectFit,
     aspectRatio = 'square'
@@ -50,6 +51,9 @@ export default function BaseCard<T extends CommonProps>({
                     </CardOverlayLayer>
                 )}
             </CardActionArea>
+            {actionsSlot && (
+                <CardActionsLayer>{actionsSlot(item)}</CardActionsLayer>
+            )}
         </Card>
     );
 }

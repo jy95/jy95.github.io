@@ -1,17 +1,9 @@
 import { NextResponse } from "next/server";
-import { buildCardEntry } from "@/domain/games";
-import { COVER_PATHS } from "@/domain/games/coverPaths";
-import type { RawGame, CardGame } from "@/domain/games";
+import { loadDlcGroups, toPublishedGame } from "@/lib/gamesData";
+import type { StoredDlcGroup } from "@/lib/gamesData";
+import type { CardGame } from "@/domain/games";
 
-type rawEntry = {
-    /** @description Unique identifier of the game */
-    id: string,
-    /** @description Name of the game */
-    name: string;
-    /** @description List of dlc for this game */
-    items: RawGame[]
-}
-export type RawPayload = rawEntry[];
+export type RawPayload = StoredDlcGroup[];
 
 export type dlcType = {
     id: string,
@@ -20,12 +12,12 @@ export type dlcType = {
 };
 
 export async function GET() {
-    const dlcsData = (await import("./dlcs.json")).default;
+    const dlcsData = await loadDlcGroups();
 
     const dlcs: dlcType[] = dlcsData.map((dlc) => ({
         id: dlc.id,
         name: dlc.game_title,
-        items: fromRawGamesToCardGames(dlc.dlcs as RawGame[])
+        items: dlc.dlcs.map(toPublishedGame)
     }));
 
     return NextResponse.json(dlcs, {
@@ -33,11 +25,4 @@ export async function GET() {
             "Cache-Control": "public, max-age=86400, must-revalidate"
         }
     });
-}
-
-function fromRawGamesToCardGames(gamesData: RawGame[]): CardGame[] {
-    return gamesData.map(game => ({
-        ...game,
-        ...buildCardEntry(game, COVER_PATHS.games)
-    }));
 }

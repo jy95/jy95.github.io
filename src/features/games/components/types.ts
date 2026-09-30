@@ -19,6 +19,7 @@ export interface BaseCardProps<T extends CommonProps> {
     badgesSlot?: (item: T) => ReactNode;  
     overlaySlot?: (item: T) => ReactNode;
     overlayPersistent?: boolean;
+    actionsSlot?: (item: T) => ReactNode;
     objectFit?: 'fill' | 'cover' | 'contain';
     aspectRatio?: CardAspectRatio; 
 }

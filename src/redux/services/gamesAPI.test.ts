@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
 import { stubRtkFetch, calledUrl } from '@/test/mocks/rtkFetch';
+import type { GameDetailsResponse } from '@/domain/games/details';
 
 const fetchMock = stubRtkFetch();
 vi.stubGlobal('fetch', fetchMock);
@@ -29,6 +30,51 @@ const emptyPage = {
     pageSize: 12,
     page: 1,
 };
+
+describe('gamesAPI single-game details', () => {
+    beforeEach(() => fetchMock.mockReset());
+
+    const publishedGame = {
+        id: 'game-id', title: 'Game', imagePath: '/covers/game-id/cover.webp',
+        url: 'https://www.youtube.com/watch?v=game-id', url_type: 'VIDEO' as const,
+    };
+    const responses: GameDetailsResponse[] = [
+        { source: 'published', game: publishedGame },
+        { source: 'planning', game: { ...publishedGame, status: 'RECORDED' } },
+        { source: 'backlog', game: { id: '42', title: 'Backlog', imagePath: '/backlogcovers/42/cover.webp' } },
+    ];
+
+    it.each(responses)('preserves the $source discriminated response with one request', async (response) => {
+        fetchMock.mockResolvedValue(jsonResponse(response));
+        const store = makeStore();
+        const result = await store.dispatch(gamesAPI.endpoints.getGameDetails.initiate(response.game.id));
+        expect(result.data).toEqual(response);
+        expect(fetchMock).toHaveBeenCalledTimes(1);
+        expect(calledUrl(fetchMock).pathname).toBe(`/api/games/${response.game.id}`);
+        expect(calledUrl(fetchMock).search).toBe('');
+        store.dispatch(gamesAPI.util.resetApiState());
+    });
+
+    it('encodes the entire string ID as one URL segment', async () => {
+        const id = 'id/with spaces?query#fragment%&é';
+        fetchMock.mockResolvedValue(jsonResponse({ source: 'published', game: { ...publishedGame, id } }));
+        const store = makeStore();
+        await store.dispatch(gamesAPI.endpoints.getGameDetails.initiate(id));
+        expect(calledUrl(fetchMock).pathname).toBe(`/api/games/${encodeURIComponent(id)}`);
+        expect(calledUrl(fetchMock).search).toBe('');
+        store.dispatch(gamesAPI.util.resetApiState());
+    });
+
+    it.each([404, 500])('preserves HTTP %s as an error instead of a successful empty result', async (status) => {
+        fetchMock.mockResolvedValue(new Response('{}', { status }));
+        const store = makeStore();
+        const result = await store.dispatch(gamesAPI.endpoints.getGameDetails.initiate('missing'));
+        expect(result.isError).toBe(true);
+        expect(result.error).toMatchObject({ status });
+        expect(result.data).toBeUndefined();
+        store.dispatch(gamesAPI.util.resetApiState());
+    });
+});
 
 describe('gamesAPI query building (getGames)', () => {
     beforeEach(() => {

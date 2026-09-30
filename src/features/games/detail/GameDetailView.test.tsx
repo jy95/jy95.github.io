@@ -117,10 +117,26 @@ describe('GameDetailView', () => {
         expect(publishers.compareDocumentPosition(releaseDate) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     });
 
+    it('renders backlog durations through the same shared content', () => {
+        render(<GameDetailView game={{ id: '42', title: 'Backlog game', imagePath: '/backlogcovers/42/cover.webp', hltb_main: '10:00:00' }} onClose={vi.fn()} />);
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(screen.getByText('Backlog game')).toBeInTheDocument();
+        expect(screen.getByText('gameDetail.hltb_main')).toBeInTheDocument();
+        expect(screen.getByText('vote.disclaimer')).toBeInTheDocument();
+        expect(screen.queryByLabelText('gameDetail.watch')).not.toBeInTheDocument();
+    });
+
+    it('retains Escape close handling', () => {
+        const onClose = vi.fn();
+        render(<GameDetailView game={game} onClose={onClose} />);
+        fireEvent.keyDown(screen.getByRole('dialog'), { key: 'Escape', code: 'Escape' });
+        expect(onClose).toHaveBeenCalledOnce();
+    });
+
     it('calls onClose when the toolbar close button is clicked', () => {
         const onClose = vi.fn();
         render(<GameDetailView game={game} onClose={onClose} />);
-        fireEvent.click(screen.getByLabelText('close'));
+        fireEvent.click(screen.getByLabelText('gameDetail.close'));
         expect(onClose).toHaveBeenCalledTimes(1);
     });
 });
