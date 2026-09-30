@@ -6,6 +6,8 @@ import { platformToInt, identifierKindToDatabaseField } from "./common/utils";
 
 type UpdatePayload = Partial<GamePayload> & { identifierValue: string; identifierKind: GamePayload['identifierKind'] };
 
+const valueOrNull = <T>(val: T | undefined): T | null => val ?? null;
+
 export async function updateGameInDatabase(db: Database, payload: UpdatePayload) {
     const keyField = identifierKindToDatabaseField(payload.identifierKind);
 
@@ -27,9 +29,9 @@ export async function updateGameInDatabase(db: Database, payload: UpdatePayload)
 
         updateGameStmt.run({
             id: gameId,
-            title: payload.title ?? null,
-            releaseDate: payload.releaseDate?.trim() ?? null,
-            duration: payload.duration ?? null,
+            title: valueOrNull(payload.title),
+            releaseDate: valueOrNull(payload.releaseDate?.trim()),
+            duration: valueOrNull(payload.duration),
             platform: payload.platform !== undefined ? platformToInt(payload.platform) : null,
         });
 
