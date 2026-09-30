@@ -22,7 +22,7 @@ describe('GameGenres', () => {
     describe.each([
         { locale: 'en', messages: en },
         { locale: 'fr', messages: fr },
-    ])('$locale translations', ({ locale, messages }) => {
+    ] as const)('$locale translations', ({ locale, messages }) => {
         it.each([1, 2])('renders %i genres with the field label and icon', (count) => {
             render(
                 <NextIntlClientProvider locale={locale} messages={messages}>
