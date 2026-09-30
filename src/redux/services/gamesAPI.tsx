@@ -1,6 +1,7 @@
 import { normalizeGameFilters, filtersToSearchParams } from '@/lib/gamesFilterUtils';
 import type { ResponseBody as GamesResponse } from "@/app/api/games/route";
 import type { GameFilters } from "@/types/gamesFilters"
+import type { GameDetailsResponse } from "@/domain/games/details";
 import { api } from "./api"
 
 type Parameters = {
@@ -13,6 +14,9 @@ type FrontendParams = Omit<Parameters, "page">;
 
 export const gamesAPI = api.injectEndpoints({
     endpoints: (builder) => ({
+        getGameDetails: builder.query<GameDetailsResponse, string>({
+            query: (id) => `/games/${encodeURIComponent(id)}`,
+        }),
         getGames: builder.infiniteQuery<GamesResponse, FrontendParams, number>({
             serializeQueryArgs: ({ queryArgs }) => ({
                 pageSize: queryArgs.pageSize,
@@ -35,4 +39,4 @@ export const gamesAPI = api.injectEndpoints({
     })
 });
 
-export const { useGetGamesInfiniteQuery } = gamesAPI;
+export const { useGetGamesInfiniteQuery, useGetGameDetailsQuery } = gamesAPI;

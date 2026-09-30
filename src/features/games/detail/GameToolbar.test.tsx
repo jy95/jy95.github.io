@@ -54,6 +54,16 @@ describe('GameToolbar', () => {
         expect(screen.queryByLabelText('gameDetail.watch')).not.toBeInTheDocument();
     });
 
+    it('requires published membership for page watch actions even when availableAt is in the past', () => {
+        render(<GameToolbar game={{ ...baseCard, availableAt: '2020-01-01' }} onClose={vi.fn()} presentation="page" />);
+        expect(screen.queryByLabelText('gameDetail.watch')).not.toBeInTheDocument();
+    });
+
+    it('shows page watch actions for published games without availableAt', () => {
+        render(<GameToolbar game={baseCard} onClose={vi.fn()} presentation="page" isPublished />);
+        expect(screen.getByLabelText('gameDetail.watch')).toBeInTheDocument();
+    });
+
     it('shows the watch button when availableAt is in the past', () => {
         const pastGame = { ...baseCard, availableAt: '2020-01-01' };
         render(<GameToolbar game={pastGame} onClose={vi.fn()} />);

@@ -7,7 +7,7 @@ import { stubRtkFetch, calledUrl } from '@/test/mocks/rtkFetch';
 import en from '../../../../../../messages/en.json';
 import fr from '../../../../../../messages/fr.json';
 import type { CardGame } from '@/domain/games';
-import type { BacklogEntry } from '@/app/api/backlog/route';
+import type { BacklogEntry, GameDetailsResponse, PlanningEntry } from '@/domain/games/details';
 
 const { back, replace, push, notFound } = vi.hoisted(() => ({
     back: vi.fn(), replace: vi.fn(), push: vi.fn(), notFound: vi.fn(),
@@ -26,18 +26,20 @@ const game: CardGame = {
     url: 'https://www.youtube.com/playlist?list=PL123', url_type: 'PLAYLIST',
     genres: [1], releaseDate: '2019-01-01',
 };
-const planned: CardGame = { ...game, id: 'upcoming', title: 'Planned game', availableAt: '2099-01-01' };
+const planned: PlanningEntry = { ...game, id: 'upcoming', title: 'Planned game', availableAt: '2099-01-01', status: 'PENDING' };
 const backlog: BacklogEntry = { id: '42', title: 'Backlog game', imagePath: '/backlogcovers/42/cover.webp', notes: 'My notes', hltb_main: '10:00:00' };
 let store: ReturnType<typeof makeStore>;
-let failedPath: string | undefined;
+let failedStatus: number | undefined;
 function makeStore() {
     return configureStore({ reducer: { [api.reducerPath]: api.reducer }, middleware: (getDefault) => getDefault().concat(api.middleware) });
 }
 function respond(request: Request) {
-    const path = new URL(request.url).pathname;
-    if (path === failedPath) return new Response('{}', { status: 500 });
-    const data = path === '/api/games' ? { items: [game], total_pages: 1, page: 1, pageSize: 1, total_items: 1 }
-        : path === '/api/planning' ? [planned] : [backlog];
+    const id = decodeURIComponent(new URL(request.url).pathname.slice('/api/games/'.length));
+    if (failedStatus) return new Response('{}', { status: failedStatus });
+    const data: GameDetailsResponse | undefined = id === game.id ? { source: 'published', game }
+        : id === planned.id ? { source: 'planning', game: planned }
+        : id === backlog.id ? { source: 'backlog', game: backlog } : undefined;
+    if (!data) return new Response('{}', { status: 404 });
     return new Response(JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } });
 }
 async function show(id: string, locale: 'en' | 'fr' = 'en') {
@@ -51,7 +53,7 @@ async function show(id: string, locale: 'en' | 'fr' = 'en') {
 
 beforeEach(() => {
     vi.clearAllMocks();
-    failedPath = undefined;
+    failedStatus = undefined;
     fetchMock.mockImplementation(respond);
     store = makeStore();
 });
@@ -68,14 +70,25 @@ describe('canonical game detail page', () => {
         fireEvent.click(screen.getByRole('button', { name: locale === 'fr' ? 'Voir le jeu' : 'Watch the game' }));
         expect(push).toHaveBeenCalledWith({ pathname: '/playlist/[id]', params: { id: game.id } });
         expect(fetchMock).toHaveBeenCalledTimes(1);
-        expect(calledUrl(fetchMock).searchParams.get('pageSize')).toBe('0');
+        expect(calledUrl(fetchMock).pathname).toBe(`/api/games/${game.id}`);
+        expect(calledUrl(fetchMock).search).toBe('');
     });
 
-    it('resolves planning entries using the existing query and hides an unavailable watch action', async () => {
+    it('resolves planning entries with one request and preserves related games', async () => {
         await show(planned.id);
         expect(await screen.findByRole('heading', { name: planned.title })).toBeInTheDocument();
         expect(screen.queryByRole('button', { name: 'Watch the game' })).not.toBeInTheDocument();
-        expect(fetchMock.mock.calls.map((_, index) => calledUrl(fetchMock, index).pathname)).toEqual(['/api/games', '/api/planning']);
+        expect(screen.getByText(`Related:${planned.id}`)).toBeInTheDocument();
+        expect(screen.queryByText(`Vote:${planned.id}`)).not.toBeInTheDocument();
+        expect(fetchMock).toHaveBeenCalledTimes(1);
+        expect(calledUrl(fetchMock).pathname).toBe(`/api/games/${planned.id}`);
+    });
+
+    it('does not offer watch for a planning source even when its date is in the past', async () => {
+        fetchMock.mockImplementation(() => new Response(JSON.stringify({ source: 'planning', game: { ...planned, availableAt: '2020-01-01' } })));
+        await show(planned.id);
+        expect(await screen.findByRole('heading', { name: planned.title })).toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: 'Watch the game' })).not.toBeInTheDocument();
     });
 
     it('resolves numeric-string backlog IDs and renders their durations and vote section', async () => {
@@ -85,6 +98,18 @@ describe('canonical game detail page', () => {
         expect(screen.getByText(`Vote:${backlog.id}`)).toBeInTheDocument();
         expect(screen.queryByText(`Related:${backlog.id}`)).not.toBeInTheDocument();
         expect(screen.queryByRole('button', { name: 'Watch the game' })).not.toBeInTheDocument();
+        expect(fetchMock).toHaveBeenCalledTimes(1);
+        expect(calledUrl(fetchMock).pathname).toBe(`/api/games/${backlog.id}`);
+    });
+
+    it('encodes string IDs in the single detail request', async () => {
+        const id = 'video/with ?query#fragment%';
+        fetchMock.mockImplementation(() => new Response(JSON.stringify({ source: 'published', game: { ...game, id } })));
+        await show(id);
+        expect(await screen.findByRole('heading', { name: game.title })).toBeInTheDocument();
+        expect(fetchMock).toHaveBeenCalledTimes(1);
+        expect(calledUrl(fetchMock).pathname).toBe(`/api/games/${encodeURIComponent(id)}`);
+        expect(calledUrl(fetchMock).search).toBe('');
     });
 
     it('renders loading while a query is pending', async () => {
@@ -94,21 +119,34 @@ describe('canonical game detail page', () => {
         expect(notFound).not.toHaveBeenCalled();
     });
 
-    it('uses the existing not-found boundary only after all sources have resolved', async () => {
+    it('uses the existing not-found boundary for HTTP 404', async () => {
         await show('unknown');
         await waitFor(() => expect(notFound).toHaveBeenCalled());
-        expect(fetchMock).toHaveBeenCalledTimes(3);
+        expect(fetchMock).toHaveBeenCalledTimes(1);
+        expect(screen.queryByRole('button', { name: en.common.errors.retry })).not.toBeInTheDocument();
     });
 
-    it.each(['/api/games', '/api/planning', '/api/backlog'])('shows a retryable error for %s instead of treating a failure as a missing game', async (path) => {
-        failedPath = path;
+    it.each([400, 403, 500, 503])('shows a retryable error for HTTP %s instead of treating a failure as a missing game', async (status) => {
+        failedStatus = status;
         await show(backlog.id);
         const retry = await screen.findByRole('button', { name: en.common.errors.retry });
         expect(notFound).not.toHaveBeenCalled();
-        failedPath = undefined;
+        failedStatus = undefined;
         fireEvent.click(retry);
-        await waitFor(() => expect(fetchMock.mock.calls.filter(([request]) => new URL(request.url).pathname === path).length).toBeGreaterThan(1));
         expect(await screen.findByRole('heading', { name: backlog.title })).toBeInTheDocument();
+        expect(fetchMock).toHaveBeenCalledTimes(2);
+        expect(calledUrl(fetchMock, 1).pathname).toBe(`/api/games/${backlog.id}`);
+    });
+
+    it('allows retrying a network failure rather than showing not found', async () => {
+        fetchMock.mockRejectedValue(new TypeError('Network unavailable'));
+        await show(game.id);
+        const retry = await screen.findByRole('button', { name: en.common.errors.retry });
+        expect(notFound).not.toHaveBeenCalled();
+        fetchMock.mockImplementation(respond);
+        fireEvent.click(retry);
+        expect(await screen.findByRole('heading', { name: game.title })).toBeInTheDocument();
+        expect(fetchMock).toHaveBeenCalledTimes(2);
     });
 
     it('goes back using the existing router when browser history exists', async () => {

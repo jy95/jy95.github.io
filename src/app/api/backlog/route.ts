@@ -1,44 +1,17 @@
 import { NextResponse } from "next/server";
-import { COVER_PATHS } from "@/domain/games/coverPaths";
+import { loadBacklogGames, toBacklogEntry } from "@/lib/gamesData";
+import type { RawBacklogEntry } from "@/lib/gamesData";
 
-import type { BasicCard } from "@/domain/games";
-
-// An entry of backlog
-export type BacklogEntry = {
-    /**@description Id */
-    "id": string,
-    /** @description Name of the game */
-    "title": string,
-    /** @description Platform for that game */
-    "platform"?: number,
-    /** @description Extra notes */
-    "notes"?: string,
-    /** @description Duration of the walkthrough (e.g. "01:42:13") */
-    "hltb_main"?: string,
-    /** @description Duration of the walkthrough + extras (e.g. "02:30:00") */
-    "hltb_extra"?: string,
-    /** @description Duration of the completionist walkthrough (e.g. "03:45:00") */
-    "hltb_completionist"?: string,
-} & BasicCard;
-
-type RawBacklogEntry = Omit<BacklogEntry, "id" | "imagePath">;
+export type { BacklogEntry } from "@/domain/games/details";
 export type RawPayload = RawBacklogEntry[];
 
 export async function GET() {
-    const gamesData = (await import("./backlog.json")).default;
-    const games = gamesData.map((game) => enhanceGameItem(game, game.id));
+    const gamesData = await loadBacklogGames();
+    const games = gamesData.map(toBacklogEntry);
 
     return NextResponse.json(games, {
         headers: {
             "Cache-Control": "public, max-age=86400, must-revalidate"
         }
     });
-}
-
-function enhanceGameItem(game: RawBacklogEntry, id: number): BacklogEntry {
-    return {
-        ...game,
-        id: id.toString(),
-        imagePath: `${COVER_PATHS.backlog}/${id}/cover.webp`,
-    };
 }

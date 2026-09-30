@@ -1,35 +1,14 @@
 import { NextResponse } from "next/server";
-import { buildCardGame } from "@/domain/games";
-import { COVER_PATHS } from "@/domain/games/coverPaths";
-import type { RawGame, CardGame } from "@/domain/games";
+import { loadPlanningGames, toPlanningEntry } from "@/lib/gamesData";
 
-type rawEntry = RawGame;
-
-/**
- * A planning entry is the canonical CardGame representation *plus*
- * planning-specific fields. It must not re-declare id/title/platform/
- * genres/releaseDate/duration/url/url_type/imagePath — those already come
- * from CardGame via buildCardGame().
- */
-export type planningEntry = CardGame & {
-    /** @description Still in progress or finished ? */
-    status: "RECORDED" | "PENDING";
-};
+export type { PlanningEntry as planningEntry } from "@/domain/games/details";
 
 export async function GET() {
-    const games = (await import("./planning.json")).default;
+    const games = await loadPlanningGames();
 
-    return NextResponse.json(games.map(enhanceGameItem), {
+    return NextResponse.json(games.map(toPlanningEntry), {
         headers: {
             "Cache-Control": "public, max-age=86400, must-revalidate"
         }
     });
-}
-
-// Return an enhanced payload for a single game
-function enhanceGameItem(game: rawEntry): planningEntry {
-    return {
-        ...buildCardGame(game, COVER_PATHS.games),
-        status: Object.hasOwn(game, "endAt") ? "RECORDED" : "PENDING"
-    };
 }

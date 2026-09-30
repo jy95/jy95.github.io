@@ -8,11 +8,10 @@ import { QueryBoundary } from "@/components/common/QueryBoundary";
 import GameDetailContent from "@/features/games/detail/GameDetailContent";
 import GameToolbar from "@/features/games/detail/GameToolbar";
 import { useGameDetails } from "@/features/games/detail/useGameDetails";
-import { isCardGame } from "@/features/games/detail/adapters";
 
 export default function GameDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
-    const { data, error, isLoading, isMissing, isPublished, refetch } = useGameDetails(id);
+    const { data, error, isLoading, isMissing, refetch } = useGameDetails(id);
     const router = useRouter();
 
     if (isMissing) return notFound();
@@ -24,9 +23,9 @@ export default function GameDetailPage({ params }: { params: Promise<{ id: strin
 
     return (
         <QueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch} loadingFallback={<CircularProgress />}>
-            {(game) => <>
-                <GameToolbar game={game} onClose={goBack} presentation="page" isPublished={isPublished} />
-                <GameDetailContent game={game} showVoteSection={!isCardGame(game)} showRelatedGames={isCardGame(game)} />
+            {({ game, source }) => <>
+                <GameToolbar game={game} onClose={goBack} presentation="page" isPublished={source === "published"} />
+                <GameDetailContent game={game} showVoteSection={source === "backlog"} showRelatedGames={source !== "backlog"} />
             </>}
         </QueryBoundary>
     );
