@@ -6,8 +6,6 @@ import { useTranslations } from "next-intl";
 
 // MUI
 import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
-import { getReleaseYearRange } from '@/lib/gamesFilterUtils';
 import Button from '@mui/material/Button';
 import Collapse from '@mui/material/Collapse';
 import Dialog from '@mui/material/Dialog';
@@ -51,7 +49,6 @@ export default function GamesFilters({ filters, onChange }: Props) {
     const triggerId = useId();
     const titleId = useId();
     const hasReleasePeriod = filters.releaseDateFrom !== undefined || filters.releaseDateTo !== undefined;
-    const [releaseFrom, releaseTo] = getReleaseYearRange(filters);
     const activeFilterCount = Number(filters.platform !== undefined)
         + Number(Boolean(filters.genres?.length))
         + Number(hasReleasePeriod);
@@ -116,13 +113,6 @@ export default function GamesFilters({ filters, onChange }: Props) {
                     <SortSelect value={filters.sort} onChange={sort => onChange({ sort })} />
                 </Box>
             </Box>
-            {hasReleasePeriod && (
-                <Chip
-                    label={t('releasePeriod.active', { from: releaseFrom, to: releaseTo })}
-                    onDelete={() => onChange({ releaseDateFrom: undefined, releaseDateTo: undefined })}
-                    sx={{ mt: 1 }}
-                />
-            )}
             {isMobile ? (
                 <Dialog
                     open={filtersOpen}
