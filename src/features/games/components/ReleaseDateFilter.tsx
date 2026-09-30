@@ -18,12 +18,10 @@ export default function ReleaseDateFilter({ filters, onChange }: Props) {
     const labelId = useId();
     const maxYear = getMaxReleaseYear();
     const value = getReleaseYearRange(filters);
-    // Omit a decade label too near the current year to keep mobile marks readable.
-    const marks = [];
-    for (let year = Math.ceil(MIN_RELEASE_YEAR / 10) * 10; year < maxYear - 3; year += 10) {
-        marks.push({ value: year, label: String(year) });
-    }
-    marks.push({ value: maxYear, label: String(maxYear) });
+    const marks = [
+        { value: MIN_RELEASE_YEAR, label: String(MIN_RELEASE_YEAR) },
+        { value: maxYear, label: String(maxYear) },
+    ];
 
     return (
         <Box role="group" aria-labelledby={labelId} sx={{ minWidth: 0, px: 1.5 }}>

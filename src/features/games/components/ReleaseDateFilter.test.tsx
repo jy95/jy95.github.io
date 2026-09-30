@@ -15,30 +15,33 @@ describe.each([
     { locale: 'en', messages: en },
     { locale: 'fr', messages: fr },
 ] as const)('release slider in $locale', ({ locale, messages }) => {
-    it.each(['light', 'dark'] as const)('shows the dynamic default range and accessible thumbs in %s mode', mode => {
-        vi.useFakeTimers();
-        vi.setSystemTime(new Date(2028, 5, 1));
-        render(
-            <NextIntlClientProvider locale={locale} messages={messages}>
-                <ThemeProvider theme={createTheme({ palette: { mode } })}>
-                    <ReleaseDateFilter filters={{}} onChange={vi.fn()} />
-                </ThemeProvider>
-            </NextIntlClientProvider>
-        );
-        const labels = messages.gamesLibrary.releasePeriod;
-        const start = screen.getByRole('slider', { name: labels.from });
-        const end = screen.getByRole('slider', { name: labels.to });
-        expect(start).toHaveValue(String(MIN_RELEASE_YEAR));
-        expect(end).toHaveValue('2028');
-        for (const thumb of [start, end]) {
-            expect(thumb).toHaveAttribute('min', String(MIN_RELEASE_YEAR));
-            expect(thumb).toHaveAttribute('max', '2028');
-            expect(thumb).toHaveAttribute('step', '1');
-            expect(thumb.tabIndex).toBe(0);
-        }
-        expect(screen.getByRole('group', { name: labels.label })).toHaveTextContent(`${MIN_RELEASE_YEAR}–2028`);
-        expect(screen.getByText('2000')).toBeInTheDocument();
-        expect(screen.queryByText('2001')).not.toBeInTheDocument();
+    describe.each([2028, 2040])('in year %s', year => {
+        it.each(['light', 'dark'] as const)('shows the dynamic default range and accessible thumbs in %s mode', mode => {
+            vi.useFakeTimers();
+            vi.setSystemTime(new Date(year, 5, 1));
+            const { container } = render(
+                <NextIntlClientProvider locale={locale} messages={messages}>
+                    <ThemeProvider theme={createTheme({ palette: { mode } })}>
+                        <ReleaseDateFilter filters={{}} onChange={vi.fn()} />
+                    </ThemeProvider>
+                </NextIntlClientProvider>
+            );
+            const labels = messages.gamesLibrary.releasePeriod;
+            const start = screen.getByRole('slider', { name: labels.from });
+            const end = screen.getByRole('slider', { name: labels.to });
+            expect(start).toHaveValue(String(MIN_RELEASE_YEAR));
+            expect(end).toHaveValue(String(year));
+            for (const thumb of [start, end]) {
+                expect(thumb).toHaveAttribute('min', String(MIN_RELEASE_YEAR));
+                expect(thumb).toHaveAttribute('max', String(year));
+                expect(thumb).toHaveAttribute('step', '1');
+                expect(thumb.tabIndex).toBe(0);
+            }
+            expect(screen.getByRole('group', { name: labels.label })).toHaveTextContent(`${MIN_RELEASE_YEAR}–${year}`);
+            const markLabels = container.querySelectorAll('.MuiSlider-markLabel');
+            expect(markLabels).toHaveLength(2);
+            expect(Array.from(markLabels, label => label.textContent)).toEqual([String(MIN_RELEASE_YEAR), String(year)]);
+        });
     });
 
     it('selects 2000–2005 using the controlled filter state and clears at the full range', () => {
