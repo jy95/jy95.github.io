@@ -38,6 +38,9 @@ function makeStore() {
     return configureStore({ reducer: { [api.reducerPath]: api.reducer }, middleware: (getDefault) => getDefault().concat(api.middleware) });
 }
 function respond(request: Request) {
+    if (new URL(request.url).pathname === '/api/platforms') {
+        return new Response(JSON.stringify([{ id: 1, name: 'PC' }]));
+    }
     const id = decodeURIComponent(new URL(request.url).pathname.slice('/api/games/'.length));
     if (failedStatus) return new Response('{}', { status: failedStatus });
     const dlc = dlcs.find((item) => item.id === id);
@@ -80,7 +83,7 @@ describe('canonical game detail page', () => {
         expect(calledUrl(fetchMock).search).toBe('');
     });
 
-    it.each(dlcs)('loads DLC $id with one request and preserves its published watch action', async (dlc) => {
+    it.each(dlcs)('loads DLC $id with one detail request and preserves its published watch action', async (dlc) => {
         await show(dlc.id);
         expect(await screen.findByRole('heading', { name: dlc.title, level: 1 })).toBeInTheDocument();
         expect(screen.getByAltText(dlc.title)).toHaveAttribute('src', dlc.imagePath);
@@ -88,7 +91,16 @@ describe('canonical game detail page', () => {
         expect(screen.queryByText(/^Vote:/)).not.toBeInTheDocument();
         fireEvent.click(screen.getByRole('button', { name: 'Watch the game' }));
         expect(push).toHaveBeenCalledWith({ pathname: dlc.url_type === 'VIDEO' ? '/video/[id]' : '/playlist/[id]', params: { id: dlc.id } });
-        expect(fetchMock).toHaveBeenCalledTimes(1);
+        if (dlc.platform !== undefined) {
+            const platformChip = await screen.findByRole('button', { name: 'PC' });
+            expect(platformChip).toHaveAttribute('aria-label', 'PC');
+            expect(platformChip.querySelectorAll('svg')).toHaveLength(1);
+            expect(platformChip.querySelector('svg')).toHaveClass('MuiSvgIcon-root');
+            expect(platformChip).toHaveTextContent(/^$/);
+            expect(screen.queryByText('PC')).not.toBeInTheDocument();
+            expect(platformChip).not.toContainElement(screen.getByTestId('GamepadIcon'));
+        }
+        expect(fetchMock).toHaveBeenCalledTimes(dlc.platform !== undefined ? 2 : 1);
         expect(calledUrl(fetchMock).pathname).toBe(`/api/games/${dlc.id}`);
         expect(calledUrl(fetchMock).search).toBe('');
         expect(notFound).not.toHaveBeenCalled();

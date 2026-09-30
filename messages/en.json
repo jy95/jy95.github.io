@@ -183,6 +183,8 @@
     "details": "View details for {title}",
         "developers": "{count, plural, one {Developer} other {Developers}}",
         "publishers": "{count, plural, one {Publisher} other {Publishers}}",
+        "genres": "{count, plural, one {Genre} other {Genres}}",
+        "platforms": "{count, plural, one {Platform} other {Platforms}}",
         "releaseDate": "Release date",
         "duration": "Duration",
         "hltb_main": "Main Story",
