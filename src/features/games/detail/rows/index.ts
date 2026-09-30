@@ -1,3 +1,4 @@
+import CompaniesRow from "./CompaniesRow";
 import ReleaseDateRow from "./ReleaseDateRow";
 import DurationRow from "./DurationRow";
 import HltbMainRow from "./HltbMainRow";
@@ -8,6 +9,7 @@ import HltbCompletionistRow from "./HltbCompletionistRow";
 export const DETAIL_ROWS = [
     ReleaseDateRow,
     DurationRow,
+    CompaniesRow,
     HltbMainRow,
     HltbExtraRow,
     HltbCompletionistRow

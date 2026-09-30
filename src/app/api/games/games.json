@@ -11,10 +11,16 @@
 			13
 		],
 		"developers": [
-			"La Cosa"
+			{
+				"id": 1,
+				"name": "La Cosa"
+			}
 		],
 		"publishers": [
-			"La Cosa"
+			{
+				"id": 1,
+				"name": "La Cosa"
+			}
 		]
 	},
 	{
@@ -30,10 +36,16 @@
 			16
 		],
 		"developers": [
-			"Swordfish Studios"
+			{
+				"id": 3,
+				"name": "Swordfish Studios"
+			}
 		],
 		"publishers": [
-			"THQ"
+			{
+				"id": 4,
+				"name": "THQ"
+			}
 		]
 	},
 	{
@@ -48,10 +60,16 @@
 			9
 		],
 		"developers": [
-			"Namco Bandai Games"
+			{
+				"id": 5,
+				"name": "Namco Bandai Games"
+			}
 		],
 		"publishers": [
-			"Namco Bandai Games"
+			{
+				"id": 5,
+				"name": "Namco Bandai Games"
+			}
 		]
 	},
 	{
@@ -67,10 +85,16 @@
 			12
 		],
 		"developers": [
-			"Argonaut Games"
+			{
+				"id": 7,
+				"name": "Argonaut Games"
+			}
 		],
 		"publishers": [
-			"Disney Interactive"
+			{
+				"id": 8,
+				"name": "Disney Interactive"
+			}
 		]
 	},
 	{
@@ -86,10 +110,16 @@
 			16
 		],
 		"developers": [
-			"Remedy Entertainment"
+			{
+				"id": 9,
+				"name": "Remedy Entertainment"
+			}
 		],
 		"publishers": [
-			"Epic Games Publishing"
+			{
+				"id": 10,
+				"name": "Epic Games Publishing"
+			}
 		]
 	},
 	{
@@ -103,10 +133,16 @@
 			9
 		],
 		"developers": [
-			"Mr. Nutz Studio"
+			{
+				"id": 11,
+				"name": "Mr. Nutz Studio"
+			}
 		],
 		"publishers": [
-			"Microids"
+			{
+				"id": 12,
+				"name": "Microids"
+			}
 		]
 	},
 	{
@@ -122,10 +158,16 @@
 			12
 		],
 		"developers": [
-			"Étranges Libellules"
+			{
+				"id": 13,
+				"name": "Étranges Libellules"
+			}
 		],
 		"publishers": [
-			"Atari"
+			{
+				"id": 14,
+				"name": "Atari"
+			}
 		]
 	},
 	{
@@ -141,10 +183,16 @@
 			12
 		],
 		"developers": [
-			"OSome Studio"
+			{
+				"id": 15,
+				"name": "OSome Studio"
+			}
 		],
 		"publishers": [
-			"Microids"
+			{
+				"id": 12,
+				"name": "Microids"
+			}
 		]
 	},
 	{
@@ -160,10 +208,16 @@
 			12
 		],
 		"developers": [
-			"Étranges Libellules"
+			{
+				"id": 13,
+				"name": "Étranges Libellules"
+			}
 		],
 		"publishers": [
-			"Atari"
+			{
+				"id": 14,
+				"name": "Atari"
+			}
 		]
 	},
 	{
@@ -179,10 +233,16 @@
 			12
 		],
 		"developers": [
-			"Étranges Libellules"
+			{
+				"id": 13,
+				"name": "Étranges Libellules"
+			}
 		],
 		"publishers": [
-			"Atari"
+			{
+				"id": 14,
+				"name": "Atari"
+			}
 		]
 	},
 	{
@@ -197,10 +257,16 @@
 			2
 		],
 		"developers": [
-			"CyberConnect2"
+			{
+				"id": 21,
+				"name": "CyberConnect2"
+			}
 		],
 		"publishers": [
-			"Capcom"
+			{
+				"id": 22,
+				"name": "Capcom"
+			}
 		]
 	},
 	{
@@ -217,11 +283,20 @@
 			13
 		],
 		"developers": [
-			"Halfbrick",
-			"THQ Studio Oz"
+			{
+				"id": 24,
+				"name": "Halfbrick"
+			},
+			{
+				"id": 23,
+				"name": "THQ Studio Oz"
+			}
 		],
 		"publishers": [
-			"THQ"
+			{
+				"id": 4,
+				"name": "THQ"
+			}
 		]
 	},
 	{
@@ -237,10 +312,16 @@
 			12
 		],
 		"developers": [
-			"Rocksteady Studios"
+			{
+				"id": 26,
+				"name": "Rocksteady Studios"
+			}
 		],
 		"publishers": [
-			"WB Games"
+			{
+				"id": 27,
+				"name": "WB Games"
+			}
 		]
 	},
 	{
@@ -255,10 +336,16 @@
 			2
 		],
 		"developers": [
-			"Telltale Games"
+			{
+				"id": 28,
+				"name": "Telltale Games"
+			}
 		],
 		"publishers": [
-			"Telltale Games"
+			{
+				"id": 28,
+				"name": "Telltale Games"
+			}
 		]
 	},
 	{
@@ -273,10 +360,16 @@
 			2
 		],
 		"developers": [
-			"Telltale Games"
+			{
+				"id": 28,
+				"name": "Telltale Games"
+			}
 		],
 		"publishers": [
-			"Telltale Games"
+			{
+				"id": 28,
+				"name": "Telltale Games"
+			}
 		]
 	},
 	{
@@ -292,10 +385,16 @@
 			12
 		],
 		"developers": [
-			"Ubisoft Montréal"
+			{
+				"id": 32,
+				"name": "Ubisoft Montréal"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -311,10 +410,16 @@
 			12
 		],
 		"developers": [
-			"Rocksteady Studios"
+			{
+				"id": 26,
+				"name": "Rocksteady Studios"
+			}
 		],
 		"publishers": [
-			"Square Enix Europe"
+			{
+				"id": 35,
+				"name": "Square Enix Europe"
+			}
 		]
 	},
 	{
@@ -330,11 +435,20 @@
 			12
 		],
 		"developers": [
-			"Iron Galaxy Studios",
-			"Rocksteady Studios"
+			{
+				"id": 37,
+				"name": "Iron Galaxy Studios"
+			},
+			{
+				"id": 26,
+				"name": "Rocksteady Studios"
+			}
 		],
 		"publishers": [
-			"WB Games"
+			{
+				"id": 27,
+				"name": "WB Games"
+			}
 		]
 	},
 	{
@@ -349,11 +463,20 @@
 			2
 		],
 		"developers": [
-			"Iron Galaxy Studios",
-			"WB Games Montréal"
+			{
+				"id": 37,
+				"name": "Iron Galaxy Studios"
+			},
+			{
+				"id": 39,
+				"name": "WB Games Montréal"
+			}
 		],
 		"publishers": [
-			"WB Games"
+			{
+				"id": 27,
+				"name": "WB Games"
+			}
 		]
 	},
 	{
@@ -367,10 +490,16 @@
 			1
 		],
 		"developers": [
-			"Ubisoft Montréal"
+			{
+				"id": 32,
+				"name": "Ubisoft Montréal"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -385,11 +514,20 @@
 			2
 		],
 		"developers": [
-			"Ubisoft Montpellier",
-			"Ubisoft Shanghai"
+			{
+				"id": 44,
+				"name": "Ubisoft Montpellier"
+			},
+			{
+				"id": 45,
+				"name": "Ubisoft Shanghai"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -405,12 +543,24 @@
 			12
 		],
 		"developers": [
-			"Argonaut Games",
-			"Argonaut Sheffield"
+			{
+				"id": 7,
+				"name": "Argonaut Games"
+			},
+			{
+				"id": 48,
+				"name": "Argonaut Sheffield"
+			}
 		],
 		"publishers": [
-			"Electronic Arts",
-			"Lego Interactive"
+			{
+				"id": 50,
+				"name": "Electronic Arts"
+			},
+			{
+				"id": 49,
+				"name": "Lego Interactive"
+			}
 		]
 	},
 	{
@@ -425,10 +575,16 @@
 			2
 		],
 		"developers": [
-			"Rockstar New England"
+			{
+				"id": 51,
+				"name": "Rockstar New England"
+			}
 		],
 		"publishers": [
-			"Rockstar Games"
+			{
+				"id": 52,
+				"name": "Rockstar Games"
+			}
 		]
 	},
 	{
@@ -444,10 +600,16 @@
 			10
 		],
 		"developers": [
-			"InterAction studios"
+			{
+				"id": 53,
+				"name": "InterAction studios"
+			}
 		],
 		"publishers": [
-			"InterAction studios"
+			{
+				"id": 53,
+				"name": "InterAction studios"
+			}
 		]
 	},
 	{
@@ -461,10 +623,16 @@
 			16
 		],
 		"developers": [
-			"Q Entertainment"
+			{
+				"id": 55,
+				"name": "Q Entertainment"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -480,10 +648,16 @@
 			16
 		],
 		"developers": [
-			"Deadline Games"
+			{
+				"id": 57,
+				"name": "Deadline Games"
+			}
 		],
 		"publishers": [
-			"Square Enix Europe"
+			{
+				"id": 35,
+				"name": "Square Enix Europe"
+			}
 		]
 	},
 	{
@@ -498,10 +672,16 @@
 			2
 		],
 		"developers": [
-			"WayForward"
+			{
+				"id": 59,
+				"name": "WayForward"
+			}
 		],
 		"publishers": [
-			"KONAMI"
+			{
+				"id": 60,
+				"name": "KONAMI"
+			}
 		]
 	},
 	{
@@ -517,11 +697,20 @@
 			12
 		],
 		"developers": [
-			"Iron Galaxy Studios",
-			"Vicarious Visions"
+			{
+				"id": 37,
+				"name": "Iron Galaxy Studios"
+			},
+			{
+				"id": 61,
+				"name": "Vicarious Visions"
+			}
 		],
 		"publishers": [
-			"Activision"
+			{
+				"id": 63,
+				"name": "Activision"
+			}
 		]
 	},
 	{
@@ -537,11 +726,20 @@
 			12
 		],
 		"developers": [
-			"Iron Galaxy Studios",
-			"Vicarious Visions"
+			{
+				"id": 37,
+				"name": "Iron Galaxy Studios"
+			},
+			{
+				"id": 61,
+				"name": "Vicarious Visions"
+			}
 		],
 		"publishers": [
-			"Activision"
+			{
+				"id": 63,
+				"name": "Activision"
+			}
 		]
 	},
 	{
@@ -557,11 +755,20 @@
 			12
 		],
 		"developers": [
-			"Iron Galaxy Studios",
-			"Vicarious Visions"
+			{
+				"id": 37,
+				"name": "Iron Galaxy Studios"
+			},
+			{
+				"id": 61,
+				"name": "Vicarious Visions"
+			}
 		],
 		"publishers": [
-			"Activision"
+			{
+				"id": 63,
+				"name": "Activision"
+			}
 		]
 	},
 	{
@@ -577,10 +784,16 @@
 			12
 		],
 		"developers": [
-			"Toys for Bob"
+			{
+				"id": 70,
+				"name": "Toys for Bob"
+			}
 		],
 		"publishers": [
-			"Activision"
+			{
+				"id": 63,
+				"name": "Activision"
+			}
 		]
 	},
 	{
@@ -596,10 +809,16 @@
 			13
 		],
 		"developers": [
-			"The Collective"
+			{
+				"id": 72,
+				"name": "The Collective"
+			}
 		],
 		"publishers": [
-			"2K Games"
+			{
+				"id": 73,
+				"name": "2K Games"
+			}
 		]
 	},
 	{
@@ -613,10 +832,16 @@
 			9
 		],
 		"developers": [
-			"Altron"
+			{
+				"id": 74,
+				"name": "Altron"
+			}
 		],
 		"publishers": [
-			"THQ"
+			{
+				"id": 4,
+				"name": "THQ"
+			}
 		]
 	},
 	{
@@ -631,10 +856,16 @@
 			2
 		],
 		"developers": [
-			"Visceral Games"
+			{
+				"id": 76,
+				"name": "Visceral Games"
+			}
 		],
 		"publishers": [
-			"Electronic Arts"
+			{
+				"id": 50,
+				"name": "Electronic Arts"
+			}
 		]
 	},
 	{
@@ -650,10 +881,16 @@
 			14
 		],
 		"developers": [
-			"Vigil Games"
+			{
+				"id": 78,
+				"name": "Vigil Games"
+			}
 		],
 		"publishers": [
-			"THQ"
+			{
+				"id": 4,
+				"name": "THQ"
+			}
 		]
 	},
 	{
@@ -669,10 +906,16 @@
 			14
 		],
 		"developers": [
-			"Vigil Games"
+			{
+				"id": 78,
+				"name": "Vigil Games"
+			}
 		],
 		"publishers": [
-			"THQ"
+			{
+				"id": 4,
+				"name": "THQ"
+			}
 		]
 	},
 	{
@@ -688,10 +931,16 @@
 			12
 		],
 		"developers": [
-			"Ready at Dawn Studios"
+			{
+				"id": 82,
+				"name": "Ready at Dawn Studios"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -707,10 +956,16 @@
 			2
 		],
 		"developers": [
-			"Namco"
+			{
+				"id": 84,
+				"name": "Namco"
+			}
 		],
 		"publishers": [
-			"Namco"
+			{
+				"id": 84,
+				"name": "Namco"
+			}
 		]
 	},
 	{
@@ -726,10 +981,16 @@
 			2
 		],
 		"developers": [
-			"Volatile Games"
+			{
+				"id": 86,
+				"name": "Volatile Games"
+			}
 		],
 		"publishers": [
-			"Namco"
+			{
+				"id": 84,
+				"name": "Namco"
+			}
 		]
 	},
 	{
@@ -744,10 +1005,16 @@
 			2
 		],
 		"developers": [
-			"High Moon Studios"
+			{
+				"id": 88,
+				"name": "High Moon Studios"
+			}
 		],
 		"publishers": [
-			"Activision"
+			{
+				"id": 63,
+				"name": "Activision"
+			}
 		]
 	},
 	{
@@ -761,11 +1028,20 @@
 			9
 		],
 		"developers": [
-			"AKI Corporation",
-			"EA Vancouver"
+			{
+				"id": 91,
+				"name": "AKI Corporation"
+			},
+			{
+				"id": 90,
+				"name": "EA Vancouver"
+			}
 		],
 		"publishers": [
-			"Electronic Arts"
+			{
+				"id": 50,
+				"name": "Electronic Arts"
+			}
 		]
 	},
 	{
@@ -780,10 +1056,16 @@
 			16
 		],
 		"developers": [
-			"Black Forest Games"
+			{
+				"id": 93,
+				"name": "Black Forest Games"
+			}
 		],
 		"publishers": [
-			"THQ Nordic"
+			{
+				"id": 94,
+				"name": "THQ Nordic"
+			}
 		]
 	},
 	{
@@ -797,10 +1079,16 @@
 			2
 		],
 		"developers": [
-			"Pandemic Studios"
+			{
+				"id": 95,
+				"name": "Pandemic Studios"
+			}
 		],
 		"publishers": [
-			"THQ"
+			{
+				"id": 4,
+				"name": "THQ"
+			}
 		]
 	},
 	{
@@ -815,10 +1103,16 @@
 			2
 		],
 		"developers": [
-			"Sandblast Games"
+			{
+				"id": 97,
+				"name": "Sandblast Games"
+			}
 		],
 		"publishers": [
-			"THQ"
+			{
+				"id": 4,
+				"name": "THQ"
+			}
 		]
 	},
 	{
@@ -833,11 +1127,20 @@
 			7
 		],
 		"developers": [
-			"The Code Monkeys"
+			{
+				"id": 99,
+				"name": "The Code Monkeys"
+			}
 		],
 		"publishers": [
-			"Disney Interactive",
-			"NewKidCo"
+			{
+				"id": 8,
+				"name": "Disney Interactive"
+			},
+			{
+				"id": 101,
+				"name": "NewKidCo"
+			}
 		]
 	},
 	{
@@ -854,10 +1157,16 @@
 			14
 		],
 		"developers": [
-			"Arkane Studios"
+			{
+				"id": 102,
+				"name": "Arkane Studios"
+			}
 		],
 		"publishers": [
-			"Bethesda Softworks"
+			{
+				"id": 103,
+				"name": "Bethesda Softworks"
+			}
 		]
 	},
 	{
@@ -872,10 +1181,16 @@
 			2
 		],
 		"developers": [
-			"Ninja Theory"
+			{
+				"id": 104,
+				"name": "Ninja Theory"
+			}
 		],
 		"publishers": [
-			"Capcom"
+			{
+				"id": 22,
+				"name": "Capcom"
+			}
 		]
 	},
 	{
@@ -889,10 +1204,16 @@
 			13
 		],
 		"developers": [
-			"Headup"
+			{
+				"id": 106,
+				"name": "Headup"
+			}
 		],
 		"publishers": [
-			"Headup"
+			{
+				"id": 106,
+				"name": "Headup"
+			}
 		]
 	},
 	{
@@ -907,10 +1228,16 @@
 			12
 		],
 		"developers": [
-			"Dimps"
+			{
+				"id": 108,
+				"name": "Dimps"
+			}
 		],
 		"publishers": [
-			"Atari"
+			{
+				"id": 14,
+				"name": "Atari"
+			}
 		]
 	},
 	{
@@ -926,10 +1253,16 @@
 			14
 		],
 		"developers": [
-			"Webfoot Technologies"
+			{
+				"id": 110,
+				"name": "Webfoot Technologies"
+			}
 		],
 		"publishers": [
-			"Atari"
+			{
+				"id": 14,
+				"name": "Atari"
+			}
 		]
 	},
 	{
@@ -945,10 +1278,16 @@
 			14
 		],
 		"developers": [
-			"Webfoot Technologies"
+			{
+				"id": 110,
+				"name": "Webfoot Technologies"
+			}
 		],
 		"publishers": [
-			"Infogrames"
+			{
+				"id": 113,
+				"name": "Infogrames"
+			}
 		]
 	},
 	{
@@ -963,10 +1302,16 @@
 			15
 		],
 		"developers": [
-			"Ubisoft Reflections"
+			{
+				"id": 114,
+				"name": "Ubisoft Reflections"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -981,10 +1326,16 @@
 			12
 		],
 		"developers": [
-			"WayForward Technologies"
+			{
+				"id": 116,
+				"name": "WayForward Technologies"
+			}
 		],
 		"publishers": [
-			"Capcom"
+			{
+				"id": 22,
+				"name": "Capcom"
+			}
 		]
 	},
 	{
@@ -999,10 +1350,16 @@
 			2
 		],
 		"developers": [
-			"Ninja Theory"
+			{
+				"id": 104,
+				"name": "Ninja Theory"
+			}
 		],
 		"publishers": [
-			"Namco Bandai Games"
+			{
+				"id": 5,
+				"name": "Namco Bandai Games"
+			}
 		]
 	},
 	{
@@ -1016,10 +1373,16 @@
 			1
 		],
 		"developers": [
-			"Quantic Dream"
+			{
+				"id": 120,
+				"name": "Quantic Dream"
+			}
 		],
 		"publishers": [
-			"Atari"
+			{
+				"id": 14,
+				"name": "Atari"
+			}
 		]
 	},
 	{
@@ -1034,10 +1397,16 @@
 			2
 		],
 		"developers": [
-			"Climax Group"
+			{
+				"id": 122,
+				"name": "Climax Group"
+			}
 		],
 		"publishers": [
-			"2K Games"
+			{
+				"id": 73,
+				"name": "2K Games"
+			}
 		]
 	},
 	{
@@ -1052,10 +1421,16 @@
 			2
 		],
 		"developers": [
-			"Santa Monica Studio"
+			{
+				"id": 124,
+				"name": "Santa Monica Studio"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1071,11 +1446,20 @@
 			14
 		],
 		"developers": [
-			"Jetpack Interactive",
-			"Santa Monica Studio"
+			{
+				"id": 127,
+				"name": "Jetpack Interactive"
+			},
+			{
+				"id": 124,
+				"name": "Santa Monica Studio"
+			}
 		],
 		"publishers": [
-			"Sony Interactive Entertainment"
+			{
+				"id": 128,
+				"name": "Sony Interactive Entertainment"
+			}
 		]
 	},
 	{
@@ -1090,10 +1474,16 @@
 			2
 		],
 		"developers": [
-			"Santa Monica Studio"
+			{
+				"id": 124,
+				"name": "Santa Monica Studio"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1108,10 +1498,16 @@
 			2
 		],
 		"developers": [
-			"Santa Monica Studio"
+			{
+				"id": 124,
+				"name": "Santa Monica Studio"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1126,10 +1522,16 @@
 			2
 		],
 		"developers": [
-			"Santa Monica Studio"
+			{
+				"id": 124,
+				"name": "Santa Monica Studio"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1144,10 +1546,16 @@
 			2
 		],
 		"developers": [
-			"Santa Monica Studio"
+			{
+				"id": 124,
+				"name": "Santa Monica Studio"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1162,10 +1570,16 @@
 			2
 		],
 		"developers": [
-			"Ready at Dawn Studios"
+			{
+				"id": 82,
+				"name": "Ready at Dawn Studios"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1180,10 +1594,16 @@
 			2
 		],
 		"developers": [
-			"Ready at Dawn Studios"
+			{
+				"id": 82,
+				"name": "Ready at Dawn Studios"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1198,10 +1618,16 @@
 			2
 		],
 		"developers": [
-			"Ready at Dawn Studios"
+			{
+				"id": 82,
+				"name": "Ready at Dawn Studios"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1216,10 +1642,16 @@
 			2
 		],
 		"developers": [
-			"Ready at Dawn Studios"
+			{
+				"id": 82,
+				"name": "Ready at Dawn Studios"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1236,11 +1668,20 @@
 			10
 		],
 		"developers": [
-			"Claeys Brothers",
-			"Rogueside"
+			{
+				"id": 399,
+				"name": "Claeys Brothers"
+			},
+			{
+				"id": 398,
+				"name": "Rogueside"
+			}
 		],
 		"publishers": [
-			"Rogueside"
+			{
+				"id": 398,
+				"name": "Rogueside"
+			}
 		]
 	},
 	{
@@ -1257,11 +1698,20 @@
 			10
 		],
 		"developers": [
-			"Claeys Brothers",
-			"Rogueside"
+			{
+				"id": 399,
+				"name": "Claeys Brothers"
+			},
+			{
+				"id": 398,
+				"name": "Rogueside"
+			}
 		],
 		"publishers": [
-			"Rogueside"
+			{
+				"id": 398,
+				"name": "Rogueside"
+			}
 		]
 	},
 	{
@@ -1277,10 +1727,16 @@
 			12
 		],
 		"developers": [
-			"KnowWonder"
+			{
+				"id": 299,
+				"name": "KnowWonder"
+			}
 		],
 		"publishers": [
-			"Electronic Arts"
+			{
+				"id": 50,
+				"name": "Electronic Arts"
+			}
 		]
 	},
 	{
@@ -1295,10 +1751,16 @@
 			2
 		],
 		"developers": [
-			"EA UK"
+			{
+				"id": 364,
+				"name": "EA UK"
+			}
 		],
 		"publishers": [
-			"Electronic Arts"
+			{
+				"id": 50,
+				"name": "Electronic Arts"
+			}
 		]
 	},
 	{
@@ -1314,10 +1776,16 @@
 			12
 		],
 		"developers": [
-			"KnowWonder"
+			{
+				"id": 299,
+				"name": "KnowWonder"
+			}
 		],
 		"publishers": [
-			"Electronic Arts"
+			{
+				"id": 50,
+				"name": "Electronic Arts"
+			}
 		]
 	},
 	{
@@ -1333,10 +1801,16 @@
 			12
 		],
 		"developers": [
-			"KnowWonder"
+			{
+				"id": 299,
+				"name": "KnowWonder"
+			}
 		],
 		"publishers": [
-			"Electronic Arts"
+			{
+				"id": 50,
+				"name": "Electronic Arts"
+			}
 		]
 	},
 	{
@@ -1351,10 +1825,16 @@
 			12
 		],
 		"developers": [
-			"Eurocom"
+			{
+				"id": 155,
+				"name": "Eurocom"
+			}
 		],
 		"publishers": [
-			"Disney Interactive"
+			{
+				"id": 8,
+				"name": "Disney Interactive"
+			}
 		]
 	},
 	{
@@ -1368,10 +1848,16 @@
 			13
 		],
 		"developers": [
-			"zSlide"
+			{
+				"id": 396,
+				"name": "zSlide"
+			}
 		],
 		"publishers": [
-			"Atari"
+			{
+				"id": 14,
+				"name": "Atari"
+			}
 		]
 	},
 	{
@@ -1388,10 +1874,16 @@
 			16
 		],
 		"developers": [
-			"Naughty Dog"
+			{
+				"id": 356,
+				"name": "Naughty Dog"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1408,10 +1900,16 @@
 			16
 		],
 		"developers": [
-			"Naughty Dog"
+			{
+				"id": 356,
+				"name": "Naughty Dog"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1427,10 +1925,16 @@
 			12
 		],
 		"developers": [
-			"High Impact Games"
+			{
+				"id": 200,
+				"name": "High Impact Games"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1446,10 +1950,16 @@
 			12
 		],
 		"developers": [
-			"Naughty Dog"
+			{
+				"id": 356,
+				"name": "Naughty Dog"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1464,10 +1974,16 @@
 			16
 		],
 		"developers": [
-			"Sony Computer Entertainment America"
+			{
+				"id": 265,
+				"name": "Sony Computer Entertainment America"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1481,10 +1997,16 @@
 			1
 		],
 		"developers": [
-			"Grasshopper Manufacture"
+			{
+				"id": 221,
+				"name": "Grasshopper Manufacture"
+			}
 		],
 		"publishers": [
-			"Deep Silver"
+			{
+				"id": 264,
+				"name": "Deep Silver"
+			}
 		]
 	},
 	{
@@ -1498,10 +2020,16 @@
 			12
 		],
 		"developers": [
-			"HAL Laboratory"
+			{
+				"id": 372,
+				"name": "HAL Laboratory"
+			}
 		],
 		"publishers": [
-			"Nintendo"
+			{
+				"id": 371,
+				"name": "Nintendo"
+			}
 		]
 	},
 	{
@@ -1517,10 +2045,16 @@
 			12
 		],
 		"developers": [
-			"Eden Games"
+			{
+				"id": 257,
+				"name": "Eden Games"
+			}
 		],
 		"publishers": [
-			"Atari"
+			{
+				"id": 14,
+				"name": "Atari"
+			}
 		]
 	},
 	{
@@ -1537,10 +2071,16 @@
 			16
 		],
 		"developers": [
-			"PlatinumGames"
+			{
+				"id": 153,
+				"name": "PlatinumGames"
+			}
 		],
 		"publishers": [
-			"Activision"
+			{
+				"id": 63,
+				"name": "Activision"
+			}
 		]
 	},
 	{
@@ -1555,11 +2095,20 @@
 			12
 		],
 		"developers": [
-			"Bizarre Creations"
+			{
+				"id": 166,
+				"name": "Bizarre Creations"
+			}
 		],
 		"publishers": [
-			"Disney Interactive",
-			"Sony Computer Entertainment"
+			{
+				"id": 8,
+				"name": "Disney Interactive"
+			},
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -1573,10 +2122,16 @@
 			1
 		],
 		"developers": [
-			"Blitz Games"
+			{
+				"id": 139,
+				"name": "Blitz Games"
+			}
 		],
 		"publishers": [
-			"THQ"
+			{
+				"id": 4,
+				"name": "THQ"
+			}
 		]
 	},
 	{
@@ -1592,10 +2147,16 @@
 			16
 		],
 		"developers": [
-			"EA Redwood Shores"
+			{
+				"id": 350,
+				"name": "EA Redwood Shores"
+			}
 		],
 		"publishers": [
-			"Electronic Arts"
+			{
+				"id": 50,
+				"name": "Electronic Arts"
+			}
 		]
 	},
 	{
@@ -1611,10 +2172,16 @@
 			16
 		],
 		"developers": [
-			"EA Redwood Shores"
+			{
+				"id": 350,
+				"name": "EA Redwood Shores"
+			}
 		],
 		"publishers": [
-			"Electronic Arts"
+			{
+				"id": 50,
+				"name": "Electronic Arts"
+			}
 		]
 	},
 	{
@@ -1630,11 +2197,20 @@
 			12
 		],
 		"developers": [
-			"KAIKO Games",
-			"Neon Studios"
+			{
+				"id": 348,
+				"name": "KAIKO Games"
+			},
+			{
+				"id": 347,
+				"name": "Neon Studios"
+			}
 		],
 		"publishers": [
-			"THQ Nordic"
+			{
+				"id": 94,
+				"name": "THQ Nordic"
+			}
 		]
 	},
 	{
@@ -1649,11 +2225,20 @@
 			2
 		],
 		"developers": [
-			"Beenox",
-			"Heavy Iron Studios"
+			{
+				"id": 332,
+				"name": "Beenox"
+			},
+			{
+				"id": 331,
+				"name": "Heavy Iron Studios"
+			}
 		],
 		"publishers": [
-			"THQ"
+			{
+				"id": 4,
+				"name": "THQ"
+			}
 		]
 	},
 	{
@@ -1669,10 +2254,16 @@
 			14
 		],
 		"developers": [
-			"Visceral Games"
+			{
+				"id": 76,
+				"name": "Visceral Games"
+			}
 		],
 		"publishers": [
-			"Electronic Arts"
+			{
+				"id": 50,
+				"name": "Electronic Arts"
+			}
 		]
 	},
 	{
@@ -1687,11 +2278,20 @@
 			2
 		],
 		"developers": [
-			"Beenox",
-			"Heavy Iron Studios"
+			{
+				"id": 332,
+				"name": "Beenox"
+			},
+			{
+				"id": 331,
+				"name": "Heavy Iron Studios"
+			}
 		],
 		"publishers": [
-			"THQ"
+			{
+				"id": 4,
+				"name": "THQ"
+			}
 		]
 	},
 	{
@@ -1707,10 +2307,16 @@
 			14
 		],
 		"developers": [
-			"Grasshopper Manufacture"
+			{
+				"id": 221,
+				"name": "Grasshopper Manufacture"
+			}
 		],
 		"publishers": [
-			"WB Games"
+			{
+				"id": 27,
+				"name": "WB Games"
+			}
 		]
 	},
 	{
@@ -1725,10 +2331,16 @@
 			6
 		],
 		"developers": [
-			"Tate Interactive"
+			{
+				"id": 269,
+				"name": "Tate Interactive"
+			}
 		],
 		"publishers": [
-			"Atari"
+			{
+				"id": 14,
+				"name": "Atari"
+			}
 		]
 	},
 	{
@@ -1743,10 +2355,16 @@
 			2
 		],
 		"developers": [
-			"Toys for Bob"
+			{
+				"id": 70,
+				"name": "Toys for Bob"
+			}
 		],
 		"publishers": [
-			"Activision"
+			{
+				"id": 63,
+				"name": "Activision"
+			}
 		]
 	},
 	{
@@ -1762,10 +2380,16 @@
 			16
 		],
 		"developers": [
-			"Illusion Softworks"
+			{
+				"id": 253,
+				"name": "Illusion Softworks"
+			}
 		],
 		"publishers": [
-			"Gathering of Developers"
+			{
+				"id": 254,
+				"name": "Gathering of Developers"
+			}
 		]
 	},
 	{
@@ -1781,10 +2405,16 @@
 			16
 		],
 		"developers": [
-			"2K Czech"
+			{
+				"id": 251,
+				"name": "2K Czech"
+			}
 		],
 		"publishers": [
-			"2K Games"
+			{
+				"id": 73,
+				"name": "2K Games"
+			}
 		]
 	},
 	{
@@ -1800,10 +2430,16 @@
 			16
 		],
 		"developers": [
-			"Hangar 13"
+			{
+				"id": 249,
+				"name": "Hangar 13"
+			}
 		],
 		"publishers": [
-			"2K Games"
+			{
+				"id": 73,
+				"name": "2K Games"
+			}
 		]
 	},
 	{
@@ -1818,10 +2454,16 @@
 			2
 		],
 		"developers": [
-			"The Collective"
+			{
+				"id": 72,
+				"name": "The Collective"
+			}
 		],
 		"publishers": [
-			"Atari"
+			{
+				"id": 14,
+				"name": "Atari"
+			}
 		]
 	},
 	{
@@ -1836,10 +2478,16 @@
 			16
 		],
 		"developers": [
-			"Remedy Entertainment"
+			{
+				"id": 9,
+				"name": "Remedy Entertainment"
+			}
 		],
 		"publishers": [
-			"Take 2 Interactive"
+			{
+				"id": 328,
+				"name": "Take 2 Interactive"
+			}
 		]
 	},
 	{
@@ -1854,10 +2502,16 @@
 			16
 		],
 		"developers": [
-			"Rockstar Studios"
+			{
+				"id": 329,
+				"name": "Rockstar Studios"
+			}
 		],
 		"publishers": [
-			"Rockstar Games"
+			{
+				"id": 52,
+				"name": "Rockstar Games"
+			}
 		]
 	},
 	{
@@ -1872,10 +2526,16 @@
 			16
 		],
 		"developers": [
-			"Remedy Entertainment"
+			{
+				"id": 9,
+				"name": "Remedy Entertainment"
+			}
 		],
 		"publishers": [
-			"Gathering of Developers"
+			{
+				"id": 254,
+				"name": "Gathering of Developers"
+			}
 		]
 	},
 	{
@@ -1890,11 +2550,20 @@
 			2
 		],
 		"developers": [
-			"Kojima Productions",
-			"PlatinumGames"
+			{
+				"id": 322,
+				"name": "Kojima Productions"
+			},
+			{
+				"id": 153,
+				"name": "PlatinumGames"
+			}
 		],
 		"publishers": [
-			"KONAMI"
+			{
+				"id": 60,
+				"name": "KONAMI"
+			}
 		]
 	},
 	{
@@ -1908,10 +2577,16 @@
 			1
 		],
 		"developers": [
-			"SNK Playmore"
+			{
+				"id": 345,
+				"name": "SNK Playmore"
+			}
 		],
 		"publishers": [
-			"SNK Playmore"
+			{
+				"id": 345,
+				"name": "SNK Playmore"
+			}
 		]
 	},
 	{
@@ -1927,10 +2602,16 @@
 			3
 		],
 		"developers": [
-			"EA Black Box"
+			{
+				"id": 374,
+				"name": "EA Black Box"
+			}
 		],
 		"publishers": [
-			"Electronic Arts"
+			{
+				"id": 50,
+				"name": "Electronic Arts"
+			}
 		]
 	},
 	{
@@ -1945,10 +2626,16 @@
 			16
 		],
 		"developers": [
-			"Rebellion Developments"
+			{
+				"id": 173,
+				"name": "Rebellion Developments"
+			}
 		],
 		"publishers": [
-			"KONAMI"
+			{
+				"id": 60,
+				"name": "KONAMI"
+			}
 		]
 	},
 	{
@@ -1962,10 +2649,16 @@
 			16
 		],
 		"developers": [
-			"Codemasters"
+			{
+				"id": 320,
+				"name": "Codemasters"
+			}
 		],
 		"publishers": [
-			"Codemasters"
+			{
+				"id": 320,
+				"name": "Codemasters"
+			}
 		]
 	},
 	{
@@ -1995,10 +2688,16 @@
 			12
 		],
 		"developers": [
-			"Ubisoft Montréal"
+			{
+				"id": 32,
+				"name": "Ubisoft Montréal"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -2014,10 +2713,16 @@
 			12
 		],
 		"developers": [
-			"Ubisoft Montréal"
+			{
+				"id": 32,
+				"name": "Ubisoft Montréal"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -2033,11 +2738,20 @@
 			12
 		],
 		"developers": [
-			"Ubisoft Casablanca",
-			"Ubisoft Montréal"
+			{
+				"id": 180,
+				"name": "Ubisoft Casablanca"
+			},
+			{
+				"id": 32,
+				"name": "Ubisoft Montréal"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -2053,10 +2767,16 @@
 			12
 		],
 		"developers": [
-			"Ubisoft Montréal"
+			{
+				"id": 32,
+				"name": "Ubisoft Montréal"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -2072,10 +2792,16 @@
 			12
 		],
 		"developers": [
-			"Ubisoft Québec"
+			{
+				"id": 184,
+				"name": "Ubisoft Québec"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -2091,10 +2817,16 @@
 			12
 		],
 		"developers": [
-			"Ubisoft Montréal"
+			{
+				"id": 32,
+				"name": "Ubisoft Montréal"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -2109,10 +2841,16 @@
 			12
 		],
 		"developers": [
-			"Double Fine Productions"
+			{
+				"id": 188,
+				"name": "Double Fine Productions"
+			}
 		],
 		"publishers": [
-			"Double Fine Productions"
+			{
+				"id": 188,
+				"name": "Double Fine Productions"
+			}
 		]
 	},
 	{
@@ -2127,10 +2865,16 @@
 			12
 		],
 		"developers": [
-			"Double Fine Productions"
+			{
+				"id": 188,
+				"name": "Double Fine Productions"
+			}
 		],
 		"publishers": [
-			"Xbox Game Studios"
+			{
+				"id": 191,
+				"name": "Xbox Game Studios"
+			}
 		]
 	},
 	{
@@ -2145,10 +2889,16 @@
 			13
 		],
 		"developers": [
-			"Evil Raptor"
+			{
+				"id": 192,
+				"name": "Evil Raptor"
+			}
 		],
 		"publishers": [
-			"Headup"
+			{
+				"id": 106,
+				"name": "Headup"
+			}
 		]
 	},
 	{
@@ -2163,10 +2913,16 @@
 			15
 		],
 		"developers": [
-			"Bigbig Studios"
+			{
+				"id": 169,
+				"name": "Bigbig Studios"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2181,10 +2937,16 @@
 			15
 		],
 		"developers": [
-			"Bigbig Studios"
+			{
+				"id": 169,
+				"name": "Bigbig Studios"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2199,10 +2961,16 @@
 			7
 		],
 		"developers": [
-			"Humongous"
+			{
+				"id": 273,
+				"name": "Humongous"
+			}
 		],
 		"publishers": [
-			"Humongous"
+			{
+				"id": 273,
+				"name": "Humongous"
+			}
 		]
 	},
 	{
@@ -2217,12 +2985,24 @@
 			7
 		],
 		"developers": [
-			"Humongous"
+			{
+				"id": 273,
+				"name": "Humongous"
+			}
 		],
 		"publishers": [
-			"Atari",
-			"Humongous",
-			"Infogrames"
+			{
+				"id": 14,
+				"name": "Atari"
+			},
+			{
+				"id": 273,
+				"name": "Humongous"
+			},
+			{
+				"id": 113,
+				"name": "Infogrames"
+			}
 		]
 	},
 	{
@@ -2238,10 +3018,16 @@
 			16
 		],
 		"developers": [
-			"Remedy Entertainment"
+			{
+				"id": 9,
+				"name": "Remedy Entertainment"
+			}
 		],
 		"publishers": [
-			"Xbox Game Studios"
+			{
+				"id": 191,
+				"name": "Xbox Game Studios"
+			}
 		]
 	},
 	{
@@ -2258,11 +3044,20 @@
 			16
 		],
 		"developers": [
-			"Idol Minds",
-			"Insomniac Games"
+			{
+				"id": 158,
+				"name": "Idol Minds"
+			},
+			{
+				"id": 157,
+				"name": "Insomniac Games"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2279,11 +3074,20 @@
 			16
 		],
 		"developers": [
-			"Idol Minds",
-			"Insomniac Games"
+			{
+				"id": 158,
+				"name": "Idol Minds"
+			},
+			{
+				"id": 157,
+				"name": "Insomniac Games"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2300,11 +3104,20 @@
 			16
 		],
 		"developers": [
-			"Idol Minds",
-			"Insomniac Games"
+			{
+				"id": 158,
+				"name": "Idol Minds"
+			},
+			{
+				"id": 157,
+				"name": "Insomniac Games"
+			}
 		],
 		"publishers": [
-			"Sony Interactive Entertainment"
+			{
+				"id": 128,
+				"name": "Sony Interactive Entertainment"
+			}
 		]
 	},
 	{
@@ -2321,10 +3134,16 @@
 			16
 		],
 		"developers": [
-			"Insomniac Games"
+			{
+				"id": 157,
+				"name": "Insomniac Games"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2341,10 +3160,16 @@
 			16
 		],
 		"developers": [
-			"Insomniac Games"
+			{
+				"id": 157,
+				"name": "Insomniac Games"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2361,10 +3186,16 @@
 			16
 		],
 		"developers": [
-			"High Impact Games"
+			{
+				"id": 200,
+				"name": "High Impact Games"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2381,10 +3212,16 @@
 			1
 		],
 		"developers": [
-			"Insomniac Games"
+			{
+				"id": 157,
+				"name": "Insomniac Games"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2401,10 +3238,16 @@
 			16
 		],
 		"developers": [
-			"Insomniac Games"
+			{
+				"id": 157,
+				"name": "Insomniac Games"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2421,10 +3264,16 @@
 			16
 		],
 		"developers": [
-			"Insomniac Games"
+			{
+				"id": 157,
+				"name": "Insomniac Games"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2441,10 +3290,16 @@
 			16
 		],
 		"developers": [
-			"Insomniac Games"
+			{
+				"id": 157,
+				"name": "Insomniac Games"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2461,11 +3316,20 @@
 			16
 		],
 		"developers": [
-			"Idol Minds",
-			"Insomniac Games"
+			{
+				"id": 158,
+				"name": "Idol Minds"
+			},
+			{
+				"id": 157,
+				"name": "Insomniac Games"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2481,10 +3345,16 @@
 			12
 		],
 		"developers": [
-			"Ubisoft Montpellier"
+			{
+				"id": 44,
+				"name": "Ubisoft Montpellier"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -2500,10 +3370,16 @@
 			12
 		],
 		"developers": [
-			"Ubisoft Montpellier"
+			{
+				"id": 44,
+				"name": "Ubisoft Montpellier"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -2519,10 +3395,16 @@
 			12
 		],
 		"developers": [
-			"Ubisoft Paris"
+			{
+				"id": 145,
+				"name": "Ubisoft Paris"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -2538,10 +3420,16 @@
 			12
 		],
 		"developers": [
-			"Ubisoft Montpellier"
+			{
+				"id": 44,
+				"name": "Ubisoft Montpellier"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -2557,10 +3445,16 @@
 			12
 		],
 		"developers": [
-			"Ubisoft Montpellier"
+			{
+				"id": 44,
+				"name": "Ubisoft Montpellier"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -2576,10 +3470,16 @@
 			8
 		],
 		"developers": [
-			"Ubisoft Sofia"
+			{
+				"id": 310,
+				"name": "Ubisoft Sofia"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -2595,10 +3495,16 @@
 			12
 		],
 		"developers": [
-			"Dontnod Entertainment"
+			{
+				"id": 213,
+				"name": "Dontnod Entertainment"
+			}
 		],
 		"publishers": [
-			"Capcom"
+			{
+				"id": 22,
+				"name": "Capcom"
+			}
 		]
 	},
 	{
@@ -2614,10 +3520,16 @@
 			12
 		],
 		"developers": [
-			"Eurocom"
+			{
+				"id": 155,
+				"name": "Eurocom"
+			}
 		],
 		"publishers": [
-			"Sierra Entertainment"
+			{
+				"id": 156,
+				"name": "Sierra Entertainment"
+			}
 		]
 	},
 	{
@@ -2632,10 +3544,16 @@
 			2
 		],
 		"developers": [
-			"Crytek"
+			{
+				"id": 215,
+				"name": "Crytek"
+			}
 		],
 		"publishers": [
-			"Crytek"
+			{
+				"id": 215,
+				"name": "Crytek"
+			}
 		]
 	},
 	{
@@ -2650,11 +3568,20 @@
 			16
 		],
 		"developers": [
-			"High Voltage Software",
-			"Volition"
+			{
+				"id": 308,
+				"name": "High Voltage Software"
+			},
+			{
+				"id": 229,
+				"name": "Volition"
+			}
 		],
 		"publishers": [
-			"Deep Silver"
+			{
+				"id": 264,
+				"name": "Deep Silver"
+			}
 		]
 	},
 	{
@@ -2669,10 +3596,16 @@
 			16
 		],
 		"developers": [
-			"Volition"
+			{
+				"id": 229,
+				"name": "Volition"
+			}
 		],
 		"publishers": [
-			"Deep Silver"
+			{
+				"id": 264,
+				"name": "Deep Silver"
+			}
 		]
 	},
 	{
@@ -2687,10 +3620,16 @@
 			16
 		],
 		"developers": [
-			"Volition"
+			{
+				"id": 229,
+				"name": "Volition"
+			}
 		],
 		"publishers": [
-			"THQ"
+			{
+				"id": 4,
+				"name": "THQ"
+			}
 		]
 	},
 	{
@@ -2705,10 +3644,16 @@
 			7
 		],
 		"developers": [
-			"Humongous"
+			{
+				"id": 273,
+				"name": "Humongous"
+			}
 		],
 		"publishers": [
-			"Humongous"
+			{
+				"id": 273,
+				"name": "Humongous"
+			}
 		]
 	},
 	{
@@ -2724,10 +3669,16 @@
 			9
 		],
 		"developers": [
-			"Soleil"
+			{
+				"id": 217,
+				"name": "Soleil"
+			}
 		],
 		"publishers": [
-			"Adult Swim Games"
+			{
+				"id": 218,
+				"name": "Adult Swim Games"
+			}
 		]
 	},
 	{
@@ -2743,10 +3694,16 @@
 			12
 		],
 		"developers": [
-			"High Impact Games"
+			{
+				"id": 200,
+				"name": "High Impact Games"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2760,10 +3717,16 @@
 			1
 		],
 		"developers": [
-			"Grasshopper Manufacture"
+			{
+				"id": 221,
+				"name": "Grasshopper Manufacture"
+			}
 		],
 		"publishers": [
-			"Electronic Arts"
+			{
+				"id": 50,
+				"name": "Electronic Arts"
+			}
 		]
 	},
 	{
@@ -2780,10 +3743,16 @@
 			10
 		],
 		"developers": [
-			"Klei Entertainment"
+			{
+				"id": 223,
+				"name": "Klei Entertainment"
+			}
 		],
 		"publishers": [
-			"Electronic Arts"
+			{
+				"id": 50,
+				"name": "Electronic Arts"
+			}
 		]
 	},
 	{
@@ -2800,10 +3769,16 @@
 			10
 		],
 		"developers": [
-			"Klei Entertainment"
+			{
+				"id": 223,
+				"name": "Klei Entertainment"
+			}
 		],
 		"publishers": [
-			"Electronic Arts"
+			{
+				"id": 50,
+				"name": "Electronic Arts"
+			}
 		]
 	},
 	{
@@ -2818,10 +3793,16 @@
 			2
 		],
 		"developers": [
-			"KnowWonder"
+			{
+				"id": 299,
+				"name": "KnowWonder"
+			}
 		],
 		"publishers": [
-			"Activision"
+			{
+				"id": 63,
+				"name": "Activision"
+			}
 		]
 	},
 	{
@@ -2835,10 +3816,16 @@
 			9
 		],
 		"developers": [
-			"Shaba Games"
+			{
+				"id": 380,
+				"name": "Shaba Games"
+			}
 		],
 		"publishers": [
-			"Activision"
+			{
+				"id": 63,
+				"name": "Activision"
+			}
 		]
 	},
 	{
@@ -2853,10 +3840,16 @@
 			12
 		],
 		"developers": [
-			"pixel games SARL-S"
+			{
+				"id": 227,
+				"name": "pixel games SARL-S"
+			}
 		],
 		"publishers": [
-			"pixel games SARL-S"
+			{
+				"id": 227,
+				"name": "pixel games SARL-S"
+			}
 		]
 	},
 	{
@@ -2872,10 +3865,16 @@
 			16
 		],
 		"developers": [
-			"United Front Games"
+			{
+				"id": 382,
+				"name": "United Front Games"
+			}
 		],
 		"publishers": [
-			"Square Enix"
+			{
+				"id": 383,
+				"name": "Square Enix"
+			}
 		]
 	},
 	{
@@ -2890,10 +3889,16 @@
 			2
 		],
 		"developers": [
-			"Sucker Punch Productions"
+			{
+				"id": 291,
+				"name": "Sucker Punch Productions"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2908,10 +3913,16 @@
 			2
 		],
 		"developers": [
-			"Sucker Punch Productions"
+			{
+				"id": 291,
+				"name": "Sucker Punch Productions"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2926,10 +3937,16 @@
 			2
 		],
 		"developers": [
-			"Sanzaru Games"
+			{
+				"id": 297,
+				"name": "Sanzaru Games"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2944,10 +3961,16 @@
 			2
 		],
 		"developers": [
-			"Sucker Punch Productions"
+			{
+				"id": 291,
+				"name": "Sucker Punch Productions"
+			}
 		],
 		"publishers": [
-			"Sony Computer Entertainment"
+			{
+				"id": 83,
+				"name": "Sony Computer Entertainment"
+			}
 		]
 	},
 	{
@@ -2964,10 +3987,16 @@
 			14
 		],
 		"developers": [
-			"Sonic Team"
+			{
+				"id": 237,
+				"name": "Sonic Team"
+			}
 		],
 		"publishers": [
-			"Sega"
+			{
+				"id": 154,
+				"name": "Sega"
+			}
 		]
 	},
 	{
@@ -2984,10 +4013,16 @@
 			14
 		],
 		"developers": [
-			"Sonic Team"
+			{
+				"id": 237,
+				"name": "Sonic Team"
+			}
 		],
 		"publishers": [
-			"Sega"
+			{
+				"id": 154,
+				"name": "Sega"
+			}
 		]
 	},
 	{
@@ -3003,10 +4038,16 @@
 			15
 		],
 		"developers": [
-			"Sonic Team"
+			{
+				"id": 237,
+				"name": "Sonic Team"
+			}
 		],
 		"publishers": [
-			"Sega"
+			{
+				"id": 154,
+				"name": "Sega"
+			}
 		]
 	},
 	{
@@ -3021,10 +4062,16 @@
 			14
 		],
 		"developers": [
-			"Obsidian Entertainment"
+			{
+				"id": 289,
+				"name": "Obsidian Entertainment"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -3039,10 +4086,16 @@
 			14
 		],
 		"developers": [
-			"Ubisoft San Francisco"
+			{
+				"id": 287,
+				"name": "Ubisoft San Francisco"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -3057,10 +4110,16 @@
 			16
 		],
 		"developers": [
-			"Gulti"
+			{
+				"id": 384,
+				"name": "Gulti"
+			}
 		],
 		"publishers": [
-			"Square Enix"
+			{
+				"id": 383,
+				"name": "Square Enix"
+			}
 		]
 	},
 	{
@@ -3075,10 +4134,16 @@
 			2
 		],
 		"developers": [
-			"Ubisoft Montréal"
+			{
+				"id": 32,
+				"name": "Ubisoft Montréal"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -3092,10 +4157,16 @@
 			1
 		],
 		"developers": [
-			"Ubisoft Toronto"
+			{
+				"id": 283,
+				"name": "Ubisoft Toronto"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -3110,10 +4181,16 @@
 			2
 		],
 		"developers": [
-			"Ubisoft Montréal"
+			{
+				"id": 32,
+				"name": "Ubisoft Montréal"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -3128,10 +4205,16 @@
 			2
 		],
 		"developers": [
-			"Ubisoft Montréal"
+			{
+				"id": 32,
+				"name": "Ubisoft Montréal"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -3146,10 +4229,16 @@
 			2
 		],
 		"developers": [
-			"Ubisoft Shanghai"
+			{
+				"id": 45,
+				"name": "Ubisoft Shanghai"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -3164,10 +4253,16 @@
 			2
 		],
 		"developers": [
-			"Ubisoft Montréal"
+			{
+				"id": 32,
+				"name": "Ubisoft Montréal"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -3182,10 +4277,16 @@
 			2
 		],
 		"developers": [
-			"Ubisoft Shanghai"
+			{
+				"id": 45,
+				"name": "Ubisoft Shanghai"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -3202,10 +4303,16 @@
 			6
 		],
 		"developers": [
-			"Humongous"
+			{
+				"id": 273,
+				"name": "Humongous"
+			}
 		],
 		"publishers": [
-			"Infogrames"
+			{
+				"id": 113,
+				"name": "Infogrames"
+			}
 		]
 	},
 	{
@@ -3222,10 +4329,16 @@
 			6
 		],
 		"developers": [
-			"Humongous"
+			{
+				"id": 273,
+				"name": "Humongous"
+			}
 		],
 		"publishers": [
-			"Humongous"
+			{
+				"id": 273,
+				"name": "Humongous"
+			}
 		]
 	},
 	{
@@ -3242,10 +4355,16 @@
 			6
 		],
 		"developers": [
-			"Humongous"
+			{
+				"id": 273,
+				"name": "Humongous"
+			}
 		],
 		"publishers": [
-			"Humongous"
+			{
+				"id": 273,
+				"name": "Humongous"
+			}
 		]
 	},
 	{
@@ -3260,10 +4379,16 @@
 			16
 		],
 		"developers": [
-			"Tiger Hill Entertainment"
+			{
+				"id": 390,
+				"name": "Tiger Hill Entertainment"
+			}
 		],
 		"publishers": [
-			"Midway"
+			{
+				"id": 391,
+				"name": "Midway"
+			}
 		]
 	},
 	{
@@ -3279,10 +4404,16 @@
 			12
 		],
 		"developers": [
-			"Ubisoft Montréal"
+			{
+				"id": 32,
+				"name": "Ubisoft Montréal"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -3298,10 +4429,16 @@
 			12
 		],
 		"developers": [
-			"Capcom"
+			{
+				"id": 22,
+				"name": "Capcom"
+			}
 		],
 		"publishers": [
-			"Nintendo"
+			{
+				"id": 371,
+				"name": "Nintendo"
+			}
 		]
 	},
 	{
@@ -3317,10 +4454,16 @@
 			2
 		],
 		"developers": [
-			"Volition"
+			{
+				"id": 229,
+				"name": "Volition"
+			}
 		],
 		"publishers": [
-			"THQ"
+			{
+				"id": 4,
+				"name": "THQ"
+			}
 		]
 	},
 	{
@@ -3335,10 +4478,16 @@
 			2
 		],
 		"developers": [
-			"Radical Entertainment"
+			{
+				"id": 231,
+				"name": "Radical Entertainment"
+			}
 		],
 		"publishers": [
-			"Sierra Entertainment"
+			{
+				"id": 156,
+				"name": "Sierra Entertainment"
+			}
 		]
 	},
 	{
@@ -3353,10 +4502,16 @@
 			2
 		],
 		"developers": [
-			"Rockstar Toronto"
+			{
+				"id": 368,
+				"name": "Rockstar Toronto"
+			}
 		],
 		"publishers": [
-			"Rockstar Games"
+			{
+				"id": 52,
+				"name": "Rockstar Games"
+			}
 		]
 	},
 	{
@@ -3371,10 +4526,16 @@
 			13
 		],
 		"developers": [
-			"Eden Games"
+			{
+				"id": 257,
+				"name": "Eden Games"
+			}
 		],
 		"publishers": [
-			"Atari"
+			{
+				"id": 14,
+				"name": "Atari"
+			}
 		]
 	},
 	{
@@ -3390,10 +4551,16 @@
 			16
 		],
 		"developers": [
-			"Deadline Games"
+			{
+				"id": 57,
+				"name": "Deadline Games"
+			}
 		],
 		"publishers": [
-			"Eidos Interactive"
+			{
+				"id": 367,
+				"name": "Eidos Interactive"
+			}
 		]
 	},
 	{
@@ -3408,10 +4575,16 @@
 			16
 		],
 		"developers": [
-			"PlatinumGames"
+			{
+				"id": 153,
+				"name": "PlatinumGames"
+			}
 		],
 		"publishers": [
-			"Sega"
+			{
+				"id": 154,
+				"name": "Sega"
+			}
 		]
 	},
 	{
@@ -3426,10 +4599,16 @@
 			2
 		],
 		"developers": [
-			"Artificial Mind & Movement"
+			{
+				"id": 151,
+				"name": "Artificial Mind & Movement"
+			}
 		],
 		"publishers": [
-			"Bethesda Softworks"
+			{
+				"id": 103,
+				"name": "Bethesda Softworks"
+			}
 		]
 	},
 	{
@@ -3444,10 +4623,16 @@
 			15
 		],
 		"developers": [
-			"Tigon Studios"
+			{
+				"id": 392,
+				"name": "Tigon Studios"
+			}
 		],
 		"publishers": [
-			"Midway"
+			{
+				"id": 391,
+				"name": "Midway"
+			}
 		]
 	},
 	{
@@ -3462,10 +4647,16 @@
 			19
 		],
 		"developers": [
-			"Team17"
+			{
+				"id": 149,
+				"name": "Team17"
+			}
 		],
 		"publishers": [
-			"Team17"
+			{
+				"id": 149,
+				"name": "Team17"
+			}
 		]
 	},
 	{
@@ -3480,10 +4671,16 @@
 			2
 		],
 		"developers": [
-			"Raven Software"
+			{
+				"id": 147,
+				"name": "Raven Software"
+			}
 		],
 		"publishers": [
-			"Activision"
+			{
+				"id": 63,
+				"name": "Activision"
+			}
 		]
 	},
 	{
@@ -3499,10 +4696,16 @@
 			16
 		],
 		"developers": [
-			"Ubisoft Paris"
+			{
+				"id": 145,
+				"name": "Ubisoft Paris"
+			}
 		],
 		"publishers": [
-			"Ubisoft"
+			{
+				"id": 33,
+				"name": "Ubisoft"
+			}
 		]
 	},
 	{
@@ -3517,10 +4720,16 @@
 			5
 		],
 		"developers": [
-			"KONAMI"
+			{
+				"id": 60,
+				"name": "KONAMI"
+			}
 		],
 		"publishers": [
-			"KONAMI"
+			{
+				"id": 60,
+				"name": "KONAMI"
+			}
 		]
 	},
 	{
@@ -3535,10 +4744,16 @@
 			5
 		],
 		"developers": [
-			"KONAMI"
+			{
+				"id": 60,
+				"name": "KONAMI"
+			}
 		],
 		"publishers": [
-			"KONAMI"
+			{
+				"id": 60,
+				"name": "KONAMI"
+			}
 		]
 	},
 	{
@@ -3554,10 +4769,16 @@
 			12
 		],
 		"developers": [
-			"Blitz Games"
+			{
+				"id": 139,
+				"name": "Blitz Games"
+			}
 		],
 		"publishers": [
-			"Infogrames"
+			{
+				"id": 113,
+				"name": "Infogrames"
+			}
 		]
 	}
 ]

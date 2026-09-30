@@ -1,12 +1,11 @@
+import type { CompanySummary as BaseCompanySummary } from "@/domain/companies/types";
 import { buildCardEntry } from "@/domain/games";
 import { COVER_PATHS } from "@/domain/games/coverPaths";
 import type { RawGame, CardGame } from "@/domain/games";
 
 export type CompanyRole = "all" | "developer" | "publisher";
 export type CompanyGame = CardGame & { tierCategory?: string | null };
-export type CompanySummary = {
-    id: number;
-    name: string;
+export type CompanySummary = BaseCompanySummary & {
     imagePath: string;
     developerCount: number;
     publisherCount: number;
@@ -18,9 +17,7 @@ export type CompanyType = Pick<CompanySummary, "id" | "name" | "imagePath"> & {
 };
 
 type RawCompanyGame = RawGame & { id: number; tierCategory?: string | null };
-export type RawCompany = {
-    id: number;
-    name: string;
+export type RawCompany = BaseCompanySummary & {
     developerItems: RawCompanyGame[];
     publisherItems: RawCompanyGame[];
 };

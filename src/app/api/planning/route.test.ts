@@ -17,6 +17,8 @@ vi.mock('./planning.json', () => ({
             releaseDate: '2020-01-01',
             duration: '01:00:00',
             genres: [1, 2],
+            developers: [{ id: 73, name: "Ubisoft Reflections" }],
+            publishers: [{ id: 12, name: "Ubisoft" }],
         },
         {
             id: 209,
@@ -73,6 +75,14 @@ describe('GET /api/planning', () => {
         expect(entry.genres).toEqual([1, 2]);
         expect(entry.duration).toBe('01:00:00');
         expect(entry.releaseDate).toBe('2020-01-01');
+    });
+
+    it('preserves company IDs and names through the card transformation', async () => {
+        const data = await getData();
+        expect(data[0].developers).toEqual([{ id: 73, name: 'Ubisoft Reflections' }]);
+        expect(data[0].publishers).toEqual([{ id: 12, name: 'Ubisoft' }]);
+        expect(data[1].developers).toBeUndefined();
+        expect(data[1].publishers).toBeUndefined();
     });
 
     it('outputs the youtube identifier as id, not the raw numeric database id', async () => {

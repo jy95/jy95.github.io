@@ -177,6 +177,8 @@
         }
     },
     "gameDetail": {
+        "developers": "{count, plural, one {Developer} other {Developers}}",
+        "publishers": "{count, plural, one {Publisher} other {Publishers}}",
         "releaseDate": "Release date",
         "duration": "Duration",
         "hltb_main": "Main Story",

@@ -1,3 +1,5 @@
+import type { CompanySummary } from "@/domain/companies/types";
+
 /**
  * Canonical game-domain types.
  *
@@ -29,10 +31,10 @@ export type BasicEntry = {
     endAt?: string;
     /** @description Name of the main cover file, such as "cover.webp" */
     coverFile?: string;
-    /** @description Array of developer studio names that worked on the game (e.g. ["Ubisoft Reflections"]) */
-    developers?: string[];
-    /** @description Optional array of publisher names (e.g. ["Ubisoft"]) */
-    publishers?: string[];
+    /** @description Companies that developed the game */
+    developers?: CompanySummary[];
+    /** @description Companies that published the game */
+    publishers?: CompanySummary[];
 }
 
 export type BasicVideo = BasicEntry & {
@@ -85,4 +87,4 @@ export type CardGame = {
     endAt?: string;
     /** @description Name of the main cover file, such as "cover.webp" */
     coverFile?: string;
-} & CardEntry;
+} & CardEntry & Pick<BasicEntry, "developers" | "publishers">;

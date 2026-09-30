@@ -98,6 +98,19 @@ describe('GameDetailView', () => {
         expect(topLayout?.parentElement).toBe(relatedGames.parentElement);
     });
 
+    it('renders planning company summaries alongside the existing game details', () => {
+        render(<GameDetailView game={{
+            ...game,
+            developers: [{ id: 73, name: 'Ubisoft Reflections' }],
+            publishers: [{ id: 12, name: 'Ubisoft' }],
+        }} onClose={vi.fn()} />);
+        expect(screen.getByRole('button', { name: 'Ubisoft Reflections' })).toHaveClass('MuiChip-root');
+        expect(screen.getByRole('button', { name: 'Ubisoft' })).toHaveClass('MuiChip-root');
+        expect(screen.getByText('Some Game')).toBeInTheDocument();
+        expect(screen.getByText('vote.disclaimer')).toBeInTheDocument();
+        expect(screen.getByText('gamesLibrary.gamesGenres.1')).toBeInTheDocument();
+    });
+
     it('calls onClose when the toolbar close button is clicked', () => {
         const onClose = vi.fn();
         render(<GameDetailView game={game} onClose={onClose} />);

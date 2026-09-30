@@ -1,4 +1,4 @@
-import type { YTUrlType } from "@/domain/games";
+import type { BasicEntry, YTUrlType } from "@/domain/games";
 
 /**
  * Canonical, flattened shapes consumed by GameDetailView and its row
@@ -20,7 +20,7 @@ interface BaseGameDetailsEntry {
     platform?: number;
 }
 
-export interface CardKindEntry extends BaseGameDetailsEntry {
+export interface CardKindEntry extends BaseGameDetailsEntry, Pick<BasicEntry, "developers" | "publishers"> {
     kind: "card";
     genres?: number[];
     releaseDate?: string;
