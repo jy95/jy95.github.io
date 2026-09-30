@@ -25,7 +25,6 @@ function GamesGalleryGridInner() {
 
     const LIMIT_PAGE = 12;
 
-    // Lazy query setup
     const {
         hasNextPage,
         fetchNextPage,
@@ -39,12 +38,6 @@ function GamesGalleryGridInner() {
             pageSize : LIMIT_PAGE
         }
     );
-
-
-    const handleNextPage = async () => {
-        await fetchNextPage()
-    }
-
     const allGames = data?.pages.flatMap(result => result.items) ?? [];
 
     return (
@@ -61,7 +54,7 @@ function GamesGalleryGridInner() {
                 <LoadingButton
                     loading={isFetching}
                     disabled={!hasNextPage}
-                    onClick={handleNextPage}
+                    onClick={() => fetchNextPage()}
                     label={t('loadMore')}
                 />
             </Grid>

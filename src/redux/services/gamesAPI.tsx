@@ -4,20 +4,17 @@ import type { GameFilters } from "@/types/gamesFilters"
 import type { GameDetailsResponse } from "@/domain/games/details";
 import { api } from "./api"
 
-type Parameters = {
+type GamesQueryArgs = {
     filters: GameFilters,
-    page: number,
     pageSize: number,
 }
-
-type FrontendParams = Omit<Parameters, "page">;
 
 export const gamesAPI = api.injectEndpoints({
     endpoints: (builder) => ({
         getGameDetails: builder.query<GameDetailsResponse, string>({
             query: (id) => `/games/${encodeURIComponent(id)}`,
         }),
-        getGames: builder.infiniteQuery<GamesResponse, FrontendParams, number>({
+        getGames: builder.infiniteQuery<GamesResponse, GamesQueryArgs, number>({
             serializeQueryArgs: ({ queryArgs }) => ({
                 pageSize: queryArgs.pageSize,
                 filters: normalizeGameFilters(queryArgs.filters),

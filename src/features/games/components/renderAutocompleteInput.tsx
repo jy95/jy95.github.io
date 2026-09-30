@@ -1,21 +1,13 @@
 "use client";
 
 import TextField from '@mui/material/TextField';
-import type { AutocompleteProps } from '@mui/material/Autocomplete';
-
-// Extract the exact renderInput type directly from MUI v9's AutocompleteProps
-type AutocompleteRenderInput = AutocompleteProps<
-  any,
-  boolean,
-  boolean,
-  boolean
->['renderInput'];
+import type { AutocompleteRenderInputParams } from '@mui/material/Autocomplete';
 
 /**
  * Shared `renderInput` factory for MUI Autocomplete instances (MUI v9).
  */
-export function renderAutocompleteInput(label: string): AutocompleteRenderInput {
-  return function renderInput(params) {
+export function renderAutocompleteInput(label: string) {
+  return function renderInput(params: AutocompleteRenderInputParams) {
     return <TextField {...params} label={label} />;
   };
 }

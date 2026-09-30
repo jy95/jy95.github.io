@@ -23,20 +23,17 @@ function GenresSelect({ value: selectedGenres, onChange }: Props) {
     const { data, isFetching } = useGetGenresQuery();
     const t = useTranslations("gamesLibrary")
 
-    function idToName(genreId: GameGenreId) {
-        return t(`gamesGenres.${genreId}`);
+    function toOption(id: number): Genre {
+        return { id, name: t(`gamesGenres.${id.toString() as GameGenreId}`) };
     }
 
-    const genre_options : Genre[] = (data || [])
-        .map(genre => ({
-            name: idToName(genre.id.toString() as GameGenreId),
-            id: genre.id
-        }))
+    const options = (data || [])
+        .map(genre => toOption(genre.id))
         .sort(
             (a, b) => (a.name < b.name) ? -1 : (a.name > b.name ? 1 : 0)
         );
 
-    return <>
+    return (
         <Autocomplete<Genre, true, true>
             multiple
             openOnFocus
@@ -44,21 +41,16 @@ function GenresSelect({ value: selectedGenres, onChange }: Props) {
             id="select-game-genre"
             limitTags={3}
             loading={isFetching}
-            options={genre_options}
+            options={options}
             getOptionLabel={(option) => option.name}
-            isOptionEqualToValue={(option, value) =>
-                Array.isArray(value) ? value.some(v => v.id === option.id) : value.id === option.id
-            }
-            value={selectedGenres.map(genre => ({
-                name: idToName(genre.toString() as GameGenreId),
-                id: genre
-            }))}
+            isOptionEqualToValue={(option, value) => value.id === option.id}
+            value={selectedGenres.map(toOption)}
             renderInput={renderAutocompleteInput(t("filtersLabels.genres"))}
             onChange={(_event, value) => {
                 onChange(value.map(v => v.id));
             }}
         />
-    </>;
+    );
 }
 
 export default GenresSelect;

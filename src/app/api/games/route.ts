@@ -41,7 +41,10 @@ export async function GET(request: Request) {
 
 function generateResponse(params: RequestParams, gamesData: RawPayload): ResponseBody {
     const filters = params.filters;
-    const filtered_games = (filters === undefined)
+    const releaseRange = filters && (filters.releaseDateFrom !== undefined || filters.releaseDateTo !== undefined)
+        ? getReleaseYearRange(filters)
+        : undefined;
+    const filteredGames = (filters === undefined)
         ? gamesData
         : gamesData.filter(game => {
             if (filters.platform !== undefined && game.platform !== filters.platform) {
@@ -50,17 +53,17 @@ function generateResponse(params: RequestParams, gamesData: RawPayload): Respons
             if (filters.genres !== undefined && !filters.genres.some(v => game.genres.includes(v))) {
                 return false;
             }
-            if (filters.releaseDateFrom !== undefined || filters.releaseDateTo !== undefined) {
+            if (releaseRange) {
                 const year = releaseYear(game.releaseDate);
-                const [from, to] = getReleaseYearRange(filters);
+                const [from, to] = releaseRange;
                 if (year === undefined || year < from || year > to) return false;
             }
             return true;
         });
 
     const results = (filters?.title === undefined)
-        ? filtered_games
-        : new Fuse(filtered_games, { keys: ["title"] }).search(filters.title).map(s => s.item);
+        ? filteredGames
+        : new Fuse(filteredGames, { keys: ["title"] }).search(filters.title).map(s => s.item);
 
     const sortedResults = sortGames(results, filters?.sort);
 
@@ -71,17 +74,13 @@ function generateResponse(params: RequestParams, gamesData: RawPayload): Respons
     const endOffset = startOffset + pageSize;
 
     return {
-        items: sortedAndFilteredResultset(startOffset, endOffset, sortedResults),
+        items: sortedResults.slice(startOffset, endOffset).map(toPublishedGame),
         total_items,
         total_pages,
         pageSize,
         page: params.page,
         filters: params.filters
     };
-}
-
-function sortedAndFilteredResultset(startOffset: number, endOffset: number, games: RawPayload): CardGame[] {
-    return games.slice(startOffset, endOffset).map(toPublishedGame);
 }
 
 function extractParameters(params: URLSearchParams): RequestParams {
