@@ -32,14 +32,11 @@ function PlatformSelect({ value: selectedPlatform, onChange }: Props) {
                     {option.name}
                 </li>
             )}
-            onChange={(_event, value) => {
-                const platform = (value) ? value.id : undefined;
-                onChange(platform);
-            }}
+            onChange={(_event, value) => onChange(value?.id)}
             value={
                 selectedPlatform !== undefined ? {
                     id: selectedPlatform,
-                    name: (data || [] ).find(p => p.id === selectedPlatform)?.name || ""
+                    name: data?.find(p => p.id === selectedPlatform)?.name || ""
                 } : null
             }
         />
