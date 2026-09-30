@@ -38,23 +38,32 @@ describe('GamePlatform', () => {
     });
 
     describe.each(locales)('$locale translations', ({ locale, messages, labels }) => {
-        it('renders the singular field label with platform and chip icons', () => {
+        it.each([
+            { id: 1, name: 'PC' },
+            { id: 2, name: 'GBA' },
+        ])('renders the singular field label with a GamepadIcon and an icon-only $name chip', (platform) => {
+            useGetPlatformsQuery.mockReturnValue({ data: [platform] });
             render(
                 <NextIntlClientProvider locale={locale} messages={messages}>
-                    <GamePlatform platformId={1} />
+                    <GamePlatform platformId={platform.id} />
                 </NextIntlClientProvider>
             );
             const label = screen.getByText(labels[0]);
             expect(screen.queryByText(labels[1])).not.toBeInTheDocument();
-            const chip = screen.getByRole('button', { name: 'PC' });
+            const chip = screen.getByRole('button', { name: platform.name });
             const fieldIcon = label.parentElement?.querySelector('svg');
             const chipIcon = chip.querySelector('svg');
-            expect(fieldIcon).toHaveClass('MuiSvgIcon-root');
+            expect(fieldIcon).toBe(screen.getByTestId('GamepadIcon'));
+            expect(fieldIcon).toHaveClass('MuiSvgIcon-fontSizeSmall');
             expect(chipIcon).toHaveClass('MuiSvgIcon-root');
+            expect(chip.querySelectorAll('svg')).toHaveLength(1);
+            expect(chip).toHaveAttribute('aria-label', platform.name);
+            expect(chip).toHaveTextContent(/^$/);
+            expect(screen.queryByText(platform.name)).not.toBeInTheDocument();
             expect(fieldIcon).not.toBe(chipIcon);
             expect(chip).not.toContainElement(fieldIcon ?? null);
             expect(fieldIcon?.querySelector('path')?.getAttribute('d')).toBeTruthy();
-            expect(fieldIcon?.querySelector('path')?.getAttribute('d')).toBe(chipIcon?.querySelector('path')?.getAttribute('d'));
+            expect(fieldIcon?.querySelector('path')?.getAttribute('d')).not.toBe(chipIcon?.querySelector('path')?.getAttribute('d'));
             expect(chip.tagName).toBe('SPAN');
         });
 
@@ -66,6 +75,29 @@ describe('GamePlatform', () => {
             );
             expect(screen.getByText(labels[count - 1])).toBeInTheDocument();
         });
+    });
+
+    it('keeps the GamepadIcon field icon when the platform chip icon changes', () => {
+        useGetPlatformsQuery.mockReturnValue({ data: [{ id: 1, name: 'PC' }, { id: 2, name: 'GBA' }] });
+        const { rerender } = renderPlatform(1);
+        const fieldIcon = screen.getByTestId('GamepadIcon');
+        const pcIconPaths = Array.from(screen.getByRole('button', { name: 'PC' }).querySelectorAll('path'))
+            .map(path => path.getAttribute('d'));
+        expect(pcIconPaths.length).toBeGreaterThan(0);
+        rerender(
+            <NextIntlClientProvider locale="en" messages={en}>
+                <GamePlatform platformId={2} />
+            </NextIntlClientProvider>
+        );
+        const chip = screen.getByRole('button', { name: 'GBA' });
+        const gbaIconPaths = Array.from(chip.querySelectorAll('path')).map(path => path.getAttribute('d'));
+        expect(gbaIconPaths.length).toBeGreaterThan(0);
+        expect(gbaIconPaths).not.toEqual(pcIconPaths);
+        expect(screen.getByTestId('GamepadIcon')).toBe(fieldIcon);
+        expect(chip).not.toContainElement(fieldIcon);
+        expect(chip.querySelectorAll('svg')).toHaveLength(1);
+        expect(chip).toHaveAttribute('aria-label', 'GBA');
+        expect(chip).toHaveTextContent(/^$/);
     });
 
     it('renders no field while platforms are loading, then shows the matching platform', () => {

@@ -1,6 +1,7 @@
 "use client";
 
 import Chip from "@mui/material/Chip";
+import GamepadIcon from "@mui/icons-material/Gamepad";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import { filtersToSearchParams } from "@/lib/gamesFilterUtils";
@@ -18,12 +19,12 @@ export default function GamePlatform({ platformId }: { platformId: number }) {
     return (
         <InfoRow
             label={t("platforms", { count: 1 })}
-            icon={<RenderPlatformIcon identifier={platformId} />}
+            icon={<GamepadIcon fontSize="small" />}
             value={
                 <Chip
                     component="span"
-                    label={platform.name}
-                    icon={<RenderPlatformIcon identifier={platformId} />}
+                    label={<RenderPlatformIcon identifier={platformId} />}
+                    aria-label={platform.name}
                     size="small"
                     variant="outlined"
                     onClick={() => router.push({

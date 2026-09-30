@@ -92,7 +92,13 @@ describe('canonical game detail page', () => {
         fireEvent.click(screen.getByRole('button', { name: 'Watch the game' }));
         expect(push).toHaveBeenCalledWith({ pathname: dlc.url_type === 'VIDEO' ? '/video/[id]' : '/playlist/[id]', params: { id: dlc.id } });
         if (dlc.platform !== undefined) {
-            expect(await screen.findByRole('button', { name: 'PC' })).toBeInTheDocument();
+            const platformChip = await screen.findByRole('button', { name: 'PC' });
+            expect(platformChip).toHaveAttribute('aria-label', 'PC');
+            expect(platformChip.querySelectorAll('svg')).toHaveLength(1);
+            expect(platformChip.querySelector('svg')).toHaveClass('MuiSvgIcon-root');
+            expect(platformChip).toHaveTextContent(/^$/);
+            expect(screen.queryByText('PC')).not.toBeInTheDocument();
+            expect(platformChip).not.toContainElement(screen.getByTestId('GamepadIcon'));
         }
         expect(fetchMock).toHaveBeenCalledTimes(dlc.platform !== undefined ? 2 : 1);
         expect(calledUrl(fetchMock).pathname).toBe(`/api/games/${dlc.id}`);

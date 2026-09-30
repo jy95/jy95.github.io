@@ -4,7 +4,7 @@ import { echoTranslations } from '@/test/mocks/nextIntl';
 
 const push = vi.fn();
 vi.mock('@/redux/services/platformsAPI', () => ({
-    useGetPlatformsQuery: () => ({ data: [{ id: 1, name: 'PC' }] }),
+    useGetPlatformsQuery: () => ({ data: [{ id: 1, name: 'PC' }, { id: 2, name: 'GBA' }] }),
 }));
 
 // 1. Bloquer le chargement interne ESM de next/navigation dans next-intl
@@ -69,22 +69,30 @@ const game: CardGame = {
 
 describe.each(['page content', 'dialog'])('filter chips in %s', (context) => {
     it.each([
-        ['gamesLibrary.gamesGenres.2', { genres: '2' }, 'Enter'],
-        ['gamesLibrary.gamesGenres.2', { genres: '2' }, ' '],
-        ['PC', { platform: '1' }, 'Enter'],
-        ['PC', { platform: '1' }, ' '],
-    ])('navigates from %s using keyboard and pointer', (name, query, key) => {
-        const entry = { ...game, platform: 1 };
+        ['gamesLibrary.gamesGenres.2', { genres: '2' }, 'Enter', 1],
+        ['gamesLibrary.gamesGenres.2', { genres: '2' }, ' ', 1],
+        ['PC', { platform: '1' }, 'Enter', 1],
+        ['PC', { platform: '1' }, ' ', 1],
+        ['GBA', { platform: '2' }, 'Enter', 2],
+        ['GBA', { platform: '2' }, ' ', 2],
+    ])('navigates from %s using keyboard and pointer', (name, query, key, platformId) => {
+        const entry = { ...game, platform: platformId };
         render(context === 'dialog'
             ? <GameDetailView game={entry} onClose={vi.fn()} showVoteSection={false} />
             : <GameDetailContent game={entry} showVoteSection={false} />);
         expect(screen.getByText('gameDetail.genres:{"count":2}')).toBeInTheDocument();
         expect(screen.getByTestId('LabelIcon')).toHaveClass('MuiSvgIcon-fontSizeSmall');
         const platformLabel = screen.getByText('gameDetail.platforms:{"count":1}');
-        const platformChip = screen.getByRole('button', { name: 'PC' });
+        const platformName = platformId === 1 ? 'PC' : 'GBA';
+        const platformChip = screen.getByRole('button', { name: platformName });
         const platformFieldIcon = platformLabel.parentElement?.querySelector('svg');
-        expect(platformFieldIcon).toHaveClass('MuiSvgIcon-root');
+        expect(platformFieldIcon).toBe(screen.getByTestId('GamepadIcon'));
+        expect(platformFieldIcon).toHaveClass('MuiSvgIcon-fontSizeSmall');
         expect(platformChip.querySelector('svg')).toHaveClass('MuiSvgIcon-root');
+        expect(platformChip.querySelectorAll('svg')).toHaveLength(1);
+        expect(platformChip).toHaveAttribute('aria-label', platformName);
+        expect(platformChip).toHaveTextContent(/^$/);
+        expect(screen.queryByText(platformName)).not.toBeInTheDocument();
         expect(platformChip).not.toContainElement(platformFieldIcon ?? null);
         const chip = screen.getByRole('button', { name });
         expect(chip).toHaveAttribute('tabindex', '0');
@@ -106,6 +114,7 @@ describe.each(['page content', 'dialog'])('filter chips in %s', (context) => {
         expect(screen.queryByText(/^gameDetail.genres:/)).not.toBeInTheDocument();
         expect(screen.queryByTestId('LabelIcon')).not.toBeInTheDocument();
         expect(screen.queryByText(/^gameDetail.platforms:/)).not.toBeInTheDocument();
+        expect(screen.queryByTestId('GamepadIcon')).not.toBeInTheDocument();
         expect(screen.queryByRole('button', { name: 'PC' })).not.toBeInTheDocument();
     });
 });
