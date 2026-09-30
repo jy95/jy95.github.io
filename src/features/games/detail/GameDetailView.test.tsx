@@ -98,17 +98,23 @@ describe('GameDetailView', () => {
         expect(topLayout?.parentElement).toBe(relatedGames.parentElement);
     });
 
-    it('renders planning company summaries alongside the existing game details', () => {
+    it('renders developers, publishers, then the release date alongside the existing game details', () => {
         render(<GameDetailView game={{
             ...game,
             developers: [{ id: 73, name: 'Ubisoft Reflections' }],
             publishers: [{ id: 12, name: 'Ubisoft' }],
+            releaseDate: '2020-01-01',
         }} onClose={vi.fn()} />);
         expect(screen.getByRole('button', { name: 'Ubisoft Reflections' })).toHaveClass('MuiChip-root');
         expect(screen.getByRole('button', { name: 'Ubisoft' })).toHaveClass('MuiChip-root');
         expect(screen.getByText('Some Game')).toBeInTheDocument();
         expect(screen.getByText('vote.disclaimer')).toBeInTheDocument();
         expect(screen.getByText('gamesLibrary.gamesGenres.1')).toBeInTheDocument();
+        const developers = screen.getByText('gameDetail.developers:{"count":1}');
+        const publishers = screen.getByText('gameDetail.publishers:{"count":1}');
+        const releaseDate = screen.getByText('gameDetail.releaseDate');
+        expect(developers.compareDocumentPosition(publishers) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+        expect(publishers.compareDocumentPosition(releaseDate) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     });
 
     it('calls onClose when the toolbar close button is clicked', () => {

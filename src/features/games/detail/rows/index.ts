@@ -7,9 +7,9 @@ import HltbCompletionistRow from "./HltbCompletionistRow";
 
 // Display order
 export const DETAIL_ROWS = [
+    CompaniesRow,
     ReleaseDateRow,
     DurationRow,
-    CompaniesRow,
     HltbMainRow,
     HltbExtraRow,
     HltbCompletionistRow
