@@ -99,9 +99,17 @@ describe('mobile filters', () => {
         const { rerender } = render(<GamesFilters filters={{ title: 'Zelda', sort: 'duration_desc' }} onChange={onChange} />);
         expect(screen.getByRole('textbox', { name: 'Title' })).toBeVisible();
         const trigger = screen.getByRole('button', { name: 'gamesLibrary.filtersButtonLabel' });
+        expect(trigger).toHaveAttribute('aria-haspopup', 'dialog');
+        expect(trigger).toHaveAttribute('aria-expanded', 'false');
+        expect(trigger).not.toHaveAttribute('aria-controls');
         trigger.focus();
         fireEvent.click(trigger);
         const dialog = screen.getByRole('dialog', { name: 'gamesLibrary.filtersButtonLabel' });
+        expect(trigger).toHaveAttribute('aria-expanded', 'true');
+        expect(trigger).toHaveAttribute('aria-controls', dialog.id);
+        expect(dialog).toHaveAttribute('aria-modal', 'true');
+        expect(document.querySelectorAll(`[id="${dialog.getAttribute('aria-labelledby')}"]`)).toHaveLength(1);
+        expect(within(dialog).getByRole('heading', { level: 2 })).toHaveAttribute('id', dialog.getAttribute('aria-labelledby'));
         expect(within(dialog).queryByRole('textbox', { name: 'Title' })).not.toBeInTheDocument();
         expect(within(dialog).queryByLabelText('Sort value')).not.toBeInTheDocument();
         fireEvent.click(within(dialog).getByRole('button', { name: 'Select platform' }));
@@ -149,4 +157,20 @@ it('counts applied secondary filter groups, excluding title and sort, and remove
     expect(screen.getByRole('button', { name: /filtersButtonLabel/ })).toHaveTextContent('2');
     rerender(<GamesFilters filters={{ title: 'Zelda', sort: 'title_asc' }} onChange={vi.fn()} />);
     expect(screen.getByRole('button', { name: /filtersButtonLabel/ })).toHaveTextContent(/^gamesLibrary.filtersButtonLabel$/);
+});
+
+
+it('exposes the desktop disclosure relationship and closes it on viewport changes', () => {
+    const { rerender } = render(<GamesFilters filters={{}} onChange={vi.fn()} />);
+    const trigger = screen.getByRole('button', { name: /filtersButtonLabel/ });
+    expect(trigger).not.toHaveAttribute('aria-haspopup');
+    fireEvent.click(trigger);
+    const region = screen.getByRole('region', { name: /filtersButtonLabel/ });
+    expect(trigger).toHaveAttribute('aria-controls', region.id);
+    expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    responsive.mobile = true;
+    rerender(<GamesFilters filters={{}} onChange={vi.fn()} />);
+    expect(screen.queryByRole('region')).not.toBeInTheDocument();
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
 });

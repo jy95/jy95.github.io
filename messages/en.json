@@ -78,6 +78,10 @@
             "cancelButton": "Cancel",
             "sortButton": "Sort"
         },
+        "sortDirection": {
+            "asc": "Sort ascending",
+            "desc": "Sort descending"
+        },
         "sortLabels": {
             "default": "Default order",
             "name": "Name",

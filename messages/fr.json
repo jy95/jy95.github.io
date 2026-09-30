@@ -70,6 +70,10 @@
     },
     "gamesLibrary": {
         "randomButtonLabel": "Cliquez pour découvrir un nouveau jeu !",
+        "sortDirection": {
+            "asc": "Trier par ordre croissant",
+            "desc": "Trier par ordre décroissant"
+        },
         "sortLabels": {
             "default": "Ordre par défaut",
             "name": "Nom",
