@@ -19,7 +19,8 @@ const PAGE_PURPOSES: Readonly<Record<string, string>> = {
     "/links": "Find GamesPassionFR's external and social links.",
     "/video/:id": "Watch the YouTube video identified by id.",
     "/playlist/:id": "Watch the YouTube walkthrough playlist identified by id.",
-    "/companies/:id": "View details & games associated with a specific company"
+    "/companies/:id": "View details & games associated with a specific company",
+    "/games/detail/:id": "View information associated to a game"
 };
 
 export function buildStaticPaths(): string[] {
