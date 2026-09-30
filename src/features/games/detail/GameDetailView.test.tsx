@@ -70,12 +70,22 @@ const game: CardGame = {
 describe.each(['page content', 'dialog'])('filter chips in %s', (context) => {
     it.each([
         ['gamesLibrary.gamesGenres.2', { genres: '2' }, 'Enter'],
+        ['gamesLibrary.gamesGenres.2', { genres: '2' }, ' '],
+        ['PC', { platform: '1' }, 'Enter'],
         ['PC', { platform: '1' }, ' '],
     ])('navigates from %s using keyboard and pointer', (name, query, key) => {
         const entry = { ...game, platform: 1 };
         render(context === 'dialog'
             ? <GameDetailView game={entry} onClose={vi.fn()} showVoteSection={false} />
             : <GameDetailContent game={entry} showVoteSection={false} />);
+        expect(screen.getByText('gameDetail.genres:{"count":2}')).toBeInTheDocument();
+        expect(screen.getByTestId('LabelIcon')).toHaveClass('MuiSvgIcon-fontSizeSmall');
+        const platformLabel = screen.getByText('gameDetail.platforms:{"count":1}');
+        const platformChip = screen.getByRole('button', { name: 'PC' });
+        const platformFieldIcon = platformLabel.parentElement?.querySelector('svg');
+        expect(platformFieldIcon).toHaveClass('MuiSvgIcon-root');
+        expect(platformChip.querySelector('svg')).toHaveClass('MuiSvgIcon-root');
+        expect(platformChip).not.toContainElement(platformFieldIcon ?? null);
         const chip = screen.getByRole('button', { name });
         expect(chip).toHaveAttribute('tabindex', '0');
         expect(chip).toHaveClass('MuiChip-clickable', 'MuiChip-outlined', 'MuiChip-sizeSmall');
@@ -86,6 +96,17 @@ describe.each(['page content', 'dialog'])('filter chips in %s', (context) => {
         push.mockClear();
         fireEvent.click(chip);
         expect(push).toHaveBeenCalledExactlyOnceWith({ pathname: '/games', query });
+    });
+
+    it('omits labels and field icons for empty genres and an unmatched platform', () => {
+        const entry = { ...game, genres: [], platform: 99 };
+        render(context === 'dialog'
+            ? <GameDetailView game={entry} onClose={vi.fn()} showVoteSection={false} />
+            : <GameDetailContent game={entry} showVoteSection={false} />);
+        expect(screen.queryByText(/^gameDetail.genres:/)).not.toBeInTheDocument();
+        expect(screen.queryByTestId('LabelIcon')).not.toBeInTheDocument();
+        expect(screen.queryByText(/^gameDetail.platforms:/)).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: 'PC' })).not.toBeInTheDocument();
     });
 });
 
