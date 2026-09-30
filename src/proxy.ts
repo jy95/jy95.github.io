@@ -6,13 +6,16 @@ import { updateSession } from '@/lib/supabase/proxy';
 // https://nextjs.org/docs/app/building-your-application/routing/middleware#convention
 // Use the file middleware.ts (or .js) in the root of your project to define Middleware. For example, at the same level as pages or app, or inside src if applicable.
 const intlMiddleware = createMiddleware(routing);
+// Game detail links keep an explicit locale, including the default French locale.
+const gameDetailMiddleware = createMiddleware({ ...routing, localePrefix: 'always' });
 
 export default async function proxy(request: NextRequest) {
 
   // On rafraîchit la session avant de faire quoi que ce soit d'autre.
   const authResponse = await updateSession(request);
   // On continue avec le middleware de next-intl pour gérer la langue.
-  const intlResponse = intlMiddleware(request);
+  const isGameDetail = /^\/(?:fr\/|en\/)?games\/detail\/[^/]+\/?$/.test(request.nextUrl.pathname);
+  const intlResponse = (isGameDetail ? gameDetailMiddleware : intlMiddleware)(request);
 
   // On synchronise les cookies de la session avec ceux de la réponse du middleware de next-intl.
   authResponse.cookies.getAll().forEach((cookie) => {

@@ -1,9 +1,15 @@
+import { NextIntlClientProvider } from 'next-intl';
+import en from '../../../../messages/en.json';
+import fr from '../../../../messages/fr.json';
+import type { ComponentProps } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render as rtlRender, screen, fireEvent } from '@testing-library/react';
 
 const pushMock = vi.fn();
 vi.mock('@/i18n/routing', () => ({
     useRouter: () => ({ push: pushMock }),
+    Link: ({ href, locale, ...props }: Omit<ComponentProps<'a'>, 'href'> & { href: { params: { id: string } }; locale: string }) =>
+        <a {...props} href={`/${locale}/games/detail/${href.params.id}`} />,
 }));
 
 vi.mock('next/image', () => ({
@@ -24,9 +30,25 @@ const baseGame: CardGame = {
     imagePath: '/covers/abc123/cover.webp',
 };
 
+function render(ui: React.ReactNode, locale: 'en' | 'fr' = 'en') {
+    return rtlRender(<NextIntlClientProvider locale={locale} messages={locale === 'fr' ? fr : en}>{ui}</NextIntlClientProvider>);
+}
+
 describe('CardEntry', () => {
     beforeEach(() => {
         pushMock.mockReset();
+    });
+
+    it.each(['en', 'fr'] as const)('offers an accessible detail link in %s without activating the main card', (locale) => {
+        const parentClick = vi.fn();
+        render(<div onClick={parentClick}><CardEntry game={baseGame} /></div>, locale);
+        const label = locale === 'fr' ? 'Voir les détails de Some Game' : 'View details for Some Game';
+        const link = screen.getByRole('link', { name: label });
+        expect(link).toHaveAttribute('href', `/${locale}/games/detail/abc123`);
+        expect(screen.getByRole('button')).not.toContainElement(link);
+        fireEvent.click(link);
+        expect(pushMock).not.toHaveBeenCalled();
+        expect(parentClick).not.toHaveBeenCalled();
     });
 
     it('renders the game title via the overlay', () => {

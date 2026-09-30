@@ -28,7 +28,8 @@ export const routing = defineRouting({
     // Dynamic params are supported via square brackets
     '/playlist/[id]': '/playlist/[id]',
     '/video/[id]': '/video/[id]',
-    '/companies/[id]': '/companies/[id]'
+    '/companies/[id]': '/companies/[id]',
+    '/games/detail/[id]': '/games/detail/[id]'
   }
 });
  

@@ -177,6 +177,10 @@
         }
     },
     "gameDetail": {
+    "back": "Back",
+    "close": "Close",
+    "watch": "Watch the game",
+    "details": "View details for {title}",
         "developers": "{count, plural, one {Developer} other {Developers}}",
         "publishers": "{count, plural, one {Publisher} other {Publishers}}",
         "releaseDate": "Release date",
