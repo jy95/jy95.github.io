@@ -1,6 +1,5 @@
 "use client";
 
-import { useMemo } from "react";
 import Box from "@mui/material/Box";
 import { TierRow } from "./TierRow";
 import type { RawType, GameRender, BackgroundColor } from "./index";
@@ -22,10 +21,9 @@ export function TierListBoard<T extends RawType>({
     skipEmptyCategories = false
 }: TierListBoardProps<T>) {
 
-    const visibleCategories = useMemo(() => {
-        if (!skipEmptyCategories) return categories;
-        return categories.filter((slug) => data[slug] && data[slug].length > 0);
-    }, [categories, data, skipEmptyCategories]);
+    const visibleCategories = skipEmptyCategories
+        ? categories.filter((slug) => data[slug]?.length > 0)
+        : categories;
 
     return (
         <Box data-testid="tier-list-board" sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>

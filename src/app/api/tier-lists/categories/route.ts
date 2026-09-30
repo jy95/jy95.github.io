@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { cachedJson } from "@/lib/http/cachedJson";
 
 import type { TierCategoryKey } from "@/types/tierList";
 
@@ -30,9 +30,5 @@ export async function GET(request: Request) {
     // Extract slugs for performance reasons, as the frontend isn't interested in the other properties of the categories and it would be wasteful to send them over the network
     const slugs = categories.map(category => category.slug as TierCategoryKey);
 
-    return NextResponse.json(slugs, {
-        headers: {
-            "Cache-Control": "public, max-age=86400, must-revalidate"
-        }
-    });
+    return cachedJson(slugs);
 }

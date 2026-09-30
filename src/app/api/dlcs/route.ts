@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { cachedJson } from "@/lib/http/cachedJson";
 import { loadDlcGroups, toPublishedGame } from "@/lib/gamesData";
 import type { StoredDlcGroup } from "@/lib/gamesData";
 import type { CardGame } from "@/domain/games";
@@ -20,9 +20,5 @@ export async function GET() {
         items: dlc.dlcs.map(toPublishedGame)
     }));
 
-    return NextResponse.json(dlcs, {
-        headers: {
-            "Cache-Control": "public, max-age=86400, must-revalidate"
-        }
-    });
+    return cachedJson(dlcs);
 }

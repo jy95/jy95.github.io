@@ -116,33 +116,22 @@ function LanguageToggleInner(props: Props) {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem
-          selected={locale === 'fr'}
-          onClick={() => changeLanguage('fr')}
-        >
-          <ListItemIcon>
-            <CheckIcon
-              fontSize="small"
-              color="primary"
-              sx={{ visibility: locale === 'fr' ? 'visible' : 'hidden' }}
-            />
-          </ListItemIcon>
-          <ListItemText>{props.frenchLabel}</ListItemText>
-        </MenuItem>
-
-        <MenuItem
-          selected={locale === 'en'}
-          onClick={() => changeLanguage('en')}
-        >
-          <ListItemIcon>
-            <CheckIcon
-              fontSize="small"
-              color="primary"
-              sx={{ visibility: locale === 'en' ? 'visible' : 'hidden' }}
-            />
-          </ListItemIcon>
-          <ListItemText>{props.englishLabel}</ListItemText>
-        </MenuItem>
+        {(['fr', 'en'] as const).map((option) => (
+          <MenuItem
+            key={option}
+            selected={locale === option}
+            onClick={() => changeLanguage(option)}
+          >
+            <ListItemIcon>
+              <CheckIcon
+                fontSize="small"
+                color="primary"
+                sx={{ visibility: locale === option ? 'visible' : 'hidden' }}
+              />
+            </ListItemIcon>
+            <ListItemText>{option === 'fr' ? props.frenchLabel : props.englishLabel}</ListItemText>
+          </MenuItem>
+        ))}
       </Menu>
     </>
   );

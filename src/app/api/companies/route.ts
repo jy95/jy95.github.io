@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { cachedJson } from "@/lib/http/cachedJson";
 import { loadCompanies, toCompanySummary } from "./data";
 import type { CompanyRole, CompanySummary } from "./data";
 
@@ -43,7 +43,5 @@ export async function GET(request: Request) {
         pageSize,
         page,
     };
-    return NextResponse.json(response, {
-        headers: { "Cache-Control": "public, max-age=86400, must-revalidate" },
-    });
+    return cachedJson(response);
 }

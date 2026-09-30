@@ -17,32 +17,17 @@ import GameCardOverlay from "./GameCardOverlay";
 // Types
 import type { CardGame } from "@/domain/games";
 
-function CardEntry(props : {
-    game: CardGame;
-}) {
+function CardEntry({ game }: { game: CardGame }) {
 
     // hooks
     const router = useRouter();
     const locale = useLocale();
     const t = useTranslations("gameDetail");
 
-    // props
-    const {game} = props;
-    
-    // consts
-    const {
-        url_type,
-        id: gameId
-    } = game;
-
-    function watchGame() {
-        router.push(buildWatchRoute(url_type, gameId))
-    }
-
     return (
         <BaseCard 
             item={game}
-            onClick={() => watchGame()}
+            onClick={(item) => router.push(buildWatchRoute(item.url_type, item.id))}
             actionsSlot={(item) => (
                 <Tooltip title={t("details", { title: item.title })}>
                     <IconButton

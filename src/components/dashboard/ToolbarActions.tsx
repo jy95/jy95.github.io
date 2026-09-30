@@ -24,7 +24,13 @@ import LanguageToggle from './LanguageToggle';
 import type { Props as CommonProps } from './types';
 
 type Props = CommonProps;
-type ColorSchemeMode = Parameters<ReturnType<typeof useColorScheme>['setMode']>[0];
+const MODE_OPTIONS = [
+  { value: 'light', label: 'lightLabel', Icon: LightModeIcon },
+  { value: 'dark', label: 'darkLabel', Icon: DarkModeOutlinedIcon },
+  { value: 'system', label: 'systemLabel', Icon: SettingsBrightnessIcon },
+] as const;
+
+type ColorSchemeMode = typeof MODE_OPTIONS[number]['value'];
 
 export default function ToolbarActions(props: Props) {
   const { mode, setMode } = useColorScheme();
@@ -44,17 +50,7 @@ export default function ToolbarActions(props: Props) {
     handleClose();
   };
 
-  // Icône représentant le mode actif
-  const getCurrentIcon = () => {
-    switch (mode) {
-      case 'light':
-        return <LightModeIcon fontSize="small" />;
-      case 'dark':
-        return <DarkModeOutlinedIcon fontSize="small" />;
-      default:
-        return <SettingsBrightnessIcon fontSize="small" />;
-    }
-  };
+  const CurrentIcon = MODE_OPTIONS.find(option => option.value === mode)?.Icon ?? SettingsBrightnessIcon;
 
   return (
     <Stack
@@ -82,7 +78,7 @@ export default function ToolbarActions(props: Props) {
             '&:hover': { color: 'text.primary' },
           }}
         >
-          {getCurrentIcon()}
+          <CurrentIcon fontSize="small" />
         </IconButton>
       </Tooltip>
 
@@ -101,38 +97,19 @@ export default function ToolbarActions(props: Props) {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem
-          selected={mode === 'light'}
-          onClick={() => handleSelectMode('light')}
-        >
-          <ListItemIcon>
-            <LightModeIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>{props.lightLabel}</ListItemText>
-          {mode === 'light' && <CheckIcon fontSize="small" color="primary" />}
-        </MenuItem>
-
-        <MenuItem
-          selected={mode === 'dark'}
-          onClick={() => handleSelectMode('dark')}
-        >
-          <ListItemIcon>
-            <DarkModeOutlinedIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>{props.darkLabel}</ListItemText>
-          {mode === 'dark' && <CheckIcon fontSize="small" color="primary" />}
-        </MenuItem>
-
-        <MenuItem
-          selected={mode === 'system'}
-          onClick={() => handleSelectMode('system')}
-        >
-          <ListItemIcon>
-            <SettingsBrightnessIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>{props.systemLabel}</ListItemText>
-          {mode === 'system' && <CheckIcon fontSize="small" color="primary" />}
-        </MenuItem>
+        {MODE_OPTIONS.map(({ value, label, Icon }) => (
+          <MenuItem
+            key={value}
+            selected={mode === value}
+            onClick={() => handleSelectMode(value)}
+          >
+            <ListItemIcon>
+              <Icon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>{props[label]}</ListItemText>
+            {mode === value && <CheckIcon fontSize="small" color="primary" />}
+          </MenuItem>
+        ))}
       </Menu>
     </Stack>
   );

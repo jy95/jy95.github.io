@@ -2,13 +2,15 @@
 
 // Parameters explained on https://developers.google.com/youtube/player_parameters#Parameters
 import YouTubeVideoElement from 'youtube-video-element/react';
+import { buildPlaylistUrl, buildVideoUrl } from '@/domain/games/youtube';
+import type { YTUrlType } from '@/domain/games';
 
-type Params = {type: "PLAYLIST" | "VIDEO", identifier : string}
+type Params = {type: YTUrlType, identifier : string}
 
 export default function Player({type, identifier} : Params) {
     const url = (type === "PLAYLIST") 
-        ? `https://www.youtube.com/playlist?list=${identifier}` 
-        : `https://www.youtube.com/watch?v=${identifier}`;
+        ? buildPlaylistUrl(identifier)
+        : buildVideoUrl(identifier);
     
     return (
         <YouTubeVideoElement 
