@@ -15,7 +15,7 @@ vi.mock('@/redux/services/platformsAPI', () => ({ useGetPlatformsQuery }));
 const locales = [
     { locale: 'en', messages: en, labels: ['Platform', 'Platforms'] },
     { locale: 'fr', messages: fr, labels: ['Plateforme', 'Plateformes'] },
-];
+] as const;
 
 function PlatformLabel({ count }: { count: number }) {
     const t = useTranslations('gameDetail');
