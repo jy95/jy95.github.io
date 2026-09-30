@@ -210,7 +210,7 @@ describe('gamesAPI query building (getGames)', () => {
         expect(calledUrl(fetchMock).searchParams.getAll('genres')).toEqual([]);
     });
 
-    it('combines title, platform and genre filters together in a single request', async () => {
+    it('combines title, platform, genres and release years in a single request', async () => {
         const store = makeStore();
         await store.dispatch(
             gamesAPI.endpoints.getGames.initiate({
@@ -218,6 +218,8 @@ describe('gamesAPI query building (getGames)', () => {
                     title: 'mario',
                     platform: 1,
                     genres: [5],
+                    releaseDateFrom: 2000,
+                    releaseDateTo: 2005,
                 },
                 pageSize: 12,
             })
@@ -227,6 +229,8 @@ describe('gamesAPI query building (getGames)', () => {
         expect(url.searchParams.get('title')).toBe('mario');
         expect(url.searchParams.get('platform')).toBe('1');
         expect(url.searchParams.getAll('genres')).toEqual(['5']);
+        expect(url.searchParams.get('releaseDateFrom')).toBe('2000');
+        expect(url.searchParams.get('releaseDateTo')).toBe('2005');
     });
 
     it('respects a different pageSize value in the query string', async () => {

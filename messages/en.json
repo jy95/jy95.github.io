@@ -88,6 +88,12 @@
             "releaseDate": "Release date",
             "duration": "Duration"
         },
+        "releasePeriod": {
+            "label": "Release date",
+            "from": "Starting release year",
+            "to": "Ending release year",
+            "active": "Release: {from}–{to}"
+        },
         "filtersButtonLabel": "Filters",
         "filterActions": {
             "close": "Close filters",

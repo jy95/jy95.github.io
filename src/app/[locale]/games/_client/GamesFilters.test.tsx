@@ -116,7 +116,7 @@ describe('mobile filters', () => {
         fireEvent.click(within(dialog).getByRole('button', { name: 'Select genres' }));
         expect(onChange).not.toHaveBeenCalled();
         fireEvent.click(within(dialog).getByRole('button', { name: 'gamesLibrary.filterActions.apply' }));
-        expect(onChange).toHaveBeenCalledExactlyOnceWith({ platform: 6, genres: [2, 13] });
+        expect(onChange).toHaveBeenCalledExactlyOnceWith({ platform: 6, genres: [2, 13], releaseDateFrom: undefined, releaseDateTo: undefined });
         rerender(<GamesFilters filters={{ title: 'Zelda', sort: 'duration_desc', platform: 6, genres: [2, 13] }} onChange={onChange} />);
         await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
         expect(trigger).toHaveFocus();
@@ -132,7 +132,7 @@ describe('mobile filters', () => {
         expect(screen.getByLabelText('Genres value')).toBeEmptyDOMElement();
         expect(onChange).not.toHaveBeenCalled();
         fireEvent.click(screen.getByRole('button', { name: 'gamesLibrary.filterActions.apply' }));
-        expect(onChange).toHaveBeenCalledExactlyOnceWith({ platform: undefined, genres: [] });
+        expect(onChange).toHaveBeenCalledExactlyOnceWith({ platform: undefined, genres: [], releaseDateFrom: undefined, releaseDateTo: undefined });
     });
 
     it('discards edits on close or Escape and initializes each opening from applied filters', async () => {
@@ -173,4 +173,38 @@ it('exposes the desktop disclosure relationship and closes it on viewport change
     expect(screen.queryByRole('region')).not.toBeInTheDocument();
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
+});
+
+
+it('counts the release period once and clears it through its active chip', () => {
+    const onChange = vi.fn();
+    render(<GamesFilters filters={{ platform: 6, genres: [1], releaseDateFrom: 2000, releaseDateTo: 2005 }} onChange={onChange} />);
+    expect(screen.getByRole('button', { name: /filtersButtonLabel/ })).toHaveTextContent('3');
+    const chip = screen.getByRole('button', { name: /releasePeriod.active/ });
+    chip.focus();
+    fireEvent.keyUp(chip, { key: 'Delete' });
+    expect(onChange).toHaveBeenCalledExactlyOnceWith({ releaseDateFrom: undefined, releaseDateTo: undefined });
+});
+
+it('stages release years in the mobile dialog, discards them on close and clears on Apply', async () => {
+    responsive.mobile = true;
+    const onChange = vi.fn();
+    render(<GamesFilters filters={{ title: 'Zelda', platform: 6, releaseDateFrom: 2000, releaseDateTo: 2005 }} onChange={onChange} />);
+    const open = () => fireEvent.click(screen.getByRole('button', { name: /filtersButtonLabel/ }));
+    open();
+    fireEvent.change(screen.getByRole('slider', { name: 'gamesLibrary.releasePeriod.from' }), { target: { value: '2001' } });
+    expect(onChange).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('button', { name: 'gamesLibrary.filterActions.close' }));
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+    open();
+    expect(screen.getByRole('slider', { name: 'gamesLibrary.releasePeriod.from' })).toHaveValue('2000');
+    fireEvent.change(screen.getByRole('slider', { name: 'gamesLibrary.releasePeriod.to' }), { target: { value: '2010' } });
+    fireEvent.click(screen.getByRole('button', { name: 'gamesLibrary.filterActions.apply' }));
+    expect(onChange).toHaveBeenLastCalledWith({ platform: 6, genres: undefined, releaseDateFrom: 2000, releaseDateTo: 2010 });
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+    open();
+    fireEvent.click(screen.getByRole('button', { name: 'gamesLibrary.filterActions.clear' }));
+    expect(screen.getByRole('slider', { name: 'gamesLibrary.releasePeriod.to' })).toHaveValue(String(new Date().getFullYear()));
+    fireEvent.click(screen.getByRole('button', { name: 'gamesLibrary.filterActions.apply' }));
+    expect(onChange).toHaveBeenLastCalledWith({ platform: undefined, genres: [], releaseDateFrom: undefined, releaseDateTo: undefined });
 });

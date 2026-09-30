@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { GAME_SORT_OPTIONS } from '@/types/gamesFilters';
-import { canonicalizeGenres, normalizeGameFilters, filtersToSearchParams, searchParamsToFilters } from './gamesFilterUtils';
+import { MIN_RELEASE_YEAR, getMaxReleaseYear, getReleaseYearRange, releaseYear, canonicalizeGenres, normalizeGameFilters, filtersToSearchParams, searchParamsToFilters } from './gamesFilterUtils';
 
 describe('game filter conversion', () => {
     it('canonicalizes without mutating frozen arrays', () => {
@@ -35,5 +35,42 @@ describe('game filter conversion', () => {
         expect(filters).toEqual({ title: 'first', platform: 2 });
         expect(normalizeGameFilters(normalizeGameFilters(filters))).toEqual(filters);
         expect(params.getAll('title')).toEqual(['first', 'second']);
+    });
+});
+
+
+describe('release period normalization', () => {
+    afterEach(() => vi.useRealTimers());
+
+    it('uses the earliest catalogue release without shipping the catalogue to the client', async () => {
+        const games = (await import('@/app/api/games/games.json')).default;
+        const years = games.map(game => releaseYear(game.releaseDate)).filter(year => year !== undefined);
+        expect(MIN_RELEASE_YEAR).toBe(Math.min(...years));
+    });
+
+    it.each([2026, 2027, 2028])('uses calendar year %s even when catalogue releases end earlier', async year => {
+        vi.useFakeTimers();
+        vi.setSystemTime(new Date(year, 5, 1));
+        const games = (await import('@/app/api/games/games.json')).default;
+        expect(Math.max(...games.map(game => releaseYear(game.releaseDate) ?? 0))).toBeLessThan(year);
+        expect(getMaxReleaseYear()).toBe(year);
+        expect(getReleaseYearRange({})).toEqual([MIN_RELEASE_YEAR, year]);
+        expect(filtersToSearchParams({ releaseDateFrom: MIN_RELEASE_YEAR, releaseDateTo: year }).toString()).toBe('');
+    });
+
+    it('round-trips a period alongside all existing filters', () => {
+        const filters = { title: 'Zelda', platform: 6, genres: [1, 2], sort: 'title_asc' as const, releaseDateFrom: 2000, releaseDateTo: 2005 };
+        const params = filtersToSearchParams(filters);
+        expect(params.get('releaseDateFrom')).toBe('2000');
+        expect(params.get('releaseDateTo')).toBe('2005');
+        expect(searchParamsToFilters(params)).toEqual(filters);
+    });
+
+    it('supports single bounds, clamps out-of-range years, orders reversed bounds and ignores malformed years', () => {
+        expect(searchParamsToFilters(new URLSearchParams('releaseDateFrom=2000'))).toEqual({ releaseDateFrom: 2000 });
+        expect(searchParamsToFilters(new URLSearchParams('releaseDateTo=2005'))).toEqual({ releaseDateTo: 2005 });
+        expect(searchParamsToFilters(new URLSearchParams('releaseDateFrom=2005&releaseDateTo=2000'))).toEqual({ releaseDateFrom: 2000, releaseDateTo: 2005 });
+        expect(searchParamsToFilters(new URLSearchParams('releaseDateFrom=1900&releaseDateTo=9999'))).toEqual({});
+        expect(searchParamsToFilters(new URLSearchParams('releaseDateFrom=2000oops&releaseDateTo=2005.5'))).toEqual({});
     });
 });

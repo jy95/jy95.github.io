@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import Fuse from 'fuse.js';
 import { loadPublishedGames, toPublishedGame } from "@/lib/gamesData";
 import type { RawPublishedGame } from "@/lib/gamesData";
-import { searchParamsToFilters } from "@/lib/gamesFilterUtils";
+import { getReleaseYearRange, releaseYear, searchParamsToFilters } from "@/lib/gamesFilterUtils";
 import { sortGames } from "@/lib/gamesSort";
 
 import type { CardGame } from "@/domain/games";
@@ -49,6 +49,11 @@ function generateResponse(params: RequestParams, gamesData: RawPayload): Respons
             }
             if (filters.genres !== undefined && !filters.genres.some(v => game.genres.includes(v))) {
                 return false;
+            }
+            if (filters.releaseDateFrom !== undefined || filters.releaseDateTo !== undefined) {
+                const year = releaseYear(game.releaseDate);
+                const [from, to] = getReleaseYearRange(filters);
+                if (year === undefined || year < from || year > to) return false;
             }
             return true;
         });
