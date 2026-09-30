@@ -14,26 +14,12 @@ const mockDlcs = [
         game_title: 'Batman: Arkham Knight',
         dlcs: [
             { id: 193, title: 'Harley Quinn Story Pack', videoId: 'ln_Pnp1zOQw', duration: '00:15:00', platform: 1 },
-            { id: 192, title: 'Red Hood Story Pack', videoId: 'FO8cYct2Bkw', duration: '00:14:17', platform: 1 },
+            { id: 192, title: 'Playlist DLC', playlistId: 'dlc-playlist', duration: '00:14:17', platform: 1, coverFile: 'dlc.webp' },
         ],
     },
 ];
 
 vi.mock('./dlcs.json', () => ({ default: mockDlcs }));
-
-vi.mock('@/domain/games', () => ({
-    buildCardEntry: (game: { videoId?: string; playlistId?: string }, base: string) => {
-        const id = game.videoId ?? game.playlistId!;
-        return {
-            id,
-            url: game.videoId
-                ? `https://www.youtube.com/watch?v=${id}`
-                : `https://www.youtube.com/playlist?list=${id}`,
-            url_type: game.videoId ? 'VIDEO' : 'PLAYLIST',
-            imagePath: `${base}/${id}/cover.webp`,
-        };
-    },
-}));
 
 import { GET } from './route';
 
@@ -51,6 +37,7 @@ describe('GET /api/dlcs', () => {
         const res = await GET();
         const data = await res.json();
         expect(data).toHaveLength(mockDlcs.length);
+        expect(data.map((group: { id: string }) => group.id)).toEqual(mockDlcs.map((group) => group.id));
     });
 
     it('preserves the number and order of dlcs within a group', async () => {
@@ -59,7 +46,7 @@ describe('GET /api/dlcs', () => {
         expect(data[1].items).toHaveLength(2);
         expect(data[1].items.map((i: { title: string }) => i.title)).toEqual([
             'Harley Quinn Story Pack',
-            'Red Hood Story Pack',
+            'Playlist DLC',
         ]);
     });
 
@@ -72,6 +59,24 @@ describe('GET /api/dlcs', () => {
                 expect(['PLAYLIST', 'VIDEO']).toContain(item.url_type);
             }
         }
+    });
+
+    it('preserves stored DLC fields while replacing numeric IDs with canonical identities', async () => {
+        const data = await (await GET()).json();
+        expect(data[0].items[0]).toEqual({
+            ...mockDlcs[0].dlcs[0], id: 'XGEgNG67oXA',
+            url: 'https://www.youtube.com/watch?v=XGEgNG67oXA', url_type: 'VIDEO',
+            imagePath: '/covers/XGEgNG67oXA/cover.webp',
+        });
+        expect(data[1].items[1]).toEqual({
+            ...mockDlcs[1].dlcs[1], id: 'dlc-playlist',
+            url: 'https://www.youtube.com/playlist?list=dlc-playlist', url_type: 'PLAYLIST',
+            imagePath: '/covers/dlc-playlist/dlc.webp',
+        });
+    });
+
+    it('retains public cache headers', async () => {
+        expect((await GET()).headers.get('Cache-Control')).toBe('public, max-age=86400, must-revalidate');
     });
 
 });

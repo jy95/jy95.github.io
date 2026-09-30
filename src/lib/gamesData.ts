@@ -4,11 +4,20 @@ import type { RawGame, CardGame } from "@/domain/games";
 import type { BacklogEntry, PlanningEntry } from "@/domain/games/details";
 
 export type RawPublishedGame = RawGame & { genres: number[] };
+export type StoredDlcGroup = {
+    id: string;
+    game_title: string;
+    dlcs: (RawGame & { id: number })[];
+};
 export type RawBacklogEntry = Omit<BacklogEntry, "id" | "imagePath">;
 type StoredBacklogEntry = RawBacklogEntry & { id: number };
 
 export async function loadPublishedGames(): Promise<RawPublishedGame[]> {
     return (await import("@/app/api/games/games.json")).default;
+}
+
+export async function loadDlcGroups(): Promise<StoredDlcGroup[]> {
+    return (await import("@/app/api/dlcs/dlcs.json")).default;
 }
 
 export async function loadPlanningGames(): Promise<RawGame[]> {
