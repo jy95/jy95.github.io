@@ -107,10 +107,10 @@ it('preserves shared selection IDs and repeated filters when changing locale', (
     mockLocale = 'en';
     mockParams = {};
     mockPathname = '/selection';
-    window.history.replaceState({}, '', '/en/selection?games=game-a,game-b&genres=1&genres=2');
+    window.history.replaceState({}, '', '/en/selection?selection=H4sIA_test-value&genres=1&genres=2');
     render(<LanguageToggle {...props} />);
     fireEvent.click(screen.getByText('en'));
     fireEvent.click(screen.getByText('French'));
-    expect(replaceMock).toHaveBeenCalledWith({ pathname: '/selection', query: { games: ['game-a,game-b'], genres: ['1', '2'] } }, { locale: 'fr' });
+    expect(replaceMock).toHaveBeenCalledWith({ pathname: '/selection', query: { selection: ['H4sIA_test-value'], genres: ['1', '2'] } }, { locale: 'fr' });
     window.history.replaceState({}, '', '/');
 });

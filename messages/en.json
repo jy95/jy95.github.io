@@ -301,6 +301,11 @@
         "storageUnavailable": "Browser storage is unavailable. Your selection will only be kept until you leave or reload this page.",
         "imported": "All games are in my selection",
         "openOwn": "Open my selection",
-        "import": "Add these games to my selection"
+        "import": "Add these games to my selection",
+        "processing": "Processing selection…",
+        "invalid": "This selection link is invalid or damaged.",
+        "unsupported": "This selection version is not supported.",
+        "compressionUnavailable": "This browser does not support compressed selection links.",
+        "tooLarge": "This selection exceeds the supported link size."
     }
 }

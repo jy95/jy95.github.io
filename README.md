@@ -14,6 +14,12 @@ Currently, we have the following pages :
 * [`/tier`](https://jy95.github.io/tier) - Tier lists grouping and ranking games, backlog entries and tests related to the [GamesPassionFR][YoutubeChannel] YT channel
 * [`/companies`](https://jy95.github.io/companies) - List of game developers and publishers, with the games associated with each company on the [GamesPassionFR][YoutubeChannel] YT channel
 
+## Personal selections
+
+Personal selections store only identifiers in versioned JSON (`version: 2`), grouped as `games`, `backlog`, `dlcs`, and `planning`. Backlog identifiers are stored without the `backlog:` card prefix. For overlapping catalogue IDs, published games take precedence over DLCs, then planning. Existing flat browser selections and `?games=...` links remain supported; catalogue information classifies legacy IDs, and unresolved IDs are retained in an optional `legacyIds` field.
+
+New links encode UTF-8 selection JSON using gzip and base64url in `?selection=...`. Encoding and decoding require browser CompressionStream/DecompressionStream support; unsupported browsers show an error. Compressed inputs are limited to 64 KiB of encoded text and 256 KiB of decompressed JSON. Compression reduces link length but cannot guarantee that every selection fits browser or service URL limits.
+
 ## Getting Started
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
