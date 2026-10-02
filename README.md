@@ -18,7 +18,7 @@ Currently, we have the following pages :
 
 Personal selections store only identifiers in versioned JSON (`version: 2`), grouped as `games`, `backlog`, `dlcs`, and `planning`. Backlog identifiers are stored without the `backlog:` card prefix. For overlapping catalogue IDs, published games take precedence over DLCs, then planning. Existing flat browser selections remain supported; catalogue information classifies legacy IDs, and unresolved IDs are retained in an optional `legacyIds` field.
 
-The selection page shows one grid with Games, DLCs, Planned games, and Backlog options in the Content kinds multi-select, all enabled by default. Kind badges appear only on selection cards. Catalogue filters and sorting apply across the enabled kinds. Sharing and importing always include the full available selection, regardless of display filters.
+The selection page shows one grid with an All option (the default), followed by Games, Backlog, DLCs, and Planned games in the Content kinds single select. Kind badges appear only on selection cards. Catalogue filters and sorting apply to the chosen kind. Sharing and importing always include the full available selection, regardless of display filters.
 
 New links encode UTF-8 selection JSON using deflate-raw and base64url in `?selection=...`. Encoding and decoding require browser CompressionStream/DecompressionStream support for `deflate-raw`; unsupported browsers show an error. Compressed inputs are limited to 64 KiB of encoded text and 256 KiB of decompressed JSON. Compression reduces link length but cannot guarantee that every selection fits browser or service URL limits.
 

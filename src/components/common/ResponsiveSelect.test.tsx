@@ -46,44 +46,22 @@ it('retains the controlled value across viewport changes without publishing a ch
     expect(onChange).not.toHaveBeenCalled();
 });
 
-it.each([false, true])('supports multiple values and labelled options (mobile: %s)', mobile => {
+it.each([false, true])('supports single-value option icons (mobile: %s)', mobile => {
     responsive.mobile = mobile;
     const onChange = vi.fn();
-    const kinds = [{ value: 'games', label: 'Games', icon: <svg data-testid="kind-icon" /> }, { value: 'dlcs', label: 'DLCs' }];
-    render(<ResponsiveSelect multiple label="Content kinds" value={['games']} options={kinds} onChange={onChange} />);
+    const kinds = [{ value: 'all', label: 'All', icon: <svg aria-hidden="true" data-testid="kind-icon" /> }, { value: 'games', label: 'Games' }];
+    render(<ResponsiveSelect label="Content kinds" value="all" options={kinds} onChange={onChange} />);
+    const select = screen.getByRole('combobox', { name: 'Content kinds' });
     if (mobile) {
-        const select = screen.getByRole('listbox', { name: 'Content kinds' }) as HTMLSelectElement;
         expect(select.tagName).toBe('SELECT');
-        expect(select).toHaveValue(['games']);
-        select.options[0].selected = false;
-        select.options[1].selected = true;
-        fireEvent.change(select);
-        expect(onChange).toHaveBeenCalledExactlyOnceWith(['dlcs']);
+        expect(select).toHaveValue('all');
         expect(screen.queryByTestId('kind-icon')).not.toBeInTheDocument();
+        fireEvent.change(select, { target: { value: 'games' } });
     } else {
-        const select = screen.getByRole('combobox', { name: 'Content kinds' });
-        expect(select).toHaveTextContent('Games');
-        expect(select).toHaveAttribute('aria-labelledby', expect.stringContaining(`${select.id}-label`));
+        expect(select).toHaveTextContent('All');
         expect(screen.getByTestId('kind-icon').parentElement).toHaveAttribute('aria-hidden', 'true');
         fireEvent.keyDown(select, { key: 'ArrowDown' });
-        expect(screen.getByRole('option', { name: 'Games' })).toHaveAttribute('aria-selected', 'true');
-        expect(screen.getAllByRole('checkbox', { hidden: true })).toHaveLength(2);
-        fireEvent.click(screen.getByRole('option', { name: 'DLCs' }));
-        expect(onChange).toHaveBeenCalledExactlyOnceWith(['games', 'dlcs']);
+        fireEvent.click(screen.getByRole('option', { name: 'Games' }));
     }
-});
-
-it.each([false, true])('keeps an empty multiple picker labelled and usable (mobile: %s)', mobile => {
-    responsive.mobile = mobile;
-    const onChange = vi.fn();
-    render(<ResponsiveSelect multiple label="Content kinds" value={[]} options={options} onChange={onChange} />);
-    const select = screen.getByRole(mobile ? 'listbox' : 'combobox', { name: 'Content kinds' });
-    if (mobile) {
-        (select as HTMLSelectElement).options[1].selected = true;
-        fireEvent.change(select);
-    } else {
-        fireEvent.mouseDown(select);
-        fireEvent.click(screen.getByRole('option', { name: 'PC' }));
-    }
-    expect(onChange).toHaveBeenCalledExactlyOnceWith(['pc']);
+    expect(onChange).toHaveBeenCalledExactlyOnceWith('games');
 });

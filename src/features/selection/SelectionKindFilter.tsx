@@ -1,17 +1,18 @@
 import { useTranslations } from 'next-intl';
+import AppsIcon from '@mui/icons-material/Apps';
 import ResponsiveSelect from '@/components/common/ResponsiveSelect';
 import { SelectionKindIcon } from './SelectionKindBadge';
 import { SELECTION_CATEGORIES, type SelectionCategory } from './documentTypes';
 
-type Props = { enabledKinds: readonly SelectionCategory[]; toggleKind: (category: SelectionCategory) => void };
+export type SelectionKind = 'all' | SelectionCategory;
+type Props = { kind: SelectionKind; setKind: (kind: SelectionKind) => void };
 
-export function SelectionKindFilter({ enabledKinds, toggleKind }: Props) {
+export function SelectionKindFilter({ kind, setKind }: Props) {
     const t = useTranslations('selection');
-    return <ResponsiveSelect multiple label={t('kinds')} value={enabledKinds}
-        options={SELECTION_CATEGORIES.map(category => ({ value: category, label: t(`categories.${category}`), icon: <SelectionKindIcon category={category} /> }))}
-        onChange={enabled => {
-            for (const category of SELECTION_CATEGORIES) {
-                if (enabled.includes(category) !== enabledKinds.includes(category)) toggleKind(category);
-            }
-        }} />;
+    return <ResponsiveSelect label={t('kinds')} value={kind}
+        options={[
+            { value: 'all', label: t('categories.all'), icon: <AppsIcon fontSize="small" aria-hidden="true" /> },
+            ...SELECTION_CATEGORIES.map(category => ({ value: category, label: t(`categories.${category}`), icon: <SelectionKindIcon category={category} /> })),
+        ]}
+        onChange={value => setKind(value as SelectionKind)} />;
 }
