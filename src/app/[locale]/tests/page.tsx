@@ -20,7 +20,7 @@ export default function TestsPage() {
             onRetry={refetch}
         >
             {(data) => (
-                <CardGrid items={data.items} size={{
+                <CardGrid selectable={false} items={data.items} size={{
                     xs: 12,
                     sm: 6,
                     md: 3,

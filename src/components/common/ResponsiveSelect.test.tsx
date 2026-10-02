@@ -45,3 +45,23 @@ it('retains the controlled value across viewport changes without publishing a ch
     expect(screen.getByRole('combobox', { name: 'Platform' })).toHaveTextContent('PC');
     expect(onChange).not.toHaveBeenCalled();
 });
+
+it.each([false, true])('supports single-value option icons (mobile: %s)', mobile => {
+    responsive.mobile = mobile;
+    const onChange = vi.fn();
+    const kinds = [{ value: 'all', label: 'All', icon: <svg aria-hidden="true" data-testid="kind-icon" /> }, { value: 'games', label: 'Games' }];
+    render(<ResponsiveSelect label="Content kinds" value="all" options={kinds} onChange={onChange} />);
+    const select = screen.getByRole('combobox', { name: 'Content kinds' });
+    if (mobile) {
+        expect(select.tagName).toBe('SELECT');
+        expect(select).toHaveValue('all');
+        expect(screen.queryByTestId('kind-icon')).not.toBeInTheDocument();
+        fireEvent.change(select, { target: { value: 'games' } });
+    } else {
+        expect(select).toHaveTextContent('All');
+        expect(screen.getByTestId('kind-icon').parentElement).toHaveAttribute('aria-hidden', 'true');
+        fireEvent.keyDown(select, { key: 'ArrowDown' });
+        fireEvent.click(screen.getByRole('option', { name: 'Games' }));
+    }
+    expect(onChange).toHaveBeenCalledExactlyOnceWith('games');
+});

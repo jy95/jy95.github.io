@@ -15,6 +15,10 @@
         "stats": {
             "title": "Statistics | GamesPassionFR",
             "description": "Explore statistics about the GamesPassionFR game collection."
+        },
+        "selection": {
+            "title": "My GamesPassionFR Selection",
+            "description": "Keep the items that interest you in your selection on this browser."
         }
     },
     "dashboard": {
@@ -33,7 +37,8 @@
                 "companies": "Companies",
                 "random": "Random"
             },
-            "tierTabs": "Tier Lists"
+            "tierTabs": "Tier Lists",
+            "selection": "My selection"
         },
         "toolbar": {
             "settings": "Settings",
@@ -270,5 +275,45 @@
             "publisher": "Publishers"
         },
         "empty": "No games found for this company yet."
+    },
+    "selection": {
+        "title": "My GamesPassionFR Selection",
+        "sharedTitle": "Shared GamesPassionFR Selection",
+        "description": "Keep the items that interest you in your selection on this browser.",
+        "sharedDescription": "Explore these items and add them to your own selection.",
+        "add": "Add {title} to my selection",
+        "remove": "Remove {title} from my selection",
+        "count": "{count, plural, =1 {1 selected item} other {# selected items}}",
+        "empty": "Your selection is empty",
+        "sharedEmpty": "No available items in this shared selection",
+        "browse": "Browse the catalogue",
+        "clear": "Clear my selection",
+        "clearConfirm": "Remove all items from your selection?",
+        "cancel": "Cancel",
+        "close": "Close",
+        "share": "Share selection",
+        "shareDescription": "This link contains the items currently in this selection. Later changes will not change the link.",
+        "shareLink": "Selection link",
+        "copy": "Copy link",
+        "copied": "Link copied",
+        "copyFallback": "Select and copy the link above.",
+        "unavailable": "{count, plural, =1 {1 item is no longer available in the catalogue.} other {# items are no longer available in the catalogue.}}",
+        "storageUnavailable": "Browser storage is unavailable. Your selection will only be kept until you leave or reload this page.",
+        "imported": "All items are in my selection",
+        "openOwn": "Open my selection",
+        "import": "Add these items to my selection",
+        "processing": "Processing selection…",
+        "invalid": "This selection link is invalid or damaged.",
+        "unsupported": "This selection version is not supported.",
+        "compressionUnavailable": "This browser does not support compressed selection links.",
+        "tooLarge": "This selection exceeds the supported link size.",
+        "categories": {
+            "all": "All",
+            "games": "Games",
+            "backlog": "Backlog",
+            "dlcs": "DLCs",
+            "planning": "Planned games"
+        },
+        "kinds": "Content kinds"
     }
 }

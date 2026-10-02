@@ -12,6 +12,8 @@ import CasinoIcon from '@mui/icons-material/Casino';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import BusinessIcon from '@mui/icons-material/Business';
 
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+
 // Types
 import type { Navigation } from '@/components/toolpad/types';
 
@@ -61,6 +63,11 @@ export default function NavigationMenu(): Navigation {
                     titleKey: "gamesTabs.random"
                 }
             ]
+        },
+        {
+            segment: "selection",
+            icon: <BookmarkBorderIcon />,
+            titleKey: "selection"
         },
         {
             segment: "companies",

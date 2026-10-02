@@ -7,7 +7,7 @@ export function CardBadgesLayer({ children }: { children: ReactNode }) {
         <Box sx={{ 
             position: 'absolute', 
             top: 0, left: 0, right: 0, bottom: 0,
-            zIndex: 2,
+            zIndex: 4, // Keep permanent badges readable over the detail overlay.
             pointerEvents: 'none', // Allows clicks to pass through to the CardActionArea
             display: 'flex',
             flexDirection: 'column',

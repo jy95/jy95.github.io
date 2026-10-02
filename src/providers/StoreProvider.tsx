@@ -1,21 +1,23 @@
 'use client'
-import { useRef } from 'react'
+import { useEffect, useState } from 'react'
+import { connectSelectionStorage } from '@/features/selection/selectionPersistence'
 import { Provider } from 'react-redux'
 import { makeStore } from '../redux/Store'
 
 import type { ReactNode } from "react";
-import type { AppStore } from '../redux/Store'
 
 export default function StoreProvider({
   children,
 }: {
   children: ReactNode
 }) {
-  const storeRef = useRef<AppStore>(null)
-  if (!storeRef.current) {
-    // Create the store instance the first time this renders
-    storeRef.current = makeStore()
-  }
+  // Capture the store and server snapshot once, including during Suspense hydration.
+  const [{ store, serverState }] = useState(() => {
+    const store = makeStore()
+    return { store, serverState: store.getState() }
+  })
 
-  return <Provider store={storeRef.current}>{children}</Provider>
+  useEffect(() => connectSelectionStorage(store), [store])
+
+  return <Provider store={store} serverState={serverState}>{children}</Provider>
 }

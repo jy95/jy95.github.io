@@ -1,5 +1,5 @@
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
+import { makeStore } from '@/redux/Store';
 import { Provider } from 'react-redux';
 import { NextIntlClientProvider } from 'next-intl';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -34,9 +34,6 @@ const planned: PlanningEntry = { ...game, id: 'upcoming', title: 'Planned game',
 const backlog: BacklogEntry = { id: '42', title: 'Backlog game', imagePath: '/backlogcovers/42/cover.webp', notes: 'My notes', hltb_main: '10:00:00' };
 let store: ReturnType<typeof makeStore>;
 let failedStatus: number | undefined;
-function makeStore() {
-    return configureStore({ reducer: { [api.reducerPath]: api.reducer }, middleware: (getDefault) => getDefault().concat(api.middleware) });
-}
 function respond(request: Request) {
     if (new URL(request.url).pathname === '/api/platforms') {
         return new Response(JSON.stringify([{ id: 1, name: 'PC' }]));

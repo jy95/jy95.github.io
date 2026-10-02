@@ -1,7 +1,8 @@
+import StoreProvider from '@/providers/StoreProvider';
 import { echoTranslations } from "@/test/mocks/nextIntl";
 vi.mock("next-intl", () => echoTranslations());
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render as rtlRender, screen, fireEvent } from '@testing-library/react';
 
 const pushMock = vi.fn();
 vi.mock('@/i18n/routing', () => ({
@@ -100,3 +101,5 @@ describe('GameToolbar', () => {
         });
     });
 });
+
+function render(ui: React.ReactNode) { return rtlRender(<StoreProvider>{ui}</StoreProvider>); }
