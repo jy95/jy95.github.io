@@ -15,10 +15,6 @@ function categoryMatcher(document: SelectionDocument) {
     return (entry: SelectionEntry) => byCategory[entry.category].has(entry.game.id) || legacy.has(entry.selectionId);
 }
 
-export function matchesSelectionCategory(entry: SelectionEntry, document: SelectionDocument): boolean {
-    return categoryMatcher(document)(entry);
-}
-
 export function resolveSelectionCatalogue(
     catalogue: SelectionEntry[],
     requested: string[],
