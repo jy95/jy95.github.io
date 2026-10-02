@@ -136,3 +136,20 @@ it('supports window scrolling when there is no scrolling ancestor', () => {
     expect(screen.getByRole('img', { name: 'Item 40' })).toBeInTheDocument();
     expect(screen.queryByRole('img', { name: 'Item 0' })).not.toBeInTheDocument();
 });
+
+it('reuses scroll and resize subscriptions when entries change and cleans them up on unmount', () => {
+    const subscribe = vi.spyOn(window, 'addEventListener');
+    const unsubscribe = vi.spyOn(window, 'removeEventListener');
+    const { main, update, unmount } = mount();
+    const subscribeScroll = vi.spyOn(main, 'addEventListener');
+    const unsubscribeScroll = vi.spyOn(main, 'removeEventListener');
+    const resizeSubscriptions = subscribe.mock.calls.filter(([type]) => type === 'resize').length;
+    update(entries.slice(0, 2));
+    update([...entries].reverse());
+    expect(subscribe.mock.calls.filter(([type]) => type === 'resize')).toHaveLength(resizeSubscriptions);
+    expect(subscribeScroll.mock.calls.filter(([type]) => type === 'scroll')).toHaveLength(0);
+    expect(unsubscribeScroll.mock.calls.filter(([type]) => type === 'scroll')).toHaveLength(0);
+    unmount();
+    expect(unsubscribeScroll.mock.calls.filter(([type]) => type === 'scroll')).toHaveLength(1);
+    expect(unsubscribe.mock.calls.some(([type]) => type === 'resize')).toBe(true);
+});

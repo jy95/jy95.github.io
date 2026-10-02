@@ -89,3 +89,19 @@ it('persists a non-selection page toggle as legacy until the selection catalogue
     expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual({ ...emptySelection(), dlcs: ['dlc-a'] });
     stop();
 });
+
+it('does not persist invalid toggles or category updates with unchanged documents', () => {
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['game-a'] }));
+    const store = makeStore();
+    const stop = connectSelectionStorage(store);
+    const write = vi.spyOn(Storage.prototype, 'setItem');
+    try {
+        store.dispatch(toggleSelection('!!!'));
+        store.dispatch(setSelectionCategories({ 'game-b': 'dlcs' }));
+        expect(write).not.toHaveBeenCalled();
+        store.dispatch(toggleSelection('game-b'));
+        expect(write).toHaveBeenCalledTimes(1);
+    } finally {
+        stop();
+    }
+});

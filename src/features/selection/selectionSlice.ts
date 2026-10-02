@@ -17,6 +17,7 @@ type SelectionState = {
 const initialState: SelectionState = { ids: [], document: emptySelection(), categories: {}, hydrated: false, storageAvailable: true };
 
 function setDocument(state: Draft<SelectionState>, document: SelectionDocument) {
+    if (document === state.document) return;
     state.document = document;
     state.ids = selectionIds(document);
 }
@@ -28,18 +29,21 @@ const selectionSlice = createSlice({
         setSelectionCategories(state, action: PayloadAction<SelectionCategories>) {
             state.categories = action.payload;
             const resolved = resolveLegacySelection(state.document, action.payload);
-            // No-op (and no localStorage write) when nothing was resolved.
-            if (resolved !== state.document) setDocument(state, resolved);
+            setDocument(state, resolved);
         },
         hydrateSelection(state, action: PayloadAction<string[] | SelectionDocument>) {
-            setDocument(state, resolveSelectionInput(action.payload, state.categories));
+            const document = resolveSelectionInput(action.payload, state.categories);
+            setDocument(state, document);
             state.hydrated = true;
         },
         toggleSelection(state, action: PayloadAction<string>) {
-            setDocument(state, toggleSelectionIdentifier(state.document, action.payload, state.categories));
+            const document = toggleSelectionIdentifier(state.document, action.payload, state.categories);
+            setDocument(state, document);
         },
         addSelection(state, action: PayloadAction<string[] | SelectionDocument>) {
-            setDocument(state, mergeSelections(state.document, resolveSelectionInput(action.payload, state.categories)));
+            const addition = resolveSelectionInput(action.payload, state.categories);
+            const merged = mergeSelections(state.document, addition);
+            setDocument(state, merged);
         },
         clearSelection(state) { setDocument(state, emptySelection()); },
         setSelectionStorageAvailable(state, action: PayloadAction<boolean>) { state.storageAvailable = action.payload; },
