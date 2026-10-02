@@ -15,7 +15,7 @@ function SelectionResults({ model }: { model: SelectionPageModel }) {
     if (model.entries.length === 0) return <SelectionEmptyState shared={model.shared} />;
     return <>
         <GamesFilters filters={model.filters} onChange={model.updateFilters} />
-        <SelectionKindFilter enabledKinds={model.enabledKinds} toggleKind={model.toggleKind} />
+        <SelectionKindFilter kind={model.kind} setKind={model.setKind} />
         {model.visibleEntries.length > 0
             ? <SelectionCards entries={model.visibleEntries} onDetail={model.setDetail} />
             : <Typography role="status">{common('noResults')}</Typography>}

@@ -1,4 +1,4 @@
-import { navigation, setup, categorizedCatalogue, toggleKind } from './testUtils';
+import { navigation, setup, categorizedCatalogue, chooseKind } from './testUtils';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { parseSharedSelection, selectionQuery } from './sharing';
 import { emptySelection, selectionIds } from './schema';
@@ -61,13 +61,13 @@ it('shares the full selection while display filters hide games', async () => {
 });
 
 
-it.each(['en', 'fr'] as const)('imports and shares all categories when every kind is hidden in %s', async locale => {
+it.each(['en', 'fr'] as const)('imports and shares all categories while other kinds are hidden in %s', async locale => {
     const text = (locale === 'en' ? en : fr).selection;
     const document = { ...emptySelection(), games: ['game-0', 'game-1'], backlog: ['42'], dlcs: ['dlc'], planning: ['planned'] };
     navigation.query = await selectionQuery(document);
     const { store } = setup([], locale, 'light', categorizedCatalogue);
     await screen.findByRole('button', { name: text.import });
-    for (const name of Object.values(text.categories)) toggleKind(name, locale);
+    chooseKind(text.categories.games, locale);
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Alpha' } });
     fireEvent.click(screen.getByRole('button', { name: text.import }));
     expect(store.getState().selection.document).toEqual(document);

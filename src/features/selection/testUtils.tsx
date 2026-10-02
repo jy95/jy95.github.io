@@ -11,8 +11,8 @@ import type { GameFilters } from '@/types/gamesFilters';
 import en from '../../../messages/en.json';
 import fr from '../../../messages/fr.json';
 
-const navigation = vi.hoisted(() => ({ query: '', push: vi.fn(), sort: undefined as GameFilters['sort'] }));
-vi.mock('@mui/material/useMediaQuery', () => ({ default: () => false }));
+const navigation = vi.hoisted(() => ({ query: '', push: vi.fn(), sort: undefined as GameFilters['sort'], mobile: false }));
+vi.mock('@mui/material/useMediaQuery', () => ({ default: () => navigation.mobile }));
 vi.mock('next/navigation', () => ({ useSearchParams: () => new URLSearchParams(navigation.query) }));
 vi.mock('@/i18n/routing', () => ({
     useRouter: () => ({ push: navigation.push }),
@@ -39,19 +39,18 @@ export function setup(ids: string[] = [], locale: 'en' | 'fr' = 'en', mode: 'lig
     return { store, ...render(<SelectionPage catalogue={entries} />, { wrapper }), wrapper };
 }
 
-export function openKinds(locale: 'en' | 'fr' = 'en') {
+export function chooseKind(name: string, locale: 'en' | 'fr' = 'en') {
     const select = screen.getByRole('combobox', { name: (locale === 'en' ? en : fr).selection.kinds });
-    fireEvent.mouseDown(select);
-    return screen.getByRole('listbox');
+    if (select instanceof HTMLSelectElement) {
+        const option = within(select).getByRole('option', { name }) as HTMLOptionElement;
+        fireEvent.change(select, { target: { value: option.value } });
+    } else {
+        fireEvent.mouseDown(select);
+        fireEvent.click(within(screen.getByRole('listbox')).getByRole('option', { name }));
+    }
 }
 
-export function toggleKind(name: string, locale: 'en' | 'fr' = 'en') {
-    const listbox = openKinds(locale);
-    fireEvent.click(within(listbox).getByRole('option', { name }));
-    fireEvent.keyDown(listbox, { key: 'Escape' });
-}
-
-beforeEach(() => { navigation.query = ''; navigation.sort = undefined; navigation.push.mockClear(); });
+beforeEach(() => { navigation.query = ''; navigation.mobile = false; navigation.sort = undefined; navigation.push.mockClear(); });
 afterEach(() => { vi.restoreAllMocks(); });
 
 export const categorizedCatalogue: SelectionEntry[] = [
