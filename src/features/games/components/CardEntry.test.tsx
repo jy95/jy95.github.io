@@ -96,3 +96,11 @@ it('does not offer game selection for review cards', () => {
     render(<CardEntry game={baseGame} selectable={false} />);
     expect(screen.queryByRole('button', { name: /my selection/ })).not.toBeInTheDocument();
 });
+
+it('does not show selection kind badges on ordinary cards', () => {
+    render(<CardEntry game={baseGame} />);
+    expect(screen.queryByTestId('SportsEsportsIcon')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('ExtensionIcon')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('ScheduleIcon')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('HourglassEmptyIcon')).not.toBeInTheDocument();
+});

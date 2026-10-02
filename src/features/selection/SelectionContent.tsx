@@ -2,7 +2,12 @@ import { useTranslations } from 'next-intl';
 import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
-import { GroupedGamesAccordion } from '@/features/games/components/GroupedGamesAccordion';
+import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { SELECTION_CATEGORIES } from './documentTypes';
 import GamesFilters from '@/app/[locale]/games/_client/GamesFilters';
 import { SelectionActions } from './SelectionActions';
 import { SelectionEmptyState } from './SelectionEmptyState';
@@ -16,14 +21,17 @@ function SelectionResults({ model }: { model: SelectionPageModel }) {
     if (model.entries.length === 0) return <SelectionEmptyState shared={model.shared} />;
     return <>
         <GamesFilters filters={model.filters} onChange={model.updateFilters} />
-        <GroupedGamesAccordion
-            groups={model.sections.map(section => ({ ...section, name: `${t(`categories.${section.id}`)} — ${t('sectionCount', { selected: section.entries.length, matching: section.items.length })}` }))}
-            itemSize={{ xs: 6, md: 4, lg: 2 }}
-            defaultExpanded
-            renderContent={section => section.items.length > 0
-                ? <SelectionCards entries={section.items} onDetail={model.setDetail} />
-                : <Typography>{section.entries.length > 0 ? common('noResults') : t('sectionEmpty')}</Typography>}
-        />
+        <FormControl component="fieldset">
+            <FormLabel component="legend">{t('kinds')}</FormLabel>
+            <FormGroup row>
+                {SELECTION_CATEGORIES.map(category => <FormControlLabel key={category}
+                    label={t(`categories.${category}`)}
+                    control={<Checkbox checked={model.enabledKinds.includes(category)} onChange={() => model.toggleKind(category)} />} />)}
+            </FormGroup>
+        </FormControl>
+        {model.visibleEntries.length > 0
+            ? <SelectionCards entries={model.visibleEntries} onDetail={model.setDetail} />
+            : <Typography role="status">{common('noResults')}</Typography>}
     </>;
 }
 

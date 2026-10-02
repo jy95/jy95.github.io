@@ -311,9 +311,8 @@
             "games": "Jeux",
             "backlog": "À jouer",
             "dlcs": "DLCs",
-            "planning": "Planification"
+            "planning": "Jeux prévus"
         },
-        "sectionCount": "{matching} correspondants / {selected} sélectionnés",
-        "sectionEmpty": "Aucun jeu sélectionné dans cette section"
+        "kinds": "Types de jeux"
     }
 }

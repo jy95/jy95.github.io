@@ -311,9 +311,8 @@
             "games": "Games",
             "backlog": "Backlog",
             "dlcs": "DLCs",
-            "planning": "Planning"
+            "planning": "Planned games"
         },
-        "sectionCount": "{matching} matching / {selected} selected",
-        "sectionEmpty": "No selected games in this section"
+        "kinds": "Game kinds"
     }
 }
