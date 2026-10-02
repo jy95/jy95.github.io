@@ -4,7 +4,7 @@ import { renderToString } from 'react-dom/server';
 import { hydrateRoot, type Root } from 'react-dom/client';
 import StoreProvider from './StoreProvider';
 import { useAppSelector } from '@/redux/hooks';
-import { SELECTION_STORAGE_KEY } from '@/features/selection/selectionSlice';
+import { SELECTION_STORAGE_KEY } from '@/features/selection/storageFormat';
 
 it('preserves server HTML while storage loads before a suspended child hydrates', async () => {
     localStorage.setItem(SELECTION_STORAGE_KEY, '["saved-game"]');

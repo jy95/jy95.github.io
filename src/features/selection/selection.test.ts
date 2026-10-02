@@ -1,5 +1,6 @@
+import { parseStoredSelection, SELECTION_STORAGE_KEY } from './storageFormat';
 import { makeStore } from '@/redux/Store';
-import { addSelection, clearSelection, hydrateSelection, setSelectionCategories, parseStoredSelection, SELECTION_STORAGE_KEY, toggleSelection } from './selectionSlice';
+import { addSelection, clearSelection, hydrateSelection, setSelectionCategories, toggleSelection } from './selectionSlice';
 import { connectSelectionStorage } from './selectionPersistence';
 import { classifySelection, emptySelection, validateSelection } from './schema';
 import { parseSharedSelection, selectionQuery } from './sharing';
