@@ -1,3 +1,5 @@
+import { resolvePageSelection } from './useSelectionCatalogue';
+import type { SelectionEntry } from './catalogue';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import { useSharedSelection } from './useSharedSelection';
@@ -54,4 +56,16 @@ it('invalidates encoding when the locale changes', async () => {
     expect(result.current.state.kind).toBe('idle');
     await act(async () => { resolve('selection=old'); await pending; });
     expect(result.current.state.kind).toBe('idle');
+});
+
+it('resolves personal, categorized shared, and pending selections without changing inputs', () => {
+    const entry: SelectionEntry = { selectionId: 'a', category: 'games', source: 'published', game: { id: 'a', title: 'Alpha', imagePath: '/a.webp', url_type: 'VIDEO', url: 'https://youtube.com' } };
+    const catalogue = [entry];
+    const ids = ['a', 'missing'];
+    expect(resolvePageSelection(catalogue, ids, { kind: 'absent' })).toMatchObject({ entries: [entry], unavailable: 1 });
+    expect(resolvePageSelection(catalogue, ids, { kind: 'selection', document: { ...emptySelection(), planning: ['a'] } })).toMatchObject({ entries: [], unavailable: 1 });
+    expect(resolvePageSelection(catalogue, ids, { kind: 'processing' }).entries).toEqual([]);
+    expect(resolvePageSelection(catalogue, ids, { kind: 'error', error: 'invalid' }).entries).toEqual([]);
+    expect(ids).toEqual(['a', 'missing']);
+    expect(catalogue).toEqual([entry]);
 });

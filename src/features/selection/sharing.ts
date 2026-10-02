@@ -1,6 +1,6 @@
 import type { SelectionDocument } from './documentTypes';
 import { encodeBase64url, decodeBase64url } from './base64url';
-import { compressSelection, decompressSelection } from './gzip';
+import { compressSelection, decompressSelection } from './compression';
 import { selectionParameter, MAX_ENCODED_SIZE } from './sharingQuery';
 import { serializeSelection, deserializeSelection, MAX_DECOMPRESSED_SIZE } from './sharingJson';
 import { transportError, type SelectionTransportError } from './sharingErrors';
