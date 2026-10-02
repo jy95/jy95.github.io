@@ -21,17 +21,15 @@ it('resolves previously unavailable legacy identifiers after catalogue updates',
     expect(store.getState().selection.document).toEqual({ ...emptySelection(), dlcs: ['missing'] });
 });
 
-it('preserves document, ids and selector references for invalid toggles', () => {
+it('toggles arbitrary strings and updates the membership selector', () => {
     const store = makeStore();
-    store.dispatch(hydrateSelection({ ...emptySelection(), games: ['game-a'] }));
-    const before = store.getState().selection;
-    const selected = selectSelectedIdSet(store.getState());
-    for (const id of ['!!!', '', 'a'.repeat(129), `backlog:${'1'.repeat(129)}`]) {
+    store.dispatch(hydrateSelection([]));
+    for (const id of ['!!!', '', '日本語 🎮', '__proto__', 'a'.repeat(129), 'backlog:42']) {
         store.dispatch(toggleSelection(id));
-        expect(store.getState().selection).toBe(before);
-        expect(store.getState().selection.document).toBe(before.document);
-        expect(store.getState().selection.ids).toBe(before.ids);
-        expect(selectSelectedIdSet(store.getState())).toBe(selected);
+        expect(store.getState().selection.document.legacyIds).toContain(id);
+        expect(selectSelectedIdSet(store.getState()).has(id)).toBe(true);
+        store.dispatch(toggleSelection(id));
+        expect(selectSelectedIdSet(store.getState()).has(id)).toBe(false);
     }
 });
 
@@ -44,6 +42,7 @@ it('updates categories without replacing an unchanged document or ids', () => {
     expect(store.getState().selection.categories).toBe(categories);
     expect(store.getState().selection.document).toBe(before.document);
     expect(store.getState().selection.ids).toBe(before.ids);
+    expect(selectSelectedIdSet(store.getState())).toBe(selectSelectedIdSet({ selection: before }));
     store.dispatch(toggleSelection('game-b'));
     expect(store.getState().selection.document.dlcs).toEqual(['game-b']);
 });

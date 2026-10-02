@@ -31,10 +31,13 @@ describe('document operations', () => {
         expect(input.games).toEqual(['a']);
         expect(removeSelectionIdentifier(removed, '42').backlog).toEqual([]);
     });
-    it('toggles validated identifiers and preserves document identity for invalid input', () => {
+    it('toggles arbitrary identifiers without changing the input', () => {
         const initial = emptySelection();
-        for (const id of ['!!!', '', 'a'.repeat(129), `backlog:${'1'.repeat(129)}`]) {
-            expect(toggleSelectionIdentifier(initial, id, categories)).toBe(initial);
+        for (const id of ['!!!', '', '日本語 🎮', '__proto__', 'a'.repeat(129), `backlog:${'1'.repeat(129)}`]) {
+            const added = toggleSelectionIdentifier(initial, id, categories);
+            expect(added.legacyIds).toEqual([id]);
+            expect(selectionIds(toggleSelectionIdentifier(added, id, categories))).toEqual([]);
+            expect(initial).toEqual(emptySelection());
         }
         const added = toggleSelectionIdentifier(initial, 'b', categories);
         expect(added.dlcs).toEqual(['b']);
@@ -69,7 +72,7 @@ it('preserves the distinction between absent and empty legacy identifiers', () =
 it('normalizes merged legacy identifiers in first-occurrence order', () => {
     const first = { ...emptySelection(), legacyIds: ['b', 'bad.id', 'a', 'b'] };
     const second = { ...emptySelection(), legacyIds: ['a', '42', 'c'] };
-    expect(mergeSelections(first, second).legacyIds).toEqual(['b', 'a', '42', 'c']);
+    expect(mergeSelections(first, second).legacyIds).toEqual(['b', 'bad.id', 'a', '42', 'c']);
     expect(first.legacyIds).toEqual(['b', 'bad.id', 'a', 'b']);
     expect(second.legacyIds).toEqual(['a', '42', 'c']);
 });

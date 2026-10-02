@@ -2,7 +2,7 @@ import { parseStoredSelection, SELECTION_STORAGE_KEY } from './storageFormat';
 import { makeStore } from '@/redux/Store';
 import { clearSelection, setSelectionCategories, toggleSelection } from './selectionSlice';
 import { connectSelectionStorage } from './selectionPersistence';
-import { emptySelection } from './schema';
+import { SELECTION_CATEGORIES, emptySelection } from './schema';
 beforeEach(() => { localStorage.clear(); });
 afterEach(() => { vi.restoreAllMocks(); });
 
@@ -90,13 +90,12 @@ it('persists a non-selection page toggle as legacy until the selection catalogue
     stop();
 });
 
-it('does not persist invalid toggles or category updates with unchanged documents', () => {
+it('does not persist category updates with unchanged documents', () => {
     localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['game-a'] }));
     const store = makeStore();
     const stop = connectSelectionStorage(store);
     const write = vi.spyOn(Storage.prototype, 'setItem');
     try {
-        store.dispatch(toggleSelection('!!!'));
         store.dispatch(setSelectionCategories({ 'game-b': 'dlcs' }));
         expect(write).not.toHaveBeenCalled();
         store.dispatch(toggleSelection('game-b'));
@@ -117,4 +116,18 @@ it('restores categorized backlog documents before loading the catalogue', () => 
     store.dispatch(toggleSelection({ id: '7', category: 'backlog' }));
     expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual({ ...document, backlog: ['42', '7'] });
     stop();
+});
+
+it.each(SELECTION_CATEGORIES)('persists and restores arbitrary string IDs in %s', category => {
+    const ids = ['', 'bad.id!?', '日本語 🎮', 'a'.repeat(256), 'backlog:42', '__proto__'];
+    const store = makeStore();
+    const stop = connectSelectionStorage(store);
+    for (const id of ids) store.dispatch(toggleSelection({ id, category }));
+    const expected = { ...emptySelection(), [category]: ids };
+    expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual(expected);
+    stop();
+    const restored = makeStore();
+    const stopRestored = connectSelectionStorage(restored);
+    expect(restored.getState().selection.document).toEqual(expected);
+    stopRestored();
 });
