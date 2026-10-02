@@ -15,7 +15,7 @@ import type { GameFilters } from '@/types/gamesFilters';
 import en from '../../../messages/en.json';
 import fr from '../../../messages/fr.json';
 
-const navigation = vi.hoisted(() => ({ query: '', push: vi.fn() }));
+const navigation = vi.hoisted(() => ({ query: '', push: vi.fn(), sort: undefined as GameFilters['sort'] }));
 vi.mock('next/navigation', () => ({ useSearchParams: () => new URLSearchParams(navigation.query) }));
 vi.mock('@/i18n/routing', () => ({
     useRouter: () => ({ push: navigation.push }),
@@ -23,25 +23,26 @@ vi.mock('@/i18n/routing', () => ({
     Link: ({ href, locale: _locale, ...props }: Omit<ComponentProps<'a'>, 'href'> & { href: string | { params: { id: string } }; locale?: string }) => <a {...props} href={typeof href === 'string' ? href : `/games/detail/${href.params.id}`} />,
 }));
 vi.mock('@/features/games/useGamesFilters', () => ({ useGamesFilters: () => {
-    const [filters, setFilters] = useState<GameFilters>({});
+    const [filters, setFilters] = useState<GameFilters>({ sort: navigation.sort });
     return { filters, updateFilters: (changes: Partial<GameFilters>) => setFilters(current => ({ ...current, ...changes })) };
 } }));
 vi.mock('@/redux/services/platformsAPI', () => ({ useGetPlatformsQuery: () => ({ data: [] }) }));
 vi.mock('@/redux/services/genresAPI', () => ({ useGetGenresQuery: () => ({ data: [] }) }));
+vi.mock('@/features/games/detail/GameDetailView', () => ({ default: ({ game, showVoteSection, showRelatedGames, onClose }: { game: { title: string }; showVoteSection: boolean; showRelatedGames: boolean; onClose: () => void }) => <div role="dialog" aria-label={game.title} data-vote={showVoteSection} data-related={showRelatedGames}><button onClick={onClose}>Close details</button></div> }));
 vi.mock('next/image', () => ({ default: ({ alt }: { alt: string }) => <span role="img" aria-label={alt} /> }));
 
 const catalogue: SelectionEntry[] = ['Alpha', 'Beta'].map((title, i) => ({
     source: 'published', category: 'games', selectionId: `game-${i}`, game: { id: `game-${i}`, title, imagePath: `/covers/game-${i}/cover.webp`, url_type: 'VIDEO', url: 'https://youtube.com', platform: i, releaseDate: `200${i}-01-01` },
 }));
 
-function setup(ids: string[] = [], locale: 'en' | 'fr' = 'en', mode: 'light' | 'dark' = 'light') {
+function setup(ids: string[] = [], locale: 'en' | 'fr' = 'en', mode: 'light' | 'dark' = 'light', entries = catalogue) {
     const store = makeStore();
     store.dispatch(hydrateSelection(ids));
     const wrapper = ({ children }: { children: React.ReactNode }) => <Provider store={store}><NextIntlClientProvider locale={locale} messages={locale === 'en' ? en : fr}><ThemeProvider theme={createTheme({ palette: { mode } })}>{children}</ThemeProvider></NextIntlClientProvider></Provider>;
-    return { store, ...render(<SelectionPage catalogue={catalogue} />, { wrapper }), wrapper };
+    return { store, ...render(<SelectionPage catalogue={entries} />, { wrapper }), wrapper };
 }
 
-beforeEach(() => { navigation.query = ''; navigation.push.mockClear(); });
+beforeEach(() => { navigation.query = ''; navigation.sort = undefined; navigation.push.mockClear(); });
 afterEach(() => { vi.restoreAllMocks(); });
 
 it.each(['en', 'fr'] as const)('shows localized empty selection and catalogue link in %s', locale => {
@@ -219,4 +220,76 @@ it('shares the full selection while display filters hide games', async () => {
     fireEvent.click(screen.getByRole('button', { name: en.selection.share }));
     const url = new URL((await screen.findByRole('textbox', { name: en.selection.shareLink }) as HTMLInputElement).value);
     expect(await parseSharedSelection(url.searchParams)).toEqual({ kind: 'selection', document: { ...emptySelection(), games: ['game-0', 'game-1'] } });
+});
+
+
+const categorizedCatalogue: SelectionEntry[] = [
+    ...catalogue,
+    { source: 'published', category: 'dlcs', selectionId: 'dlc', game: { ...catalogue[0].game, id: 'dlc', title: 'Expansion', url_type: 'VIDEO', url: 'https://youtube.com' } },
+    { source: 'backlog', category: 'backlog', selectionId: 'backlog:42', game: { id: '42', title: 'Waiting', imagePath: '/waiting.webp' } },
+    { source: 'planning', category: 'planning', selectionId: 'planned', game: { ...catalogue[0].game, id: 'planned', title: 'Upcoming', url_type: 'VIDEO', url: 'https://youtube.com', status: 'PENDING' } },
+];
+const allIds = categorizedCatalogue.map(entry => entry.selectionId);
+function section(name: string) {
+    const header = screen.getByRole('button', { name: new RegExp(`^${name} —`) });
+    return { header, content: document.getElementById(header.getAttribute('aria-controls')!)! };
+}
+
+it.each(['en', 'fr'] as const)('separates categories, including published DLCs, with localized counts in %s', locale => {
+    setup(allIds, locale, 'light', categorizedCatalogue);
+    const labels = (locale === 'en' ? en : fr).selection.categories;
+    for (const category of ['games', 'backlog', 'dlcs', 'planning'] as const) {
+        const { header, content } = section(labels[category]);
+        expect(header).toHaveAttribute('aria-expanded', 'true');
+        const entries = categorizedCatalogue.filter(entry => entry.category === category);
+        for (const entry of entries) expect(within(content).getByRole('img', { name: entry.game.title })).toBeInTheDocument();
+    }
+    expect(within(section(labels.games).content).queryByText('Expansion')).not.toBeInTheDocument();
+});
+
+it('retains headings and expansion while filtering and removing, including empty sections', async () => {
+    setup(allIds, 'en', 'light', categorizedCatalogue);
+    fireEvent.click(section('Backlog').header);
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'zzzzzzzzzz' } });
+    await waitFor(() => expect(section('DLCs').header).toHaveTextContent('0 matching / 1 selected'));
+    expect(within(section('DLCs').content).getByText(en.common.noResults)).toBeInTheDocument();
+    expect(section('Backlog').header).toHaveAttribute('aria-expanded', 'false');
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '' } });
+    await screen.findByRole('button', { name: 'Remove Upcoming from my selection' });
+    fireEvent.click(screen.getByRole('button', { name: 'Remove Upcoming from my selection' }));
+    expect(section('Planning').header).toHaveTextContent('0 matching / 0 selected');
+    expect(within(section('Planning').content).getByText(en.selection.sectionEmpty)).toBeInTheDocument();
+    expect(section('Backlog').header).toHaveAttribute('aria-expanded', 'false');
+});
+
+it('sorts within each category without moving games between sections', () => {
+    navigation.sort = 'title_desc';
+    setup(allIds, 'en', 'light', categorizedCatalogue);
+    const images = within(section('Games').content).getAllByRole('img');
+    expect(images.map(image => image.getAttribute('aria-label'))).toEqual(['Beta', 'Alpha']);
+    expect(within(section('DLCs').content).getByRole('img')).toHaveAttribute('aria-label', 'Expansion');
+});
+
+it.each([['Backlog', 'Waiting', 'true', 'false'], ['Planning', 'Upcoming', 'false', 'true']])('preserves %s detail behavior', (category, title, vote, related) => {
+    setup(allIds, 'en', 'light', categorizedCatalogue);
+    fireEvent.click(within(section(category).content).getByRole('button', { name: `${title} ${title}` }));
+    const dialog = screen.getByRole('dialog', { name: title });
+    expect(dialog).toHaveAttribute('data-vote', vote);
+    expect(dialog).toHaveAttribute('data-related', related);
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Close details' }));
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+});
+
+it('imports and shares all categories with collapsed and filtered sections', async () => {
+    const document = { ...emptySelection(), games: ['game-0', 'game-1'], backlog: ['42'], dlcs: ['dlc'], planning: ['planned'] };
+    navigation.query = await selectionQuery(document);
+    const { store } = setup([], 'en', 'light', categorizedCatalogue);
+    await screen.findByRole('button', { name: en.selection.import });
+    for (const name of ['Games', 'Backlog', 'DLCs', 'Planning']) fireEvent.click(section(name).header);
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Alpha' } });
+    fireEvent.click(screen.getByRole('button', { name: en.selection.import }));
+    expect(store.getState().selection.document).toEqual(document);
+    fireEvent.click(screen.getByRole('button', { name: en.selection.share }));
+    const url = new URL((await screen.findByRole('textbox', { name: en.selection.shareLink }) as HTMLInputElement).value);
+    expect(await parseSharedSelection(url.searchParams)).toEqual({ kind: 'selection', document });
 });

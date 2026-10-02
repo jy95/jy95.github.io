@@ -306,6 +306,14 @@
         "invalid": "Ce lien de sélection est invalide ou endommagé.",
         "unsupported": "Cette version de sélection n’est pas prise en charge.",
         "compressionUnavailable": "Ce navigateur ne prend pas en charge les liens de sélection compressés.",
-        "tooLarge": "Cette sélection dépasse la taille de lien prise en charge."
+        "tooLarge": "Cette sélection dépasse la taille de lien prise en charge.",
+        "categories": {
+            "games": "Jeux",
+            "backlog": "À jouer",
+            "dlcs": "DLCs",
+            "planning": "Planification"
+        },
+        "sectionCount": "{matching} correspondants / {selected} sélectionnés",
+        "sectionEmpty": "Aucun jeu sélectionné dans cette section"
     }
 }
