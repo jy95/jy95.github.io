@@ -6,7 +6,7 @@ import { useState, type ComponentProps } from 'react';
 import { makeStore } from '@/redux/Store';
 import { parseSharedSelection, selectionQuery, type SharedSelection } from './sharing';
 import * as sharing from './sharing';
-import { selectionIds } from './schema';
+import { emptySelection, selectionIds } from './schema';
 import { hydrateSelection } from './selectionSlice';
 import SelectionPage from './SelectionPage';
 import SelectionButton from './SelectionButton';
@@ -76,7 +76,7 @@ it('confirms clearing the entire selection and supports cancel', async () => {
 });
 
 it('displays shared games without overwriting personal games, ignores outdated IDs and imports once', async () => {
-    navigation.query = 'games=game-0,game-0,outdated,!!!';
+    navigation.query = await selectionQuery({ ...emptySelection(), games: ['game-0', 'game-0', 'outdated'] });
     const { store } = setup(['game-1']);
     await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('1 selected game'));
     expect(screen.getByText('1 game is no longer available in the catalogue.')).toBeInTheDocument();
@@ -87,11 +87,22 @@ it('displays shared games without overwriting personal games, ignores outdated I
     expect(screen.getByRole('link', { name: 'Open my selection' })).toHaveAttribute('href', '/selection');
 });
 
-it('treats an invalid-only shared URL as an empty shared selection', async () => {
-    navigation.query = 'games=!!!';
+it('treats an empty compressed selection as an empty shared selection', async () => {
+    navigation.query = await selectionQuery(emptySelection());
     setup(['game-1']);
     expect(await screen.findByText(en.selection.sharedEmpty)).toBeInTheDocument();
     expect(screen.getByRole('status')).toHaveTextContent('0 selected games');
+});
+
+it.each(['games=game-0', 'games=', 'games=!!!'])('keeps the personal selection for a games-only query: %s', async query => {
+    navigation.query = query;
+    const { store } = setup(['game-1']);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(en.selection.title);
+    expect(screen.getByRole('button', { name: 'Remove Beta from my selection' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: en.selection.import })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: en.selection.openOwn })).not.toBeInTheDocument();
+    await waitFor(() => expect(store.getState().selection.ids).toEqual(['game-1']));
+    expect(screen.queryByRole('button', { name: 'Add Alpha to my selection' })).not.toBeInTheDocument();
 });
 
 it.each(['en', 'fr'] as const)('generates a locale-aware URL and provides manual copying when clipboard is denied in %s', async locale => {
@@ -155,7 +166,7 @@ it('ignores a stale decode after query parameters change', async () => {
     const decode = vi.spyOn(sharing, 'parseSharedSelection').mockImplementation(params => params.get('selection') === 'pending' ? new Promise(done => { resolve = done; }) : realDecode(params));
     navigation.query = 'selection=pending';
     const { rerender } = setup();
-    navigation.query = 'games=game-1';
+    navigation.query = await selectionQuery({ ...emptySelection(), games: ['game-1'] });
     rerender(<SelectionPage catalogue={catalogue} />);
     await screen.findByRole('button', { name: 'Add Beta to my selection' });
     resolve({ kind: 'error', error: 'invalid' });

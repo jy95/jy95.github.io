@@ -68,7 +68,17 @@ it('round-trips all categorized identifiers with gzip', async () => {
     expect(await parseSharedSelection(new URLSearchParams(await selectionQuery(document)))).toEqual({ kind: 'selection', document });
     expect(await parseSharedSelection(new URLSearchParams(await selectionQuery(emptySelection())))).toEqual({ kind: 'selection', document: emptySelection() });
     expect(await parseSharedSelection(new URLSearchParams())).toEqual({ kind: 'absent' });
-    expect(await parseSharedSelection(new URLSearchParams('games='))).toEqual({ kind: 'selection', document: emptySelection() });
+});
+it.each(['games=', 'games=game-a,backlog:42', 'games=!!!', 'games=game-a&games=game-b'])('ignores games-only queries: %s', async query => {
+    expect(await parseSharedSelection(new URLSearchParams(query))).toEqual({ kind: 'absent' });
+});
+it('uses only the compressed selection when games is also present', async () => {
+    const document = { ...emptySelection(), games: ['game-a'] };
+    const params = new URLSearchParams(await selectionQuery(document));
+    params.set('games', 'game-b');
+    expect(await parseSharedSelection(params)).toEqual({ kind: 'selection', document });
+    params.set('selection', '!!!');
+    expect(await parseSharedSelection(params)).toEqual({ kind: 'error', error: 'invalid' });
 });
 it('classifies legacy identifiers from catalogue information and retains unknown IDs', () => {
     expect(classifySelection(['game-a', 'dlc-a', 'planned-a', 'backlog:42', 'missing'], { 'game-a': 'games', 'dlc-a': 'dlcs', 'planned-a': 'planning' })).toEqual({ version: 2, games: ['game-a'], backlog: ['42'], dlcs: ['dlc-a'], planning: ['planned-a'], legacyIds: ['missing'] });

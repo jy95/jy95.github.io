@@ -38,7 +38,7 @@ export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry
     const locale = useLocale();
     const params = useSearchParams();
     const query = params.toString();
-    const shared = params.has('selection') || params.has('games');
+    const shared = params.has('selection');
     const categories = useMemo(() => Object.fromEntries(catalogue.map(entry => [entry.selectionId, entry.category])), [catalogue]);
     const [decoded, setDecoded] = useState<{ query: string; result: SharedSelection } | null>(null);
     const decoding = shared && decoded?.query !== query;
@@ -58,11 +58,11 @@ export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry
     useEffect(() => { dispatch(setSelectionCategories(categories)); }, [dispatch, categories]);
     useEffect(() => {
         let active = true;
-        void parseSharedSelection(new URLSearchParams(query), categories).then(result => {
+        void parseSharedSelection(new URLSearchParams(query)).then(result => {
             if (active) setDecoded({ query, result });
         });
         return () => { active = false; };
-    }, [query, categories]);
+    }, [query]);
     useEffect(() => () => { shareRequest.current++; }, [query]);
     const requested = shared ? sharedIds : ids;
     const byId = new Map(catalogue.map(entry => [entry.selectionId, entry]));
