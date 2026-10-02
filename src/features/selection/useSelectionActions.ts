@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useToggle } from '@/hooks/useToggle';
 import { useAppDispatch } from '@/redux/hooks';
 import { addSelection, clearSelection } from './selectionSlice';
@@ -10,12 +10,23 @@ export function useSelectionActions(selectedIds: string[], categories: Selection
     const dispatch = useAppDispatch();
     const [clearOpen, , setClearOpen] = useToggle();
     const [detail, setDetail] = useState<SelectionEntry | null>(null);
-    const selectionDocument = () => classifySelection(selectedIds, categories);
-    function confirmClear() { dispatch(clearSelection()); setClearOpen(false); }
+
+    const buildDocument = useCallback(() => classifySelection(selectedIds, categories), [selectedIds, categories]);
+
+    function confirmClear() {
+        dispatch(clearSelection());
+        setClearOpen(false);
+    }
+
     return {
-        clearOpen, openClear: () => setClearOpen(true), closeClear: () => setClearOpen(false), confirmClear,
-        detail, setDetail, closeDetail: () => setDetail(null),
-        importSelection: () => dispatch(addSelection(selectionDocument())),
-        shareSelection: () => share(selectionDocument()),
+        clearOpen,
+        openClear: () => setClearOpen(true),
+        closeClear: () => setClearOpen(false),
+        confirmClear,
+        detail,
+        setDetail,
+        closeDetail: () => setDetail(null),
+        importSelection: () => dispatch(addSelection(buildDocument())),
+        shareSelection: () => share(buildDocument()),
     };
 }

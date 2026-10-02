@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { useGamesFilters } from '@/features/games/useGamesFilters';
@@ -12,19 +12,42 @@ import type { SelectionEntry } from './catalogue';
 
 export function useSelectionPage(catalogue: SelectionEntry[]) {
     const query = useSearchParams().toString();
+    const params = useMemo(() => new URLSearchParams(query), [query]);
     const decoded = useSharedSelection(query);
-    const sharing = useSelectionShare(query, useLocale() as 'en' | 'fr');
+    const locale = useLocale() as 'en' | 'fr';
+    const sharing = useSelectionShare(query, locale);
     const resolved = useSelectionCatalogue(catalogue, decoded);
     const actions = useSelectionActions(resolved.selectedIds, resolved.categories, sharing.share);
     const { filters, updateFilters } = useGamesFilters();
     const [kind, setKind] = useState<SelectionKind>('all');
-    const visibleEntries = browseGames(resolved.entries.filter(entry => kind === 'all' || entry.category === kind)
-        .map(entry => ({ ...entry.game, entry })), filters).map(game => game.entry);
+
+    const filteredEntries = useMemo(
+        () => resolved.entries.filter(entry => kind === 'all' || entry.category === kind),
+        [resolved.entries, kind],
+    );
+
+    const visibleEntries = useMemo(
+        () => browseGames(filteredEntries.map(entry => ({ ...entry.game, entry })), filters).map(game => game.entry),
+        [filteredEntries, filters],
+    );
+
+    const hasSelection = resolved.ids.length > 0;
+    const canImport = resolved.selectedIds.some(id => !resolved.ids.includes(id));
+
     return {
-        ...resolved, ...actions, decoded, sharing, filters, updateFilters, kind, setKind, visibleEntries,
+        ...resolved,
+        ...actions,
+        decoded,
+        sharing,
+        filters,
+        updateFilters,
+        kind,
+        setKind,
+        visibleEntries,
         shared: decoded.kind !== 'absent',
-        canImport: resolved.selectedIds.some(id => !resolved.ids.includes(id)),
-        loading: !resolved.hydrated || decoded.kind === 'processing', hasSelection: resolved.ids.length > 0,
+        canImport,
+        loading: !resolved.hydrated || decoded.kind === 'processing',
+        hasSelection,
     };
 }
 

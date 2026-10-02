@@ -7,11 +7,17 @@ export function matchesSelectionCategory(entry: SelectionEntry, document: Select
 
 export function resolveSelectionCatalogue(catalogue: SelectionEntry[], requested: string[], document: SelectionDocument | null = null) {
     const byId = new Map(catalogue.map(entry => [entry.selectionId, entry]));
-    const entries = requested.flatMap(id => {
+    const selected: SelectionEntry[] = [];
+    const seen = new Set<string>();
+
+    for (const id of requested) {
         const entry = byId.get(id);
-        if (!entry) return [];
-        if (document && !matchesSelectionCategory(entry, document)) return [];
-        return [entry];
-    });
-    return { entries, unavailable: requested.length - entries.length, selectedIds: entries.map(entry => entry.selectionId) };
+        if (!entry || seen.has(id)) continue;
+        seen.add(id);
+
+        if (document && !matchesSelectionCategory(entry, document)) continue;
+        selected.push(entry);
+    }
+
+    return { entries: selected, unavailable: requested.length - selected.length, selectedIds: selected.map(entry => entry.selectionId) };
 }

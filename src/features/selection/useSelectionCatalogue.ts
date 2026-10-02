@@ -16,6 +16,12 @@ export function useSelectionCatalogue(catalogue: SelectionEntry[], decoded: Shar
     const categories = useMemo(() => Object.fromEntries(catalogue.map(entry => [entry.selectionId, entry.category])), [catalogue]);
     const selection = useAppSelector(state => state.selection);
     const dispatch = useAppDispatch();
-    useEffect(() => { dispatch(setSelectionCategories(categories)); }, [dispatch, categories]);
-    return { ...selection, categories, ...resolvePageSelection(catalogue, selection.ids, decoded) };
+
+    useEffect(() => {
+        dispatch(setSelectionCategories(categories));
+    }, [dispatch, categories]);
+
+    const pageSelection = useMemo(() => resolvePageSelection(catalogue, selection.ids, decoded), [catalogue, selection.ids, decoded]);
+
+    return { ...selection, categories, ...pageSelection };
 }

@@ -9,13 +9,42 @@ type Props = { shared: boolean; hasEntries: boolean; hasSelection: boolean; canI
 
 export function SelectionActions({ shared, hasEntries, hasSelection, canImport, encoding, onImport, onClear, onShare }: Props) {
     const t = useTranslations('selection');
+
+    const canImportShared = shared && hasEntries && canImport && !encoding;
+    const showClear = !shared && hasSelection;
+    const showShare = hasEntries && !encoding;
+
     return (
         <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: 'wrap' }}>
-            {shared ? <>
-                {hasEntries && <Button variant="contained" disabled={!canImport || encoding} onClick={onImport}>{t(canImport ? 'import' : 'imported')}</Button>}
-                <Button component={Link} href="/selection">{t('openOwn')}</Button>
-            </> : hasSelection && <Button startIcon={<DeleteOutlinedIcon />} onClick={onClear}>{t('clear')}</Button>}
-            {hasEntries && <Button startIcon={<ShareIcon />} disabled={encoding} onClick={onShare}>{t('share')}</Button>}
+            {shared ? (
+                <>
+                    {canImportShared && (
+                        <Button variant="contained" onClick={onImport}>
+                            {t('import')}
+                        </Button>
+                    )}
+                    {!canImportShared && hasEntries && (
+                        <Button variant="contained" disabled>
+                            {t('imported')}
+                        </Button>
+                    )}
+                    <Button component={Link} href="/selection">
+                        {t('openOwn')}
+                    </Button>
+                </>
+            ) : (
+                showClear && (
+                    <Button startIcon={<DeleteOutlinedIcon />} onClick={onClear}>
+                        {t('clear')}
+                    </Button>
+                )
+            )}
+
+            {showShare && (
+                <Button startIcon={<ShareIcon />} onClick={onShare}>
+                    {t('share')}
+                </Button>
+            )}
         </Stack>
     );
 }
