@@ -64,11 +64,11 @@ it('invalidates encoding when the locale changes', async () => {
 it('resolves personal, categorized shared, and pending selections without changing inputs', () => {
     const entry: SelectionEntry = { selectionId: 'a', category: 'games', source: 'published', game: { id: 'a', title: 'Alpha', imagePath: '/a.webp', url_type: 'VIDEO', url: 'https://youtube.com' } };
     const catalogue = [entry];
-    const ids = ['a', 'missing'];
-    expect(resolvePageSelection(catalogue, ids, { kind: 'absent' })).toMatchObject({ entries: [entry], unavailable: 1 });
-    expect(resolvePageSelection(catalogue, ids, { kind: 'selection', document: { ...emptySelection(), planning: ['a'] } })).toMatchObject({ entries: [], unavailable: 1 });
-    expect(resolvePageSelection(catalogue, ids, { kind: 'processing' }).entries).toEqual([]);
-    expect(resolvePageSelection(catalogue, ids, { kind: 'error', error: 'invalid' }).entries).toEqual([]);
-    expect(ids).toEqual(['a', 'missing']);
+    const document = { ...emptySelection(), games: ['a', 'missing'] };
+    expect(resolvePageSelection(catalogue, document, { kind: 'absent' })).toMatchObject({ entries: [entry], unavailable: 1 });
+    expect(resolvePageSelection(catalogue, document, { kind: 'selection', document: { ...emptySelection(), planning: ['a'] } })).toMatchObject({ entries: [], unavailable: 1 });
+    expect(resolvePageSelection(catalogue, document, { kind: 'processing' }).entries).toEqual([]);
+    expect(resolvePageSelection(catalogue, document, { kind: 'error', error: 'invalid' }).entries).toEqual([]);
+    expect(document.games).toEqual(['a', 'missing']);
     expect(catalogue).toEqual([entry]);
 });

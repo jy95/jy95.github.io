@@ -46,3 +46,17 @@ it('toggles selection using raw IDs and explicit categories', () => {
     expect(store.getState().selection.ids).toEqual([]);
     expect(onDetail).not.toHaveBeenCalled();
 });
+
+it('keeps published and backlog buttons independent when raw IDs collide', () => {
+    const published: SelectionEntry = { ...catalogue[0], category: 'dlcs' };
+    const backlog: SelectionEntry = { source: 'backlog', category: 'backlog', selectionId: published.game.id,
+        game: { id: published.game.id, title: 'Waiting', imagePath: '/waiting.webp' } };
+    const { store } = mount([published, backlog]);
+    fireEvent.click(screen.getByRole('button', { name: 'Add Alpha to my selection' }));
+    expect(store.getState().selection.document.dlcs).toEqual([published.game.id]);
+    expect(screen.getByRole('button', { name: 'Add Waiting to my selection' })).toHaveAttribute('aria-pressed', 'false');
+    fireEvent.click(screen.getByRole('button', { name: 'Add Waiting to my selection' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Remove Alpha from my selection' }));
+    expect(store.getState().selection.document.backlog).toEqual([published.game.id]);
+    expect(store.getState().selection.document.dlcs).toEqual([]);
+});

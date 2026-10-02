@@ -1,48 +1,27 @@
 import { makeStore } from '@/redux/Store';
-import { addSelection, clearSelection, hydrateSelection, selectSelectedIdSet, setSelectionCategories, toggleSelection } from './selectionSlice';
-import { emptySelection } from './schema';
+import { addSelection, clearSelection, hydrateSelection, selectSelectedIdsByCategory, toggleSelection } from './selectionSlice';
+import { SELECTION_CATEGORIES, emptySelection } from './documentTypes';
 
-it('toggles, merges without duplicates, and clears game identifiers', () => {
+it.each(SELECTION_CATEGORIES)('toggles arbitrary strings in %s', category => {
     const store = makeStore();
-    store.dispatch(hydrateSelection([]));
-    store.dispatch(toggleSelection('game-a'));
-    store.dispatch(addSelection(['game-a', 'game-b', '42']));
-    expect(store.getState().selection.ids).toEqual(['game-a', 'game-b', '42']);
-    store.dispatch(toggleSelection('game-a'));
-    expect(store.getState().selection.ids).toEqual(['game-b', '42']);
-    store.dispatch(clearSelection());
-    expect(store.getState().selection.ids).toEqual([]);
-});
-
-it('resolves previously unavailable legacy identifiers after catalogue updates', () => {
-    const store = makeStore();
-    store.dispatch(hydrateSelection({ ...emptySelection(), legacyIds: ['missing'] }));
-    store.dispatch(setSelectionCategories({ missing: 'dlcs' }));
-    expect(store.getState().selection.document).toEqual({ ...emptySelection(), dlcs: ['missing'] });
-});
-
-it('toggles arbitrary strings and updates the membership selector', () => {
-    const store = makeStore();
-    store.dispatch(hydrateSelection([]));
-    for (const id of ['!!!', '', '日本語 🎮', '__proto__', 'a'.repeat(129), 'backlog:42']) {
-        store.dispatch(toggleSelection(id));
-        expect(store.getState().selection.document.legacyIds).toContain(id);
-        expect(selectSelectedIdSet(store.getState()).has(id)).toBe(true);
-        store.dispatch(toggleSelection(id));
-        expect(selectSelectedIdSet(store.getState()).has(id)).toBe(false);
+    store.dispatch(hydrateSelection(emptySelection()));
+    for (const id of ['', '日本語 🎮', '__proto__', 'constructor']) {
+        store.dispatch(toggleSelection({ id, category }));
+        expect(store.getState().selection.document[category]).toEqual([id]);
+        expect(selectSelectedIdsByCategory(store.getState())[category].has(id)).toBe(true);
+        store.dispatch(toggleSelection({ id, category }));
+        expect(store.getState().selection.ids).toEqual([]);
     }
 });
 
-it('updates categories without replacing an unchanged document or ids', () => {
+it('keeps the same raw ID independent across categories, merges in order, and clears', () => {
     const store = makeStore();
-    store.dispatch(hydrateSelection({ ...emptySelection(), games: ['game-a'] }));
-    const before = store.getState().selection;
-    const categories = { 'game-b': 'dlcs' } as const;
-    store.dispatch(setSelectionCategories(categories));
-    expect(store.getState().selection.categories).toBe(categories);
-    expect(store.getState().selection.document).toBe(before.document);
-    expect(store.getState().selection.ids).toBe(before.ids);
-    expect(selectSelectedIdSet(store.getState())).toBe(selectSelectedIdSet({ selection: before }));
-    store.dispatch(toggleSelection('game-b'));
-    expect(store.getState().selection.document.dlcs).toEqual(['game-b']);
+    store.dispatch(hydrateSelection({ ...emptySelection(), games: ['a'] }));
+    store.dispatch(toggleSelection({ id: 'a', category: 'backlog' }));
+    store.dispatch(toggleSelection({ id: 'a', category: 'games' }));
+    expect(store.getState().selection.document).toEqual({ ...emptySelection(), backlog: ['a'] });
+    store.dispatch(addSelection({ ...emptySelection(), backlog: ['a', 'b', 'a'] }));
+    expect(store.getState().selection.document.backlog).toEqual(['a', 'b']);
+    store.dispatch(clearSelection());
+    expect(store.getState().selection.document).toEqual(emptySelection());
 });

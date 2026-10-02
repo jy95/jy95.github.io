@@ -13,7 +13,7 @@ it.each(['en', 'fr'] as const)('shows localized empty selection and catalogue li
 
 it.each(['light', 'dark'] as const)('removes games and synchronizes multiple accessible controls in %s mode', mode => {
     const { store, wrapper } = setup(['game-0'], 'en', mode);
-    render(<SelectionButton id="game-0" title="Alpha" />, { wrapper });
+    render(<SelectionButton id="game-0" category="games" title="Alpha" />, { wrapper });
     const buttons = screen.getAllByRole('button', { name: 'Remove Alpha from my selection' });
     expect(buttons).toHaveLength(2);
     buttons.forEach(button => expect(button).toHaveAttribute('aria-pressed', 'true'));

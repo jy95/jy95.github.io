@@ -1,9 +1,6 @@
-import type { SelectionCategories, SelectionDocument } from './documentTypes';
-import { selectionIds } from './identifiers';
-import { classifySelection } from './documentClassification';
-import { mergeSelections, removeSelectionIdentifier } from './documentMerge';
+import type { SelectionCategory, SelectionDocument } from './documentTypes';
 
-export function toggleSelectionIdentifier(document: SelectionDocument, id: string, categories: SelectionCategories): SelectionDocument {
-    if (selectionIds(document).includes(id)) return removeSelectionIdentifier(document, id);
-    return mergeSelections(document, classifySelection([id], categories));
+export function toggleSelectionIdentifier(document: SelectionDocument, id: string, category: SelectionCategory): SelectionDocument {
+    const values = document[category];
+    return { ...document, [category]: values.includes(id) ? values.filter(value => value !== id) : [...values, id] };
 }

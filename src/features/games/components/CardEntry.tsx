@@ -1,5 +1,7 @@
 "use client";
 
+import type { SelectionCategory } from '@/features/selection/documentTypes';
+
 // Hooks
 import { useLocale, useTranslations } from "next-intl";
 import IconButton from "@mui/material/IconButton";
@@ -19,7 +21,7 @@ import GameCardOverlay from "./GameCardOverlay";
 import type { ReactNode } from "react";
 import type { CardGame } from "@/domain/games";
 
-function CardEntry({ game, selectable = true, badge }: { game: CardGame; selectable?: boolean; badge?: ReactNode }) {
+function CardEntry({ game, selectable = true, badge, category = "games" }: { game: CardGame; selectable?: boolean; badge?: ReactNode; category?: SelectionCategory }) {
 
     // hooks
     const router = useRouter();
@@ -33,7 +35,7 @@ function CardEntry({ game, selectable = true, badge }: { game: CardGame; selecta
             onClick={(item) => router.push(buildWatchRoute(item.url_type, item.id))}
             actionsSlot={(item) => (
                 <>
-                    {selectable && <SelectionButton id={item.id} title={item.title} />}
+                    {selectable && <SelectionButton id={item.id} category={category} title={item.title} />}
                     <Tooltip title={t("details", { title: item.title })}>
                         <IconButton
                             component={Link}

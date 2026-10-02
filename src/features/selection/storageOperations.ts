@@ -1,7 +1,7 @@
 import type { AppStore } from '@/redux/Store';
 import { hydrateSelection, setSelectionStorageAvailable } from './selectionSlice';
 import { parseStoredSelection, SELECTION_STORAGE_KEY } from './storageFormat';
-import type { SelectionDocument } from './documentTypes';
+import { emptySelection, type SelectionDocument } from './documentTypes';
 
 /** Dispatches only on an actual change, avoiding a no-op store notification per write. */
 function markStorageAvailable(store: AppStore, available: boolean): void {
@@ -15,10 +15,8 @@ export function hydrateSelectionStorage(store: AppStore): void {
         const stored = window.localStorage.getItem(SELECTION_STORAGE_KEY);
         const parsed = parseStoredSelection(stored);
         store.dispatch(hydrateSelection(parsed));
-        // Migrate existing arrays immediately, without echoing external tab updates.
-        if (stored !== null && Array.isArray(parsed)) window.localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(store.getState().selection.document));
     } catch {
-        if (!store.getState().selection.hydrated) store.dispatch(hydrateSelection([]));
+        if (!store.getState().selection.hydrated) store.dispatch(hydrateSelection(emptySelection()));
         markStorageAvailable(store, false);
     }
 }

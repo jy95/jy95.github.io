@@ -78,7 +78,7 @@ describe('GET /api/games/[id]', () => {
 
     it('resolves a nested video DLC as published and preserves its fields and canonical cover', async () => {
         const data = await details('XGEgNG67oXA');
-        expect(data).toMatchObject({ source: 'published', game: {
+        expect(data).toMatchObject({ source: 'published', category: 'dlcs', game: {
             id: 'XGEgNG67oXA', title: "Harley Quinn's Revenge", videoId: 'XGEgNG67oXA',
             url_type: 'VIDEO', url: 'https://www.youtube.com/watch?v=XGEgNG67oXA',
             imagePath: '/covers/XGEgNG67oXA/cover.webp', duration: '01:12:35', platform: 1,

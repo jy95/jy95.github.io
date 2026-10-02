@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, type ComponentProps } from 'react';
 import { makeStore } from '@/redux/Store';
+import { emptySelection } from './documentTypes';
 import { hydrateSelection } from './selectionSlice';
 import SelectionPage from './SelectionPage';
 import type { SelectionEntry } from './catalogue';
@@ -49,7 +50,12 @@ export const catalogue: SelectionEntry[] = ['Alpha', 'Beta'].map((title, i) => (
 
 export function createProviders(ids: string[] = [], locale: 'en' | 'fr' = 'en', mode: 'light' | 'dark' = 'light') {
     const store = makeStore();
-    store.dispatch(hydrateSelection(ids));
+    const document = emptySelection();
+    for (const id of ids) {
+        const category = categorizedCatalogue.find(entry => entry.selectionId === id)?.category ?? 'games';
+        document[category].push(id);
+    }
+    store.dispatch(hydrateSelection(document));
     const wrapper = ({ children }: { children: React.ReactNode }) => <Provider store={store}><NextIntlClientProvider locale={locale} messages={locale === 'en' ? en : fr}><ThemeProvider theme={createTheme({ palette: { mode } })}>{children}</ThemeProvider></NextIntlClientProvider></Provider>;
     return { store, wrapper };
 }

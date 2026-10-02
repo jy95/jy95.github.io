@@ -17,7 +17,7 @@ export const SelectionCards = memo(function SelectionCards({ entries, onDetail }
             {entries.map(entry => (
                 <Grid key={entry.selectionId} size={{ xs: 6, md: 4, lg: 2 }}>
                     {entry.source === 'published'
-                        ? <CardEntry game={entry.game} badge={<SelectionKindBadge category={entry.category} />} />
+                        ? <CardEntry category={entry.category} game={entry.game} badge={<SelectionKindBadge category={entry.category} />} />
                         : <BaseCard
                             item={entry.game}
                             badgesSlot={() => <SelectionKindBadge category={entry.category} />}

@@ -42,7 +42,7 @@ function respond(request: Request) {
     if (failedStatus) return new Response('{}', { status: failedStatus });
     const dlc = dlcs.find((item) => item.id === id);
     const data: GameDetailsResponse | undefined = id === game.id ? { source: 'published', game }
-        : dlc ? { source: 'published', game: dlc }
+        : dlc ? { source: 'published', category: 'dlcs', game: dlc }
         : id === planned.id ? { source: 'planning', game: planned }
         : id === backlog.id ? { source: 'backlog', game: backlog } : undefined;
     if (!data) return new Response('{}', { status: 404 });

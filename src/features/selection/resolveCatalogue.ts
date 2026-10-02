@@ -1,10 +1,15 @@
 import { SELECTION_CATEGORIES, type SelectionCategory, type SelectionDocument } from './documentTypes';
+import { selectionIds } from './identifiers';
 import type { SelectionEntry } from './catalogue';
 
 export type CatalogueIndex = ReadonlyMap<string, SelectionEntry>;
 
 export function indexCatalogue(catalogue: readonly SelectionEntry[]): CatalogueIndex {
-    return new Map(catalogue.map(entry => [entry.selectionId, entry]));
+    const byId = new Map<string, SelectionEntry>();
+    for (const entry of catalogue) {
+        if (!byId.has(entry.selectionId)) byId.set(entry.selectionId, entry);
+    }
+    return byId;
 }
 
 function categoryMatcher(document: SelectionDocument) {
@@ -12,21 +17,16 @@ function categoryMatcher(document: SelectionDocument) {
         SELECTION_CATEGORIES.map(category => [category, new Set(document[category])])
     ) as Record<SelectionCategory, Set<string>>;
 
-    const explicit = new Set(SELECTION_CATEGORIES.flatMap(category => document[category]));
-    const legacy = new Set(document.legacyIds?.filter(id => !explicit.has(id)));
-
-    return (entry: SelectionEntry) =>
-        byCategory[entry.category].has(entry.game.id) ||
-        legacy.has(entry.selectionId);
+    return (entry: SelectionEntry) => byCategory[entry.category].has(entry.game.id);
 }
 
 export function resolveSelectionCatalogue(
     catalogue: SelectionEntry[],
-    requested: string[],
-    document: SelectionDocument | null = null,
+    document: SelectionDocument | null,
     byId: CatalogueIndex = indexCatalogue(catalogue),
 ) {
-    const matches = document ? categoryMatcher(document) : () => true;
+    const requested = document ? selectionIds(document) : [];
+    const matches = document ? categoryMatcher(document) : () => false;
     const entries = requested
         .map(id => byId.get(id))
         .filter((entry): entry is SelectionEntry => !!entry && matches(entry));
@@ -34,6 +34,5 @@ export function resolveSelectionCatalogue(
     return {
         entries,
         unavailable: requested.length - entries.length,
-        selectedIds: entries.map(entry => entry.selectionId),
     };
 }

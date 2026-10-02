@@ -4,7 +4,7 @@ import { useSelectionCatalogue } from './useSelectionCatalogue';
 import { emptySelection } from './documentTypes';
 import type { SelectionEntry } from './catalogue';
 
-it('prepares matching category and entry lookups with first-duplicate precedence and safe property names', async () => {
+it('prepares entry lookups with first-duplicate precedence and safe property names', async () => {
     const names = ['constructor', 'toString', '__proto__'];
     const first = names.map((id): SelectionEntry => ({
         source: 'published', category: 'games', selectionId: id,
@@ -18,9 +18,6 @@ it('prepares matching category and entry lookups with first-duplicate precedence
         { wrapper, initialProps: { shared: false } },
     );
     await waitFor(() => expect(store.getState().selection.document.games).toEqual(names));
-    expect(result.current.categories.constructor).toBe('games');
-    expect(result.current.categories.toString).toBe('games');
-    expect(result.current.categories.__proto__).toBe('games');
     expect(result.current.entries).toEqual(first);
     rerender({ shared: true });
     expect(result.current.entries).toEqual([]);
