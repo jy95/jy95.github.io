@@ -16,9 +16,10 @@ import BaseCard from "./BaseCard";
 import GameCardOverlay from "./GameCardOverlay";
 
 // Types
+import type { ReactNode } from "react";
 import type { CardGame } from "@/domain/games";
 
-function CardEntry({ game, selectable = true }: { game: CardGame; selectable?: boolean }) {
+function CardEntry({ game, selectable = true, badge }: { game: CardGame; selectable?: boolean; badge?: ReactNode }) {
 
     // hooks
     const router = useRouter();
@@ -28,6 +29,7 @@ function CardEntry({ game, selectable = true }: { game: CardGame; selectable?: b
     return (
         <BaseCard 
             item={game}
+            badgesSlot={badge ? () => badge : undefined}
             onClick={(item) => router.push(buildWatchRoute(item.url_type, item.id))}
             actionsSlot={(item) => (
                 <>

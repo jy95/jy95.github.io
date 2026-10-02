@@ -230,49 +230,53 @@ const categorizedCatalogue: SelectionEntry[] = [
     { source: 'planning', category: 'planning', selectionId: 'planned', game: { ...catalogue[0].game, id: 'planned', title: 'Upcoming', url_type: 'VIDEO', url: 'https://youtube.com', status: 'PENDING' } },
 ];
 const allIds = categorizedCatalogue.map(entry => entry.selectionId);
-function section(name: string) {
-    const header = screen.getByRole('button', { name: new RegExp(`^${name} —`) });
-    return { header, content: document.getElementById(header.getAttribute('aria-controls')!)! };
-}
-
-it.each(['en', 'fr'] as const)('separates categories, including published DLCs, with localized counts in %s', locale => {
+it.each(['en', 'fr'] as const)('enables all kinds and labels each category icon in %s', locale => {
     setup(allIds, locale, 'light', categorizedCatalogue);
     const labels = (locale === 'en' ? en : fr).selection.categories;
+    const icons = { games: 'SportsEsportsIcon', dlcs: 'ExtensionIcon', planning: 'ScheduleIcon', backlog: 'HourglassEmptyIcon' };
     for (const category of ['games', 'backlog', 'dlcs', 'planning'] as const) {
-        const { header, content } = section(labels[category]);
-        expect(header).toHaveAttribute('aria-expanded', 'true');
-        const entries = categorizedCatalogue.filter(entry => entry.category === category);
-        for (const entry of entries) expect(within(content).getByRole('img', { name: entry.game.title })).toBeInTheDocument();
+        expect(screen.getByRole('checkbox', { name: labels[category] })).toBeChecked();
+        const badges = screen.getAllByRole('img', { name: labels[category] });
+        expect(badges).toHaveLength(categorizedCatalogue.filter(entry => entry.category === category).length);
+        badges.forEach(badge => expect(within(badge).getByTestId(icons[category])).toBeInTheDocument());
     }
-    expect(within(section(labels.games).content).queryByText('Expansion')).not.toBeInTheDocument();
 });
 
-it('retains headings and expansion while filtering and removing, including empty sections', async () => {
-    setup(allIds, 'en', 'light', categorizedCatalogue);
-    fireEvent.click(section('Backlog').header);
-    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'zzzzzzzzzz' } });
-    await waitFor(() => expect(section('DLCs').header).toHaveTextContent('0 matching / 1 selected'));
-    expect(within(section('DLCs').content).getByText(en.common.noResults)).toBeInTheDocument();
-    expect(section('Backlog').header).toHaveAttribute('aria-expanded', 'false');
-    fireEvent.change(screen.getByRole('textbox'), { target: { value: '' } });
-    await screen.findByRole('button', { name: 'Remove Upcoming from my selection' });
-    fireEvent.click(screen.getByRole('button', { name: 'Remove Upcoming from my selection' }));
-    expect(section('Planning').header).toHaveTextContent('0 matching / 0 selected');
-    expect(within(section('Planning').content).getByText(en.selection.sectionEmpty)).toBeInTheDocument();
-    expect(section('Backlog').header).toHaveAttribute('aria-expanded', 'false');
+it('toggles individual kinds and keeps controls when every kind is unchecked', () => {
+    const { store } = setup(allIds, 'en', 'light', categorizedCatalogue);
+    const document = store.getState().selection.document;
+    for (const category of ['games', 'dlcs', 'planning', 'backlog'] as const) {
+        fireEvent.click(screen.getByRole('checkbox', { name: en.selection.categories[category] }));
+        for (const entry of categorizedCatalogue.filter(entry => entry.category === category)) {
+            expect(screen.queryByRole('img', { name: entry.game.title })).not.toBeInTheDocument();
+        }
+    }
+    expect(screen.getByText(en.common.noResults)).toBeInTheDocument();
+    expect(screen.getByRole('textbox')).toBeInTheDocument();
+    expect(screen.queryByText(en.selection.empty)).not.toBeInTheDocument();
+    expect(store.getState().selection.document).toEqual(document);
+    fireEvent.click(screen.getByRole('checkbox', { name: 'DLCs' }));
+    expect(screen.getByRole('img', { name: 'Expansion' })).toBeInTheDocument();
 });
 
-it('sorts within each category without moving games between sections', () => {
+it('combines kinds with catalogue filtering and sorts the unified grid', async () => {
     navigation.sort = 'title_desc';
     setup(allIds, 'en', 'light', categorizedCatalogue);
-    const images = within(section('Games').content).getAllByRole('img');
-    expect(images.map(image => image.getAttribute('aria-label'))).toEqual(['Beta', 'Alpha']);
-    expect(within(section('DLCs').content).getByRole('img')).toHaveAttribute('aria-label', 'Expansion');
+    const covers = () => screen.getAllByRole('img').filter(image => !image.querySelector('svg')).map(image => image.getAttribute('aria-label'));
+    expect(covers()).toEqual(['Waiting', 'Upcoming', 'Expansion', 'Beta', 'Alpha']);
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Backlog' }));
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Alpha' } });
+    await waitFor(() => expect(covers()).toEqual(['Expansion', 'Alpha']));
+    fireEvent.click(screen.getByRole('checkbox', { name: 'DLCs' }));
+    expect(covers()).toEqual(['Alpha']);
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'zzzzzzzzzz' } });
+    await screen.findByText(en.common.noResults);
+    expect(screen.getAllByRole('checkbox')).toHaveLength(4);
 });
 
-it.each([['Backlog', 'Waiting', 'true', 'false'], ['Planning', 'Upcoming', 'false', 'true']])('preserves %s detail behavior', (category, title, vote, related) => {
+it.each([['Waiting', 'true', 'false'], ['Upcoming', 'false', 'true']])('preserves %s detail behavior', (title, vote, related) => {
     setup(allIds, 'en', 'light', categorizedCatalogue);
-    fireEvent.click(within(section(category).content).getByRole('button', { name: `${title} ${title}` }));
+    fireEvent.click(screen.getByRole('img', { name: title }).closest('button')!);
     const dialog = screen.getByRole('dialog', { name: title });
     expect(dialog).toHaveAttribute('data-vote', vote);
     expect(dialog).toHaveAttribute('data-related', related);
@@ -280,12 +284,22 @@ it.each([['Backlog', 'Waiting', 'true', 'false'], ['Planning', 'Upcoming', 'fals
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 });
 
-it('imports and shares all categories with collapsed and filtered sections', async () => {
+it.each([['Alpha', 'game-0'], ['Expansion', 'dlc']])('preserves published %s navigation and detail links in a mixed grid', (title, id) => {
+    setup(allIds, 'en', 'light', categorizedCatalogue);
+    fireEvent.click(screen.getByRole('img', { name: title }).closest('button')!);
+    expect(navigation.push).toHaveBeenCalledWith({ pathname: '/video/[id]', params: { id } });
+    navigation.push.mockClear();
+    fireEvent.click(screen.getByRole('link', { name: `View details for ${title}` }));
+    expect(navigation.push).not.toHaveBeenCalled();
+    expect(screen.getByRole('button', { name: `Remove ${title} from my selection` })).toBeInTheDocument();
+});
+
+it('imports and shares all categories when every kind is hidden', async () => {
     const document = { ...emptySelection(), games: ['game-0', 'game-1'], backlog: ['42'], dlcs: ['dlc'], planning: ['planned'] };
     navigation.query = await selectionQuery(document);
     const { store } = setup([], 'en', 'light', categorizedCatalogue);
     await screen.findByRole('button', { name: en.selection.import });
-    for (const name of ['Games', 'Backlog', 'DLCs', 'Planning']) fireEvent.click(section(name).header);
+    for (const name of Object.values(en.selection.categories)) fireEvent.click(screen.getByRole('checkbox', { name }));
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Alpha' } });
     fireEvent.click(screen.getByRole('button', { name: en.selection.import }));
     expect(store.getState().selection.document).toEqual(document);
