@@ -7,7 +7,8 @@ import { useAppSelector } from '@/redux/hooks';
 import { SELECTION_STORAGE_KEY } from '@/features/selection/storageFormat';
 
 it('preserves server HTML while storage loads before a suspended child hydrates', async () => {
-    localStorage.setItem(SELECTION_STORAGE_KEY, '["saved-game"]');
+    const saved = { games: ['saved-game'], backlog: [], dlcs: [], planning: [] };
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(saved));
     let suspended = false;
     let resume!: () => void;
     const pending = new Promise<void>(resolve => { resume = resolve; });
@@ -29,7 +30,7 @@ it('preserves server HTML while storage loads before a suspended child hydrates'
     await act(async () => { resume(); });
     await waitFor(() => expect(container.textContent).toBe('saved-game'));
     expect(onRecoverableError).not.toHaveBeenCalled();
-    expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual({ version: 2, games: [], backlog: [], dlcs: [], planning: [], legacyIds: ['saved-game'] });
+    expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual(saved);
     await act(async () => { root.unmount(); });
     container.remove();
     localStorage.clear();

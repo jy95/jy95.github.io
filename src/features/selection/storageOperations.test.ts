@@ -36,7 +36,7 @@ it('ignores unrelated keys and session storage and disconnects listeners and sub
     const store = makeStore();
     const disconnect = connectSelectionStorage(store);
     disconnect();
-    window.dispatchEvent(new StorageEvent('storage', { key: SELECTION_STORAGE_KEY, storageArea: localStorage, newValue: '["external"]' }));
+    window.dispatchEvent(new StorageEvent('storage', { key: SELECTION_STORAGE_KEY, storageArea: localStorage, newValue: JSON.stringify({ ...emptySelection(), games: ['external'] }) }));
     expect(store.getState().selection.ids).toEqual([]);
     const write = vi.spyOn(Storage.prototype, 'setItem');
     store.dispatch(hydrateSelection({ ...emptySelection(), games: ['local'] }));
