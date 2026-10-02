@@ -61,9 +61,11 @@ export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry
         void parseSharedSelection(new URLSearchParams(query)).then(result => {
             if (active) setDecoded({ query, result });
         });
-        return () => { active = false; };
+        return () => {
+            active = false;
+            shareRequest.current++;
+        };
     }, [query]);
-    useEffect(() => () => { shareRequest.current++; }, [query]);
     const requested = shared ? sharedIds : ids;
     const byId = new Map(catalogue.map(entry => [entry.selectionId, entry]));
     const entries = requested.flatMap(id => {

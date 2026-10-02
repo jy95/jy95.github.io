@@ -32,7 +32,10 @@ const selectionSlice = createSlice({
             } else {
                 const addition = classifySelection([id], state.categories);
                 for (const category of SELECTION_CATEGORIES) state.document[category].push(...addition[category]);
-                if (addition.legacyIds) (state.document.legacyIds ??= []).push(...addition.legacyIds);
+                if (addition.legacyIds) {
+                    state.document.legacyIds ??= [];
+                    state.document.legacyIds.push(...addition.legacyIds);
+                }
             }
             state.ids = selectionIds(state.document);
         },

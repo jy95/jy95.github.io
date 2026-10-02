@@ -26,7 +26,11 @@ export default function StoreProvider({
   // Keep the server snapshot stable while nested Suspense boundaries hydrate.
   const serverState = useRef(storeRef.current.getState())
 
-  useEffect(() => connectSelectionStorage(storeRef.current!), [])
+  useEffect(() => {
+    const store = storeRef.current;
+    if (!store) return;
+    return connectSelectionStorage(store);
+  }, [])
 
   return <Provider store={storeRef.current} serverState={serverState.current}>{children}</Provider>
 }
