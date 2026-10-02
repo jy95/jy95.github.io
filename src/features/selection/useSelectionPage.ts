@@ -31,8 +31,7 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
     }, [entries, kind, filters]);
 
     const canImport = useMemo(() => {
-        return entries.some(entry => !resolved.document[entry.category].includes(entry.game.id)
-            && !resolved.document.legacyIds?.includes(entry.game.id));
+        return entries.some(entry => !resolved.document[entry.category].includes(entry.game.id));
     }, [resolved.document, entries]);
 
     const decodeError = decoded.kind === 'error' ? decoded.error : null;

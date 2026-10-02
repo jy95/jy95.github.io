@@ -2,7 +2,7 @@ import { SELECTION_CATEGORIES, emptySelection } from './schema';
 import { parseSharedSelection, selectionQuery } from './sharing';
 
 it('round-trips all categorized identifiers with deflate-raw', async () => {
-    const document = { version: 2 as const, games: ['game-a'], backlog: ['42'], dlcs: ['dlc-a'], planning: ['planned-a'] };
+    const document = { games: ['game-a'], backlog: ['42'], dlcs: ['dlc-a'], planning: ['planned-a'] };
     expect(await parseSharedSelection(new URLSearchParams(await selectionQuery(document)))).toEqual({ kind: 'selection', document });
     expect(await parseSharedSelection(new URLSearchParams(await selectionQuery(emptySelection())))).toEqual({ kind: 'selection', document: emptySelection() });
     expect(await parseSharedSelection(new URLSearchParams())).toEqual({ kind: 'absent' });
@@ -42,6 +42,6 @@ it('ignores incoming compressed schema versions', async () => {
 
 it.each(SELECTION_CATEGORIES)('round-trips arbitrary string IDs in shared %s', async category => {
     const ids = ['', 'bad.id!?', '日本語 🎮', 'a'.repeat(256), 'backlog:42', 'constructor', '__proto__'];
-    const document = { ...emptySelection(), [category]: ids, legacyIds: ids };
+    const document = { ...emptySelection(), [category]: ids };
     expect(await parseSharedSelection(new URLSearchParams(await selectionQuery(document)))).toEqual({ kind: 'selection', document });
 });

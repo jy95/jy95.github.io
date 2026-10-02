@@ -17,7 +17,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
     const dlc = (await loadDlcGroups()).flatMap((group) => group.dlcs)
         .find((game) => extractGameCardProps(game).id === id);
     if (dlc) {
-        return cachedJson<GameDetailsResponse>({ source: "published", game: toPublishedGame(dlc) });
+        return cachedJson<GameDetailsResponse>({ source: "published", category: "dlcs", game: toPublishedGame(dlc) });
     }
 
     const planning = (await loadPlanningGames()).find((game) => extractGameCardProps(game).id === id);

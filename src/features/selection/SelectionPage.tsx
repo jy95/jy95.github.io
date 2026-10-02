@@ -27,7 +27,7 @@ export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry
             {model.encoding && <Typography role="status">{t('processing')}</Typography>}
             <SelectionContent model={model} />
             <Suspense fallback={null}>
-                {model.detail && <GameDetailView game={model.detail.game} onClose={model.closeDetail} showVoteSection={model.detail.source === 'backlog'} showRelatedGames={model.detail.source !== 'backlog'} />}
+                {model.detail && <GameDetailView category={model.detail.category} game={model.detail.game} onClose={model.closeDetail} showVoteSection={model.detail.source === 'backlog'} showRelatedGames={model.detail.source !== 'backlog'} />}
                 {share.kind === 'ready' && <ShareSelectionDialog key={share.url} shareUrl={share.url} onClose={model.sharing.close} />}
             </Suspense>
             <ClearSelectionDialog open={model.clearOpen} onClose={model.closeClear} onConfirm={model.confirmClear} />

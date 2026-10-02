@@ -1,5 +1,6 @@
 'use client';
 
+import type { SelectionCategory } from '@/features/selection/documentTypes';
 import { useId, type ReactNode } from 'react';
 // MUI
 import Accordion from '@mui/material/Accordion';
@@ -16,16 +17,16 @@ import type { CardGame } from '@/domain/games/types';
 import type { GridSize } from './CardGrid';
 
 type Group<T> = { id?: string | number; name: string; items: T[] };
-type Props<T extends Group<unknown>> = { itemSize: GridSize; defaultExpanded?: boolean } & (
+type Props<T extends Group<unknown>> = { itemSize: GridSize; defaultExpanded?: boolean; category?: SelectionCategory } & (
     | { groups: Group<CardGame>[]; renderContent?: never }
     | { groups: T[]; renderContent: (group: T) => ReactNode }
 );
 
-export function GroupedGamesAccordion<T extends Group<unknown>>({ itemSize, defaultExpanded = false, ...props }: Props<T>) {
+export function GroupedGamesAccordion<T extends Group<unknown>>({ itemSize, defaultExpanded = false, category = "games", ...props }: Props<T>) {
     const instanceId = useId();
     const groups = props.renderContent
         ? props.groups.map(group => ({ ...group, content: props.renderContent(group) }))
-        : props.groups.map(group => ({ ...group, content: <CardGrid items={group.items} size={itemSize} /> }));
+        : props.groups.map(group => ({ ...group, content: <CardGrid category={category} items={group.items} size={itemSize} /> }));
     return (<>
         {groups.map((group) => {
             const groupId = encodeURIComponent(String(group.id ?? group.name));

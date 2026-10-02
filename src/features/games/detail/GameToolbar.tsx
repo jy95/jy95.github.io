@@ -1,3 +1,4 @@
+import type { SelectionCategory } from '@/features/selection/documentTypes';
 import { useTranslations } from "next-intl";
 import SelectionButton from "@/features/selection/SelectionButton";
 import Box from "@mui/material/Box";
@@ -23,8 +24,9 @@ import { buildWatchRoute } from "@/domain/games/youtube";
 import { isCardGame } from "./adapters";
 import type { RawGameDetailsEntry } from "./adapters";
 
-function GameToolbar({ game, onClose, presentation = "dialog", isPublished = false }: {
+function GameToolbar({ game, onClose, presentation = "dialog", isPublished = false, category }: {
     game: RawGameDetailsEntry;
+    category?: SelectionCategory;
     onClose: () => void;
     presentation?: "dialog" | "page";
     /** The published catalogue omits availableAt. Its membership confirms availability. */
@@ -66,7 +68,7 @@ function GameToolbar({ game, onClose, presentation = "dialog", isPublished = fal
             <Typography sx={{ ml: isPage ? 0 : 2, flex: 1, minWidth: 0, overflowWrap: "anywhere" }} variant={isPage ? "h5" : "h6"} component={isPage ? "h1" : "div"}>
                 {game.title}
             </Typography>
-            <SelectionButton id={game.id} category={isCardGame(game) ? undefined : 'backlog'} title={game.title} />
+            <SelectionButton id={game.id} category={category ?? (isCardGame(game) ? ('status' in game ? 'planning' : 'games') : 'backlog')} title={game.title} />
             {isPublic() && (
                 <IconButton
                     edge={isPage ? false : "end"}

@@ -1,7 +1,7 @@
 import { createSelector, createSlice, type Draft, type PayloadAction } from '@reduxjs/toolkit';
-import { emptySelection, type SelectionCategory, type SelectionCategories, type SelectionDocument } from './documentTypes';
+import { emptySelection, type SelectionCategory, type SelectionDocument } from './documentTypes';
 import { selectionIds } from './identifiers';
-import { resolveLegacySelection, resolveSelectionInput } from './documentClassification';
+import { normalizeSelectionDocument } from './documentClassification';
 import { mergeSelections } from './documentMerge';
 import { toggleSelectionIdentifier } from './documentOperations';
 
@@ -9,12 +9,11 @@ type SelectionState = {
     /** Derived from `document`, kept for cheap serializable reads. Only written through `setDocument`. */
     ids: string[];
     document: SelectionDocument;
-    categories: SelectionCategories;
     hydrated: boolean;
     storageAvailable: boolean;
 };
 
-const initialState: SelectionState = { ids: [], document: emptySelection(), categories: {}, hydrated: false, storageAvailable: true };
+const initialState: SelectionState = { ids: [], document: emptySelection(), hydrated: false, storageAvailable: true };
 
 function setDocument(state: Draft<SelectionState>, document: SelectionDocument) {
     if (document === state.document) return;
@@ -26,24 +25,17 @@ const selectionSlice = createSlice({
     name: 'selection',
     initialState,
     reducers: {
-        setSelectionCategories(state, action: PayloadAction<SelectionCategories>) {
-            state.categories = action.payload;
-            const resolved = resolveLegacySelection(state.document, action.payload);
-            setDocument(state, resolved);
-        },
-        hydrateSelection(state, action: PayloadAction<string[] | SelectionDocument>) {
-            const document = resolveSelectionInput(action.payload, state.categories);
+        hydrateSelection(state, action: PayloadAction<SelectionDocument>) {
+            const document = normalizeSelectionDocument(action.payload);
             setDocument(state, document);
             state.hydrated = true;
         },
-        toggleSelection(state, action: PayloadAction<string | { id: string; category: SelectionCategory }>) {
-            const { id, category } = typeof action.payload === 'string' ? { id: action.payload, category: undefined } : action.payload;
-            const categories = category ? { ...state.categories, [id]: category } : state.categories;
-            const document = toggleSelectionIdentifier(state.document, id, categories);
-            setDocument(state, document);
+        toggleSelection(state, action: PayloadAction<{ id: string; category: SelectionCategory }>) {
+            const { id, category } = action.payload;
+            setDocument(state, toggleSelectionIdentifier(state.document, id, category));
         },
-        addSelection(state, action: PayloadAction<string[] | SelectionDocument>) {
-            const addition = resolveSelectionInput(action.payload, state.categories);
+        addSelection(state, action: PayloadAction<SelectionDocument>) {
+            const addition = normalizeSelectionDocument(action.payload);
             const merged = mergeSelections(state.document, addition);
             setDocument(state, merged);
         },
@@ -53,10 +45,10 @@ const selectionSlice = createSlice({
 });
 
 /** Memoized O(1) membership lookup shared by every SelectionButton. */
-export const selectSelectedIdSet = createSelector(
-    [(state: { selection: SelectionState }) => state.selection.ids],
-    ids => new Set(ids),
+export const selectSelectedIdsByCategory = createSelector(
+    [(state: { selection: SelectionState }) => state.selection.document],
+    document => Object.fromEntries(Object.entries(document).map(([category, ids]) => [category, new Set(ids)])) as Record<SelectionCategory, Set<string>>,
 );
 
-export const { hydrateSelection, toggleSelection, addSelection, clearSelection, setSelectionStorageAvailable, setSelectionCategories } = selectionSlice.actions;
+export const { hydrateSelection, toggleSelection, addSelection, clearSelection, setSelectionStorageAvailable } = selectionSlice.actions;
 export default selectionSlice.reducer;

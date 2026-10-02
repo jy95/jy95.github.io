@@ -8,6 +8,5 @@ export function selectionIds(document: SelectionDocument): string[] {
     return normalizeSelectionIds(
         SELECTION_CATEGORIES
             .flatMap(category => document[category])
-            .concat(document.legacyIds ?? [])
     );
 }

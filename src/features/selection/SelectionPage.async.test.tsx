@@ -8,7 +8,7 @@ import { messages } from './testMessages';
 const { en, fr } = messages;
 
 it('loads a shared selection asynchronously and imports categorized games', async () => {
-    navigation.query = await selectionQuery({ version: 2, games: ['game-0'], dlcs: [], backlog: [], planning: [] });
+    navigation.query = await selectionQuery({ games: ['game-0'], dlcs: [], backlog: [], planning: [] });
     const { store } = setup(['game-1']);
     expect(screen.getAllByRole('progressbar')).toHaveLength(1);
     expect(screen.queryByRole('status')).not.toBeInTheDocument();

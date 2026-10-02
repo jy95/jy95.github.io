@@ -17,7 +17,7 @@ export default function GamesGalleryList() {
             loadingFallback={<SkeletonGrid />}
         >
             {(groups) => (
-                <GroupedGamesAccordion groups={groups} itemSize={{
+                <GroupedGamesAccordion category="dlcs" groups={groups} itemSize={{
                     xs: 6,
                     md: 4,
                     lg: 1.5
