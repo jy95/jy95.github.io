@@ -1,4 +1,4 @@
-import { emptySelection } from './schema';
+import { SELECTION_CATEGORIES, emptySelection } from './schema';
 import { parseSharedSelection, selectionQuery } from './sharing';
 
 it('round-trips all categorized identifiers with deflate-raw', async () => {
@@ -38,4 +38,10 @@ async function rawQuery(value: string) {
 }
 it('ignores incoming compressed schema versions', async () => {
     expect(await parseSharedSelection(await rawQuery(JSON.stringify({ ...emptySelection(), version: 3 })))).toEqual({ kind: 'selection', document: emptySelection() });
+});
+
+it.each(SELECTION_CATEGORIES)('round-trips arbitrary string IDs in shared %s', async category => {
+    const ids = ['', 'bad.id!?', '日本語 🎮', 'a'.repeat(256), 'backlog:42', 'constructor', '__proto__'];
+    const document = { ...emptySelection(), [category]: ids, legacyIds: ids };
+    expect(await parseSharedSelection(new URLSearchParams(await selectionQuery(document)))).toEqual({ kind: 'selection', document });
 });

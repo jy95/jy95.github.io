@@ -1,5 +1,5 @@
 import { SELECTION_CATEGORIES, emptySelection } from './documentTypes';
-import { isBacklogId, isSelectionId, normalizeSelectionIds, selectionIds } from './identifiers';
+import { normalizeSelectionIds, selectionIds } from './identifiers';
 import { mergeSelections } from './documentMerge';
 
 import type { SelectionCategory, SelectionCategories, SelectionDocument } from './documentTypes';
@@ -49,9 +49,7 @@ export function normalizeSelectionDocument(value: unknown): SelectionDocument {
     if (!value || typeof value !== 'object' || Array.isArray(value)) return document;
     const data = value as Record<string, unknown>;
     for (const category of SELECTION_CATEGORIES) {
-        const ids = data[category];
-        const valid = category === 'backlog' ? isBacklogId : isSelectionId;
-        document[category] = Array.isArray(ids) ? [...new Set(ids.filter(valid))] : [];
+        document[category] = normalizeSelectionIds(data[category]);
     }
     if (Array.isArray(data.legacyIds)) document.legacyIds = normalizeSelectionIds(data.legacyIds);
     return document;
