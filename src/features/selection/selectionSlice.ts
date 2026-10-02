@@ -1,7 +1,5 @@
 import { createSelector, createSlice, type Draft, type PayloadAction } from '@reduxjs/toolkit';
 import { emptySelection, resolveLegacySelection, selectionIds, type SelectionCategories, type SelectionDocument } from './schema';
-export { normalizeSelectionIds } from './identifiers';
-export { parseStoredSelection, SELECTION_STORAGE_KEY } from './storageFormat';
 import { mergeSelections, resolveSelectionInput, toggleSelectionIdentifier } from './documentOperations';
 
 type SelectionState = {
