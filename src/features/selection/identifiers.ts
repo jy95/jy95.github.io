@@ -37,5 +37,5 @@ export function selectionIds(document: SelectionDocument): string[] {
         }
     }
 
-    return [...ids];
+    return normalizeSelectionIds([...ids]);
 }

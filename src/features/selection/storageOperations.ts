@@ -4,9 +4,8 @@ import { parseStoredSelection, SELECTION_STORAGE_KEY } from './storageFormat';
 import type { SelectionDocument } from './documentTypes';
 
 export function hydrateSelectionStorage(store: AppStore): void {
-    const storage = window.localStorage;
-
     try {
+        const storage = window.localStorage;
         const stored = storage.getItem(SELECTION_STORAGE_KEY);
         const parsed = parseStoredSelection(stored);
         store.dispatch(hydrateSelection(parsed));
@@ -23,9 +22,8 @@ export function hydrateSelectionStorage(store: AppStore): void {
 }
 
 export function writeSelectionStorage(store: AppStore, document: SelectionDocument): void {
-    const storage = window.localStorage;
-
     try {
+        const storage = window.localStorage;
         storage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(document));
         store.dispatch(setSelectionStorageAvailable(true));
     } catch {
