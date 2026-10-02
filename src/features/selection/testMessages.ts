@@ -29,7 +29,6 @@ export const messages = {
             "processing": "Processing selection…",
             "invalid": "This selection link is invalid or damaged.",
             "compressionUnavailable": "This browser does not support compressed selection links.",
-            "tooLarge": "This selection exceeds the supported link size.",
             "categories": {
                 "all": "All",
                 "games": "Games",
@@ -115,7 +114,6 @@ export const messages = {
             "processing": "Traitement de la sélection…",
             "invalid": "Ce lien de sélection est invalide ou endommagé.",
             "compressionUnavailable": "Ce navigateur ne prend pas en charge les liens de sélection compressés.",
-            "tooLarge": "Cette sélection dépasse la taille de lien prise en charge.",
             "categories": {
                 "all": "Tous",
                 "games": "Jeux",

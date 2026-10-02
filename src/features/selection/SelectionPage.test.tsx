@@ -76,3 +76,14 @@ it.each([['Alpha', 'game-0'], ['Expansion', 'dlc']])('preserves published %s nav
     expect(navigation.push).not.toHaveBeenCalled();
     expect(screen.getByRole('button', { name: `Remove ${title} from my selection` })).toBeInTheDocument();
 });
+
+
+it('selects backlog raw IDs before the catalogue loads', () => {
+    const { wrapper, store } = setup([]);
+    render(<SelectionButton id="42" category="backlog" title="Waiting" />, { wrapper });
+    fireEvent.click(screen.getByRole('button', { name: 'Add Waiting to my selection' }));
+    expect(store.getState().selection.document.backlog).toEqual(['42']);
+    expect(store.getState().selection.ids).toEqual(['42']);
+    fireEvent.click(screen.getByRole('button', { name: 'Remove Waiting from my selection' }));
+    expect(store.getState().selection.ids).toEqual([]);
+});

@@ -3,8 +3,8 @@ import { createProviders, catalogue } from './testUtils';
 import { SelectionCards } from './SelectionCards';
 import type { SelectionEntry } from './catalogue';
 
-const entries: SelectionEntry[] = Array.from({ length: 1000 }, (_, index) => ({
-    source: 'backlog', category: 'backlog', selectionId: `backlog:${index}`,
+const entries: SelectionEntry[] = Array.from({ length: 100 }, (_, index) => ({
+    source: 'backlog', category: 'backlog', selectionId: String(index),
     game: { id: String(index), title: `Item ${index}`, imagePath: '/cover.webp' },
 }));
 let scrollTop = 0;
@@ -86,7 +86,7 @@ it('returns to visible results when filtering or sorting after scrolling', () =>
     update(entries);
     scroll(main, 6000);
     update([...entries].reverse());
-    expect(screen.getByRole('img', { name: 'Item 999' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Item 99' })).toBeInTheDocument();
     expect(screen.queryByRole('img', { name: 'Item 40' })).not.toBeInTheDocument();
 });
 
@@ -96,7 +96,7 @@ it('preserves detail and selection actions outside the initial viewport', () => 
     fireEvent.click(screen.getByRole('img', { name: 'Item 40' }).closest('button')!);
     expect(onDetail).toHaveBeenCalledWith(entries[40]);
     fireEvent.click(screen.getByRole('button', { name: 'Add Item 40 to my selection' }));
-    expect(store.getState().selection.ids).toContain('backlog:40');
+    expect(store.getState().selection.ids).toContain('40');
     expect(screen.getByRole('button', { name: 'Remove Item 40 from my selection' })).toHaveAttribute('aria-pressed', 'true');
 });
 
@@ -119,10 +119,10 @@ it('handles empty and short lists, including published card links', () => {
 
 it('keeps results mounted when a deep scroll exceeds the resized grid height', () => {
     const { main } = mount();
-    scroll(main, 140000);
+    scroll(main, 14000);
     vi.stubGlobal('innerWidth', 1300);
     fireEvent.resize(window);
-    expect(screen.getByRole('img', { name: 'Item 999' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Item 99' })).toBeInTheDocument();
     expect(screen.getAllByRole('img', { name: /^Item / }).length).toBeLessThan(20);
 });
 

@@ -26,7 +26,7 @@ export async function loadSelectionCatalogue(): Promise<SelectionEntry[]> {
         }),
         ...backlog.map((raw): SelectionEntry => {
             const game = toBacklogEntry(raw);
-            return { source: 'backlog', category: 'backlog', game, selectionId: `backlog:${game.id}` };
+            return { source: 'backlog', category: 'backlog', game, selectionId: game.id };
         }),
     ];
 

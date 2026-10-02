@@ -1,5 +1,5 @@
 import { createSelector, createSlice, type Draft, type PayloadAction } from '@reduxjs/toolkit';
-import { emptySelection, type SelectionCategories, type SelectionDocument } from './documentTypes';
+import { emptySelection, type SelectionCategory, type SelectionCategories, type SelectionDocument } from './documentTypes';
 import { selectionIds } from './identifiers';
 import { resolveLegacySelection, resolveSelectionInput } from './documentClassification';
 import { mergeSelections } from './documentMerge';
@@ -36,8 +36,10 @@ const selectionSlice = createSlice({
             setDocument(state, document);
             state.hydrated = true;
         },
-        toggleSelection(state, action: PayloadAction<string>) {
-            const document = toggleSelectionIdentifier(state.document, action.payload, state.categories);
+        toggleSelection(state, action: PayloadAction<string | { id: string; category: SelectionCategory }>) {
+            const { id, category } = typeof action.payload === 'string' ? { id: action.payload, category: undefined } : action.payload;
+            const categories = category ? { ...state.categories, [id]: category } : state.categories;
+            const document = toggleSelectionIdentifier(state.document, id, categories);
             setDocument(state, document);
         },
         addSelection(state, action: PayloadAction<string[] | SelectionDocument>) {

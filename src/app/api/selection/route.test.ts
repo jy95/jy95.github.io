@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import type { SelectionEntry } from '@/features/selection/catalogue';
 
 const catalogue: SelectionEntry[] = [{
-    selectionId: 'backlog:42', category: 'backlog', source: 'backlog',
+    selectionId: '42', category: 'backlog', source: 'backlog',
     game: { id: '42', title: 'Waiting', imagePath: '/cover.webp' },
 }];
 

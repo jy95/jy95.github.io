@@ -21,9 +21,9 @@ it('invalidates decoding when a shared query becomes personal', async () => {
     expect(result.current.kind).toBe('absent');
 });
 it('classifies decode rejections', async () => {
-    vi.spyOn(sharing, 'parseSharedSelection').mockRejectedValue(new Error('tooLarge'));
+    vi.spyOn(sharing, 'parseSharedSelection').mockRejectedValue(new Error('compressionUnavailable'));
     const { result } = renderHook(() => useSharedSelection('selection=pending'));
-    await waitFor(() => expect(result.current).toEqual({ kind: 'error', error: 'tooLarge' }));
+    await waitFor(() => expect(result.current).toEqual({ kind: 'error', error: 'compressionUnavailable' }));
 });
 
 it('ignores decode completion after unmount', async () => {

@@ -76,7 +76,7 @@ afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 export const categorizedCatalogue: SelectionEntry[] = [
     ...catalogue,
     { source: 'published', category: 'dlcs', selectionId: 'dlc', game: { ...catalogue[0].game, id: 'dlc', title: 'Expansion', url_type: 'VIDEO', url: 'https://youtube.com' } },
-    { source: 'backlog', category: 'backlog', selectionId: 'backlog:42', game: { id: '42', title: 'Waiting', imagePath: '/waiting.webp' } },
+    { source: 'backlog', category: 'backlog', selectionId: '42', game: { id: '42', title: 'Waiting', imagePath: '/waiting.webp' } },
     { source: 'planning', category: 'planning', selectionId: 'planned', game: { ...catalogue[0].game, id: 'planned', title: 'Upcoming', url_type: 'VIDEO', url: 'https://youtube.com', status: 'PENDING' } },
 ];
 export const allIds = categorizedCatalogue.map(entry => entry.selectionId);
