@@ -3,7 +3,7 @@
 import Typography from "@mui/material/Typography";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
-import BaseCard from "@/features/games/components/BaseCard";
+import { createCardFactory } from "@/features/games/components/cardFactory";
 
 export type CompanyCardEntry = {
     id: number;
@@ -12,16 +12,19 @@ export type CompanyCardEntry = {
     gamesCount: number;
 };
 
+const CompanyCardFactory = createCardFactory<CompanyCardEntry>({
+    aspectRatio: "square",
+    objectFit: "contain",
+    overlayPersistent: true,
+});
+
 export default function CompanyCard({ company }: { company: CompanyCardEntry }) {
     const router = useRouter();
     const t = useTranslations("companies");
 
     return (
-        <BaseCard
+        <CompanyCardFactory
             item={company}
-            aspectRatio="square"
-            objectFit="contain"
-            overlayPersistent
             onClick={(item) => router.push({ pathname: "/companies/[id]", params: { id: String(item.id) } })}
             overlaySlot={(item) => (
                 <>

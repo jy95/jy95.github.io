@@ -12,12 +12,16 @@ import { buildWatchRoute } from "@/domain/games/youtube";
 
 // UI
 import SelectionButton from "@/features/selection/SelectionButton";
-import BaseCard from "./BaseCard";
 import GameCardOverlay from "./GameCardOverlay";
+import { createCardFactory } from "./cardFactory";
 
 // Types
 import type { ReactNode } from "react";
 import type { CardGame } from "@/domain/games";
+
+const GameCard = createCardFactory<CardGame>({
+    aspectRatio: "square",
+});
 
 function CardEntry({ game, selectable = true, badge }: { game: CardGame; selectable?: boolean; badge?: ReactNode }) {
 
@@ -27,7 +31,7 @@ function CardEntry({ game, selectable = true, badge }: { game: CardGame; selecta
     const t = useTranslations("gameDetail");
 
     return (
-        <BaseCard 
+        <GameCard 
             item={game}
             badgesSlot={badge ? () => badge : undefined}
             onClick={(item) => router.push(buildWatchRoute(item.url_type, item.id))}
