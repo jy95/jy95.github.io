@@ -1,21 +1,40 @@
 import { loadBacklogGames, loadDlcGroups, loadPlanningGames, loadPublishedGames, toBacklogEntry, toPlanningEntry, toPublishedGame } from '@/lib/gamesData';
+import type { RawGame } from '@/domain/games';
 import type { GameDetailsResponse } from '@/domain/games/details';
 
 import type { SelectionCategory } from './schema';
 
 export type SelectionEntry = GameDetailsResponse & { selectionId: string; category: SelectionCategory };
 
+const publishedEntry = (category: 'games' | 'dlcs') => (raw: RawGame): SelectionEntry => {
+    const game = toPublishedGame(raw);
+    return { source: 'published', category, game, selectionId: game.id };
+};
+
 export async function loadSelectionCatalogue(): Promise<SelectionEntry[]> {
     const [published, dlcs, planning, backlog] = await Promise.all([
         loadPublishedGames(), loadDlcGroups(), loadPlanningGames(), loadBacklogGames(),
     ]);
+
+    // Listed by classification precedence: published games, DLCs, planning, then backlog.
     const entries: SelectionEntry[] = [
-        ...published.map(toPublishedGame).map(game => ({ source: 'published' as const, category: 'games' as const, game, selectionId: game.id })),
-        ...dlcs.flatMap(group => group.dlcs).map(toPublishedGame).map(game => ({ source: 'published' as const, category: 'dlcs' as const, game, selectionId: game.id })),
-        ...planning.map(toPlanningEntry).map(game => ({ source: 'planning' as const, category: 'planning' as const, game, selectionId: game.id })),
-        ...backlog.map(toBacklogEntry).map(game => ({ source: 'backlog' as const, category: 'backlog' as const, game, selectionId: `backlog:${game.id}` })),
+        ...published.map(publishedEntry('games')),
+        ...dlcs.flatMap(group => group.dlcs).map(publishedEntry('dlcs')),
+        ...planning.map((raw): SelectionEntry => {
+            const game = toPlanningEntry(raw);
+            return { source: 'planning', category: 'planning', game, selectionId: game.id };
+        }),
+        ...backlog.map((raw): SelectionEntry => {
+            const game = toBacklogEntry(raw);
+            return { source: 'backlog', category: 'backlog', game, selectionId: `backlog:${game.id}` };
+        }),
     ];
-    // Classification precedence: published games, DLCs, planning, then backlog.
-    // Keep the source discriminant for rendering independent of selection category.
-    return [...new Map(entries.reverse().map(entry => [entry.selectionId, entry])).values()].reverse();
+
+    // The first (highest-precedence) occurrence of an identifier wins. The `source`
+    // discriminant stays independent of the selection category.
+    const unique = new Map<string, SelectionEntry>();
+    for (const entry of entries) {
+        if (!unique.has(entry.selectionId)) unique.set(entry.selectionId, entry);
+    }
+    return [...unique.values()];
 }

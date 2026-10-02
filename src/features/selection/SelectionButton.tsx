@@ -6,12 +6,12 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { useTranslations } from 'next-intl';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { toggleSelection } from './selectionSlice';
+import { selectSelectedIdSet, toggleSelection } from './selectionSlice';
 
 export default function SelectionButton({ id, title }: { id: string; title: string }) {
     const t = useTranslations('selection');
     const dispatch = useAppDispatch();
-    const selected = useAppSelector(state => state.selection.ids.includes(id));
+    const selected = useAppSelector(state => selectSelectedIdSet(state).has(id));
     const hydrated = useAppSelector(state => state.selection.hydrated);
     const label = t(selected ? 'remove' : 'add', { title });
     return (

@@ -57,10 +57,10 @@ it('filters selected items with the existing catalogue title field', async () =>
 });
 
 
-it.each([['Waiting', 'true', 'false'], ['Upcoming', 'false', 'true']])('preserves %s detail behavior', (title, vote, related) => {
+it.each([['Waiting', 'true', 'false'], ['Upcoming', 'false', 'true']])('preserves %s detail behavior', async (title, vote, related) => {
     setup(allIds, 'en', 'light', categorizedCatalogue);
     fireEvent.click(screen.getByRole('img', { name: title }).closest('button')!);
-    const dialog = screen.getByRole('dialog', { name: title });
+    const dialog = await screen.findByRole('dialog', { name: title });
     expect(dialog).toHaveAttribute('data-vote', vote);
     expect(dialog).toHaveAttribute('data-related', related);
     fireEvent.click(within(dialog).getByRole('button', { name: 'Close details' }));

@@ -1,33 +1,55 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { createSelector, createSlice, type Draft, type PayloadAction } from '@reduxjs/toolkit';
 import { emptySelection, resolveLegacySelection, selectionIds, type SelectionCategories, type SelectionDocument } from './schema';
 export { normalizeSelectionIds } from './identifiers';
 export { parseStoredSelection, SELECTION_STORAGE_KEY } from './storageFormat';
 import { mergeSelections, resolveSelectionInput, toggleSelectionIdentifier } from './documentOperations';
+
+type SelectionState = {
+    /** Derived from `document`, kept for cheap serializable reads. Only written through `setDocument`. */
+    ids: string[];
+    document: SelectionDocument;
+    categories: SelectionCategories;
+    hydrated: boolean;
+    storageAvailable: boolean;
+};
+
+const initialState: SelectionState = { ids: [], document: emptySelection(), categories: {}, hydrated: false, storageAvailable: true };
+
+function setDocument(state: Draft<SelectionState>, document: SelectionDocument) {
+    state.document = document;
+    state.ids = selectionIds(document);
+}
+
 const selectionSlice = createSlice({
     name: 'selection',
-    initialState: { ids: [] as string[], document: emptySelection(), categories: {} as SelectionCategories, hydrated: false, storageAvailable: true },
+    initialState,
     reducers: {
         setSelectionCategories(state, action: PayloadAction<SelectionCategories>) {
             state.categories = action.payload;
-            state.document = resolveLegacySelection(state.document, action.payload);
-            state.ids = selectionIds(state.document);
+            const resolved = resolveLegacySelection(state.document, action.payload);
+            // No-op (and no localStorage write) when nothing was resolved.
+            if (resolved !== state.document) setDocument(state, resolved);
         },
         hydrateSelection(state, action: PayloadAction<string[] | SelectionDocument>) {
-            state.document = resolveSelectionInput(action.payload, state.categories);
-            state.ids = selectionIds(state.document);
+            setDocument(state, resolveSelectionInput(action.payload, state.categories));
             state.hydrated = true;
         },
         toggleSelection(state, action: PayloadAction<string>) {
-            state.document = toggleSelectionIdentifier(state.document, action.payload, state.categories);
-            state.ids = selectionIds(state.document);
+            setDocument(state, toggleSelectionIdentifier(state.document, action.payload, state.categories));
         },
         addSelection(state, action: PayloadAction<string[] | SelectionDocument>) {
-            state.document = mergeSelections(state.document, resolveSelectionInput(action.payload, state.categories));
-            state.ids = selectionIds(state.document);
+            setDocument(state, mergeSelections(state.document, resolveSelectionInput(action.payload, state.categories)));
         },
-        clearSelection(state) { state.document = emptySelection(); state.ids = []; },
+        clearSelection(state) { setDocument(state, emptySelection()); },
         setSelectionStorageAvailable(state, action: PayloadAction<boolean>) { state.storageAvailable = action.payload; },
     },
 });
+
+/** Memoized O(1) membership lookup shared by every SelectionButton. */
+export const selectSelectedIdSet = createSelector(
+    [(state: { selection: SelectionState }) => state.selection.ids],
+    ids => new Set(ids),
+);
+
 export const { hydrateSelection, toggleSelection, addSelection, clearSelection, setSelectionStorageAvailable, setSelectionCategories } = selectionSlice.actions;
 export default selectionSlice.reducer;
