@@ -14,15 +14,18 @@ export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry
     const t = useTranslations('selection');
     const model = useSelectionPage(catalogue);
     const share = model.sharing.state;
+    const isShared = model.shared;
+    const hasDetail = Boolean(model.detail);
+
     return (
         <Stack spacing={2}>
-            <Typography variant="h4" component="h1">{t(model.shared ? 'sharedTitle' : 'title')}</Typography>
-            <Typography color="text.secondary">{t(model.shared ? 'sharedDescription' : 'description')}</Typography>
+            <Typography variant="h4" component="h1">{t(isShared ? 'sharedTitle' : 'title')}</Typography>
+            <Typography color="text.secondary">{t(isShared ? 'sharedDescription' : 'description')}</Typography>
             {share.kind === 'error' && <Alert severity="error">{t(share.error)}</Alert>}
             {model.decoded.kind === 'error' && <Alert severity="error">{t(model.decoded.error)}</Alert>}
             {share.kind === 'processing' && <Typography role="status">{t('processing')}</Typography>}
             <SelectionContent model={model} />
-            {model.detail && <GameDetailView game={model.detail.game} onClose={model.closeDetail} showVoteSection={model.detail.source === 'backlog'} showRelatedGames={model.detail.source !== 'backlog'} />}
+            {hasDetail && <GameDetailView game={model.detail!.game} onClose={model.closeDetail} showVoteSection={model.detail!.source === 'backlog'} showRelatedGames={model.detail!.source !== 'backlog'} />}
             <ClearSelectionDialog open={model.clearOpen} onClose={model.closeClear} onConfirm={model.confirmClear} />
             {share.kind === 'ready' && <ShareSelectionDialog key={share.url} shareUrl={share.url} onClose={model.sharing.close} />}
         </Stack>

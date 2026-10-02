@@ -4,21 +4,29 @@ import { parseStoredSelection, SELECTION_STORAGE_KEY } from './storageFormat';
 import type { SelectionDocument } from './documentTypes';
 
 export function hydrateSelectionStorage(store: AppStore): void {
+    const storage = window.localStorage;
+
     try {
-        const stored = window.localStorage.getItem(SELECTION_STORAGE_KEY);
+        const stored = storage.getItem(SELECTION_STORAGE_KEY);
         const parsed = parseStoredSelection(stored);
         store.dispatch(hydrateSelection(parsed));
+
         // Migrate existing arrays immediately, without echoing external tab updates.
-        if (stored !== null && Array.isArray(parsed)) window.localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(store.getState().selection.document));
+        if (stored !== null && Array.isArray(parsed)) {
+            storage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(store.getState().selection.document));
+        }
     } catch {
-        if (!store.getState().selection.hydrated) store.dispatch(hydrateSelection([]));
+        const { hydrated } = store.getState().selection;
+        if (!hydrated) store.dispatch(hydrateSelection([]));
         store.dispatch(setSelectionStorageAvailable(false));
     }
 }
 
 export function writeSelectionStorage(store: AppStore, document: SelectionDocument): void {
+    const storage = window.localStorage;
+
     try {
-        window.localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(document));
+        storage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(document));
         store.dispatch(setSelectionStorageAvailable(true));
     } catch {
         store.dispatch(setSelectionStorageAvailable(false));
