@@ -55,3 +55,21 @@ it('does not reclassify legacy identifiers already assigned an explicit category
     expect(resolveSelectionInput(input, categories)).toEqual({ ...emptySelection(), planning: ['a'], dlcs: ['b'], legacyIds: ['unknown'] });
     expect(input.legacyIds).toEqual(['a', 'b', 'unknown']);
 });
+
+it('preserves the distinction between absent and empty legacy identifiers', () => {
+    const absent = emptySelection();
+    const empty = { ...emptySelection(), legacyIds: [] };
+    expect(mergeSelections(absent, empty)).not.toHaveProperty('legacyIds');
+    expect(mergeSelections(empty, absent).legacyIds).toEqual([]);
+    expect(removeSelectionIdentifier(absent, 'missing')).not.toHaveProperty('legacyIds');
+    expect(removeSelectionIdentifier(empty, 'missing').legacyIds).toEqual([]);
+    expect(removeSelectionIdentifier({ ...emptySelection(), legacyIds: ['a'] }, 'a').legacyIds).toEqual([]);
+});
+
+it('normalizes merged legacy identifiers in first-occurrence order', () => {
+    const first = { ...emptySelection(), legacyIds: ['b', 'bad.id', 'a', 'b'] };
+    const second = { ...emptySelection(), legacyIds: ['a', 'backlog:42', 'c'] };
+    expect(mergeSelections(first, second).legacyIds).toEqual(['b', 'a', 'backlog:42', 'c']);
+    expect(first.legacyIds).toEqual(['b', 'bad.id', 'a', 'b']);
+    expect(second.legacyIds).toEqual(['a', 'backlog:42', 'c']);
+});
