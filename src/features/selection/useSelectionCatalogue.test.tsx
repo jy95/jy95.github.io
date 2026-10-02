@@ -1,0 +1,29 @@
+import { renderHook, waitFor } from '@testing-library/react';
+import { setup, catalogue } from './testUtils';
+import { useSelectionCatalogue } from './useSelectionCatalogue';
+import { emptySelection } from './documentTypes';
+import type { SelectionEntry } from './catalogue';
+
+it('prepares matching category and entry lookups with last-duplicate precedence and safe property names', async () => {
+    const names = ['constructor', 'toString', '__proto__'];
+    const first = names.map((id): SelectionEntry => ({
+        source: 'published', category: 'games', selectionId: id,
+        game: { ...catalogue[0].game, id, url_type: 'VIDEO', url: 'https://youtube.com' },
+    }));
+    const last: SelectionEntry = { ...first[0], category: 'dlcs' };
+    const entries = [...first, last];
+    const { wrapper, store, unmount } = setup(names, 'en', 'light', entries);
+    unmount();
+    const { result, rerender } = renderHook(
+        ({ shared }) => useSelectionCatalogue(entries, shared ? { kind: 'selection', document: { ...emptySelection(), games: ['constructor'] } } : { kind: 'absent' }),
+        { wrapper, initialProps: { shared: false } },
+    );
+    await waitFor(() => expect(store.getState().selection.document.dlcs).toEqual(['constructor']));
+    expect(result.current.categories.constructor).toBe('dlcs');
+    expect(result.current.categories.toString).toBe('games');
+    expect(result.current.categories.__proto__).toBe('games');
+    expect(result.current.entries).toEqual([first[1], first[2], last]);
+    rerender({ shared: true });
+    expect(result.current.entries).toEqual([]);
+    expect(result.current.unavailable).toBe(1);
+});

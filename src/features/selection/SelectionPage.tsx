@@ -23,8 +23,8 @@ export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry
             <Typography variant="h4" component="h1">{t(model.shared ? 'sharedTitle' : 'title')}</Typography>
             <Typography color="text.secondary">{t(model.shared ? 'sharedDescription' : 'description')}</Typography>
             {share.kind === 'error' && <Alert severity="error">{t(share.error)}</Alert>}
-            {model.decoded.kind === 'error' && <Alert severity="error">{t(model.decoded.error)}</Alert>}
-            {share.kind === 'processing' && <Typography role="status">{t('processing')}</Typography>}
+            {model.decodeError && <Alert severity="error">{t(model.decodeError)}</Alert>}
+            {model.encoding && <Typography role="status">{t('processing')}</Typography>}
             <SelectionContent model={model} />
             <Suspense fallback={null}>
                 {model.detail && <GameDetailView game={model.detail.game} onClose={model.closeDetail} showVoteSection={model.detail.source === 'backlog'} showRelatedGames={model.detail.source !== 'backlog'} />}

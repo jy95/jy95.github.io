@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { classifySelection, mergeSelections, removeSelectionIdentifier, resolveSelectionInput, toggleSelectionIdentifier } from './documentOperations';
+import { classifySelection, resolveSelectionInput } from './documentClassification';
+import { mergeSelections, removeSelectionIdentifier } from './documentMerge';
+import { toggleSelectionIdentifier } from './documentOperations';
 import { emptySelection } from './documentTypes';
 import { selectionIds } from './identifiers';
 import { resolveSelectionCatalogue } from './resolveCatalogue';
@@ -31,7 +33,9 @@ describe('document operations', () => {
     });
     it('toggles validated identifiers and preserves document identity for invalid input', () => {
         const initial = emptySelection();
-        expect(toggleSelectionIdentifier(initial, '!!!', categories)).toBe(initial);
+        for (const id of ['!!!', '', 'a'.repeat(129), `backlog:${'1'.repeat(129)}`]) {
+            expect(toggleSelectionIdentifier(initial, id, categories)).toBe(initial);
+        }
         const added = toggleSelectionIdentifier(initial, 'b', categories);
         expect(added.dlcs).toEqual(['b']);
         expect(selectionIds(toggleSelectionIdentifier(added, 'b', categories))).toEqual([]);

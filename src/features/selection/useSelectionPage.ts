@@ -35,13 +35,18 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
         return selectedIds.some(id => !own.has(id));
     }, [ids, selectedIds]);
 
+    const decodeError = decoded.kind === 'error' ? decoded.error : null;
+    const decoding = decoded.kind === 'processing';
+    const encoding = sharing.state.kind === 'processing';
+    const hasEntries = entries.length > 0;
+
     return {
-        ...actions, decoded, sharing, filters, updateFilters, kind, setKind, visibleEntries, canImport,
+        ...actions, decodeError, decoding, encoding, hasEntries, sharing, filters, updateFilters, kind, setKind, visibleEntries, canImport,
         entries,
         unavailable: resolved.unavailable,
         storageAvailable: resolved.storageAvailable,
         shared: decoded.kind !== 'absent',
-        loading: !resolved.hydrated || decoded.kind === 'processing',
+        loading: !resolved.hydrated || decoding,
         hasSelection: ids.length > 0,
     };
 }

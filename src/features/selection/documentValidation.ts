@@ -1,8 +1,6 @@
 import { SELECTION_CATEGORIES, emptySelection, type SelectionDocument } from './documentTypes';
-import { isSelectionId } from './identifiers';
+import { isBacklogId, isCardId, isSelectionId } from './identifiers';
 
-const BACKLOG_ID = /^\d{1,128}$/;
-const CARD_ID = /^[A-Za-z0-9_-]{1,128}$/;
 const ALLOWED_KEYS: ReadonlySet<string> = new Set(['version', ...SELECTION_CATEGORIES, 'legacyIds']);
 
 export function validateIdentifiers(value: unknown, valid: (id: unknown) => boolean): string[] {
@@ -15,8 +13,7 @@ export function validateSelection(value: unknown): SelectionDocument {
     const data = validateDocumentHeader(value);
     const document = emptySelection();
     for (const category of SELECTION_CATEGORIES) {
-        const pattern = category === 'backlog' ? BACKLOG_ID : CARD_ID;
-        document[category] = validateIdentifiers(data[category], id => typeof id === 'string' && pattern.test(id));
+        document[category] = validateIdentifiers(data[category], category === 'backlog' ? isBacklogId : isCardId);
     }
     if (data.legacyIds !== undefined) {
         document.legacyIds = validateIdentifiers(data.legacyIds, isSelectionId);
