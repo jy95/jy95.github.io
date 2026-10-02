@@ -5,6 +5,7 @@
 Online catalog to have a clear view of the [GamesPassionFR][YoutubeChannel] channel.  
 Currently, we have the following pages :
 * [`/games`](https://jy95.github.io/games) - List of games, series & dlcs published on [GamesPassionFR][YoutubeChannel] YT channel
+* [`/selection`](https://jy95.github.io/selection) - Personal game selection saved in this browser, with shareable links and optional import of shared games
 * [`/planning`](https://jy95.github.io/planning) - Upcoming games that will be published on [GamesPassionFR][YoutubeChannel] YT channel
 * [`/tests`](https://jy95.github.io/tests) - Games review on [GamesPassionFR][YoutubeChannel] YT channel
 * [`/stats`](https://jy95.github.io/stats) - Statistics on [GamesPassionFR][YoutubeChannel] YT channel

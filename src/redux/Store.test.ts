@@ -7,8 +7,8 @@ describe('makeStore', () => {
         expect(makeStore()).not.toBe(makeStore());
     });
 
-    it('registers only the shared RTK Query reducer', () => {
-        expect(Object.keys(makeStore().getState())).toEqual([api.reducerPath]);
+    it('registers the shared RTK Query and selection reducers', () => {
+        expect(Object.keys(makeStore().getState())).toEqual(["selection", api.reducerPath]);
     });
 
     it('starts with an empty RTK Query cache', () => {

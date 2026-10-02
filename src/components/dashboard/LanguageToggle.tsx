@@ -68,8 +68,11 @@ function LanguageToggleInner(props: Props) {
 
   const changeLanguage = (nextLocale: Locale) => {
     if (nextLocale !== locale) {
-      const href: Href = hasDynamicParams
-        ? ({ pathname, params: routeParams } as Href)
+      // Preserve shared selections and catalogue filters when changing language.
+      const search = new URLSearchParams(window.location.search);
+      const query = Object.fromEntries([...new Set(search.keys())].map(key => [key, search.getAll(key)]));
+      const href: Href = hasDynamicParams || search.size > 0
+        ? ({ pathname, ...(hasDynamicParams ? { params: routeParams } : {}), ...(search.size > 0 ? { query } : {}) } as Href)
         : (pathname as Href);
 
       router.replace(href, { locale: nextLocale });

@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import type { CardGame } from "@/domain/games";
 
 interface GameCardOverlayProps {
-    game: CardGame;
+    game: Pick<CardGame, "title">;
 }
 
 export default function GameCardOverlay({ game }: GameCardOverlayProps) {

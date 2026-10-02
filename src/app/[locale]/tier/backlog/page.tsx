@@ -4,13 +4,14 @@
 import { useGetBacklogTierListQuery } from "@/redux/services/tierListAPI";
 
 // UI
+import SelectionButton from "@/features/selection/SelectionButton";
 import BaseCard from "@/features/games/components/BaseCard";
 import { TierLists } from "@/components/tierList";
 
 // Types
 import type { BacklogEntry } from "@/app/api/backlog/route";
 
-const BacklogCardRenderer = ({ game }: { game: BacklogEntry }) => <BaseCard item={game} />;
+const BacklogCardRenderer = ({ game }: { game: BacklogEntry }) => <BaseCard item={game} actionsSlot={item => <SelectionButton id={`backlog:${item.id}`} title={item.title} />} />;
 
 export default function BacklogTierList() {
 

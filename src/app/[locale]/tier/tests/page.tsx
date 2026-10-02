@@ -10,7 +10,7 @@ import { TierLists } from "@/components/tierList";
 // Types 
 import type { CardGame } from "@/domain/games";
 
-const GameCardRenderer = ({ game }: { game: CardGame }) => <CardEntry game={game} />;
+const GameCardRenderer = ({ game }: { game: CardGame }) => <CardEntry game={game} selectable={false} />;
 
 export default function GamesTierList() {
 

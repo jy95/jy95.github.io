@@ -12,6 +12,7 @@ export const routing = defineRouting({
   pathnames: {
     '/': '/',
     '/games': '/games',
+    '/selection': '/selection',
     '/games/series': '/games/series',
     '/games/dlcs': '/games/dlcs',
     '/games/random': '/games/random',

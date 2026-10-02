@@ -1,5 +1,6 @@
 'use client'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { connectSelectionStorage } from '@/features/selection/selectionPersistence'
 import { Provider } from 'react-redux'
 import { makeStore } from '../redux/Store'
 
@@ -17,5 +18,10 @@ export default function StoreProvider({
     storeRef.current = makeStore()
   }
 
-  return <Provider store={storeRef.current}>{children}</Provider>
+  // Keep the server snapshot stable while nested Suspense boundaries hydrate.
+  const serverState = useRef(storeRef.current.getState())
+
+  useEffect(() => connectSelectionStorage(storeRef.current!), [])
+
+  return <Provider store={storeRef.current} serverState={serverState.current}>{children}</Provider>
 }

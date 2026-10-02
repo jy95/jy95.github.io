@@ -1,5 +1,6 @@
+import StoreProvider from '@/providers/StoreProvider';
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render as rtlRender, screen, fireEvent } from '@testing-library/react';
 import { echoTranslations } from '@/test/mocks/nextIntl';
 
 const push = vi.fn();
@@ -198,3 +199,5 @@ describe('GameDetailView', () => {
         expect(onClose).toHaveBeenCalledTimes(1);
     });
 });
+
+function render(ui: React.ReactNode) { return rtlRender(<StoreProvider>{ui}</StoreProvider>); }

@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 
+import selectionReducer from "@/features/selection/selectionSlice";
+
 import { api } from "./services/api";
 
 export const makeStore = () => {
     return configureStore({
         reducer: {
+            selection: selectionReducer,
             [api.reducerPath]: api.reducer,
         },
         middleware: (getDefaultMiddleware) =>

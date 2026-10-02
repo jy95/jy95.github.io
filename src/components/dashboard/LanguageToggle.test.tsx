@@ -33,6 +33,7 @@ describe('LanguageToggle', () => {
         mockLocale = 'en';
         mockPathname = '/games';
         mockParams = {};
+        window.history.replaceState({}, '', '/');
     });
 
     it('renders the current locale as the button label', () => {
@@ -98,4 +99,18 @@ describe('LanguageToggle', () => {
         render(<LanguageToggle {...props} />);
         expect(screen.getByText('fr')).toBeInTheDocument();
     });
+});
+
+
+it('preserves shared selection IDs and repeated filters when changing locale', () => {
+    replaceMock.mockReset();
+    mockLocale = 'en';
+    mockParams = {};
+    mockPathname = '/selection';
+    window.history.replaceState({}, '', '/en/selection?games=game-a,game-b&genres=1&genres=2');
+    render(<LanguageToggle {...props} />);
+    fireEvent.click(screen.getByText('en'));
+    fireEvent.click(screen.getByText('French'));
+    expect(replaceMock).toHaveBeenCalledWith({ pathname: '/selection', query: { games: ['game-a,game-b'], genres: ['1', '2'] } }, { locale: 'fr' });
+    window.history.replaceState({}, '', '/');
 });
