@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { NextIntlClientProvider } from 'next-intl';
 import { Provider } from 'react-redux';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, getContrastRatio, ThemeProvider } from '@mui/material/styles';
 import { useState, type ComponentProps } from 'react';
 import { makeStore } from '@/redux/Store';
 import { parseSharedSelection, selectionQuery, type SharedSelection } from './sharing';
@@ -42,6 +42,18 @@ function setup(ids: string[] = [], locale: 'en' | 'fr' = 'en', mode: 'light' | '
     return { store, ...render(<SelectionPage catalogue={entries} />, { wrapper }), wrapper };
 }
 
+function openKinds(locale: 'en' | 'fr' = 'en') {
+    const select = screen.getByRole('combobox', { name: (locale === 'en' ? en : fr).selection.kinds });
+    fireEvent.mouseDown(select);
+    return screen.getByRole('listbox');
+}
+
+function toggleKind(name: string, locale: 'en' | 'fr' = 'en') {
+    const listbox = openKinds(locale);
+    fireEvent.click(within(listbox).getByRole('option', { name }));
+    fireEvent.keyDown(listbox, { key: 'Escape' });
+}
+
 beforeEach(() => { navigation.query = ''; navigation.sort = undefined; navigation.push.mockClear(); });
 afterEach(() => { vi.restoreAllMocks(); });
 
@@ -60,9 +72,9 @@ it.each(['light', 'dark'] as const)('removes games and synchronizes multiple acc
     buttons.forEach(button => expect(button).toHaveAttribute('aria-pressed', 'true'));
     fireEvent.click(buttons[0]);
     expect(store.getState().selection.ids).toEqual([]);
-    expect(screen.getByRole('status')).toHaveTextContent('0 selected games');
+    expect(screen.getByRole('status')).toHaveTextContent('0 selected items');
     fireEvent.click(screen.getByRole('button', { name: 'Add Alpha to my selection' }));
-    expect(screen.getByRole('status')).toHaveTextContent('1 selected game');
+    expect(screen.getByRole('status')).toHaveTextContent('1 selected item');
     expect(navigation.push).not.toHaveBeenCalled();
 });
 
@@ -80,12 +92,12 @@ it('confirms clearing the entire selection and supports cancel', async () => {
 it('displays shared games without overwriting personal games, ignores outdated IDs and imports once', async () => {
     navigation.query = await selectionQuery({ ...emptySelection(), games: ['game-0', 'game-0', 'outdated'] });
     const { store } = setup(['game-1']);
-    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('1 selected game'));
-    expect(screen.getByText('1 game is no longer available in the catalogue.')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('1 selected item'));
+    expect(screen.getByText('1 item is no longer available in the catalogue.')).toBeInTheDocument();
     expect(store.getState().selection.ids).toEqual(['game-1']);
-    fireEvent.click(screen.getByRole('button', { name: 'Add these games to my selection' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Add these items to my selection' }));
     expect(store.getState().selection.ids).toEqual(['game-1', 'game-0']);
-    expect(screen.getByRole('button', { name: 'All games are in my selection' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'All items are in my selection' })).toBeDisabled();
     expect(screen.getByRole('link', { name: 'Open my selection' })).toHaveAttribute('href', '/selection');
 });
 
@@ -93,7 +105,7 @@ it('treats an empty compressed selection as an empty shared selection', async ()
     navigation.query = await selectionQuery(emptySelection());
     setup(['game-1']);
     expect(await screen.findByText(en.selection.sharedEmpty)).toBeInTheDocument();
-    expect(screen.getByRole('status')).toHaveTextContent('0 selected games');
+    expect(screen.getByRole('status')).toHaveTextContent('0 selected items');
 });
 
 it.each(['games=game-0', 'games=', 'games=!!!'])('keeps the personal selection for a games-only query: %s', async query => {
@@ -120,11 +132,11 @@ it.each(['en', 'fr'] as const)('generates a locale-aware URL and provides manual
     expect(await screen.findByText(text.copyFallback)).toBeInTheDocument();
 });
 
-it('filters selected games with the existing catalogue title field', async () => {
+it('filters selected items with the existing catalogue title field', async () => {
     setup(['game-0', 'game-1']);
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Alpha' } });
     await waitFor(() => expect(screen.queryByRole('button', { name: 'Remove Beta from my selection' })).not.toBeInTheDocument());
-    expect(screen.getByRole('status')).toHaveTextContent('2 selected games');
+    expect(screen.getByRole('status')).toHaveTextContent('2 selected items');
 });
 
 it('copies the generated link when clipboard access succeeds', async () => {
@@ -141,7 +153,8 @@ it('copies the generated link when clipboard access succeeds', async () => {
 it('loads a compressed selection asynchronously and imports categorized games', async () => {
     navigation.query = await selectionQuery({ version: 2, games: ['game-0'], dlcs: [], backlog: [], planning: [] });
     const { store } = setup(['game-1']);
-    expect(screen.getByRole('progressbar')).toBeInTheDocument();
+    expect(screen.getAllByRole('progressbar')).toHaveLength(1);
+    expect(screen.queryByRole('status')).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: en.selection.import })).not.toBeInTheDocument();
     fireEvent.click(await screen.findByRole('button', { name: en.selection.import }));
     expect(store.getState().selection.document.games).toEqual(['game-1', 'game-0']);
@@ -234,28 +247,42 @@ it.each(['en', 'fr'] as const)('enables all kinds and labels each category icon 
     setup(allIds, locale, 'light', categorizedCatalogue);
     const labels = (locale === 'en' ? en : fr).selection.categories;
     const icons = { games: 'SportsEsportsIcon', dlcs: 'ExtensionIcon', planning: 'ScheduleIcon', backlog: 'HourglassEmptyIcon' };
+    const select = screen.getByRole('combobox', { name: (locale === 'en' ? en : fr).selection.kinds });
+    expect(select).toHaveAttribute('aria-labelledby', expect.stringContaining(select.id + '-label'));
+    for (const label of Object.values(labels)) expect(within(select).getByText(label)).toBeInTheDocument();
+    const listbox = openKinds(locale);
     for (const category of ['games', 'backlog', 'dlcs', 'planning'] as const) {
-        expect(screen.getByRole('checkbox', { name: labels[category] })).toBeChecked();
+        const option = within(listbox).getByRole('option', { name: labels[category] });
+        expect(option).toHaveAttribute('aria-selected', 'true');
+        expect(within(option).getByTestId(icons[category])).toHaveAttribute('aria-hidden', 'true');
+    }
+    fireEvent.keyDown(listbox, { key: 'Escape' });
+    for (const category of ['games', 'backlog', 'dlcs', 'planning'] as const) {
         const badges = screen.getAllByRole('img', { name: labels[category] });
         expect(badges).toHaveLength(categorizedCatalogue.filter(entry => entry.category === category).length);
         badges.forEach(badge => expect(within(badge).getByTestId(icons[category])).toBeInTheDocument());
     }
 });
 
-it('toggles individual kinds and keeps controls when every kind is unchecked', () => {
-    const { store } = setup(allIds, 'en', 'light', categorizedCatalogue);
+it.each(['en', 'fr'] as const)('toggles individual kinds and keeps controls when every kind is unchecked in %s', locale => {
+    const text = (locale === 'en' ? en : fr).selection;
+    const { store } = setup(allIds, locale, 'light', categorizedCatalogue);
     const document = store.getState().selection.document;
     for (const category of ['games', 'dlcs', 'planning', 'backlog'] as const) {
-        fireEvent.click(screen.getByRole('checkbox', { name: en.selection.categories[category] }));
+        toggleKind(text.categories[category], locale);
         for (const entry of categorizedCatalogue.filter(entry => entry.category === category)) {
             expect(screen.queryByRole('img', { name: entry.game.title })).not.toBeInTheDocument();
         }
     }
-    expect(screen.getByText(en.common.noResults)).toBeInTheDocument();
+    expect(screen.getByText((locale === 'en' ? en : fr).common.noResults)).toBeInTheDocument();
     expect(screen.getByRole('textbox')).toBeInTheDocument();
-    expect(screen.queryByText(en.selection.empty)).not.toBeInTheDocument();
+    expect(screen.queryByText(text.empty)).not.toBeInTheDocument();
     expect(store.getState().selection.document).toEqual(document);
-    fireEvent.click(screen.getByRole('checkbox', { name: 'DLCs' }));
+    expect(screen.getByRole('combobox', { name: text.kinds })).toBeInTheDocument();
+    const listbox = openKinds(locale);
+    within(listbox).getAllByRole('option').forEach(option => expect(option).toHaveAttribute('aria-selected', 'false'));
+    fireEvent.keyDown(listbox, { key: 'Escape' });
+    toggleKind(text.categories.dlcs, locale);
     expect(screen.getByRole('img', { name: 'Expansion' })).toBeInTheDocument();
 });
 
@@ -264,14 +291,14 @@ it('combines kinds with catalogue filtering and sorts the unified grid', async (
     setup(allIds, 'en', 'light', categorizedCatalogue);
     const covers = () => screen.getAllByRole('img').filter(image => !image.querySelector('svg')).map(image => image.getAttribute('aria-label'));
     expect(covers()).toEqual(['Waiting', 'Upcoming', 'Expansion', 'Beta', 'Alpha']);
-    fireEvent.click(screen.getByRole('checkbox', { name: 'Backlog' }));
+    toggleKind('Backlog');
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Alpha' } });
     await waitFor(() => expect(covers()).toEqual(['Expansion', 'Alpha']));
-    fireEvent.click(screen.getByRole('checkbox', { name: 'DLCs' }));
+    toggleKind('DLCs');
     expect(covers()).toEqual(['Alpha']);
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'zzzzzzzzzz' } });
     await screen.findByText(en.common.noResults);
-    expect(screen.getAllByRole('checkbox')).toHaveLength(4);
+    expect(screen.getByRole('combobox', { name: en.selection.kinds })).toBeInTheDocument();
 });
 
 it.each([['Waiting', 'true', 'false'], ['Upcoming', 'false', 'true']])('preserves %s detail behavior', (title, vote, related) => {
@@ -294,16 +321,47 @@ it.each([['Alpha', 'game-0'], ['Expansion', 'dlc']])('preserves published %s nav
     expect(screen.getByRole('button', { name: `Remove ${title} from my selection` })).toBeInTheDocument();
 });
 
-it('imports and shares all categories when every kind is hidden', async () => {
+it.each(['en', 'fr'] as const)('imports and shares all categories when every kind is hidden in %s', async locale => {
+    const text = (locale === 'en' ? en : fr).selection;
     const document = { ...emptySelection(), games: ['game-0', 'game-1'], backlog: ['42'], dlcs: ['dlc'], planning: ['planned'] };
     navigation.query = await selectionQuery(document);
-    const { store } = setup([], 'en', 'light', categorizedCatalogue);
-    await screen.findByRole('button', { name: en.selection.import });
-    for (const name of Object.values(en.selection.categories)) fireEvent.click(screen.getByRole('checkbox', { name }));
+    const { store } = setup([], locale, 'light', categorizedCatalogue);
+    await screen.findByRole('button', { name: text.import });
+    for (const name of Object.values(text.categories)) toggleKind(name, locale);
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Alpha' } });
-    fireEvent.click(screen.getByRole('button', { name: en.selection.import }));
+    fireEvent.click(screen.getByRole('button', { name: text.import }));
     expect(store.getState().selection.document).toEqual(document);
-    fireEvent.click(screen.getByRole('button', { name: en.selection.share }));
-    const url = new URL((await screen.findByRole('textbox', { name: en.selection.shareLink }) as HTMLInputElement).value);
+    fireEvent.click(screen.getByRole('button', { name: text.share }));
+    const url = new URL((await screen.findByRole('textbox', { name: text.shareLink }) as HTMLInputElement).value);
     expect(await parseSharedSelection(url.searchParams)).toEqual({ kind: 'selection', document });
+});
+
+it.each(['en', 'fr'] as const)('supports keyboard opening, toggling and Escape with focus restoration in %s', locale => {
+    setup(allIds, locale, 'light', categorizedCatalogue);
+    const text = (locale === 'en' ? en : fr).selection;
+    const select = screen.getByRole('combobox', { name: text.kinds });
+    select.focus();
+    expect(select).toHaveFocus();
+    fireEvent.keyDown(select, { key: 'ArrowDown' });
+    const listbox = screen.getByRole('listbox');
+    const option = within(listbox).getByRole('option', { name: text.categories.games });
+    expect(option).toHaveFocus();
+    fireEvent.keyDown(option, { key: 'Enter' });
+    fireEvent.keyUp(option, { key: 'Enter' });
+    expect(option).toHaveAttribute('aria-selected', 'false');
+    fireEvent.keyDown(option, { key: 'Escape' });
+    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    expect(select).toHaveFocus();
+    expect(screen.queryByRole('img', { name: 'Alpha' })).not.toBeInTheDocument();
+});
+
+it.each(['light', 'dark'] as const)('uses contrasting theme colors for category badges in %s mode', mode => {
+    setup(allIds, 'en', mode, categorizedCatalogue);
+    const badge = screen.getAllByRole('img', { name: 'Games' })[0];
+    const theme = createTheme({ palette: { mode } });
+    expect(badge).toHaveStyle({ backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary });
+    // Composite the light theme's translucent text over its paper background.
+    const foreground = mode === 'light' ? '#212121' : theme.palette.text.primary;
+    expect(getContrastRatio(foreground, theme.palette.background.paper)).toBeGreaterThan(4.5);
+    expect(screen.getByRole('status')).toHaveAttribute('aria-live', 'polite');
 });

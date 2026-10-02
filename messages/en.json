@@ -18,7 +18,7 @@
         },
         "selection": {
             "title": "My GamesPassionFR Selection",
-            "description": "Keep the games that interest you in your selection on this browser."
+            "description": "Keep the items that interest you in your selection on this browser."
         }
     },
     "dashboard": {
@@ -279,29 +279,29 @@
     "selection": {
         "title": "My GamesPassionFR Selection",
         "sharedTitle": "Shared GamesPassionFR Selection",
-        "description": "Keep the games that interest you in your selection on this browser.",
-        "sharedDescription": "Explore these games and add them to your own selection.",
+        "description": "Keep the items that interest you in your selection on this browser.",
+        "sharedDescription": "Explore these items and add them to your own selection.",
         "add": "Add {title} to my selection",
         "remove": "Remove {title} from my selection",
-        "count": "{count, plural, =1 {1 selected game} other {# selected games}}",
+        "count": "{count, plural, =1 {1 selected item} other {# selected items}}",
         "empty": "Your selection is empty",
-        "sharedEmpty": "No available games in this shared selection",
+        "sharedEmpty": "No available items in this shared selection",
         "browse": "Browse the catalogue",
         "clear": "Clear my selection",
-        "clearConfirm": "Remove all games from your selection?",
+        "clearConfirm": "Remove all items from your selection?",
         "cancel": "Cancel",
         "close": "Close",
         "share": "Share selection",
-        "shareDescription": "This link contains the games currently in this selection. Later changes will not change the link.",
+        "shareDescription": "This link contains the items currently in this selection. Later changes will not change the link.",
         "shareLink": "Selection link",
         "copy": "Copy link",
         "copied": "Link copied",
         "copyFallback": "Select and copy the link above.",
-        "unavailable": "{count, plural, =1 {1 game is no longer available in the catalogue.} other {# games are no longer available in the catalogue.}}",
+        "unavailable": "{count, plural, =1 {1 item is no longer available in the catalogue.} other {# items are no longer available in the catalogue.}}",
         "storageUnavailable": "Browser storage is unavailable. Your selection will only be kept until you leave or reload this page.",
-        "imported": "All games are in my selection",
+        "imported": "All items are in my selection",
         "openOwn": "Open my selection",
-        "import": "Add these games to my selection",
+        "import": "Add these items to my selection",
         "processing": "Processing selection…",
         "invalid": "This selection link is invalid or damaged.",
         "unsupported": "This selection version is not supported.",
@@ -313,6 +313,6 @@
             "dlcs": "DLCs",
             "planning": "Planned games"
         },
-        "kinds": "Game kinds"
+        "kinds": "Content kinds"
     }
 }
