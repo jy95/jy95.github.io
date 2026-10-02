@@ -28,5 +28,13 @@ export function useSelectionCatalogue(catalogue: SelectionEntry[], decoded: Shar
         () => resolvePageSelection(catalogue, selection.ids, decoded, byId),
         [catalogue, selection.ids, decoded, byId],
     );
-    return { ...selection, categories, ...resolved };
+    return {
+        ids: selection.ids,
+        hydrated: selection.hydrated,
+        storageAvailable: selection.storageAvailable,
+        categories,
+        entries: resolved.entries,
+        unavailable: resolved.unavailable,
+        selectedIds: resolved.selectedIds,
+    };
 }

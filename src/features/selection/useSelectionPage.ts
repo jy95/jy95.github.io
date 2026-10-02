@@ -36,7 +36,10 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
     }, [ids, selectedIds]);
 
     return {
-        ...resolved, ...actions, decoded, sharing, filters, updateFilters, kind, setKind, visibleEntries, canImport,
+        ...actions, decoded, sharing, filters, updateFilters, kind, setKind, visibleEntries, canImport,
+        entries,
+        unavailable: resolved.unavailable,
+        storageAvailable: resolved.storageAvailable,
         shared: decoded.kind !== 'absent',
         loading: !resolved.hydrated || decoded.kind === 'processing',
         hasSelection: ids.length > 0,
