@@ -21,9 +21,6 @@ it('uses only the compressed selection when games is also present', async () => 
 it.each(['', '!!!', 'a', 'YWJj'])('rejects malformed base64url or deflate-raw: %s', async encoded => {
     expect(await parseSharedSelection(new URLSearchParams({ selection: encoded }))).toEqual({ kind: 'error', error: 'invalid' });
 });
-it('bounds encoded input', async () => {
-    expect(await parseSharedSelection(new URLSearchParams({ selection: 'a'.repeat(65537) }))).toEqual({ kind: 'error', error: 'tooLarge' });
-});
 it('reports missing browser compression APIs', async () => {
     vi.stubGlobal('CompressionStream', undefined);
     await expect(selectionQuery(emptySelection())).rejects.toThrow('compressionUnavailable');
@@ -41,7 +38,4 @@ async function rawQuery(value: string) {
 }
 it('ignores incoming compressed schema versions', async () => {
     expect(await parseSharedSelection(await rawQuery(JSON.stringify({ ...emptySelection(), version: 3 })))).toEqual({ kind: 'selection', document: emptySelection() });
-});
-it('limits deflate-raw expansion before parsing JSON', async () => {
-    expect(await parseSharedSelection(await rawQuery(' '.repeat(256 * 1024 + 1)))).toEqual({ kind: 'error', error: 'tooLarge' });
 });

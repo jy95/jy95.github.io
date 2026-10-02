@@ -11,7 +11,7 @@ import { TierLists } from "@/components/tierList";
 // Types
 import type { BacklogEntry } from "@/app/api/backlog/route";
 
-const BacklogCardRenderer = ({ game }: { game: BacklogEntry }) => <BaseCard item={game} actionsSlot={item => <SelectionButton id={`backlog:${item.id}`} title={item.title} />} />;
+const BacklogCardRenderer = ({ game }: { game: BacklogEntry }) => <BaseCard item={game} actionsSlot={item => <SelectionButton id={item.id} category="backlog" title={item.title} />} />;
 
 export default function BacklogTierList() {
 

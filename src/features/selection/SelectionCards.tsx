@@ -39,7 +39,7 @@ export const SelectionCards = memo(function SelectionCards({ entries, onDetail }
                             onClick={() => onDetail(entry)}
                             overlayPersistent
                             overlaySlot={game => <GameCardOverlay game={game} />}
-                            actionsSlot={game => <SelectionButton id={entry.selectionId} title={game.title} />}
+                            actionsSlot={game => <SelectionButton id={game.id} category={entry.category} title={game.title} />}
                         />}
                 </Box>
             ))}

@@ -1,11 +1,10 @@
 import { SELECTION_CATEGORIES, emptySelection } from './documentTypes';
-import { isBacklogId, isCardId, normalizeSelectionIds, selectionIds, toDocumentId } from './identifiers';
+import { isBacklogId, isSelectionId, normalizeSelectionIds, selectionIds } from './identifiers';
 import { mergeSelections } from './documentMerge';
 
 import type { SelectionCategory, SelectionCategories, SelectionDocument } from './documentTypes';
 
 function categoryForIdentifier(id: string, categories: SelectionCategories): SelectionCategory | undefined {
-    if (id.startsWith('backlog:')) return 'backlog';
     return Object.hasOwn(categories, id) ? categories[id] : undefined;
 }
 
@@ -14,7 +13,7 @@ export function classifySelection(ids: string[], categories: SelectionCategories
     const document: SelectionDocument = { ...emptySelection(), legacyIds };
     for (const id of normalizeSelectionIds(ids)) {
         const category = categoryForIdentifier(id, categories);
-        (category ? document[category] : legacyIds).push(toDocumentId(id));
+        (category ? document[category] : legacyIds).push(id);
     }
     if (!legacyIds.length) delete document.legacyIds;
     return document;
@@ -51,7 +50,7 @@ export function normalizeSelectionDocument(value: unknown): SelectionDocument {
     const data = value as Record<string, unknown>;
     for (const category of SELECTION_CATEGORIES) {
         const ids = data[category];
-        const valid = category === 'backlog' ? isBacklogId : isCardId;
+        const valid = category === 'backlog' ? isBacklogId : isSelectionId;
         document[category] = Array.isArray(ids) ? [...new Set(ids.filter(valid))] : [];
     }
     if (Array.isArray(data.legacyIds)) document.legacyIds = normalizeSelectionIds(data.legacyIds);

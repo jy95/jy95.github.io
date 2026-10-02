@@ -19,10 +19,10 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
     const decoded = useSharedSelection(sharedQuery);
     const sharing = useSelectionShare(query, useLocale() as 'en' | 'fr');
     const resolved = useSelectionCatalogue(catalogue, decoded);
-    const actions = useSelectionActions(resolved.selectedIds, resolved.categories, sharing.share);
+    const actions = useSelectionActions(resolved.entries, sharing.share);
     const { filters, updateFilters } = useGamesFilters();
     const [kind, setKind] = useState<SelectionKind>('all');
-    const { entries, ids, selectedIds } = resolved;
+    const { entries, ids } = resolved;
 
     // Fuse indexing and sorting only re-run when their inputs actually change.
     const visibleEntries = useMemo(() => {
@@ -31,9 +31,9 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
     }, [entries, kind, filters]);
 
     const canImport = useMemo(() => {
-        const own = new Set(ids);
-        return selectedIds.some(id => !own.has(id));
-    }, [ids, selectedIds]);
+        return entries.some(entry => !resolved.document[entry.category].includes(entry.game.id)
+            && !resolved.document.legacyIds?.includes(entry.game.id));
+    }, [resolved.document, entries]);
 
     const decodeError = decoded.kind === 'error' ? decoded.error : null;
     const decoding = decoded.kind === 'processing';

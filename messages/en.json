@@ -305,7 +305,6 @@
         "processing": "Processing selection…",
         "invalid": "This selection link is invalid or damaged.",
         "compressionUnavailable": "This browser does not support compressed selection links.",
-        "tooLarge": "This selection exceeds the supported link size.",
         "categories": {
             "all": "All",
             "games": "Games",

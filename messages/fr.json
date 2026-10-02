@@ -305,7 +305,6 @@
         "processing": "Traitement de la sélection…",
         "invalid": "Ce lien de sélection est invalide ou endommagé.",
         "compressionUnavailable": "Ce navigateur ne prend pas en charge les liens de sélection compressés.",
-        "tooLarge": "Cette sélection dépasse la taille de lien prise en charge.",
         "categories": {
             "all": "Tous",
             "games": "Jeux",

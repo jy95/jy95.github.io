@@ -66,7 +66,7 @@ function GameToolbar({ game, onClose, presentation = "dialog", isPublished = fal
             <Typography sx={{ ml: isPage ? 0 : 2, flex: 1, minWidth: 0, overflowWrap: "anywhere" }} variant={isPage ? "h5" : "h6"} component={isPage ? "h1" : "div"}>
                 {game.title}
             </Typography>
-            <SelectionButton id={isCardGame(game) ? game.id : `backlog:${game.id}`} title={game.title} />
+            <SelectionButton id={game.id} category={isCardGame(game) ? undefined : 'backlog'} title={game.title} />
             {isPublic() && (
                 <IconButton
                     edge={isPage ? false : "end"}

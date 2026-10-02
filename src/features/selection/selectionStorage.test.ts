@@ -49,9 +49,9 @@ it.each(['broken', 'null', '{}', '42'])('handles corrupt storage: %s', value => 
 });
 
 it('migrates storage categories immediately and preserves unresolved selections', () => {
-    localStorage.setItem(SELECTION_STORAGE_KEY, '["dlc-a","planned-a","backlog:42","missing"]');
+    localStorage.setItem(SELECTION_STORAGE_KEY, '["dlc-a","planned-a","42","missing"]');
     const store = makeStore();
-    store.dispatch(setSelectionCategories({ 'dlc-a': 'dlcs', 'planned-a': 'planning' }));
+    store.dispatch(setSelectionCategories({ 'dlc-a': 'dlcs', 'planned-a': 'planning', '42': 'backlog' }));
     const stop = connectSelectionStorage(store);
     expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual({ version: 2, games: [], backlog: ['42'], dlcs: ['dlc-a'], planning: ['planned-a'], legacyIds: ['missing'] });
     stop();
@@ -104,4 +104,17 @@ it('does not persist invalid toggles or category updates with unchanged document
     } finally {
         stop();
     }
+});
+
+
+it('restores categorized backlog documents before loading the catalogue', () => {
+    const document = { ...emptySelection(), backlog: ['42'] };
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(document));
+    const store = makeStore();
+    const stop = connectSelectionStorage(store);
+    expect(store.getState().selection.document).toEqual(document);
+    expect(store.getState().selection.ids).toEqual(['42']);
+    store.dispatch(toggleSelection({ id: '7', category: 'backlog' }));
+    expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual({ ...document, backlog: ['42', '7'] });
+    stop();
 });

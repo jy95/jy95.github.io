@@ -6,10 +6,10 @@ it('toggles, merges without duplicates, and clears game identifiers', () => {
     const store = makeStore();
     store.dispatch(hydrateSelection([]));
     store.dispatch(toggleSelection('game-a'));
-    store.dispatch(addSelection(['game-a', 'game-b', 'backlog:42']));
-    expect(store.getState().selection.ids).toEqual(['backlog:42', 'game-a', 'game-b']);
+    store.dispatch(addSelection(['game-a', 'game-b', '42']));
+    expect(store.getState().selection.ids).toEqual(['game-a', 'game-b', '42']);
     store.dispatch(toggleSelection('game-a'));
-    expect(store.getState().selection.ids).toEqual(['backlog:42', 'game-b']);
+    expect(store.getState().selection.ids).toEqual(['game-b', '42']);
     store.dispatch(clearSelection());
     expect(store.getState().selection.ids).toEqual([]);
 });
