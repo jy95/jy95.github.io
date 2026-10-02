@@ -2,8 +2,8 @@ import { navigation, setup, categorizedCatalogue, chooseKind } from './testUtils
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { parseSharedSelection, selectionQuery } from './sharing';
 import { emptySelection, selectionIds } from './schema';
-import en from '../../../messages/en.json';
-import fr from '../../../messages/fr.json';
+import { messages } from './testMessages';
+const { en, fr } = messages;
 
 it('displays shared games without overwriting personal games, ignores outdated IDs and imports once', async () => {
     navigation.query = await selectionQuery({ ...emptySelection(), games: ['game-0', 'game-0', 'outdated'] });
@@ -17,7 +17,7 @@ it('displays shared games without overwriting personal games, ignores outdated I
     expect(screen.getByRole('link', { name: 'Open my selection' })).toHaveAttribute('href', '/selection');
 });
 
-it('treats an empty compressed selection as an empty shared selection', async () => {
+it('treats an empty shared selection as an empty shared selection', async () => {
     navigation.query = await selectionQuery(emptySelection());
     setup(['game-1']);
     expect(await screen.findByText(en.selection.sharedEmpty)).toBeInTheDocument();

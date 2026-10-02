@@ -4,10 +4,10 @@ import { selectionQuery, type SharedSelection } from './sharing';
 import * as sharing from './sharing';
 import { emptySelection } from './schema';
 import SelectionPage from './SelectionPage';
-import en from '../../../messages/en.json';
-import fr from '../../../messages/fr.json';
+import { messages } from './testMessages';
+const { en, fr } = messages;
 
-it('loads a compressed selection asynchronously and imports categorized games', async () => {
+it('loads a shared selection asynchronously and imports categorized games', async () => {
     navigation.query = await selectionQuery({ version: 2, games: ['game-0'], dlcs: [], backlog: [], planning: [] });
     const { store } = setup(['game-1']);
     expect(screen.getAllByRole('progressbar')).toHaveLength(1);
@@ -24,13 +24,12 @@ it('shows localized decode errors without offering import', async () => {
     expect(screen.queryByText(fr.selection.sharedEmpty)).not.toBeInTheDocument();
 });
 it('disables sharing during encoding and reports missing compression support', async () => {
-    vi.stubGlobal('CompressionStream', undefined);
+    vi.spyOn(sharing, 'selectionQuery').mockRejectedValue(new Error('compressionUnavailable'));
     setup(['game-0']);
     fireEvent.click(screen.getByRole('button', { name: en.selection.share }));
     expect(screen.getByRole('button', { name: en.selection.share })).toBeDisabled();
     expect(screen.getByText(en.selection.processing)).toBeInTheDocument();
     expect(await screen.findByText(en.selection.compressionUnavailable)).toBeInTheDocument();
-    vi.unstubAllGlobals();
 });
 it('ignores a stale decode after query parameters change', async () => {
     let resolve!: (result: SharedSelection) => void;
@@ -41,7 +40,7 @@ it('ignores a stale decode after query parameters change', async () => {
     navigation.query = await selectionQuery({ ...emptySelection(), games: ['game-1'] });
     rerender(<SelectionPage catalogue={catalogue} />);
     await screen.findByRole('button', { name: 'Add Beta to my selection' });
-    resolve({ kind: 'error', error: 'invalid' });
+    await act(async () => resolve({ kind: 'error', error: 'invalid' }));
     await waitFor(() => expect(screen.queryByText(en.selection.invalid)).not.toBeInTheDocument());
     expect(screen.getByRole('button', { name: 'Add Beta to my selection' })).toBeInTheDocument();
     decode.mockRestore();

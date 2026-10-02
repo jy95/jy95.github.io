@@ -45,7 +45,7 @@ it('keeps the feature usable when browser storage throws', () => {
 });
 
 it.each(['broken', 'null', '{}', '42'])('handles corrupt storage: %s', value => {
-    expect(parseStoredSelection(value)).toEqual([]);
+    expect(parseStoredSelection(value)).toEqual(emptySelection());
 });
 
 it('migrates storage categories immediately and preserves unresolved selections', () => {

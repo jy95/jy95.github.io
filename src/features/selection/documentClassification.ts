@@ -1,6 +1,5 @@
-import { emptySelection } from './documentTypes';
-import { normalizeSelectionIds, selectionIds, toDocumentId } from './identifiers';
-import { validateSelection } from './documentValidation';
+import { SELECTION_CATEGORIES, emptySelection } from './documentTypes';
+import { isBacklogId, isCardId, normalizeSelectionIds, selectionIds, toDocumentId } from './identifiers';
 import { mergeSelections } from './documentMerge';
 
 import type { SelectionCategory, SelectionCategories, SelectionDocument } from './documentTypes';
@@ -40,7 +39,21 @@ export function resolveLegacySelection(document: SelectionDocument, categories: 
     return resolved;
 }
 
-export function resolveSelectionInput(input: string[] | SelectionDocument, categories: SelectionCategories): SelectionDocument {
+export function resolveSelectionInput(input: unknown, categories: SelectionCategories): SelectionDocument {
     if (Array.isArray(input)) return classifySelection(input, categories);
-    return resolveLegacySelection(validateSelection(input), categories);
+    return resolveLegacySelection(normalizeSelectionDocument(input), categories);
+}
+
+/** Keep usable fields without trusting incoming schema metadata. */
+export function normalizeSelectionDocument(value: unknown): SelectionDocument {
+    const document = emptySelection();
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return document;
+    const data = value as Record<string, unknown>;
+    for (const category of SELECTION_CATEGORIES) {
+        const ids = data[category];
+        const valid = category === 'backlog' ? isBacklogId : isCardId;
+        document[category] = Array.isArray(ids) ? [...new Set(ids.filter(valid))] : [];
+    }
+    if (Array.isArray(data.legacyIds)) document.legacyIds = normalizeSelectionIds(data.legacyIds);
+    return document;
 }

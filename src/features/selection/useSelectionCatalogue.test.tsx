@@ -1,5 +1,5 @@
 import { renderHook, waitFor } from '@testing-library/react';
-import { setup, catalogue } from './testUtils';
+import { createProviders, catalogue } from './testUtils';
 import { useSelectionCatalogue } from './useSelectionCatalogue';
 import { emptySelection } from './documentTypes';
 import type { SelectionEntry } from './catalogue';
@@ -12,8 +12,7 @@ it('prepares matching category and entry lookups with last-duplicate precedence 
     }));
     const last: SelectionEntry = { ...first[0], category: 'dlcs' };
     const entries = [...first, last];
-    const { wrapper, store, unmount } = setup(names, 'en', 'light', entries);
-    unmount();
+    const { wrapper, store } = createProviders(names);
     const { result, rerender } = renderHook(
         ({ shared }) => useSelectionCatalogue(entries, shared ? { kind: 'selection', document: { ...emptySelection(), games: ['constructor'] } } : { kind: 'absent' }),
         { wrapper, initialProps: { shared: false } },

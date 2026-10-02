@@ -304,7 +304,6 @@
         "import": "Add these items to my selection",
         "processing": "Processing selection…",
         "invalid": "This selection link is invalid or damaged.",
-        "unsupported": "This selection version is not supported.",
         "compressionUnavailable": "This browser does not support compressed selection links.",
         "tooLarge": "This selection exceeds the supported link size.",
         "categories": {
