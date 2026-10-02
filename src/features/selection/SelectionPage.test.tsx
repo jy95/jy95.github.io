@@ -4,6 +4,9 @@ import { Provider } from 'react-redux';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, type ComponentProps } from 'react';
 import { makeStore } from '@/redux/Store';
+import { parseSharedSelection, selectionQuery, type SharedSelection } from './sharing';
+import * as sharing from './sharing';
+import { selectionIds } from './schema';
 import { hydrateSelection } from './selectionSlice';
 import SelectionPage from './SelectionPage';
 import SelectionButton from './SelectionButton';
@@ -28,7 +31,7 @@ vi.mock('@/redux/services/genresAPI', () => ({ useGetGenresQuery: () => ({ data:
 vi.mock('next/image', () => ({ default: ({ alt }: { alt: string }) => <span role="img" aria-label={alt} /> }));
 
 const catalogue: SelectionEntry[] = ['Alpha', 'Beta'].map((title, i) => ({
-    source: 'published', selectionId: `game-${i}`, game: { id: `game-${i}`, title, imagePath: `/covers/game-${i}/cover.webp`, url_type: 'VIDEO', url: 'https://youtube.com', platform: i, releaseDate: `200${i}-01-01` },
+    source: 'published', category: 'games', selectionId: `game-${i}`, game: { id: `game-${i}`, title, imagePath: `/covers/game-${i}/cover.webp`, url_type: 'VIDEO', url: 'https://youtube.com', platform: i, releaseDate: `200${i}-01-01` },
 }));
 
 function setup(ids: string[] = [], locale: 'en' | 'fr' = 'en', mode: 'light' | 'dark' = 'light') {
@@ -72,10 +75,10 @@ it('confirms clearing the entire selection and supports cancel', async () => {
     expect(store.getState().selection.ids).toEqual([]);
 });
 
-it('displays shared games without overwriting personal games, ignores outdated IDs and imports once', () => {
+it('displays shared games without overwriting personal games, ignores outdated IDs and imports once', async () => {
     navigation.query = 'games=game-0,game-0,outdated,!!!';
     const { store } = setup(['game-1']);
-    expect(screen.getByRole('status')).toHaveTextContent('1 selected game');
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('1 selected game'));
     expect(screen.getByText('1 game is no longer available in the catalogue.')).toBeInTheDocument();
     expect(store.getState().selection.ids).toEqual(['game-1']);
     fireEvent.click(screen.getByRole('button', { name: 'Add these games to my selection' }));
@@ -84,10 +87,10 @@ it('displays shared games without overwriting personal games, ignores outdated I
     expect(screen.getByRole('link', { name: 'Open my selection' })).toHaveAttribute('href', '/selection');
 });
 
-it('treats an invalid-only shared URL as an empty shared selection', () => {
+it('treats an invalid-only shared URL as an empty shared selection', async () => {
     navigation.query = 'games=!!!';
     setup(['game-1']);
-    expect(screen.getByText(en.selection.sharedEmpty)).toBeInTheDocument();
+    expect(await screen.findByText(en.selection.sharedEmpty)).toBeInTheDocument();
     expect(screen.getByRole('status')).toHaveTextContent('0 selected games');
 });
 
@@ -95,9 +98,11 @@ it.each(['en', 'fr'] as const)('generates a locale-aware URL and provides manual
     setup(['game-0', 'game-1'], locale);
     const text = locale === 'en' ? en.selection : fr.selection;
     fireEvent.click(screen.getByRole('button', { name: text.share }));
-    const url = new URL((screen.getByRole('textbox', { name: text.shareLink }) as HTMLInputElement).value);
+    const url = new URL((await screen.findByRole('textbox', { name: text.shareLink }) as HTMLInputElement).value);
     expect(url.pathname).toBe(locale === 'en' ? '/en/selection' : '/selection');
-    expect(url.searchParams.get('games')).toBe('game-0,game-1');
+    const decoded = await parseSharedSelection(url.searchParams);
+    expect(decoded.kind).toBe('selection');
+    if (decoded.kind === 'selection') expect(selectionIds(decoded.document)).toEqual(['game-0', 'game-1']);
     fireEvent.click(screen.getByRole('button', { name: text.copy }));
     expect(await screen.findByText(text.copyFallback)).toBeInTheDocument();
 });
@@ -114,8 +119,47 @@ it('copies the generated link when clipboard access succeeds', async () => {
     Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
     setup(['game-0']);
     fireEvent.click(screen.getByRole('button', { name: 'Share selection' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Copy link' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Copy link' }));
     expect(await screen.findByText('Link copied')).toBeInTheDocument();
-    expect(writeText).toHaveBeenCalledWith(expect.stringContaining('/en/selection?games=game-0'));
+    expect(writeText).toHaveBeenCalledWith(expect.stringContaining('/en/selection?selection='));
     Object.defineProperty(navigator, 'clipboard', { configurable: true, value: undefined });
+});
+
+it('loads a compressed selection asynchronously and imports categorized games', async () => {
+    navigation.query = await selectionQuery({ version: 2, games: ['game-0'], dlcs: [], backlog: [], planning: [] });
+    const { store } = setup(['game-1']);
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: en.selection.import })).not.toBeInTheDocument();
+    fireEvent.click(await screen.findByRole('button', { name: en.selection.import }));
+    expect(store.getState().selection.document.games).toEqual(['game-1', 'game-0']);
+});
+it('shows localized decode errors without offering import', async () => {
+    navigation.query = 'selection=!!!';
+    setup([], 'fr');
+    expect(await screen.findByText(fr.selection.invalid)).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: fr.selection.import })).not.toBeInTheDocument();
+    expect(screen.queryByText(fr.selection.sharedEmpty)).not.toBeInTheDocument();
+});
+it('disables sharing during encoding and reports missing compression support', async () => {
+    vi.stubGlobal('CompressionStream', undefined);
+    setup(['game-0']);
+    fireEvent.click(screen.getByRole('button', { name: en.selection.share }));
+    expect(screen.getByRole('button', { name: en.selection.share })).toBeDisabled();
+    expect(screen.getByText(en.selection.processing)).toBeInTheDocument();
+    expect(await screen.findByText(en.selection.compressionUnavailable)).toBeInTheDocument();
+    vi.unstubAllGlobals();
+});
+it('ignores a stale decode after query parameters change', async () => {
+    let resolve!: (result: SharedSelection) => void;
+    const realDecode = sharing.parseSharedSelection;
+    const decode = vi.spyOn(sharing, 'parseSharedSelection').mockImplementation(params => params.get('selection') === 'pending' ? new Promise(done => { resolve = done; }) : realDecode(params));
+    navigation.query = 'selection=pending';
+    const { rerender } = setup();
+    navigation.query = 'games=game-1';
+    rerender(<SelectionPage catalogue={catalogue} />);
+    await screen.findByRole('button', { name: 'Add Beta to my selection' });
+    resolve({ kind: 'error', error: 'invalid' });
+    await waitFor(() => expect(screen.queryByText(en.selection.invalid)).not.toBeInTheDocument());
+    expect(screen.getByRole('button', { name: 'Add Beta to my selection' })).toBeInTheDocument();
+    decode.mockRestore();
 });

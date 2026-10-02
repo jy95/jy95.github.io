@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import Alert from '@mui/material/Alert';
@@ -27,8 +27,9 @@ import GameCardOverlay from '@/features/games/components/GameCardOverlay';
 import GameDetailView from '@/features/games/detail/GameDetailView';
 import { browseGames } from '@/lib/browseGames';
 import SelectionButton from './SelectionButton';
-import { addSelection, clearSelection } from './selectionSlice';
-import { parseSharedSelection, selectionQuery } from './sharing';
+import { addSelection, clearSelection, setSelectionCategories } from './selectionSlice';
+import { classifySelection, selectionIds } from './schema';
+import { parseSharedSelection, selectionQuery, type SharedSelection } from './sharing';
 import type { SelectionEntry } from './catalogue';
 
 export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry[] }) {
@@ -36,8 +37,17 @@ export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry
     const common = useTranslations('common');
     const locale = useLocale();
     const params = useSearchParams();
-    const sharedIds = parseSharedSelection(new URLSearchParams(params.toString()));
-    const shared = sharedIds !== null;
+    const query = params.toString();
+    const shared = params.has('selection') || params.has('games');
+    const categories = useMemo(() => Object.fromEntries(catalogue.map(entry => [entry.selectionId, entry.category])), [catalogue]);
+    const [decoded, setDecoded] = useState<{ query: string; result: SharedSelection } | null>(null);
+    const decoding = shared && decoded?.query !== query;
+    const sharedResult = decoded?.query === query ? decoded.result : null;
+    const sharedIds = sharedResult?.kind === 'selection' ? selectionIds(sharedResult.document) : [];
+    const shareRequest = useRef(0);
+    const [encodingState, setEncoding] = useState<{ query: string; processing: boolean } | null>(null);
+    const encoding = encodingState?.query === query && encodingState.processing;
+    const [shareError, setShareError] = useState<string | null>(null);
     const { ids, hydrated, storageAvailable } = useAppSelector(state => state.selection);
     const dispatch = useAppDispatch();
     const { filters, updateFilters } = useGamesFilters();
@@ -45,38 +55,64 @@ export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry
     const [shareUrl, setShareUrl] = useState('');
     const [copyState, setCopyState] = useState<'idle' | 'copied' | 'failed'>('idle');
     const [detail, setDetail] = useState<SelectionEntry | null>(null);
-    const requested = sharedIds ?? ids;
+    useEffect(() => { dispatch(setSelectionCategories(categories)); }, [dispatch, categories]);
+    useEffect(() => {
+        let active = true;
+        void parseSharedSelection(new URLSearchParams(query), categories).then(result => {
+            if (active) setDecoded({ query, result });
+        });
+        return () => { active = false; };
+    }, [query, categories]);
+    useEffect(() => () => { shareRequest.current++; }, [query]);
+    const requested = shared ? sharedIds : ids;
     const byId = new Map(catalogue.map(entry => [entry.selectionId, entry]));
-    const entries = requested.flatMap(id => { const entry = byId.get(id); return entry ? [entry] : []; });
+    const entries = requested.flatMap(id => {
+        const entry = byId.get(id);
+        if (!entry) return [];
+        const document = sharedResult?.kind === 'selection' ? sharedResult.document : null;
+        const categoryMatches = !document || document[entry.category].includes(entry.game.id) || document.legacyIds?.includes(id);
+        return categoryMatches ? [entry] : [];
+    });
     const unavailable = requested.length - entries.length;
     const selectedIds = entries.map(entry => entry.selectionId);
     const canImport = selectedIds.some(id => !ids.includes(id));
     const visible = browseGames(entries.map(entry => ({ ...entry.game, entry })), filters);
 
-    function shareSelection() {
-        const path = getPathname({ locale, href: '/selection' });
-        const url = new URL(path, window.location.origin);
-        url.search = selectionQuery(selectedIds);
-        setCopyState('idle');
-        setShareUrl(url.toString());
+    async function shareSelection() {
+        const request = ++shareRequest.current;
+        setEncoding({ query, processing: true });
+        setShareError(null);
+        try {
+            const path = getPathname({ locale, href: '/selection' });
+            const url = new URL(path, window.location.origin);
+            url.search = await selectionQuery(classifySelection(selectedIds, categories));
+            if (request !== shareRequest.current) return;
+            setCopyState('idle');
+            setShareUrl(url.toString());
+        } catch (error) {
+            if (request === shareRequest.current) setShareError(error instanceof Error ? error.message : 'invalid');
+        } finally { if (request === shareRequest.current) setEncoding({ query, processing: false }); }
     }
 
     return (
         <Stack spacing={2}>
             <Typography variant="h4" component="h1">{t(shared ? 'sharedTitle' : 'title')}</Typography>
             <Typography color="text.secondary">{t(shared ? 'sharedDescription' : 'description')}</Typography>
-            {!hydrated ? <CircularProgress aria-label={common('loading')} /> : <>
+            {shareError && <Alert severity="error">{t(shareError === 'compressionUnavailable' ? 'compressionUnavailable' : shareError === 'tooLarge' ? 'tooLarge' : 'invalid')}</Alert>}
+            {sharedResult?.kind === 'error' && <Alert severity="error">{t(sharedResult.error)}</Alert>}
+            {encoding && <Typography role="status">{t('processing')}</Typography>}
+            {!hydrated || decoding ? <CircularProgress aria-label={decoding ? t('processing') : common('loading')} /> : <>
                 {!storageAvailable && <Alert severity="warning">{t('storageUnavailable')}</Alert>}
                 <Typography role="status">{t('count', { count: entries.length })}</Typography>
                 {unavailable > 0 && <Alert severity="info">{t('unavailable', { count: unavailable })}</Alert>}
                 <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: 'wrap' }}>
                     {shared ? <>
-                        {entries.length > 0 && <Button variant="contained" disabled={!canImport} onClick={() => dispatch(addSelection(selectedIds))}>{t(canImport ? 'import' : 'imported')}</Button>}
+                        {entries.length > 0 && <Button variant="contained" disabled={!canImport || encoding} onClick={() => dispatch(addSelection(classifySelection(selectedIds, categories)))}>{t(canImport ? 'import' : 'imported')}</Button>}
                         <Button component={Link} href="/selection">{t('openOwn')}</Button>
                     </> : ids.length > 0 && <Button startIcon={<DeleteOutlinedIcon />} onClick={() => setClearOpen(true)}>{t('clear')}</Button>}
-                    {entries.length > 0 && <Button startIcon={<ShareIcon />} onClick={shareSelection}>{t('share')}</Button>}
+                    {entries.length > 0 && <Button startIcon={<ShareIcon />} disabled={encoding} onClick={shareSelection}>{t('share')}</Button>}
                 </Stack>
-                {entries.length === 0 ? (
+                {sharedResult?.kind === 'error' ? null : entries.length === 0 ? (
                     <Box sx={{ py: 5, textAlign: 'center' }}>
                         <Typography variant="h6" gutterBottom>{t(shared ? 'sharedEmpty' : 'empty')}</Typography>
                         <Button component={Link} href="/games" variant="outlined">{t('browse')}</Button>

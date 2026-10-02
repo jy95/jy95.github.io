@@ -301,6 +301,11 @@
         "storageUnavailable": "Le stockage du navigateur est indisponible. Votre sélection sera conservée uniquement jusqu’à votre départ ou au rechargement de cette page.",
         "imported": "Tous les jeux sont dans ma sélection",
         "openOwn": "Ouvrir ma sélection",
-        "import": "Ajouter ces jeux à ma sélection"
+        "import": "Ajouter ces jeux à ma sélection",
+        "processing": "Traitement de la sélection…",
+        "invalid": "Ce lien de sélection est invalide ou endommagé.",
+        "unsupported": "Cette version de sélection n’est pas prise en charge.",
+        "compressionUnavailable": "Ce navigateur ne prend pas en charge les liens de sélection compressés.",
+        "tooLarge": "Cette sélection dépasse la taille de lien prise en charge."
     }
 }
