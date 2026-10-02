@@ -1,8 +1,8 @@
 import { navigation, setup, categorizedCatalogue, allIds } from './testUtils';
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import SelectionButton from './SelectionButton';
-import en from '../../../messages/en.json';
-import fr from '../../../messages/fr.json';
+import { messages } from './testMessages';
+const { en, fr } = messages;
 
 it.each(['en', 'fr'] as const)('shows localized empty selection and catalogue link in %s', locale => {
     setup([], locale);

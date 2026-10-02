@@ -10,7 +10,6 @@ export { MAX_DECOMPRESSED_SIZE } from './sharingJson';
 export type SharedSelection = { kind: 'absent' } | { kind: 'selection'; document: SelectionDocument } | { kind: 'error'; error: SelectionTransportError };
 
 export async function selectionQuery(document: SelectionDocument): Promise<string> {
-    if (typeof CompressionStream === 'undefined') throw new Error('compressionUnavailable');
     const compressed = await compressSelection(serializeSelection(document), MAX_ENCODED_SIZE * 3 / 4);
     return new URLSearchParams({ selection: encodeBase64url(compressed) }).toString();
 }

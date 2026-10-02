@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import { setup, catalogue } from './testUtils';
+import { createProviders, catalogue } from './testUtils';
 import { SelectionCards } from './SelectionCards';
 import type { SelectionEntry } from './catalogue';
 
@@ -29,8 +29,7 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllGlobals());
 
 function mount(list = entries) {
-    const { wrapper, unmount, store } = setup([]);
-    unmount();
+    const { wrapper, store } = createProviders([]);
     const onDetail = vi.fn();
     const view = (items: SelectionEntry[]) => <main style={{ overflow: 'auto' }}><SelectionCards entries={items} onDetail={onDetail} /></main>;
     const result = render(view(list), { wrapper });
@@ -128,8 +127,7 @@ it('keeps results mounted when a deep scroll exceeds the resized grid height', (
 });
 
 it('supports window scrolling when there is no scrolling ancestor', () => {
-    const { wrapper, unmount } = setup([]);
-    unmount();
+    const { wrapper } = createProviders([]);
     render(<SelectionCards entries={entries} onDetail={vi.fn()} />, { wrapper });
     scrollTop = 6000;
     fireEvent.scroll(window);

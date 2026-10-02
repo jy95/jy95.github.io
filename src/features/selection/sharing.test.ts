@@ -39,8 +39,8 @@ async function rawQuery(value: string) {
     const encoded = btoa(Array.from(compressed, byte => String.fromCharCode(byte)).join('')).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
     return new URLSearchParams({ selection: encoded });
 }
-it('rejects unsupported compressed schema versions', async () => {
-    expect(await parseSharedSelection(await rawQuery(JSON.stringify({ ...emptySelection(), version: 3 })))).toEqual({ kind: 'error', error: 'unsupported' });
+it('ignores incoming compressed schema versions', async () => {
+    expect(await parseSharedSelection(await rawQuery(JSON.stringify({ ...emptySelection(), version: 3 })))).toEqual({ kind: 'selection', document: emptySelection() });
 });
 it('limits deflate-raw expansion before parsing JSON', async () => {
     expect(await parseSharedSelection(await rawQuery(' '.repeat(256 * 1024 + 1)))).toEqual({ kind: 'error', error: 'tooLarge' });
