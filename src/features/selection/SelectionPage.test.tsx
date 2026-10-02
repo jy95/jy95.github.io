@@ -1,8 +1,8 @@
 import { navigation, setup, categorizedCatalogue, allIds } from './testUtils';
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import SelectionButton from './SelectionButton';
-import en from '../../../messages/en.json';
-import fr from '../../../messages/fr.json';
+import { messages } from './testMessages';
+const { en, fr } = messages;
 
 it.each(['en', 'fr'] as const)('shows localized empty selection and catalogue link in %s', locale => {
     setup([], locale);
@@ -13,7 +13,7 @@ it.each(['en', 'fr'] as const)('shows localized empty selection and catalogue li
 
 it.each(['light', 'dark'] as const)('removes games and synchronizes multiple accessible controls in %s mode', mode => {
     const { store, wrapper } = setup(['game-0'], 'en', mode);
-    render(<SelectionButton id="game-0" title="Alpha" />, { wrapper });
+    render(<SelectionButton id="game-0" category="games" title="Alpha" />, { wrapper });
     const buttons = screen.getAllByRole('button', { name: 'Remove Alpha from my selection' });
     expect(buttons).toHaveLength(2);
     buttons.forEach(button => expect(button).toHaveAttribute('aria-pressed', 'true'));
@@ -57,10 +57,10 @@ it('filters selected items with the existing catalogue title field', async () =>
 });
 
 
-it.each([['Waiting', 'true', 'false'], ['Upcoming', 'false', 'true']])('preserves %s detail behavior', (title, vote, related) => {
+it.each([['Waiting', 'true', 'false'], ['Upcoming', 'false', 'true']])('preserves %s detail behavior', async (title, vote, related) => {
     setup(allIds, 'en', 'light', categorizedCatalogue);
     fireEvent.click(screen.getByRole('img', { name: title }).closest('button')!);
-    const dialog = screen.getByRole('dialog', { name: title });
+    const dialog = await screen.findByRole('dialog', { name: title });
     expect(dialog).toHaveAttribute('data-vote', vote);
     expect(dialog).toHaveAttribute('data-related', related);
     fireEvent.click(within(dialog).getByRole('button', { name: 'Close details' }));
@@ -75,4 +75,15 @@ it.each([['Alpha', 'game-0'], ['Expansion', 'dlc']])('preserves published %s nav
     fireEvent.click(screen.getByRole('link', { name: `View details for ${title}` }));
     expect(navigation.push).not.toHaveBeenCalled();
     expect(screen.getByRole('button', { name: `Remove ${title} from my selection` })).toBeInTheDocument();
+});
+
+
+it('selects backlog raw IDs before the catalogue loads', () => {
+    const { wrapper, store } = setup([]);
+    render(<SelectionButton id="42" category="backlog" title="Waiting" />, { wrapper });
+    fireEvent.click(screen.getByRole('button', { name: 'Add Waiting to my selection' }));
+    expect(store.getState().selection.document.backlog).toEqual(['42']);
+    expect(store.getState().selection.ids).toEqual(['42']);
+    fireEvent.click(screen.getByRole('button', { name: 'Remove Waiting from my selection' }));
+    expect(store.getState().selection.ids).toEqual([]);
 });

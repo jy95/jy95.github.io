@@ -1,9 +1,10 @@
 import { navigation, setup, categorizedCatalogue, chooseKind } from './testUtils';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { parseSharedSelection, selectionQuery } from './sharing';
+import { hydrateSelection } from './selectionSlice';
 import { emptySelection, selectionIds } from './schema';
-import en from '../../../messages/en.json';
-import fr from '../../../messages/fr.json';
+import { messages } from './testMessages';
+const { en, fr } = messages;
 
 it('displays shared games without overwriting personal games, ignores outdated IDs and imports once', async () => {
     navigation.query = await selectionQuery({ ...emptySelection(), games: ['game-0', 'game-0', 'outdated'] });
@@ -17,7 +18,7 @@ it('displays shared games without overwriting personal games, ignores outdated I
     expect(screen.getByRole('link', { name: 'Open my selection' })).toHaveAttribute('href', '/selection');
 });
 
-it('treats an empty compressed selection as an empty shared selection', async () => {
+it('treats an empty shared selection as an empty shared selection', async () => {
     navigation.query = await selectionQuery(emptySelection());
     setup(['game-1']);
     expect(await screen.findByText(en.selection.sharedEmpty)).toBeInTheDocument();
@@ -74,4 +75,16 @@ it.each(['en', 'fr'] as const)('imports and shares all categories while other ki
     fireEvent.click(screen.getByRole('button', { name: text.share }));
     const url = new URL((await screen.findByRole('textbox', { name: text.shareLink }) as HTMLInputElement).value);
     expect(await parseSharedSelection(url.searchParams)).toEqual({ kind: 'selection', document });
+});
+
+
+it('imports a shared category even when the raw ID is selected in another category', async () => {
+    navigation.query = await selectionQuery({ ...emptySelection(), games: ['game-0'] });
+    const { store } = setup([]);
+    await screen.findByRole('button', { name: en.selection.import });
+    act(() => { store.dispatch(hydrateSelection({ ...emptySelection(), planning: ['game-0'] })); });
+    expect(screen.getByRole('button', { name: en.selection.import })).toBeEnabled();
+    fireEvent.click(screen.getByRole('button', { name: en.selection.import }));
+    expect(store.getState().selection.document).toEqual({ ...emptySelection(), games: ['game-0'], planning: ['game-0'] });
+    expect(screen.getByRole('button', { name: en.selection.imported })).toBeDisabled();
 });

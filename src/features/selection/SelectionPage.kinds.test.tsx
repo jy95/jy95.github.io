@@ -2,8 +2,8 @@ import { navigation, setup, categorizedCatalogue, allIds, chooseKind } from './t
 import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { createTheme, getContrastRatio } from '@mui/material/styles';
 import { SELECTION_CATEGORIES } from './documentTypes';
-import en from '../../../messages/en.json';
-import fr from '../../../messages/fr.json';
+import { messages } from './testMessages';
+const { en, fr } = messages;
 
 const icons = { games: 'SportsEsportsIcon', dlcs: 'ExtensionIcon', planning: 'ScheduleIcon', backlog: 'HourglassEmptyIcon' };
 

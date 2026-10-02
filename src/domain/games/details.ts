@@ -15,6 +15,6 @@ export type BacklogEntry = BasicCard & {
 };
 
 export type GameDetailsResponse =
-    | { source: "published"; game: CardGame }
+    | { source: "published"; game: CardGame; category?: "games" | "dlcs" }
     | { source: "planning"; game: PlanningEntry }
     | { source: "backlog"; game: BacklogEntry };

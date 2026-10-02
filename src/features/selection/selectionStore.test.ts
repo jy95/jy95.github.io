@@ -1,22 +1,27 @@
 import { makeStore } from '@/redux/Store';
-import { addSelection, clearSelection, hydrateSelection, setSelectionCategories, toggleSelection } from './selectionSlice';
-import { emptySelection } from './schema';
+import { addSelection, clearSelection, hydrateSelection, selectSelectedIdsByCategory, toggleSelection } from './selectionSlice';
+import { SELECTION_CATEGORIES, emptySelection } from './documentTypes';
 
-it('toggles, merges without duplicates, and clears game identifiers', () => {
+it.each(SELECTION_CATEGORIES)('toggles arbitrary strings in %s', category => {
     const store = makeStore();
-    store.dispatch(hydrateSelection([]));
-    store.dispatch(toggleSelection('game-a'));
-    store.dispatch(addSelection(['game-a', 'game-b', 'backlog:42']));
-    expect(store.getState().selection.ids).toEqual(['backlog:42', 'game-a', 'game-b']);
-    store.dispatch(toggleSelection('game-a'));
-    expect(store.getState().selection.ids).toEqual(['backlog:42', 'game-b']);
-    store.dispatch(clearSelection());
-    expect(store.getState().selection.ids).toEqual([]);
+    store.dispatch(hydrateSelection(emptySelection()));
+    for (const id of ['', '日本語 🎮', '__proto__', 'constructor']) {
+        store.dispatch(toggleSelection({ id, category }));
+        expect(store.getState().selection.document[category]).toEqual([id]);
+        expect(selectSelectedIdsByCategory(store.getState())[category].has(id)).toBe(true);
+        store.dispatch(toggleSelection({ id, category }));
+        expect(store.getState().selection.ids).toEqual([]);
+    }
 });
 
-it('resolves previously unavailable legacy identifiers after catalogue updates', () => {
+it('keeps the same raw ID independent across categories, merges in order, and clears', () => {
     const store = makeStore();
-    store.dispatch(hydrateSelection({ ...emptySelection(), legacyIds: ['missing'] }));
-    store.dispatch(setSelectionCategories({ missing: 'dlcs' }));
-    expect(store.getState().selection.document).toEqual({ ...emptySelection(), dlcs: ['missing'] });
+    store.dispatch(hydrateSelection({ ...emptySelection(), games: ['a'] }));
+    store.dispatch(toggleSelection({ id: 'a', category: 'backlog' }));
+    store.dispatch(toggleSelection({ id: 'a', category: 'games' }));
+    expect(store.getState().selection.document).toEqual({ ...emptySelection(), backlog: ['a'] });
+    store.dispatch(addSelection({ ...emptySelection(), backlog: ['a', 'b', 'a'] }));
+    expect(store.getState().selection.document.backlog).toEqual(['a', 'b']);
+    store.dispatch(clearSelection());
+    expect(store.getState().selection.document).toEqual(emptySelection());
 });

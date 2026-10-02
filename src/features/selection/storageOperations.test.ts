@@ -11,7 +11,7 @@ afterEach(() => vi.restoreAllMocks());
 
 it('preserves an already hydrated in-memory selection if storage reads fail', () => {
     const store = makeStore();
-    store.dispatch(hydrateSelection(['saved']));
+    store.dispatch(hydrateSelection({ ...emptySelection(), games: ['saved'] }));
     vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => { throw new Error('denied'); });
     hydrateSelectionStorage(store);
     expect(store.getState().selection).toMatchObject({ ids: ['saved'], hydrated: true, storageAvailable: false });
@@ -36,9 +36,9 @@ it('ignores unrelated keys and session storage and disconnects listeners and sub
     const store = makeStore();
     const disconnect = connectSelectionStorage(store);
     disconnect();
-    window.dispatchEvent(new StorageEvent('storage', { key: SELECTION_STORAGE_KEY, storageArea: localStorage, newValue: '["external"]' }));
+    window.dispatchEvent(new StorageEvent('storage', { key: SELECTION_STORAGE_KEY, storageArea: localStorage, newValue: JSON.stringify({ ...emptySelection(), games: ['external'] }) }));
     expect(store.getState().selection.ids).toEqual([]);
     const write = vi.spyOn(Storage.prototype, 'setItem');
-    store.dispatch(hydrateSelection(['local']));
+    store.dispatch(hydrateSelection({ ...emptySelection(), games: ['local'] }));
     expect(write).not.toHaveBeenCalled();
 });

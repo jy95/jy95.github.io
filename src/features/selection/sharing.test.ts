@@ -1,8 +1,8 @@
-import { emptySelection } from './schema';
+import { SELECTION_CATEGORIES, emptySelection } from './schema';
 import { parseSharedSelection, selectionQuery } from './sharing';
 
 it('round-trips all categorized identifiers with deflate-raw', async () => {
-    const document = { version: 2 as const, games: ['game-a'], backlog: ['42'], dlcs: ['dlc-a'], planning: ['planned-a'] };
+    const document = { games: ['game-a'], backlog: ['42'], dlcs: ['dlc-a'], planning: ['planned-a'] };
     expect(await parseSharedSelection(new URLSearchParams(await selectionQuery(document)))).toEqual({ kind: 'selection', document });
     expect(await parseSharedSelection(new URLSearchParams(await selectionQuery(emptySelection())))).toEqual({ kind: 'selection', document: emptySelection() });
     expect(await parseSharedSelection(new URLSearchParams())).toEqual({ kind: 'absent' });
@@ -21,9 +21,6 @@ it('uses only the compressed selection when games is also present', async () => 
 it.each(['', '!!!', 'a', 'YWJj'])('rejects malformed base64url or deflate-raw: %s', async encoded => {
     expect(await parseSharedSelection(new URLSearchParams({ selection: encoded }))).toEqual({ kind: 'error', error: 'invalid' });
 });
-it('bounds encoded input', async () => {
-    expect(await parseSharedSelection(new URLSearchParams({ selection: 'a'.repeat(65537) }))).toEqual({ kind: 'error', error: 'tooLarge' });
-});
 it('reports missing browser compression APIs', async () => {
     vi.stubGlobal('CompressionStream', undefined);
     await expect(selectionQuery(emptySelection())).rejects.toThrow('compressionUnavailable');
@@ -39,9 +36,12 @@ async function rawQuery(value: string) {
     const encoded = btoa(Array.from(compressed, byte => String.fromCharCode(byte)).join('')).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
     return new URLSearchParams({ selection: encoded });
 }
-it('rejects unsupported compressed schema versions', async () => {
-    expect(await parseSharedSelection(await rawQuery(JSON.stringify({ ...emptySelection(), version: 3 })))).toEqual({ kind: 'error', error: 'unsupported' });
+it('ignores incoming compressed schema versions', async () => {
+    expect(await parseSharedSelection(await rawQuery(JSON.stringify({ ...emptySelection(), version: 3 })))).toEqual({ kind: 'selection', document: emptySelection() });
 });
-it('limits deflate-raw expansion before parsing JSON', async () => {
-    expect(await parseSharedSelection(await rawQuery(' '.repeat(256 * 1024 + 1)))).toEqual({ kind: 'error', error: 'tooLarge' });
+
+it.each(SELECTION_CATEGORIES)('round-trips arbitrary string IDs in shared %s', async category => {
+    const ids = ['', 'bad.id!?', '日本語 🎮', 'a'.repeat(256), 'backlog:42', 'constructor', '__proto__'];
+    const document = { ...emptySelection(), [category]: ids };
+    expect(await parseSharedSelection(new URLSearchParams(await selectionQuery(document)))).toEqual({ kind: 'selection', document });
 });

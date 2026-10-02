@@ -1,3 +1,4 @@
+import type { SelectionCategory } from '@/features/selection/documentTypes';
 // MUI
 import Grid from '@mui/material/Grid';
 
@@ -9,12 +10,12 @@ import type { CardGame } from '@/domain/games/types';
 
 export type GridSize = { xs?: number; sm?: number; md?: number; lg?: number };
 
-export function CardGrid({ items, size, selectable = true }: { items: CardGame[]; size: GridSize; selectable?: boolean }) {
+export function CardGrid({ items, size, selectable = true, category = "games" }: { items: CardGame[]; size: GridSize; selectable?: boolean; category?: SelectionCategory }) {
     return (
         <Grid container spacing={1} rowSpacing={1}>
             {items.map((game) => (
                 <Grid key={game.id} size={size}>
-                    <CardEntry game={game} selectable={selectable} />
+                    <CardEntry category={category} game={game} selectable={selectable} />
                 </Grid>
             ))}
         </Grid>

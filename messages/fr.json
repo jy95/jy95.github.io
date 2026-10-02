@@ -304,9 +304,7 @@
         "import": "Ajouter ces éléments à ma sélection",
         "processing": "Traitement de la sélection…",
         "invalid": "Ce lien de sélection est invalide ou endommagé.",
-        "unsupported": "Cette version de sélection n’est pas prise en charge.",
         "compressionUnavailable": "Ce navigateur ne prend pas en charge les liens de sélection compressés.",
-        "tooLarge": "Cette sélection dépasse la taille de lien prise en charge.",
         "categories": {
             "all": "Tous",
             "games": "Jeux",

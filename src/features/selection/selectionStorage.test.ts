@@ -1,18 +1,18 @@
 import { parseStoredSelection, SELECTION_STORAGE_KEY } from './storageFormat';
 import { makeStore } from '@/redux/Store';
-import { clearSelection, setSelectionCategories, toggleSelection } from './selectionSlice';
+import { clearSelection, toggleSelection } from './selectionSlice';
 import { connectSelectionStorage } from './selectionPersistence';
-import { emptySelection } from './schema';
+import { SELECTION_CATEGORIES, emptySelection } from './schema';
 beforeEach(() => { localStorage.clear(); });
 afterEach(() => { vi.restoreAllMocks(); });
 
 it('restores browser storage before subscribing and persists changes across new stores', () => {
-    localStorage.setItem(SELECTION_STORAGE_KEY, '["game-a"]');
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['game-a'] }));
     const store = makeStore();
     expect(store.getState().selection.hydrated).toBe(false);
     const stop = connectSelectionStorage(store);
     expect(store.getState().selection.ids).toEqual(['game-a']);
-    store.dispatch(toggleSelection('game-b'));
+    store.dispatch(toggleSelection({ id: 'game-b', category: 'games' }));
     stop();
     const reloaded = makeStore();
     const stopReloaded = connectSelectionStorage(reloaded);
@@ -26,7 +26,7 @@ it('syncs another tab and storage clearing without echoing writes', () => {
     const store = makeStore();
     const stop = connectSelectionStorage(store);
     const write = vi.spyOn(Storage.prototype, 'setItem');
-    window.dispatchEvent(new StorageEvent('storage', { storageArea: localStorage, key: SELECTION_STORAGE_KEY, newValue: '["game-b"]' }));
+    window.dispatchEvent(new StorageEvent('storage', { storageArea: localStorage, key: SELECTION_STORAGE_KEY, newValue: JSON.stringify({ ...emptySelection(), games: ['game-b'] }) }));
     expect(store.getState().selection.ids).toEqual(['game-b']);
     expect(write).not.toHaveBeenCalled();
     window.dispatchEvent(new StorageEvent('storage', { storageArea: localStorage, key: null }));
@@ -39,23 +39,15 @@ it('keeps the feature usable when browser storage throws', () => {
     vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('quota'); });
     const store = makeStore();
     const stop = connectSelectionStorage(store);
-    store.dispatch(toggleSelection('game-a'));
+    store.dispatch(toggleSelection({ id: 'game-a', category: 'games' }));
     expect(store.getState().selection).toMatchObject({ ids: ['game-a'], hydrated: true, storageAvailable: false });
     stop();
 });
 
 it.each(['broken', 'null', '{}', '42'])('handles corrupt storage: %s', value => {
-    expect(parseStoredSelection(value)).toEqual([]);
+    expect(parseStoredSelection(value)).toEqual(emptySelection());
 });
 
-it('migrates storage categories immediately and preserves unresolved selections', () => {
-    localStorage.setItem(SELECTION_STORAGE_KEY, '["dlc-a","planned-a","backlog:42","missing"]');
-    const store = makeStore();
-    store.dispatch(setSelectionCategories({ 'dlc-a': 'dlcs', 'planned-a': 'planning' }));
-    const stop = connectSelectionStorage(store);
-    expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual({ version: 2, games: [], backlog: ['42'], dlcs: ['dlc-a'], planning: ['planned-a'], legacyIds: ['missing'] });
-    stop();
-});
 it('synchronizes categorized storage without echo writes', () => {
     const store = makeStore();
     const stop = connectSelectionStorage(store);
@@ -67,25 +59,28 @@ it('synchronizes categorized storage without echo writes', () => {
     stop();
 });
 
-it('preserves migrated selections when writing storage fails', () => {
-    localStorage.setItem(SELECTION_STORAGE_KEY, '["dlc-a"]');
-    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('quota'); });
+it('restores categorized backlog documents before loading the catalogue', () => {
+    const document = { ...emptySelection(), backlog: ['42'] };
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(document));
     const store = makeStore();
-    store.dispatch(setSelectionCategories({ 'dlc-a': 'dlcs' }));
     const stop = connectSelectionStorage(store);
-    expect(store.getState().selection.document.dlcs).toEqual(['dlc-a']);
-    expect(store.getState().selection.storageAvailable).toBe(false);
+    expect(store.getState().selection.document).toEqual(document);
+    expect(store.getState().selection.ids).toEqual(['42']);
+    store.dispatch(toggleSelection({ id: '7', category: 'backlog' }));
+    expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual({ ...document, backlog: ['42', '7'] });
     stop();
 });
 
-
-it('persists a non-selection page toggle as legacy until the selection catalogue loads', () => {
+it.each(SELECTION_CATEGORIES)('persists and restores arbitrary string IDs in %s', category => {
+    const ids = ['', 'bad.id!?', '日本語 🎮', 'a'.repeat(256), 'backlog:42', '__proto__'];
     const store = makeStore();
     const stop = connectSelectionStorage(store);
-    store.dispatch(toggleSelection('dlc-a'));
-    expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual({ ...emptySelection(), legacyIds: ['dlc-a'] });
-    store.dispatch(setSelectionCategories({ 'dlc-a': 'dlcs' }));
-    expect(store.getState().selection.document).toEqual({ ...emptySelection(), dlcs: ['dlc-a'] });
-    expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual({ ...emptySelection(), dlcs: ['dlc-a'] });
+    for (const id of ids) store.dispatch(toggleSelection({ id, category }));
+    const expected = { ...emptySelection(), [category]: ids };
+    expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual(expected);
     stop();
+    const restored = makeStore();
+    const stopRestored = connectSelectionStorage(restored);
+    expect(restored.getState().selection.document).toEqual(expected);
+    stopRestored();
 });

@@ -1,7 +1,7 @@
-export type SelectionTransportError = 'invalid' | 'unsupported' | 'compressionUnavailable' | 'tooLarge';
+export type SelectionTransportError = 'invalid' | 'compressionUnavailable';
 
 export function transportError(error: unknown): SelectionTransportError {
     const message = error instanceof Error ? error.message : '';
-    if (message === 'unsupported' || message === 'compressionUnavailable' || message === 'tooLarge') return message;
+    if (message === 'compressionUnavailable') return message;
     return 'invalid';
 }
