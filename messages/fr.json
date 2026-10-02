@@ -18,7 +18,7 @@
         },
         "selection": {
             "title": "Ma sélection GamesPassionFR",
-            "description": "Gardez les jeux qui vous intéressent dans votre sélection sur ce navigateur."
+            "description": "Gardez les éléments qui vous intéressent dans votre sélection sur ce navigateur."
         }
     },
     "dashboard": {
@@ -279,29 +279,29 @@
     "selection": {
         "title": "Ma sélection GamesPassionFR",
         "sharedTitle": "Sélection GamesPassionFR partagée",
-        "description": "Gardez les jeux qui vous intéressent dans votre sélection sur ce navigateur.",
-        "sharedDescription": "Découvrez ces jeux et ajoutez-les à votre propre sélection.",
+        "description": "Gardez les éléments qui vous intéressent dans votre sélection sur ce navigateur.",
+        "sharedDescription": "Découvrez ces éléments et ajoutez-les à votre propre sélection.",
         "add": "Ajouter {title} à ma sélection",
         "remove": "Retirer {title} de ma sélection",
-        "count": "{count, plural, =1 {1 jeu sélectionné} other {# jeux sélectionnés}}",
+        "count": "{count, plural, =1 {1 élément sélectionné} other {# éléments sélectionnés}}",
         "empty": "Votre sélection est vide",
-        "sharedEmpty": "Aucun jeu disponible dans cette sélection partagée",
+        "sharedEmpty": "Aucun élément disponible dans cette sélection partagée",
         "browse": "Parcourir le catalogue",
         "clear": "Vider ma sélection",
-        "clearConfirm": "Retirer tous les jeux de votre sélection ?",
+        "clearConfirm": "Retirer tous les éléments de votre sélection ?",
         "cancel": "Annuler",
         "close": "Fermer",
         "share": "Partager la sélection",
-        "shareDescription": "Ce lien contient les jeux actuellement dans cette sélection. Les modifications ultérieures ne changeront pas le lien.",
+        "shareDescription": "Ce lien contient les éléments actuellement dans cette sélection. Les modifications ultérieures ne changeront pas le lien.",
         "shareLink": "Lien de la sélection",
         "copy": "Copier le lien",
         "copied": "Lien copié",
         "copyFallback": "Sélectionnez et copiez le lien ci-dessus.",
-        "unavailable": "{count, plural, =1 {1 jeu n’est plus disponible dans le catalogue.} other {# jeux ne sont plus disponibles dans le catalogue.}}",
+        "unavailable": "{count, plural, =1 {1 élément n’est plus disponible dans le catalogue.} other {# éléments ne sont plus disponibles dans le catalogue.}}",
         "storageUnavailable": "Le stockage du navigateur est indisponible. Votre sélection sera conservée uniquement jusqu’à votre départ ou au rechargement de cette page.",
-        "imported": "Tous les jeux sont dans ma sélection",
+        "imported": "Tous les éléments sont dans ma sélection",
         "openOwn": "Ouvrir ma sélection",
-        "import": "Ajouter ces jeux à ma sélection",
+        "import": "Ajouter ces éléments à ma sélection",
         "processing": "Traitement de la sélection…",
         "invalid": "Ce lien de sélection est invalide ou endommagé.",
         "unsupported": "Cette version de sélection n’est pas prise en charge.",
@@ -313,6 +313,6 @@
             "dlcs": "DLCs",
             "planning": "Jeux prévus"
         },
-        "kinds": "Types de jeux"
+        "kinds": "Types de contenu"
     }
 }
