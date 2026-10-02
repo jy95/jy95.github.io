@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
+import { GroupedGamesAccordion } from '@/features/games/components/GroupedGamesAccordion';
 import GamesFilters from '@/app/[locale]/games/_client/GamesFilters';
 import { SelectionActions } from './SelectionActions';
 import { SelectionEmptyState } from './SelectionEmptyState';
@@ -10,12 +11,19 @@ import type { SelectionPageModel } from './useSelectionPage';
 
 function SelectionResults({ model }: { model: SelectionPageModel }) {
     const common = useTranslations('common');
+    const t = useTranslations('selection');
     if (model.decoded.kind === 'error') return null;
     if (model.entries.length === 0) return <SelectionEmptyState shared={model.shared} />;
     return <>
         <GamesFilters filters={model.filters} onChange={model.updateFilters} />
-        {model.visible.length === 0 && <Typography role="status">{common('noResults')}</Typography>}
-        <SelectionCards entries={model.visible} onDetail={model.setDetail} />
+        <GroupedGamesAccordion
+            groups={model.sections.map(section => ({ ...section, name: `${t(`categories.${section.id}`)} — ${t('sectionCount', { selected: section.entries.length, matching: section.items.length })}` }))}
+            itemSize={{ xs: 6, md: 4, lg: 2 }}
+            defaultExpanded
+            renderContent={section => section.items.length > 0
+                ? <SelectionCards entries={section.items} onDetail={model.setDetail} />
+                : <Typography>{section.entries.length > 0 ? common('noResults') : t('sectionEmpty')}</Typography>}
+        />
     </>;
 }
 

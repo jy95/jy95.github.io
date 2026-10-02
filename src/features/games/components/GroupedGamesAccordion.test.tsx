@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import type { CardGame } from '@/domain/games/types';
 import { GroupedGamesAccordion } from './GroupedGamesAccordion';
@@ -39,7 +39,7 @@ describe('GroupedGamesAccordion', () => {
     render(
       <GroupedGamesAccordion
         groups={[
-          { name: 'Series One', items: [mockGameOne] },
+          { id: 1, name: 'Series One', items: [mockGameOne] },
           { name: 'Series Two', items: [mockGameTwo] },
         ]}
         itemSize={{ xs: 12, md: 4 }}
@@ -50,7 +50,7 @@ describe('GroupedGamesAccordion', () => {
     expect(screen.getByRole('button', { name: 'Series Two' })).toBeInTheDocument();
   });
 
-  it('uses the group name in each accordion accessibility identifiers', () => {
+  it('connects unique header and content accessibility identifiers', () => {
     render(
       <GroupedGamesAccordion
         groups={[{ name: 'Series One', items: [mockGameOne] }]}
@@ -60,8 +60,9 @@ describe('GroupedGamesAccordion', () => {
 
     const summary = screen.getByRole('button', { name: 'Series One' });
 
-    expect(summary).toHaveAttribute('id', 'panel-headerSeries One');
-    expect(summary).toHaveAttribute('aria-controls', 'panel-contentSeries One');
+    const content = document.getElementById(summary.getAttribute('aria-controls')!);
+    expect(content).toHaveAttribute('aria-labelledby', summary.id);
+    expect(summary.id).not.toMatch(/\s/);
   });
 
   it('forwards each group items to its CardGrid', () => {
@@ -118,4 +119,28 @@ describe('GroupedGamesAccordion', () => {
 
     expect(container).toBeEmptyDOMElement();
   });
+});
+
+it('keeps independently expanded custom groups stable across label and item changes', () => {
+  const groups = [{ id: 'backlog', name: 'Backlog', items: [42] }, { id: 'planning', name: 'Planning', items: [7] }];
+  const renderContent = (group: typeof groups[number]) => <p>{group.items.join(',')}</p>;
+  const { rerender } = render(<GroupedGamesAccordion groups={groups} renderContent={renderContent} itemSize={{ xs: 12 }} />);
+  const backlog = screen.getByRole('button', { name: 'Backlog' });
+  backlog.focus();
+  expect(backlog).toHaveFocus();
+  expect(backlog.tagName).toBe('BUTTON');
+  fireEvent.click(backlog);
+  expect(backlog).toHaveAttribute('aria-expanded', 'true');
+  expect(screen.getByRole('button', { name: 'Planning' })).toHaveAttribute('aria-expanded', 'false');
+  const id = backlog.id;
+  rerender(<GroupedGamesAccordion groups={[{ ...groups[0], name: 'À jouer', items: [] }, groups[1]]} renderContent={renderContent} itemSize={{ xs: 12 }} />);
+  expect(screen.getByRole('button', { name: 'À jouer' })).toHaveAttribute('aria-expanded', 'true');
+  expect(screen.getByRole('button', { name: 'À jouer' }).id).toBe(id);
+});
+
+it('uses unique identifiers across accordion instances with the same labels', () => {
+  const groups = [{ name: 'DLC', items: [mockGameOne] }];
+  render(<><GroupedGamesAccordion groups={groups} itemSize={{ xs: 12 }} /><GroupedGamesAccordion groups={groups} itemSize={{ xs: 12 }} /></>);
+  const summaries = screen.getAllByRole('button', { name: 'DLC' });
+  expect(summaries[0].id).not.toBe(summaries[1].id);
 });
