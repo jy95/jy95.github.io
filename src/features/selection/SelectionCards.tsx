@@ -6,7 +6,7 @@ import SelectionButton from './SelectionButton';
 import { SelectionKindBadge } from './SelectionKindBadge';
 import type { SelectionEntry } from './catalogue';
 
-function PublishedCard({ entry }: { entry: SelectionEntry }) {
+function PublishedCard({ entry }: { entry: Extract<SelectionEntry, { source: 'published' }> }) {
     return <CardEntry game={entry.game} badge={<SelectionKindBadge category={entry.category} />} />;
 }
 

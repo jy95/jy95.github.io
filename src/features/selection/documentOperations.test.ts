@@ -42,7 +42,10 @@ describe('document operations', () => {
 it('resolves available catalogue entries only when the shared category is authoritative or legacy', () => {
     const catalogue: SelectionEntry[] = [{ selectionId: 'a', category: 'games', source: 'published', game: { id: 'a', title: 'Alpha', imagePath: '/a.webp', url_type: 'VIDEO', url: 'https://youtube.com' } }];
     expect(resolveSelectionCatalogue(catalogue, ['a', 'missing'])).toMatchObject({ entries: catalogue, unavailable: 1, selectedIds: ['a'] });
+    expect(resolveSelectionCatalogue(catalogue, ['a', 'a'])).toEqual({ entries: catalogue, unavailable: 0, selectedIds: ['a'] });
+    expect(resolveSelectionCatalogue(catalogue, ['missing', 'a', 'missing', 'a', 'other'])).toEqual({ entries: catalogue, unavailable: 2, selectedIds: ['a'] });
     expect(resolveSelectionCatalogue(catalogue, ['a'], { ...emptySelection(), planning: ['a'] })).toMatchObject({ entries: [], unavailable: 1 });
+    expect(resolveSelectionCatalogue(catalogue, ['a', 'a', 'missing', 'missing'], { ...emptySelection(), planning: ['a'] })).toEqual({ entries: [], unavailable: 2, selectedIds: [] });
     expect(resolveSelectionCatalogue(catalogue, ['a'], { ...emptySelection(), legacyIds: ['a'] }).entries).toEqual(catalogue);
 });
 

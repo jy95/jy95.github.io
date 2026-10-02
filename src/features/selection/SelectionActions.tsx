@@ -10,16 +10,16 @@ type Props = { shared: boolean; hasEntries: boolean; hasSelection: boolean; canI
 export function SelectionActions({ shared, hasEntries, hasSelection, canImport, encoding, onImport, onClear, onShare }: Props) {
     const t = useTranslations('selection');
 
-    const canImportShared = shared && hasEntries && canImport && !encoding;
+    const canImportShared = shared && hasEntries && canImport;
     const showClear = !shared && hasSelection;
-    const showShare = hasEntries && !encoding;
+    const showShare = hasEntries;
 
     return (
         <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: 'wrap' }}>
             {shared ? (
                 <>
                     {canImportShared && (
-                        <Button variant="contained" onClick={onImport}>
+                        <Button variant="contained" onClick={onImport} disabled={encoding}>
                             {t('import')}
                         </Button>
                     )}
@@ -41,7 +41,7 @@ export function SelectionActions({ shared, hasEntries, hasSelection, canImport, 
             )}
 
             {showShare && (
-                <Button startIcon={<ShareIcon />} onClick={onShare}>
+                <Button startIcon={<ShareIcon />} onClick={onShare} disabled={encoding}>
                     {t('share')}
                 </Button>
             )}

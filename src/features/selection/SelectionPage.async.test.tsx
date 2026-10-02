@@ -47,6 +47,24 @@ it('ignores a stale decode after query parameters change', async () => {
     decode.mockRestore();
 });
 
+it('keeps shared import status while disabling actions during encoding', async () => {
+    navigation.query = await selectionQuery({ ...emptySelection(), games: ['game-0'] });
+    let reject!: (error: Error) => void;
+    vi.spyOn(sharing, 'selectionQuery').mockReturnValue(new Promise((_, fail) => { reject = fail; }));
+    const { store } = setup();
+    const importButton = await screen.findByRole('button', { name: en.selection.import });
+    fireEvent.click(screen.getByRole('button', { name: en.selection.share }));
+    expect(importButton).toBeDisabled();
+    expect(screen.getByRole('button', { name: en.selection.share })).toBeDisabled();
+    expect(screen.queryByRole('button', { name: en.selection.imported })).not.toBeInTheDocument();
+    fireEvent.click(importButton);
+    expect(store.getState().selection.ids).toEqual([]);
+
+    await act(async () => { reject(new Error('compressionUnavailable')); });
+    expect(importButton).toBeEnabled();
+    expect(screen.getByRole('button', { name: en.selection.share })).toBeEnabled();
+});
+
 it.each([
     ['query change', 'success'],
     ['query change', 'error'],

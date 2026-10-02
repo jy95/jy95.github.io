@@ -11,13 +11,14 @@ export function resolveSelectionCatalogue(catalogue: SelectionEntry[], requested
     const seen = new Set<string>();
 
     for (const id of requested) {
-        const entry = byId.get(id);
-        if (!entry || seen.has(id)) continue;
+        if (seen.has(id)) continue;
         seen.add(id);
 
+        const entry = byId.get(id);
+        if (!entry) continue;
         if (document && !matchesSelectionCategory(entry, document)) continue;
         selected.push(entry);
     }
 
-    return { entries: selected, unavailable: requested.length - selected.length, selectedIds: selected.map(entry => entry.selectionId) };
+    return { entries: selected, unavailable: seen.size - selected.length, selectedIds: selected.map(entry => entry.selectionId) };
 }
