@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { NextIntlClientProvider } from 'next-intl';
 import { Provider } from 'react-redux';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -42,6 +42,7 @@ function setup(ids: string[] = [], locale: 'en' | 'fr' = 'en', mode: 'light' | '
 }
 
 beforeEach(() => { navigation.query = ''; navigation.push.mockClear(); });
+afterEach(() => { vi.restoreAllMocks(); });
 
 it.each(['en', 'fr'] as const)('shows localized empty selection and catalogue link in %s', locale => {
     setup([], locale);
@@ -173,4 +174,40 @@ it('ignores a stale decode after query parameters change', async () => {
     await waitFor(() => expect(screen.queryByText(en.selection.invalid)).not.toBeInTheDocument());
     expect(screen.getByRole('button', { name: 'Add Beta to my selection' })).toBeInTheDocument();
     decode.mockRestore();
+});
+
+it.each([
+    ['query change', 'success'],
+    ['query change', 'error'],
+    ['unmount', 'success'],
+    ['unmount', 'error'],
+] as const)('ignores pending encoding after %s (%s)', async (change, outcome) => {
+    let resolve!: (query: string) => void;
+    let reject!: (error: Error) => void;
+    const pending = new Promise<string>((done, fail) => { resolve = done; reject = fail; });
+    const encode = vi.spyOn(sharing, 'selectionQuery').mockReturnValue(pending);
+    const { rerender, unmount, container } = setup(['game-0']);
+    fireEvent.click(screen.getByRole('button', { name: en.selection.share }));
+    expect(encode).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole('button', { name: en.selection.share })).toBeDisabled();
+
+    if (change === 'query change') {
+        navigation.query = 'title=Beta';
+        rerender(<SelectionPage catalogue={catalogue} />);
+        expect(screen.getByRole('button', { name: en.selection.share })).toBeEnabled();
+    } else {
+        unmount();
+    }
+
+    await act(async () => {
+        if (outcome === 'success') resolve('selection=encoded');
+        else reject(new Error('compressionUnavailable'));
+        await pending.catch(() => undefined);
+    });
+
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(screen.queryByText(en.selection.compressionUnavailable)).not.toBeInTheDocument();
+    expect(screen.queryByText(en.selection.processing)).not.toBeInTheDocument();
+    if (change === 'unmount') expect(container).toBeEmptyDOMElement();
+    else expect(screen.getByRole('button', { name: en.selection.share })).toBeEnabled();
 });

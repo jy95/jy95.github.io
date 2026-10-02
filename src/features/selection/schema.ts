@@ -16,7 +16,10 @@ export function classifySelection(ids: string[], categories: SelectionCategories
     for (const id of normalizeSelectionIds(ids)) {
         const category = id.startsWith('backlog:') ? 'backlog' : Object.hasOwn(categories, id) ? categories[id] : undefined;
         if (category) document[category].push(category === 'backlog' ? id.slice(8) : id);
-        else (document.legacyIds ??= []).push(id);
+        else {
+            document.legacyIds ??= [];
+            document.legacyIds.push(id);
+        }
     }
     return document;
 }
