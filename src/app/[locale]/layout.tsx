@@ -1,5 +1,3 @@
-import { loadSelectionCatalogue } from '@/features/selection/catalogue';
-
 // Providers
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import StoreProvider from "@/providers/StoreProvider";
@@ -59,12 +57,10 @@ export default async function RootLayout(props: Props) {
   // To catch with stuff that aren't a locale
   const resolvedLocale : Locale = (routing.locales.includes(curLocale as Locale)) ? curLocale as Locale : "fr";
 
-  const categories = Object.fromEntries((await loadSelectionCatalogue()).map(entry => [entry.selectionId, entry.category]));
-
   return (
     <html lang={resolvedLocale}>
       <body>
-        <StoreProvider categories={categories}>
+        <StoreProvider>
           <Suspense fallback={null}>
             <ThemeProvider lng={resolvedLocale}>
               <DashboardAppProvider>
