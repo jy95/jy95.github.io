@@ -211,3 +211,12 @@ it.each([
     if (change === 'unmount') expect(container).toBeEmptyDOMElement();
     else expect(screen.getByRole('button', { name: en.selection.share })).toBeEnabled();
 });
+
+it('shares the full selection while display filters hide games', async () => {
+    setup(['game-0', 'game-1']);
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Alpha' } });
+    await waitFor(() => expect(screen.queryByRole('button', { name: 'Remove Beta from my selection' })).not.toBeInTheDocument());
+    fireEvent.click(screen.getByRole('button', { name: en.selection.share }));
+    const url = new URL((await screen.findByRole('textbox', { name: en.selection.shareLink }) as HTMLInputElement).value);
+    expect(await parseSharedSelection(url.searchParams)).toEqual({ kind: 'selection', document: { ...emptySelection(), games: ['game-0', 'game-1'] } });
+});

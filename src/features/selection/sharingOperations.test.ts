@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
 import { encodeBase64url, decodeBase64url } from './base64url';
-import { readBounded } from './gzip';
+import { readBounded } from './compression';
 import { selectionParameter } from './sharingQuery';
 import { deserializeSelection } from './sharingJson';
 import { transportError } from './sharingErrors';
@@ -43,4 +43,27 @@ it('rejects invalid UTF-8 and classifies unexpected transport errors', () => {
     expect(transportError(new Error('compressionUnavailable'))).toBe('compressionUnavailable');
     expect(transportError(new Error('unexpected'))).toBe('invalid');
     expect(transportError(null)).toBe('invalid');
+});
+
+it.each(['CompressionStream', 'DecompressionStream'] as const)('reports an unsupported deflate-raw constructor for %s', async api => {
+    const { compressSelection, decompressSelection } = await import('./compression');
+    const constructor = vi.fn(function () { throw new TypeError('unsupported format'); });
+    vi.stubGlobal(api, constructor);
+    try {
+        const operation = api === 'CompressionStream' ? compressSelection : decompressSelection;
+        await expect(operation(new Uint8Array(), 100)).rejects.toThrow('compressionUnavailable');
+        expect(constructor).toHaveBeenCalledWith('deflate-raw');
+    } finally { vi.unstubAllGlobals(); }
+});
+
+it('keeps failures after stream construction classified as invalid', async () => {
+    const { decompressSelection } = await import('./compression');
+    vi.stubGlobal('DecompressionStream', class {
+        readable = new ReadableStream({ start(controller) { controller.error(new TypeError('damaged data')); } });
+        writable = new WritableStream();
+    });
+    try {
+        await expect(decompressSelection(new Uint8Array(), 100)).rejects.toThrow('damaged data');
+        expect(transportError(new TypeError('damaged data'))).toBe('invalid');
+    } finally { vi.unstubAllGlobals(); }
 });

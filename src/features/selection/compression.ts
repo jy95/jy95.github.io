@@ -20,12 +20,20 @@ function bytesStream(bytes: Uint8Array<ArrayBuffer>): ReadableStream<BufferSourc
     return new ReadableStream({ start(controller) { controller.enqueue(bytes); controller.close(); } });
 }
 
+/** Only constructor failures indicate unsupported browser compression. */
+function compressionStream(decompress: boolean) {
+    try {
+        if (decompress) return new DecompressionStream('deflate-raw');
+        return new CompressionStream('deflate-raw');
+    } catch {
+        throw new Error('compressionUnavailable');
+    }
+}
+
 export async function compressSelection(bytes: Uint8Array<ArrayBuffer>, limit: number): Promise<Uint8Array> {
-    if (typeof CompressionStream === 'undefined') throw new Error('compressionUnavailable');
-    return readBounded(bytesStream(bytes).pipeThrough(new CompressionStream('gzip')), limit);
+    return readBounded(bytesStream(bytes).pipeThrough(compressionStream(false)), limit);
 }
 
 export async function decompressSelection(bytes: Uint8Array<ArrayBuffer>, limit: number): Promise<Uint8Array> {
-    if (typeof DecompressionStream === 'undefined') throw new Error('compressionUnavailable');
-    return readBounded(bytesStream(bytes).pipeThrough(new DecompressionStream('gzip')), limit);
+    return readBounded(bytesStream(bytes).pipeThrough(compressionStream(true)), limit);
 }

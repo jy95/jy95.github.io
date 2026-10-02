@@ -64,7 +64,7 @@ it.each(['broken', 'null', '{}', '42'])('handles corrupt storage: %s', value => 
     expect(parseStoredSelection(value)).toEqual([]);
 });
 
-it('round-trips all categorized identifiers with gzip', async () => {
+it('round-trips all categorized identifiers with deflate-raw', async () => {
     const document = { version: 2 as const, games: ['game-a'], backlog: ['42'], dlcs: ['dlc-a'], planning: ['planned-a'] };
     expect(await parseSharedSelection(new URLSearchParams(await selectionQuery(document)))).toEqual({ kind: 'selection', document });
     expect(await parseSharedSelection(new URLSearchParams(await selectionQuery(emptySelection())))).toEqual({ kind: 'selection', document: emptySelection() });
@@ -90,7 +90,7 @@ it('validates categories, versions and identifiers and deduplicates', () => {
     expect(() => validateSelection({ ...emptySelection(), backlog: ['backlog:42'] })).toThrow('invalid');
     expect(() => validateSelection({ version: 2 })).toThrow('invalid');
 });
-it.each(['', '!!!', 'a', 'YWJj'])('rejects malformed base64url or gzip: %s', async encoded => {
+it.each(['', '!!!', 'a', 'YWJj'])('rejects malformed base64url or deflate-raw: %s', async encoded => {
     expect(await parseSharedSelection(new URLSearchParams({ selection: encoded }))).toEqual({ kind: 'error', error: 'invalid' });
 });
 it('bounds encoded input', async () => {
@@ -127,14 +127,14 @@ it('migrates storage categories immediately and preserves unresolved selections'
 async function rawQuery(value: string) {
     const bytes = new TextEncoder().encode(value);
     const stream = new ReadableStream<BufferSource>({ start(controller) { controller.enqueue(bytes); controller.close(); } });
-    const compressed = new Uint8Array(await new Response(stream.pipeThrough(new CompressionStream('gzip'))).arrayBuffer());
+    const compressed = new Uint8Array(await new Response(stream.pipeThrough(new CompressionStream('deflate-raw'))).arrayBuffer());
     const encoded = btoa(Array.from(compressed, byte => String.fromCharCode(byte)).join('')).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
     return new URLSearchParams({ selection: encoded });
 }
 it('rejects unsupported compressed schema versions', async () => {
     expect(await parseSharedSelection(await rawQuery(JSON.stringify({ ...emptySelection(), version: 3 })))).toEqual({ kind: 'error', error: 'unsupported' });
 });
-it('limits gzip expansion before parsing JSON', async () => {
+it('limits deflate-raw expansion before parsing JSON', async () => {
     expect(await parseSharedSelection(await rawQuery(' '.repeat(256 * 1024 + 1)))).toEqual({ kind: 'error', error: 'tooLarge' });
 });
 it('synchronizes categorized storage without echo writes', () => {

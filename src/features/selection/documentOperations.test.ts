@@ -45,3 +45,9 @@ it('resolves available catalogue entries only when the shared category is author
     expect(resolveSelectionCatalogue(catalogue, ['a'], { ...emptySelection(), planning: ['a'] })).toMatchObject({ entries: [], unavailable: 1 });
     expect(resolveSelectionCatalogue(catalogue, ['a'], { ...emptySelection(), legacyIds: ['a'] }).entries).toEqual(catalogue);
 });
+
+it('does not reclassify legacy identifiers already assigned an explicit category', () => {
+    const input = { ...emptySelection(), planning: ['a'], legacyIds: ['a', 'b', 'unknown'] };
+    expect(resolveSelectionInput(input, categories)).toEqual({ ...emptySelection(), planning: ['a'], dlcs: ['b'], legacyIds: ['unknown'] });
+    expect(input.legacyIds).toEqual(['a', 'b', 'unknown']);
+});
