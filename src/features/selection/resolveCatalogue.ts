@@ -3,7 +3,7 @@ import type { SelectionEntry } from './catalogue';
 
 export type CatalogueIndex = ReadonlyMap<string, SelectionEntry>;
 
-export const indexCatalogue = (catalogue: readonly SelectionEntry[]): CatalogueIndex =>
+const indexCatalogue = (catalogue: readonly SelectionEntry[]): CatalogueIndex =>
     new Map(catalogue.map(entry => [entry.selectionId, entry]));
 
 /** Builds Set-based lookups once so matching many entries stays linear. */

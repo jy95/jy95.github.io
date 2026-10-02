@@ -1,6 +1,9 @@
 import { createSelector, createSlice, type Draft, type PayloadAction } from '@reduxjs/toolkit';
-import { emptySelection, resolveLegacySelection, selectionIds, type SelectionCategories, type SelectionDocument } from './schema';
-import { mergeSelections, resolveSelectionInput, toggleSelectionIdentifier } from './documentOperations';
+import { emptySelection, type SelectionCategories, type SelectionDocument } from './documentTypes';
+import { selectionIds } from './identifiers';
+import { resolveLegacySelection, resolveSelectionInput } from './documentClassification';
+import { mergeSelections } from './documentMerge';
+import { toggleSelectionIdentifier } from './documentOperations';
 
 type SelectionState = {
     /** Derived from `document`, kept for cheap serializable reads. Only written through `setDocument`. */
