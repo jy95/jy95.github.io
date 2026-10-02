@@ -16,7 +16,7 @@ Currently, we have the following pages :
 
 ## Personal selections
 
-Personal selections store only identifiers in versioned JSON (`version: 2`), grouped as `games`, `backlog`, `dlcs`, and `planning`. Backlog identifiers are stored without the `backlog:` card prefix. For overlapping catalogue IDs, published games take precedence over DLCs, then planning. Existing flat browser selections and `?games=...` links remain supported; catalogue information classifies legacy IDs, and unresolved IDs are retained in an optional `legacyIds` field.
+Personal selections store only identifiers in versioned JSON (`version: 2`), grouped as `games`, `backlog`, `dlcs`, and `planning`. Backlog identifiers are stored without the `backlog:` card prefix. For overlapping catalogue IDs, published games take precedence over DLCs, then planning. Existing flat browser selections remain supported; catalogue information classifies legacy IDs, and unresolved IDs are retained in an optional `legacyIds` field.
 
 New links encode UTF-8 selection JSON using gzip and base64url in `?selection=...`. Encoding and decoding require browser CompressionStream/DecompressionStream support; unsupported browsers show an error. Compressed inputs are limited to 64 KiB of encoded text and 256 KiB of decompressed JSON. Compression reduces link length but cannot guarantee that every selection fits browser or service URL limits.
 

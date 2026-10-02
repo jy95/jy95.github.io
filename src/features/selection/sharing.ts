@@ -1,4 +1,4 @@
-import { classifySelection, normalizeSelectionIds, validateSelection, type SelectionCategories, type SelectionDocument } from './schema';
+import { validateSelection, type SelectionDocument } from './schema';
 
 export const MAX_ENCODED_SIZE = 64 * 1024;
 export const MAX_DECOMPRESSED_SIZE = 256 * 1024;
@@ -33,14 +33,9 @@ export async function selectionQuery(document: SelectionDocument): Promise<strin
     const encoded = btoa(Array.from(compressed, byte => String.fromCharCode(byte)).join('')).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
     return new URLSearchParams({ selection: encoded }).toString();
 }
-/** Compressed links take precedence over legacy links, including invalid ones. */
-export async function parseSharedSelection(params: URLSearchParams, categories: SelectionCategories = {}): Promise<SharedSelection> {
-    if (!params.has('selection')) {
-        if (!params.has('games')) return { kind: 'absent' };
-        const values = params.getAll('games');
-        if (values.reduce((size, value) => size + value.length, 0) > MAX_ENCODED_SIZE) return { kind: 'error', error: 'tooLarge' };
-        return { kind: 'selection', document: classifySelection(normalizeSelectionIds(values.flatMap(value => value.split(','))), categories) };
-    }
+/** Decode only compressed selection links. */
+export async function parseSharedSelection(params: URLSearchParams): Promise<SharedSelection> {
+    if (!params.has('selection')) return { kind: 'absent' };
     try {
         const values = params.getAll('selection');
         const encoded = values[0];
