@@ -16,7 +16,7 @@ it('preserves server HTML while storage loads before a suspended child hydrates'
         if (suspended) throw pending;
         return <p>{hydrated ? ids.join(',') : 'Loading'}</p>;
     }
-    const tree = <StoreProvider categories={{ 'saved-game': 'dlcs' }}><Suspense fallback={<p>Waiting</p>}><Child /></Suspense></StoreProvider>;
+    const tree = <StoreProvider><Suspense fallback={<p>Waiting</p>}><Child /></Suspense></StoreProvider>;
     const container = document.createElement('div');
     container.innerHTML = renderToString(tree);
     document.body.append(container);
@@ -29,7 +29,7 @@ it('preserves server HTML while storage loads before a suspended child hydrates'
     await act(async () => { resume(); });
     await waitFor(() => expect(container.textContent).toBe('saved-game'));
     expect(onRecoverableError).not.toHaveBeenCalled();
-    expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual({ version: 2, games: [], backlog: [], dlcs: ['saved-game'], planning: [] });
+    expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual({ version: 2, games: [], backlog: [], dlcs: [], planning: [], legacyIds: ['saved-game'] });
     await act(async () => { root.unmount(); });
     container.remove();
     localStorage.clear();
