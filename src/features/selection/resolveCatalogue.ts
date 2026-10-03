@@ -12,12 +12,11 @@ export function indexCatalogue(catalogue: readonly SelectionEntry[]): CatalogueI
     return byId;
 }
 
-function categoryMatcher(document: SelectionDocument) {
-    const byCategory = Object.fromEntries(
-        SELECTION_CATEGORIES.map(category => [category, new Set(document[category])])
+// Build category-specific lookup sets once per resolution
+function buildCategoryMatchers(document: SelectionDocument): Record<SelectionCategory, Set<string>> {
+    return Object.fromEntries(
+        SELECTION_CATEGORIES.map(category => [category, new Set(document[category])]),
     ) as Record<SelectionCategory, Set<string>>;
-
-    return (entry: SelectionEntry) => byCategory[entry.category].has(entry.game.id);
 }
 
 export function resolveSelectionCatalogue(
@@ -25,11 +24,19 @@ export function resolveSelectionCatalogue(
     document: SelectionDocument | null,
     byId: CatalogueIndex = indexCatalogue(catalogue),
 ) {
-    const requested = document ? selectionIds(document) : [];
-    const matches = document ? categoryMatcher(document) : () => false;
+    if (document === null) {
+        return {
+            entries: [],
+            unavailable: 0,
+        };
+    }
+
+    const requested = selectionIds(document);
+    const matchers = buildCategoryMatchers(document);
+
     const entries = requested
         .map(id => byId.get(id))
-        .filter((entry): entry is SelectionEntry => !!entry && matches(entry));
+        .filter((entry): entry is SelectionEntry => !!entry && matchers[entry.category].has(entry.selectionId));
 
     return {
         entries,

@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useLocale } from 'next-intl';
 import { useGamesFilters } from '@/features/games/useGamesFilters';
 import { browseGames } from '@/lib/browseGames';
 import { useSharedSelection } from './useSharedSelection';
@@ -12,12 +11,8 @@ import type { SelectionEntry } from './catalogue';
 
 export function useSelectionPage(catalogue: SelectionEntry[]) {
     const params = useSearchParams();
-    const query = params.toString();
-    // Decode only when the `selection` parameter itself changes. Filter edits (title typing,
-    // sort, platform...) rewrite the URL but must not trigger decompression or a spinner.
-    const sharedQuery = new URLSearchParams(params.getAll('selection').map(value => ['selection', value])).toString();
-    const decoded = useSharedSelection(sharedQuery);
-    const sharing = useSelectionShare(query, useLocale() as 'en' | 'fr');
+    const decoded = useSharedSelection(params);
+    const sharing = useSelectionShare(JSON.stringify(params.getAll('entries')));
     const resolved = useSelectionCatalogue(catalogue, decoded);
     const actions = useSelectionActions(resolved.entries, sharing.share);
     const { filters, updateFilters } = useGamesFilters();
@@ -25,14 +20,19 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
     const { entries, ids } = resolved;
 
     // Fuse indexing and sorting only re-run when their inputs actually change.
-    const visibleEntries = useMemo(() => {
+    const filteredEntries = useMemo(() => {
         const scoped = kind === 'all' ? entries : entries.filter(entry => entry.category === kind);
         return browseGames(scoped.map(entry => ({ ...entry.game, entry })), filters).map(game => game.entry);
     }, [entries, kind, filters]);
 
+    const [pagination, setPagination] = useState({ entries: filteredEntries, limit: 12 });
+    const limit = pagination.entries === filteredEntries ? pagination.limit : 12;
+    const visibleEntries = filteredEntries.slice(0, limit);
+    const loadMore = () => setPagination({ entries: filteredEntries, limit: limit + 12 });
+
     const canImport = useMemo(() => {
-        return entries.some(entry => !resolved.document[entry.category].includes(entry.game.id));
-    }, [resolved.document, entries]);
+        return entries.some(entry => !resolved.personalDocument[entry.category].includes(entry.selectionId));
+    }, [resolved.personalDocument, entries]);
 
     const decodeError = decoded.kind === 'error' ? decoded.error : null;
     const decoding = decoded.kind === 'processing';
@@ -40,7 +40,20 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
     const hasEntries = entries.length > 0;
 
     return {
-        ...actions, decodeError, decoding, encoding, hasEntries, sharing, filters, updateFilters, kind, setKind, visibleEntries, canImport,
+        ...actions,
+        decodeError,
+        decoding,
+        encoding,
+        hasEntries,
+        sharing,
+        filters,
+        updateFilters,
+        kind,
+        setKind,
+        visibleEntries,
+        loadMore,
+        hasMore: limit < filteredEntries.length,
+        canImport,
         entries,
         unavailable: resolved.unavailable,
         storageAvailable: resolved.storageAvailable,

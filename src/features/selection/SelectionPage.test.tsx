@@ -12,13 +12,13 @@ it.each(['en', 'fr'] as const)('shows localized empty selection and catalogue li
 });
 
 it.each(['light', 'dark'] as const)('removes games and synchronizes multiple accessible controls in %s mode', mode => {
-    const { store, wrapper } = setup(['game-0'], 'en', mode);
+    const { selection, wrapper } = setup(['game-0'], 'en', mode);
     render(<SelectionButton id="game-0" category="games" title="Alpha" />, { wrapper });
     const buttons = screen.getAllByRole('button', { name: 'Remove Alpha from my selection' });
     expect(buttons).toHaveLength(2);
     buttons.forEach(button => expect(button).toHaveAttribute('aria-pressed', 'true'));
     fireEvent.click(buttons[0]);
-    expect(store.getState().selection.ids).toEqual([]);
+    expect(selection.getState().ids).toEqual([]);
     expect(screen.getByRole('status')).toHaveTextContent('0 selected items');
     fireEvent.click(screen.getByRole('button', { name: 'Add Alpha to my selection' }));
     expect(screen.getByRole('status')).toHaveTextContent('1 selected item');
@@ -26,25 +26,25 @@ it.each(['light', 'dark'] as const)('removes games and synchronizes multiple acc
 });
 
 it('confirms clearing the entire selection and supports cancel', async () => {
-    const { store } = setup(['game-0', 'game-1']);
+    const { selection } = setup(['game-0', 'game-1']);
     fireEvent.click(screen.getByRole('button', { name: 'Clear my selection' }));
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
-    expect(store.getState().selection.ids).toHaveLength(2);
+    expect(selection.getState().ids).toHaveLength(2);
     await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
     fireEvent.click(screen.getByRole('button', { name: 'Clear my selection' }));
     fireEvent.click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Clear my selection' }));
-    expect(store.getState().selection.ids).toEqual([]);
+    expect(selection.getState().ids).toEqual([]);
 });
 
 
 it.each(['games=game-0', 'games=', 'games=!!!'])('keeps the personal selection for a games-only query: %s', async query => {
     navigation.query = query;
-    const { store } = setup(['game-1']);
+    const { selection } = setup(['game-1']);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(en.selection.title);
     expect(screen.getByRole('button', { name: 'Remove Beta from my selection' })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: en.selection.import })).not.toBeInTheDocument();
     expect(screen.queryByRole('link', { name: en.selection.openOwn })).not.toBeInTheDocument();
-    await waitFor(() => expect(store.getState().selection.ids).toEqual(['game-1']));
+    await waitFor(() => expect(selection.getState().ids).toEqual(['game-1']));
     expect(screen.queryByRole('button', { name: 'Add Alpha to my selection' })).not.toBeInTheDocument();
 });
 
@@ -79,11 +79,11 @@ it.each([['Alpha', 'game-0'], ['Expansion', 'dlc']])('preserves published %s nav
 
 
 it('selects backlog raw IDs before the catalogue loads', () => {
-    const { wrapper, store } = setup([]);
+    const { wrapper, selection } = setup([]);
     render(<SelectionButton id="42" category="backlog" title="Waiting" />, { wrapper });
     fireEvent.click(screen.getByRole('button', { name: 'Add Waiting to my selection' }));
-    expect(store.getState().selection.document.backlog).toEqual(['42']);
-    expect(store.getState().selection.ids).toEqual(['42']);
+    expect(selection.getState().document.backlog).toEqual(['42']);
+    expect(selection.getState().ids).toEqual(['42']);
     fireEvent.click(screen.getByRole('button', { name: 'Remove Waiting from my selection' }));
-    expect(store.getState().selection.ids).toEqual([]);
+    expect(selection.getState().ids).toEqual([]);
 });

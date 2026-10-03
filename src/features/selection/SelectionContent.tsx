@@ -1,4 +1,6 @@
 import { useTranslations } from 'next-intl';
+import Grid from '@mui/material/Grid';
+import LoadingButton from '@/app/[locale]/games/_client/LoadingButton';
 import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
@@ -19,6 +21,9 @@ function SelectionResults({ model }: { model: SelectionPageModel }) {
         {model.visibleEntries.length > 0
             ? <SelectionCards entries={model.visibleEntries} onDetail={model.setDetail} />
             : <Typography role="status">{common('noResults')}</Typography>}
+        <Grid container sx={{ justifyContent: 'center' }}>
+            <LoadingButton disabled={!model.hasMore} onClick={model.loadMore} label={common('loadMore')} />
+        </Grid>
     </>;
 }
 

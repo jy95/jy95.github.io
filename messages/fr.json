@@ -298,7 +298,7 @@
         "copied": "Lien copié",
         "copyFallback": "Sélectionnez et copiez le lien ci-dessus.",
         "unavailable": "{count, plural, =1 {1 élément n’est plus disponible dans le catalogue.} other {# éléments ne sont plus disponibles dans le catalogue.}}",
-        "storageUnavailable": "Le stockage du navigateur est indisponible. Votre sélection sera conservée uniquement jusqu’à votre départ ou au rechargement de cette page.",
+        "storageUnavailable": "Le stockage du navigateur est indisponible. Les modifications de votre sélection n’ont pas pu être enregistrées.",
         "imported": "Tous les éléments sont dans ma sélection",
         "openOwn": "Ouvrir ma sélection",
         "import": "Ajouter ces éléments à ma sélection",
