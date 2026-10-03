@@ -9,10 +9,10 @@ const entries: SelectionEntry[] = Array.from({ length: 30 }, (_, index) => ({
 }));
 
 function mount(list = entries) {
-    const { wrapper, store } = createProviders([]);
+    const { wrapper, selection } = createProviders([]);
     const onDetail = vi.fn();
     render(<SelectionCards entries={list} onDetail={onDetail} />, { wrapper });
-    return { store, onDetail };
+    return { selection, onDetail };
 }
 
 it('renders all supplied entries', () => {
@@ -37,13 +37,13 @@ it('opens details for an entry', () => {
 });
 
 it('toggles selection using raw IDs and explicit categories', () => {
-    const { store, onDetail } = mount();
+    const { selection, onDetail } = mount();
     fireEvent.click(screen.getByRole('button', { name: 'Add Item 29 to my selection' }));
-    expect(store.getState().selection.document.backlog).toEqual(['29']);
+    expect(selection.getState().document.backlog).toEqual(['29']);
     const remove = screen.getByRole('button', { name: 'Remove Item 29 from my selection' });
     expect(remove).toHaveAttribute('aria-pressed', 'true');
     fireEvent.click(remove);
-    expect(store.getState().selection.ids).toEqual([]);
+    expect(selection.getState().ids).toEqual([]);
     expect(onDetail).not.toHaveBeenCalled();
 });
 
@@ -51,12 +51,12 @@ it('keeps published and backlog buttons independent when raw IDs collide', () =>
     const published: SelectionEntry = { ...catalogue[0], category: 'dlcs' };
     const backlog: SelectionEntry = { source: 'backlog', category: 'backlog', selectionId: published.game.id,
         game: { id: published.game.id, title: 'Waiting', imagePath: '/waiting.webp' } };
-    const { store } = mount([published, backlog]);
+    const { selection } = mount([published, backlog]);
     fireEvent.click(screen.getByRole('button', { name: 'Add Alpha to my selection' }));
-    expect(store.getState().selection.document.dlcs).toEqual([published.game.id]);
+    expect(selection.getState().document.dlcs).toEqual([published.game.id]);
     expect(screen.getByRole('button', { name: 'Add Waiting to my selection' })).toHaveAttribute('aria-pressed', 'false');
     fireEvent.click(screen.getByRole('button', { name: 'Add Waiting to my selection' }));
     fireEvent.click(screen.getByRole('button', { name: 'Remove Alpha from my selection' }));
-    expect(store.getState().selection.document.backlog).toEqual([published.game.id]);
-    expect(store.getState().selection.document.dlcs).toEqual([]);
+    expect(selection.getState().document.backlog).toEqual([published.game.id]);
+    expect(selection.getState().document.dlcs).toEqual([]);
 });

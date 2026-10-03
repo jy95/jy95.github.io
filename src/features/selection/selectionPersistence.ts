@@ -1,26 +1,72 @@
-import type { AppStore } from '@/redux/Store';
-import { applyExternalSelection, hydrateSelectionStorage, isSelectionStorageEvent, writeSelectionStorage } from './storageOperations';
+import { useSyncExternalStore } from 'react';
+import { emptySelection, type SelectionCategory, type SelectionDocument } from './documentTypes';
+import { selectionIds } from './identifiers';
+import { normalizeSelectionDocument } from './documentClassification';
+import { mergeSelections } from './documentMerge';
+import { toggleSelectionIdentifier } from './documentOperations';
+import { isSelectionStorageEvent } from './storageOperations';
+import { parseStoredSelection, SELECTION_STORAGE_KEY } from './storageFormat';
 
-/** Called after mount so server and first client render agree. */
-export function connectSelectionStorage(store: AppStore) {
-    hydrateSelectionStorage(store);
-    let previous = store.getState().selection.document;
-    let externalUpdate = false;
-    const onStorage = (event: StorageEvent) => {
-        if (!isSelectionStorageEvent(event)) return;
-        externalUpdate = true;
-        try {
-            applyExternalSelection(store, event.newValue);
-            previous = store.getState().selection.document;
-        } finally { externalUpdate = false; }
-    };
-    const stop = store.subscribe(() => {
-        if (externalUpdate) return;
-        const document = store.getState().selection.document;
-        if (document === previous) return;
-        previous = document;
-        writeSelectionStorage(store, document);
-    });
-    window.addEventListener('storage', onStorage);
-    return () => { stop(); window.removeEventListener('storage', onStorage); };
+const serverSnapshot = { document: emptySelection(), ids: [] as string[], hydrated: false, storageAvailable: true };
+let snapshot = serverSnapshot;
+const listeners = new Set<() => void>();
+
+function publish(document: SelectionDocument, storageAvailable: boolean) {
+    if (snapshot.hydrated && snapshot.storageAvailable === storageAvailable && JSON.stringify(snapshot.document) === JSON.stringify(document)) return;
+    snapshot = { document, ids: selectionIds(document), hydrated: true, storageAvailable };
+    listeners.forEach(listener => listener());
 }
+
+function read(): boolean {
+    if (typeof window === 'undefined') return false;
+    try {
+        publish(parseStoredSelection(window.localStorage.getItem(SELECTION_STORAGE_KEY)), true);
+        return true;
+    } catch {
+        publish(snapshot.document, false);
+        return false;
+    }
+}
+
+function onStorage(event: StorageEvent) {
+    if (isSelectionStorageEvent(event)) publish(parseStoredSelection(event.newValue), true);
+}
+
+export function subscribeSelection(listener: () => void) {
+    listeners.add(listener);
+    if (listeners.size === 1) {
+        window.addEventListener('storage', onStorage);
+        read();
+    }
+    return () => {
+        listeners.delete(listener);
+        if (listeners.size === 0) window.removeEventListener('storage', onStorage);
+    };
+}
+
+export function getSelectionSnapshot() { return snapshot; }
+export function usePersonalSelection() {
+    return useSyncExternalStore(subscribeSelection, getSelectionSnapshot, () => serverSnapshot);
+}
+
+/** Read before every mutation, including operations before any consumer mounts. */
+function mutate(update: (document: SelectionDocument) => SelectionDocument): boolean {
+    if (!read()) return false;
+    const document = update(snapshot.document);
+    try {
+        window.localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(document));
+        publish(document, true);
+        return true;
+    } catch {
+        publish(snapshot.document, false);
+        return false;
+    }
+}
+
+export function toggleSelection({ id, category }: { id: string; category: SelectionCategory }) {
+    return mutate(document => toggleSelectionIdentifier(document, id, category));
+}
+export function addSelection(addition: SelectionDocument) {
+    return mutate(document => mergeSelections(document, normalizeSelectionDocument(addition)));
+}
+export function clearSelection() { return mutate(() => emptySelection()); }

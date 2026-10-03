@@ -1,6 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { connectSelectionStorage } from '@/features/selection/selectionPersistence'
+import { useState } from 'react'
 import { Provider } from 'react-redux'
 import { makeStore } from '../redux/Store'
 
@@ -16,8 +15,6 @@ export default function StoreProvider({
     const store = makeStore()
     return { store, serverState: store.getState() }
   })
-
-  useEffect(() => connectSelectionStorage(store), [store])
 
   return <Provider store={store} serverState={serverState}>{children}</Provider>
 }

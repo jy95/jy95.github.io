@@ -3,7 +3,7 @@ import { act, waitFor } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
 import { hydrateRoot, type Root } from 'react-dom/client';
 import StoreProvider from './StoreProvider';
-import { useAppSelector } from '@/redux/hooks';
+import { usePersonalSelection } from '@/features/selection/selectionPersistence';
 import { SELECTION_STORAGE_KEY } from '@/features/selection/storageFormat';
 
 it('preserves server HTML while storage loads before a suspended child hydrates', async () => {
@@ -13,7 +13,7 @@ it('preserves server HTML while storage loads before a suspended child hydrates'
     let resume!: () => void;
     const pending = new Promise<void>(resolve => { resume = resolve; });
     function Child() {
-        const { hydrated, ids } = useAppSelector(state => state.selection);
+        const { hydrated, ids } = usePersonalSelection();
         if (suspended) throw pending;
         return <p>{hydrated ? ids.join(',') : 'Loading'}</p>;
     }

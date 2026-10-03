@@ -9,10 +9,10 @@ const icons = { games: 'SportsEsportsIcon', dlcs: 'ExtensionIcon', planning: 'Sc
 
 it.each([['en', false], ['fr', false], ['en', true], ['fr', true]] as const)('selects one kind with localized labels in %s (mobile: %s)', (locale, mobile) => {
     navigation.mobile = mobile;
-    const { store } = setup(allIds, locale, 'light', categorizedCatalogue);
+    const { selection } = setup(allIds, locale, 'light', categorizedCatalogue);
     const text = (locale === 'en' ? en : fr).selection;
     const select = screen.getByRole('combobox', { name: text.kinds });
-    const document = store.getState().selection.document;
+    const document = selection.getState().document;
     expect(screen.getByLabelText(text.kinds)).toBe(select);
     if (mobile) {
         expect(select.tagName).toBe('SELECT');
@@ -47,7 +47,7 @@ it.each([['en', false], ['fr', false], ['en', true], ['fr', true]] as const)('se
     }
     chooseKind(text.categories.all, locale);
     for (const entry of categorizedCatalogue) expect(screen.getByRole('img', { name: entry.game.title })).toBeInTheDocument();
-    expect(store.getState().selection.document).toEqual(document);
+    expect(selection.getState().document).toEqual(document);
 });
 
 it.each([false, true])('keeps the kind select visible when a kind has no entries (mobile: %s)', mobile => {

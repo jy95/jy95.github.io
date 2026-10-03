@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useAppSelector } from '@/redux/hooks';
+import { usePersonalSelection } from './selectionPersistence';
 import { indexCatalogue, resolveSelectionCatalogue, type CatalogueIndex } from './resolveCatalogue';
 import type { SelectionEntry } from './catalogue';
 import type { SelectionDocument } from './documentTypes';
@@ -17,7 +17,7 @@ export function resolvePageSelection(
 
 export function useSelectionCatalogue(catalogue: SelectionEntry[], decoded: SharedSelectionState) {
     const byId = useMemo(() => indexCatalogue(catalogue), [catalogue]);
-    const selection = useAppSelector(state => state.selection);
+    const selection = usePersonalSelection();
 
     const document = decoded.kind === 'selection' ? decoded.document : decoded.kind === 'absent' ? selection.document : null;
     const resolved = useMemo(

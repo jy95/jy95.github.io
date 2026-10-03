@@ -20,13 +20,18 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
     const { entries, ids } = resolved;
 
     // Fuse indexing and sorting only re-run when their inputs actually change.
-    const visibleEntries = useMemo(() => {
+    const filteredEntries = useMemo(() => {
         const scoped = kind === 'all' ? entries : entries.filter(entry => entry.category === kind);
         return browseGames(scoped.map(entry => ({ ...entry.game, entry })), filters).map(game => game.entry);
     }, [entries, kind, filters]);
 
+    const [pagination, setPagination] = useState({ entries: filteredEntries, limit: 12 });
+    const limit = pagination.entries === filteredEntries ? pagination.limit : 12;
+    const visibleEntries = filteredEntries.slice(0, limit);
+    const loadMore = () => setPagination({ entries: filteredEntries, limit: limit + 12 });
+
     const canImport = useMemo(() => {
-        return entries.some(entry => !resolved.personalDocument[entry.category].includes(entry.game.id));
+        return entries.some(entry => !resolved.personalDocument[entry.category].includes(entry.selectionId));
     }, [resolved.personalDocument, entries]);
 
     const decodeError = decoded.kind === 'error' ? decoded.error : null;
@@ -46,6 +51,8 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
         kind,
         setKind,
         visibleEntries,
+        loadMore,
+        hasMore: limit < filteredEntries.length,
         canImport,
         entries,
         unavailable: resolved.unavailable,
