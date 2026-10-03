@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
+import { useLayoutEffect } from 'react';
 import { usePagedSlice } from './usePagedSlice';
 
 const range = (length: number) => Array.from({ length }, (_, index) => index);
@@ -21,14 +22,30 @@ it('accumulates pages when loadMore is called twice in one batch', () => {
     expect(result.current.visible).toHaveLength(30);
 });
 
-it('resets to the first page when the source array changes', () => {
-    const { result, rerender } = renderHook(({ items }) => usePagedSlice(items, 10), {
-        initialProps: { items: range(30) },
+it.each(['items', 'pageSize', 'both'])('commits only the first page when %s changes', change => {
+    const items = range(30);
+    const commits: { visible: number[]; hasMore: boolean }[] = [];
+    const { result, rerender } = renderHook(({ items, pageSize }) => {
+        const page = usePagedSlice(items, pageSize);
+        useLayoutEffect(() => {
+            commits.push({ visible: page.visible, hasMore: page.hasMore });
+        });
+        return page;
+    }, {
+        initialProps: { items, pageSize: 10 },
     });
+    act(() => { result.current.loadMore(); result.current.loadMore(); });
+    expect(result.current.visible).toHaveLength(30);
+    expect(result.current.hasMore).toBe(false);
+
+    const nextItems = change === 'pageSize' ? items : range(30).map(item => item + 100);
+    const nextPageSize = change === 'items' ? 10 : 5;
+    commits.length = 0;
+    rerender({ items: nextItems, pageSize: nextPageSize });
+    expect(commits).toEqual([{ visible: nextItems.slice(0, nextPageSize), hasMore: true }]);
+
     act(() => result.current.loadMore());
-    expect(result.current.visible).toHaveLength(20);
-    rerender({ items: range(30) });
-    expect(result.current.visible).toHaveLength(10);
+    expect(result.current.visible).toEqual(nextItems.slice(0, nextPageSize * 2));
 });
 
 it('keeps the same slice reference across unrelated renders', () => {

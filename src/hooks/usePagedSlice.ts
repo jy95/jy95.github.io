@@ -6,22 +6,26 @@ import { useCallback, useMemo, useState } from 'react';
  * - The visible slice is memoized, so memoized children only re-render when
  *   the slice really changes.
  * - Paging resets to the first page whenever the source array identity
- *   changes (new filters, sort, data), without an effect and without an
- *   extra render pass.
+ *   changes (new filters, sort, data) or pageSize changes, before committing.
  */
 export function usePagedSlice<T>(items: readonly T[], pageSize: number) {
-    const [paging, setPaging] = useState({ items, limit: pageSize });
-    const limit = paging.items === items ? paging.limit : pageSize;
+    const [visibleCount, setVisibleCount] = useState(pageSize);
+    const [previousInputs, setPreviousInputs] = useState({ items, pageSize });
 
-    const visible = useMemo(() => items.slice(0, limit), [items, limit]);
+    // Reset to first page when items or pageSize change
+    const shouldReset = previousInputs.items !== items || previousInputs.pageSize !== pageSize;
+    const effectiveLimit = shouldReset ? pageSize : visibleCount;
+    if (shouldReset) {
+        setPreviousInputs({ items, pageSize });
+        setVisibleCount(pageSize);
+    }
+
+    const visible = useMemo(() => items.slice(0, effectiveLimit), [items, effectiveLimit]);
 
     const loadMore = useCallback(
-        () => setPaging(current => ({
-            items,
-            limit: (current.items === items ? current.limit : pageSize) + pageSize,
-        })),
-        [items, pageSize],
+        () => setVisibleCount(current => Math.min(current + pageSize, items.length)),
+        [items.length, pageSize],
     );
 
-    return { visible, hasMore: limit < items.length, loadMore };
+    return { visible, hasMore: effectiveLimit < items.length, loadMore };
 }
