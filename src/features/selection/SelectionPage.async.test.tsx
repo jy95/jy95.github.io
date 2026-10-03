@@ -17,7 +17,7 @@ it('loads a shared selection asynchronously and imports categorized games', asyn
     expect(store.getState().selection.document.games).toEqual(['game-1', 'game-0']);
 });
 it('shows localized decode errors without offering import', async () => {
-    navigation.query = 'selection=!!!';
+    navigation.query = 'entries=!!!';
     setup([], 'fr');
     expect(await screen.findByText(fr.selection.invalid)).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: fr.selection.import })).not.toBeInTheDocument();
@@ -26,16 +26,17 @@ it('shows localized decode errors without offering import', async () => {
 it('disables sharing during encoding and reports missing compression support', async () => {
     vi.spyOn(sharing, 'selectionQuery').mockRejectedValue(new Error('compressionUnavailable'));
     setup(['game-0']);
-    fireEvent.click(screen.getByRole('button', { name: en.selection.share }));
-    expect(screen.getByRole('button', { name: en.selection.share })).toBeDisabled();
+    const shareButton = screen.getByRole('button', { name: en.selection.share });
+    fireEvent.click(shareButton);
+    expect(shareButton).toBeDisabled();
     expect(screen.getByText(en.selection.processing)).toBeInTheDocument();
     expect(await screen.findByText(en.selection.compressionUnavailable)).toBeInTheDocument();
 });
 it('ignores a stale decode after query parameters change', async () => {
     let resolve!: (result: SharedSelection) => void;
     const realDecode = sharing.parseSharedSelection;
-    const decode = vi.spyOn(sharing, 'parseSharedSelection').mockImplementation(params => params.get('selection') === 'pending' ? new Promise(done => { resolve = done; }) : realDecode(params));
-    navigation.query = 'selection=pending';
+    const decode = vi.spyOn(sharing, 'parseSharedSelection').mockImplementation(params => params.getAll('entries')[0] === 'pending' ? new Promise(done => { resolve = done; }) : realDecode(params));
+    navigation.query = 'entries=pending';
     const { rerender } = setup();
     navigation.query = await selectionQuery({ ...emptySelection(), games: ['game-1'] });
     rerender(<SelectionPage catalogue={catalogue} />);
@@ -52,7 +53,8 @@ it.each(['success', 'error'] as const)('continues pending encoding across title-
     const pending = new Promise<string>((done, fail) => { resolve = done; reject = fail; });
     const encode = vi.spyOn(sharing, 'selectionQuery').mockReturnValue(pending);
     const { rerender } = setup(['game-0', 'game-1']);
-    fireEvent.click(screen.getByRole('button', { name: en.selection.share }));
+    const shareButton = screen.getByRole('button', { name: en.selection.share });
+    fireEvent.click(shareButton);
     expect(encode).toHaveBeenCalledTimes(1);
 
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Alpha' } });
@@ -62,24 +64,24 @@ it.each(['success', 'error'] as const)('continues pending encoding across title-
     expect(screen.getByRole('button', { name: 'Remove Alpha from my selection' })).toBeInTheDocument();
     expect(encode).toHaveBeenCalledTimes(1);
     expect(encode).toHaveBeenCalledWith({ ...emptySelection(), games: ['game-0', 'game-1'] });
-    const sharingDisabled = (screen.getByRole('button', { name: en.selection.share }) as HTMLButtonElement).disabled;
+    const sharingDisabled = (shareButton as HTMLButtonElement).disabled;
     const processing = screen.queryByText(en.selection.processing);
     // Settle before asserting share state so a production failure leaves no pending work.
     await act(async () => {
-        if (outcome === 'success') resolve('selection=encoded');
+        if (outcome === 'success') resolve('entries=encoded');
         else reject(new Error('compressionUnavailable'));
         await pending.catch(() => undefined);
     });
 
     if (outcome === 'success') {
         const input = await screen.findByRole('textbox', { name: en.selection.shareLink });
-        expect(new URL((input as HTMLInputElement).value).search).toBe('?selection=encoded');
+        expect(new URL((input as HTMLInputElement).value).search).toBe('?entries=encoded');
     } else {
         expect(await screen.findByText(en.selection.compressionUnavailable)).toBeInTheDocument();
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     }
     expect(screen.queryByText(en.selection.processing)).not.toBeInTheDocument();
-    expect(screen.getByRole('button', { name: en.selection.share })).toBeEnabled();
+    expect(shareButton).toBeEnabled();
     expect(sharingDisabled).toBe(true);
     expect(processing).not.toBeNull();
 });
@@ -90,12 +92,13 @@ it.each(['success', 'error'] as const)('ignores pending encoding after unmount (
     const pending = new Promise<string>((done, fail) => { resolve = done; reject = fail; });
     const encode = vi.spyOn(sharing, 'selectionQuery').mockReturnValue(pending);
     const { unmount, container } = setup(['game-0']);
-    fireEvent.click(screen.getByRole('button', { name: en.selection.share }));
+    const shareButton = screen.getByRole('button', { name: en.selection.share });
+    fireEvent.click(shareButton);
     expect(encode).toHaveBeenCalledTimes(1);
     unmount();
 
     await act(async () => {
-        if (outcome === 'success') resolve('selection=encoded');
+        if (outcome === 'success') resolve('entries=encoded');
         else reject(new Error('compressionUnavailable'));
         await pending.catch(() => undefined);
     });

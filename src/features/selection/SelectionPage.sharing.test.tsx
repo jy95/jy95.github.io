@@ -39,6 +39,7 @@ it.each(['en', 'fr'] as const)('generates a locale-aware URL and provides manual
     const text = locale === 'en' ? en.selection : fr.selection;
     fireEvent.click(screen.getByRole('button', { name: text.share }));
     const url = new URL((await screen.findByRole('textbox', { name: text.shareLink }) as HTMLInputElement).value);
+    expect([...url.searchParams.keys()]).toEqual(['entries']);
     expect(url.pathname).toBe(locale === 'en' ? '/en/selection' : '/selection');
     const decoded = await parseSharedSelection(url.searchParams);
     expect(decoded.kind).toBe('selection');
@@ -56,7 +57,7 @@ it('copies the generated link when clipboard access succeeds', async () => {
     fireEvent.click(screen.getByRole('button', { name: 'Share selection' }));
     fireEvent.click(await screen.findByRole('button', { name: 'Copy link' }));
     expect(await screen.findByText('Link copied')).toBeInTheDocument();
-    expect(writeText).toHaveBeenCalledWith(expect.stringContaining('/en/selection?selection='));
+    expect(writeText).toHaveBeenCalledWith(expect.stringContaining('/en/selection?entries='));
 });
 
 
@@ -95,4 +96,12 @@ it('imports a shared category even when the raw ID is selected in another catego
     fireEvent.click(screen.getByRole('button', { name: en.selection.import }));
     expect(store.getState().selection.document).toEqual({ ...emptySelection(), games: ['game-0'], planning: ['game-0'] });
     expect(screen.getByRole('button', { name: en.selection.imported })).toBeDisabled();
+});
+
+it('ignores old shared links and keeps the personal selection visible', () => {
+    navigation.query = 'selection=old&title=Alpha';
+    setup(['game-0']);
+    expect(screen.getByRole('button', { name: 'Remove Alpha from my selection' })).toBeInTheDocument();
+    expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: en.selection.import })).not.toBeInTheDocument();
 });
