@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { parseSharedSelection, type SharedSelection } from './sharing';
+import type { SelectionSearchParams } from './sharingQuery';
 import { transportError } from './sharingErrors';
 
 export type SharedSelectionState = SharedSelection | { kind: 'processing' };
@@ -8,25 +9,24 @@ export type SharedSelectionState = SharedSelection | { kind: 'processing' };
 const ABSENT: SharedSelectionState = { kind: 'absent' };
 const PROCESSING: SharedSelectionState = { kind: 'processing' };
 
-/** `query` should contain only the `selection` parameter, so filter changes never re-decode. */
-export function useSharedSelection(query: string): SharedSelectionState {
-    const [decoded, setDecoded] = useState<{ query: string; result: SharedSelection } | null>(null);
-    const hasSelection = new URLSearchParams(query).has('selection');
+/** Key decoding only to entries values, including duplicates and empty values. */
+export function useSharedSelection(params: SelectionSearchParams): SharedSelectionState {
+    const key = JSON.stringify(params.getAll('entries'));
+    const [decoded, setDecoded] = useState<{ key: string; result: SharedSelection } | null>(null);
 
     useEffect(() => {
-        if (!hasSelection) return;
+        const values: string[] = JSON.parse(key);
+        if (values.length === 0) return;
         let active = true;
         const publish = (result: SharedSelection) => {
-            if (active) setDecoded({ query, result });
+            if (active) setDecoded({ key, result });
         };
-        void parseSharedSelection(new URLSearchParams(query)).then(publish, error =>
+        void parseSharedSelection({ getAll: name => name === 'entries' ? values : [] }).then(publish, error =>
             publish({ kind: 'error', error: transportError(error) }),
         );
-        return () => {
-            active = false;
-        };
-    }, [query, hasSelection]);
+        return () => { active = false; };
+    }, [key]);
 
-    if (!hasSelection) return ABSENT;
-    return decoded?.query === query ? decoded.result : PROCESSING;
+    if (key === '[]') return ABSENT;
+    return decoded?.key === key ? decoded.result : PROCESSING;
 }

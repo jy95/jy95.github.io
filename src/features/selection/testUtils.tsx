@@ -34,10 +34,12 @@ vi.mock('./sharing', async importOriginal => {
     const { normalizeSelectionDocument } = await import('./documentClassification');
     return {
         ...await importOriginal<typeof import('./sharing')>(),
-        selectionQuery: async (document: unknown) => new URLSearchParams({ selection: JSON.stringify(normalizeSelectionDocument(document)) }).toString(),
-        parseSharedSelection: async (params: URLSearchParams) => {
-            const encoded = params.get('selection');
-            if (encoded === null) return { kind: 'absent' };
+        selectionQuery: async (document: unknown) => new URLSearchParams({ entries: JSON.stringify(normalizeSelectionDocument(document)) }).toString(),
+        parseSharedSelection: async (params: import('./sharingQuery').SelectionSearchParams) => {
+            const values = params.getAll('entries');
+            if (values.length === 0) return { kind: 'absent' };
+            const encoded = values[0];
+            if (values.length !== 1 || !encoded) return { kind: 'error', error: 'invalid' };
             try { return { kind: 'selection', document: normalizeSelectionDocument(JSON.parse(encoded)) }; }
             catch { return { kind: 'error', error: 'invalid' }; }
         },

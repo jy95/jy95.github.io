@@ -1,12 +1,11 @@
-// src/features/selection/useSelectionShare.ts
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocale } from 'next-intl';
 import { getPathname } from '@/i18n/routing';
 import { selectionQuery } from './sharing';
 import { transportError, type SelectionTransportError } from './sharingErrors';
 import type { SelectionDocument } from './documentTypes';
 
-export type ShareState =
+type ShareState =
     | { kind: 'idle' }
     | { kind: 'processing' }
     | { kind: 'ready'; url: string }
@@ -14,45 +13,32 @@ export type ShareState =
 
 const IDLE_STATE: ShareState = { kind: 'idle' };
 
-export function useSelectionShare(isShared: boolean) {
-    // Automatically retrieve the active locale from next-intl's context
+export function useSelectionShare(context: string) {
     const locale = useLocale();
-    // Track pending share operations to avoid race conditions
     const request = useRef(0);
-    const [state, setState] = useState<ShareState>(IDLE_STATE);
+    const [stored, setStored] = useState<{ context: string; locale: string; state: ShareState } | null>(null);
+    useEffect(() => () => { request.current++; }, [context, locale]);
+    const state = stored?.context === context && stored.locale === locale ? stored.state : IDLE_STATE;
 
     async function share(document: SelectionDocument) {
         const current = ++request.current;
-        setState({ kind: 'processing' });
-
+        const publish = (next: ShareState) => {
+            if (current === request.current) setStored({ context, locale, state: next });
+        };
+        publish({ kind: 'processing' });
         try {
-            // Build localized pathname using current locale and target route
-            const pathname = getPathname({ locale: locale, href: '/selection' });
-            const url = new URL(pathname, window.location.origin);
+            const url = new URL(getPathname({ locale, href: '/selection' }), window.location.origin);
             url.search = await selectionQuery(document);
-
-            // Only update state if no newer request was initiated
-            if (current === request.current) {
-                setState({ kind: 'ready', url: url.toString() });
-            }
+            publish({ kind: 'ready', url: url.toString() });
         } catch (error) {
-            // Only capture error if this request is still active
-            if (current === request.current) {
-                setState({ kind: 'error', error: transportError(error) });
-            }
+            publish({ kind: 'error', error: transportError(error) });
         }
     }
 
     function close() {
-        // Invalidate any pending asynchronous operation
         request.current++;
-        setState(IDLE_STATE);
+        setStored(null);
     }
 
-    return {
-        // Fall back to idle state whenever share mode is inactive
-        state: isShared ? state : IDLE_STATE,
-        share,
-        close,
-    };
+    return { state, share, close };
 }

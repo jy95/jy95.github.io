@@ -11,12 +11,8 @@ import type { SelectionEntry } from './catalogue';
 
 export function useSelectionPage(catalogue: SelectionEntry[]) {
     const params = useSearchParams();
-    // Decode only when the `selection` parameter itself changes. Filter edits (title typing,
-    // sort, platform...) rewrite the URL but must not trigger decompression or a spinner.
-    const sharedQuery = new URLSearchParams(params.getAll('selection').map(value => ['selection', value])).toString();
-    const decoded = useSharedSelection(sharedQuery);
-    // Locale argument removed as useSelectionShare consumes useLocale internally
-    const sharing = useSelectionShare(decoded.kind !== 'absent');
+    const decoded = useSharedSelection(params);
+    const sharing = useSelectionShare(JSON.stringify(params.getAll('entries')));
     const resolved = useSelectionCatalogue(catalogue, decoded);
     const actions = useSelectionActions(resolved.entries, sharing.share);
     const { filters, updateFilters } = useGamesFilters();
@@ -30,8 +26,8 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
     }, [entries, kind, filters]);
 
     const canImport = useMemo(() => {
-        return entries.some(entry => !resolved.document[entry.category].includes(entry.game.id));
-    }, [resolved.document, entries]);
+        return entries.some(entry => !resolved.personalDocument[entry.category].includes(entry.game.id));
+    }, [resolved.personalDocument, entries]);
 
     const decodeError = decoded.kind === 'error' ? decoded.error : null;
     const decoding = decoded.kind === 'processing';

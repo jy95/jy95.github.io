@@ -20,7 +20,7 @@ Personal selections store only identifiers in versioned JSON (`version: 2`), gro
 
 The selection page shows one grid with an All option (the default), followed by Games, Backlog, DLCs, and Planned games in the Content kinds single select. Kind badges appear only on selection cards. Catalogue filters and sorting apply to the chosen kind. Sharing and importing always include the full available selection, regardless of display filters.
 
-New links encode UTF-8 selection JSON using deflate-raw and base64url in `?selection=...`. Encoding and decoding require browser CompressionStream/DecompressionStream support for `deflate-raw`; unsupported browsers show an error. Compressed inputs are limited to 64 KiB of encoded text and 256 KiB of decompressed JSON. Compression reduces link length but cannot guarantee that every selection fits browser or service URL limits.
+New links encode UTF-8 selection JSON using deflate-raw and base64url in `?entries=...`. Encoding and decoding require browser CompressionStream/DecompressionStream support for `deflate-raw`; unsupported browsers show an error. Compressed inputs are limited to 64 KiB of encoded text and 256 KiB of decompressed JSON. Compression reduces link length but cannot guarantee that every selection fits browser or service URL limits.
 
 ## Getting Started
 
