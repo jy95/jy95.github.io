@@ -11,7 +11,6 @@ import type { SelectionEntry } from './catalogue';
 
 export function useSelectionPage(catalogue: SelectionEntry[]) {
     const params = useSearchParams();
-    const query = params.toString();
     // Decode only when the `selection` parameter itself changes. Filter edits (title typing,
     // sort, platform...) rewrite the URL but must not trigger decompression or a spinner.
     const sharedQuery = new URLSearchParams(params.getAll('selection').map(value => ['selection', value])).toString();
@@ -19,7 +18,7 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
     // Locale argument removed as useSelectionShare consumes useLocale internally
     const sharing = useSelectionShare(decoded.kind !== 'absent');
     const resolved = useSelectionCatalogue(catalogue, decoded);
-    const actions = useSelectionActions(resolved.entries, resolved.document, sharing.share);
+    const actions = useSelectionActions(resolved.entries, sharing.share);
     const { filters, updateFilters } = useGamesFilters();
     const [kind, setKind] = useState<SelectionKind>('all');
     const { entries, ids } = resolved;

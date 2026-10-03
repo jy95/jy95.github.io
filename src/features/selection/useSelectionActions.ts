@@ -7,7 +7,6 @@ import type { SelectionEntry } from './catalogue';
 
 export function useSelectionActions(
     entries: SelectionEntry[],
-    document: SelectionDocument,
     share: (document: SelectionDocument) => Promise<void>,
 ) {
     const dispatch = useAppDispatch();
