@@ -5,7 +5,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, type ComponentProps } from 'react';
 import { makeStore } from '@/redux/Store';
 import { emptySelection } from './documentTypes';
-import { hydrateSelection } from './selectionSlice';
+import { getSelectionSnapshot, subscribeSelection } from './selectionPersistence';
+import { SELECTION_STORAGE_KEY } from './storageFormat';
 import SelectionPage from './SelectionPage';
 import type { SelectionEntry } from './catalogue';
 import type { GameFilters } from '@/types/gamesFilters';
@@ -57,9 +58,11 @@ export function createProviders(ids: string[] = [], locale: 'en' | 'fr' = 'en', 
         const category = categorizedCatalogue.find(entry => entry.selectionId === id)?.category ?? 'games';
         document[category].push(id);
     }
-    store.dispatch(hydrateSelection(document));
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(document));
+    const disconnect = subscribeSelection(() => {});
+    disconnect();
     const wrapper = ({ children }: { children: React.ReactNode }) => <Provider store={store}><NextIntlClientProvider locale={locale} messages={locale === 'en' ? en : fr}><ThemeProvider theme={createTheme({ palette: { mode } })}>{children}</ThemeProvider></NextIntlClientProvider></Provider>;
-    return { store, wrapper };
+    return { store, selection: { getState: getSelectionSnapshot }, wrapper };
 }
 
 export function setup(ids: string[] = [], locale: 'en' | 'fr' = 'en', mode: 'light' | 'dark' = 'light', entries = catalogue) {

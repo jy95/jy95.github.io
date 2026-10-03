@@ -5,16 +5,17 @@ import * as sharing from './sharing';
 import { emptySelection } from './schema';
 import SelectionPage from './SelectionPage';
 import { messages } from './testMessages';
+import type { SelectionEntry } from './catalogue';
 const { en, fr } = messages;
 
 it('loads a shared selection asynchronously and imports categorized games', async () => {
     navigation.query = await selectionQuery({ games: ['game-0'], dlcs: [], backlog: [], planning: [] });
-    const { store } = setup(['game-1']);
+    const { selection } = setup(['game-1']);
     expect(screen.getAllByRole('progressbar')).toHaveLength(1);
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: en.selection.import })).not.toBeInTheDocument();
     fireEvent.click(await screen.findByRole('button', { name: en.selection.import }));
-    expect(store.getState().selection.document.games).toEqual(['game-1', 'game-0']);
+    expect(selection.getState().document.games).toEqual(['game-1', 'game-0']);
 });
 it('shows localized decode errors without offering import', async () => {
     navigation.query = 'entries=!!!';
@@ -107,4 +108,62 @@ it.each(['success', 'error'] as const)('ignores pending encoding after unmount (
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     expect(screen.queryByText(en.selection.compressionUnavailable)).not.toBeInTheDocument();
     expect(screen.queryByText(en.selection.processing)).not.toBeInTheDocument();
+});
+
+it('renders pages of twelve, disables at exhaustion, and resets on filters and selection changes', async () => {
+    const entries = Array.from({ length: 30 }, (_, index): SelectionEntry => ({
+        source: 'published', category: 'games', selectionId: `item-${index}`,
+        game: { ...catalogue[0].game, id: `item-${index}`, title: `Item ${index}`, url_type: 'VIDEO', url: 'https://youtube.com' },
+    }));
+    const { rerender } = setup(entries.map(entry => entry.selectionId), 'en', 'light', entries);
+    const more = () => screen.getByRole('button', { name: en.common.loadMore });
+    expect(screen.getAllByRole('img', { name: /^Item / })).toHaveLength(12);
+    fireEvent.click(more());
+    expect(screen.getAllByRole('img', { name: /^Item / })).toHaveLength(24);
+    fireEvent.click(more());
+    expect(screen.getAllByRole('img', { name: /^Item / })).toHaveLength(30);
+    expect(more()).toBeDisabled();
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Item' } });
+    await waitFor(() => expect(screen.getAllByRole('img', { name: /^Item / })).toHaveLength(12));
+    fireEvent.click(more());
+    fireEvent.click(screen.getByRole('button', { name: 'Remove Item 0 from my selection' }));
+    expect(screen.getAllByRole('img', { name: /^Item / })).toHaveLength(12);
+    navigation.query = await selectionQuery({ ...emptySelection(), games: entries.map(entry => entry.selectionId) });
+    rerender(<SelectionPage catalogue={entries} />);
+    await screen.findByRole('button', { name: en.selection.import });
+    expect(screen.getAllByRole('img', { name: /^Item / })).toHaveLength(12);
+});
+
+it('restores saved entries on route navigation and remount without losing unresolved identifiers', async () => {
+    const { wrapper, unmount, selection, rerender } = setup(['game-0', 'missing']);
+    navigation.query = await selectionQuery({ ...emptySelection(), games: ['game-1'] });
+    rerender(<SelectionPage catalogue={catalogue} />);
+    await screen.findByRole('button', { name: 'Add Beta to my selection' });
+    navigation.query = '';
+    rerender(<SelectionPage catalogue={catalogue} />);
+    expect(screen.getByRole('button', { name: 'Remove Alpha from my selection' })).toBeInTheDocument();
+    unmount();
+    const { render } = await import('@testing-library/react');
+    render(<SelectionPage catalogue={catalogue} />, { wrapper });
+    expect(screen.getByRole('button', { name: 'Remove Alpha from my selection' })).toBeInTheDocument();
+    expect(selection.getState().document.games).toEqual(['game-0', 'missing']);
+});
+
+it('resets pagination when sorting or content kind changes', async () => {
+    const { renderHook } = await import('@testing-library/react');
+    const { createProviders } = await import('./testUtils');
+    const { useSelectionPage } = await import('./useSelectionPage');
+    const entries = Array.from({ length: 30 }, (_, index): SelectionEntry => ({
+        source: 'published', category: 'games', selectionId: `item-${index}`,
+        game: { ...catalogue[0].game, id: `item-${index}`, title: `Item ${index}`, url_type: 'VIDEO', url: 'https://youtube.com' },
+    }));
+    const { wrapper } = createProviders(entries.map(entry => entry.selectionId));
+    const { result } = renderHook(() => useSelectionPage(entries), { wrapper });
+    act(() => result.current.loadMore());
+    expect(result.current.visibleEntries).toHaveLength(24);
+    act(() => result.current.updateFilters({ sort: 'title_desc' }));
+    expect(result.current.visibleEntries).toHaveLength(12);
+    act(() => result.current.loadMore());
+    act(() => result.current.setKind('games'));
+    expect(result.current.visibleEntries).toHaveLength(12);
 });

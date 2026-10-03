@@ -22,7 +22,7 @@ export const messages = {
             "copied": "Link copied",
             "copyFallback": "Select and copy the link above.",
             "unavailable": "{count, plural, =1 {1 item is no longer available in the catalogue.} other {# items are no longer available in the catalogue.}}",
-            "storageUnavailable": "Browser storage is unavailable. Your selection will only be kept until you leave or reload this page.",
+            "storageUnavailable": "Browser storage is unavailable. Changes to your selection could not be saved.",
             "imported": "All items are in my selection",
             "openOwn": "Open my selection",
             "import": "Add these items to my selection",
@@ -78,6 +78,7 @@ export const messages = {
         },
         "common": {
             "loading": "Loading ...",
+            "loadMore": "Load more",
             "noResults": "No more results to display"
         },
         "gameDetail": {
@@ -107,7 +108,7 @@ export const messages = {
             "copied": "Lien copié",
             "copyFallback": "Sélectionnez et copiez le lien ci-dessus.",
             "unavailable": "{count, plural, =1 {1 élément n’est plus disponible dans le catalogue.} other {# éléments ne sont plus disponibles dans le catalogue.}}",
-            "storageUnavailable": "Le stockage du navigateur est indisponible. Votre sélection sera conservée uniquement jusqu’à votre départ ou au rechargement de cette page.",
+            "storageUnavailable": "Le stockage du navigateur est indisponible. Les modifications de votre sélection n’ont pas pu être enregistrées.",
             "imported": "Tous les éléments sont dans ma sélection",
             "openOwn": "Ouvrir ma sélection",
             "import": "Ajouter ces éléments à ma sélection",
@@ -163,6 +164,7 @@ export const messages = {
         },
         "common": {
             "loading": "Chargement en cours ...",
+            "loadMore": "Charger plus",
             "noResults": "Plus d'autre résultats à afficher"
         },
         "gameDetail": {

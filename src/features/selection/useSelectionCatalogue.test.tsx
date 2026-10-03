@@ -12,12 +12,12 @@ it('prepares entry lookups with first-duplicate precedence and safe property nam
     }));
     const last: SelectionEntry = { ...first[0], category: 'dlcs' };
     const entries = [...first, last];
-    const { wrapper, store } = createProviders(names);
+    const { wrapper, selection } = createProviders(names);
     const { result, rerender } = renderHook(
         ({ shared }) => useSelectionCatalogue(entries, shared ? { kind: 'selection', document: { ...emptySelection(), dlcs: ['constructor'] } } : { kind: 'absent' }),
         { wrapper, initialProps: { shared: false } },
     );
-    await waitFor(() => expect(store.getState().selection.document.games).toEqual(names));
+    await waitFor(() => expect(selection.getState().document.games).toEqual(names));
     expect(result.current.entries).toEqual(first);
     rerender({ shared: true });
     expect(result.current.entries).toEqual([]);

@@ -36,7 +36,7 @@ export function resolveSelectionCatalogue(
 
     const entries = requested
         .map(id => byId.get(id))
-        .filter((entry): entry is SelectionEntry => !!entry && matchers[entry.category].has(entry.game.id));
+        .filter((entry): entry is SelectionEntry => !!entry && matchers[entry.category].has(entry.selectionId));
 
     return {
         entries,
