@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { usePersonalSelection } from './selectionPersistence';
+import { usePersonalSelection } from './selectionHooks';
 import { indexCatalogue, resolveSelectionCatalogue, type CatalogueIndex } from './resolveCatalogue';
 import type { SelectionEntry } from './catalogue';
 import type { SelectionDocument } from './documentTypes';

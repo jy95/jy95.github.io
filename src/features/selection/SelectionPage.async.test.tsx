@@ -159,11 +159,11 @@ it('resets pagination when sorting or content kind changes', async () => {
     }));
     const { wrapper } = createProviders(entries.map(entry => entry.selectionId));
     const { result } = renderHook(() => useSelectionPage(entries), { wrapper });
-    act(() => result.current.loadMore());
-    expect(result.current.visibleEntries).toHaveLength(24);
-    act(() => result.current.updateFilters({ sort: 'title_desc' }));
-    expect(result.current.visibleEntries).toHaveLength(12);
-    act(() => result.current.loadMore());
-    act(() => result.current.setKind('games'));
-    expect(result.current.visibleEntries).toHaveLength(12);
+    act(() => result.current.results.loadMore());
+    expect(result.current.results.visibleEntries).toHaveLength(24);
+    act(() => result.current.results.updateFilters({ sort: 'title_desc' }));
+    expect(result.current.results.visibleEntries).toHaveLength(12);
+    act(() => result.current.results.loadMore());
+    act(() => result.current.results.setKind('games'));
+    expect(result.current.results.visibleEntries).toHaveLength(12);
 });

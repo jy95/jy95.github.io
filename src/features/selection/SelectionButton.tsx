@@ -6,7 +6,8 @@ import Tooltip from '@mui/material/Tooltip';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { useTranslations } from 'next-intl';
-import { toggleSelection, useIsSelected, useSelectionWritable } from './selectionPersistence';
+import { toggleSelection } from './selectionPersistence';
+import { useIsSelected, useSelectionWritable } from './selectionHooks';
 import type { SelectionCategory } from './documentTypes';
 
 type Props = { id: string; title: string; category: SelectionCategory };
