@@ -39,16 +39,24 @@ const selectionSlice = createSlice({
             const merged = mergeSelections(state.document, addition);
             setDocument(state, merged);
         },
-        clearSelection(state) { setDocument(state, emptySelection()); },
-        setSelectionStorageAvailable(state, action: PayloadAction<boolean>) { state.storageAvailable = action.payload; },
+        clearSelection(state) {
+            setDocument(state, emptySelection());
+        },
+        setSelectionStorageAvailable(state, action: PayloadAction<boolean>) {
+            state.storageAvailable = action.payload;
+        },
     },
 });
 
 /** Memoized O(1) membership lookup shared by every SelectionButton. */
 export const selectSelectedIdsByCategory = createSelector(
     [(state: { selection: SelectionState }) => state.selection.document],
-    document => Object.fromEntries(Object.entries(document).map(([category, ids]) => [category, new Set(ids)])) as Record<SelectionCategory, Set<string>>,
+    document =>
+        Object.fromEntries(
+            Object.entries(document).map(([category, ids]) => [category, new Set(ids)]),
+        ) as Record<SelectionCategory, Set<string>>,
 );
 
-export const { hydrateSelection, toggleSelection, addSelection, clearSelection, setSelectionStorageAvailable } = selectionSlice.actions;
+export const { hydrateSelection, toggleSelection, addSelection, clearSelection, setSelectionStorageAvailable } =
+    selectionSlice.actions;
 export default selectionSlice.reducer;

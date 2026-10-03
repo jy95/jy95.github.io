@@ -17,9 +17,9 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
     // sort, platform...) rewrite the URL but must not trigger decompression or a spinner.
     const sharedQuery = new URLSearchParams(params.getAll('selection').map(value => ['selection', value])).toString();
     const decoded = useSharedSelection(sharedQuery);
-    const sharing = useSelectionShare(query, useLocale() as 'en' | 'fr');
+    const sharing = useSelectionShare(decoded.kind !== 'absent', useLocale() as 'en' | 'fr');
     const resolved = useSelectionCatalogue(catalogue, decoded);
-    const actions = useSelectionActions(resolved.entries, sharing.share);
+    const actions = useSelectionActions(resolved.entries, resolved.document, sharing.share);
     const { filters, updateFilters } = useGamesFilters();
     const [kind, setKind] = useState<SelectionKind>('all');
     const { entries, ids } = resolved;
@@ -40,7 +40,18 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
     const hasEntries = entries.length > 0;
 
     return {
-        ...actions, decodeError, decoding, encoding, hasEntries, sharing, filters, updateFilters, kind, setKind, visibleEntries, canImport,
+        ...actions,
+        decodeError,
+        decoding,
+        encoding,
+        hasEntries,
+        sharing,
+        filters,
+        updateFilters,
+        kind,
+        setKind,
+        visibleEntries,
+        canImport,
         entries,
         unavailable: resolved.unavailable,
         storageAvailable: resolved.storageAvailable,
