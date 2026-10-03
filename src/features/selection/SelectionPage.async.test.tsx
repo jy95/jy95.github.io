@@ -46,28 +46,53 @@ it('ignores a stale decode after query parameters change', async () => {
     decode.mockRestore();
 });
 
-it.each([
-    ['query change', 'success'],
-    ['query change', 'error'],
-    ['unmount', 'success'],
-    ['unmount', 'error'],
-] as const)('ignores pending encoding after %s (%s)', async (change, outcome) => {
+it.each(['success', 'error'] as const)('continues pending encoding across title-filter changes (%s)', async outcome => {
     let resolve!: (query: string) => void;
     let reject!: (error: Error) => void;
     const pending = new Promise<string>((done, fail) => { resolve = done; reject = fail; });
     const encode = vi.spyOn(sharing, 'selectionQuery').mockReturnValue(pending);
-    const { rerender, unmount, container } = setup(['game-0']);
+    const { rerender } = setup(['game-0', 'game-1']);
     fireEvent.click(screen.getByRole('button', { name: en.selection.share }));
     expect(encode).toHaveBeenCalledTimes(1);
-    expect(screen.getByRole('button', { name: en.selection.share })).toBeDisabled();
 
-    if (change === 'query change') {
-        navigation.query = 'title=Beta';
-        rerender(<SelectionPage catalogue={catalogue} />);
-        expect(screen.getByRole('button', { name: en.selection.share })).toBeEnabled();
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Alpha' } });
+    navigation.query = 'title=Alpha';
+    rerender(<SelectionPage catalogue={catalogue} />);
+    await waitFor(() => expect(screen.queryByRole('button', { name: 'Remove Beta from my selection' })).not.toBeInTheDocument());
+    expect(screen.getByRole('button', { name: 'Remove Alpha from my selection' })).toBeInTheDocument();
+    expect(encode).toHaveBeenCalledTimes(1);
+    expect(encode).toHaveBeenCalledWith({ ...emptySelection(), games: ['game-0', 'game-1'] });
+    const sharingDisabled = (screen.getByRole('button', { name: en.selection.share }) as HTMLButtonElement).disabled;
+    const processing = screen.queryByText(en.selection.processing);
+    // Settle before asserting share state so a production failure leaves no pending work.
+    await act(async () => {
+        if (outcome === 'success') resolve('selection=encoded');
+        else reject(new Error('compressionUnavailable'));
+        await pending.catch(() => undefined);
+    });
+
+    if (outcome === 'success') {
+        const input = await screen.findByRole('textbox', { name: en.selection.shareLink });
+        expect(new URL((input as HTMLInputElement).value).search).toBe('?selection=encoded');
     } else {
-        unmount();
+        expect(await screen.findByText(en.selection.compressionUnavailable)).toBeInTheDocument();
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     }
+    expect(screen.queryByText(en.selection.processing)).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: en.selection.share })).toBeEnabled();
+    expect(sharingDisabled).toBe(true);
+    expect(processing).not.toBeNull();
+});
+
+it.each(['success', 'error'] as const)('ignores pending encoding after unmount (%s)', async outcome => {
+    let resolve!: (query: string) => void;
+    let reject!: (error: Error) => void;
+    const pending = new Promise<string>((done, fail) => { resolve = done; reject = fail; });
+    const encode = vi.spyOn(sharing, 'selectionQuery').mockReturnValue(pending);
+    const { unmount, container } = setup(['game-0']);
+    fireEvent.click(screen.getByRole('button', { name: en.selection.share }));
+    expect(encode).toHaveBeenCalledTimes(1);
+    unmount();
 
     await act(async () => {
         if (outcome === 'success') resolve('selection=encoded');
@@ -75,9 +100,8 @@ it.each([
         await pending.catch(() => undefined);
     });
 
+    expect(container).toBeEmptyDOMElement();
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     expect(screen.queryByText(en.selection.compressionUnavailable)).not.toBeInTheDocument();
     expect(screen.queryByText(en.selection.processing)).not.toBeInTheDocument();
-    if (change === 'unmount') expect(container).toBeEmptyDOMElement();
-    else expect(screen.getByRole('button', { name: en.selection.share })).toBeEnabled();
 });

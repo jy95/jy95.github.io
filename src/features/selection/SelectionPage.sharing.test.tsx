@@ -6,6 +6,12 @@ import { emptySelection, selectionIds } from './schema';
 import { messages } from './testMessages';
 const { en, fr } = messages;
 
+const originalClipboard = Object.getOwnPropertyDescriptor(navigator, 'clipboard');
+afterEach(() => {
+    if (originalClipboard) Object.defineProperty(navigator, 'clipboard', originalClipboard);
+    else Reflect.deleteProperty(navigator, 'clipboard');
+});
+
 it('displays shared games without overwriting personal games, ignores outdated IDs and imports once', async () => {
     navigation.query = await selectionQuery({ ...emptySelection(), games: ['game-0', 'game-0', 'outdated'] });
     const { store } = setup(['game-1']);
@@ -27,6 +33,8 @@ it('treats an empty shared selection as an empty shared selection', async () => 
 
 
 it.each(['en', 'fr'] as const)('generates a locale-aware URL and provides manual copying when clipboard is denied in %s', async locale => {
+    const writeText = vi.fn().mockRejectedValue(new Error('Clipboard access denied'));
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
     setup(['game-0', 'game-1'], locale);
     const text = locale === 'en' ? en.selection : fr.selection;
     fireEvent.click(screen.getByRole('button', { name: text.share }));
@@ -37,6 +45,7 @@ it.each(['en', 'fr'] as const)('generates a locale-aware URL and provides manual
     if (decoded.kind === 'selection') expect(selectionIds(decoded.document)).toEqual(['game-0', 'game-1']);
     fireEvent.click(screen.getByRole('button', { name: text.copy }));
     expect(await screen.findByText(text.copyFallback)).toBeInTheDocument();
+    expect(writeText).toHaveBeenCalledWith(url.toString());
 });
 
 
@@ -48,7 +57,6 @@ it('copies the generated link when clipboard access succeeds', async () => {
     fireEvent.click(await screen.findByRole('button', { name: 'Copy link' }));
     expect(await screen.findByText('Link copied')).toBeInTheDocument();
     expect(writeText).toHaveBeenCalledWith(expect.stringContaining('/en/selection?selection='));
-    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: undefined });
 });
 
 
