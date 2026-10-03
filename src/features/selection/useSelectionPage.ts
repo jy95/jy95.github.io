@@ -1,13 +1,17 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useGamesFilters } from '@/features/games/useGamesFilters';
+import { usePagedSlice } from '@/hooks/usePagedSlice';
 import { browseGames } from '@/lib/browseGames';
 import { useSharedSelection } from './useSharedSelection';
 import { useSelectionShare } from './useSelectionShare';
 import { useSelectionCatalogue } from './useSelectionCatalogue';
 import { useSelectionActions } from './useSelectionActions';
-import type { SelectionKind } from './SelectionKindFilter';
+import { hasUnimportedEntries } from './resolveCatalogue';
+import type { SelectionKind } from './documentTypes';
 import type { SelectionEntry } from './catalogue';
+
+const PAGE_SIZE = 12;
 
 export function useSelectionPage(catalogue: SelectionEntry[]) {
     const params = useSearchParams();
@@ -19,32 +23,30 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
     const [kind, setKind] = useState<SelectionKind>('all');
     const { entries, ids } = resolved;
 
-    // Fuse indexing and sorting only re-run when their inputs actually change.
+    // Flatten each entry into a browsable record once per entry set, not per filter change.
+    const browsable = useMemo(() => entries.map(entry => ({ ...entry.game, entry })), [entries]);
+
     const filteredEntries = useMemo(() => {
-        const scoped = kind === 'all' ? entries : entries.filter(entry => entry.category === kind);
-        return browseGames(scoped.map(entry => ({ ...entry.game, entry })), filters).map(game => game.entry);
-    }, [entries, kind, filters]);
+        const scoped = kind === 'all' ? browsable : browsable.filter(item => item.entry.category === kind);
+        return browseGames(scoped, filters).map(item => item.entry);
+    }, [browsable, kind, filters]);
 
-    const [pagination, setPagination] = useState({ entries: filteredEntries, limit: 12 });
-    const limit = pagination.entries === filteredEntries ? pagination.limit : 12;
-    const visibleEntries = filteredEntries.slice(0, limit);
-    const loadMore = () => setPagination({ entries: filteredEntries, limit: limit + 12 });
+    const { visible: visibleEntries, hasMore, loadMore } = usePagedSlice(filteredEntries, PAGE_SIZE);
 
-    const canImport = useMemo(() => {
-        return entries.some(entry => !resolved.personalDocument[entry.category].includes(entry.selectionId));
-    }, [resolved.personalDocument, entries]);
+    const canImport = useMemo(
+        () => hasUnimportedEntries(entries, resolved.personalDocument),
+        [entries, resolved.personalDocument],
+    );
 
     const decodeError = decoded.kind === 'error' ? decoded.error : null;
     const decoding = decoded.kind === 'processing';
-    const encoding = sharing.state.kind === 'processing';
-    const hasEntries = entries.length > 0;
 
     return {
         ...actions,
         decodeError,
         decoding,
-        encoding,
-        hasEntries,
+        encoding: sharing.state.kind === 'processing',
+        hasEntries: entries.length > 0,
         sharing,
         filters,
         updateFilters,
@@ -52,7 +54,7 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
         setKind,
         visibleEntries,
         loadMore,
-        hasMore: limit < filteredEntries.length,
+        hasMore,
         canImport,
         entries,
         unavailable: resolved.unavailable,

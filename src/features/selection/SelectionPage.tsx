@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { detailSections } from '@/domain/games/details';
 import { useSelectionPage } from './useSelectionPage';
 import { SelectionContent } from './SelectionContent';
 import { ClearSelectionDialog } from './SelectionDialogs';
@@ -27,7 +28,14 @@ export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry
             {model.encoding && <Typography role="status">{t('processing')}</Typography>}
             <SelectionContent model={model} />
             <Suspense fallback={null}>
-                {model.detail && <GameDetailView category={model.detail.category} game={model.detail.game} onClose={model.closeDetail} showVoteSection={model.detail.source === 'backlog'} showRelatedGames={model.detail.source !== 'backlog'} />}
+                {model.detail && (
+                    <GameDetailView
+                        category={model.detail.category}
+                        game={model.detail.game}
+                        onClose={model.closeDetail}
+                        {...detailSections(model.detail.source)}
+                    />
+                )}
                 {share.kind === 'ready' && <ShareSelectionDialog key={share.url} shareUrl={share.url} onClose={model.sharing.close} />}
             </Suspense>
             <ClearSelectionDialog open={model.clearOpen} onClose={model.closeClear} onConfirm={model.confirmClear} />

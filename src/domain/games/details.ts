@@ -18,3 +18,11 @@ export type GameDetailsResponse =
     | { source: "published"; game: CardGame; category?: "games" | "dlcs" }
     | { source: "planning"; game: PlanningEntry }
     | { source: "backlog"; game: BacklogEntry };
+
+export type GameDetailsSource = GameDetailsResponse["source"];
+
+/** Single source of truth: backlog entries are voted on, everything else shows related games. */
+export const detailSections = (source: GameDetailsSource) => ({
+    showVoteSection: source === "backlog",
+    showRelatedGames: source !== "backlog",
+});
