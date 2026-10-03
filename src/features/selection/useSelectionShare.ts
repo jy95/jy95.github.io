@@ -5,7 +5,7 @@ import { selectionQuery } from './sharing';
 import { transportError, type SelectionTransportError } from './sharingErrors';
 import type { SelectionDocument } from './documentTypes';
 
-type ShareState =
+export type ShareState =
     | { kind: 'idle' }
     | { kind: 'processing' }
     | { kind: 'ready'; url: string }

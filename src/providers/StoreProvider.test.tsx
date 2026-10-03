@@ -3,7 +3,7 @@ import { act, waitFor } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
 import { hydrateRoot, type Root } from 'react-dom/client';
 import StoreProvider from './StoreProvider';
-import { usePersonalSelection } from '@/features/selection/selectionPersistence';
+import { usePersonalSelection } from '@/features/selection/selectionHooks';
 import { SELECTION_STORAGE_KEY } from '@/features/selection/storageFormat';
 
 it('preserves server HTML while storage loads before a suspended child hydrates', async () => {

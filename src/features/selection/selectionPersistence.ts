@@ -1,5 +1,4 @@
-import { useSyncExternalStore } from 'react';
-import { emptySelection, type SelectionCategory, type SelectionDocument } from './documentTypes';
+import { SELECTION_CATEGORIES, emptySelection, type SelectionCategory, type SelectionDocument } from './documentTypes';
 import { selectionIds } from './identifiers';
 import { normalizeSelectionDocument } from './documentClassification';
 import { mergeSelections } from './documentMerge';
@@ -7,12 +6,26 @@ import { toggleSelectionIdentifier } from './documentOperations';
 import { isSelectionStorageEvent } from './storageOperations';
 import { parseStoredSelection, SELECTION_STORAGE_KEY } from './storageFormat';
 
-const serverSnapshot = { document: emptySelection(), ids: [] as string[], hydrated: false, storageAvailable: true };
+export type SelectionSnapshot = {
+    document: SelectionDocument;
+    ids: string[];
+    hydrated: boolean;
+    storageAvailable: boolean;
+};
+
+const serverSnapshot: SelectionSnapshot = { document: emptySelection(), ids: [], hydrated: false, storageAvailable: true };
 let snapshot = serverSnapshot;
 const listeners = new Set<() => void>();
 
+const sameDocument = (a: SelectionDocument, b: SelectionDocument) =>
+    SELECTION_CATEGORIES.every(category => {
+        const left = a[category];
+        const right = b[category];
+        return left.length === right.length && left.every((id, index) => id === right[index]);
+    });
+
 function publish(document: SelectionDocument, storageAvailable: boolean) {
-    if (snapshot.hydrated && snapshot.storageAvailable === storageAvailable && JSON.stringify(snapshot.document) === JSON.stringify(document)) return;
+    if (snapshot.hydrated && snapshot.storageAvailable === storageAvailable && sameDocument(snapshot.document, document)) return;
     snapshot = { document, ids: selectionIds(document), hydrated: true, storageAvailable };
     listeners.forEach(listener => {
         listener();
@@ -47,9 +60,8 @@ export function subscribeSelection(listener: () => void) {
 }
 
 export function getSelectionSnapshot() { return snapshot; }
-export function usePersonalSelection() {
-    return useSyncExternalStore(subscribeSelection, getSelectionSnapshot, () => serverSnapshot);
-}
+
+export function getSelectionServerSnapshot() { return serverSnapshot; }
 
 /** Read before every mutation, including operations before any consumer mounts. */
 function mutate(update: (document: SelectionDocument) => SelectionDocument): boolean {

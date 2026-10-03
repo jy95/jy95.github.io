@@ -2,7 +2,7 @@ import { loadBacklogGames, loadDlcGroups, loadPlanningGames, loadPublishedGames,
 import type { RawGame } from '@/domain/games';
 import type { GameDetailsResponse } from '@/domain/games/details';
 
-import type { SelectionCategory } from './schema';
+import type { SelectionCategory } from './documentTypes';
 
 export type SelectionEntry = GameDetailsResponse & { selectionId: string; category: SelectionCategory };
 

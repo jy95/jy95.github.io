@@ -5,6 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { notFound } from "next/navigation";
 import { useRouter } from "@/i18n/routing";
 import { QueryBoundary } from "@/components/common/QueryBoundary";
+import { detailSections } from "@/domain/games/details";
 import GameDetailContent from "@/features/games/detail/GameDetailContent";
 import GameToolbar from "@/features/games/detail/GameToolbar";
 import { useGameDetails } from "@/features/games/detail/useGameDetails";
@@ -25,7 +26,7 @@ export default function GameDetailPage({ params }: { params: Promise<{ id: strin
         <QueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch} loadingFallback={<CircularProgress />}>
             {({ game, source, ...details }) => <>
                 <GameToolbar category={source === "published" ? ("category" in details ? details.category : undefined) ?? "games" : source} game={game} onClose={goBack} presentation="page" isPublished={source === "published"} />
-                <GameDetailContent game={game} showVoteSection={source === "backlog"} showRelatedGames={source !== "backlog"} />
+                <GameDetailContent game={game} {...detailSections(source)} />
             </>}
         </QueryBoundary>
     );

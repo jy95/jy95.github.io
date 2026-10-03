@@ -2,9 +2,11 @@ import { useTranslations } from 'next-intl';
 import AppsIcon from '@mui/icons-material/Apps';
 import ResponsiveSelect from '@/components/common/ResponsiveSelect';
 import { SelectionKindIcon } from './SelectionKindBadge';
-import { SELECTION_CATEGORIES, type SelectionCategory } from './documentTypes';
+import { SELECTION_CATEGORIES, isSelectionKind, type SelectionKind } from './documentTypes';
 
-export type SelectionKind = 'all' | SelectionCategory;
+// Re-exported so existing imports keep working.
+export type { SelectionKind };
+
 type Props = { kind: SelectionKind; setKind: (kind: SelectionKind) => void };
 
 export function SelectionKindFilter({ kind, setKind }: Props) {
@@ -14,5 +16,5 @@ export function SelectionKindFilter({ kind, setKind }: Props) {
             { value: 'all', label: t('categories.all'), icon: <AppsIcon fontSize="small" aria-hidden="true" /> },
             ...SELECTION_CATEGORIES.map(category => ({ value: category, label: t(`categories.${category}`), icon: <SelectionKindIcon category={category} /> })),
         ]}
-        onChange={value => setKind(value as SelectionKind)} />;
+        onChange={value => { if (isSelectionKind(value)) setKind(value); }} />;
 }

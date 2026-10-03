@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { detailSections } from '@/domain/games/details';
 import { useSelectionPage } from './useSelectionPage';
 import { SelectionContent } from './SelectionContent';
 import { ClearSelectionDialog } from './SelectionDialogs';
@@ -17,20 +18,28 @@ const ShareSelectionDialog = lazy(() => import('./ShareSelectionDialog'));
 export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry[] }) {
     const t = useTranslations('selection');
     const model = useSelectionPage(catalogue);
-    const share = model.sharing.state;
+    const { status, dialogs } = model;
+    const share = dialogs.share;
     return (
         <Stack spacing={2}>
-            <Typography variant="h4" component="h1">{t(model.shared ? 'sharedTitle' : 'title')}</Typography>
-            <Typography color="text.secondary">{t(model.shared ? 'sharedDescription' : 'description')}</Typography>
+            <Typography variant="h4" component="h1">{t(status.shared ? 'sharedTitle' : 'title')}</Typography>
+            <Typography color="text.secondary">{t(status.shared ? 'sharedDescription' : 'description')}</Typography>
             {share.kind === 'error' && <Alert severity="error">{t(share.error)}</Alert>}
-            {model.decodeError && <Alert severity="error">{t(model.decodeError)}</Alert>}
-            {model.encoding && <Typography role="status">{t('processing')}</Typography>}
-            <SelectionContent model={model} />
+            {status.decodeError && <Alert severity="error">{t(status.decodeError)}</Alert>}
+            {status.encoding && <Typography role="status">{t('processing')}</Typography>}
+            <SelectionContent results={model.results} actions={model.actions} status={status} />
             <Suspense fallback={null}>
-                {model.detail && <GameDetailView category={model.detail.category} game={model.detail.game} onClose={model.closeDetail} showVoteSection={model.detail.source === 'backlog'} showRelatedGames={model.detail.source !== 'backlog'} />}
-                {share.kind === 'ready' && <ShareSelectionDialog key={share.url} shareUrl={share.url} onClose={model.sharing.close} />}
+                {dialogs.detail && (
+                    <GameDetailView
+                        category={dialogs.detail.category}
+                        game={dialogs.detail.game}
+                        onClose={dialogs.closeDetail}
+                        {...detailSections(dialogs.detail.source)}
+                    />
+                )}
+                {share.kind === 'ready' && <ShareSelectionDialog key={share.url} shareUrl={share.url} onClose={dialogs.closeShare} />}
             </Suspense>
-            <ClearSelectionDialog open={model.clearOpen} onClose={model.closeClear} onConfirm={model.confirmClear} />
+            <ClearSelectionDialog open={dialogs.clearOpen} onClose={dialogs.closeClear} onConfirm={dialogs.confirmClear} />
         </Stack>
     );
 }

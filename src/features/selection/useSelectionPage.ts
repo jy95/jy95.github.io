@@ -1,66 +1,51 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useGamesFilters } from '@/features/games/useGamesFilters';
-import { browseGames } from '@/lib/browseGames';
 import { useSharedSelection } from './useSharedSelection';
 import { useSelectionShare } from './useSelectionShare';
 import { useSelectionCatalogue } from './useSelectionCatalogue';
 import { useSelectionActions } from './useSelectionActions';
-import type { SelectionKind } from './SelectionKindFilter';
+import { hasUnimportedEntries } from './resolveCatalogue';
 import type { SelectionEntry } from './catalogue';
+import { useSelectionBrowse } from './useSelectionBrowse';
+import type { SelectionPageModel } from './selectionModels';
 
-export function useSelectionPage(catalogue: SelectionEntry[]) {
+export function useSelectionPage(catalogue: SelectionEntry[]): SelectionPageModel {
     const params = useSearchParams();
     const decoded = useSharedSelection(params);
     const sharing = useSelectionShare(JSON.stringify(params.getAll('entries')));
     const resolved = useSelectionCatalogue(catalogue, decoded);
     const actions = useSelectionActions(resolved.entries, sharing.share);
-    const { filters, updateFilters } = useGamesFilters();
-    const [kind, setKind] = useState<SelectionKind>('all');
     const { entries, ids } = resolved;
+    const browse = useSelectionBrowse(entries);
 
-    // Fuse indexing and sorting only re-run when their inputs actually change.
-    const filteredEntries = useMemo(() => {
-        const scoped = kind === 'all' ? entries : entries.filter(entry => entry.category === kind);
-        return browseGames(scoped.map(entry => ({ ...entry.game, entry })), filters).map(game => game.entry);
-    }, [entries, kind, filters]);
-
-    const [pagination, setPagination] = useState({ entries: filteredEntries, limit: 12 });
-    const limit = pagination.entries === filteredEntries ? pagination.limit : 12;
-    const visibleEntries = filteredEntries.slice(0, limit);
-    const loadMore = () => setPagination({ entries: filteredEntries, limit: limit + 12 });
-
-    const canImport = useMemo(() => {
-        return entries.some(entry => !resolved.personalDocument[entry.category].includes(entry.selectionId));
-    }, [resolved.personalDocument, entries]);
+    const canImport = useMemo(
+        () => hasUnimportedEntries(entries, resolved.personalDocument),
+        [entries, resolved.personalDocument],
+    );
 
     const decodeError = decoded.kind === 'error' ? decoded.error : null;
     const decoding = decoded.kind === 'processing';
-    const encoding = sharing.state.kind === 'processing';
+
+    const shared = decoded.kind !== 'absent';
     const hasEntries = entries.length > 0;
+    const encoding = sharing.state.kind === 'processing';
 
     return {
-        ...actions,
-        decodeError,
-        decoding,
-        encoding,
-        hasEntries,
-        sharing,
-        filters,
-        updateFilters,
-        kind,
-        setKind,
-        visibleEntries,
-        loadMore,
-        hasMore: limit < filteredEntries.length,
-        canImport,
-        entries,
-        unavailable: resolved.unavailable,
-        storageAvailable: resolved.storageAvailable,
-        shared: decoded.kind !== 'absent',
-        loading: !resolved.hydrated || decoding,
-        hasSelection: ids.length > 0,
+        results: { ...browse, decodeError, hasEntries, shared, onDetail: actions.setDetail },
+        actions: {
+            shared, hasEntries, hasSelection: ids.length > 0, canImport, encoding,
+            onImport: actions.importSelection, onClear: actions.openClear, onShare: actions.shareSelection,
+        },
+        status: {
+            shared, decodeError, decoding, encoding,
+            loading: !resolved.hydrated || decoding,
+            storageAvailable: resolved.storageAvailable,
+            count: entries.length, unavailable: resolved.unavailable,
+        },
+        dialogs: {
+            detail: actions.detail, closeDetail: actions.closeDetail,
+            share: sharing.state, closeShare: sharing.close,
+            clearOpen: actions.clearOpen, closeClear: actions.closeClear, confirmClear: actions.confirmClear,
+        },
     };
 }
-
-export type SelectionPageModel = ReturnType<typeof useSelectionPage>;
