@@ -14,7 +14,9 @@ const listeners = new Set<() => void>();
 function publish(document: SelectionDocument, storageAvailable: boolean) {
     if (snapshot.hydrated && snapshot.storageAvailable === storageAvailable && JSON.stringify(snapshot.document) === JSON.stringify(document)) return;
     snapshot = { document, ids: selectionIds(document), hydrated: true, storageAvailable };
-    listeners.forEach(listener => listener());
+    listeners.forEach(listener => {
+        listener();
+    });
 }
 
 function read(): boolean {
