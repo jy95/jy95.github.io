@@ -1,0 +1,1 @@
+export const SELECTION_CATEGORIES = ['games', 'backlog', 'dlcs', 'planning'] as const;
