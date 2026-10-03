@@ -5,7 +5,7 @@ import { useGetSelectionCatalogueQuery } from "@/redux/services/selectionAPI";
 import { QueryBoundary } from "@/components/common/QueryBoundary";
 import SkeletonGrid from "@/components/common/SkeletonGrid";
 import SelectionPage from "./SelectionPage";
-import { usePersonalSelection } from "./selectionPersistence";
+import { usePersonalSelection } from "./selectionHooks";
 import type { SelectionEntry } from "./catalogue";
 
 // Stable reference: SelectionPage memoizes on the catalogue identity.

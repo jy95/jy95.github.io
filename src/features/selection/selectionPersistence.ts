@@ -1,4 +1,3 @@
-import { useSyncExternalStore } from 'react';
 import { SELECTION_CATEGORIES, emptySelection, type SelectionCategory, type SelectionDocument } from './documentTypes';
 import { selectionIds } from './identifiers';
 import { normalizeSelectionDocument } from './documentClassification';
@@ -7,7 +6,7 @@ import { toggleSelectionIdentifier } from './documentOperations';
 import { isSelectionStorageEvent } from './storageOperations';
 import { parseStoredSelection, SELECTION_STORAGE_KEY } from './storageFormat';
 
-type SelectionSnapshot = {
+export type SelectionSnapshot = {
     document: SelectionDocument;
     ids: string[];
     hydrated: boolean;
@@ -62,31 +61,7 @@ export function subscribeSelection(listener: () => void) {
 
 export function getSelectionSnapshot() { return snapshot; }
 
-/** Whole-document subscription: re-renders on every selection change. Use for pages. */
-export function usePersonalSelection() {
-    return useSyncExternalStore(subscribeSelection, getSelectionSnapshot, () => serverSnapshot);
-}
-
-/**
- * Per-item subscription: re-renders only when *this* identifier flips.
- * Use for list items (hundreds of bookmark buttons on the catalogue pages).
- */
-export function useIsSelected(id: string, category: SelectionCategory) {
-    return useSyncExternalStore(
-        subscribeSelection,
-        () => snapshot.document[category].includes(id),
-        () => false,
-    );
-}
-
-/** True once storage has been read and is writable. */
-export function useSelectionWritable() {
-    return useSyncExternalStore(
-        subscribeSelection,
-        () => snapshot.hydrated && snapshot.storageAvailable,
-        () => false,
-    );
-}
+export function getSelectionServerSnapshot() { return serverSnapshot; }
 
 /** Read before every mutation, including operations before any consumer mounts. */
 function mutate(update: (document: SelectionDocument) => SelectionDocument): boolean {

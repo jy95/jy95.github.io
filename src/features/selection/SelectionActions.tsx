@@ -4,10 +4,9 @@ import Stack from '@mui/material/Stack';
 import LoadingButton from '@/app/[locale]/games/_client/LoadingButton';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import { Link } from '@/i18n/routing';
+import type { SelectionActionsModel } from './selectionModels';
 
-type Props = { shared: boolean; hasEntries: boolean; hasSelection: boolean; canImport: boolean; encoding: boolean; onImport: () => void; onClear: () => void; onShare: () => void };
-
-export function SelectionActions({ shared, hasEntries, hasSelection, canImport, encoding, onImport, onClear, onShare }: Props) {
+export function SelectionActions({ shared, hasEntries, hasSelection, canImport, encoding, onImport, onClear, onShare }: SelectionActionsModel) {
     const t = useTranslations('selection');
     return (
         <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: 'wrap' }}>
