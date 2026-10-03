@@ -1,6 +1,6 @@
 'use client';
 
-import type { SelectionCategory } from '@/features/selection/documentTypes';
+import type { SelectionCategory } from '@/features/selection/selectionDocument';
 import { useId, type ReactNode } from 'react';
 // MUI
 import Accordion from '@mui/material/Accordion';

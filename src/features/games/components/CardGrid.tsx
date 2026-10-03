@@ -1,4 +1,4 @@
-import type { SelectionCategory } from '@/features/selection/documentTypes';
+import type { SelectionCategory } from '@/features/selection/selectionDocument';
 // MUI
 import Grid from '@mui/material/Grid';
 

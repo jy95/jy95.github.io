@@ -1,6 +1,6 @@
 "use client";
 
-import type { SelectionCategory } from '@/features/selection/documentTypes';
+import type { SelectionCategory } from '@/features/selection/selectionDocument';
 
 // Hooks
 import { useLocale, useTranslations } from "next-intl";

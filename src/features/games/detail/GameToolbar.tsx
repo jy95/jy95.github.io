@@ -1,4 +1,4 @@
-import type { SelectionCategory } from '@/features/selection/documentTypes';
+import type { SelectionCategory } from '@/features/selection/selectionDocument';
 import { useTranslations } from "next-intl";
 import SelectionButton from "@/features/selection/SelectionButton";
 import Box from "@mui/material/Box";

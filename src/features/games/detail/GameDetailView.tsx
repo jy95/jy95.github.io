@@ -1,6 +1,6 @@
 "use client";
 
-import type { SelectionCategory } from '@/features/selection/documentTypes';
+import type { SelectionCategory } from '@/features/selection/selectionDocument';
 import { useState } from "react";
 import Dialog from '@mui/material/Dialog';
 import GameToolbar from "./GameToolbar";
