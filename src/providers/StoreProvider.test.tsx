@@ -3,8 +3,7 @@ import { act, waitFor } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
 import { hydrateRoot, type Root } from 'react-dom/client';
 import StoreProvider from './StoreProvider';
-import { usePersonalSelection } from '@/features/selection/selectionHooks';
-import { SELECTION_STORAGE_KEY } from '@/features/selection/storageFormat';
+import { usePersonalSelection, SELECTION_STORAGE_KEY } from '@/features/selection/selectionStore';
 
 it('preserves server HTML while storage loads before a suspended child hydrates', async () => {
     const saved = { games: ['saved-game'], backlog: [], dlcs: [], planning: [] };
@@ -13,9 +12,9 @@ it('preserves server HTML while storage loads before a suspended child hydrates'
     let resume!: () => void;
     const pending = new Promise<void>(resolve => { resume = resolve; });
     function Child() {
-        const { hydrated, ids } = usePersonalSelection();
+        const { hydrated } = usePersonalSelection();
         if (suspended) throw pending;
-        return <p>{hydrated ? ids.join(',') : 'Loading'}</p>;
+        return <p>{hydrated ? 'Hydrated' : 'Loading'}</p>;
     }
     const tree = <StoreProvider><Suspense fallback={<p>Waiting</p>}><Child /></Suspense></StoreProvider>;
     const container = document.createElement('div');

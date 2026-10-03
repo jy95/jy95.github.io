@@ -4,9 +4,14 @@ import ExtensionIcon from '@mui/icons-material/Extension';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import { useTranslations } from 'next-intl';
-import type { SelectionCategory } from './documentTypes';
-
-const icons = { games: SportsEsportsIcon, dlcs: ExtensionIcon, planning: ScheduleIcon, backlog: HourglassEmptyIcon };
+import type { SvgIconComponent } from '@mui/icons-material';
+import type { SelectionCategory } from './selectionDocument';
+const icons: Record<SelectionCategory, SvgIconComponent> = {
+    games: SportsEsportsIcon, 
+    dlcs: ExtensionIcon, 
+    planning: ScheduleIcon, 
+    backlog: HourglassEmptyIcon,
+};
 
 export function SelectionKindIcon({ category }: { category: SelectionCategory }) {
     const Icon = icons[category];

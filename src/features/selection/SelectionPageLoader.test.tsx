@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import SelectionPageLoader from './SelectionPageLoader';
-import { emptySelection } from './documentTypes';
-import { SELECTION_STORAGE_KEY } from './storageFormat';
+import { emptySelection } from './selectionDocument';
+import { SELECTION_STORAGE_KEY } from './selectionStore';
 
 const query = vi.hoisted(() => vi.fn());
 const search = vi.hoisted(() => ({ value: '' }));
