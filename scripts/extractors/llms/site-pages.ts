@@ -4,6 +4,7 @@ import { renderSection, renderBulletList } from "./markdown";
 const PAGE_PURPOSES: Readonly<Record<string, string>> = {
     "/": "Browse the catalog homepage and featured gaming content.",
     "/games": "Browse all published games and walkthroughs.",
+    "/selection": "Keep a personal selection of games, DLCs, planned games and backlog items in the browser, and share it through a link.",
     "/games/series": "Browse published games grouped by series.",
     "/games/dlcs": "Browse published downloadable-content walkthroughs.",
     "/games/random": "Open a randomly selected published game.",
