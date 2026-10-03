@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useLocale } from 'next-intl';
 import { useGamesFilters } from '@/features/games/useGamesFilters';
 import { browseGames } from '@/lib/browseGames';
 import { useSharedSelection } from './useSharedSelection';
@@ -17,7 +16,8 @@ export function useSelectionPage(catalogue: SelectionEntry[]) {
     // sort, platform...) rewrite the URL but must not trigger decompression or a spinner.
     const sharedQuery = new URLSearchParams(params.getAll('selection').map(value => ['selection', value])).toString();
     const decoded = useSharedSelection(sharedQuery);
-    const sharing = useSelectionShare(decoded.kind !== 'absent', useLocale() as 'en' | 'fr');
+    // Locale argument removed as useSelectionShare consumes useLocale internally
+    const sharing = useSelectionShare(decoded.kind !== 'absent');
     const resolved = useSelectionCatalogue(catalogue, decoded);
     const actions = useSelectionActions(resolved.entries, resolved.document, sharing.share);
     const { filters, updateFilters } = useGamesFilters();

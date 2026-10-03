@@ -11,11 +11,10 @@ const PROCESSING: SharedSelectionState = { kind: 'processing' };
 /** `query` should contain only the `selection` parameter, so filter changes never re-decode. */
 export function useSharedSelection(query: string): SharedSelectionState {
     const [decoded, setDecoded] = useState<{ query: string; result: SharedSelection } | null>(null);
-
-    // Early exit: if no selection parameter, don't do unnecessary async work
-    if (!new URLSearchParams(query).has('selection')) return ABSENT;
+    const hasSelection = new URLSearchParams(query).has('selection');
 
     useEffect(() => {
+        if (!hasSelection) return;
         let active = true;
         const publish = (result: SharedSelection) => {
             if (active) setDecoded({ query, result });
@@ -26,7 +25,8 @@ export function useSharedSelection(query: string): SharedSelectionState {
         return () => {
             active = false;
         };
-    }, [query]);
+    }, [query, hasSelection]);
 
+    if (!hasSelection) return ABSENT;
     return decoded?.query === query ? decoded.result : PROCESSING;
 }
