@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 /**
  * Client-side "load more" over an in-memory list.
@@ -10,18 +10,19 @@ import { useCallback, useMemo, useState } from 'react';
  *   extra render pass.
  */
 export function usePagedSlice<T>(items: readonly T[], pageSize: number) {
-    const [paging, setPaging] = useState({ items, limit: pageSize });
-    const limit = paging.items === items ? paging.limit : pageSize;
+    const [visibleCount, setVisibleCount] = useState(pageSize);
 
-    const visible = useMemo(() => items.slice(0, limit), [items, limit]);
+    // Reset to first page when items or pageSize change
+    useEffect(() => {
+        setVisibleCount(pageSize);
+    }, [items, pageSize]);
+
+    const visible = useMemo(() => items.slice(0, visibleCount), [items, visibleCount]);
 
     const loadMore = useCallback(
-        () => setPaging(current => ({
-            items,
-            limit: (current.items === items ? current.limit : pageSize) + pageSize,
-        })),
-        [items, pageSize],
+        () => setVisibleCount(current => Math.min(current + pageSize, items.length)),
+        [items.length, pageSize],
     );
 
-    return { visible, hasMore: limit < items.length, loadMore };
+    return { visible, hasMore: visibleCount < items.length, loadMore };
 }
