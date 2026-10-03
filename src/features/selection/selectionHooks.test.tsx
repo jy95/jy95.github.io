@@ -7,6 +7,7 @@ import { useSelectionShare } from './useSelectionShare';
 import { useLocale } from 'next-intl';
 import { emptySelection } from './documentTypes';
 import * as sharing from './sharing';
+import { useEffect, useRef } from 'react';
 
 vi.mock('next-intl', () => ({
     useLocale: vi.fn().mockReturnValue('en'),
@@ -109,5 +110,91 @@ it.each(['locale', 'context'] as const)('invalidates encoding when %s changes', 
     rerender({ context: change === 'context' ? '["new"]' : '[]' });
     expect(result.current.state.kind).toBe('idle');
     await act(async () => { resolve('entries=old'); await pending; });
+    expect(result.current.state.kind).toBe('idle');
+});
+
+it.each(['success', 'error'] as const)('ignores encoding after unmount (%s)', async outcome => {
+    let resolve!: (query: string) => void;
+    let reject!: (error: Error) => void;
+    vi.spyOn(sharing, 'selectionQuery').mockReturnValue(new Promise((done, fail) => { resolve = done; reject = fail; }));
+    const { result, unmount } = renderHook(() => useSelectionShare('[]'));
+    let pending!: Promise<void>;
+    act(() => { pending = result.current.share(emptySelection()); });
+    const beforeUnmount = result.current;
+    unmount();
+    await act(async () => {
+        if (outcome === 'success') resolve('entries=old');
+        else reject(new Error('compressionUnavailable'));
+        await pending;
+    });
+    expect(result.current).toBe(beforeUnmount);
+});
+
+it.each([
+    ['context', 'success'], ['context', 'error'],
+    ['locale', 'success'], ['locale', 'error'],
+] as const)('ignores stale %s encoding after returning to the original value (%s)', async (change, outcome) => {
+    let resolve!: (query: string) => void;
+    let reject!: (error: Error) => void;
+    const encode = vi.spyOn(sharing, 'selectionQuery')
+        .mockImplementationOnce(() => new Promise((done, fail) => { resolve = done; reject = fail; }))
+        .mockResolvedValue('entries=new');
+    const { result, rerender } = renderHook(({ context }) => useSelectionShare(context), { initialProps: { context: '[]' } });
+    const originalShare = result.current.share;
+    let pending!: Promise<void>;
+    act(() => { pending = originalShare(emptySelection()); });
+    if (change === 'locale') vi.mocked(useLocale).mockReturnValue('fr');
+    rerender({ context: change === 'context' ? '["new"]' : '[]' });
+    if (change === 'locale') vi.mocked(useLocale).mockReturnValue('en');
+    rerender({ context: '[]' });
+    expect(result.current.state.kind).toBe('idle');
+    await act(async () => {
+        if (outcome === 'success') resolve('entries=old');
+        else reject(new Error('compressionUnavailable'));
+        await pending;
+    });
+    expect(result.current.state.kind).toBe('idle');
+    // A retained callback from the old scope must not publish into the new one.
+    await act(async () => { await originalShare(emptySelection()); });
+    expect(result.current.state.kind).toBe('idle');
+    await act(async () => { await result.current.share(emptySelection()); });
+    expect(result.current.state).toMatchObject({ kind: 'ready', url: expect.stringContaining('entries=new') });
+    expect(encode).toHaveBeenCalledTimes(3);
+});
+
+it.each(['success', 'error'] as const)('invalidates the first Strict Mode setup request and reactivates sharing (%s)', async outcome => {
+    let resolve!: (query: string) => void;
+    let reject!: (error: Error) => void;
+    const encode = vi.spyOn(sharing, 'selectionQuery')
+        .mockImplementationOnce(() => new Promise((done, fail) => { resolve = done; reject = fail; }))
+        .mockResolvedValue('entries=new');
+    const { result } = renderHook(() => {
+        const sharing = useSelectionShare('[]');
+        const initialShare = useRef(sharing.share);
+        useEffect(() => {
+            void initialShare.current(emptySelection());
+        }, []);
+        return sharing;
+    }, { reactStrictMode: true });
+    await waitFor(() => expect(result.current.state).toMatchObject({ kind: 'ready', url: expect.stringContaining('entries=new') }));
+    expect(encode).toHaveBeenCalledTimes(2);
+    await act(async () => {
+        if (outcome === 'success') resolve('entries=old');
+        else reject(new Error('compressionUnavailable'));
+    });
+    expect(result.current.state).toMatchObject({ kind: 'ready', url: expect.stringContaining('entries=new') });
+    act(() => result.current.close());
+    expect(result.current.state.kind).toBe('idle');
+});
+
+it.each(['context', 'locale'] as const)('does not restore completed share state after a %s round trip', async change => {
+    vi.spyOn(sharing, 'selectionQuery').mockResolvedValue('entries=old');
+    const { result, rerender } = renderHook(({ context }) => useSelectionShare(context), { initialProps: { context: '[]' } });
+    await act(async () => { await result.current.share(emptySelection()); });
+    expect(result.current.state.kind).toBe('ready');
+    if (change === 'locale') vi.mocked(useLocale).mockReturnValue('fr');
+    rerender({ context: change === 'context' ? '["new"]' : '[]' });
+    if (change === 'locale') vi.mocked(useLocale).mockReturnValue('en');
+    rerender({ context: '[]' });
     expect(result.current.state.kind).toBe('idle');
 });

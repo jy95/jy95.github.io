@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocale } from 'next-intl';
 import { getPathname } from '@/i18n/routing';
 import { selectionQuery } from './sharing';
@@ -15,19 +15,28 @@ const IDLE_STATE: ShareState = { kind: 'idle' };
 
 export function useSelectionShare(context: string) {
     const locale = useLocale();
-    const request = useRef(0);
-    const [stored, setStored] = useState<{ context: string; locale: string; state: ShareState } | null>(null);
-    useEffect(() => () => { request.current++; }, [context, locale]);
-    const state = stored?.context === context && stored.locale === locale ? stored.state : IDLE_STATE;
+    const scope = useMemo(() => ({ context, locale }), [context, locale]);
+    const activeScope = useRef<typeof scope | null>(null);
+    const request = useRef({ id: 0 });
+    const [stored, setStored] = useState<{ scope: typeof scope; state: ShareState } | null>(null);
+    useEffect(() => {
+        activeScope.current = scope;
+        const requests = request.current;
+        return () => {
+            activeScope.current = null;
+            requests.id++;
+        };
+    }, [scope]);
+    const state = stored?.scope === scope ? stored.state : IDLE_STATE;
 
     async function share(document: SelectionDocument) {
-        const current = ++request.current;
+        const current = ++request.current.id;
         const publish = (next: ShareState) => {
-            if (current === request.current) setStored({ context, locale, state: next });
+            if (activeScope.current === scope && current === request.current.id) setStored({ scope, state: next });
         };
         publish({ kind: 'processing' });
         try {
-            const url = new URL(getPathname({ locale, href: '/selection' }), window.location.origin);
+            const url = new URL(getPathname({ locale: scope.locale, href: '/selection' }), window.location.origin);
             url.search = await selectionQuery(document);
             publish({ kind: 'ready', url: url.toString() });
         } catch (error) {
@@ -36,7 +45,7 @@ export function useSelectionShare(context: string) {
     }
 
     function close() {
-        request.current++;
+        request.current.id++;
         setStored(null);
     }
 
