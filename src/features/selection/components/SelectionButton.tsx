@@ -1,13 +1,17 @@
 'use client';
 
 import { memo } from 'react';
+import { useTranslations } from 'next-intl';
+
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-import { useTranslations } from 'next-intl';
-import { toggleSelection, useIsSelected, useSelectionWritable } from './selectionStore';
-import type { SelectionCategory } from './selectionDocument';
+
+import { useIsSelected, useSelectionWritable } from '@/features/selection/storage/hooks';
+import { toggleSelection } from '@/features/selection/storage/store';
+
+import type { SelectionCategory } from '@/domain/selection/types';
 
 type Props = { id: string; title: string; category: SelectionCategory };
 

@@ -4,8 +4,10 @@ import ExtensionIcon from '@mui/icons-material/Extension';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import { useTranslations } from 'next-intl';
+
 import type { SvgIconComponent } from '@mui/icons-material';
-import type { SelectionCategory } from './selectionDocument';
+import type { SelectionCategory } from "@/domain/selection/types";
+
 const icons: Record<SelectionCategory, SvgIconComponent> = {
     games: SportsEsportsIcon, 
     dlcs: ExtensionIcon, 
