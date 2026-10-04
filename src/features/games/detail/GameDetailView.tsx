@@ -14,9 +14,10 @@ interface GameDetailViewProps {
     onClose: () => void;
     showVoteSection?: boolean;
     showRelatedGames?: boolean;
+    selectable?: boolean;
 }
 
-export default function GameDetailView({ game, onClose, category, ...contentProps }: GameDetailViewProps) {
+export default function GameDetailView({ game, onClose, category, selectable = true, ...contentProps }: GameDetailViewProps) {
     const [open, setOpen] = useState(true);
 
     function handleClose() {
@@ -26,7 +27,7 @@ export default function GameDetailView({ game, onClose, category, ...contentProp
 
     return (
         <Dialog fullScreen open={open} onClose={handleClose}>
-            <GameToolbar category={category} game={game} onClose={handleClose} />
+            <GameToolbar category={category} game={game} onClose={handleClose} selectable={selectable} />
             <GameDetailContent game={game} {...contentProps} />
         </Dialog>
     );

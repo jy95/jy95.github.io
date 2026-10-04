@@ -32,6 +32,11 @@ describe('GameToolbar', () => {
         pushMock.mockReset();
     });
 
+    it('hides the selection button when selection is disabled', () => {
+        render(<GameToolbar game={baseCard} onClose={vi.fn()} selectable={false} />);
+        expect(screen.queryByRole('button', { name: /selection/i })).not.toBeInTheDocument();
+    });
+
     it('renders the game title', () => {
         render(<GameToolbar game={baseCard} onClose={vi.fn()} />);
         expect(screen.getByText('Some Game')).toBeInTheDocument();
