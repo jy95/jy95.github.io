@@ -28,6 +28,7 @@ export function useNavigateToRandomGame(): UseNavigateToRandomGameResult {
     const [isPending, setIsPending] = useState(false);
 
     const abortControllerRef = useRef<AbortController | null>(null);
+    // biome-ignore lint/correctness/useExhaustiveDependencies: Locale and pathname changes must cancel the active request, even though cleanup does not read them.
     useEffect(() => () => {
         abortControllerRef.current?.abort();
         abortControllerRef.current = null;
