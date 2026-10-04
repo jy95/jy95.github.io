@@ -4,9 +4,9 @@ import { MIN_RELEASE_YEAR, getMaxReleaseYear, getReleaseYearRange, releaseYear, 
 
 describe('game filter conversion', () => {
     it('canonicalizes without mutating frozen arrays', () => {
-        const genres = Object.freeze([10, 2, 10, 1]);
-        expect(canonicalizeGenres(genres)).toEqual([1, 2, 10]);
-        expect(genres).toEqual([10, 2, 10, 1]);
+        const genres = Object.freeze([10, -2, Number.MAX_SAFE_INTEGER, -10, 2, -2, Number.MIN_SAFE_INTEGER, 0, 10]);
+        expect(canonicalizeGenres(genres)).toEqual([Number.MIN_SAFE_INTEGER, -10, -2, 0, 2, 10, Number.MAX_SAFE_INTEGER]);
+        expect(genres).toEqual([10, -2, Number.MAX_SAFE_INTEGER, -10, 2, -2, Number.MIN_SAFE_INTEGER, 0, 10]);
     });
 
     it('omits empty and nil fields and defaults to unrestricted API order', () => {
@@ -26,7 +26,34 @@ describe('game filter conversion', () => {
     it('ignores invalid numeric values, unknown keys and unsupported sorts', () => {
         const params = new URLSearchParams('platform=12abc&genres=2&genres=-1&genres=1.5&genres=&genres=NaN&genres=9007199254740992&genres=02&sort=bogus&page=2');
         expect(searchParamsToFilters(params)).toEqual({ genres: [2] });
-        expect(normalizeGameFilters({ platform: Infinity, genres: [NaN, -1, 1.5, 2] })).toEqual({ genres: [2] });
+        expect(normalizeGameFilters({ platform: Infinity, genres: [NaN, -1, 1.5, 2] })).toEqual({ genres: [-1, 2] });
+    });
+
+    it.each([Number.MIN_SAFE_INTEGER, -1, 0, Number.MAX_SAFE_INTEGER])('accepts safe-integer ID %s in direct normalization', id => {
+        expect(normalizeGameFilters({ platform: id, genres: [id, id] })).toEqual({ platform: id, genres: [id] });
+    });
+
+    it.each([NaN, Infinity, -Infinity, 1.5, -1.5, Number.MIN_SAFE_INTEGER - 1, Number.MAX_SAFE_INTEGER + 1])('rejects invalid ID %s in direct normalization', id => {
+        expect(normalizeGameFilters({ platform: id, genres: [id] })).toEqual({});
+    });
+
+    it('normalizes signed IDs without mutating the input filters or genres', () => {
+        const genres = [2, -1, 2, -10, -1];
+        Object.freeze(genres);
+        const filters = Object.freeze({ platform: -2, genres });
+        expect(normalizeGameFilters(filters)).toEqual({ platform: -2, genres: [-10, -1, 2] });
+        expect(filters).toEqual({ platform: -2, genres: [2, -1, 2, -10, -1] });
+    });
+
+    it('rejects negative IDs when parsing URL parameters', () => {
+        const params = new URLSearchParams('platform=-1&genres=-2&genres=2');
+        expect(searchParamsToFilters(params)).toEqual({ genres: [2] });
+    });
+
+    it('serializes negative IDs into URL parameters', () => {
+        const params = filtersToSearchParams({ platform: -1, genres: [-2, -10, -2, 2] });
+        expect(params.get('platform')).toBe('-1');
+        expect(params.getAll('genres')).toEqual(['-10', '-2', '2']);
     });
 
     it('uses the first scalar value and is idempotent', () => {
@@ -35,6 +62,24 @@ describe('game filter conversion', () => {
         expect(filters).toEqual({ title: 'first', platform: 2 });
         expect(normalizeGameFilters(normalizeGameFilters(filters))).toEqual(filters);
         expect(params.getAll('title')).toEqual(['first', 'second']);
+    });
+});
+
+describe('release year extraction', () => {
+    it.each([
+        ['2020-02-30', 2020],
+        ['2020suffix', 2020],
+        ['2020', 2020],
+        ['12345-01-01', 12345],
+        ['0000-01-01', 0],
+        [undefined, undefined],
+        ['', undefined],
+        ['year2020', undefined],
+        [' 2020-01-01', undefined],
+        ['+2020-01-01', undefined],
+        ['-2020-01-01', undefined],
+    ])('extracts the leading digits from %s as %s', (date, expected) => {
+        expect(releaseYear(date)).toBe(expected);
     });
 });
 
