@@ -11,7 +11,9 @@ import type {
     SelectionCategory,
 } from "@/domain/selection/types";
 
-export const SELECTION_STORAGE_KEY = 'gamespassionfr.selection.v1';
+import { readSelection, writeSelection, SELECTION_STORAGE_KEY } from './persistence';
+
+export { SELECTION_STORAGE_KEY } from './persistence';
 
 export type SelectionSnapshot = {
     document: SelectionDocument;
@@ -31,15 +33,6 @@ export const SERVER_SNAPSHOT: SelectionSnapshot = {
 let snapshot = SERVER_SNAPSHOT;
 const listeners = new Set<() => void>();
 
-const parse = (raw: string | null) => {
-    if (raw === null) return { document: emptySelection(), invalid: false };
-    try {
-        const value: unknown = JSON.parse(raw);
-        if (isSelectionDocument(value)) return { document: value, invalid: false };
-    } catch { /* Invalid data requires an explicit reset. */ }
-    return { document: emptySelection(), invalid: true };
-};
-
 function publish(document: SelectionDocument, storageAvailable: boolean, invalid = snapshot.invalid) {
     const unchanged =
         snapshot.hydrated &&
@@ -56,14 +49,13 @@ function publish(document: SelectionDocument, storageAvailable: boolean, invalid
 
 /** Reads storage; false (and storageAvailable=false) when storage is blocked. */
 function load(): boolean {
-    try {
-        const stored = parse(window.localStorage.getItem(SELECTION_STORAGE_KEY));
-        publish(stored.document, true, stored.invalid);
-        return true;
-    } catch {
+    const stored = readSelection();
+    if (!stored.ok) {
         publish(snapshot.document, false);
         return false;
     }
+    publish(stored.document, true, stored.invalid);
+    return true;
 }
 
 function onStorage(event: StorageEvent) {
@@ -92,14 +84,12 @@ function mutate(update: (document: SelectionDocument) => SelectionDocument, rese
     if (!load()) return false;
     if (snapshot.invalid && !reset) return false;
     const next = update(snapshot.document);
-    try {
-        window.localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(next));
-        publish(next, true, false);
-        return true;
-    } catch {
+    if (!writeSelection(next)) {
         publish(snapshot.document, false);
         return false;
     }
+    publish(next, true, false);
+    return true;
 }
 
 export const toggleSelection = ({ id, category }: { id: string; category: SelectionCategory }) =>
