@@ -91,3 +91,16 @@ describe("RelatedGames", () => {
         expect(cardGridMock).not.toHaveBeenCalled();
     });
 });
+
+it('resets pagination when recommendation data changes and tolerates empty data', () => {
+    getRelatedGamesQueryMock.mockReturnValue({ data: { target: results } });
+    const { rerender } = render(<RelatedGames gameId="target" />);
+    fireEvent.click(screen.getByRole('button', { name: 'common.loadMore' }));
+    getRelatedGamesQueryMock.mockReturnValue({ data: { target: [...results] } });
+    rerender(<RelatedGames gameId="target" />);
+    expect(cardGridMock).toHaveBeenLastCalledWith(expect.objectContaining({ items: results.slice(0, 4) }));
+    getRelatedGamesQueryMock.mockReturnValue({ data: {} });
+    rerender(<RelatedGames gameId="target" />);
+    rerender(<RelatedGames gameId="target" />);
+    expect(screen.queryByTestId('card-grid')).not.toBeInTheDocument();
+});

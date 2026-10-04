@@ -3,7 +3,7 @@
  * Omits padding characters ('=') and replaces '+' with '-' and '/' with '_'.
  */
 export const toBase64Url = (bytes: Uint8Array): string =>
-  btoa(String.fromCharCode(...bytes))
+  btoa(Array.from(bytes, byte => String.fromCharCode(byte)).join(''))
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
     .replace(/=+$/, '');
@@ -15,9 +15,9 @@ export const toBase64Url = (bytes: Uint8Array): string =>
  * @throws {Error} Throws 'invalid' if the input string contains invalid characters
  *                 or has an illegal Base64 length (modulus 4 === 1).
  */
-export function fromBase64Url(text: string): Uint8Array {
+export function fromBase64Url(text: string): Uint8Array<ArrayBuffer> {
   // Validate URL-safe Base64 characters and illegal length (a valid Base64 string never has length % 4 === 1)
-  if (!/^[A-Za-z0-9_-]*$/.test(text) || text.length % 4 === 1) {
+  if (!/^[A-Za-z0-9_-]+$/.test(text) || text.length % 4 === 1) {
     throw new Error('invalid');
   }
 
@@ -25,5 +25,7 @@ export function fromBase64Url(text: string): Uint8Array {
   const base64 = text.replace(/-/g, '+').replace(/_/g, '/');
   const padded = base64.padEnd(base64.length + ((4 - (base64.length % 4)) % 4), '=');
 
-  return Uint8Array.from(atob(padded), c => c.charCodeAt(0));
+  const bytes = Uint8Array.from(atob(padded), c => c.charCodeAt(0));
+  if (toBase64Url(bytes) !== text) throw new Error('invalid');
+  return bytes;
 }

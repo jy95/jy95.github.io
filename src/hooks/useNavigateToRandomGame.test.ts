@@ -4,10 +4,11 @@ import { renderHook, act, waitFor } from '@testing-library/react';
 
 const pushMock = vi.fn();
 let currentLocale = 'en';
+let currentPathname = '/games/random';
 
 vi.mock('@/i18n/routing', () => ({
     useRouter: () => ({ push: pushMock }),
-    usePathname: () => '/games/random',
+    usePathname: () => currentPathname,
 }));
 
 vi.mock('next-intl', () => ({
@@ -26,6 +27,7 @@ describe('useNavigateToRandomGame', () => {
     beforeEach(() => {
         pushMock.mockReset();
         currentLocale = 'en';
+        currentPathname = '/games/random';
     });
 
     afterEach(() => {
@@ -132,4 +134,43 @@ describe('useNavigateToRandomGame', () => {
         expect(pushMock).not.toHaveBeenCalled();
         errSpy.mockRestore();
     });
+
+    it.each(['locale', 'pathname', 'unmount'])('aborts on %s and ignores a late response', async change => {
+        let resolveFetch: (response: Response) => void = () => {};
+        let signal: AbortSignal | undefined;
+        vi.stubGlobal('fetch', vi.fn((_url, options: RequestInit) => {
+            signal = options.signal ?? undefined;
+            return new Promise<Response>(resolve => { resolveFetch = resolve; });
+        }));
+        const { result, rerender, unmount } = renderHook(() => useNavigateToRandomGame());
+        act(() => { result.current.navigateToRandomGame(); result.current.navigateToRandomGame(); });
+        expect(fetch).toHaveBeenCalledTimes(1);
+        if (change === 'unmount') unmount();
+        else {
+            if (change === 'locale') currentLocale = 'fr';
+            else currentPathname = '/games';
+            rerender();
+            expect(result.current.isPending).toBe(false);
+        }
+        expect(signal?.aborted).toBe(true);
+        await act(async () => { resolveFetch(new Response(JSON.stringify({ identifier: 'late', type: 'VIDEO' }))); });
+        expect(pushMock).not.toHaveBeenCalled();
+    });
+
+    it('does not let an older aborted request clear a newer pending request', async () => {
+        const resolvers: ((response: Response) => void)[] = [];
+        vi.stubGlobal('fetch', vi.fn(() => new Promise<Response>(resolve => resolvers.push(resolve))));
+        const { result, rerender } = renderHook(() => useNavigateToRandomGame());
+        act(() => result.current.navigateToRandomGame());
+        currentPathname = '/new-path';
+        rerender();
+        act(() => result.current.navigateToRandomGame());
+        await act(async () => resolvers[0](new Response(JSON.stringify({ identifier: 'old', type: 'VIDEO' }))));
+        expect(result.current.isPending).toBe(true);
+        expect(pushMock).not.toHaveBeenCalled();
+        await act(async () => resolvers[1](new Response(JSON.stringify({ identifier: 'new', type: 'VIDEO' }))));
+        expect(result.current.isPending).toBe(false);
+        expect(pushMock).toHaveBeenCalledOnce();
+    });
+
 });

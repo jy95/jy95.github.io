@@ -21,34 +21,7 @@ import NavigationItem from "./NavigationItem";
 import { useAppContext } from "../provider/useAppContext";
 import type { NavigationItem as Item } from "../types";
 
-/**
- * Shared sx styles for popover child items — identical colour rules
- * to NavigationListItemButton in NavigationItem.tsx, but as sx prop
- * to preserve polymorphic component typing.
- */
-const popoverListItemButtonSx = {
-  borderRadius: 2,
-  "& .MuiSvgIcon-root": {
-    color: (theme: any) => (theme.vars ?? theme).palette.action.active,
-  },
-  "& .MuiAvatar-root": {
-    backgroundColor: (theme: any) => (theme.vars ?? theme).palette.action.active,
-  },
-  "&.Mui-selected": {
-    "& .MuiListItemIcon-root": {
-      color: (theme: any) => (theme.vars ?? theme).palette.primary.dark,
-    },
-    "& .MuiTypography-root": {
-      color: (theme: any) => (theme.vars ?? theme).palette.primary.dark,
-    },
-    "& .MuiSvgIcon-root": {
-      color: (theme: any) => (theme.vars ?? theme).palette.primary.dark,
-    },
-    "& .MuiTouchRipple-child": {
-      backgroundColor: (theme: any) => (theme.vars ?? theme).palette.primary.dark,
-    },
-  },
-} as const;
+import { navigationListItemButtonSx } from "./navigationStyles";
 
 function hasChildren(item: Item): item is Item & { children: Item[] } {
   return !!item.children?.length;
@@ -116,7 +89,7 @@ export default function NavigationGroup({
                 // defined with.
                 href={childPath as Href}
                 selected={childSelected}
-                sx={{ ...popoverListItemButtonSx, px: 1.4, height: 48 }}
+                sx={{ ...navigationListItemButtonSx, px: 1.4, height: 48 }}
               >
                 <Box sx={{ display: "flex" }}>
                   <ListItemIcon
