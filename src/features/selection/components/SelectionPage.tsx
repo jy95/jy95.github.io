@@ -19,7 +19,7 @@ export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry
 
     return (
         <Stack spacing={2}>
-            <SelectionHeader shared={selection.status === 'error' || selection.shared} />
+            <SelectionHeader shared={selection.shared} />
             {selection.status === 'error' ? (
                 <SelectionNotices
                     storageAvailable={selection.storageAvailable}

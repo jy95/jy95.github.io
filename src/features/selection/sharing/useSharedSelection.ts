@@ -18,13 +18,16 @@ export function useSharedSelection(param: string | null): SharedState {
 
   useEffect(() => {
     if (!param) return;
+    let active = true;
 
     decodeSelection(param).then(doc => {
+      if (!active) return;
       setState({
         param,
         data: doc ? { status: 'ready', document: doc } : ERROR,
       });
     });
+    return () => { active = false; };
   }, [param]);
 
   if (!param) return NONE;

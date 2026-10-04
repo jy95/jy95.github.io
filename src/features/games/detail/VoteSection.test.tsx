@@ -84,13 +84,11 @@ describe('VoteSection', () => {
     });
 
     it('calls the toggle mutation with slug/userId/hasVoted once the user is logged in', async () => {
-        getUserMock.mockResolvedValue({ data: { user: { id: 'user-1' } } });
-        render(<VoteSection slug="my-game" />);
-
-        // Wait for the component to establish auth state
-        await waitFor(() => {
-            expect(getUserMock).toHaveBeenCalled();
+        onAuthStateChangeMock.mockImplementation(callback => {
+            callback('INITIAL_SESSION', { user: { id: 'user-1' } });
+            return { data: { subscription: { unsubscribe: vi.fn() } } };
         });
+        render(<VoteSection slug="my-game" />);
 
         const chip = await screen.findByText('5 • Vote');
         fireEvent.click(chip);
@@ -102,7 +100,10 @@ describe('VoteSection', () => {
     });
 
     it('passes hasVoted: true to the toggle mutation when the user already voted', async () => {
-        getUserMock.mockResolvedValue({ data: { user: { id: 'user-1' } } });
+        onAuthStateChangeMock.mockImplementation(callback => {
+            callback('INITIAL_SESSION', { user: { id: 'user-1' } });
+            return { data: { subscription: { unsubscribe: vi.fn() } } };
+        });
         getMyVotesMock.mockReturnValue({ data: ['my-game'] });
         render(<VoteSection slug="my-game" />);
 

@@ -6,7 +6,7 @@ import * as sharing from '../../sharing/sharing';
 import * as store from '../../storage/store';
 import { emptySelection } from '@/domain/selection/operations';
 
-vi.mock('@/i18n/routing', () => ({ getPathname: () => '/en/selection' }));
+vi.mock('@/i18n/routing', () => ({ getPathname: () => '/en/selection', Link: ({ children, href }: { children: React.ReactNode; href: string }) => <a href={href}>{children}</a> }));
 const document = { ...emptySelection(), games: ['visible', 'missing'], backlog: ['hidden'] };
 const clipboard = Object.getOwnPropertyDescriptor(navigator, 'clipboard');
 afterEach(() => {
@@ -62,4 +62,10 @@ it('requires clear confirmation and resets failed feedback on reopening', async 
   clear.mockReturnValue(true);
   fireEvent.click(within(screen.getByRole('dialog')).getByRole('button', { name: messages.selection.clear }));
   await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+});
+
+it.each([false, true])('shows exactly one recovery clear action only for personal selections (shared=%s)', shared => {
+  const empty = emptySelection();
+  render(<NextIntlClientProvider locale="en" messages={messages}><SelectionActions shared={shared} invalid document={empty} personal={empty} /></NextIntlClientProvider>);
+  expect(screen.queryAllByRole('button', { name: messages.selection.clear })).toHaveLength(shared ? 0 : 1);
 });

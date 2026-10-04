@@ -9,19 +9,17 @@ import { ShareSelectionAction } from './ShareSelectionAction';
 
 type SelectionActionsProps = {
   shared: boolean;
+  invalid?: boolean;
   document: SelectionDocument;
   personal: SelectionDocument;
 };
 
 /** `document` is the full displayed selection, so sharing ignores display filters. */
-export function SelectionActions({ shared, document, personal }: SelectionActionsProps) {
+export function SelectionActions({ shared, invalid = false, document, personal }: SelectionActionsProps) {
   return (
     <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: 'wrap' }}>
-      {shared ? (
-        <ImportSelectionAction document={document} personal={personal} />
-      ) : (
-        !isEmpty(personal) && <ClearSelectionAction />
-      )}
+      {shared && <ImportSelectionAction document={document} personal={personal} />}
+      {!shared && (invalid || !isEmpty(personal)) && <ClearSelectionAction />}
       {!isEmpty(document) && <ShareSelectionAction document={document} />}
     </Stack>
   );

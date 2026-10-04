@@ -15,7 +15,7 @@ vi.mock('@/features/games/components/CardGrid', () => ({
 
 import CompanyDetail from './page';
 
-const game = (id: string, title: string, duration: string, tierCategory: string) => ({ id, title, duration, tierCategory });
+const game = (id: string, title: string, duration: string | undefined, tierCategory: string) => ({ id, title, duration, tierCategory });
 const company = {
     id: 1, name: 'Capcom', imagePath: '/companies/1/cover.webp',
     developerGames: [game('b', 'Bravo', '01:00:00', 'tier_good'), game('a', 'Alpha', '03:00:00', 'tier_bad')],
@@ -91,4 +91,25 @@ describe('CompanyDetail', () => {
         fireEvent.change(screen.getByLabelText('companies.sort.label'), { target: { value: 'titleDesc' } });
         expect(screen.getByTestId('card-grid')).toHaveAttribute('data-ids', 'a,b');
     });
+    it('sorts missing durations as zero and retains ascending title tie-breakers', async () => {
+        await renderDetail({ ...company, developerGames: [game('b', 'Bravo', undefined, 'tier_good'), game('a', 'Alpha', undefined, 'tier_good'), game('c', 'Charlie', '01:00:00', 'tier_good')], publisherGames: [] });
+        fireEvent.change(screen.getByLabelText('companies.sort.label'), { target: { value: 'durationAsc' } });
+        expect(screen.getByTestId('card-grid')).toHaveAttribute('data-ids', 'a,b,c');
+        fireEvent.change(screen.getByLabelText('companies.sort.label'), { target: { value: 'durationDesc' } });
+        expect(screen.getByTestId('card-grid')).toHaveAttribute('data-ids', 'c,a,b');
+    });
+
+    it('resets pagination when company data changes', async () => {
+        const many = Array.from({ length: 14 }, (_, index) => game(String(index), `Game ${index}`, '01:00:00', 'tier_good'));
+        const data = { ...company, developerGames: many, publisherGames: [] };
+        useGetCompanyQueryMock.mockReturnValue({ data, isLoading: false });
+        const params = Promise.resolve({ id: '1' });
+        const view = await act(async () => render(<CompanyDetail params={params} />));
+        fireEvent.click(screen.getByText('common.loadMore'));
+        expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(14);
+        useGetCompanyQueryMock.mockReturnValue({ data: { ...data, developerGames: [...many] }, isLoading: false });
+        await act(async () => view.rerender(<CompanyDetail params={params} />));
+        expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(12);
+    });
+
 });

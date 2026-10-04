@@ -13,13 +13,13 @@ export function useSelectionDocument() {
     }
 
     if (sharedState.status === 'error') {
-        return { status: 'error', storageAvailable: personal.storageAvailable } as const;
+        return { status: 'error', shared: true, storageAvailable: personal.storageAvailable } as const;
     }
 
     const shared = sharedState.status === 'ready';
     return {
         status: 'ready',
-        document: sharedState.status === 'ready' ? sharedState.document : personal.document,
+        document: shared ? sharedState.document : personal.document,
         personal: personal.document,
         shared,
         storageAvailable: personal.storageAvailable,

@@ -39,3 +39,20 @@ describe('resolveSelection', () => {
     expect(resolveSelection(entries, document)).toEqual({ document, entries, missing: [] });
     expect(document).toEqual(before);
  });
+
+it('preserves document identity and category/identifier order', () => {
+    const game = { id: 'same', title: 'Same', imagePath: '/cover.webp' };
+    const games: SelectionEntry = { source: 'published', category: 'games', selectionId: 'same', game: { ...game, url: 'same', url_type: 'VIDEO' } };
+    const backlog: SelectionEntry = { source: 'backlog', category: 'backlog', selectionId: 'same', game };
+    const document: SelectionDocument = { games: ['missing-2', 'same', 'missing-1'], dlcs: ['dlc'], backlog: ['same', 'absent'], planning: ['planned'] };
+    const resolved = resolveSelection([backlog, games], document);
+    expect(resolved.document).toBe(document);
+    expect(resolved.entries).toEqual([games, backlog]);
+    expect(resolved.missing).toEqual([
+        { category: 'games', selectionId: 'missing-2' },
+        { category: 'games', selectionId: 'missing-1' },
+        { category: 'backlog', selectionId: 'absent' },
+        { category: 'dlcs', selectionId: 'dlc' },
+        { category: 'planning', selectionId: 'planned' },
+    ]);
+});
