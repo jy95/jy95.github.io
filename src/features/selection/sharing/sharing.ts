@@ -1,4 +1,5 @@
-import { compress, decompress, fromBase64Url, toBase64Url } from './encoding';
+import { fromBase64Url, toBase64Url } from './encoding';
+import { compress, decompress } from './compression';
 import { isSelectionDocument } from "@/domain/selection/validation";
 
 import type { SelectionDocument } from "@/domain/selection/types";
