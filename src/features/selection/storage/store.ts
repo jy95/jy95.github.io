@@ -32,7 +32,7 @@ function publish(document: SelectionDocument, storageAvailable: boolean, invalid
     if (isUnchanged) return;
 
     snapshot = { document, hydrated: true, storageAvailable, invalid };
-    listeners.forEach(listener => listener());
+    listeners.forEach(listener => { listener(); });
 }
 
 function load(): boolean {
@@ -75,7 +75,7 @@ function mutate(update: (doc: SelectionDocument) => SelectionDocument, reset = f
     const next = update(snapshot.document);
     const success = writeSelection(next);
 
-    publish(success ? next : snapshot.document, success, success ? false : false);
+    publish(success ? next : snapshot.document, success, false);
     return success;
 }
 
