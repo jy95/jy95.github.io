@@ -20,8 +20,12 @@ export const toBase64Url = (bytes: Uint8Array<ArrayBuffer>): string =>
         .replaceAll('/', '_')
         .replace(/=+$/, '');
 
-export const fromBase64Url = (text: string): Uint8Array<ArrayBuffer> =>
-    Uint8Array.from(atob(text.replaceAll('-', '+').replaceAll('_', '/')), char => char.charCodeAt(0));
+export function fromBase64Url(text: string): Uint8Array<ArrayBuffer> {
+    if (!/^[A-Za-z0-9_-]+$/.test(text) || text.length % 4 === 1) throw new Error('invalid');
+    const bytes = Uint8Array.from(atob(text.replaceAll('-', '+').replaceAll('_', '/')), char => char.charCodeAt(0));
+    if (toBase64Url(bytes) !== text) throw new Error('invalid');
+    return bytes;
+}
 
 export async function compress(bytes: Uint8Array<ArrayBuffer>): Promise<Uint8Array<ArrayBuffer>> {
     return run(bytes, new CompressionStream(FORMAT));

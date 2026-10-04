@@ -28,13 +28,19 @@ const baseBacklog: BacklogEntry = {
 };
 
 describe('GameToolbar', () => {
+    afterEach(() => vi.restoreAllMocks());
     beforeEach(() => {
         pushMock.mockReset();
     });
 
     it('hides the selection button when selection is disabled', () => {
+        const write = vi.spyOn(Storage.prototype, 'setItem');
         render(<GameToolbar game={baseCard} onClose={vi.fn()} selectable={false} />);
-        expect(screen.queryByRole('button', { name: /selection/i })).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: 'selection.add:{"title":"Some Game"}' })).not.toBeInTheDocument();
+        expect(screen.queryByTestId('BookmarkBorderIcon')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('BookmarkIcon')).not.toBeInTheDocument();
+        fireEvent.click(screen.getByLabelText('gameDetail.close'));
+        expect(write).not.toHaveBeenCalled();
     });
 
     it('renders the game title', () => {

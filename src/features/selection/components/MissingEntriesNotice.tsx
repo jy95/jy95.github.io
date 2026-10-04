@@ -19,7 +19,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 // Others
-import { toggleSelection } from '@/features/selection/storage/store';
+import { removeSelection } from '@/features/selection/storage/store';
 
 // Types
 import type { SelectionIdentifier } from '@/domain/selection/types';
@@ -32,6 +32,7 @@ type MissingEntriesNoticeProps = {
 
 export function MissingEntriesNotice({ missing, shared }: MissingEntriesNoticeProps) {
   const t = useTranslations('selection');
+  const [failed, setFailed] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
   if (missing.length === 0) return null;
@@ -51,6 +52,7 @@ export function MissingEntriesNotice({ missing, shared }: MissingEntriesNoticePr
       }
     >
       <Stack spacing={1}>
+        {failed && <Alert severity="error">{t('storageUnavailable')}</Alert>}
         <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
           {t('unavailable', { count: missing.length })}
         </Typography>
@@ -68,7 +70,7 @@ export function MissingEntriesNotice({ missing, shared }: MissingEntriesNoticePr
                         size="small"
                         color="error"
                         startIcon={<DeleteIcon fontSize="small" />}
-                        onClick={() => toggleSelection({ category: item.category, id: item.selectionId })}
+                        onClick={() => setFailed(!removeSelection({ category: item.category, id: item.selectionId }))}
                       >
                         {t('remove', { title: item.selectionId })}
                       </Button>

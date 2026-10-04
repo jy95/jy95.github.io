@@ -14,6 +14,7 @@ import { detailSections } from '@/domain/games/details';
 import { resolveSelection } from '@/domain/selection/resolution';
 import { usePersonalSelection } from '@/features/selection/storage/hooks';
 import { useSharedSelection } from '@/features/selection/sharing/useSharedSelection';
+import { ClearSelectionAction } from './actions/ClearSelectionAction';
 import { SelectionActions } from './actions/SelectionActions';
 import { SelectionGrid } from './grid/SelectionGrid';
 import { MissingEntriesNotice } from './MissingEntriesNotice';
@@ -51,7 +52,7 @@ function Notices({ storageAvailable, invalid, count, missing, shared }: NoticesP
     return (
         <>
             {!storageAvailable && <Alert severity="warning">{t('storageUnavailable')}</Alert>}
-            {invalid && <Alert severity="error">{t('invalid')}</Alert>}
+            {invalid && <Alert severity="error">{t(shared ? 'invalid' : 'storageInvalid')}</Alert>}
             <Typography role="status" aria-live="polite">
                 {t('count', { count })}
             </Typography>
@@ -66,6 +67,7 @@ type SelectionContentProps = {
     personal: SelectionDocument;
     shared: boolean;
     storageAvailable: boolean;
+    invalid: boolean;
 };
 
 function SelectionContent({
@@ -74,6 +76,7 @@ function SelectionContent({
     personal,
     shared,
     storageAvailable,
+    invalid,
 }: SelectionContentProps) {
     const [detail, setDetail] = useState<SelectionEntry | null>(null);
 
@@ -86,12 +89,13 @@ function SelectionContent({
         <>
             <Notices
                 storageAvailable={storageAvailable}
-                invalid={false}
+                invalid={invalid}
                 count={resolved.entries.length}
                 missing={resolved.missing}
                 shared={shared}
             />
 
+            {invalid && !shared && <ClearSelectionAction />}
             <SelectionActions
                 shared={shared}
                 document={resolved.document}
@@ -154,6 +158,7 @@ export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry
                     personal={personal.document}
                     shared={shared}
                     storageAvailable={personal.storageAvailable}
+                    invalid={!shared && personal.invalid}
                 />
             )}
         </Stack>

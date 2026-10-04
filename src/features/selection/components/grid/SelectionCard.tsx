@@ -9,14 +9,15 @@ import type { SelectionEntry } from "@/domain/selection/types";
 
 type SelectionCardProps = {
   entry: SelectionEntry;
+  selectable?: boolean;
   onDetail: (entry: SelectionEntry) => void;
 };
 
-export function SelectionCard({ entry, onDetail }: SelectionCardProps) {
+export function SelectionCard({ entry, onDetail, selectable = true }: SelectionCardProps) {
   const badge = <SelectionKindBadge category={entry.category} />;
 
   if (entry.source === 'published') {
-    return <CardEntry category={entry.category} game={entry.game} badge={badge} />;
+    return <CardEntry selectable={selectable} category={entry.category} game={entry.game} badge={badge} />;
   }
 
   return (
@@ -26,7 +27,7 @@ export function SelectionCard({ entry, onDetail }: SelectionCardProps) {
       onClick={() => onDetail(entry)}
       overlayPersistent
       overlaySlot={game => <GameCardOverlay game={game} />}
-      actionsSlot={game => (
+      actionsSlot={game => selectable && (
         <SelectionButton id={game.id} category={entry.category} title={game.title} />
       )}
     />
