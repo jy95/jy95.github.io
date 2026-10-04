@@ -147,3 +147,42 @@ it('keeps personal category controls independent when identifiers collide', () =
     expect(getSelectionSnapshot().document).toEqual({ ...emptySelection(), dlcs: ['same'] });
     expect(screen.getByRole('button', { name: 'Remove Expansion from my selection' })).toHaveAttribute('aria-pressed', 'true');
 });
+
+it('restores the personal document after leaving a shared decode error', async () => {
+    const personal = { ...emptySelection(), games: ['same', 'missing'] };
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(personal));
+    navigation.query = 'entries=!!!';
+    const view = mount();
+    await screen.findByText(messages.selection.invalid);
+    navigation.query = '';
+    view.rerender(<NextIntlClientProvider locale="en" messages={messages}><SelectionPage catalogue={catalogue} /></NextIntlClientProvider>);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(messages.selection.title);
+    expect(screen.getByRole('button', { name: 'Remove Alpha from my selection' })).toBeInTheDocument();
+    expect(screen.queryByText(messages.selection.invalid)).not.toBeInTheDocument();
+    expect(getSelectionSnapshot().document).toEqual(personal);
+});
+
+it('presents an empty shared document and missing notices without personal removal controls', async () => {
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['same'] }));
+    navigation.query = `entries=${await sharing.encodeSelection({ ...emptySelection(), backlog: ['ghost'] })}`;
+    const write = vi.spyOn(Storage.prototype, 'setItem');
+    mount();
+    await screen.findByText(messages.selection.sharedEmpty);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(messages.selection.sharedTitle);
+    expect(screen.getByRole('status')).toHaveTextContent('0 selected items');
+    fireEvent.click(screen.getByRole('button', { name: messages.selection.categories.all }));
+    expect(await screen.findByText('ghost')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Remove ghost from my selection' })).not.toBeInTheDocument();
+    expect(write).not.toHaveBeenCalled();
+});
+
+it('keeps personal detail selection writable and closes the detail presentation', async () => {
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), backlog: ['same'] }));
+    mount();
+    fireEvent.click(screen.getByRole('img', { name: 'Waiting' }).closest('button')!);
+    const dialog = await screen.findByRole('dialog');
+    expect(within(dialog).getByRole('button', { name: 'Remove Waiting from my selection' })).toBeInTheDocument();
+    fireEvent.click(within(dialog).getByRole('button', { name: messages.gameDetail.close }));
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+    expect(getSelectionSnapshot().document.backlog).toEqual(['same']);
+});

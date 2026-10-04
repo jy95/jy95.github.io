@@ -1,0 +1,36 @@
+{
+  "stage": 1,
+  "baselineCommit": "c0b0cec",
+  "priorPullRequests": {
+    "4000": "Not identifiable in available local history; supplied rewrite structures are present.",
+    "4001": "Not identifiable in available local history; supplied rewrite structures are present."
+  },
+  "aggregateFileComplexity": "No project metric defined. Clarification requested; no substitute metric chosen. Compliance remains unresolved.",
+  "remainingFunctionViolations": [],
+  "changedSourceMaxFunctionComplexity": {
+    "SelectionPage.tsx": {
+      "before": 7,
+      "after": 4
+    },
+    "useSelectionDocument.ts": {
+      "before": null,
+      "after": 5
+    },
+    "SelectionNotices.tsx": {
+      "before": "inline Notices: 4",
+      "after": 4
+    },
+    "SelectionDetails.tsx": {
+      "before": "inline SelectionContent: 4",
+      "after": 2
+    }
+  },
+  "validation": {
+    "focusedTests": "76 passed across 10 files",
+    "typeCheck": "npx tsc --noEmit passed",
+    "scopedLint": "Blocked: ESLint 10.11.0 React plugin throws contextOrFilename.getFilename is not a function. Reproduced before edits; no rules disabled.",
+    "build": "npm run build compiled, type checked and generated all 470 pages.",
+    "complexity": "Core classic ESLint complexity rule measured independently using installed TypeScript parser. reports/measure-selection-complexity.mjs records every function and exits nonzero for scores > 8."
+  },
+  "nextStage": "Stage 2 requires user approval."
+}
