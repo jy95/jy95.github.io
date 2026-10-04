@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { useGetSortedCategoriesQuery } from "@/redux/services/tierListAPI";
 

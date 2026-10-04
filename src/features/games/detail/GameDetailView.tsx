@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import Dialog from '@mui/material/Dialog';
 import GameToolbar from "./GameToolbar";

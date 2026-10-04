@@ -1,5 +1,3 @@
-'use client';
-
 import { useTranslations } from 'next-intl';
 import AppsIcon from '@mui/icons-material/Apps';
 import GamesFilters from '@/app/[locale]/games/_client/GamesFilters';

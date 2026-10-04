@@ -1,5 +1,3 @@
-"use client";
-
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
 import PeopleIcon from "@mui/icons-material/People";

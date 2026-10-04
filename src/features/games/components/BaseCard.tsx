@@ -1,5 +1,3 @@
-"use client";
-
 // UI MUI
 import Card from "@mui/material/Card";
 import CardActionArea from '@mui/material/CardActionArea';
