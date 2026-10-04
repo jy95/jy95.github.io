@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { useState, type ComponentProps } from 'react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import en from '../../../messages/en.json';
-import SelectionPage from './SelectionPage';
+import SelectionPage from './components/SelectionPage';
 import { emptySelection, type SelectionDocument } from './selectionDocument';
 import { SELECTION_STORAGE_KEY, getSelectionSnapshot } from './selectionStore';
 import { decodeSelection, encodeSelection } from './sharing';

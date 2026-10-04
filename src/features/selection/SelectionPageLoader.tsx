@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useGetSelectionCatalogueQuery } from "@/redux/services/selectionAPI";
 import { QueryBoundary } from "@/components/common/QueryBoundary";
 import SkeletonGrid from "@/components/common/SkeletonGrid";
-import SelectionPage from "./SelectionPage";
+import SelectionPage from "./components/SelectionPage";
 import { usePersonalSelection } from "./selectionStore";
 import { isEmpty } from "./selectionDocument";
 import type { SelectionEntry } from "./catalogue";

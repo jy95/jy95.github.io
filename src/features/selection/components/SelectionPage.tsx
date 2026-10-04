@@ -14,13 +14,14 @@ import Typography from '@mui/material/Typography';
 // Rest
 import { detailSections } from '@/domain/games/details';
 import { resolveSelection } from '@/domain/selection/resolution';
-import { usePersonalSelection } from './storage/hooks';
-import { decodeSelection } from './sharing/sharing';
-import { SelectionActions } from './SelectionActions';
-import { SelectionGrid } from './SelectionGrid';
+import { usePersonalSelection } from '@/features/selection/storage/hooks';
+import { decodeSelection } from '@/features/selection/sharing/sharing';
+import { SelectionActions } from '@/features/selection/SelectionActions';
+import { SelectionGrid } from '@/features/selection/SelectionGrid';
+import { MissingEntriesNotice } from './MissingEntriesNotice';
 
 // Types
-import type { SelectionDocument, SelectionEntry } from '@/domain/selection/types';
+import type { SelectionDocument, SelectionEntry, SelectionIdentifier } from '@/domain/selection/types';
 
 // Heavy (votes/Supabase, related games): load on demand.
 const GameDetailView = lazy(() => import('@/features/games/detail/GameDetailView'));
@@ -77,10 +78,11 @@ type NoticesProps = {
   storageAvailable: boolean;
   invalid: boolean;
   count: number;
-  missingCount: number;
+  missing: SelectionIdentifier[];
+  shared: boolean;
 };
 
-function Notices({ storageAvailable, invalid, count, missingCount }: NoticesProps) {
+function Notices({ storageAvailable, invalid, count, missing, shared }: NoticesProps) {
   const t = useTranslations('selection');
   return (
     <>
@@ -89,9 +91,7 @@ function Notices({ storageAvailable, invalid, count, missingCount }: NoticesProp
       <Typography role="status" aria-live="polite">
         {t('count', { count })}
       </Typography>
-      {missingCount > 0 && (
-        <Alert severity="info">{t('unavailable', { count: missingCount })}</Alert>
-      )}
+      <MissingEntriesNotice missing={missing} shared={shared} />
     </>
   );
 }
@@ -118,7 +118,7 @@ export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry
   const isShared = shared.status !== 'none';
   const currentDocument = resolved?.document ?? personal.document;
   const entries = resolved?.entries ?? [];
-  const missingCount = resolved?.missing ? resolved.missing.length : 0;
+  const missing = resolved?.missing ?? [];
 
   return (
     <Stack spacing={2}>
@@ -127,7 +127,8 @@ export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry
         storageAvailable={personal.storageAvailable}
         invalid={shared.status === 'error'}
         count={entries.length}
-        missingCount={missingCount}
+        missing={missing}
+        shared={isShared}
       />
       <SelectionActions
         shared={isShared}
