@@ -1,5 +1,3 @@
-"use client";
-
 import type { GameFilters } from '@/types/gamesFilters';
 import { useId, useState } from 'react';
 import { useTranslations } from "next-intl";

@@ -1,5 +1,3 @@
-'use client';
-
 import BaseCard from '@/features/games/components/BaseCard';
 import CardEntry from '@/features/games/components/CardEntry';
 import GameCardOverlay from '@/features/games/components/GameCardOverlay';

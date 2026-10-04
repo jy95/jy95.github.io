@@ -1,5 +1,3 @@
-'use client';
-
 import { memo } from 'react';
 import Grid from '@mui/material/Grid';
 import { SelectionCard } from './SelectionCard';

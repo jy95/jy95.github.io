@@ -1,5 +1,3 @@
-"use client";
-
 // Hooks
 import { useTranslations } from "next-intl";
 import { useGetPlatformsQuery } from "@/redux/services/platformsAPI";
