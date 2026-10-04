@@ -49,7 +49,9 @@ function publish(document: SelectionDocument, storageAvailable: boolean, invalid
 
     if (unchanged) return; // keeps the snapshot reference stable
     snapshot = { document, hydrated: true, storageAvailable, invalid };
-    listeners.forEach(listener => listener());
+    listeners.forEach(listener => {
+        listener();
+    });
 }
 
 /** Reads storage; false (and storageAvailable=false) when storage is blocked. */

@@ -1,4 +1,4 @@
-import { SELECTION_CATEGORIES } from './categories';
+import type { SELECTION_CATEGORIES } from './categories';
 import type { GameDetailsResponse } from '@/domain/games/details';
 
 export type SelectionCategory = typeof SELECTION_CATEGORIES[number];
