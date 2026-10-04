@@ -44,6 +44,19 @@ it('removes idempotently even if a stale control repeats removal', () => {
     expect(store.getSelectionSnapshot().document).toEqual({ ...emptySelection(), backlog: ['ghost'] });
 });
 
+it('keeps snapshot references stable across unchanged reads and mutations', () => {
+    store.addSelection({ ...emptySelection(), games: ['missing'] });
+    const saved = store.getSelectionSnapshot();
+    const listener = vi.fn();
+    unsubscribe = store.subscribeSelection(listener);
+    expect(store.getSelectionSnapshot()).toBe(saved);
+    expect(store.addSelection({ ...emptySelection(), games: ['missing'] })).toBe(true);
+    expect(store.removeSelection({ category: 'backlog', id: 'absent' })).toBe(true);
+    window.dispatchEvent(new StorageEvent('storage', { key: store.SELECTION_STORAGE_KEY, storageArea: localStorage }));
+    expect(store.getSelectionSnapshot()).toBe(saved);
+    expect(listener).not.toHaveBeenCalled();
+});
+
 it.each(['getItem', 'setItem'] as const)('reports %s failures without publishing the attempted mutation', method => {
     store.addSelection({ ...emptySelection(), games: ['saved'] });
     vi.spyOn(Storage.prototype, method).mockImplementation(() => { throw new Error('blocked'); });
