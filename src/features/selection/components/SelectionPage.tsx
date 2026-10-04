@@ -1,153 +1,161 @@
 'use client';
 
-// Hooks
-import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
-// MUI
 import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-// Rest
+import { emptySelection } from '@/domain/selection/operations';
 import { detailSections } from '@/domain/games/details';
 import { resolveSelection } from '@/domain/selection/resolution';
 import { usePersonalSelection } from '@/features/selection/storage/hooks';
-import { decodeSelection } from '@/features/selection/sharing/sharing';
-import { SelectionActions } from '@/features/selection/SelectionActions';
-import { SelectionGrid } from '@/features/selection/SelectionGrid';
+import { useSharedSelection } from '@/features/selection/sharing/useSharedSelection';
+import { SelectionActions } from './actions/SelectionActions';
+import { SelectionGrid } from './grid/SelectionGrid';
 import { MissingEntriesNotice } from './MissingEntriesNotice';
 
-// Types
 import type { SelectionDocument, SelectionEntry, SelectionIdentifier } from '@/domain/selection/types';
 
-// Heavy (votes/Supabase, related games): load on demand.
 const GameDetailView = lazy(() => import('@/features/games/detail/GameDetailView'));
 
-type SharedState =
-  | { status: 'none' | 'loading' | 'error' }
-  | { status: 'ready'; document: SelectionDocument };
-
-const NONE: SharedState = { status: 'none' };
-const LOADING: SharedState = { status: 'loading' };
-const ERROR: SharedState = { status: 'error' };
-
-/** Decodes `?entries=`. A shared selection never touches personal storage. */
-function useSharedSelection(param: string | null): SharedState {
-  const [result, setResult] = useState<{ param: string; state: SharedState } | null>(null);
-
-  useEffect(() => {
-    if (param === null) return;
-    let active = true;
-
-    void decodeSelection(param).then(doc => {
-      if (active) {
-        setResult({ param, state: doc ? { status: 'ready', document: doc } : ERROR });
-      }
-    });
-
-    return () => { active = false; };
-  }, [param]);
-
-  if (param === null) return NONE;
-  return result?.param === param ? result.state : LOADING;
-}
-
-function getShownDocument(shared: SharedState, personalDoc: SelectionDocument): SelectionDocument | null {
-  if (shared.status === 'ready') return shared.document;
-  return shared.status === 'none' ? personalDoc : null;
-}
-
 function Header({ shared }: { shared: boolean }) {
-  const t = useTranslations('selection');
-  return (
-    <>
-      <Typography variant="h4" component="h1">
-        {t(shared ? 'sharedTitle' : 'title')}
-      </Typography>
-      <Typography color="text.secondary">
-        {t(shared ? 'sharedDescription' : 'description')}
-      </Typography>
-    </>
-  );
+    const t = useTranslations('selection');
+
+    return (
+        <>
+            <Typography variant="h4" component="h1">
+                {t(shared ? 'sharedTitle' : 'title')}
+            </Typography>
+            <Typography color="text.secondary">
+                {t(shared ? 'sharedDescription' : 'description')}
+            </Typography>
+        </>
+    );
 }
 
 type NoticesProps = {
-  storageAvailable: boolean;
-  invalid: boolean;
-  count: number;
-  missing: SelectionIdentifier[];
-  shared: boolean;
+    storageAvailable: boolean;
+    invalid: boolean;
+    count: number;
+    missing: SelectionIdentifier[];
+    shared: boolean;
 };
 
 function Notices({ storageAvailable, invalid, count, missing, shared }: NoticesProps) {
-  const t = useTranslations('selection');
-  return (
-    <>
-      {!storageAvailable && <Alert severity="warning">{t('storageUnavailable')}</Alert>}
-      {invalid && <Alert severity="error">{t('invalid')}</Alert>}
-      <Typography role="status" aria-live="polite">
-        {t('count', { count })}
-      </Typography>
-      <MissingEntriesNotice missing={missing} shared={shared} />
-    </>
-  );
+    const t = useTranslations('selection');
+
+    return (
+        <>
+            {!storageAvailable && <Alert severity="warning">{t('storageUnavailable')}</Alert>}
+            {invalid && <Alert severity="error">{t('invalid')}</Alert>}
+            <Typography role="status" aria-live="polite">
+                {t('count', { count })}
+            </Typography>
+            <MissingEntriesNotice missing={missing} shared={shared} />
+        </>
+    );
+}
+
+type SelectionContentProps = {
+    catalogue: SelectionEntry[];
+    document: SelectionDocument;
+    personal: SelectionDocument;
+    shared: boolean;
+    storageAvailable: boolean;
+};
+
+function SelectionContent({
+    catalogue,
+    document,
+    personal,
+    shared,
+    storageAvailable,
+}: SelectionContentProps) {
+    const [detail, setDetail] = useState<SelectionEntry | null>(null);
+
+    const resolved = useMemo(
+        () => resolveSelection(catalogue, document),
+        [catalogue, document]
+    );
+
+    return (
+        <>
+            <Notices
+                storageAvailable={storageAvailable}
+                invalid={false}
+                count={resolved.entries.length}
+                missing={resolved.missing}
+                shared={shared}
+            />
+
+            <SelectionActions
+                shared={shared}
+                document={resolved.document}
+                personal={personal}
+            />
+
+            <SelectionGrid
+                entries={resolved.entries}
+                shared={shared}
+                onDetail={setDetail}
+            />
+
+            {detail && (
+                <Suspense fallback={null}>
+                    <GameDetailView
+                        category={detail.category}
+                        game={detail.game}
+                        onClose={() => setDetail(null)}
+                        selectable={!shared}
+                        {...detailSections(detail.source)}
+                    />
+                </Suspense>
+            )}
+        </>
+    );
 }
 
 export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry[] }) {
-  const common = useTranslations('common');
-  const searchParams = useSearchParams();
-  const shared = useSharedSelection(searchParams.get('entries'));
-  const personal = usePersonalSelection();
-  const [detail, setDetail] = useState<SelectionEntry | null>(null);
+    const common = useTranslations('common');
+    const searchParams = useSearchParams();
+    const sharedState = useSharedSelection(searchParams.get('entries'));
+    const personal = usePersonalSelection();
 
-  const activeDocument = getShownDocument(shared, personal.document);
+    if (!personal.hydrated || sharedState.status === 'loading') {
+        return <CircularProgress aria-label={common('loading')} />;
+    }
 
-  // Résolution catalogue : le document source reste intact
-  const resolved = useMemo(() => {
-    if (!activeDocument) return null;
-    return resolveSelection(catalogue, activeDocument);
-  }, [catalogue, activeDocument]);
+    const shared = sharedState.status !== 'none';
+    const document = sharedState.status === 'ready'
+        ? sharedState.document
+        : shared
+            ? emptySelection()
+            : personal.document;
 
-  if (!personal.hydrated || shared.status === 'loading') {
-    return <CircularProgress aria-label={common('loading')} />;
-  }
-
-  const isShared = shared.status !== 'none';
-  const currentDocument = resolved?.document ?? personal.document;
-  const entries = resolved?.entries ?? [];
-  const missing = resolved?.missing ?? [];
-
-  return (
-    <Stack spacing={2}>
-      <Header shared={isShared} />
-      <Notices
-        storageAvailable={personal.storageAvailable}
-        invalid={shared.status === 'error'}
-        count={entries.length}
-        missing={missing}
-        shared={isShared}
-      />
-      <SelectionActions
-        shared={isShared}
-        document={currentDocument}
-        personal={personal.document}
-      />
-      {shared.status !== 'error' && (
-        <SelectionGrid entries={entries} shared={isShared} onDetail={setDetail} />
-      )}
-      {detail && (
-        <Suspense fallback={null}>
-          <GameDetailView
-            category={detail.category}
-            game={detail.game}
-            onClose={() => setDetail(null)}
-            {...detailSections(detail.source)}
-          />
-        </Suspense>
-      )}
-    </Stack>
-  );
+    return (
+        <Stack spacing={2}>
+            <Header shared={shared} />
+            {sharedState.status === 'error' ? (
+                <Notices
+                    storageAvailable={personal.storageAvailable}
+                    invalid
+                    count={0}
+                    missing={[]}
+                    shared
+                />
+            ) : (
+                <SelectionContent
+                    catalogue={catalogue}
+                    document={document}
+                    personal={personal.document}
+                    shared={shared}
+                    storageAvailable={personal.storageAvailable}
+                />
+            )}
+        </Stack>
+    );
 }

@@ -18,7 +18,7 @@ const LOADING: SharedState = { status: 'loading' };
 const ERROR: SharedState = { status: 'error' };
 
 /** Decodes `?entries=`. A shared selection never touches personal storage. */
-function useSharedSelection(param: string | null): SharedState {
+export function useSharedSelection(param: string | null): SharedState {
   const [result, setResult] = useState<{ param: string; state: SharedState } | null>(null);
 
   useEffect(() => {
