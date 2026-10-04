@@ -1,10 +1,11 @@
 "use client";
 
-import type { SelectionCategory } from '@/features/selection/selectionDocument';
 import { useState } from "react";
 import Dialog from '@mui/material/Dialog';
 import GameToolbar from "./GameToolbar";
 import GameDetailContent from "./GameDetailContent";
+
+import type { SelectionCategory } from '@/domain/selection/types';
 import type { RawGameDetailsEntry } from "./adapters";
 
 interface GameDetailViewProps {
