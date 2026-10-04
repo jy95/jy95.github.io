@@ -147,3 +147,25 @@ it('keeps personal category controls independent when identifiers collide', () =
     expect(getSelectionSnapshot().document).toEqual({ ...emptySelection(), dlcs: ['same'] });
     expect(screen.getByRole('button', { name: 'Remove Expansion from my selection' })).toHaveAttribute('aria-pressed', 'true');
 });
+
+it('restores personal document authority after leaving a shared selection', async () => {
+    const personal = { ...emptySelection(), backlog: ['same', 'missing-personal'] };
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(personal));
+    navigation.query = `entries=${await sharing.encodeSelection(shared)}`;
+    const write = vi.spyOn(Storage.prototype, 'setItem');
+    const view = mount();
+    await screen.findByRole('img', { name: 'Alpha' });
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(messages.selection.sharedTitle);
+    fireEvent.click(screen.getByRole('button', { name: messages.selection.categories.all }));
+    expect(await screen.findByText('ghost')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Remove ghost from my selection' })).not.toBeInTheDocument();
+
+    navigation.query = '';
+    view.rerender(<NextIntlClientProvider locale="en" messages={messages}><SelectionPage catalogue={catalogue} /></NextIntlClientProvider>);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(messages.selection.title);
+    expect(screen.queryByRole('img', { name: 'Alpha' })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Remove Waiting from my selection' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Remove missing-personal from my selection' })).toBeInTheDocument();
+    expect(getSelectionSnapshot().document).toEqual(personal);
+    expect(write).not.toHaveBeenCalled();
+});
