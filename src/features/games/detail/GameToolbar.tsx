@@ -8,14 +8,12 @@ import Typography from '@mui/material/Typography';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CloseIcon from '@mui/icons-material/Close';
-import YouTubeIcon from '@mui/icons-material/YouTube';
 
 import type { SelectionCategory } from '@/domain/selection/types';
-import { buildWatchRoute } from '@/domain/games/youtube';
-import { useRouter } from '@/i18n/routing';
+import { selectionCategoryForGame } from '@/domain/selection/gameCategory';
 import SelectionButton from '@/features/selection/components/SelectionButton';
 
-import { isCardGame } from './adapters';
+import GameWatchButton from './GameWatchButton';
 import type { RawGameDetailsEntry } from './adapters';
 
 type Presentation = 'dialog' | 'page';
@@ -38,31 +36,6 @@ type ToolbarContentProps = {
     selectable: boolean;
 };
 
-function getCategory(
-    game: RawGameDetailsEntry,
-    category?: SelectionCategory,
-): SelectionCategory {
-    if (category) return category;
-
-    if (!isCardGame(game)) return 'backlog';
-
-    return 'status' in game ? 'planning' : 'games';
-}
-
-function isPublic(
-    game: RawGameDetailsEntry,
-    isPage: boolean,
-    isPublished: boolean,
-): boolean {
-    if (!isCardGame(game)) return false;
-
-    if (isPage || isPublished) return isPublished;
-
-    if (!game.availableAt) return false;
-
-    return new Date(game.availableAt) <= new Date();
-}
-
 function ToolbarTitle({ title, isPage }: { title: string; isPage: boolean }) {
     return (
         <Typography
@@ -83,16 +56,7 @@ function ToolbarContent({
     isPublished,
     selectable,
 }: ToolbarContentProps) {
-    const router = useRouter();
     const t = useTranslations('gameDetail');
-
-    const resolvedCategory = getCategory(game, category);
-
-    function watchGame() {
-        if (isCardGame(game)) {
-            router.push(buildWatchRoute(game.url_type, game.id));
-        }
-    }
 
     return (
         <>
@@ -110,21 +74,12 @@ function ToolbarContent({
             {selectable && (
                 <SelectionButton
                     id={game.id}
-                    category={resolvedCategory}
+                    category={category ?? selectionCategoryForGame(game)}
                     title={game.title}
                 />
             )}
 
-            {isPublic(game, isPage, isPublished) && (
-                <IconButton
-                    edge={isPage ? false : 'end'}
-                    color="inherit"
-                    onClick={watchGame}
-                    aria-label={t('watch')}
-                >
-                    <YouTubeIcon />
-                </IconButton>
-            )}
+            <GameWatchButton game={game} isPage={isPage} isPublished={isPublished} />
         </>
     );
 }

@@ -8,7 +8,7 @@ import { TierListControls } from "./TierListControls";
 import { TierListBoard } from "./TierListBoard";
 import DistributionBar from "./DistributionBar";
 import DisclaimerAccordion from "./DisclaimerAccordion";
-import QueryErrorState from "@/components/common/QueryErrorState";
+import { QueryBoundary } from "@/components/common/QueryBoundary";
 
 import type { RawType, GameRender, BackgroundColor } from "./index";
 
@@ -57,36 +57,27 @@ export function TierLists<T extends RawType>({
         );
     }
 
-    // If fetching categories failed, surface the same retry UX as every
-    // other query in the app instead of silently rendering nothing.
-    if (categoriesError) {
-        return <QueryErrorState onRetry={refetchCategories} />;
-    }
-
-    // If no categories was found
-    if (!categories || categories.length === 0) {
-        return (<></>);
-    }
-
     return (
-        <>
-            <TierListControls 
-                sortOrder={sortOrder} 
-                onToggleSort={toggleSort} 
-            />
-            <DistributionBar 
-                categoryColors={categoryColors}
-                data={data}
-            />
-            <DisclaimerAccordion categoryColors={categoryColors}/>
-            <TierListBoard 
-                categories={categories}
-                data={data}
-                categoryColors={categoryColors}
-                GameRender={GameRender}
-                skipEmptyCategories={skipEmptyCategories}
-            />
-        </>
+        <QueryBoundary error={categoriesError} isLoading={false} data={categories} onRetry={refetchCategories}>
+            {categories => categories.length === 0 ? null : <>
+                <TierListControls
+                    sortOrder={sortOrder}
+                    onToggleSort={toggleSort}
+                />
+                <DistributionBar
+                    categoryColors={categoryColors}
+                    data={data}
+                />
+                <DisclaimerAccordion categoryColors={categoryColors}/>
+                <TierListBoard
+                    categories={categories}
+                    data={data}
+                    categoryColors={categoryColors}
+                    GameRender={GameRender}
+                    skipEmptyCategories={skipEmptyCategories}
+                />
+            </>}
+        </QueryBoundary>
     )
 
 }
