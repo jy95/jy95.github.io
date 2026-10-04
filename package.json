@@ -17,7 +17,8 @@
     "find-published-games": "npx tsx scripts/findPublishedGames.ts",
     "generate-api-json-files": "npx tsx scripts/generateJsonFiles.ts",
     "db:sync-views": "npx tsx scripts/db-sync-views.ts",
-    "analyze:company-duplicates": "tsx scripts/analyze-company-duplicates/index.ts"
+    "analyze:company-duplicates": "tsx scripts/analyze-company-duplicates/index.ts",
+    "generate-series-svg": "tsx scripts/generate-series-svg.ts"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

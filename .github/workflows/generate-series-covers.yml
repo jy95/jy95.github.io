@@ -1,0 +1,58 @@
+name: Generate Series Covers
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: generate-series-covers
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v7
+        with:
+          ref: master
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 'lts/*'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate series covers
+        run: npm run generate-series-svg
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.PAT }}
+          commit-message: 'chore: update series covers'
+          title: 'Update Series Covers'
+          branch: automated/update-series-covers
+          base: master
+          delete-branch: true
+          add-paths: |
+            public/seriescovers/**
+          labels: |
+            automerge
+          body: |
+            Regenerate series covers from the catalog and game covers.
+
+            - Source: public/covers/
+            - Destination: public/seriescovers/
+            - Format: 310x310 WebP
+
+            @coderabbitai ignore
