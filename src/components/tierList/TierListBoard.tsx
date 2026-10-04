@@ -1,5 +1,3 @@
-"use client";
-
 import Box from "@mui/material/Box";
 import { TierRow } from "./TierRow";
 import type { RawType, GameRender, BackgroundColor } from "./index";

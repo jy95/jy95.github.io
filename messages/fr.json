@@ -298,6 +298,7 @@
         "copied": "Lien copié",
         "copyFallback": "Sélectionnez et copiez le lien ci-dessus.",
         "unavailable": "{count, plural, =1 {1 élément n’est plus disponible dans le catalogue.} other {# éléments ne sont plus disponibles dans le catalogue.}}",
+        "storageInvalid": "La sélection enregistrée est invalide ou endommagée. Videz votre sélection pour la réinitialiser.",
         "storageUnavailable": "Le stockage du navigateur est indisponible. Les modifications de votre sélection n’ont pas pu être enregistrées.",
         "imported": "Tous les éléments sont dans ma sélection",
         "openOwn": "Ouvrir ma sélection",

@@ -1,96 +1,128 @@
-import type { SelectionCategory } from '@/features/selection/documentTypes';
-import { useTranslations } from "next-intl";
-import SelectionButton from "@/features/selection/SelectionButton";
-import Box from "@mui/material/Box";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useTranslations } from 'next-intl';
 
-// Hooks
-import { useRouter } from '@/i18n/routing';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 
-// Material UI
-import Typography from "@mui/material/Typography";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-
-// Icons
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CloseIcon from '@mui/icons-material/Close';
-import YouTubeIcon from '@mui/icons-material/YouTube';
 
-// Others
-import { buildWatchRoute } from "@/domain/games/youtube";
+import type { SelectionCategory } from '@/domain/selection/types';
+import { selectionCategoryForGame } from '@/domain/selection/gameCategory';
+import SelectionButton from '@/features/selection/components/SelectionButton';
 
-// Types
-import { isCardGame } from "./adapters";
-import type { RawGameDetailsEntry } from "./adapters";
+import GameWatchButton from './GameWatchButton';
+import type { RawGameDetailsEntry } from './adapters';
 
-function GameToolbar({ game, onClose, presentation = "dialog", isPublished = false, category }: {
+type Presentation = 'dialog' | 'page';
+
+type GameToolbarProps = {
     game: RawGameDetailsEntry;
     category?: SelectionCategory;
     onClose: () => void;
-    presentation?: "dialog" | "page";
-    /** The published catalogue omits availableAt. Its membership confirms availability. */
+    presentation?: Presentation;
     isPublished?: boolean;
-}) {
+    selectable?: boolean;
+};
 
-    const router = useRouter();
-    const t = useTranslations("gameDetail");
-    const isPage = presentation === "page";
+type ToolbarContentProps = {
+    game: RawGameDetailsEntry;
+    category?: SelectionCategory;
+    onClose: () => void;
+    isPage: boolean;
+    isPublished: boolean;
+    selectable: boolean;
+};
 
-    function watchGame() {
-        if (isCardGame(game)) {
-            router.push(buildWatchRoute(game.url_type, game.id));
-        }
-    }
+function ToolbarTitle({ title, isPage }: { title: string; isPage: boolean }) {
+    return (
+        <Typography
+            sx={{ ml: isPage ? 0 : 2, flex: 1, minWidth: 0, overflowWrap: 'anywhere' }}
+            variant={isPage ? 'h5' : 'h6'}
+            component={isPage ? 'h1' : 'div'}
+        >
+            {title}
+        </Typography>
+    );
+}
 
-    function isPublic() {
-        if (!isCardGame(game)) return false;
-        if (isPage) return isPublished;
-        if (isPublished) return true;
-        const availableAt = game.availableAt;
-        if (!availableAt) return false;
-        const now = new Date();
-        const availableDate = new Date(availableAt);
-        if (availableDate > now) return false;
-        return true;
-    }
+function ToolbarContent({
+    game,
+    category,
+    onClose,
+    isPage,
+    isPublished,
+    selectable,
+}: ToolbarContentProps) {
+    const t = useTranslations('gameDetail');
 
-    const content = (
+    return (
         <>
             <IconButton
-                edge={isPage ? false : "start"}
+                edge={isPage ? false : 'start'}
                 color="inherit"
                 onClick={onClose}
-                aria-label={t(isPage ? "back" : "close")}
+                aria-label={t(isPage ? 'back' : 'close')}
             >
                 {isPage ? <ArrowBackIcon /> : <CloseIcon />}
             </IconButton>
-            <Typography sx={{ ml: isPage ? 0 : 2, flex: 1, minWidth: 0, overflowWrap: "anywhere" }} variant={isPage ? "h5" : "h6"} component={isPage ? "h1" : "div"}>
-                {game.title}
-            </Typography>
-            <SelectionButton id={game.id} category={category ?? (isCardGame(game) ? ('status' in game ? 'planning' : 'games') : 'backlog')} title={game.title} />
-            {isPublic() && (
-                <IconButton
-                    edge={isPage ? false : "end"}
-                    color="inherit"
-                    onClick={watchGame}
-                    aria-label={t("watch")}
-                >
-                    <YouTubeIcon />
-                </IconButton>
+
+            <ToolbarTitle title={game.title} isPage={isPage} />
+
+            {selectable && (
+                <SelectionButton
+                    id={game.id}
+                    category={category ?? selectionCategoryForGame(game)}
+                    title={game.title}
+                />
             )}
+
+            <GameWatchButton game={game} isPage={isPage} isPublished={isPublished} />
         </>
     );
+}
 
-    return isPage ? (
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1, minWidth: 0 }}>
-            {content}
-        </Box>
-    ) : (
+export default function GameToolbar({
+    game,
+    category,
+    onClose,
+    presentation = 'dialog',
+    isPublished = false,
+    selectable = true,
+}: GameToolbarProps) {
+    const isPage = presentation === 'page';
+
+    const content = (
+        <ToolbarContent
+            game={game}
+            category={category}
+            onClose={onClose}
+            isPage={isPage}
+            isPublished={isPublished}
+            selectable={selectable}
+        />
+    );
+
+    if (isPage) {
+        return (
+            <Box
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1,
+                    minWidth: 0,
+                }}
+            >
+                {content}
+            </Box>
+        );
+    }
+
+    return (
         <AppBar sx={{ position: 'relative' }}>
             <Toolbar>{content}</Toolbar>
         </AppBar>
     );
 }
-
-export default GameToolbar;

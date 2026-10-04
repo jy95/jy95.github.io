@@ -1,7 +1,7 @@
 'use client';
 
-import type { SelectionCategory } from '@/features/selection/documentTypes';
-import { useId, type ReactNode } from 'react';
+import type { SelectionCategory } from '@/domain/selection/types';
+import { useId } from 'react';
 // MUI
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import { CardGrid } from './CardGrid';
 
 // Types
+import type { ReactNode } from 'react';
 import type { CardGame } from '@/domain/games/types';
 import type { GridSize } from './CardGrid';
 

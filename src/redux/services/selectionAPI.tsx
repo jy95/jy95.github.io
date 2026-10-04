@@ -1,4 +1,4 @@
-import type { SelectionEntry } from "@/features/selection/catalogue";
+import type { SelectionEntry } from "@/domain/selection/types";
 import { api } from "./api"
 
 export const selectionAPI = api.injectEndpoints({

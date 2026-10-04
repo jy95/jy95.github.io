@@ -12,6 +12,8 @@ vi.mock('@/i18n/routing', () => ({
 import GameToolbar from './GameToolbar';
 import type { CardGame } from '@/domain/games';
 import type { BacklogEntry } from '@/app/api/backlog/route';
+import { emptySelection } from '@/domain/selection/operations';
+import { SELECTION_STORAGE_KEY, getSelectionSnapshot } from '@/features/selection/storage/store';
 
 const baseCard: CardGame = {
     id: 'abc123',
@@ -28,8 +30,54 @@ const baseBacklog: BacklogEntry = {
 };
 
 describe('GameToolbar', () => {
+    afterEach(() => { vi.restoreAllMocks(); localStorage.clear(); });
     beforeEach(() => {
         pushMock.mockReset();
+        localStorage.clear();
+    });
+
+    it('hides the selection button when selection is disabled', () => {
+        const write = vi.spyOn(Storage.prototype, 'setItem');
+        render(<GameToolbar game={baseCard} onClose={vi.fn()} selectable={false} />);
+        expect(screen.queryByRole('button', { name: 'selection.add:{"title":"Some Game"}' })).not.toBeInTheDocument();
+        expect(screen.queryByTestId('BookmarkBorderIcon')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('BookmarkIcon')).not.toBeInTheDocument();
+        fireEvent.click(screen.getByLabelText('gameDetail.close'));
+        expect(write).not.toHaveBeenCalled();
+    });
+
+    it.each([
+        ['games', baseCard, undefined],
+        ['backlog', baseBacklog, undefined],
+        ['planning', { ...baseCard, status: 'PENDING' as const }, undefined],
+        ['dlcs', baseCard, 'dlcs'],
+    ] as const)('selects the %s category without changing other categories', (expected, game, category) => {
+        const personal = { ...emptySelection(), games: ['saved'], backlog: ['saved'] };
+        localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(personal));
+        render(<GameToolbar game={game} category={category} onClose={vi.fn()} />);
+        fireEvent.click(screen.getByRole('button', { name: `selection.add:${JSON.stringify({ title: game.title })}` }));
+        expect(getSelectionSnapshot().document).toEqual({ ...personal, [expected]: [...personal[expected], game.id] });
+    });
+
+    it('uses the page back callback without navigating to watch', () => {
+        const onClose = vi.fn();
+        render(<GameToolbar game={baseCard} onClose={onClose} presentation="page" isPublished />);
+        expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(baseCard.title);
+        fireEvent.click(screen.getByLabelText('gameDetail.back'));
+        expect(onClose).toHaveBeenCalledTimes(1);
+        expect(pushMock).not.toHaveBeenCalled();
+    });
+
+    it('hides watch actions for invalid availability dates', () => {
+        render(<GameToolbar game={{ ...baseCard, availableAt: 'invalid' }} onClose={vi.fn()} />);
+        expect(screen.queryByLabelText('gameDetail.watch')).not.toBeInTheDocument();
+    });
+
+    it('allows published dialog watch actions even when availableAt is in the future', () => {
+        render(<GameToolbar game={{ ...baseCard, availableAt: '2099-01-01' }} onClose={vi.fn()} isPublished selectable={false} />);
+        fireEvent.click(screen.getByLabelText('gameDetail.watch'));
+        expect(pushMock).toHaveBeenCalledWith({ pathname: '/video/[id]', params: { id: baseCard.id } });
+        expect(screen.queryByTestId('BookmarkBorderIcon')).not.toBeInTheDocument();
     });
 
     it('renders the game title', () => {

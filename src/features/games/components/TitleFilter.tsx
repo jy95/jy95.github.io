@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useEffectEvent, useState } from 'react';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';

@@ -1,5 +1,3 @@
-"use client";
-
 import type { GameFilters } from '@/types/gamesFilters';
 import { useId, useState } from 'react';
 import { useTranslations } from "next-intl";
@@ -16,17 +14,13 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FilterListIcon from '@mui/icons-material/FilterList';
 
 // Custom
-import GenresSelect from "@/features/games/components/GenresSelect";
-import PlatformSelect from "@/features/games/components/PlatformSelect";
+import GamesFilterControls, { type SecondaryFilters } from './GamesFilterControls';
+import GamesFilterTrigger from './GamesFilterTrigger';
 import TitleFilter from "@/features/games/components/TitleFilter";
 import SortSelect from "@/features/games/components/SortSelect";
-import ReleaseDateFilter from "@/features/games/components/ReleaseDateFilter";
-
-type SecondaryFilters = Pick<GameFilters, 'platform' | 'genres' | 'releaseDateFrom' | 'releaseDateTo'>;
 
 type Props = {
     filters: GameFilters;
@@ -58,19 +52,7 @@ export default function GamesFilters({ filters, onChange }: Props) {
         else onChange(changes);
     };
 
-    const filterControls = (
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, flexWrap: 'wrap', gap: 3, minWidth: 0 }}>
-            <Box sx={{ flex: 1, minWidth: 0 }}>
-                <PlatformSelect value={displayedFilters.platform} onChange={platform => changeSecondaryFilters({ platform })} />
-            </Box>
-            <Box sx={{ flex: 2, minWidth: 0, '& .MuiChip-root': { maxWidth: '100%' } }}>
-                <GenresSelect value={displayedFilters.genres ?? []} onChange={genres => changeSecondaryFilters({ genres })} />
-            </Box>
-            <Box sx={{ flex: { md: '2 1 280px' }, minWidth: 0 }}>
-                <ReleaseDateFilter filters={displayedFilters} onChange={changeSecondaryFilters} />
-            </Box>
-        </Box>
-    );
+    const filterControls = <GamesFilterControls filters={displayedFilters} onChange={changeSecondaryFilters} />;
 
     return (
         <Box sx={{ pt: { xs: 3, sm: 1 }, mb: 2, pb: 2, borderBottom: 1, borderColor: 'divider', minWidth: 0 }}>
@@ -85,30 +67,18 @@ export default function GamesFilters({ filters, onChange }: Props) {
                 <Box sx={{ flex: { xs: '1 1 100%', md: '1 1 300px' }, maxWidth: { md: 560 }, minWidth: 0 }}>
                     <TitleFilter value={filters.title ?? ''} onChange={title => onChange({ title })} />
                 </Box>
-                <Button
-                    id={triggerId}
-                    variant="outlined"
-                    startIcon={<FilterListIcon />}
-                    endIcon={isMobile ? undefined : <ExpandMoreIcon sx={{ transform: filtersOpen ? 'rotate(180deg)' : undefined }} />}
-                    aria-expanded={filtersOpen}
-                    aria-controls={filtersOpen ? filtersId : undefined}
-                    aria-haspopup={isMobile ? 'dialog' : undefined}
+                <GamesFilterTrigger
+                    triggerId={triggerId}
+                    filtersId={filtersId}
+                    isMobile={isMobile}
+                    filtersOpen={filtersOpen}
+                    activeFilterCount={activeFilterCount}
+                    label={t('filtersButtonLabel')}
                     onClick={() => {
                         if (isMobile) setDraft({ platform: filters.platform, genres: filters.genres, releaseDateFrom: filters.releaseDateFrom, releaseDateTo: filters.releaseDateTo });
                         setFiltersOpen(open => !open);
                     }}
-                    sx={{ minHeight: 44, flexShrink: 0 }}
-                >
-                    {t("filtersButtonLabel")}
-                    {activeFilterCount > 0 && (
-                        <Box
-                            component="span"
-                            sx={{ ml: 1, px: 0.75, borderRadius: 1, bgcolor: 'action.selected', color: 'text.secondary', fontSize: '0.75rem' }}
-                        >
-                            {activeFilterCount}
-                        </Box>
-                    )}
-                </Button>
+                />
                 <Box sx={{ ml: 'auto', flex: { xs: '1 1 160px', md: '0 0 280px' }, maxWidth: { xs: 240, md: 280 }, minWidth: 0 }}>
                     <SortSelect value={filters.sort} onChange={sort => onChange({ sort })} />
                 </Box>

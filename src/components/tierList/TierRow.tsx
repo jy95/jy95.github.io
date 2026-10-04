@@ -1,5 +1,3 @@
-"use client";
-
 // Styles
 import Box from "@mui/material/Box";
 

@@ -1,4 +1,4 @@
-import SelectionPageLoader from '@/features/selection/SelectionPageLoader';
+import SelectionPageLoader from '@/features/selection/components/SelectionPageLoader';
 import { SuspenseBoundary } from '@/components/common/SuspenseBoundary';
 import { staticSectionMetadata } from '@/i18n/staticSectionMetadata';
 
@@ -6,8 +6,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     return staticSectionMetadata((await params).locale, 'selection');
 }
 
-// The catalogue is fetched (and HTTP-cached) client-side: the selection itself lives in
-// localStorage, so the server could only ever render a spinner.
 export default function Page() {
-    return <SuspenseBoundary><SelectionPageLoader /></SuspenseBoundary>;
+    return (
+        <SuspenseBoundary>
+            <SelectionPageLoader />
+        </SuspenseBoundary>
+    );
 }

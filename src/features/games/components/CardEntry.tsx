@@ -1,7 +1,5 @@
 "use client";
 
-import type { SelectionCategory } from '@/features/selection/documentTypes';
-
 // Hooks
 import { useLocale, useTranslations } from "next-intl";
 import IconButton from "@mui/material/IconButton";
@@ -13,13 +11,15 @@ import { Link, useRouter } from '@/i18n/routing';
 import { buildWatchRoute } from "@/domain/games/youtube";
 
 // UI
-import SelectionButton from "@/features/selection/SelectionButton";
+import SelectionButton from "@/features/selection/components/SelectionButton";
 import BaseCard from "./BaseCard";
 import GameCardOverlay from "./GameCardOverlay";
 
 // Types
 import type { ReactNode } from "react";
 import type { CardGame } from "@/domain/games";
+import type { SelectionCategory } from '@/domain/selection/types';
+
 
 function CardEntry({ game, selectable = true, badge, category = "games" }: { game: CardGame; selectable?: boolean; badge?: ReactNode; category?: SelectionCategory }) {
 
