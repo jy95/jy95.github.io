@@ -63,28 +63,15 @@ function isPublic(
     return new Date(game.availableAt) <= new Date();
 }
 
-function WatchButton({
-    game,
-    isPage,
-    onWatch,
-}: {
-    game: RawGameDetailsEntry;
-    isPage: boolean;
-    onWatch: () => void;
-}) {
-    const t = useTranslations('gameDetail');
-
-    if (!isPublic(game, isPage, true)) return null;
-
+function ToolbarTitle({ title, isPage }: { title: string; isPage: boolean }) {
     return (
-        <IconButton
-            edge={isPage ? false : 'end'}
-            color="inherit"
-            onClick={onWatch}
-            aria-label={t('watch')}
+        <Typography
+            sx={{ ml: isPage ? 0 : 2, flex: 1, minWidth: 0, overflowWrap: 'anywhere' }}
+            variant={isPage ? 'h5' : 'h6'}
+            component={isPage ? 'h1' : 'div'}
         >
-            <YouTubeIcon />
-        </IconButton>
+            {title}
+        </Typography>
     );
 }
 
@@ -118,18 +105,7 @@ function ToolbarContent({
                 {isPage ? <ArrowBackIcon /> : <CloseIcon />}
             </IconButton>
 
-            <Typography
-                sx={{
-                    ml: isPage ? 0 : 2,
-                    flex: 1,
-                    minWidth: 0,
-                    overflowWrap: 'anywhere',
-                }}
-                variant={isPage ? 'h5' : 'h6'}
-                component={isPage ? 'h1' : 'div'}
-            >
-                {game.title}
-            </Typography>
+            <ToolbarTitle title={game.title} isPage={isPage} />
 
             {selectable && (
                 <SelectionButton

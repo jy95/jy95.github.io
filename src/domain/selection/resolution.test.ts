@@ -5,16 +5,16 @@ import type { SelectionDocument, SelectionEntry } from '@/domain/selection/types
 describe('resolveSelection', () => {
   const catalogue: SelectionEntry[] = [
     {
-      category: 'games',
       selectionId: 'game-1',
-      game: { id: 'game-1', title: 'Game 1' } as any,
-      source: {} as any,
+      game: { id: 'game-1', title: 'Game 1', imagePath: '/cover.webp' },
+      source: 'backlog',
+      category: 'backlog',
     },
   ];
 
   const documentWithMissing: SelectionDocument = {
-    games: ['game-1', 'ghost-game'],
-    backlog: [],
+    games: ['ghost-game'],
+    backlog: ['game-1'],
     dlcs: [],
     planning: [],
   };
@@ -28,3 +28,14 @@ describe('resolveSelection', () => {
     expect(resolved.document.games).toContain('ghost-game');
   });
 });
+ it('resolves the same identifier independently in different categories', () => {
+    const game = { id: 'same', title: 'Same', imagePath: '/cover.webp' };
+    const entries: SelectionEntry[] = [
+        { source: 'backlog', category: 'backlog', selectionId: 'same', game },
+        { source: 'planning', category: 'planning', selectionId: 'same', game: { ...game, url: '', url_type: 'VIDEO', status: 'PENDING' } },
+    ];
+    const document = { games: [], dlcs: [], backlog: ['same'], planning: ['same'] };
+    const before = structuredClone(document);
+    expect(resolveSelection(entries, document)).toEqual({ document, entries, missing: [] });
+    expect(document).toEqual(before);
+ });

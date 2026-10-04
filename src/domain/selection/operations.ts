@@ -11,16 +11,6 @@ export const emptySelection = (): SelectionDocument => build(() => []);
 export const isEmpty = (document: SelectionDocument) =>
     SELECTION_CATEGORIES.every(category => document[category].length === 0);
 
-export function toSelectionDocument(value: unknown): SelectionDocument {
-    if (typeof value !== 'object' || value === null) return emptySelection();
-
-    const source = value as Record<string, unknown>;
-    return build(category => {
-        const ids = source[category];
-        return Array.isArray(ids) ? unique(ids.filter((id): id is string => typeof id === 'string')) : [];
-    });
-}
-
 export const mergeSelections = (a: SelectionDocument, b: SelectionDocument) =>
     build(category => unique([...a[category], ...b[category]]));
 

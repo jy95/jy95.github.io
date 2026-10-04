@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import type { SelectionEntry } from '@/features/selection/catalogue';
+import type { SelectionEntry } from '@/domain/selection/types';
 
 const catalogue: SelectionEntry[] = [{
     selectionId: '42', category: 'backlog', source: 'backlog',

@@ -57,7 +57,7 @@ export function SelectionGrid({ entries, shared, onDetail }: SelectionGridProps)
         onFiltersChange={updateFilters}
       />
       {visible.length > 0 ? (
-        <SelectionCards entries={visible} onDetail={onDetail} />
+        <SelectionCards selectable={!shared} entries={visible} onDetail={onDetail} />
       ) : (
         <Typography role="status">{common('noResults')}</Typography>
       )}

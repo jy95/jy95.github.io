@@ -298,6 +298,7 @@
         "copied": "Link copied",
         "copyFallback": "Select and copy the link above.",
         "unavailable": "{count, plural, =1 {1 item is no longer available in the catalogue.} other {# items are no longer available in the catalogue.}}",
+        "storageInvalid": "The saved selection is invalid or damaged. Clear your selection to reset it.",
         "storageUnavailable": "Browser storage is unavailable. Changes to your selection could not be saved.",
         "imported": "All items are in my selection",
         "openOwn": "Open my selection",

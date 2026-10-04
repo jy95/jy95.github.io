@@ -23,7 +23,7 @@ export const useSelectionWritable = () =>
         subscribeSelection,
         () => {
             const snap = getSelectionSnapshot();
-            return snap.hydrated && snap.storageAvailable;
+            return snap.hydrated && snap.storageAvailable && !snap.invalid;
         },
         () => false
     );

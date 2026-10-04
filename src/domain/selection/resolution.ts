@@ -27,7 +27,7 @@ export function resolveSelection(catalogue: readonly SelectionEntry[], document:
         }
     }
 
-    // // O(1) index lookup by composite key "category:selectionId"
+    // O(1) index lookup by composite key "category:selectionId"
     const byKey = new Map(
         catalogue.map(entry => [`${entry.category}:${entry.selectionId}`, entry])
     );

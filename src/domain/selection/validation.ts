@@ -5,8 +5,8 @@ export function isSelectionDocument(value: unknown): value is SelectionDocument 
     if (typeof value !== 'object' || value === null) return false;
 
     const source = value as Record<string, unknown>;
-    return SELECTION_CATEGORIES.every(category =>
-        Array.isArray(source[category]) &&
+    return Object.keys(source).length === SELECTION_CATEGORIES.length && SELECTION_CATEGORIES.every(category =>
+        Object.hasOwn(source, category) && Array.isArray(source[category]) &&
         source[category].every(id => typeof id === 'string')
     );
 }

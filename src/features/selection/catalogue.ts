@@ -1,10 +1,6 @@
 import { loadBacklogGames, loadDlcGroups, loadPlanningGames, loadPublishedGames, toBacklogEntry, toPlanningEntry, toPublishedGame } from '@/lib/gamesData';
 import type { RawGame } from '@/domain/games';
-import type { GameDetailsResponse } from '@/domain/games/details';
-
-import type { SelectionCategory } from '@/domain/selection/types';
-
-export type SelectionEntry = GameDetailsResponse & { selectionId: string; category: SelectionCategory };
+import type { SelectionEntry } from '@/domain/selection/types';
 
 const publishedEntry = (category: 'games' | 'dlcs') => (raw: RawGame): SelectionEntry => {
     const game = toPublishedGame(raw);
@@ -16,7 +12,7 @@ export async function loadSelectionCatalogue(): Promise<SelectionEntry[]> {
         loadPublishedGames(), loadDlcGroups(), loadPlanningGames(), loadBacklogGames(),
     ]);
 
-    // Listed by classification precedence: published games, DLCs, planning, then backlog.
+    // Preserve source order within each category.
     const entries: SelectionEntry[] = [
         ...published.map(publishedEntry('games')),
         ...dlcs.flatMap(group => group.dlcs).map(publishedEntry('dlcs')),
@@ -30,11 +26,11 @@ export async function loadSelectionCatalogue(): Promise<SelectionEntry[]> {
         }),
     ];
 
-    // The first (highest-precedence) occurrence of an identifier wins. The `source`
-    // discriminant stays independent of the selection category.
+    // Keep the first occurrence within each category.
     const unique = new Map<string, SelectionEntry>();
     for (const entry of entries) {
-        if (!unique.has(entry.selectionId)) unique.set(entry.selectionId, entry);
+        const key = `${entry.category}:${entry.selectionId}`;
+        if (!unique.has(key)) unique.set(key, entry);
     }
     return [...unique.values()];
 }
