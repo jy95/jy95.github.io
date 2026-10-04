@@ -1,7 +1,7 @@
 import type { SxProps, Theme } from "@mui/material/styles";
 
 /** Uses CSS-variable palettes and sx to preserve polymorphic button typing. */
-export const navigationListItemButtonSx: SxProps<Theme> = {
+export const navigationListItemButtonSx = {
   borderRadius: 2,
   "& .MuiSvgIcon-root": {
     color: "action.active",
@@ -17,4 +17,4 @@ export const navigationListItemButtonSx: SxProps<Theme> = {
       backgroundColor: "primary.dark",
     },
   },
-};
+} satisfies SxProps<Theme>;
