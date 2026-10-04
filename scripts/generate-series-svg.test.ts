@@ -25,10 +25,16 @@ import {
 
 import type { SeriesCover } from './generate-series-svg';
 
-vi.mock('node:fs/promises', () => ({
-    mkdir: vi.fn(),
-    readFile: vi.fn(),
-}));
+vi.mock('node:fs/promises', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('node:fs/promises')>();
+    const mock = {
+        ...actual,
+        mkdir: vi.fn(),
+        readFile: vi.fn(),
+    };
+
+    return { ...mock, default: mock };
+});
 
 vi.mock('./common/db', () => ({
     openDatabase: vi.fn(),
@@ -137,6 +143,19 @@ beforeEach(async () => {
 
 afterEach(() => {
     vi.restoreAllMocks();
+});
+
+describe('filesystem mock exports', () => {
+    it('shares mocked functions between named and default exports', async () => {
+        const fs = await import('node:fs/promises');
+
+        expect(fs.default.mkdir).toBe(mkdir);
+        expect(fs.default.readFile).toBe(readFile);
+        expect(vi.isMockFunction(fs.mkdir)).toBe(true);
+        expect(vi.isMockFunction(fs.readFile)).toBe(true);
+        expect(mkdir).not.toHaveBeenCalled();
+        expect(readFile).not.toHaveBeenCalled();
+    });
 });
 
 describe('SVG generation', () => {
