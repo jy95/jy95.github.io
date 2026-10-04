@@ -1,80 +1,38 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from '@/i18n/routing';
-import { buildWatchRoute } from "@/domain/games/youtube";
-import type { RandomAnswer } from "@/app/api/random/route";
+import { useState } from 'react';
+import { useRouter } from '@/i18n/routing';
+import { buildWatchRoute } from '@/domain/games/youtube';
+import type { RandomAnswer } from '@/app/api/random/route';
 
-type UseNavigateToRandomGameResult = {
-    navigateToRandomGame: () => void;
-    isPending: boolean;
-};
-
-function isRandomAnswer(value: unknown): value is RandomAnswer {
-    if (!value || typeof value !== 'object') return false;
-    const candidate = value as Record<string, unknown>;
-    return (
-        typeof candidate.identifier === 'string' &&
-        (candidate.type === 'PLAYLIST' || candidate.type === 'VIDEO')
-    );
-}
-
-/** Cancels stale random requests on locale/path changes and unmount. */
-export function useNavigateToRandomGame(): UseNavigateToRandomGameResult {
+export function useNavigateToRandomGame() {
     const router = useRouter();
-    const locale = useLocale();
-    const pathname = usePathname();
     const [isPending, setIsPending] = useState(false);
 
-    const abortControllerRef = useRef<AbortController | null>(null);
-    useEffect(() => () => {
-        abortControllerRef.current?.abort();
-        abortControllerRef.current = null;
-        setIsPending(false);
-    }, [locale, pathname]);
+    const navigateToRandomGame = async () => {
+        // Prevent multiple random-game requests from being triggered at once.
+        if (isPending) return;
 
-    const navigateToRandomGame = useCallback(() => {
-        // Ignore extra clicks while a request is already pending.
-        if (abortControllerRef.current) {
-            return;
-        }
-
-        const controller = new AbortController();
-        abortControllerRef.current = controller;
         setIsPending(true);
 
-        (async () => {
-            try {
-                const response = await fetch('/api/random', { signal: controller.signal });
+        try {
+            // The API returns a RandomAnswer containing the target type and identifier.
+            const response = await fetch('/api/random');
 
-                if (!response.ok) {
-                    throw new Error(`/api/random returned status ${response.status}`);
-                }
-
-                const data: unknown = await response.json();
-
-                if (!isRandomAnswer(data)) {
-                    throw new Error('/api/random returned a malformed payload');
-                }
-
-                if (controller.signal.aborted) return;
-                router.push(buildWatchRoute(data.type, data.identifier));
-            } catch (error) {
-                if (controller.signal.aborted) {
-                    // Expected when locale/pathname changed mid-request —
-                    // not a real error.
-                    return;
-                }
-                console.error('Failed to navigate to a random game:', error);
-            } finally {
-                if (abortControllerRef.current === controller) {
-                    abortControllerRef.current = null;
-                    setIsPending(false);
-                }
+            if (!response.ok) {
+                throw new Error(`Request failed: ${response.status}`);
             }
-        })();
-    }, [router]);
+
+            const { type, identifier }: RandomAnswer = await response.json();
+
+            // Build the watch URL and navigate to the randomly selected game.
+            router.push(buildWatchRoute(type, identifier));
+        } catch (error) {
+            // Allow the user to try again if the request or navigation fails.
+            console.error('Failed to navigate to a random game:', error);
+            setIsPending(false);
+        }
+    };
 
     return { navigateToRandomGame, isPending };
 }
