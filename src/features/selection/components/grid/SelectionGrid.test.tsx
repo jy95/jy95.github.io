@@ -1,0 +1,36 @@
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { SelectionGrid } from './SelectionGrid';
+import type { GameFilters } from '@/types/gamesFilters';
+import type { SelectionEntry } from '@/domain/selection/types';
+
+vi.mock('@/i18n/routing', () => ({ Link: () => null }));
+vi.mock('next-intl', () => ({ useTranslations: () => (key: string) => key }));
+vi.mock('@/features/games/useGamesFilters', () => ({ useGamesFilters: () => ({ filters, updateFilters: vi.fn() }) }));
+vi.mock('./SelectionFilters', () => ({ SelectionFilters: ({ onKindChange }: { onKindChange: (kind: string) => void }) => <button onClick={() => onKindChange('backlog')}>Backlog</button> }));
+vi.mock('./SelectionCards', () => ({ SelectionCards: ({ entries }: { entries: SelectionEntry[] }) => <div>{entries.map(entry => <span key={entry.selectionId}>{entry.game.title}</span>)}</div> }));
+let filters: GameFilters = {};
+const entries: SelectionEntry[] = Array.from({ length: 30 }, (_, index) => ({ source: 'backlog', category: 'backlog', selectionId: String(index), game: { id: String(index), title: `Item ${index}`, imagePath: '/cover.webp' } }));
+afterEach(() => { cleanup(); filters = {}; });
+it('preserves pagination on unrelated renders and resets when browsing inputs change', () => {
+  const before = structuredClone(entries);
+  const view = render(<SelectionGrid entries={entries} shared={false} onDetail={vi.fn()} />);
+  fireEvent.click(screen.getByRole('button', { name: 'loadMore' }));
+  expect(screen.getAllByText(/^Item/)).toHaveLength(24);
+  view.rerender(<SelectionGrid entries={entries} shared onDetail={vi.fn()} />);
+  expect(screen.getAllByText(/^Item/)).toHaveLength(24);
+  fireEvent.click(screen.getByRole('button', { name: 'Backlog' }));
+  expect(screen.getAllByText(/^Item/)).toHaveLength(12);
+  fireEvent.click(screen.getByRole('button', { name: 'loadMore' }));
+  view.rerender(<SelectionGrid entries={entries.slice(1)} shared onDetail={vi.fn()} />);
+  expect(screen.getAllByText(/^Item/)).toHaveLength(12);
+  fireEvent.click(screen.getByRole('button', { name: 'loadMore' }));
+  filters = { sort: 'title_desc' };
+  view.rerender(<SelectionGrid entries={entries} shared onDetail={vi.fn()} />);
+  expect(screen.getAllByText(/^Item/)).toHaveLength(12);
+  fireEvent.click(screen.getByRole('button', { name: 'loadMore' }));
+  filters = { platform: 999 };
+  view.rerender(<SelectionGrid entries={entries} shared onDetail={vi.fn()} />);
+  expect(screen.queryAllByText(/^Item/)).toHaveLength(0);
+  expect(screen.getByRole('status')).toHaveTextContent('noResults');
+  expect(entries).toEqual(before);
+});

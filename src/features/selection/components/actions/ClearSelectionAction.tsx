@@ -29,7 +29,10 @@ export function ClearSelectionAction() {
 
   return (
     <>
-      <Button startIcon={<DeleteOutlinedIcon />} onClick={() => setOpen(true)}>
+      <Button startIcon={<DeleteOutlinedIcon />} onClick={() => {
+        setFailed(false);
+        setOpen(true);
+      }}>
         {t('clear')}
       </Button>
       <Dialog open={open} onClose={() => setOpen(false)} aria-labelledby="clear-selection-title">

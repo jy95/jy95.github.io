@@ -2,6 +2,7 @@ import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testi
 import { NextIntlClientProvider } from 'next-intl';
 import messages from '../../../../messages/en.json';
 import SelectionPage from './SelectionPage';
+import SelectionButton from './SelectionButton';
 import * as sharing from '../sharing/sharing';
 import { emptySelection } from '@/domain/selection/operations';
 import { SELECTION_STORAGE_KEY, getSelectionSnapshot } from '../storage/store';
@@ -67,6 +68,7 @@ it('keeps every shared card and detail read-only, and explicitly merges the comp
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Alpha' } });
     fireEvent.click(screen.getByRole('button', { name: messages.selection.import }));
     expect(getSelectionSnapshot().document).toEqual({ ...shared, games: ['saved', 'same', 'ghost'], backlog: ['missing', 'same'] });
+    expect(screen.getByRole('button', { name: messages.selection.imported })).toBeDisabled();
 });
 it('ignores stale asynchronous decode results after navigation', async () => {
     let resolve!: (document: typeof shared | null) => void;
@@ -168,4 +170,15 @@ it('restores personal document authority after leaving a shared selection', asyn
     expect(screen.getByRole('button', { name: 'Remove missing-personal from my selection' })).toBeInTheDocument();
     expect(getSelectionSnapshot().document).toEqual(personal);
     expect(write).not.toHaveBeenCalled();
+});
+
+it('synchronizes personal cards with catalogue selection controls', () => {
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['same'] }));
+    mount();
+    render(<NextIntlClientProvider locale="en" messages={messages}><SelectionButton id="same" category="games" title="Catalogue Alpha" /></NextIntlClientProvider>);
+    fireEvent.click(screen.getByRole('button', { name: 'Remove Catalogue Alpha from my selection' }));
+    expect(screen.queryByRole('img', { name: 'Alpha' })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Add Catalogue Alpha to my selection' })).toHaveAttribute('aria-pressed', 'false');
+    fireEvent.click(screen.getByRole('button', { name: 'Add Catalogue Alpha to my selection' }));
+    expect(screen.getByRole('button', { name: 'Remove Alpha from my selection' })).toHaveAttribute('aria-pressed', 'true');
 });
