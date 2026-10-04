@@ -25,8 +25,10 @@ export function releaseYear(date: string | undefined): number | undefined {
 const isId = (value: unknown): value is number =>
     typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
 
+const gameSortOptions: ReadonlySet<string> = new Set(GAME_SORT_OPTIONS);
+
 const isSort = (value: unknown): value is GameSort =>
-    GAME_SORT_OPTIONS.some(sort => sort === value);
+    typeof value === 'string' && gameSortOptions.has(value);
 
 /** Drops invalid ids, removes duplicates and sorts ascending, without mutating the input. */
 export const canonicalizeGenres = (genres: readonly number[]): number[] =>
@@ -44,14 +46,15 @@ export function normalizeGameFilters({ title, platform, genres, sort, releaseDat
     const from = clampYear(releaseDateFrom, MIN_RELEASE_YEAR);
     const to = clampYear(releaseDateTo, maxYear);
     const [start, end] = [Math.min(from, to), Math.max(from, to)];
-    return {
-        ...(title ? { title } : {}),
-        ...(isId(platform) ? { platform } : {}),
-        ...(cleanGenres.length ? { genres: cleanGenres } : {}),
-        ...(isSort(sort) ? { sort } : {}),
-        ...(start > MIN_RELEASE_YEAR ? { releaseDateFrom: start } : {}),
-        ...(end < maxYear ? { releaseDateTo: end } : {}),
+    const candidates: GameFilters = {
+        title: title || undefined,
+        platform: isId(platform) ? platform : undefined,
+        genres: cleanGenres.length ? cleanGenres : undefined,
+        sort: isSort(sort) ? sort : undefined,
+        releaseDateFrom: start > MIN_RELEASE_YEAR ? start : undefined,
+        releaseDateTo: end < maxYear ? end : undefined,
     };
+    return Object.fromEntries(Object.entries(candidates).filter(([, value]) => value !== undefined));
 }
 
 /** Scalars become one param each; genres become one repeated `genres` param per id. */

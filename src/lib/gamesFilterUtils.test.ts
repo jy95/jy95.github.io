@@ -36,6 +36,13 @@ describe('game filter conversion', () => {
         expect(normalizeGameFilters(normalizeGameFilters(filters))).toEqual(filters);
         expect(params.getAll('title')).toEqual(['first', 'second']);
     });
+
+    it('returns sparse filters and rejects unsafe IDs', () => {
+        const filters = normalizeGameFilters({ title: ' ', platform: 0, genres: [], releaseDateFrom: 0, releaseDateTo: 0 });
+        expect(Object.keys(filters)).toEqual(['title', 'platform']);
+        expect(normalizeGameFilters({ platform: Number.MAX_SAFE_INTEGER + 1, genres: [Number.MAX_SAFE_INTEGER + 1] })).toStrictEqual({});
+        expect(searchParamsToFilters(new URLSearchParams('platform=9007199254740992'))).toStrictEqual({});
+    });
 });
 
 
@@ -64,6 +71,19 @@ describe('release period normalization', () => {
         expect(params.get('releaseDateFrom')).toBe('2000');
         expect(params.get('releaseDateTo')).toBe('2005');
         expect(searchParamsToFilters(params)).toEqual(filters);
+        expect(Object.keys(normalizeGameFilters(filters))).toEqual(['title', 'platform', 'genres', 'sort', 'releaseDateFrom', 'releaseDateTo']);
+        expect(params.toString()).toBe('title=Zelda&platform=6&sort=title_asc&releaseDateFrom=2000&releaseDateTo=2005&genres=1&genres=2');
+    });
+
+    it.each([undefined, '', '2024-2-01', '2024-02-30', '2023-02-29', '2024-13-01', '2024-01-00', '2024-01-32', '2024-01-01T00:00:00Z'])('rejects invalid calendar date %s', date => {
+        expect(releaseYear(date)).toBeUndefined();
+    });
+
+    it('accepts leap days and ignores zero and unsafe release years', () => {
+        expect(releaseYear('2024-02-29')).toBe(2024);
+        expect(normalizeGameFilters({ releaseDateFrom: 0, releaseDateTo: Number.MAX_SAFE_INTEGER + 1 })).toStrictEqual({});
+        expect(searchParamsToFilters(new URLSearchParams('releaseDateFrom=0&releaseDateTo=9007199254740992'))).toStrictEqual({});
+        expect(searchParamsToFilters(new URLSearchParams('releaseDateFrom=02000&releaseDateTo=02005'))).toEqual({ releaseDateFrom: 2000, releaseDateTo: 2005 });
     });
 
     it('supports single bounds, clamps out-of-range years, orders reversed bounds and ignores malformed years', () => {
