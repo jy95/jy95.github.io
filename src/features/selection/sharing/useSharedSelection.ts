@@ -1,12 +1,7 @@
 'use client';
 
-// Hooks
 import { useState, useEffect } from 'react';
-
-// Others
 import { decodeSelection } from "./sharing";
-
-// Types
 import type { SelectionDocument } from '@/domain/selection/types';
 
 type SharedState =
@@ -19,21 +14,22 @@ const ERROR: SharedState = { status: 'error' };
 
 /** Decodes `?entries=`. A shared selection never touches personal storage. */
 export function useSharedSelection(param: string | null): SharedState {
-  const [result, setResult] = useState<{ param: string; state: SharedState } | null>(null);
+  const [state, setState] = useState<{ param: string; data: SharedState } | null>(null);
 
   useEffect(() => {
-    if (param === null) return;
+    if (!param) return;
     let active = true;
 
-    void decodeSelection(param).then(doc => {
-      if (active) {
-        setResult({ param, state: doc ? { status: 'ready', document: doc } : ERROR });
-      }
+    decodeSelection(param).then(doc => {
+      if (!active) return;
+      setState({
+        param,
+        data: doc ? { status: 'ready', document: doc } : ERROR,
+      });
     });
-
     return () => { active = false; };
   }, [param]);
 
-  if (param === null) return NONE;
-  return result?.param === param ? result.state : LOADING;
+  if (!param) return NONE;
+  return state?.param === param ? state.data : LOADING;
 }

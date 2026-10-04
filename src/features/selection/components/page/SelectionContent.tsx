@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 import { resolveSelection } from '@/domain/selection/resolution';
-import { ClearSelectionAction } from '../actions/ClearSelectionAction';
 import { SelectionActions } from '../actions/SelectionActions';
 import { SelectionGrid } from '../grid/SelectionGrid';
 import { SelectionNotices } from './SelectionNotices';
@@ -41,8 +40,8 @@ export function SelectionContent({
                 shared={shared}
             />
 
-            {invalid && !shared && <ClearSelectionAction />}
             <SelectionActions
+                invalid={invalid}
                 shared={shared}
                 document={resolved.document}
                 personal={personal}

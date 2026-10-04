@@ -15,27 +15,13 @@ import { useRouter } from "@/i18n/routing";
 import { useGetCompanyQuery } from "@/redux/services/companiesAPI";
 import { QueryBoundary } from "@/components/common/QueryBoundary";
 import { CardGrid } from "@/features/games/components/CardGrid";
+import { usePagedSlice } from "@/hooks/usePagedSlice";
+import { SORT_OPTIONS, compareGames } from "@/features/companies/gameSorting";
 import LoadingButton from "../../games/_client/LoadingButton";
-import categories from "@/app/api/tier-lists/categories/categories.json";
-import type { CompanyGame, CompanyType } from "@/app/api/companies/route";
+import type { GameSort } from "@/features/companies/gameSorting";
+import type { CompanyType } from "@/app/api/companies/route";
 
-type GameSort = "titleAsc" | "titleDesc" | "durationAsc" | "durationDesc" | "tierAsc" | "tierDesc";
 const PAGE_SIZE = 12;
-const tierOrder = new Map(categories.map((category) => [category.slug, category.display_order]));
-
-function durationSeconds(duration?: string): number {
-    return duration?.split(":").reduce((total, part) => total * 60 + Number(part), 0) ?? 0;
-}
-
-function compareGames(first: CompanyGame, second: CompanyGame, sort: GameSort): number {
-    let result: number;
-    const field = sort.startsWith("title") ? "title" : sort.startsWith("duration") ? "duration" : "tier";
-    if (field === "title") result = first.title.localeCompare(second.title);
-    else if (field === "duration") result = durationSeconds(first.duration) - durationSeconds(second.duration);
-    else result = (tierOrder.get(first.tierCategory ?? "") ?? Number.MAX_SAFE_INTEGER) -
-        (tierOrder.get(second.tierCategory ?? "") ?? Number.MAX_SAFE_INTEGER);
-    return (sort.endsWith("Asc") ? result : -result) || first.title.localeCompare(second.title) || first.id.localeCompare(second.id);
-}
 
 export default function CompanyDetail({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
@@ -51,7 +37,6 @@ export default function CompanyDetail({ params }: { params: Promise<{ id: string
 
 function CompanyGames({ company }: { company: CompanyType }) {
     const [sort, setSort] = useState<GameSort>("titleAsc");
-    const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
     const t = useTranslations("companies");
     const common = useTranslations("common");
     const router = useRouter();
@@ -61,6 +46,9 @@ function CompanyGames({ company }: { company: CompanyType }) {
         [company, sort]
     );
 
+    // New company data or sort order resets pagination to the first page.
+    const { visible, hasMore, loadMore } = usePagedSlice(games, PAGE_SIZE);
+
     return (
         <>
             <Box data-testid="company-header" sx={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 1, minWidth: 0 }}>
@@ -69,14 +57,17 @@ function CompanyGames({ company }: { company: CompanyType }) {
             </Box>
             <Box data-testid="company-sort-controls" sx={{ display: "flex", justifyContent: "flex-end", flexWrap: "wrap", gap: 1 }}>
                 <TextField select slotProps={{ select: { native: true } }} label={t("sort.label")}
-                    value={sort} onChange={(event) => { setSort(event.target.value as GameSort); setVisibleCount(PAGE_SIZE); }}>
-                    {(["titleAsc", "titleDesc", "durationAsc", "durationDesc", "tierAsc", "tierDesc"] as const)
+                    value={sort} onChange={(event) => {
+                        const option = SORT_OPTIONS.find(option => option === event.target.value);
+                        if (option) setSort(option);
+                    }}>
+                    {SORT_OPTIONS
                         .map((option) => <option key={option} value={option}>{t(`sort.${option}`)}</option>)}
                 </TextField>
             </Box>
-            <CardGrid items={games.slice(0, visibleCount)} size={{ xs: 6, md: 4, lg: 2 }} />
-            {visibleCount < games.length && <Grid container sx={{ justifyContent: "center" }}>
-                <LoadingButton onClick={() => setVisibleCount((count) => count + PAGE_SIZE)} label={common("loadMore")} />
+            <CardGrid items={visible} size={{ xs: 6, md: 4, lg: 2 }} />
+            {hasMore && <Grid container sx={{ justifyContent: "center" }}>
+                <LoadingButton onClick={loadMore} label={common("loadMore")} />
             </Grid>}
         </>
     );

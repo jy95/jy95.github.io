@@ -3,7 +3,7 @@ import { scoreCandidate } from "./scoreCandidate";
 import { titleBigrams } from "./titleSimilarity";  
 import { buildCandidateIndex } from "./candidateIndex";  
 import { DEFAULT_WEIGHTS } from "./weights";  
-import { BoundedTopK } from "./boundedTopK";  
+import { compareRelatedGames } from "./compareRelatedGames";
   
 import type { CardGame } from "@/domain/games";  
 import type { CandidateIndex } from "./candidateIndex";  
@@ -41,13 +41,18 @@ function rankCandidates(
     context: ScoringContext,  
     limit: number  
 ): RelatedGameResult[] {  
-    const topK = new BoundedTopK(limit);  
+    const normalizedLimit = Number.isNaN(limit) ? 0 : Math.max(0, Math.trunc(limit));
+    const byId = new Map<string, RelatedGameResult>();
     for (const candidate of candidates) {  
         if (candidate.id === target.id) continue;  
         const result = scoreCandidate(candidate, context);  
-        if (result) topK.add(result);  
+        if (!result) continue;
+        const existing = byId.get(candidate.id);
+        if (!existing || compareRelatedGames(result, existing) < 0) {
+            byId.set(candidate.id, result);
+        }
     }  
-    return topK.toArray();  
+    return [...byId.values()].sort(compareRelatedGames).slice(0, normalizedLimit);
 }  
   
 /**  

@@ -9,8 +9,7 @@ export function useGameVote(slug: string) {
   const [userId, setUserId] = useState<string | undefined>();
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id));
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
       setUserId(session?.user?.id);
     });
     return () => subscription.unsubscribe();
@@ -20,18 +19,15 @@ export function useGameVote(slug: string) {
   const { data: myVotes } = useGetMyVotesQuery(userId, { skip: !userId });
   const [toggle, { isLoading }] = useToggleVoteMutation();
 
-  const count = stats?.[slug] || 0;
-  const hasVoted = myVotes?.includes(slug) || false;
+  const count = stats?.[slug] ?? 0;
+  const hasVoted = Boolean(myVotes?.includes(slug));
 
-  const handleAction = async () => {
+  const handleAction = () => {
     if (!userId) {
-      await supabase.auth.signInWithOAuth({
+      return supabase.auth.signInWithOAuth({
         provider: 'google',
-        options: {
-          redirectTo: window.location.href,
-        },
+        options: { redirectTo: window.location.href },
       });
-      return;
     }
     toggle({ slug, userId, hasVoted });
   };

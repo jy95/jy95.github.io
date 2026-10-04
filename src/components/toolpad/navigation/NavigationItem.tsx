@@ -14,50 +14,19 @@ import { Link } from "@/i18n/routing";
 import { useAppContext } from "../provider/useAppContext";
 import { MINI_DRAWER_WIDTH } from "../DashboardSidebar";
 
+import { navigationListItemButtonSx } from "./navigationStyles";
+import type { Theme } from "@mui/material/styles";
 import type { ReactNode } from "react";
 import type { Href } from "@/i18n/routing";
 
 const LIST_ITEM_ICON_SIZE = 34;
 
-/**
- * Faithful copy of Toolpad's NavigationListItemButton styles.
- *
- * Critical: use `(theme.vars ?? theme).palette.x` everywhere so that the
- * generated CSS uses MUI CSS-variable references. Without this, plain
- * `theme.palette.x` bakes in the light-mode value at build time and dark
- * mode colours never apply.
- *
- * Non-selected state: only .MuiSvgIcon-root and .MuiAvatar-root are
- * overridden — no ListItemIcon colour, no text colour — both inherit from
- * the theme naturally and therefore work correctly in dark mode.
- *
- * Defined as sx prop object to preserve polymorphic component typing.
- */
-const navigationListItemButtonSx = {
-  borderRadius: 2,
-  // Non-selected: icon SVGs use action.active (adapts in dark mode via CSS vars)
-  "& .MuiSvgIcon-root": {
-    color: (theme: any) => (theme.vars ?? theme).palette.action.active,
-  },
-  "& .MuiAvatar-root": {
-    backgroundColor: (theme: any) => (theme.vars ?? theme).palette.action.active,
-  },
-  // Selected: primary.dark accent for all children; no background tint
+const itemButtonSx = {
+  ...navigationListItemButtonSx,
   "&.Mui-selected": {
-    "& .MuiListItemIcon-root": {
-      color: (theme: any) => (theme.vars ?? theme).palette.primary.dark,
-    },
-    "& .MuiTypography-root": {
-      color: (theme: any) => (theme.vars ?? theme).palette.primary.dark,
-    },
-    "& .MuiSvgIcon-root": {
-      color: (theme: any) => (theme.vars ?? theme).palette.primary.dark,
-    },
+    ...navigationListItemButtonSx["&.Mui-selected"],
     "& .MuiAvatar-root": {
-      backgroundColor: (theme: any) => (theme.vars ?? theme).palette.primary.dark,
-    },
-    "& .MuiTouchRipple-child": {
-      backgroundColor: (theme: any) => (theme.vars ?? theme).palette.primary.dark,
+      backgroundColor: (theme: Theme) => (theme.vars ?? theme).palette.primary.dark,
     },
   },
 } as const;
@@ -224,7 +193,7 @@ export default function NavigationItem({
           // segment strings the routes are defined with.
           href={href as Href}
           selected={selected}
-          sx={{ ...navigationListItemButtonSx, ...buttonSx }}
+          sx={{ ...itemButtonSx, ...buttonSx }}
         >
           {buttonContent}
         </ListItemButton>
@@ -233,7 +202,7 @@ export default function NavigationItem({
           component="div"
           selected={selected}
           onClick={onClick}
-          sx={{ ...navigationListItemButtonSx, ...buttonSx }}
+          sx={{ ...itemButtonSx, ...buttonSx }}
         >
           {buttonContent}
         </ListItemButton>
