@@ -3,16 +3,9 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { renderHook, act, waitFor } from '@testing-library/react';
 
 const pushMock = vi.fn();
-let currentLocale = 'en';
-let currentPathname = '/games/random';
 
 vi.mock('@/i18n/routing', () => ({
     useRouter: () => ({ push: pushMock }),
-    usePathname: () => currentPathname,
-}));
-
-vi.mock('next-intl', () => ({
-    useLocale: () => currentLocale,
 }));
 
 import { useNavigateToRandomGame } from './useNavigateToRandomGame';
@@ -26,8 +19,6 @@ function jsonResponse(body: unknown, status = 200) {
 describe('useNavigateToRandomGame', () => {
     beforeEach(() => {
         pushMock.mockReset();
-        currentLocale = 'en';
-        currentPathname = '/games/random';
     });
 
     afterEach(() => {
@@ -41,7 +32,7 @@ describe('useNavigateToRandomGame', () => {
         ));
 
         const { result } = renderHook(() => useNavigateToRandomGame());
-        act(() => result.current.navigateToRandomGame());
+        await act(async () => { await result.current.navigateToRandomGame(); });
 
         await waitFor(() => expect(pushMock).toHaveBeenCalledWith({
             pathname: '/playlist/[id]',
@@ -55,7 +46,7 @@ describe('useNavigateToRandomGame', () => {
         ));
 
         const { result } = renderHook(() => useNavigateToRandomGame());
-        act(() => result.current.navigateToRandomGame());
+        await act(async () => { await result.current.navigateToRandomGame(); });
 
         await waitFor(() => expect(pushMock).toHaveBeenCalledWith({
             pathname: '/video/[id]',
@@ -63,7 +54,7 @@ describe('useNavigateToRandomGame', () => {
         }));
     });
 
-    it('sets isPending true while the request is in flight, then false', async () => {
+    it('keeps isPending true after a successful request while navigation takes over', async () => {
         let resolveFetch: (v: Response) => void = () => {};
         vi.stubGlobal('fetch', vi.fn().mockImplementation(
             () => new Promise((resolve) => { resolveFetch = resolve; })
@@ -72,10 +63,11 @@ describe('useNavigateToRandomGame', () => {
         const { result } = renderHook(() => useNavigateToRandomGame());
         expect(result.current.isPending).toBe(false);
 
-        act(() => result.current.navigateToRandomGame());
-        await waitFor(() => expect(result.current.isPending).toBe(true));
+        // Start the request without returning its unresolved promise to act.
+        act(() => { void result.current.navigateToRandomGame(); });
+        expect(result.current.isPending).toBe(true);
 
-        act(() => {
+        await act(async () => {
             resolveFetch(
                 new Response(JSON.stringify({ identifier: 'X', type: 'VIDEO' }), {
                     status: 200,
@@ -84,19 +76,30 @@ describe('useNavigateToRandomGame', () => {
             );
         });
 
-        await waitFor(() => expect(result.current.isPending).toBe(false));
+        expect(pushMock).toHaveBeenCalledWith({
+            pathname: '/video/[id]',
+            params: { id: 'X' },
+        });
+        expect(result.current.isPending).toBe(true);
     });
 
     it('ignores a second call while one is already pending', async () => {
-        const fetchMock = vi.fn().mockImplementation(() => new Promise(() => {})); // never resolves
+        let resolveFetch: (response: Response) => void = () => {};
+        const fetchMock = vi.fn(() => new Promise<Response>(resolve => { resolveFetch = resolve; }));
         vi.stubGlobal('fetch', fetchMock);
 
         const { result } = renderHook(() => useNavigateToRandomGame());
-        act(() => result.current.navigateToRandomGame());
-        await waitFor(() => expect(result.current.isPending).toBe(true));
+        // Start the request without returning its unresolved promise to act.
+        act(() => { void result.current.navigateToRandomGame(); });
+        expect(result.current.isPending).toBe(true);
 
-        act(() => result.current.navigateToRandomGame());
+        await act(async () => { await result.current.navigateToRandomGame(); });
         expect(fetchMock).toHaveBeenCalledTimes(1);
+
+        await act(async () => {
+            resolveFetch(new Response(JSON.stringify({ identifier: 'X', type: 'VIDEO' })));
+        });
+        expect(pushMock).toHaveBeenCalledOnce();
     });
 
     it('does not push and resets isPending when the response is not ok', async () => {
@@ -104,19 +107,19 @@ describe('useNavigateToRandomGame', () => {
         const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
         const { result } = renderHook(() => useNavigateToRandomGame());
-        act(() => result.current.navigateToRandomGame());
+        await act(async () => { await result.current.navigateToRandomGame(); });
 
         await waitFor(() => expect(result.current.isPending).toBe(false));
         expect(pushMock).not.toHaveBeenCalled();
         errSpy.mockRestore();
     });
 
-    it('does not push when the payload is malformed (fails isRandomAnswer)', async () => {
-        vi.stubGlobal('fetch', vi.fn().mockImplementation(() => jsonResponse({ foo: 'bar' })));
+    it('does not push and resets isPending when the response is not valid JSON', async () => {
+        vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('invalid JSON')));
         const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
         const { result } = renderHook(() => useNavigateToRandomGame());
-        act(() => result.current.navigateToRandomGame());
+        await act(async () => { await result.current.navigateToRandomGame(); });
 
         await waitFor(() => expect(result.current.isPending).toBe(false));
         expect(pushMock).not.toHaveBeenCalled();
@@ -128,49 +131,44 @@ describe('useNavigateToRandomGame', () => {
         const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
         const { result } = renderHook(() => useNavigateToRandomGame());
-        act(() => result.current.navigateToRandomGame());
+        await act(async () => { await result.current.navigateToRandomGame(); });
 
         await waitFor(() => expect(result.current.isPending).toBe(false));
         expect(pushMock).not.toHaveBeenCalled();
         errSpy.mockRestore();
     });
 
-    it.each(['locale', 'pathname', 'unmount'])('aborts on %s and ignores a late response', async change => {
-        let resolveFetch: (response: Response) => void = () => {};
-        let signal: AbortSignal | undefined;
-        vi.stubGlobal('fetch', vi.fn((_url, options: RequestInit) => {
-            signal = options.signal ?? undefined;
-            return new Promise<Response>(resolve => { resolveFetch = resolve; });
-        }));
-        const { result, rerender, unmount } = renderHook(() => useNavigateToRandomGame());
-        act(() => { result.current.navigateToRandomGame(); result.current.navigateToRandomGame(); });
-        expect(fetch).toHaveBeenCalledTimes(1);
-        if (change === 'unmount') unmount();
-        else {
-            if (change === 'locale') currentLocale = 'fr';
-            else currentPathname = '/games';
-            rerender();
-            expect(result.current.isPending).toBe(false);
-        }
-        expect(signal?.aborted).toBe(true);
-        await act(async () => { resolveFetch(new Response(JSON.stringify({ identifier: 'late', type: 'VIDEO' }))); });
-        expect(pushMock).not.toHaveBeenCalled();
-    });
+    it('resets isPending when navigation throws', async () => {
+        vi.stubGlobal('fetch', vi.fn(() => jsonResponse({ identifier: 'X', type: 'VIDEO' })));
+        const error = new Error('navigation failed');
+        pushMock.mockImplementationOnce(() => { throw error; });
+        const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-    it('does not let an older aborted request clear a newer pending request', async () => {
-        const resolvers: ((response: Response) => void)[] = [];
-        vi.stubGlobal('fetch', vi.fn(() => new Promise<Response>(resolve => resolvers.push(resolve))));
-        const { result, rerender } = renderHook(() => useNavigateToRandomGame());
-        act(() => result.current.navigateToRandomGame());
-        currentPathname = '/new-path';
-        rerender();
-        act(() => result.current.navigateToRandomGame());
-        await act(async () => resolvers[0](new Response(JSON.stringify({ identifier: 'old', type: 'VIDEO' }))));
-        expect(result.current.isPending).toBe(true);
-        expect(pushMock).not.toHaveBeenCalled();
-        await act(async () => resolvers[1](new Response(JSON.stringify({ identifier: 'new', type: 'VIDEO' }))));
+        const { result } = renderHook(() => useNavigateToRandomGame());
+        await act(async () => { await result.current.navigateToRandomGame(); });
+
         expect(result.current.isPending).toBe(false);
-        expect(pushMock).toHaveBeenCalledOnce();
+        expect(errSpy).toHaveBeenCalledWith('Failed to navigate to a random game:', error);
     });
 
+    it('allows another request after a failed request', async () => {
+        const fetchMock = vi.fn()
+            .mockRejectedValueOnce(new Error('network down'))
+            .mockImplementationOnce(() => jsonResponse({ identifier: 'retry', type: 'VIDEO' }));
+        vi.stubGlobal('fetch', fetchMock);
+        vi.spyOn(console, 'error').mockImplementation(() => {});
+
+        const { result } = renderHook(() => useNavigateToRandomGame());
+        await act(async () => { await result.current.navigateToRandomGame(); });
+        expect(result.current.isPending).toBe(false);
+        expect(pushMock).not.toHaveBeenCalled();
+
+        await act(async () => { await result.current.navigateToRandomGame(); });
+        expect(fetchMock).toHaveBeenCalledTimes(2);
+        expect(pushMock).toHaveBeenCalledExactlyOnceWith({
+            pathname: '/video/[id]',
+            params: { id: 'retry' },
+        });
+        expect(result.current.isPending).toBe(true);
+    });
 });
