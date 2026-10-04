@@ -113,7 +113,7 @@ function createDatabase(): Database.Database {
     return db;
 }
 
-let sourceBytes: Buffer = Buffer.alloc(0);
+let sourceBytes: Awaited<ReturnType<typeof readFile>> = Buffer.alloc(0);
 let embeddedSource = '';
 
 beforeEach(async () => {
