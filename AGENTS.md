@@ -31,13 +31,13 @@ npm run dev:test
 Useful repository scripts include:
 
 ```bash
-npm run generate-responsive-images
-npm run generate-playlist-data-report
-npm run generate-playlist-csv
-npm run find-published-games
 npm run generate-api-json-files
+npm run generate-responsive-images
 npm run db:sync-views
 npm run analyze:company-duplicates
+npm run generate-playlist-csv
+npm run generate-playlist-data-report
+npm run find-published-games
 ```
 
 Do not invent new package scripts when an existing command already covers the task.
