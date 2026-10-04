@@ -1,49 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Stack, Typography, Chip, CircularProgress } from '@mui/material';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 import { useTranslations } from "next-intl";
-import { useGetGlobalStatsQuery, useGetMyVotesQuery, useToggleVoteMutation } from "@/redux/services/votesAPI";
-import { createClient } from "@/lib/supabase/client";
-
-const supabase = createClient();
+import { useGameVote } from './useGameVote';
 
 export default function VoteSection({ slug }: { slug: string }) {
   const t = useTranslations("vote");
-  const [userId, setUserId] = useState<string | undefined>();
-
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id));
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUserId(session?.user?.id);
-    });
-    return () => subscription.unsubscribe();
-  }, []);
-
-  const { data: stats } = useGetGlobalStatsQuery();
-  const { data: myVotes } = useGetMyVotesQuery(userId, { skip: !userId });
-  const [toggle, { isLoading }] = useToggleVoteMutation();
-
-  const count = stats?.[slug] || 0;
-  const hasVoted = myVotes?.includes(slug) || false;
-
-  const handleAction = async () => {
-    if (!userId) {
-      await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          // Redirige l'utilisateur sur la page actuelle après connexion
-          redirectTo: window.location.href, 
-        },
-      });
-      return;
-    }
-    toggle({ slug, userId, hasVoted });
-  };
+  const { count, hasVoted, isLoading, handleAction } = useGameVote(slug);
 
   return (
     <Stack spacing={1.5} sx={{ my: 3, alignItems: 'flex-start' }}>
