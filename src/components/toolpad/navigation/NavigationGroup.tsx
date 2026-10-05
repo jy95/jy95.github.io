@@ -1,6 +1,6 @@
 "use client";
 
- // React / Next.js / third-party libraries
+// React / Next.js / third-party libraries
 import { useTranslations } from "next-intl";
 
 import Box from "@mui/material/Box";
@@ -19,12 +19,47 @@ import type { Href } from "@/i18n/routing";
 // Navigation feature
 import NavigationItem from "./NavigationItem";
 import { useAppContext } from "../provider/useAppContext";
+import { navigationListItemButtonSx } from "./navigationStyles";
 import type { NavigationItem as Item } from "../types";
 
-import { navigationListItemButtonSx } from "./navigationStyles";
+const joinPath = (parent: string, segment?: string) => (segment ? `${parent}/${segment}` : parent);
 
-function hasChildren(item: Item): item is Item & { children: Item[] } {
-  return !!item.children?.length;
+const isWithin = (pathname: string, path: string) =>
+  pathname === path || pathname.startsWith(`${path}/`);
+
+/** Hover popover shown in mini mode; children rendered in the full expanded style. */
+function MiniPopover({ items, parentPath }: { items: Item[]; parentPath: string }) {
+  const pathname = usePathname();
+  const t = useTranslations("dashboard.menuEntries");
+
+  return (
+    <List sx={{ padding: 0, minWidth: 200 }}>
+      {items.map((child, idx) => {
+        const childPath = joinPath(parentPath, child.segment);
+        return (
+          <ListItem key={`${child.segment ?? child.titleKey}-${idx}`} sx={{ py: 0, px: 1 }}>
+            <ListItemButton
+              component={Link}
+              // Built from route segments at runtime, so it cannot be checked
+              // statically against `routing.pathnames`.
+              href={childPath as Href}
+              selected={pathname === childPath}
+              sx={{ ...navigationListItemButtonSx, px: 1.4, height: 48 }}
+            >
+              <Box sx={{ display: "flex" }}>
+                <ListItemIcon
+                  sx={{ display: "flex", alignItems: "center", justifyContent: "center", minWidth: 34 }}
+                >
+                  {child.icon ?? null}
+                </ListItemIcon>
+              </Box>
+              <ListItemText primary={t(child.titleKey)} sx={{ ml: 1.2, whiteSpace: "nowrap" }} />
+            </ListItemButton>
+          </ListItem>
+        );
+      })}
+    </List>
+  );
 }
 
 interface Props {
@@ -33,106 +68,43 @@ interface Props {
   depth?: number;
 }
 
-export default function NavigationGroup({
-  item,
-  parentPath = "",
-  depth = 0,
-}: Props) {
+export default function NavigationGroup({ item, parentPath = "", depth = 0 }: Props) {
   const pathname = usePathname();
   const { drawerOpen = true } = useAppContext();
-  const isMini = !drawerOpen;
-  // Resolves `titleKey` (e.g. "gamesTabs.grid") into display text. Doing
-  // this here — at render time, per navigation node — is what lets
-  // `MenuEntries.tsx` build a static, translation-agnostic tree instead of
-  // taking ~11 pre-translated string props from its caller.
+  // Titles are resolved here, at render time, so `MenuEntries.tsx` can stay a
+  // static, translation-agnostic tree.
   const t = useTranslations("dashboard.menuEntries");
 
-  const itemPath = item.segment ? `${parentPath}/${item.segment}` : parentPath;
-  const hasAnyChild = hasChildren(item);
+  const isMini = !drawerOpen;
+  const itemPath = joinPath(parentPath, item.segment);
+  const children = item.children ?? [];
+  const hasChildren = children.length > 0;
+  const isChildActive = children.some((child) => isWithin(pathname, joinPath(itemPath, child.segment)));
+  const [open, toggleOpen] = useToggle(isChildActive);
 
-  const isAnyChildSelected =
-    hasAnyChild &&
-    item.children.some((child) => {
-      const childPath = child.segment ? `${itemPath}/${child.segment}` : itemPath;
-      return pathname === childPath || pathname.startsWith(`${childPath}/`);
-    });
+  // A group toggles (instead of navigating) when the drawer is expanded.
+  const isToggle = hasChildren && !isMini;
 
-  const [open, toggleOpen] = useToggle(isAnyChildSelected);
-
-  // In mini mode highlight parent when any child is active; in expanded mode
-  // only leaf items are highlighted.
-  const isSelected = hasAnyChild
-    ? isMini && isAnyChildSelected
-    : pathname === itemPath;
-
-  // Popover children rendered in full expanded style matching Toolpad's DOM
-  const miniPopover =
-    hasAnyChild && isMini ? (
-      <List sx={{ padding: 0, minWidth: 200 }}>
-        {item.children.map((child, idx) => {
-          const childPath = child.segment
-            ? `${itemPath}/${child.segment}`
-            : itemPath;
-          const childSelected = pathname === childPath;
-          return (
-            <ListItem
-              key={`${child.segment ?? child.titleKey}-${idx}`}
-              sx={{ py: 0, px: 1 }}
-            >
-              <ListItemButton
-                component={Link}
-                // `childPath` is built by concatenating route segments at
-                // runtime, so it can't be statically checked against the
-                // finite `routing.pathnames` union the way a literal string
-                // could — it's still guaranteed valid because it's derived
-                // from the exact same segment strings the routes are
-                // defined with.
-                href={childPath as Href}
-                selected={childSelected}
-                sx={{ ...navigationListItemButtonSx, px: 1.4, height: 48 }}
-              >
-                <Box sx={{ display: "flex" }}>
-                  <ListItemIcon
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      minWidth: 34,
-                    }}
-                  >
-                    {child.icon ?? null}
-                  </ListItemIcon>
-                </Box>
-                <ListItemText
-                  primary={t(child.titleKey)}
-                  sx={{ ml: 1.2, whiteSpace: "nowrap" }}
-                />
-              </ListItemButton>
-            </ListItem>
-          );
-        })}
-      </List>
-    ) : undefined;
+  // Mini mode highlights the parent of an active child; expanded mode only highlights leaves.
+  const isSelected = hasChildren ? isMini && isChildActive : pathname === itemPath;
 
   return (
     <>
       <NavigationItem
         title={t(item.titleKey)}
         icon={item.icon}
-        href={hasAnyChild && !isMini ? undefined : itemPath}
+        href={isToggle ? undefined : itemPath}
         selected={isSelected}
-        onClick={
-          hasAnyChild && !isMini ? toggleOpen : undefined
-        }
+        onClick={isToggle ? toggleOpen : undefined}
         expanded={open}
-        hasChildren={hasAnyChild}
-        miniPopoverContent={miniPopover}
+        hasChildren={hasChildren}
+        miniPopoverContent={hasChildren && isMini ? <MiniPopover items={children} parentPath={itemPath} /> : undefined}
       />
 
-      {hasAnyChild && !isMini ? (
+      {isToggle && (
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List sx={{ padding: 0, mb: 0.5, pl: 2 * (depth + 1) }}>
-            {item.children.map((child, idx) => (
+            {children.map((child, idx) => (
               <NavigationGroup
                 key={`${child.segment ?? child.titleKey}-${idx}`}
                 item={child}
@@ -142,7 +114,7 @@ export default function NavigationGroup({
             ))}
           </List>
         </Collapse>
-      ) : null}
+      )}
     </>
   );
 }
