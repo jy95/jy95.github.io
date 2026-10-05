@@ -86,7 +86,8 @@ function createDatabase(): Database.Database {
             platform INTEGER NOT NULL,
             playlistId TEXT,
             videoId TEXT,
-            releaseDate TEXT NOT NULL
+            releaseDate TEXT NOT NULL,
+            CHECK(videoId IS NOT NULL OR playlistId IS NOT NULL)
         );
 
         CREATE TABLE series_games (
@@ -439,7 +440,7 @@ describe('cover output', () => {
                 title: 'Game',
                 platform: 1,
                 playlistId: null,
-                videoId: id === 4 ? null : `video${id}`,
+                videoId: `video${id}`,
             })),
         }, '/repository');
 
@@ -455,23 +456,6 @@ describe('cover output', () => {
         }
     });
 
-    it('reports missing identifiers without generating output', async () => {
-        await expect(writeSeriesCover({
-            ...serie,
-            games: serie.games.map(game => ({
-                ...game,
-                playlistId: null,
-                videoId: null,
-            })),
-        })).rejects.toThrow(
-            'Missing playlist/video identifier for game 3',
-        );
-
-        expect(readFile).not.toHaveBeenCalled();
-        expect(mkdir).not.toHaveBeenCalled();
-        expect(convertBufferToWebp).not.toHaveBeenCalled();
-    });
-
     it.each(['', '../escape', 'a/b', 'a\\b'])(
         'rejects an invalid identifier: %s',
         async playlistId => {
@@ -484,19 +468,6 @@ describe('cover output', () => {
             })).rejects.toThrow('Invalid cover identifier');
 
             expect(readFile).not.toHaveBeenCalled();
-        },
-    );
-
-    it.each([0, -1, 1.5, Number.NaN, Number.MAX_SAFE_INTEGER + 1])(
-        'rejects an invalid series ID: %s',
-        async id => {
-            await expect(writeSeriesCover({
-                ...serie,
-                id,
-            })).rejects.toThrow('Invalid series ID');
-
-            expect(readFile).not.toHaveBeenCalled();
-            expect(mkdir).not.toHaveBeenCalled();
         },
     );
 

@@ -124,10 +124,6 @@ function escapeXml(value: string): string {
     })[character] ?? character);
 }
 
-function imageSlots(count: number): readonly ImageSlot[] {
-    return IMAGE_LAYOUTS[Math.min(count, MAXIMUM_COVERS)] ?? [];
-}
-
 /**
  * Generate SVG without database or filesystem access.
  * Empty input produces a transparent canvas.
@@ -137,13 +133,9 @@ export function generateSeriesSvg(
     name: string,
     sources: readonly string[],
 ): string {
-    const slots = imageSlots(sources.length);
-    const images = sources.slice(0, MAXIMUM_COVERS).map((source, index) => {
-        const slot = slots[index];
-
-        if (slot === undefined) {
-            throw new Error(`Missing cover for SVG slot ${index}`);
-        }
+    const slots = IMAGE_LAYOUTS[Math.min(sources.length, MAXIMUM_COVERS)] ?? [];
+    const images = slots.map((slot, index) => {
+        const source = sources[index];
 
         return (
             `  <image x="${slot.x}" y="${slot.y}" ` +
@@ -164,25 +156,16 @@ export function generateSeriesSvg(
     ].join('\n');
 }
 
-function toRawGame(game: SeriesCoverGame): RawGame {
-    const base = {
+function gameCoverPath(game: SeriesCoverGame, root: string): string {
+    // The games table requires at least one identifier; playlists take precedence.
+    const identity = game.playlistId !== null
+        ? { playlistId: game.playlistId }
+        : { videoId: game.videoId ?? '' };
+    const card = buildCardEntry({
         title: game.title,
         platform: game.platform,
-    };
-
-    if (game.playlistId !== null) {
-        return { ...base, playlistId: game.playlistId };
-    }
-
-    if (game.videoId !== null) {
-        return { ...base, videoId: game.videoId };
-    }
-
-    throw new Error(`Missing playlist/video identifier for game ${game.id}`);
-}
-
-function gameCoverPath(game: SeriesCoverGame, root: string): string {
-    const card = buildCardEntry(toRawGame(game), COVER_PATHS.games);
+        ...identity,
+    }, COVER_PATHS.games);
 
     // YouTube identifiers are directory names, not filesystem paths.
     if (!/^[A-Za-z0-9_-]+$/.test(card.id)) {
@@ -229,10 +212,6 @@ export async function writeSeriesCover(
     serie: SeriesCover,
     root = REPOSITORY_ROOT,
 ): Promise<void> {
-    if (!Number.isSafeInteger(serie.id) || serie.id <= 0) {
-        throw new Error(`Invalid series ID: ${serie.id}`);
-    }
-
     const sources = await embedSeriesCovers(serie, root);
     const outputDirectory = resolve(
         root,
