@@ -40,13 +40,13 @@ describe('SeriesDetailPage', () => {
         expect(screen.getByTestId('entity-header')).toContainElement(screen.getByRole('button', { name: 'series.back' }));
         expect(getComputedStyle(screen.getByTestId('entity-header')).flexWrap).toBe('wrap');
         const controls = screen.getByTestId('entity-sort-controls');
-        expect(controls).toContainElement(screen.getByLabelText('series.sort.label'));
+        expect(controls).toContainElement(screen.getByLabelText('common.gameSort.label'));
         expect(getComputedStyle(controls).justifyContent).toBe('flex-end');
         expect(getComputedStyle(controls).flexWrap).toBe('wrap');
         expect(screen.getByTestId('card-grid')).toHaveTextContent('Alpha,Bravo,Charlie');
         fireEvent.click(screen.getByRole('button', { name: 'series.back' }));
         expect(backMock).toHaveBeenCalledOnce();
-        expect(screen.getByLabelText('series.sort.label')).toHaveValue('titleAsc');
+        expect(screen.getByLabelText('common.gameSort.label')).toHaveValue('titleAsc');
     });
 
     it('shows loading and treats 404 as not found', async () => {
@@ -76,37 +76,37 @@ describe('SeriesDetailPage', () => {
         ['tierDesc', 'Alpha,Bravo,Charlie'],
     ])('sorts all games by %s', async (option, expected) => {
         await renderDetail();
-        fireEvent.change(screen.getByLabelText('series.sort.label'), { target: { value: option } });
-        expect(screen.getByLabelText('series.sort.label')).toHaveValue(option);
+        fireEvent.change(screen.getByLabelText('common.gameSort.label'), { target: { value: option } });
+        expect(screen.getByLabelText('common.gameSort.label')).toHaveValue(option);
         expect(screen.getByTestId('card-grid')).toHaveTextContent(expected);
     });
 
     it('sorts before loading more and resets pagination on sort change', async () => {
         const many = Array.from({ length: 14 }, (_, index) => game(String(index), `Game ${String(index).padStart(2, '0')}`, `${String(index).padStart(2, '0')}:00:00`, 'tier_good'));
         await renderDetail({ ...company, developerGames: many, publisherGames: [many[0]] });
-        fireEvent.change(screen.getByLabelText('series.sort.label'), { target: { value: 'titleDesc' } });
+        fireEvent.change(screen.getByLabelText('common.gameSort.label'), { target: { value: 'titleDesc' } });
         expect(screen.getByTestId('card-grid').textContent?.split(',')).toEqual(many.slice(2).reverse().map((item) => item.title));
         fireEvent.click(screen.getByText('common.loadMore'));
         expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(14);
-        fireEvent.change(screen.getByLabelText('series.sort.label'), { target: { value: 'durationAsc' } });
+        fireEvent.change(screen.getByLabelText('common.gameSort.label'), { target: { value: 'durationAsc' } });
         expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(12);
         fireEvent.click(screen.getByText('common.loadMore'));
         expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(14);
-        fireEvent.change(screen.getByLabelText('series.sort.label'), { target: { value: 'durationDesc' } });
+        fireEvent.change(screen.getByLabelText('common.gameSort.label'), { target: { value: 'durationDesc' } });
         expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(12);
     });
 
     it('breaks equal titles by game ID regardless of source ordering', async () => {
         await renderDetail({ ...company, developerGames: [game('b', 'Same', '01:00:00', 'tier_good'), game('a', 'Same', '01:00:00', 'tier_good')], publisherGames: [] });
         expect(screen.getByTestId('card-grid')).toHaveAttribute('data-ids', 'a,b');
-        fireEvent.change(screen.getByLabelText('series.sort.label'), { target: { value: 'titleDesc' } });
+        fireEvent.change(screen.getByLabelText('common.gameSort.label'), { target: { value: 'titleDesc' } });
         expect(screen.getByTestId('card-grid')).toHaveAttribute('data-ids', 'a,b');
     });
     it('sorts missing durations as zero and retains ascending title tie-breakers', async () => {
         await renderDetail({ ...company, developerGames: [game('b', 'Bravo', undefined, 'tier_good'), game('a', 'Alpha', undefined, 'tier_good'), game('c', 'Charlie', '01:00:00', 'tier_good')], publisherGames: [] });
-        fireEvent.change(screen.getByLabelText('series.sort.label'), { target: { value: 'durationAsc' } });
+        fireEvent.change(screen.getByLabelText('common.gameSort.label'), { target: { value: 'durationAsc' } });
         expect(screen.getByTestId('card-grid')).toHaveAttribute('data-ids', 'a,b,c');
-        fireEvent.change(screen.getByLabelText('series.sort.label'), { target: { value: 'durationDesc' } });
+        fireEvent.change(screen.getByLabelText('common.gameSort.label'), { target: { value: 'durationDesc' } });
         expect(screen.getByTestId('card-grid')).toHaveAttribute('data-ids', 'c,a,b');
     });
 

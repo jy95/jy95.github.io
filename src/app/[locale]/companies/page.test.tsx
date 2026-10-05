@@ -67,9 +67,9 @@ describe('CompaniesGallery', () => {
 
     it('offers game count ascending with English and French labels', () => {
         render(<CompaniesGallery />);
-        expect(screen.getByRole('option', { name: 'companies.sortCompanies.countAsc' })).toHaveValue('countAsc');
-        expect(en.companies.sortCompanies.countAsc).toBe('Game count (fewest first)');
-        expect(fr.companies.sortCompanies.countAsc).toBe('Nombre de jeux (croissant)');
+        expect(screen.getByRole('option', { name: 'common.sort.options.countAsc' })).toHaveValue('countAsc');
+        expect(en.common.sort.options.countAsc).toBe('Game count (fewest first)');
+        expect(fr.common.sort.options.countAsc).toBe('Nombre de jeux (croissant)');
     });
 
     it('resets to the first page of the new role instead of keeping earlier role pages', () => {

@@ -12,12 +12,13 @@ type Props = { value?: GameSort; onChange: (sort: GameSort | undefined) => void 
 
 export default function SortSelect({ value, onChange }: Props) {
     const t = useTranslations('gamesLibrary');
+    const commonSort = useTranslations('common.sort');
     const field = value?.split('_')[0] ?? '';
     const direction = value?.endsWith('_desc') ? 'desc' : 'asc';
     const labels = {
-        title: t('sortLabels.name'),
-        releaseDate: t('sortLabels.releaseDate'),
-        duration: t('sortLabels.duration'),
+        title: commonSort('fields.name'),
+        releaseDate: commonSort('fields.releaseDate'),
+        duration: commonSort('fields.duration'),
     } satisfies Record<SortField, string>;
     const changeSort = (nextField: string, nextDirection: SortDirection) => {
         onChange(GAME_SORT_OPTIONS.find(option => option === `${nextField}_${nextDirection}`));
@@ -26,10 +27,10 @@ export default function SortSelect({ value, onChange }: Props) {
     return (
         <SortControl field={field} direction={direction} label={t('sortForm.firstSort')}
             options={[
-                { value: '', label: t('sortLabels.default') },
+                { value: '', label: commonSort('fields.default') },
                 ...SORT_FIELDS.map(value => ({ value, label: labels[value] })),
             ]}
-            directionLabels={{ asc: t('sortDirection.asc'), desc: t('sortDirection.desc') }}
+            directionLabels={{ asc: commonSort('direction.asc'), desc: commonSort('direction.desc') }}
             directionDisabled={!value}
             onFieldChange={field => changeSort(field, direction)}
             onDirectionChange={direction => changeSort(field, direction)} />

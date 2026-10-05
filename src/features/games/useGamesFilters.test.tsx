@@ -130,14 +130,14 @@ describe.each([false, true])('sort controls and URL (mobile: %s)', mobile => {
             return <SortSelect value={filters.sort} onChange={sort => updateFilters({ sort })} />;
         }
         const { rerender } = render(<Controls />);
-        fireEvent.click(screen.getByRole('button', { name: 'gamesLibrary.sortDirection.asc' }));
+        fireEvent.click(screen.getByRole('button', { name: 'common.sort.direction.asc' }));
         const first = navigation.push.mock.lastCall![0];
         expect(first).toContain('sort=duration_asc');
         const select = screen.getByRole('combobox', { name: 'gamesLibrary.sortForm.firstSort' });
         if (mobile) fireEvent.change(select, { target: { value: 'title' } });
         else {
             fireEvent.mouseDown(select);
-            fireEvent.click(screen.getByRole('option', { name: 'gamesLibrary.sortLabels.name' }));
+            fireEvent.click(screen.getByRole('option', { name: 'common.sort.fields.name' }));
         }
         const last = navigation.push.mock.lastCall![0];
         const params = new URL(last, 'http://localhost').searchParams;
@@ -145,14 +145,14 @@ describe.each([false, true])('sort controls and URL (mobile: %s)', mobile => {
         navigation.href = first;
         rerender(<Controls />);
         if (mobile) expect(select).toHaveValue('title');
-        else expect(select).toHaveTextContent('gamesLibrary.sortLabels.name');
+        else expect(select).toHaveTextContent('common.sort.fields.name');
         navigation.href = last;
         rerender(<Controls />);
         navigation.href = '/fr/games?sort=releaseDate_desc';
         rerender(<Controls />);
         if (mobile) expect(select).toHaveValue('releaseDate');
-        else expect(select).toHaveTextContent('gamesLibrary.sortLabels.releaseDate');
-        expect(screen.getByRole('button', { name: 'gamesLibrary.sortDirection.asc' })).toBeEnabled();
+        else expect(select).toHaveTextContent('common.sort.fields.releaseDate');
+        expect(screen.getByRole('button', { name: 'common.sort.direction.asc' })).toBeEnabled();
         expect(navigation.replace).not.toHaveBeenCalled();
     });
 });

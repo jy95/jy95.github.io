@@ -12,7 +12,7 @@ beforeEach(() => { responsive.mobile = false; });
 import SortSelect from './SortSelect';
 
 const label = 'gamesLibrary.sortForm.firstSort';
-const directionLabel = (direction: string) => `gamesLibrary.sortDirection.${direction}`;
+const directionLabel = (direction: string) => `common.sort.direction.${direction}`;
 const fields = ['', ...new Set(GAME_SORT_OPTIONS.map(sort => sort.split('_')[0]))];
 
 function chooseField(value: string) {
@@ -36,7 +36,7 @@ describe.each([false, true])('SortSelect (mobile: %s)', mobile => {
         if (!mobile) fireEvent.mouseDown(select);
         expect(screen.getAllByRole('option').map(option => option.getAttribute(mobile ? 'value' : 'data-value'))).toEqual(fields);
         if (mobile) fireEvent.change(select, { target: { value: 'title' } });
-        else fireEvent.click(screen.getByRole('option', { name: 'gamesLibrary.sortLabels.name' }));
+        else fireEvent.click(screen.getByRole('option', { name: 'common.sort.fields.name' }));
         expect(onChange).toHaveBeenCalledExactlyOnceWith('title_asc');
     });
 
@@ -76,7 +76,7 @@ describe.each([false, true])('SortSelect (mobile: %s)', mobile => {
         expect(screen.getByTestId('ArrowUpwardIcon')).toBeInTheDocument();
         const select = screen.getByRole('combobox', { name: label });
         if (mobile) expect(select).toHaveValue('releaseDate');
-        else expect(select).toHaveTextContent('gamesLibrary.sortLabels.releaseDate');
+        else expect(select).toHaveTextContent('common.sort.fields.releaseDate');
         chooseField('title');
         expect(screen.getByRole('button', { name: directionLabel('desc') })).toBeEnabled();
         chooseField('');
