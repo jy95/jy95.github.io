@@ -4,7 +4,9 @@ import { loadCompanies, toCompanySummary } from "./data";
 import type { CompanyRole, CompanySummary } from "./data";
 
 export type { CompanyType, CompanyGame, CompanySummary, CompanyRole } from "./data";
-export type CompanySort = "nameAsc" | "nameDesc" | "countDesc" | "countAsc";
+
+const COMPANY_SORTS = ["nameAsc", "nameDesc", "countDesc", "countAsc"] as const;
+export type CompanySort = (typeof COMPANY_SORTS)[number];
 
 export type ResponseBody = {
     items: CompanySummary[];
@@ -14,24 +16,37 @@ export type ResponseBody = {
     page: number;
 };
 
+type Comparator = (first: CompanySummary, second: CompanySummary) => number;
+
+const byNameThenId: Comparator = (a, b) => a.name.localeCompare(b.name) || a.id - b.id;
+
+// Count sorts fall back to name order, then id, so pagination is stable.
+const COMPARATORS: Record<CompanySort, Comparator> = {
+    nameAsc: byNameThenId,
+    nameDesc: (a, b) => b.name.localeCompare(a.name) || a.id - b.id,
+    countDesc: (a, b) => b.gamesCount - a.gamesCount || byNameThenId(a, b),
+    countAsc: (a, b) => a.gamesCount - b.gamesCount || byNameThenId(a, b),
+};
+
+const ROLES = ["developer", "publisher"] as const;
+
+const parseRole = (value: string | null): CompanyRole =>
+    ROLES.find((role) => role === value) ?? "all";
+
+// Missing or unknown sort values default to name ascending.
+const parseSort = (value: string | null): CompanySort =>
+    COMPANY_SORTS.find((sort) => sort === value) ?? "nameAsc";
+
 export async function GET(request: Request) {
     const params = new URL(request.url).searchParams;
-    const roleParam = params.get("role");
-    const role: CompanyRole = roleParam === "developer" || roleParam === "publisher" ? roleParam : "all";
-    const sortParam = params.get("sort");
-    // Missing or unknown sort values default to name ascending.
-    const sort: CompanySort = sortParam === "nameDesc" || sortParam === "countDesc" || sortParam === "countAsc" ? sortParam : "nameAsc";
-    const pagination = parsePageParams(params);
-    const summaries = (await loadCompanies()).map((company) => toCompanySummary(company, role))
-        .filter((company) => company.gamesCount > 0)
-        .sort((first, second) => {
-            const nameOrder = first.name.localeCompare(second.name) || first.id - second.id;
-            if (sort === "nameDesc") return second.name.localeCompare(first.name) || first.id - second.id;
-            if (sort === "countDesc") return second.gamesCount - first.gamesCount || nameOrder;
-            if (sort === "countAsc") return first.gamesCount - second.gamesCount || nameOrder;
-            return nameOrder;
-        });
+    const role = parseRole(params.get("role"));
+    const sort = parseSort(params.get("sort"));
 
-    const response: ResponseBody = paginate(summaries, pagination);
+    const summaries = (await loadCompanies())
+        .map((company) => toCompanySummary(company, role))
+        .filter((company) => company.gamesCount > 0)
+        .sort(COMPARATORS[sort]);
+
+    const response: ResponseBody = paginate(summaries, parsePageParams(params));
     return cachedJson(response);
 }
