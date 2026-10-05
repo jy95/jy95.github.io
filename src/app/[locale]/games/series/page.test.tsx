@@ -38,7 +38,7 @@ describe('SeriesGallery', () => {
             if (mobile) fireEvent.change(select, { target: { value: field } });
             else {
                 fireEvent.mouseDown(select);
-                fireEvent.click(screen.getByRole('option', { name: `series.sortSeries.${field}` }));
+                fireEvent.click(screen.getByRole('option', { name: `common.sort.fields.${field}` }));
             }
         };
         const expectDestination = (sort: string) => {
@@ -50,14 +50,14 @@ describe('SeriesGallery', () => {
         expect(screen.getByTestId('ArrowUpwardIcon')).toHaveAttribute('aria-hidden', 'true');
         chooseField('count');
         expectDestination('countAsc');
-        const descending = screen.getByRole('button', { name: 'series.sortSeries.direction.desc' });
+        const descending = screen.getByRole('button', { name: 'common.sort.direction.desc' });
         expect(descending).toHaveStyle({ minWidth: '44px', minHeight: '44px' });
         fireEvent.click(descending);
         expectDestination('countDesc');
         expect(screen.getByTestId('ArrowDownwardIcon')).toBeInTheDocument();
         chooseField('name');
         expectDestination('nameDesc');
-        fireEvent.click(screen.getByRole('button', { name: 'series.sortSeries.direction.asc' }));
+        fireEvent.click(screen.getByRole('button', { name: 'common.sort.direction.asc' }));
         expectDestination('nameAsc');
         fireEvent.change(screen.getByLabelText('series.filter.label'), { target: { value: 'Batman' } });
         expect(query).toHaveBeenLastCalledWith({ filter: '', sort: 'nameAsc', pageSize: 12 });
@@ -97,12 +97,12 @@ describe('SeriesGallery', () => {
         expect(Object.keys(en.series)).toEqual(Object.keys(fr.series));
         expect(en.series.gamesCount).toContain('plural');
         expect(fr.series.gamesCount).toContain('plural');
-        expect(Object.keys(en.series.sort)).toEqual(Object.keys(fr.series.sort));
+        expect(Object.keys(en.common.gameSort)).toEqual(Object.keys(fr.common.gameSort));
         expect(Object.keys(en.series.sortSeries)).toEqual(Object.keys(fr.series.sortSeries));
         for (const messages of [en, fr]) {
-            expect(messages.series.sortSeries.name).toBeTruthy();
-            expect(messages.series.sortSeries.count).toBeTruthy();
-            expect(messages.series.sortSeries.direction.asc).not.toBe(messages.series.sortSeries.direction.desc);
+            expect(messages.common.sort.fields.name).toBeTruthy();
+            expect(messages.common.sort.fields.count).toBeTruthy();
+            expect(messages.common.sort.direction.asc).not.toBe(messages.common.sort.direction.desc);
         }
     });
 });

@@ -19,10 +19,10 @@ describe.each([false, true])('SeriesSortSelect (mobile: %s)', mobile => {
         if (mobile) fireEvent.change(select, { target: { value: field } });
         else {
             fireEvent.mouseDown(select);
-            fireEvent.click(screen.getByRole('option', { name: `series.sortSeries.${field}` }));
+            fireEvent.click(screen.getByRole('option', { name: `common.sort.fields.${field}` }));
         }
         expect(onChange).toHaveBeenLastCalledWith(`${field}${desc ? 'Desc' : 'Asc'}`);
-        const button = screen.getByRole('button', { name: `series.sortSeries.direction.${desc ? 'asc' : 'desc'}` });
+        const button = screen.getByRole('button', { name: `common.sort.direction.${desc ? 'asc' : 'desc'}` });
         expect(button).toBeEnabled();
         expect(button).toHaveStyle({ minWidth: '44px', minHeight: '44px' });
         fireEvent.click(button);

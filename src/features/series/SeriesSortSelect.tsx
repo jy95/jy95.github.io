@@ -11,6 +11,7 @@ type Props = { value: SeriesSort; onChange: (sort: SeriesSort) => void };
 
 export default function SeriesSortSelect({ value, onChange }: Props) {
     const t = useTranslations('series');
+    const commonSort = useTranslations('common.sort');
     const field = value.startsWith('name') ? 'name' : 'count';
     const direction = value.endsWith('Desc') ? 'desc' : 'asc';
     const changeSort = (field: string, direction: SortDirection) => {
@@ -21,10 +22,10 @@ export default function SeriesSortSelect({ value, onChange }: Props) {
     return (
         <SortControl field={field} direction={direction} label={t('sortSeries.label')}
             options={[
-                { value: 'name', label: t('sortSeries.name') },
-                { value: 'count', label: t('sortSeries.count') },
+                { value: 'name', label: commonSort('fields.name') },
+                { value: 'count', label: commonSort('fields.count') },
             ]}
-            directionLabels={{ asc: t('sortSeries.direction.asc'), desc: t('sortSeries.direction.desc') }}
+            directionLabels={{ asc: commonSort('direction.asc'), desc: commonSort('direction.desc') }}
             onFieldChange={field => changeSort(field, direction)}
             onDirectionChange={direction => changeSort(field, direction)} />
     );

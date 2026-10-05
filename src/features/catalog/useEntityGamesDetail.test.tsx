@@ -17,9 +17,9 @@ describe('useEntityGamesDetail', () => {
         }
         back.mockClear();
         render(<Consumer />);
-        expect(screen.getByText(`${namespace}.sort.label`)).toBeInTheDocument();
+        expect(screen.getByText('common.gameSort.label')).toBeInTheDocument();
         expect(screen.getByText('common.loadMore')).toBeInTheDocument();
-        for (const option of SORT_OPTIONS) expect(screen.getByText(`${namespace}.sort.${option}`)).toBeInTheDocument();
+        for (const option of SORT_OPTIONS) expect(screen.getByText(`common.gameSort.${option}`)).toBeInTheDocument();
         fireEvent.click(screen.getByRole('button', { name: `${namespace}.back` }));
         expect(back).toHaveBeenCalledOnce();
     });
