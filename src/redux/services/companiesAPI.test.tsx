@@ -54,6 +54,11 @@ describe('companiesAPI', () => {
             .toEqual([['developer', 'countAsc', '1'], ['developer', 'countAsc', '2']]);
     });
 
+    it('encodes detail identifiers containing reserved characters', async () => {
+        await makeStore().dispatch(companiesAPI.endpoints.getCompany.initiate('a/b'));
+        expect(calledUrl(fetchMock).pathname).toBe('/api/companies/a%2Fb');
+    });
+
     it('queries a single company directly', async () => {
         const payload = { id: 1, name: 'Both', developerGames: [], publisherGames: [] };
         fetchMock.mockImplementation(async () => response(payload));

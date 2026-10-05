@@ -1,14 +1,14 @@
 import type { SeriesDetail, SeriesListArgs, SeriesListResponse } from "@/domain/series/types";
 import { api } from "./api";
+import { buildQueryUrl, infinitePaginationOptions } from "./pagination";
 
 export const seriesAPI = api.injectEndpoints({
     endpoints: builder => ({
         getSeries: builder.infiniteQuery<SeriesListResponse, SeriesListArgs, number>({
-            infiniteQueryOptions: {
-                initialPageParam: 1,
-                getNextPageParam: (lastPage, _, lastPageParam) => lastPageParam < lastPage.total_pages ? lastPageParam + 1 : undefined,
-            },
-            query: ({ queryArg, pageParam }) => `/series?${new URLSearchParams({ filter: queryArg.filter, sort: queryArg.sort, pageSize: String(queryArg.pageSize), page: String(pageParam) })}`,
+            infiniteQueryOptions: infinitePaginationOptions<SeriesListResponse>(),
+            query: ({ queryArg, pageParam }) => buildQueryUrl("/series", {
+                filter: queryArg.filter, sort: queryArg.sort, pageSize: queryArg.pageSize, page: pageParam,
+            }),
         }),
         getSeriesById: builder.query<SeriesDetail, string>({ query: id => `/series/${encodeURIComponent(id)}` }),
     }),
