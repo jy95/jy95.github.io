@@ -22,6 +22,8 @@ export type RawCompany = BaseCompanySummary & {
     publisherItems: RawCompanyGame[];
 };
 
+const DEFAULT_TIER = "tier_not_evaluated";
+
 export async function loadCompanies(): Promise<RawCompany[]> {
     return (await import("./companies.json")).default as RawCompany[];
 }
@@ -30,27 +32,41 @@ export function companyImagePath(id: number): string {
     return `${COVER_PATHS.companies}/${id}/cover.webp`;
 }
 
-export async function toCompanyDetail(company: RawCompany): Promise<CompanyType> {
-    const toGames = (games: RawCompanyGame[]): CompanyGame[] =>
-        games.map((game) => ({
-            ...game,
-            ...buildCardEntry(game, COVER_PATHS.games),
-            tierCategory: game.tierCategory ?? "tier_not_evaluated",
-        }));
+function toCompanyGame(game: RawCompanyGame): CompanyGame {
+    return {
+        ...game,
+        ...buildCardEntry(game, COVER_PATHS.games),
+        tierCategory: game.tierCategory ?? DEFAULT_TIER,
+    };
+}
+
+export function toCompanyDetail(company: RawCompany): CompanyType {
+    return {
+        id: company.id,
+        name: company.name,
+        imagePath: companyImagePath(company.id),
+        developerGames: company.developerItems.map(toCompanyGame),
+        publisherGames: company.publisherItems.map(toCompanyGame),
+    };
+}
+
+/** A game credited twice (e.g. as developer and publisher) is counted once. */
+const countUniqueGames = (games: { id: number }[]) => new Set(games.map((game) => game.id)).size;
+
+export function toCompanySummary(company: RawCompany, role: CompanyRole): CompanySummary {
+    const { developerItems, publisherItems } = company;
+    const counts: Record<CompanyRole, number> = {
+        developer: countUniqueGames(developerItems),
+        publisher: countUniqueGames(publisherItems),
+        all: countUniqueGames([...developerItems, ...publisherItems]),
+    };
 
     return {
         id: company.id,
         name: company.name,
         imagePath: companyImagePath(company.id),
-        developerGames: toGames(company.developerItems),
-        publisherGames: toGames(company.publisherItems),
+        developerCount: counts.developer,
+        publisherCount: counts.publisher,
+        gamesCount: counts[role],
     };
-}
-
-export function toCompanySummary(company: RawCompany, role: CompanyRole): CompanySummary {
-    const developerCount = new Set(company.developerItems.map((game) => game.id)).size;
-    const publisherCount = new Set(company.publisherItems.map((game) => game.id)).size;
-    const gamesCount = role === "developer" ? developerCount : role === "publisher" ? publisherCount :
-        new Set([...company.developerItems, ...company.publisherItems].map((game) => game.id)).size;
-    return { id: company.id, name: company.name, imagePath: companyImagePath(company.id), developerCount, publisherCount, gamesCount };
 }
