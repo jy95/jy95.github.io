@@ -1,10 +1,10 @@
 import sharp from 'sharp';
 import { mkdir, readFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
+import { buildCardEntry } from '@/domain/games';
 import { COVER_PATHS } from '@/domain/games/coverPaths';
-import { extractGameCardProps } from '@/domain/games/youtube';
 
 import { openDatabase } from './common/db';
 import { convertBufferToWebp } from './common/imageConvert';
@@ -34,19 +34,44 @@ interface ImageSlot {
     height: number;
 }
 
-const repositoryRoot = resolve(
-    dirname(fileURLToPath(import.meta.url)),
-    '..',
-);
+const REPOSITORY_ROOT = resolve(import.meta.dirname, '..');
+const CANVAS_SIZE = 310;
+const TILE_SIZE = 150;
+const GAP = 10;
+const MAXIMUM_COVERS = 4;
 
-const canvasSize = 310;
-const tileSize = 150;
-const secondPosition = 160;
-const maximumCovers = 4;
+const IMAGE_LAYOUTS: readonly ImageSlot[][] = [
+    [],
+    [{ x: 0, y: 0, width: CANVAS_SIZE, height: CANVAS_SIZE }],
+    [
+        { x: 0, y: 0, width: TILE_SIZE, height: CANVAS_SIZE },
+        { x: TILE_SIZE + GAP, y: 0, width: TILE_SIZE, height: CANVAS_SIZE },
+    ],
+    [
+        { x: 0, y: 0, width: TILE_SIZE, height: CANVAS_SIZE },
+        { x: TILE_SIZE + GAP, y: 0, width: TILE_SIZE, height: TILE_SIZE },
+        {
+            x: TILE_SIZE + GAP,
+            y: TILE_SIZE + GAP,
+            width: TILE_SIZE,
+            height: TILE_SIZE,
+        },
+    ],
+    [
+        { x: 0, y: 0, width: TILE_SIZE, height: TILE_SIZE },
+        { x: TILE_SIZE + GAP, y: 0, width: TILE_SIZE, height: TILE_SIZE },
+        { x: 0, y: TILE_SIZE + GAP, width: TILE_SIZE, height: TILE_SIZE },
+        {
+            x: TILE_SIZE + GAP,
+            y: TILE_SIZE + GAP,
+            width: TILE_SIZE,
+            height: TILE_SIZE,
+        },
+    ],
+];
 
 /**
- * Retain empty series.
- * Select the first four games by release date, then database ID.
+ * Retain empty series and select the first four games by release date, then ID.
  */
 export function querySeries(db: Database): SeriesCover[] {
     const series = db.prepare<[], SeriesRow>(`
@@ -67,7 +92,7 @@ export function querySeries(db: Database): SeriesCover[] {
         JOIN games AS g ON g.id = sg.game
         WHERE s.id = ?
         ORDER BY g.releaseDate ASC, g.id ASC
-        LIMIT 4
+        LIMIT ${MAXIMUM_COVERS}
     `);
 
     return series.map(serie => ({
@@ -90,75 +115,17 @@ export function loadSeries(): SeriesCover[] {
 }
 
 function escapeXml(value: string): string {
-    return value.replace(/[&<>"']/g, character => {
-        switch (character) {
-            case '&':
-                return '&amp;';
-            case '<':
-                return '&lt;';
-            case '>':
-                return '&gt;';
-            case '"':
-                return '&quot;';
-            default:
-                return '&apos;';
-        }
-    });
+    return value.replace(/[&<>"']/g, character => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&apos;',
+    })[character] ?? character);
 }
 
-function imageSlots(count: number): ImageSlot[] {
-    if (count === 0) return [];
-
-    if (count === 1) {
-        return [{
-            x: 0,
-            y: 0,
-            width: canvasSize,
-            height: canvasSize,
-        }];
-    }
-
-    const left: ImageSlot = {
-        x: 0,
-        y: 0,
-        width: tileSize,
-        height: canvasSize,
-    };
-
-    const topRight: ImageSlot = {
-        x: secondPosition,
-        y: 0,
-        width: tileSize,
-        height: tileSize,
-    };
-
-    const bottomRight: ImageSlot = {
-        ...topRight,
-        y: secondPosition,
-    };
-
-    if (count === 2) {
-        return [
-            left,
-            { ...topRight, height: canvasSize },
-        ];
-    }
-
-    if (count === 3) {
-        return [left, topRight, bottomRight];
-    }
-
-    return [
-        { ...left, height: tileSize },
-        topRight,
-        {
-            x: 0,
-            y: secondPosition,
-            width: tileSize,
-            height: tileSize,
-        },
-        bottomRight,
-    ];
+function imageSlots(count: number): readonly ImageSlot[] {
+    return IMAGE_LAYOUTS[Math.min(count, MAXIMUM_COVERS)] ?? [];
 }
 
 /**
@@ -170,12 +137,11 @@ export function generateSeriesSvg(
     name: string,
     sources: readonly string[],
 ): string {
-    const covers = sources.slice(0, maximumCovers);
+    const slots = imageSlots(sources.length);
+    const images = sources.slice(0, MAXIMUM_COVERS).map((source, index) => {
+        const slot = slots[index];
 
-    const images = imageSlots(covers.length).map((slot, index) => {
-        const source = covers[index];
-
-        if (source === undefined) {
+        if (slot === undefined) {
             throw new Error(`Missing cover for SVG slot ${index}`);
         }
 
@@ -189,8 +155,8 @@ export function generateSeriesSvg(
 
     return [
         '<svg xmlns="http://www.w3.org/2000/svg" ' +
-            `width="${canvasSize}" height="${canvasSize}" ` +
-            `viewBox="0 0 ${canvasSize} ${canvasSize}">`,
+            `width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" ` +
+            `viewBox="0 0 ${CANVAS_SIZE} ${CANVAS_SIZE}">`,
         `  <title>${escapeXml(name)}</title>`,
         ...images,
         '</svg>',
@@ -198,49 +164,38 @@ export function generateSeriesSvg(
     ].join('\n');
 }
 
-/**
- * Adapt nullable database fields to the canonical domain identity helper.
- * A present playlist identifier takes precedence over a video identifier.
- */
-function coverIdentifier(game: SeriesCoverGame): string {
+function toRawGame(game: SeriesCoverGame): RawGame {
     const base = {
         title: game.title,
         platform: game.platform,
     };
 
-    let rawGame: RawGame;
-
-    if (typeof game.playlistId === 'string') {
-        rawGame = {
-            ...base,
-            playlistId: game.playlistId,
-        };
-    } else if (typeof game.videoId === 'string') {
-        rawGame = {
-            ...base,
-            videoId: game.videoId,
-        };
-    } else {
-        throw new Error(
-            `Missing playlist/video identifier for game ${game.id}`,
-        );
+    if (game.playlistId !== null) {
+        return { ...base, playlistId: game.playlistId };
     }
 
-    const { id } = extractGameCardProps(rawGame);
+    if (game.videoId !== null) {
+        return { ...base, videoId: game.videoId };
+    }
+
+    throw new Error(`Missing playlist/video identifier for game ${game.id}`);
+}
+
+function gameCoverPath(game: SeriesCoverGame, root: string): string {
+    const card = buildCardEntry(toRawGame(game), COVER_PATHS.games);
 
     // YouTube identifiers are directory names, not filesystem paths.
-    if (!/^[A-Za-z0-9_-]+$/.test(id)) {
+    if (!/^[A-Za-z0-9_-]+$/.test(card.id)) {
         throw new Error(
-            `Invalid cover identifier for game ${game.id}: ${id}`,
+            `Invalid cover identifier for game ${game.id}: ${card.id}`,
         );
     }
 
-    return id;
+    return resolve(root, 'public', card.imagePath.slice(1));
 }
 
 /**
- * Embed PNG bytes so SVG rasterization does not need external images.
- * Convert the source WebP to PNG entirely in memory.
+ * Embed image bytes as a PNG data URI so SVG rasterization stays self-contained.
  */
 export async function embedCoverImage(buffer: Buffer): Promise<string> {
     const png = await sharp(buffer).png().toBuffer();
@@ -249,24 +204,15 @@ export async function embedCoverImage(buffer: Buffer): Promise<string> {
 
 export async function embedSeriesCovers(
     serie: SeriesCover,
-    root = repositoryRoot,
+    root = REPOSITORY_ROOT,
 ): Promise<string[]> {
     const sources: string[] = [];
 
-    for (const game of serie.games.slice(0, maximumCovers)) {
-        const identifier = coverIdentifier(game);
-
-        const source = resolve(
-            root,
-            'public',
-            COVER_PATHS.games.slice(1),
-            identifier,
-            'cover.webp',
-        );
+    for (const game of serie.games.slice(0, MAXIMUM_COVERS)) {
+        const source = gameCoverPath(game, root);
 
         try {
-            const buffer = await readFile(source);
-            sources.push(await embedCoverImage(buffer));
+            sources.push(await embedCoverImage(await readFile(source)));
         } catch (cause) {
             throw new Error(
                 `Cannot load cover for series ${serie.id}, ` +
@@ -281,28 +227,29 @@ export async function embedSeriesCovers(
 
 export async function writeSeriesCover(
     serie: SeriesCover,
-    root = repositoryRoot,
+    root = REPOSITORY_ROOT,
 ): Promise<void> {
     if (!Number.isSafeInteger(serie.id) || serie.id <= 0) {
         throw new Error(`Invalid series ID: ${serie.id}`);
     }
 
     const sources = await embedSeriesCovers(serie, root);
-
     const outputDirectory = resolve(
         root,
         'public',
-        'seriescovers',
+        COVER_PATHS.series.slice(1),
         String(serie.id),
     );
 
     await mkdir(outputDirectory, { recursive: true });
 
     const svg = generateSeriesSvg(serie.name, sources);
-    const outputPath = resolve(outputDirectory, 'cover.webp');
 
     try {
-        await convertBufferToWebp(Buffer.from(svg, 'utf8'), outputPath);
+        await convertBufferToWebp(
+            Buffer.from(svg, 'utf8'),
+            resolve(outputDirectory, 'cover.webp'),
+        );
     } catch (cause) {
         throw new Error(
             `Cannot convert cover for series ${serie.id} (${serie.name})`,
@@ -312,15 +259,9 @@ export async function writeSeriesCover(
 }
 
 export async function generateSeriesCovers(): Promise<void> {
-    // loadSeries closes the database before filesystem processing starts.
-    const series = loadSeries();
-
-    for (const serie of series) {
+    for (const serie of loadSeries()) {
         await writeSeriesCover(serie);
-
-        console.log(
-            `Generated cover for series ${serie.id} (${serie.name})`,
-        );
+        console.log(`Generated cover for series ${serie.id} (${serie.name})`);
     }
 }
 
