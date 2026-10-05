@@ -20,7 +20,7 @@ export default function SeriesGallery() {
     const t = useTranslations("series");
     const common = useTranslations("common");
     const dispatch = useAppDispatch();
-    const { data, isFetching, isError, refetch, hasNextPage, fetchNextPage } = useGetSeriesInfiniteQuery({ filter, sort, pageSize: 12 });
+    const { currentData, isFetching, isError, refetch, hasNextPage, fetchNextPage } = useGetSeriesInfiniteQuery({ filter, sort, pageSize: 12 });
     return <>
         <Box data-testid="series-toolbar" sx={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: { xs: 1, sm: 2 }, minWidth: 0 }}>
             <Box data-testid="series-search" sx={{ flex: { xs: "1 1 100%", md: "1 1 300px" }, maxWidth: { md: 560 }, minWidth: 0 }}>
@@ -34,12 +34,12 @@ export default function SeriesGallery() {
                 }} />
             </Box>
         </Box>
-        {isError && !data ? <QueryErrorState onRetry={refetch} /> : <>
+        {isError && !currentData ? <QueryErrorState onRetry={refetch} /> : <>
             <Grid container spacing={1} rowSpacing={1}>
-                {data?.pages.flatMap(page => page.items).map(series => <Grid key={series.id} size={{ xs: 6, md: 4, lg: 2 }}><SeriesCard series={series} /></Grid>)}
+                {currentData?.pages.flatMap(page => page.items).map(series => <Grid key={series.id} size={{ xs: 6, md: 4, lg: 2 }}><SeriesCard series={series} /></Grid>)}
             </Grid>
-            {data?.pages[0]?.total_items === 0 && <Typography>{t("empty")}</Typography>}
-            {isError && data && <QueryErrorState onRetry={refetch} />}
+            {currentData?.pages[0]?.total_items === 0 && <Typography>{t("empty")}</Typography>}
+            {isError && currentData && <QueryErrorState onRetry={refetch} />}
             <Grid container sx={{ justifyContent: "center" }}><LoadingButton loading={isFetching} disabled={!hasNextPage}
                 onClick={() => { void fetchNextPage(); }} label={common("loadMore")} /></Grid>
         </>}
