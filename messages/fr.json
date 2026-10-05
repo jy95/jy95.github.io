@@ -1,5 +1,34 @@
 {
+    "series": {
+        "filter": {
+            "label": "Nom de la série",
+            "placeholder": "Rechercher une série"
+        },
+        "sortSeries": {
+            "label": "Trier les séries",
+            "nameAsc": "Nom (A–Z)",
+            "nameDesc": "Nom (Z–A)",
+            "countDesc": "Nombre de jeux (décroissant)",
+            "countAsc": "Nombre de jeux (croissant)"
+        },
+        "sort": {
+            "label": "Trier les jeux",
+            "titleAsc": "Titre (A–Z)",
+            "titleDesc": "Titre (Z–A)",
+            "durationAsc": "Durée (croissante)",
+            "durationDesc": "Durée (décroissante)",
+            "tierAsc": "Catégorie (meilleure d’abord)",
+            "tierDesc": "Catégorie (moins bonne d’abord)"
+        },
+        "back": "Retour aux séries",
+        "gamesCount": "{count, plural, one {# jeu} other {# jeux}}",
+        "empty": "Aucune série trouvée."
+    },
     "pageMetadata": {
+        "series": {
+            "title": "Séries",
+            "description": "Découvrez les séries et leurs jeux."
+        },
         "games": {
             "title": "Jeux | GamesPassionFR",
             "description": "Parcourez la collection de jeux GamesPassionFR et retrouvez leurs vidéos."

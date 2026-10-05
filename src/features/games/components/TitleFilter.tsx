@@ -4,9 +4,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useTranslations } from 'next-intl';
 import TextField from '@mui/material/TextField';
 
-type Props = { value: string; onChange: (title: string) => void };
+type Props = { value: string; onChange: (title: string) => void; label?: string; placeholder?: string };
 
-export default function TitleFilter({ value, onChange }: Props) {
+export default function TitleFilter({ value, onChange, label, placeholder }: Props) {
     const t = useTranslations('gamesLibrary.filtersLabels');
     const [input, setInput] = useState({ source: value, text: value });
     // Back/forward or another external title update cancels any pending edit.
@@ -21,7 +21,8 @@ export default function TitleFilter({ value, onChange }: Props) {
     return (
         <TextField
             id="search-game-title"
-            label={t('title')}
+            label={label ?? t('title')}
+            placeholder={placeholder}
             fullWidth
             slotProps={{ input: { startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment> } }}
             value={input.text}

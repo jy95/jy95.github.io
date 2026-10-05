@@ -1,3 +1,4 @@
+import { parsePageParams, paginate } from "@/lib/http/pagination";
 import { cachedJson } from "@/lib/http/cachedJson";
 import { loadCompanies, toCompanySummary } from "./data";
 import type { CompanyRole, CompanySummary } from "./data";
@@ -20,12 +21,7 @@ export async function GET(request: Request) {
     const sortParam = params.get("sort");
     // Missing or unknown sort values default to name ascending.
     const sort: CompanySort = sortParam === "nameDesc" || sortParam === "countDesc" || sortParam === "countAsc" ? sortParam : "nameAsc";
-    const parsePositive = (value: string | null, fallback: number) => {
-        const number = Number(value);
-        return Number.isSafeInteger(number) && number > 0 ? number : fallback;
-    };
-    const page = parsePositive(params.get("page"), 1);
-    const pageSize = Math.min(parsePositive(params.get("pageSize"), 12), 100);
+    const pagination = parsePageParams(params);
     const summaries = (await loadCompanies()).map((company) => toCompanySummary(company, role))
         .filter((company) => company.gamesCount > 0)
         .sort((first, second) => {
@@ -36,12 +32,6 @@ export async function GET(request: Request) {
             return nameOrder;
         });
 
-    const response: ResponseBody = {
-        items: summaries.slice((page - 1) * pageSize, page * pageSize),
-        total_items: summaries.length,
-        total_pages: Math.ceil(summaries.length / pageSize),
-        pageSize,
-        page,
-    };
+    const response: ResponseBody = paginate(summaries, pagination);
     return cachedJson(response);
 }
