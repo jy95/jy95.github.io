@@ -7,8 +7,8 @@ GamesPassionFR is a bilingual French and English catalog for the GamesPassionFR 
 - /: Browse the catalog homepage and featured gaming content.
 - /games: Browse all published games and walkthroughs.
 - /selection: Keep a personal selection of games, DLCs, planned games and backlog items in the browser, and share it through a link.
-- /games/series: Browse, filter, and sort series with paginated galleries.
-- /games/series/[id]: View a series and sort its published games.
+- /games/series: Browse published games grouped by series.
+- /games/series/:id: undefined
 - /games/dlcs: Browse published downloadable-content walkthroughs.
 - /games/random: Open a randomly selected published game.
 - /companies: Browse video game developers and publishers featured in the catalog
