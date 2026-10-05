@@ -5,6 +5,12 @@
             "placeholder": "Rechercher une série"
         },
         "sortSeries": {
+            "name": "Nom",
+            "count": "Nombre de jeux",
+            "direction": {
+                "asc": "Trier par ordre croissant",
+                "desc": "Trier par ordre décroissant"
+            },
             "label": "Trier les séries",
             "nameAsc": "Nom (A–Z)",
             "nameDesc": "Nom (Z–A)",
@@ -26,7 +32,7 @@
     },
     "pageMetadata": {
         "series": {
-            "title": "Séries",
+            "title": "Séries | GamesPassionFR",
             "description": "Découvrez les séries et leurs jeux."
         },
         "games": {

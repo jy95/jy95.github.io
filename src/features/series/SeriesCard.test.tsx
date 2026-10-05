@@ -32,7 +32,7 @@ describe('SeriesCard', () => {
 
     it('renders the company logo with the company name as alt text', () => {
         render(<SeriesCard series={baseCompany} />);
-        expect(screen.getByAltText('Capcom')).toBeInTheDocument();
+        expect(screen.getByAltText('Capcom')).toHaveAttribute('src', baseCompany.imagePath);
         expect(screen.getByAltText('Capcom')).toHaveStyle({ objectFit: 'contain' });
         expect(screen.getByRole('button', { name: /Capcom/ })).toBeInTheDocument();
     });
