@@ -5,6 +5,12 @@
             "placeholder": "Search series"
         },
         "sortSeries": {
+            "name": "Name",
+            "count": "Game count",
+            "direction": {
+                "asc": "Sort ascending",
+                "desc": "Sort descending"
+            },
             "label": "Sort series",
             "nameAsc": "Name (A–Z)",
             "nameDesc": "Name (Z–A)",
@@ -26,7 +32,7 @@
     },
     "pageMetadata": {
         "series": {
-            "title": "Series",
+            "title": "Series | GamesPassionFR",
             "description": "Browse series and their games."
         },
         "games": {

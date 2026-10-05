@@ -34,6 +34,8 @@ describe('SeriesDetailPage', () => {
         await renderDetail();
         expect(useGetSeriesQueryMock).toHaveBeenCalledWith('1');
         expect(screen.getByText('Capcom')).toBeInTheDocument();
+        expect(screen.queryByRole('img')).not.toBeInTheDocument();
+        expect(screen.getByText('series.gamesCount:{"count":3}')).toBeInTheDocument();
         expect(screen.getByTestId('entity-header')).toContainElement(screen.getByText('Capcom'));
         expect(screen.getByTestId('entity-header')).toContainElement(screen.getByRole('button', { name: 'series.back' }));
         expect(getComputedStyle(screen.getByTestId('entity-header')).flexWrap).toBe('wrap');
