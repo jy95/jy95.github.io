@@ -19,7 +19,7 @@ describe('SeriesGallery', () => {
     beforeEach(() => {
         vi.clearAllMocks();
         responsive.mobile = false;
-        query.mockReturnValue({ data: { pages: [{ items: [{ id: 1, name: 'Batman' }], total_items: 2 }, { items: [{ id: 2, name: 'Zelda' }] }] }, hasNextPage: true, fetchNextPage, refetch });
+        query.mockReturnValue({ currentData: { pages: [{ items: [{ id: 1, name: 'Batman' }], total_items: 2 }, { items: [{ id: 2, name: 'Zelda' }] }] }, hasNextPage: true, fetchNextPage, refetch });
     });
     it('renders loaded pages and requests another page', () => {
         render(<SeriesGallery />);
@@ -85,13 +85,89 @@ describe('SeriesGallery', () => {
         query.mockReturnValueOnce({ isFetching: true });
         const view = render(<SeriesGallery />);
         expect(screen.getByRole('progressbar')).toBeInTheDocument();
-        query.mockReturnValueOnce({ data: { pages: [{ items: [], total_items: 0 }] } });
+        query.mockReturnValueOnce({ currentData: { pages: [{ items: [], total_items: 0 }] } });
         view.rerender(<SeriesGallery />);
         expect(screen.getByText('series.empty')).toBeInTheDocument();
         query.mockReturnValueOnce({ isError: true, refetch });
         view.rerender(<SeriesGallery />);
         fireEvent.click(screen.getByText('common.errors.retry'));
         expect(refetch).toHaveBeenCalledOnce();
+    });
+    it.each([
+        ['filter', false],
+        ['filter', true],
+        ['sort', false],
+        ['sort', true],
+    ] as const)('hides retained %s results (empty: %s) while new arguments load or fail', async (change, empty) => {
+        const previousData = { pages: [{ items: empty ? [] : [{ id: 1, name: 'Previous series' }], total_items: empty ? 0 : 1 }] };
+        let failed = false;
+        query.mockImplementation(({ filter, sort }: { filter: string; sort: string }) => {
+            const changed = change === 'filter' ? filter === 'New series' : sort === 'nameDesc';
+            return {
+                data: previousData,
+                currentData: changed ? undefined : previousData,
+                isFetching: changed && !failed,
+                isError: changed && failed,
+                hasNextPage: !changed,
+                fetchNextPage,
+                refetch,
+            };
+        });
+        const view = render(<SeriesGallery />);
+        expect(screen.getByText(empty ? 'series.empty' : 'Previous series')).toBeInTheDocument();
+        if (change === 'filter') {
+            fireEvent.change(screen.getByLabelText('series.filter.label'), { target: { value: 'New series' } });
+            await waitFor(() => expect(query).toHaveBeenLastCalledWith({ filter: 'New series', sort: 'nameAsc', pageSize: 12 }));
+        } else {
+            fireEvent.click(screen.getByRole('button', { name: 'common.sort.direction.desc' }));
+            expect(query).toHaveBeenLastCalledWith({ filter: '', sort: 'nameDesc', pageSize: 12 });
+        }
+        expect(screen.getByRole('progressbar')).toBeInTheDocument();
+        expect(screen.queryByText('Previous series')).not.toBeInTheDocument();
+        expect(screen.queryByText('series.empty')).not.toBeInTheDocument();
+        expect(screen.queryByText('common.errors.generic')).not.toBeInTheDocument();
+
+        failed = true;
+        view.rerender(<SeriesGallery />);
+        expect(screen.getByText('common.errors.generic')).toBeInTheDocument();
+        expect(screen.queryByText('Previous series')).not.toBeInTheDocument();
+        expect(screen.queryByText('series.empty')).not.toBeInTheDocument();
+        expect(screen.queryByText('common.loadMore')).not.toBeInTheDocument();
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+        fireEvent.click(screen.getByRole('button', { name: 'common.errors.retry' }));
+        expect(refetch).toHaveBeenCalledOnce();
+    });
+    it.each([false, true])('uses currentData for cards and empty results when data differs (empty: %s)', empty => {
+        query.mockReturnValue({
+            data: { pages: [{ items: empty ? [{ id: 1, name: 'Previous series' }] : [], total_items: empty ? 1 : 0 }] },
+            currentData: { pages: [{ items: empty ? [] : [{ id: 2, name: 'Current series' }], total_items: empty ? 0 : 1 }] },
+        });
+        render(<SeriesGallery />);
+        expect(screen.queryByText('Previous series')).not.toBeInTheDocument();
+        if (empty) {
+            expect(screen.getByText('series.empty')).toBeInTheDocument();
+            expect(screen.queryByText('Current series')).not.toBeInTheDocument();
+        } else {
+            expect(screen.getByText('Current series')).toBeInTheDocument();
+            expect(screen.queryByText('series.empty')).not.toBeInTheDocument();
+        }
+    });
+    it('retains current pages and offers retry after a pagination error', () => {
+        query.mockReturnValue({
+            data: { pages: [{ items: [{ id: 1, name: 'Previous series' }], total_items: 1 }] },
+            currentData: { pages: [{ items: [{ id: 2, name: 'Current series' }], total_items: 2 }, { items: [{ id: 3, name: 'Next series' }] }] },
+            isError: true, hasNextPage: true, fetchNextPage, refetch,
+        });
+        render(<SeriesGallery />);
+        expect(screen.getByText('Current series')).toBeInTheDocument();
+        expect(screen.getByText('Next series')).toBeInTheDocument();
+        expect(screen.queryByText('Previous series')).not.toBeInTheDocument();
+        expect(screen.queryByText('series.empty')).not.toBeInTheDocument();
+        expect(screen.getByText('common.errors.generic')).toBeInTheDocument();
+        fireEvent.click(screen.getByRole('button', { name: 'common.errors.retry' }));
+        expect(refetch).toHaveBeenCalledOnce();
+        fireEvent.click(screen.getByRole('button', { name: 'common.loadMore' }));
+        expect(fetchNextPage).toHaveBeenCalledOnce();
     });
     it('provides matching locale keys and plural counts', () => {
         expect(Object.keys(en.series)).toEqual(Object.keys(fr.series));
