@@ -17,9 +17,10 @@ export function getReleaseYearRange(filters: GameFilters): [number, number] {
 /** The catalogue stores ISO calendar dates. Reject invalid/overflow dates. */
 export function releaseYear(date: string | undefined): number | undefined {
     if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return undefined;
+
     const parsed = new Date(date);
-    if (!Number.isFinite(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== date) return undefined;
-    return parsed.getUTCFullYear();
+    const isRealDate = Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === date;
+    return isRealDate ? parsed.getUTCFullYear() : undefined;
 }
 
 const isId = (value: unknown): value is number =>
@@ -32,37 +33,44 @@ const isSort = (value: unknown): value is GameSort =>
 export const canonicalizeGenres = (genres: readonly number[]): number[] =>
     [...new Set(genres.filter(isId))].sort((a, b) => a - b);
 
+/** Clamps both bounds to the catalogue range, falls back to the full range and orders them. */
+function normalizeYearRange(from: unknown, to: unknown, maxYear: number): [number, number] {
+    const clamp = (value: unknown, fallback: number) => {
+        if (!isId(value) || value === 0) return fallback;
+        return Math.max(MIN_RELEASE_YEAR, Math.min(maxYear, value));
+    };
+    const start = clamp(from, MIN_RELEASE_YEAR);
+    const end = clamp(to, maxYear);
+    return [Math.min(start, end), Math.max(start, end)];
+}
+
 /**
  * Canonical, sparse filters: every empty or invalid field is left out.
  * No `sort` means "keep the API's natural order". The title is kept as typed (spaces included).
  */
-export function normalizeGameFilters({ title, platform, genres, sort, releaseDateFrom, releaseDateTo }: GameFilters): GameFilters {
-    const cleanGenres = canonicalizeGenres(genres ?? []);
+export function normalizeGameFilters(filters: GameFilters): GameFilters {
+    const { title, platform, genres, sort, releaseDateFrom, releaseDateTo } = filters;
     const maxYear = getMaxReleaseYear();
-    const clampYear = (value: unknown, fallback: number) =>
-        isId(value) && value > 0 ? Math.max(MIN_RELEASE_YEAR, Math.min(maxYear, value)) : fallback;
-    const from = clampYear(releaseDateFrom, MIN_RELEASE_YEAR);
-    const to = clampYear(releaseDateTo, maxYear);
-    const [start, end] = [Math.min(from, to), Math.max(from, to)];
-    return {
-        ...(title ? { title } : {}),
-        ...(isId(platform) ? { platform } : {}),
-        ...(cleanGenres.length ? { genres: cleanGenres } : {}),
-        ...(isSort(sort) ? { sort } : {}),
-        ...(start > MIN_RELEASE_YEAR ? { releaseDateFrom: start } : {}),
-        ...(end < maxYear ? { releaseDateTo: end } : {}),
-    };
+    const cleanGenres = canonicalizeGenres(genres ?? []);
+    const [start, end] = normalizeYearRange(releaseDateFrom, releaseDateTo, maxYear);
+
+    const normalized: GameFilters = {};
+    if (title) normalized.title = title;
+    if (isId(platform)) normalized.platform = platform;
+    if (cleanGenres.length > 0) normalized.genres = cleanGenres;
+    if (isSort(sort)) normalized.sort = sort;
+    if (start > MIN_RELEASE_YEAR) normalized.releaseDateFrom = start;
+    if (end < maxYear) normalized.releaseDateTo = end;
+    return normalized;
 }
 
 /** Scalars become one param each; genres become one repeated `genres` param per id. */
 export function filtersToSearchParams(filters: GameFilters): URLSearchParams {
     const { genres = [], ...scalars } = normalizeGameFilters(filters);
-    const params = new URLSearchParams(
-        Object.entries(scalars).map(([key, value]) => [key, String(value)])
-    );
-    genres.forEach(genre => {
-        params.append('genres', String(genre));
-    });
+    const params = new URLSearchParams();
+
+    for (const [key, value] of Object.entries(scalars)) params.append(key, String(value));
+    for (const genre of genres) params.append('genres', String(genre));
     return params;
 }
 
