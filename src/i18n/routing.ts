@@ -14,6 +14,7 @@ export const routing = defineRouting({
     '/games': '/games',
     '/selection': '/selection',
     '/games/series': '/games/series',
+    '/games/series/[id]': '/games/series/[id]',
     '/games/dlcs': '/games/dlcs',
     '/games/random': '/games/random',
     '/companies': '/companies',

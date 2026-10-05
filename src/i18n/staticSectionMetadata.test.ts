@@ -3,8 +3,10 @@ import { generateMetadata as gamesMetadata } from '@/app/[locale]/games/layout';
 import { generateMetadata as planningMetadata } from '@/app/[locale]/planning/layout';
 import { generateMetadata as testsMetadata } from '@/app/[locale]/tests/layout';
 import { generateMetadata as statsMetadata } from '@/app/[locale]/stats/layout';
+import { generateMetadata as seriesMetadata } from '@/app/[locale]/games/series/layout';
 
 const sections = [
+    { generate: seriesMetadata, en: 'Series', fr: 'Séries' },
     { generate: gamesMetadata, en: 'Games', fr: 'Jeux' },
     { generate: planningMetadata, en: 'Calendar', fr: 'Planning' },
     { generate: testsMetadata, en: 'Game Reviews', fr: 'Tests de jeux' },

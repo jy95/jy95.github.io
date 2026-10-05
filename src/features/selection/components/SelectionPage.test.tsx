@@ -93,8 +93,8 @@ it('filters, sorts and paginates without changing storage and shares missing and
     expect(screen.getAllByRole('img', { name: /^Item/ })).toHaveLength(24);
     choose(messages.selection.kinds, messages.selection.categories.games);
     expect(screen.getAllByRole('img', { name: /^Item/ })).toHaveLength(12);
-    choose(messages.gamesLibrary.sortForm.firstSort, messages.gamesLibrary.sortLabels.name);
-    fireEvent.click(screen.getByRole('button', { name: messages.gamesLibrary.sortDirection.desc }));
+    choose(messages.gamesLibrary.sortForm.firstSort, messages.common.sort.fields.name);
+    fireEvent.click(screen.getByRole('button', { name: messages.common.sort.direction.desc }));
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Zephyr' } });
     await waitFor(() => expect(screen.getAllByRole('img', { name: /^Item/ })).toHaveLength(1));
     expect(getSelectionSnapshot().document).toEqual(document); expect(write).not.toHaveBeenCalled();

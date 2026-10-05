@@ -1,39 +1,14 @@
 import { cachedJson } from "@/lib/http/cachedJson";
-import { buildCardEntry } from "@/domain/games";
-import { COVER_PATHS } from "@/domain/games/coverPaths";
-import type { RawGame, CardGame } from "@/domain/games";
+import { paginate, parsePageParams } from "@/lib/http/pagination";
+import { compareSeries, SERIES_SORT_OPTIONS } from "@/domain/series/sorting";
+import { loadSeries, toSeriesSummary } from "./data";
 
-type rawEntry = {
-    /** @description Unique identifier of the game */
-    id: number,
-    /** @description Name of the series */
-    name: string;
-    /** @description List of videoId or playlistId for this series */
-    items: RawGame[]
-}
-export type RawPayload = rawEntry[];
-
-export type serieType = {
-    id: number,
-    name: string,
-    items: CardGame[]
-};
-
-export async function GET() {
-    const seriesData = (await import("./series.json")).default;
-
-    const series: serieType[] = seriesData.map(serie => ({
-        id: serie.id,
-        name: serie.name,
-        items: fromRawGamesToCardGames(serie.items as RawGame[])
-    }));
-
-    return cachedJson(series);
-}
-
-function fromRawGamesToCardGames(gamesData: RawGame[]): CardGame[] {
-    return gamesData.map(game => ({
-        ...game,
-        ...buildCardEntry(game, COVER_PATHS.games)
-    }));
+export async function GET(request: Request) {
+    const params = new URL(request.url).searchParams;
+    const filter = (params.get("filter") ?? "").trim().toLocaleLowerCase();
+    const sort = SERIES_SORT_OPTIONS.find(option => option === params.get("sort")) ?? "nameAsc";
+    const summaries = (await loadSeries()).map(toSeriesSummary)
+        .filter(series => series.name.toLocaleLowerCase().includes(filter))
+        .sort((first, second) => compareSeries(first, second, sort));
+    return cachedJson(paginate(summaries, parsePageParams(params)));
 }

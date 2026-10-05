@@ -46,7 +46,7 @@ describe('injected RTK Query endpoints', () => {
     });
 
     it('seriesAPI.getSeries hits /api/series', async () => {
-        await makeStore(seriesAPI).dispatch(seriesAPI.endpoints.getSeries.initiate());
+        await makeStore(seriesAPI).dispatch(seriesAPI.endpoints.getSeries.initiate({ filter: "", sort: "nameAsc", pageSize: 12 }));
         expect(calledUrl(fetchMock).pathname).toBe('/api/series');
     });
 

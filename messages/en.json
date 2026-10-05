@@ -1,5 +1,21 @@
 {
+    "series": {
+        "filter": {
+            "label": "Series name",
+            "placeholder": "Search series"
+        },
+        "sortSeries": {
+            "label": "Sort series"
+        },
+        "back": "Back to series",
+        "gamesCount": "{count, plural, one {# game} other {# games}}",
+        "empty": "No series found."
+    },
     "pageMetadata": {
+        "series": {
+            "title": "Series | GamesPassionFR",
+            "description": "Browse series and their games."
+        },
         "games": {
             "title": "Games | GamesPassionFR",
             "description": "Browse the GamesPassionFR game collection and find videos for your favorite games."
@@ -71,6 +87,34 @@
             "hours": "{count, plural, =1 {1 hour} other {# hours} }",
             "minutes": "{count, plural, =1 {1 minute} other {# minutes} }",
             "seconds": "{count, plural, =1 {1 second} other {# seconds} }"
+        },
+        "gameSort": {
+            "label": "Sort games",
+            "titleAsc": "Title (A–Z)",
+            "titleDesc": "Title (Z–A)",
+            "durationAsc": "Duration (shortest first)",
+            "durationDesc": "Duration (longest first)",
+            "tierAsc": "Tier (best first)",
+            "tierDesc": "Tier (worst first)"
+        },
+        "sort": {
+            "direction": {
+                "asc": "Sort ascending",
+                "desc": "Sort descending"
+            },
+            "fields": {
+                "default": "Default order",
+                "name": "Name",
+                "releaseDate": "Release date",
+                "duration": "Duration",
+                "count": "Game count"
+            },
+            "options": {
+                "nameAsc": "Name (A–Z)",
+                "nameDesc": "Name (Z–A)",
+                "countDesc": "Game count (most first)",
+                "countAsc": "Game count (fewest first)"
+            }
         }
     },
     "gamesLibrary": {
@@ -78,20 +122,9 @@
         "sortForm": {
             "firstSort": "Sort by",
             "nextSort": "Then by",
-            "title": "Sort games",
             "criteria": "Criteria",
             "cancelButton": "Cancel",
             "sortButton": "Sort"
-        },
-        "sortDirection": {
-            "asc": "Sort ascending",
-            "desc": "Sort descending"
-        },
-        "sortLabels": {
-            "default": "Default order",
-            "name": "Name",
-            "releaseDate": "Release date",
-            "duration": "Duration"
         },
         "releasePeriod": {
             "label": "Release date",
@@ -252,21 +285,8 @@
     "companies": {
         "title": "Companies",
         "back": "Back to results",
-        "sort": {
-            "label": "Sort games",
-            "titleAsc": "Title (A–Z)",
-            "titleDesc": "Title (Z–A)",
-            "durationAsc": "Duration (shortest first)",
-            "durationDesc": "Duration (longest first)",
-            "tierAsc": "Tier (best first)",
-            "tierDesc": "Tier (worst first)"
-        },
         "sortCompanies": {
-            "label": "Sort companies",
-            "nameAsc": "Name (A–Z)",
-            "nameDesc": "Name (Z–A)",
-            "countDesc": "Game count (most first)",
-            "countAsc": "Game count (fewest first)"
+            "label": "Sort companies"
         },
         "gamesCount": "{count, plural, =0 {No games} =1 {1 game} other {# games}}",
         "roles": {

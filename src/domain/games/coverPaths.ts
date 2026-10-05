@@ -3,4 +3,5 @@ export const COVER_PATHS = {
     tests: "/testscovers",
     backlog: "/backlogcovers",
     companies: "/companies",
+    series: "/seriescovers",
 } as const;

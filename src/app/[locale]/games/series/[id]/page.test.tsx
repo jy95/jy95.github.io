@@ -6,64 +6,65 @@ const { notFoundMock, backMock } = vi.hoisted(() => ({ notFoundMock: vi.fn(), ba
 vi.mock('next/navigation', () => ({ notFound: notFoundMock }));
 vi.mock('@/i18n/routing', () => ({ useRouter: () => ({ back: backMock }) }));
 vi.mock('next-intl', () => echoTranslations());
-const useGetCompanyQueryMock = vi.fn();
-vi.mock('@/redux/services/companiesAPI', () => ({ useGetCompanyQuery: (id: string) => useGetCompanyQueryMock(id) }));
+const useGetSeriesQueryMock = vi.fn();
+vi.mock('@/redux/services/seriesAPI', () => ({ useGetSeriesQuery: (id: string) => useGetSeriesQueryMock(id) }));
 vi.mock('@/features/games/components/CardGrid', () => ({
     CardGrid: ({ items }: { items: { id: string; title: string }[] }) =>
         <div data-testid="card-grid" data-ids={items.map((item) => item.id).join(',')}>{items.map((item) => item.title).join(',')}</div>,
 }));
 
-import CompanyDetail from './page';
+import SeriesDetailPage from './page';
 
 const game = (id: string, title: string, duration: string | undefined, tierCategory: string) => ({ id, title, duration, tierCategory });
 const company = {
-    id: 1, name: 'Capcom', imagePath: '/companies/1/cover.webp',
+    id: 1, name: 'Capcom', imagePath: '/seriescovers/1/cover.webp', gamesCount: 3,
     developerGames: [game('b', 'Bravo', '01:00:00', 'tier_good'), game('a', 'Alpha', '03:00:00', 'tier_bad')],
     publisherGames: [game('b', 'Bravo', '01:00:00', 'tier_good'), game('c', 'Charlie', '02:00:00', 'tier_masterpiece')],
 };
 
 async function renderDetail(data = company) {
-    useGetCompanyQueryMock.mockReturnValue({ data, isLoading: false, error: undefined, refetch: vi.fn() });
-    await act(async () => { render(<CompanyDetail params={Promise.resolve({ id: '1' })} />); });
+    useGetSeriesQueryMock.mockReturnValue({ data: { ...data, items: [...new Map([...data.developerGames, ...data.publisherGames].map(game => [game.id, game])).values()] }, isLoading: false, error: undefined, refetch: vi.fn() });
+    await act(async () => { render(<SeriesDetailPage params={Promise.resolve({ id: '1' })} />); });
 }
 
-describe('CompanyDetail', () => {
-    beforeEach(() => { useGetCompanyQueryMock.mockReset(); notFoundMock.mockReset(); backMock.mockReset(); });
+describe('SeriesDetailPage', () => {
+    beforeEach(() => { useGetSeriesQueryMock.mockReset(); notFoundMock.mockReset(); backMock.mockReset(); });
 
     it('loads the company by ID, merges duplicate games, and navigates back', async () => {
         await renderDetail();
-        expect(useGetCompanyQueryMock).toHaveBeenCalledWith('1');
+        expect(useGetSeriesQueryMock).toHaveBeenCalledWith('1');
         expect(screen.getByText('Capcom')).toBeInTheDocument();
+        expect(screen.queryByRole('img')).not.toBeInTheDocument();
+        expect(screen.getByText('series.gamesCount:{"count":3}')).toBeInTheDocument();
         expect(screen.getByTestId('entity-header')).toContainElement(screen.getByText('Capcom'));
-        expect(screen.getByTestId('entity-header')).toContainElement(screen.getByRole('button', { name: 'companies.back' }));
+        expect(screen.getByTestId('entity-header')).toContainElement(screen.getByRole('button', { name: 'series.back' }));
         expect(getComputedStyle(screen.getByTestId('entity-header')).flexWrap).toBe('wrap');
         const controls = screen.getByTestId('entity-sort-controls');
         expect(controls).toContainElement(screen.getByLabelText('common.gameSort.label'));
         expect(getComputedStyle(controls).justifyContent).toBe('flex-end');
         expect(getComputedStyle(controls).flexWrap).toBe('wrap');
         expect(screen.getByTestId('card-grid')).toHaveTextContent('Alpha,Bravo,Charlie');
-        fireEvent.click(screen.getByRole('button', { name: 'companies.back' }));
+        fireEvent.click(screen.getByRole('button', { name: 'series.back' }));
         expect(backMock).toHaveBeenCalledOnce();
         expect(screen.getByLabelText('common.gameSort.label')).toHaveValue('titleAsc');
     });
 
-    it('keeps the publisher entry when a game ID appears in both roles', async () => {
-        await renderDetail({ ...company,
-            developerGames: [game('same', 'Developer version', '01:00:00', 'tier_good')],
-            publisherGames: [game('same', 'Publisher version', '02:00:00', 'tier_bad')],
-        });
-        expect(screen.getByTestId('card-grid')).toHaveAttribute('data-ids', 'same');
-        expect(screen.getByTestId('card-grid')).toHaveTextContent('Publisher version');
-        expect(screen.queryByText('Developer version')).not.toBeInTheDocument();
+    it('shows loading and treats 404 as not found', async () => {
+        useGetSeriesQueryMock.mockReturnValueOnce({ isLoading: true });
+        await act(async () => { render(<SeriesDetailPage params={Promise.resolve({ id: '1' })} />); });
+        expect(screen.getByRole('progressbar')).toBeInTheDocument();
+        useGetSeriesQueryMock.mockReturnValue({ error: { status: 404 }, isLoading: false });
+        await act(async () => { render(<SeriesDetailPage params={Promise.resolve({ id: '999' })} />); });
+        expect(notFoundMock).toHaveBeenCalled();
     });
 
-    it('shows loading and treats 404 as not found', async () => {
-        useGetCompanyQueryMock.mockReturnValueOnce({ isLoading: true });
-        await act(async () => { render(<CompanyDetail params={Promise.resolve({ id: '1' })} />); });
-        expect(screen.getByRole('progressbar')).toBeInTheDocument();
-        useGetCompanyQueryMock.mockReturnValue({ error: { status: 404 }, isLoading: false });
-        await act(async () => { render(<CompanyDetail params={Promise.resolve({ id: '999' })} />); });
-        expect(notFoundMock).toHaveBeenCalled();
+    it('keeps non-404 errors retryable', async () => {
+        const refetch = vi.fn();
+        useGetSeriesQueryMock.mockReturnValue({ error: { status: 500 }, isLoading: false, refetch });
+        await act(async () => { render(<SeriesDetailPage params={Promise.resolve({ id: '1' })} />); });
+        fireEvent.click(screen.getByText('common.errors.retry'));
+        expect(refetch).toHaveBeenCalledOnce();
+        expect(notFoundMock).not.toHaveBeenCalled();
     });
 
     it.each([
@@ -112,13 +113,13 @@ describe('CompanyDetail', () => {
     it('resets pagination when company data changes', async () => {
         const many = Array.from({ length: 14 }, (_, index) => game(String(index), `Game ${index}`, '01:00:00', 'tier_good'));
         const data = { ...company, developerGames: many, publisherGames: [] };
-        useGetCompanyQueryMock.mockReturnValue({ data, isLoading: false });
+        useGetSeriesQueryMock.mockReturnValue({ data: { ...data, items: [...new Map([...data.developerGames, ...data.publisherGames].map(game => [game.id, game])).values()] }, isLoading: false });
         const params = Promise.resolve({ id: '1' });
-        const view = await act(async () => render(<CompanyDetail params={params} />));
+        const view = await act(async () => render(<SeriesDetailPage params={params} />));
         fireEvent.click(screen.getByText('common.loadMore'));
         expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(14);
-        useGetCompanyQueryMock.mockReturnValue({ data: { ...data, developerGames: [...many] }, isLoading: false });
-        await act(async () => view.rerender(<CompanyDetail params={params} />));
+        useGetSeriesQueryMock.mockReturnValue({ data: { ...data, items: [...many] }, isLoading: false });
+        await act(async () => view.rerender(<SeriesDetailPage params={params} />));
         expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(12);
     });
 

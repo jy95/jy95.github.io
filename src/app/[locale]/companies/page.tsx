@@ -52,7 +52,7 @@ export default function CompaniesGallery() {
                         setSort(nextSort);
                     }}>
                     {(["nameAsc", "nameDesc", "countDesc", "countAsc"] as const).map((option) =>
-                        <option key={option} value={option}>{t(`sortCompanies.${option}`)}</option>)}
+                        <option key={option} value={option}>{common(`sort.options.${option}`)}</option>)}
                 </TextField>
             </Box>
             {isError && !data ? <QueryErrorState onRetry={refetch} /> : (
