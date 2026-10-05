@@ -12,6 +12,8 @@ export type SelectionSnapshot = {
     invalid: boolean;
 };
 
+type SnapshotState = Omit<SelectionSnapshot, 'hydrated'>;
+
 export const SERVER_SNAPSHOT: SelectionSnapshot = {
     document: emptySelection(),
     hydrated: false,
@@ -22,34 +24,36 @@ export const SERVER_SNAPSHOT: SelectionSnapshot = {
 let snapshot = SERVER_SNAPSHOT;
 const listeners = new Set<() => void>();
 
-function publish(document: SelectionDocument, storageAvailable: boolean, invalid = snapshot.invalid) {
-    const isUnchanged =
-        snapshot.hydrated &&
-        snapshot.storageAvailable === storageAvailable &&
-        snapshot.invalid === invalid &&
-        JSON.stringify(snapshot.document) === JSON.stringify(document);
+function isUnchanged(next: SnapshotState): boolean {
+    return snapshot.hydrated
+        && snapshot.storageAvailable === next.storageAvailable
+        && snapshot.invalid === next.invalid
+        && JSON.stringify(snapshot.document) === JSON.stringify(next.document);
+}
 
-    if (isUnchanged) return;
+/** Keeps the snapshot reference stable unless something really changed. */
+function publish(next: SnapshotState) {
+    if (isUnchanged(next)) return;
 
-    snapshot = { document, hydrated: true, storageAvailable, invalid };
+    snapshot = { ...next, hydrated: true };
     listeners.forEach(listener => { listener(); });
 }
 
+/** Re-reads storage. Returns false (and flags storage as unavailable) when it cannot be read. */
 function load(): boolean {
     const stored = readSelection();
-    if (!stored.ok) {
-        publish(snapshot.document, false);
-        return false;
+
+    if (stored.ok) {
+        publish({ document: stored.document, storageAvailable: true, invalid: stored.invalid });
+    } else {
+        publish({ document: snapshot.document, storageAvailable: false, invalid: snapshot.invalid });
     }
-    publish(stored.document, true, stored.invalid);
-    return true;
+    return stored.ok;
 }
 
 function onStorage(event: StorageEvent) {
-    const isTargetStorage = event.storageArea === window.localStorage &&
-        (event.key === null || event.key === SELECTION_STORAGE_KEY);
-    
-    if (isTargetStorage) load();
+    const concernsSelection = event.key === null || event.key === SELECTION_STORAGE_KEY;
+    if (event.storageArea === window.localStorage && concernsSelection) load();
 }
 
 export function subscribeSelection(listener: () => void) {
@@ -58,25 +62,28 @@ export function subscribeSelection(listener: () => void) {
         window.addEventListener('storage', onStorage);
         load();
     }
-    
+
     return () => {
         listeners.delete(listener);
-        if (listeners.size === 0) {
-            window.removeEventListener('storage', onStorage);
-        }
+        if (listeners.size === 0) window.removeEventListener('storage', onStorage);
     };
 }
 
 export const getSelectionSnapshot = () => snapshot;
 
+/** Invalid stored data is only replaced when `reset` is explicitly requested. */
 function mutate(update: (doc: SelectionDocument) => SelectionDocument, reset = false): boolean {
-    if (!load() || (snapshot.invalid && !reset)) return false;
+    if (!load()) return false;
+    if (snapshot.invalid && !reset) return false;
 
     const next = update(snapshot.document);
-    const success = writeSelection(next);
+    if (writeSelection(next)) {
+        publish({ document: next, storageAvailable: true, invalid: false });
+        return true;
+    }
 
-    publish(success ? next : snapshot.document, success, false);
-    return success;
+    publish({ document: snapshot.document, storageAvailable: false, invalid: false });
+    return false;
 }
 
 type CategoryItem = { id: string; category: SelectionCategory };
