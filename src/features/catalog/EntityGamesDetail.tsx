@@ -12,11 +12,12 @@ import { CardGrid } from "@/features/games/components/CardGrid";
 import { usePagedSlice } from "@/hooks/usePagedSlice";
 import LoadingButton from "@/app/[locale]/games/_client/LoadingButton";
 import { compareGames, SORT_OPTIONS } from "./gameSorting";
+import type { EntityGamesDetailLabels } from "./entityGamesDetailLabels";
 import type { GameSort, TieredCardGame } from "./gameSorting";
 
 type Props = {
     name: string; games: TieredCardGame[]; imagePath?: string; countLabel?: string; onBack: () => void;
-    labels: { back: string; sort: string; loadMore: string; options: Record<GameSort, string> };
+    labels: EntityGamesDetailLabels;
 };
 
 export default function EntityGamesDetail({ name, games, imagePath, countLabel, onBack, labels }: Props) {

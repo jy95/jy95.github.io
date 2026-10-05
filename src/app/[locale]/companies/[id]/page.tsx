@@ -1,36 +1,28 @@
 "use client";
 
-import { use, useMemo } from "react";
-import CircularProgress from "@mui/material/CircularProgress";
-import { useTranslations } from "next-intl";
-import { notFound } from "next/navigation";
+import { useMemo } from "react";
 
-import { useRouter } from "@/i18n/routing";
 import { useGetCompanyQuery } from "@/redux/services/companiesAPI";
-import { QueryBoundary } from "@/components/common/QueryBoundary";
+import { DetailQueryBoundary } from "@/components/common/DetailQueryBoundary";
+import { useDetailRouteId } from "@/hooks/useDetailRouteId";
+import { useEntityGamesDetail } from "@/features/catalog/useEntityGamesDetail";
 import EntityGamesDetail from "@/features/catalog/EntityGamesDetail";
 import type { CompanyType } from "@/app/api/companies/route";
 
 export default function CompanyDetail({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = use(params);
+    const id = useDetailRouteId(params);
     const { data, error, isLoading, refetch } = useGetCompanyQuery(id);
-    if (error && "status" in error && error.status === 404) return notFound();
 
     return (
-        <QueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch} loadingFallback={<CircularProgress />}>
+        <DetailQueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch}>
             {(company) => <CompanyGames company={company} />}
-        </QueryBoundary>
+        </DetailQueryBoundary>
     );
 }
 
 function CompanyGames({ company }: { company: CompanyType }) {
-    const t = useTranslations("companies");
-    const common = useTranslations("common");
-    const router = useRouter();
+    const { labels, onBack } = useEntityGamesDetail("companies");
     const games = useMemo(() => [...new Map([...company.developerGames, ...company.publisherGames].map(game => [game.id, game])).values()], [company]);
-    return <EntityGamesDetail name={company.name} games={games} onBack={() => router.back()}
-        labels={{ back: t("back"), sort: t("sort.label"), loadMore: common("loadMore"), options: {
-            titleAsc: t("sort.titleAsc"), titleDesc: t("sort.titleDesc"), durationAsc: t("sort.durationAsc"),
-            durationDesc: t("sort.durationDesc"), tierAsc: t("sort.tierAsc"), tierDesc: t("sort.tierDesc"),
-        } }} />;
+    return <EntityGamesDetail name={company.name} games={games} onBack={onBack}
+        labels={labels} />;
 }

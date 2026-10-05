@@ -47,6 +47,16 @@ describe('CompanyDetail', () => {
         expect(screen.getByLabelText('companies.sort.label')).toHaveValue('titleAsc');
     });
 
+    it('keeps the publisher entry when a game ID appears in both roles', async () => {
+        await renderDetail({ ...company,
+            developerGames: [game('same', 'Developer version', '01:00:00', 'tier_good')],
+            publisherGames: [game('same', 'Publisher version', '02:00:00', 'tier_bad')],
+        });
+        expect(screen.getByTestId('card-grid')).toHaveAttribute('data-ids', 'same');
+        expect(screen.getByTestId('card-grid')).toHaveTextContent('Publisher version');
+        expect(screen.queryByText('Developer version')).not.toBeInTheDocument();
+    });
+
     it('shows loading and treats 404 as not found', async () => {
         useGetCompanyQueryMock.mockReturnValueOnce({ isLoading: true });
         await act(async () => { render(<CompanyDetail params={Promise.resolve({ id: '1' })} />); });
