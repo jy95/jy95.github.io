@@ -4,11 +4,9 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import DashboardNavigation from "./DashboardNavigation";
+import { DRAWER_WIDTH, MINI_DRAWER_WIDTH } from "./drawerConstants";
 import { useAppContext } from "./provider/useAppContext";
 import { getDrawerWidthTransitionMixin } from "./utils";
-
-export const DRAWER_WIDTH = 320;
-export const MINI_DRAWER_WIDTH = 84;
 
 type DrawerVariantConfig = {
   key: string;
