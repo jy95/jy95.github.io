@@ -1,7 +1,6 @@
 'use client';
 
 import { Suspense, useState } from 'react';
-import type { MouseEvent } from 'react';
 
 // Hooks
 import { useLocale } from 'next-intl';
@@ -43,48 +42,41 @@ function LanguageToggleInner(props: Props) {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
-  // `usePathname()` from next-intl returns the *internal route template*
-  // for dynamic routes (e.g. "/playlist/[id]"), not the resolved URL — it's
-  // typed against `routing.pathnames`, whose keys are templates like that.
-  // For a route with dynamic segments, pushing that template directly
-  // (without `params`) produces a URL with the literal "[id]" in it. We
-  // pull the actual segment values via next/navigation's `useParams()` and
-  // forward them so next-intl can substitute them back in.
-  //
-  // `useParams()` also includes the `[locale]` segment itself (since it's
-  // a Next.js dynamic route segment), which must be excluded — the locale
-  // is switched via the `locale` option below, not via `params`.
-  const rawParams = useParams<Record<string, string | string[]>>();
-  const { locale: _localeParam, ...routeParams } = rawParams ?? {};
-  const hasDynamicParams = Object.keys(routeParams).length > 0;
+  // `useParams()` also contains the `[locale]` segment itself, which must not be
+  // forwarded: the locale is switched through the `locale` option instead.
+  const { locale: _localeParam, ...routeParams } = useParams<Record<string, string | string[]>>() ?? {};
 
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const options = [
+    { value: 'fr', label: props.frenchLabel },
+    { value: 'en', label: props.englishLabel },
+  ] as const;
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const handleClose = () => setAnchorEl(null);
 
   const changeLanguage = (nextLocale: Locale) => {
-    if (nextLocale !== locale) {
-      // Preserve shared selections and catalogue filters when changing language.
-      const search = new URLSearchParams(window.location.search);
-      const query = Object.fromEntries([...new Set(search.keys())].map(key => [key, search.getAll(key)]));
-      const href: Href = hasDynamicParams || search.size > 0
-        ? ({ pathname, ...(hasDynamicParams ? { params: routeParams } : {}), ...(search.size > 0 ? { query } : {}) } as Href)
-        : (pathname as Href);
-
-      router.replace(href, { locale: nextLocale });
-    }
     handleClose();
+    if (nextLocale === locale) return;
+
+    // `usePathname()` returns the route template ("/video/[id]"), so dynamic
+    // segments are forwarded as `params`. Query parameters (shared selections,
+    // catalogue filters) are kept too; repeated keys are grouped into arrays.
+    const search = new URLSearchParams(window.location.search);
+    const query = Object.fromEntries([...new Set(search.keys())].map(key => [key, search.getAll(key)]));
+    const hasParams = Object.keys(routeParams).length > 0;
+    const hasQuery = search.size > 0;
+
+    const href = hasParams || hasQuery
+      ? { pathname, ...(hasParams && { params: routeParams }), ...(hasQuery && { query }) }
+      : pathname;
+
+    router.replace(href as Href, { locale: nextLocale });
   };
 
   return (
     <>
       <Tooltip title={props.languageTitle} disableTouchListener>
         <Button
-          onClick={handleClick}
+          onClick={event => setAnchorEl(event.currentTarget)}
           size="small"
           aria-label={props.languageTitle}
           aria-controls={open ? 'language-menu' : undefined}
@@ -110,29 +102,20 @@ function LanguageToggleInner(props: Props) {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        slotProps={{
-          paper: {
-            elevation: 3,
-            sx: { minWidth: 150, mt: 1 },
-          },
-        }}
+        slotProps={{ paper: { elevation: 3, sx: { minWidth: 150, mt: 1 } } }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        {(['fr', 'en'] as const).map((option) => (
-          <MenuItem
-            key={option}
-            selected={locale === option}
-            onClick={() => changeLanguage(option)}
-          >
+        {options.map(({ value, label }) => (
+          <MenuItem key={value} selected={locale === value} onClick={() => changeLanguage(value)}>
             <ListItemIcon>
               <CheckIcon
                 fontSize="small"
                 color="primary"
-                sx={{ visibility: locale === option ? 'visible' : 'hidden' }}
+                sx={{ visibility: locale === value ? 'visible' : 'hidden' }}
               />
             </ListItemIcon>
-            <ListItemText>{option === 'fr' ? props.frenchLabel : props.englishLabel}</ListItemText>
+            <ListItemText>{label}</ListItemText>
           </MenuItem>
         ))}
       </Menu>
