@@ -1,29 +1,27 @@
 export function titleBigrams(title: string): string[] {
-    const normalized = title
+    const text = title
         .toLowerCase()
         .replace(/\p{P}+/gu, "")
         .replace(/\s+/g, " ")
         .trim();
 
-    return Array.from({ length: Math.max(0, normalized.length - 1) }, (_, index) =>
-        normalized.slice(index, index + 2)
-    );
+    return Array.from({ length: Math.max(0, text.length - 1) }, (_, index) => text.slice(index, index + 2));
 }
 
+/** Sørensen–Dice coefficient; a repeated bigram only matches as often as it occurs on both sides. */
 export function diceCoefficient(left: string[], right: string[]): number {
     if (left.length === 0 || right.length === 0) return 0;
 
-    const rightCounts = new Map<string, number>();
-    for (const bigram of right) rightCounts.set(bigram, (rightCounts.get(bigram) ?? 0) + 1);
+    const unmatched = [...right];
+    let shared = 0;
 
-    let intersection = 0;
     for (const bigram of left) {
-        const count = rightCounts.get(bigram) ?? 0;
-        if (count > 0) {
-            intersection += 1;
-            rightCounts.set(bigram, count - 1);
-        }
+        const position = unmatched.indexOf(bigram);
+        if (position === -1) continue;
+
+        unmatched.splice(position, 1);
+        shared += 1;
     }
 
-    return (2 * intersection) / (left.length + right.length);
+    return (2 * shared) / (left.length + right.length);
 }
