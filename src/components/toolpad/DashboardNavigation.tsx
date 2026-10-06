@@ -3,7 +3,7 @@
 import List from "@mui/material/List";
 import NavigationGroup from "./navigation/NavigationGroup";
 import { useAppContext } from "./provider/useAppContext";
-import { MINI_DRAWER_WIDTH } from "./DashboardSidebar";
+import { MINI_DRAWER_WIDTH } from "./drawerConstants";
 
 export default function DashboardNavigation() {
   const { navigation, drawerOpen = false } = useAppContext();

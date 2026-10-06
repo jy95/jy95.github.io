@@ -109,6 +109,13 @@ describe.each([
         mockDrawerOpen = true;
     });
 
+    it('keeps the mini caption at a computed max-width of 56px', () => {
+        mockDrawerOpen = false;
+        render(<NavigationItem title="Games Library" href={href} selected={false} />);
+
+        expect(getComputedStyle(screen.getByText('Games Library')).maxWidth).toBe('56px');
+    });
+
     describe.each([
         { mode: 'expanded', drawerOpen: true, height: '48px' },
         { mode: 'mini', drawerOpen: false, height: '60px' },

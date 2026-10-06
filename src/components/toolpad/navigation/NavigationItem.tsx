@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Link } from "@/i18n/routing";
 import { useAppContext } from "../provider/useAppContext";
-import { MINI_DRAWER_WIDTH } from "../DashboardSidebar";
+import { MINI_DRAWER_WIDTH } from "../drawerConstants";
 
 import { navigationListItemButtonSx } from "./navigationStyles";
 import type { Theme } from "@mui/material/styles";
