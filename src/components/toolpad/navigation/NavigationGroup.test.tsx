@@ -1,6 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
+import NavigationMenu from '@/components/dashboard/MenuEntries';
 import { echoTranslations } from '@/test/mocks/nextIntl';
+import type { ReactNode } from 'react';
 
 let mockPathname = '/games';
 let mockDrawerOpen = true;
@@ -27,6 +29,7 @@ vi.mock('./NavigationItem', () => ({
         onClick?: () => void;
         hasChildren?: boolean;
         expanded?: boolean;
+        miniPopoverContent?: ReactNode;
     }) => (
         <div
             data-testid="nav-item"
@@ -37,6 +40,7 @@ vi.mock('./NavigationItem', () => ({
             data-expanded={String(props.expanded)}
         >
             {props.hasChildren && !props.href && <button onClick={props.onClick}>toggle</button>}
+            {props.hasChildren && props.href && props.miniPopoverContent}
         </div>
     ),
 }));
@@ -135,5 +139,85 @@ describe('NavigationGroup', () => {
         const item: Item = { titleKey: 'gamesTabs.grid', segment: 'games' };
         render(<NavigationGroup item={item} parentPath="" />);
         expect(screen.getByTestId('nav-item')).toHaveAttribute('data-selected', 'false');
+    });
+
+    it('keeps each child group expanded state with its route when children reorder', () => {
+        mockPathname = '/tier';
+        const defaultGroup: Item = {
+            titleKey: 'gamesTabs.grid',
+            children: [{ titleKey: 'gamesTabs.list', segment: 'series' }],
+        };
+        const gamesGroup: Item = {
+            titleKey: 'gamesTabs.grid',
+            segment: 'games',
+            children: [{ titleKey: 'gamesTabs.list', segment: 'series' }],
+        };
+        const item: Item = {
+            titleKey: 'tierTabs',
+            segment: 'tier',
+            children: [defaultGroup, gamesGroup],
+        };
+        const groups = () => screen.getAllByTestId('nav-item')
+            .filter((node) => node.getAttribute('data-haschildren') === 'true');
+        const { rerender } = render(<NavigationGroup item={item} />);
+
+        fireEvent.click(within(groups()[1]).getByRole('button', { name: 'toggle' }));
+        expect(groups()[1]).toHaveAttribute('data-expanded', 'true');
+        expect(groups()[2]).toHaveAttribute('data-expanded', 'false');
+
+        rerender(<NavigationGroup item={{ ...item, children: [gamesGroup, defaultGroup] }} />);
+
+        expect(groups()[1]).toHaveAttribute('data-expanded', 'false');
+        expect(groups()[2]).toHaveAttribute('data-expanded', 'true');
+        const leaf = screen.getAllByTestId('nav-item')
+            .find((node) => node.getAttribute('data-href') === '/tier/series');
+        expect(leaf).toBeInTheDocument();
+    });
+
+    it('renders a mini-popover child without a segment at the parent route', () => {
+        mockDrawerOpen = false;
+        const item: Item = {
+            titleKey: 'gamesKey',
+            segment: 'games',
+            children: [
+                { titleKey: 'gamesTabs.grid' },
+                { titleKey: 'gamesTabs.grid', segment: 'series' },
+            ],
+        };
+        const { rerender } = render(<NavigationGroup item={item} />);
+        const links = screen.getAllByRole('link');
+        expect(links.map((link) => link.getAttribute('href')))
+            .toEqual(['/games', '/games/series']);
+
+        rerender(<NavigationGroup item={{ ...item, children: [...(item.children ?? [])].reverse() }} />);
+
+        const reorderedLinks = screen.getAllByRole('link');
+        expect(reorderedLinks.map((link) => link.getAttribute('href')))
+            .toEqual(['/games/series', '/games']);
+        expect(reorderedLinks[0]).toBe(links[1]);
+        expect(reorderedLinks[1]).toBe(links[0]);
+    });
+
+    it.each([true, false])('renders the current navigation without key warnings when drawerOpen=%s', (drawerOpen) => {
+        mockDrawerOpen = drawerOpen;
+        const consoleError = vi.spyOn(console, 'error');
+        try {
+            for (const item of NavigationMenu()) {
+                mockPathname = '/unrelated';
+                const { unmount } = render(<NavigationGroup item={item} />);
+                if (drawerOpen && item.children?.length) {
+                    fireEvent.click(screen.getByRole('button', { name: 'toggle' }));
+                    expect(screen.getAllByTestId('nav-item')).toHaveLength(item.children.length + 1);
+                } else if (!drawerOpen && item.children?.length) {
+                    expect(screen.getAllByRole('link')).toHaveLength(item.children.length);
+                }
+                unmount();
+            }
+            const keyWarnings = consoleError.mock.calls.filter((args) =>
+                args.some((arg) => typeof arg === 'string' && /unique.*key|same key/i.test(arg)));
+            expect(keyWarnings).toEqual([]);
+        } finally {
+            consoleError.mockRestore();
+        }
     });
 });

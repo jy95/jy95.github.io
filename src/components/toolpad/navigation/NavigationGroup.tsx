@@ -54,10 +54,10 @@ export default function NavigationGroup({ item, parentPath = "", depth = 0 }: Pr
   // Only displayed by NavigationItem, in mini mode, for items that have children.
   const miniPopover = (
     <List sx={{ padding: 0, minWidth: 200 }}>
-      {children.map((child, idx) => {
+      {children.map((child) => {
         const childPath = join(itemPath, child.segment);
         return (
-          <ListItem key={`${child.titleKey}:${idx}`} sx={{ py: 0, px: 1 }}>
+          <ListItem key={childPath} sx={{ py: 0, px: 1 }}>
             <ListItemButton
               component={Link}
               // Built from route segments at runtime, so it can't be checked
@@ -93,8 +93,8 @@ export default function NavigationGroup({ item, parentPath = "", depth = 0 }: Pr
       {isToggle && (
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List sx={{ padding: 0, mb: 0.5, pl: 2 * (depth + 1) }}>
-            {children.map((child, idx) => (
-              <NavigationGroup key={`${child.titleKey}:${idx}`} item={child} parentPath={itemPath} depth={depth + 1} />
+            {children.map((child) => (
+              <NavigationGroup key={join(itemPath, child.segment)} item={child} parentPath={itemPath} depth={depth + 1} />
             ))}
           </List>
         </Collapse>
