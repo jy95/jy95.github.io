@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Grow from "@mui/material/Grow";
@@ -10,11 +11,13 @@ import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 import { Link } from "@/i18n/routing";
 import { useAppContext } from "../provider/useAppContext";
 import { MINI_DRAWER_WIDTH } from "../drawerConstants";
 
 import { navigationListItemButtonSx } from "./navigationStyles";
+
 import type { Theme } from "@mui/material/styles";
 import type { ReactNode } from "react";
 import type { Href } from "@/i18n/routing";
