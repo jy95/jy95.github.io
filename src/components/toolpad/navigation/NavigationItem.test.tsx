@@ -36,6 +36,30 @@ describe('NavigationItem', () => {
         expect(screen.getByRole('listitem')).toHaveStyle({ overflow: 'visible' });
     });
 
+    it.each([false, true])('preserves link descriptions and explicit mini=%s', (mini) => {
+        mockDrawerOpen = mini;
+        render(<NavigationItem title="Selection" href="/selection" selected mini={mini} hint="Saved here"
+            badgeDescriptionId="count" badge={<span id="count">4 saved entries</span>} />);
+        const link = screen.getByRole('link');
+        expect(link.tagName).toBe('A');
+        expect(link).toHaveAttribute('aria-current', 'page');
+        expect(link).not.toHaveAttribute('aria-expanded');
+        expect(link).not.toHaveAttribute('aria-controls');
+        expect(link).toHaveAccessibleDescription(mini ? '4 saved entries' : 'Saved here 4 saved entries');
+        expect(link).toHaveStyle({ minHeight: mini ? '60px' : '48px' });
+    });
+
+    it('keeps disclosure attributes on the button branch', () => {
+        render(<NavigationItem title="Browse" selected hasChildren expanded controlsId="children" />);
+        const button = screen.getByRole('button');
+        expect(button.tagName).toBe('BUTTON');
+        expect(button).toHaveAttribute('type', 'button');
+        expect(button).toHaveAttribute('aria-expanded', 'true');
+        expect(button).toHaveAttribute('aria-controls', 'children');
+        expect(button).not.toHaveAttribute('aria-current');
+        expect(button).not.toHaveAttribute('href');
+    });
+
     it('renders the title text when the drawer is expanded', () => {
         render(<NavigationItem title="Games" selected={false} />);
         expect(screen.getByText('Games')).toBeInTheDocument();

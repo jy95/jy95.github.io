@@ -138,6 +138,13 @@ export default function NavigationItem({
     position: "relative",
   } as const;
 
+  const describedBy = [!isMini && hint ? hintId : undefined, badgeDescriptionId].filter(Boolean).join(" ") || undefined;
+  const commonButtonProps = {
+    "aria-label": title,
+    selected,
+    sx: buttonSx,
+  };
+
   // Shared by the link and plain variants below.
   const content = (
     <>
@@ -178,19 +185,17 @@ export default function NavigationItem({
           // Built from route segments at runtime (see NavigationGroup.tsx), so it
           // can't be checked statically against `routing.pathnames`.
           href={href as Href}
-          aria-label={title}
+          {...commonButtonProps}
           aria-current={selected ? "page" : undefined}
-          aria-describedby={[!isMini && hint ? hintId : undefined, badgeDescriptionId].filter(Boolean).join(" ") || undefined}
-          selected={selected}
-          sx={buttonSx}
+          aria-describedby={describedBy}
         >
           {content}
         </ListItemButton>
       ) : (
-        <ListItemButton component="button" type="button" ref={controlRef} aria-label={title}
+        <ListItemButton component="button" type="button" ref={controlRef} {...commonButtonProps}
           aria-expanded={hasChildren ? (isMini ? popoverOpen : expanded) : undefined}
           aria-controls={hasChildren ? controlsId : undefined}
-          selected={selected} onClick={isMini && hasChildren ? () => setPopoverOpen(value => !value) : onClick} sx={buttonSx}>
+          onClick={isMini && hasChildren ? () => setPopoverOpen(value => !value) : onClick}>
           {content}
         </ListItemButton>
       )}

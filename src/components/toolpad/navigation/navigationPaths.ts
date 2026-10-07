@@ -1,5 +1,12 @@
 import type { Navigation, NavigationItem } from '../types';
 
+const ROUTE_ALIASES = [
+  { pattern: /^\/games\/detail\/[^/]+\/?$/, path: '/games' },
+  { pattern: /^\/(video|playlist)\/[^/]+\/?$/, path: '/games' },
+  { pattern: /^\/companies\/[^/]+\/?$/, path: '/companies' },
+  { pattern: /^\/games\/series\/[^/]+\/?$/, path: '/games/series' },
+];
+
 export function resolveNavigationPath(item: NavigationItem, parentPath = ''): string {
   return item.path ?? (item.segment ? `${parentPath}/${item.segment}` : parentPath);
 }
@@ -19,14 +26,13 @@ export function leafPaths(items: Navigation, parentPath = ''): string[] {
 }
 
 export function selectedNavigationPath(items: Navigation, pathname: string, parentPath = ''): string | undefined {
-  const aliases = [
-    { pattern: /^\/games\/detail\/[^/]+\/?$/, path: '/games' },
-    { pattern: /^\/(video|playlist)\/[^/]+\/?$/, path: '/games' },
-    { pattern: /^\/companies\/[^/]+\/?$/, path: '/companies' },
-    { pattern: /^\/games\/series\/[^/]+\/?$/, path: '/games/series' },
-  ];
-  const target = aliases.find(alias => alias.pattern.test(pathname))?.path ?? pathname;
-  return leafPaths(items, parentPath)
-    .filter(path => path && (target === path || target.startsWith(`${path}/`)))
-    .sort((a, b) => b.length - a.length)[0];
+  const target = ROUTE_ALIASES.find(alias => alias.pattern.test(pathname))?.path ?? pathname;
+  let selectedPath: string | undefined;
+  for (const path of leafPaths(items, parentPath)) {
+    if (path && (target === path || target.startsWith(`${path}/`)) &&
+        (selectedPath === undefined || path.length > selectedPath.length)) {
+      selectedPath = path;
+    }
+  }
+  return selectedPath;
 }
