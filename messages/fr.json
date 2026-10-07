@@ -59,16 +59,32 @@
                 "browse": "Explorer",
                 "opinions": "Avis",
                 "comingUp": "À venir",
-                "mine": "Personnel",
-                "more": "Plus"
+                "more": "Plus",
+                "saved": "Favoris"
             },
             "tierChildren": {
                 "games": "Jeux publiés",
                 "backlog": "En attente",
                 "tests": "Classement des tests"
             },
-            "backlogHint": "Votez pour les prochains jeux",
-            "selectionCount": "{count, plural, one {# élément enregistré} other {# éléments enregistrés}}"
+            "selectionCount": "{count, plural, one {# élément enregistré} other {# éléments enregistrés}}",
+            "hints": {
+                "games": "Parcourez le catalogue de jeux.",
+                "series": "Explorez les jeux par série.",
+                "dlc": "Découvrez les contenus additionnels.",
+                "companies": "Découvrez les développeurs et éditeurs.",
+                "random": "Découvrez un jeu choisi au hasard.",
+                "tests": "Consultez les tests de jeux.",
+                "tierGames": "Consultez les classements des jeux publiés.",
+                "tierBacklog": "Consultez les classements des jeux en attente.",
+                "tierTests": "Comparez les classements des tests.",
+                "planning": "Consultez les jeux et vidéos à venir.",
+                "backlog": "Votez pour les prochains jeux.",
+                "selection": "Retrouvez les éléments enregistrés dans ce navigateur.",
+                "stats": "Explorez les statistiques du catalogue.",
+                "links": "Retrouvez des liens utiles."
+            },
+            "navigationLabel": "Navigation principale"
         },
         "toolbar": {
             "settings": "Paramètres",
@@ -83,7 +99,8 @@
                 "en": "Anglais",
                 "fr": "Français"
             },
-            "random": "Au hasard"
+            "expandNavigation": "Déplier le menu de navigation",
+            "collapseNavigation": "Replier le menu de navigation"
         }
     },
     "common": {

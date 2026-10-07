@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
@@ -22,17 +24,19 @@ const DRAWER_VARIANTS: DrawerVariantConfig[] = [
 ];
 
 export default function DashboardSidebar() {
+  const t = useTranslations("dashboard.menuEntries");
   const { drawerOpen = false, toggleDrawer } = useAppContext();
 
   // When sidebar is closed → mini mode
   const isMini = !drawerOpen;
 
-  const getDrawerContent = () => (
+  const getDrawerContent = (mini: boolean) => (
     <>
       {/* Spacer that matches AppBar height so nav starts below it */}
       <Toolbar />
       <Box
         component="nav"
+        aria-label={t("navigationLabel")}
         sx={{
           height: "100%",
           minHeight: 0,
@@ -48,7 +52,7 @@ export default function DashboardSidebar() {
           pt: 2,
         }}
       >
-        <DashboardNavigation />
+        <DashboardNavigation mini={mini} />
       </Box>
     </>
   );
@@ -86,7 +90,7 @@ export default function DashboardSidebar() {
             ...getDrawerSx(mini ? isMini : false, variant === 'temporary'),
           }}
         >
-          {getDrawerContent()}
+          {getDrawerContent(mini && isMini)}
         </Drawer>
       ))}
     </>

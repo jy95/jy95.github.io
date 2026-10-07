@@ -1,14 +1,13 @@
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import Grow from "@mui/material/Grow";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
-import Popper from "@mui/material/Popper";
+import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -66,6 +65,9 @@ const MINI_CHEVRON_SX = {
 
 export type NavItemProps = {
   title: string;
+  mini?: boolean;
+  controlsId?: string;
+  badgeDescriptionId?: string;
   icon?: ReactNode;
   badge?: ReactNode;
   hint?: string;
@@ -79,6 +81,9 @@ export type NavItemProps = {
 
 export default function NavigationItem({
   title,
+  mini,
+  controlsId,
+  badgeDescriptionId,
   icon,
   badge,
   hint,
@@ -90,11 +95,11 @@ export default function NavigationItem({
   miniPopoverContent,
 }: NavItemProps) {
   const { drawerOpen = true } = useAppContext();
-  const isMini = !drawerOpen;
+  const isMini = mini ?? !drawerOpen;
+  const hintId = useId();
 
-  const [hovered, setHovered] = useState(false);
-  const popoverRef = useRef<HTMLDivElement>(null);
-  const listItemRef = useRef<HTMLLIElement>(null);
+  const [popoverOpen, setPopoverOpen] = useState(false);
+  const controlRef = useRef<HTMLButtonElement>(null);
 
   const initials = title
     .split(" ")
@@ -126,7 +131,10 @@ export default function NavigationItem({
   const buttonSx = {
     ...itemButtonSx,
     px: 1.4,
-    height: isMini ? 60 : 48,
+    minHeight: isMini ? 60 : 48,
+    py: 1,
+    width: "100%",
+    "&.Mui-focusVisible": { outline: "2px solid", outlineColor: "primary.main", outlineOffset: 2 },
     position: "relative",
   } as const;
 
@@ -138,7 +146,7 @@ export default function NavigationItem({
           <ListItemIcon
             sx={{ display: "flex", alignItems: "center", justifyContent: "center", minWidth: LIST_ITEM_ICON_SIZE }}
           >
-            {iconNode}
+            <Box component="span" aria-hidden="true">{iconNode}</Box>
             {isMini && badge && <Box sx={{ position: "absolute", top: -5, right: -8 }}>{badge}</Box>}
           </ListItemIcon>
           {isMini && (
@@ -148,9 +156,13 @@ export default function NavigationItem({
           )}
         </Box>
       )}
-      {!isMini && <ListItemText primary={title} secondary={hint} slotProps={{ secondary: { sx: { whiteSpace: "normal", fontSize: 11 } } }} sx={{ ml: 1.2, whiteSpace: "nowrap", zIndex: 1 }} />}
+      {!isMini && (
+        <ListItemText primary={title} secondary={hint}
+          slotProps={{ secondary: { id: hintId, sx: { whiteSpace: "normal", fontSize: 12 } } }}
+          sx={{ ml: 1.2, minWidth: 0, whiteSpace: "normal", zIndex: 1 }} />
+      )}
       {!isMini && badge}
-      {hasChildren && <ExpandMoreIcon sx={chevronSx} />}
+      {hasChildren && <ExpandMoreIcon aria-hidden="true" sx={chevronSx} />}
     </>
   );
 
@@ -158,12 +170,7 @@ export default function NavigationItem({
 
   return (
     <ListItem
-      ref={listItemRef}
       sx={{ py: 0, px: 1, overflow: "visible" }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocus={() => setHovered(true)}
-      onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget) && !popoverRef.current?.contains(event.relatedTarget)) setHovered(false); }}
     >
       {href ? (
         <ListItemButton
@@ -171,39 +178,32 @@ export default function NavigationItem({
           // Built from route segments at runtime (see NavigationGroup.tsx), so it
           // can't be checked statically against `routing.pathnames`.
           href={href as Href}
+          aria-label={title}
+          aria-current={selected ? "page" : undefined}
+          aria-describedby={[!isMini && hint ? hintId : undefined, badgeDescriptionId].filter(Boolean).join(" ") || undefined}
           selected={selected}
           sx={buttonSx}
         >
           {content}
         </ListItemButton>
       ) : (
-        <ListItemButton component="button" type="button" aria-expanded={hasChildren ? expanded : undefined} selected={selected} onClick={onClick} sx={buttonSx}>
+        <ListItemButton component="button" type="button" ref={controlRef} aria-label={title}
+          aria-expanded={hasChildren ? (isMini ? popoverOpen : expanded) : undefined}
+          aria-controls={hasChildren ? controlsId : undefined}
+          selected={selected} onClick={isMini && hasChildren ? () => setPopoverOpen(value => !value) : onClick} sx={buttonSx}>
           {content}
         </ListItemButton>
       )}
 
-      {/* Popper portals into document.body, so the drawer's overflow:hidden can't clip it. */}
       {showPopover && (
-        <Popper
-          ref={popoverRef}
-          onFocus={() => setHovered(true)}
-          onBlur={(event) => {
-            if (!event.currentTarget.contains(event.relatedTarget) && !listItemRef.current?.contains(event.relatedTarget)) setHovered(false);
-          }}
-          open={hovered}
-          anchorEl={() => listItemRef.current as HTMLElement}
-          placement="right-start"
-          transition
-          sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
-        >
-          {({ TransitionProps }) => (
-            <Grow {...TransitionProps} style={{ transformOrigin: "left top" }}>
-              <Paper elevation={1} sx={{ py: 0.5, ml: "6px" }}>
-                {miniPopoverContent}
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
+        <Popover keepMounted open={popoverOpen} anchorEl={controlRef.current} onClose={() => setPopoverOpen(false)}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+          transformOrigin={{ vertical: "top", horizontal: "left" }}
+          slotProps={{ paper: { sx: { ml: 0.75, maxHeight: "80vh" } } }}>
+          <Paper component="nav" aria-label={title} elevation={0} sx={{ py: 0.5 }} onClick={event => {
+            if (event.target instanceof Element && event.target.closest("a")) setPopoverOpen(false);
+          }}>{miniPopoverContent}</Paper>
+        </Popover>
       )}
     </ListItem>
   );

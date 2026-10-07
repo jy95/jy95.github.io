@@ -1,66 +1,40 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+import en from '../../../messages/en.json';
+import fr from '../../../messages/fr.json';
+import { leafPaths } from '@/components/toolpad/navigation/navigationPaths';
+import type { Navigation } from '@/components/toolpad/types';
 import NavigationMenu from './MenuEntries';
 
+const paths = ['/games', '/games/series', '/games/dlcs', '/companies', '/games/random', '/tests', '/tier/games', '/tier/backlog', '/tier/tests', '/planning', '/backlog', '/selection', '/stats', '/links'];
+
 describe('NavigationMenu', () => {
-    it('returns a non-empty top-level navigation tree', () => {
-        const nav = NavigationMenu();
-        expect(nav.length).toBeGreaterThan(0);
-    });
-
-    it('includes a top-level entry for every primary section segment', () => {
-        const nav = NavigationMenu();
-        const segments = nav.map((item) => item.segment);
-        expect(segments).toEqual(
-            expect.arrayContaining(['games', 'companies', 'planning', 'backlog', 'tier', 'tests', 'stats', 'links'])
-        );
-    });
-
-    it('uses the exact section and destination order with tier as the only group', () => {
-        const nav = NavigationMenu();
-        expect(nav.map(item => item.kind === 'section' ? item.titleKey : item.path ?? `/${item.segment}`)).toEqual([
-            'sections.browse', '/games', '/games/series', '/games/dlcs', '/companies',
-            'sections.opinions', '/tests', '/tier', 'sections.comingUp', '/planning', '/backlog',
-            'sections.mine', '/selection', 'sections.more', '/stats', '/links',
-        ]);
-        expect(nav.filter(item => item.children?.length).map(item => item.segment)).toEqual(['tier']);
-    });
-
-    it('gives the tier entry three children: games, backlog, tests', () => {
-        const nav = NavigationMenu();
-        const tier = nav.find((item) => item.segment === 'tier');
-        expect(tier?.children).toHaveLength(3);
-        expect(tier?.children?.map((c) => c.segment)).toEqual(['games', 'backlog', 'tests']);
-    });
-
-    it('every top-level entry defines an icon', () => {
-        const nav = NavigationMenu();
-        for (const item of nav) {
-            if (item.kind !== "section") expect(item.icon).toBeTruthy();
+    it('uses icon-backed presentation groups without destinations', () => {
+        const navigation = NavigationMenu();
+        expect(navigation.map(item => item.kind === 'group' ? item.id : undefined)).toEqual(['browse', 'opinions', 'coming-up', 'saved', 'more']);
+        for (const item of navigation) {
+            expect(item.icon).toBeTruthy();
+            expect(item.path).toBeUndefined();
+            expect(item.segment).toBeUndefined();
         }
+        expect(leafPaths(navigation)).toEqual(paths);
     });
 
-    it('every entry (top-level and nested) has a non-empty titleKey', () => {
-        const nav = NavigationMenu();
-        function assertTitleKeys(items: typeof nav) {
+    it('describes every leaf in both locales and preserves the live selection badge', () => {
+        function verify(items: Navigation) {
             for (const item of items) {
-                expect(typeof item.titleKey).toBe('string');
-                expect(item.titleKey.length).toBeGreaterThan(0);
-                if (item.children) assertTitleKeys(item.children);
+                if (item.children) verify(item.children);
+                else {
+                    expect(item.hintKey).toBeTruthy();
+                    const key = item.hintKey?.split('.')[1];
+                    for (const messages of [en, fr]) {
+                        expect(Object.entries(messages.dashboard.menuEntries.hints).find(([name]) => name === key)?.[1]).toBeTruthy();
+                    }
+                    if (item.path === '/selection') expect(item.badge).toBeTruthy();
+                }
             }
         }
-        assertTitleKeys(nav);
-    });
-
-    it('produces a fresh tree object on every call (no shared mutable state)', () => {
-        const first = NavigationMenu();
-        const second = NavigationMenu();
-        expect(first).not.toBe(second);
-        expect(first[0]).not.toBe(second[0]);
-    });
-
-    it('leaf entries without children never define a children array', () => {
-        const nav = NavigationMenu();
-        const planning = nav.find((item) => item.segment === 'planning');
-        expect(planning?.children).toBeUndefined();
+        verify(NavigationMenu());
+        expect(en.dashboard.menuEntries.sections.saved).toBe('Saved');
+        expect(fr.dashboard.menuEntries.sections.saved).toBe('Favoris');
     });
 });

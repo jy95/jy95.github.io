@@ -23,7 +23,19 @@ export type NavigationSection = {
   hintKey?: never;
 };
 
-export type NavigationItem = NavigationDestination | NavigationSection;
+export type NavigationPresentationGroup = {
+  kind: "group";
+  id: string;
+  titleKey: DashboardMenuKey;
+  icon: ReactNode;
+  children: NavigationItem[];
+  segment?: never;
+  path?: never;
+  badge?: never;
+  hintKey?: never;
+};
+
+export type NavigationItem = NavigationDestination | NavigationSection | NavigationPresentationGroup;
 
 export type Navigation = NavigationItem[];
 

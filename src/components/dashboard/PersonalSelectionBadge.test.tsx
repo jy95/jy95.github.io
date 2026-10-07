@@ -16,10 +16,13 @@ describe('PersonalSelectionBadge', () => {
     const document = { ...emptySelection(), games: ['game'], backlog: ['backlog'], dlcs: ['dlc'], planning: ['plan'] };
     localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(document));
     expect(renderToString(<PersonalSelectionBadge />)).toContain('0 saved entries');
-    render(<PersonalSelectionBadge />);
+    render(<a href="/selection" aria-label="My selection" aria-describedby="selection-count"><PersonalSelectionBadge descriptionId="selection-count" /></a>);
+    expect(screen.getByRole('link')).toHaveAccessibleName('My selection');
+    expect(screen.getByRole('link')).toHaveAccessibleDescription('4 saved entries');
     expect(screen.getByLabelText('4 saved entries')).toHaveTextContent('4');
     act(() => { toggleSelection({ id: 'another', category: 'games' }); });
     expect(screen.getByLabelText('5 saved entries')).toHaveTextContent('5');
+    expect(screen.getByRole('link')).toHaveAccessibleDescription('5 saved entries');
     act(() => { clearSelection(); });
     expect(screen.getByLabelText('0 saved entries')).toHaveTextContent('0');
   });
