@@ -191,7 +191,7 @@ export default function NavigationItem({
             if (!event.currentTarget.contains(event.relatedTarget) && !listItemRef.current?.contains(event.relatedTarget)) setHovered(false);
           }}
           open={hovered}
-          anchorEl={() => listItemRef.current}
+          anchorEl={() => listItemRef.current as HTMLElement}
           placement="right-start"
           transition
           sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
