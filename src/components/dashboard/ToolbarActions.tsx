@@ -1,9 +1,11 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import type { MouseEvent } from 'react';
 
 // Hooks & MUI
+import CircularProgress from '@mui/material/CircularProgress';
 import { useColorScheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -14,10 +16,13 @@ import Tooltip from '@mui/material/Tooltip';
 import Stack from '@mui/material/Stack';
 
 // Icons
+import CasinoIcon from '@mui/icons-material/Casino';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import CheckIcon from '@mui/icons-material/Check';
+
+import { useNavigateToRandomGame } from '@/hooks/useNavigateToRandomGame';
 
 // Local components & Types
 import LanguageToggle from './LanguageToggle';
@@ -33,6 +38,8 @@ const MODE_OPTIONS = [
 type ColorSchemeMode = typeof MODE_OPTIONS[number]['value'];
 
 export default function ToolbarActions(props: Props) {
+  const t = useTranslations('dashboard.toolbar');
+  const { navigateToRandomGame, isPending } = useNavigateToRandomGame();
   const { mode, setMode } = useColorScheme();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -58,6 +65,14 @@ export default function ToolbarActions(props: Props) {
       spacing={{ xs: 0.5, sm: 1 }}
       sx={{ alignItems: 'center', minWidth: 0 }}
     >
+      <Tooltip title={t('random')} disableTouchListener>
+        <span>
+          <IconButton aria-label={t('random')} aria-busy={isPending} disabled={isPending}
+            onClick={() => { void navigateToRandomGame(); }} size="small" sx={{ color: 'text.secondary' }}>
+            {isPending ? <CircularProgress size={20} color="inherit" /> : <CasinoIcon fontSize="small" />}
+          </IconButton>
+        </span>
+      </Tooltip>
       <LanguageToggle
         englishLabel={props.englishLabel}
         frenchLabel={props.frenchLabel}

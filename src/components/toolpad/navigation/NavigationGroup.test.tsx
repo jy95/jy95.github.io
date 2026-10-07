@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import NavigationMenu from '@/components/dashboard/MenuEntries';
-import { echoTranslations } from '@/test/mocks/nextIntl';
 import type { ReactNode } from 'react';
 
 let mockPathname = '/games';
@@ -9,10 +8,13 @@ let mockDrawerOpen = true;
 
 vi.mock('@/i18n/routing', () => ({
     usePathname: () => mockPathname,
-    Link: ({ children, href }: { children: React.ReactNode; href: string }) => <a href={href}>{children}</a>,
+    Link: ({ children, href, ...rest }: React.ComponentProps<"a">) => <a href={href} {...rest}>{children}</a>,
 }));
 
-vi.mock('next-intl', () => echoTranslations());
+vi.mock('next-intl', async () => {
+    const { echoTranslations } = await import('@/test/mocks/nextIntl');
+    return echoTranslations();
+});
 
 vi.mock('../provider/useAppContext', () => ({
     useAppContext: () => ({ drawerOpen: mockDrawerOpen }),
@@ -52,6 +54,30 @@ describe('NavigationGroup', () => {
     beforeEach(() => {
         mockPathname = '/games';
         mockDrawerOpen = true;
+    });
+
+    it('renders expanded section headings without links and mini dividers', () => {
+        const item: Item = { kind: 'section', titleKey: 'sections.browse' };
+        const { rerender } = render(<NavigationGroup item={item} />);
+        expect(screen.getByText('dashboard.menuEntries.sections.browse')).toHaveClass('MuiListSubheader-root');
+        expect(screen.queryByRole('link')).not.toBeInTheDocument();
+        mockDrawerOpen = false;
+        rerender(<NavigationGroup item={item} />);
+        expect(screen.getByRole('separator')).toBeInTheDocument();
+        expect(screen.queryByText('dashboard.menuEntries.sections.browse')).not.toBeInTheDocument();
+    });
+
+    it('uses the same selected descendant in the mini popover', () => {
+        mockDrawerOpen = false;
+        mockPathname = '/tier/games/details';
+        const item: Item = { segment: 'tier', titleKey: 'tierTabs', children: [
+            { segment: 'games', titleKey: 'tierChildren.games' },
+            { segment: 'backlog', titleKey: 'tierChildren.backlog' },
+        ] };
+        render(<NavigationGroup item={item} />);
+        expect(screen.getByTestId('nav-item')).toHaveAttribute('data-selected', 'true');
+        expect(screen.getByRole('link', { name: 'dashboard.menuEntries.tierChildren.games' })).toHaveClass('Mui-selected');
+        expect(screen.getByRole('link', { name: 'dashboard.menuEntries.tierChildren.backlog' })).not.toHaveClass('Mui-selected');
     });
 
     it('renders a leaf item with its href set to the joined parent path + segment', () => {
@@ -161,6 +187,7 @@ describe('NavigationGroup', () => {
             .filter((node) => node.getAttribute('data-haschildren') === 'true');
         const { rerender } = render(<NavigationGroup item={item} />);
 
+        fireEvent.click(within(groups()[0]).getByRole('button', { name: 'toggle' }));
         fireEvent.click(within(groups()[1]).getByRole('button', { name: 'toggle' }));
         expect(groups()[1]).toHaveAttribute('data-expanded', 'true');
         expect(groups()[2]).toHaveAttribute('data-expanded', 'false');

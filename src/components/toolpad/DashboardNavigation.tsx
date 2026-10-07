@@ -1,6 +1,10 @@
 "use client";
 
 import List from "@mui/material/List";
+
+import { usePathname } from "@/i18n/routing";
+
+import { navigationKey, selectedNavigationPath } from "./navigation/navigationPaths";
 import NavigationGroup from "./navigation/NavigationGroup";
 import { useAppContext } from "./provider/useAppContext";
 import { MINI_DRAWER_WIDTH } from "./drawerConstants";
@@ -8,6 +12,8 @@ import { MINI_DRAWER_WIDTH } from "./drawerConstants";
 export default function DashboardNavigation() {
   const { navigation, drawerOpen = false } = useAppContext();
   const entries = navigation ?? [];
+  const pathname = usePathname();
+  const selectedPath = selectedNavigationPath(entries, pathname);
   const isMini = !drawerOpen;
 
   return (
@@ -19,9 +25,10 @@ export default function DashboardNavigation() {
         width: isMini ? MINI_DRAWER_WIDTH : "auto",
       }}
     >
-      {entries.map((item, index) => (
+      {entries.map((item) => (
         <NavigationGroup
-          key={`${item.segment ?? "group"}:${item.titleKey}:${index}`}
+          key={navigationKey(item)}
+          selectedPath={selectedPath ?? null}
           item={item}
         />
       ))}

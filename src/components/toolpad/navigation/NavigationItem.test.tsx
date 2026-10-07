@@ -24,6 +24,15 @@ describe('NavigationItem', () => {
         mockDrawerOpen = true;
     });
 
+    it.each([true, false])('renders an accessible badge with drawerOpen=%s', (drawerOpen) => {
+        mockDrawerOpen = drawerOpen;
+        render(<NavigationItem title="Selection" selected={false} href="/selection"
+            badge={<span aria-label="4 saved entries">4</span>} />);
+        expect(screen.getByLabelText('4 saved entries')).toBeInTheDocument();
+        expect(screen.getByRole('link')).toContainElement(screen.getByLabelText('4 saved entries'));
+        expect(screen.getByRole('listitem')).toHaveStyle({ overflow: 'visible' });
+    });
+
     it('renders the title text when the drawer is expanded', () => {
         render(<NavigationItem title="Games" selected={false} />);
         expect(screen.getByText('Games')).toBeInTheDocument();

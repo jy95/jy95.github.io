@@ -15,10 +15,14 @@ describe('NavigationMenu', () => {
         );
     });
 
-    it('gives the games entry the expected children tabs', () => {
+    it('uses the exact section and destination order with tier as the only group', () => {
         const nav = NavigationMenu();
-        const games = nav.find((item) => item.segment === 'games');
-        expect(games?.children?.map((c) => c.segment)).toEqual([undefined, 'series', 'dlcs', 'random']);
+        expect(nav.map(item => item.kind === 'section' ? item.titleKey : item.path ?? `/${item.segment}`)).toEqual([
+            'sections.browse', '/games', '/games/series', '/games/dlcs', '/companies',
+            'sections.opinions', '/tests', '/tier', 'sections.comingUp', '/planning', '/backlog',
+            'sections.mine', '/selection', 'sections.more', '/stats', '/links',
+        ]);
+        expect(nav.filter(item => item.children?.length).map(item => item.segment)).toEqual(['tier']);
     });
 
     it('gives the tier entry three children: games, backlog, tests', () => {
@@ -31,7 +35,7 @@ describe('NavigationMenu', () => {
     it('every top-level entry defines an icon', () => {
         const nav = NavigationMenu();
         for (const item of nav) {
-            expect(item.icon).toBeTruthy();
+            if (item.kind !== "section") expect(item.icon).toBeTruthy();
         }
     });
 
