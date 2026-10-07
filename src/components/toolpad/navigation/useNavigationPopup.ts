@@ -17,6 +17,7 @@ const supportsHover = (event: PointerEvent<HTMLElement>): boolean =>
 const focusFirstItem = (content: HTMLElement | null) =>
   content?.querySelector<HTMLElement>(FOCUSABLE)?.focus();
 
+/** Closes on outside pointer-down and Escape while the popup is open. */
 function useDocumentDismissal(
   active: boolean,
   contains: (node: EventTarget | null) => boolean,
@@ -33,7 +34,7 @@ function useDocumentDismissal(
     const onEscape = (event: globalThis.KeyboardEvent) => {
       if (event.key !== "Escape" || event.defaultPrevented) return;
 
-      close(contentRef.current?.contains(document.activeElement) ?? false);
+      close(Boolean(contentRef.current?.contains(document.activeElement)));
     };
 
     document.addEventListener("pointerdown", onOutsidePointer);
@@ -49,8 +50,14 @@ function useDocumentDismissal(
 // A non-modal disclosure keeps native Tab navigation and never traps focus.
 export default function useNavigationPopup(enabled: boolean) {
   const [open, setOpen] = useState(false);
-  const effectiveOpen = enabled && open;
+  const [previousEnabled, setPreviousEnabled] = useState(enabled);
 
+  if (previousEnabled !== enabled) {
+    setPreviousEnabled(enabled);
+    setOpen(false);
+  }
+
+  const effectiveOpen = enabled && open;
   const triggerRef = useRef<HTMLButtonElement>(null);
   const contentRef = useRef<HTMLElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout>>();
@@ -63,7 +70,7 @@ export default function useNavigationPopup(enabled: boolean) {
   }, []);
 
   const contains = useCallback(
-    (node: EventTarget | null) =>
+    (node: EventTarget | null): boolean =>
       node instanceof Node &&
       Boolean(
         triggerRef.current?.contains(node) ||
@@ -85,6 +92,7 @@ export default function useNavigationPopup(enabled: boolean) {
 
   const scheduleDismissal = () => {
     cancelDismissal();
+
     timer.current = setTimeout(() => {
       if (!pointerInside.current && !contains(document.activeElement)) {
         setOpen(false);
@@ -110,7 +118,9 @@ export default function useNavigationPopup(enabled: boolean) {
   };
 
   const onBlur = (event: FocusEvent<HTMLElement>) => {
-    if (enabled && !contains(event.relatedTarget)) scheduleDismissal();
+    if (enabled && !contains(event.relatedTarget)) {
+      scheduleDismissal();
+    }
   };
 
   const onKeyDown = (event: KeyboardEvent<HTMLElement>) => {
@@ -145,10 +155,7 @@ export default function useNavigationPopup(enabled: boolean) {
   useDocumentDismissal(effectiveOpen, contains, close, contentRef);
 
   useEffect(() => {
-    if (!enabled) {
-      cancelDismissal();
-      setOpen(false);
-    }
+    if (!enabled) cancelDismissal();
   }, [enabled, cancelDismissal]);
 
   useEffect(() => cancelDismissal, [cancelDismissal]);
