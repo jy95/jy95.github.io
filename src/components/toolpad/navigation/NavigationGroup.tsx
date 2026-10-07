@@ -21,12 +21,11 @@ import type { NavigationItem as Item } from "../types";
 interface Props {
   item: Item;
   parentPath?: string;
-  depth?: number;
   selectedPath?: string | null;
   mini?: boolean;
 }
 
-export default function NavigationGroup({ item, parentPath = "", depth = 0, selectedPath, mini }: Props) {
+export default function NavigationGroup({ item, parentPath = "", selectedPath, mini }: Props) {
   const pathname = usePathname();
   const { drawerOpen = true, navigation } = useAppContext();
   // Titles are resolved here, at render time, so `MenuEntries.tsx` stays a static tree.
@@ -63,7 +62,7 @@ export default function NavigationGroup({ item, parentPath = "", depth = 0, sele
     <List id={childrenId} sx={{ p: 0, mb: 0.5, pl: isMini ? 0 : 2, width: isMini ? 300 : undefined, maxWidth: "85vw" }}>
       {children.map(child => (
         <NavigationGroup key={navigationKey(child, itemPath)} mini={false} selectedPath={activePath ?? null}
-          item={child} parentPath={itemPath} depth={depth + 1} />
+          item={child} parentPath={itemPath} />
       ))}
     </List>
   );

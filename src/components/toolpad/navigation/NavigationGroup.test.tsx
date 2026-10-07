@@ -18,6 +18,36 @@ vi.mock('../provider/useAppContext', () => ({ useAppContext: () => ({ drawerOpen
 describe('NavigationGroup', () => {
     beforeEach(() => { pathname = '/unrelated'; });
 
+    it('preserves manual collapse until the active destination changes', () => {
+        pathname = '/tier/games';
+        const item = NavigationMenu()[1];
+        const { rerender } = render(<NavigationGroup item={item} />);
+        const tier = screen.getByRole('button', { name: 'dashboard.menuEntries.tierTabs' });
+        const childrenId = tier.getAttribute('aria-controls');
+        fireEvent.click(tier);
+        expect(tier).toHaveAttribute('aria-expanded', 'false');
+        expect(document.getElementById(childrenId ?? '')).toBeInTheDocument();
+        rerender(<NavigationGroup item={item} />);
+        expect(tier).toHaveAttribute('aria-expanded', 'false');
+        pathname = '/tier/backlog';
+        rerender(<NavigationGroup item={item} />);
+        expect(tier).toHaveAttribute('aria-expanded', 'true');
+        expect(screen.getByRole('link', { name: 'dashboard.menuEntries.tierChildren.backlog' })).toHaveAttribute('aria-current', 'page');
+    });
+
+    it('supports standalone relative destinations and section mini overrides', () => {
+        pathname = '/tier/games';
+        const { rerender } = render(<NavigationGroup item={{ titleKey: 'gamesKey', segment: 'games' }} parentPath="/tier" />);
+        expect(screen.getByRole('link')).toHaveAttribute('href', '/tier/games');
+        expect(screen.getByRole('link')).toHaveAttribute('aria-current', 'page');
+        const section = { kind: 'section', titleKey: 'sections.browse' } as const;
+        rerender(<NavigationGroup item={section} mini={false} />);
+        expect(screen.getByText('dashboard.menuEntries.sections.browse')).toBeInTheDocument();
+        rerender(<NavigationGroup item={section} mini />);
+        expect(screen.queryByText('dashboard.menuEntries.sections.browse')).not.toBeInTheDocument();
+        expect(screen.getByRole('separator')).toBeInTheDocument();
+    });
+
     it.each([false, true])('supports nested Tier lists with mini=%s without group links', async (mini) => {
         render(<NavigationGroup item={NavigationMenu()[1]} mini={mini} />);
         const opinions = screen.getByRole('button', { name: 'dashboard.menuEntries.sections.opinions' });

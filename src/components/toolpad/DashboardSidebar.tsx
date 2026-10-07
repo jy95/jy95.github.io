@@ -86,8 +86,8 @@ export default function DashboardSidebar() {
           onClose={variant === 'temporary' ? toggleDrawer : undefined}
           ModalProps={variant === 'temporary' ? { keepMounted: true } : undefined}
           sx={{
-            display: { xs: display.xs, sm: display.sm, md: display.md },
-            ...getDrawerSx(mini ? isMini : false, variant === 'temporary'),
+            display,
+            ...getDrawerSx(mini && isMini, variant === 'temporary'),
           }}
         >
           {getDrawerContent(mini && isMini)}
