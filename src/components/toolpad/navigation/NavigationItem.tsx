@@ -202,7 +202,7 @@ export default function NavigationItem({
       )}
 
       {showPopover && (
-        <Popper keepMounted open={popup.open} anchorEl={popup.triggerRef.current}
+        <Popper keepMounted open={popup.open} anchorEl={() => popup.triggerRef.current as HTMLElement}
           placement="right-start" sx={{ zIndex: theme => theme.zIndex.drawer + 2 }}>
           <Paper component="nav" ref={popup.contentRef} aria-label={title} elevation={1}
             {...popup.interactionProps}
