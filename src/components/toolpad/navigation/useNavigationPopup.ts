@@ -110,9 +110,9 @@ export default function useNavigationPopup(enabled: boolean) {
       document.removeEventListener("keydown", onEscape);
     };
   }, [effectiveOpen, contains, close]);
-  // Mode transitions cancel both dismissal and keyboard focus-entry work.
+  // Disabling the popup cancels dismissal and keyboard focus-entry work.
   useEffect(() => {
-    cancelDismissal();
+    if (!enabled) cancelDismissal();
   }, [enabled, cancelDismissal]);
   useEffect(() => () => cancelDismissal(), [cancelDismissal]);
 
