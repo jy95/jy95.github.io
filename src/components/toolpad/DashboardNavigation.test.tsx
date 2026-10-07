@@ -27,9 +27,9 @@ describe('DashboardNavigation', () => {
   it('preserves entry state when top-level entries reorder', () => {
     const navigation = NavigationMenu();
     const { rerender } = render(<AppContext.Provider value={{ navigation, drawerOpen: true }}><DashboardNavigation /></AppContext.Provider>);
-    fireEvent.click(screen.getByText('tierTabs'));
+    fireEvent.click(screen.getByText('sections.opinions'));
     rerender(<AppContext.Provider value={{ navigation: [...navigation].reverse(), drawerOpen: true }}><DashboardNavigation /></AppContext.Provider>);
-    expect(screen.getByText('tierTabs')).toHaveAttribute('data-open', 'true');
-    expect(screen.getByText('gamesKey')).toHaveAttribute('data-open', 'false');
+    expect(screen.getByText('sections.opinions')).toHaveAttribute('data-open', 'true');
+    expect(screen.getByText('sections.browse')).toHaveAttribute('data-open', 'false');
   });
 });

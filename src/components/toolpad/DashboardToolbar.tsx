@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { styled } from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -29,6 +31,7 @@ type Props = {
 };
 
 export default function DashboardToolbar({ slots, slotProps }: Props) {
+  const t = useTranslations("dashboard.toolbar");
   const ToolbarActionsSlot = slots?.toolbarActions ?? null;
   const { drawerOpen = false, toggleDrawer } = useAppContext();
 
@@ -44,15 +47,15 @@ export default function DashboardToolbar({ slots, slotProps }: Props) {
             sx={{ alignItems: 'center' }}
           >
             <Tooltip
-              title={drawerOpen ? "Collapse menu" : "Expand menu"}
+              title={t(drawerOpen ? "collapseNavigation" : "expandNavigation")}
               enterDelay={1000}
             >
               <Box>
                 <IconButton
                   aria-label={
                     drawerOpen
-                      ? "Collapse navigation menu"
-                      : "Expand navigation menu"
+                      ? t("collapseNavigation")
+                      : t("expandNavigation")
                   }
                   onClick={toggleDrawer}
                 >

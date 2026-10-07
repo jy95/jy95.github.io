@@ -12,6 +12,11 @@ vi.mock('next-intl', () => echoTranslations());
 import DashboardLayout from './DashboardLayout';
 
 describe('DashboardLayout', () => {
+    it('localizes the drawer disclosure name', () => {
+        render(<DashboardLayout><div>Body</div></DashboardLayout>);
+        expect(screen.getByRole('button', { name: 'dashboard.toolbar.expandNavigation' })).toBeInTheDocument();
+    });
+
     it('renders its children inside the main content area', () => {
         render(
             <DashboardLayout>

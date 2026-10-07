@@ -9,12 +9,12 @@ import NavigationGroup from "./navigation/NavigationGroup";
 import { useAppContext } from "./provider/useAppContext";
 import { MINI_DRAWER_WIDTH } from "./drawerConstants";
 
-export default function DashboardNavigation() {
+export default function DashboardNavigation({ mini }: { mini?: boolean } = {}) {
   const { navigation, drawerOpen = false } = useAppContext();
   const entries = navigation ?? [];
   const pathname = usePathname();
   const selectedPath = selectedNavigationPath(entries, pathname);
-  const isMini = !drawerOpen;
+  const isMini = mini ?? !drawerOpen;
 
   return (
     <List
@@ -30,6 +30,7 @@ export default function DashboardNavigation() {
           key={navigationKey(item)}
           selectedPath={selectedPath ?? null}
           item={item}
+          mini={isMini}
         />
       ))}
     </List>

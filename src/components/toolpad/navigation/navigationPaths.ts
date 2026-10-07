@@ -5,7 +5,9 @@ export function resolveNavigationPath(item: NavigationItem, parentPath = ''): st
 }
 
 export function navigationKey(item: NavigationItem, parentPath = ''): string {
-  return item.kind === 'section' ? `section:${item.titleKey}` : `${resolveNavigationPath(item, parentPath)}:${item.titleKey}`;
+  if (item.kind === 'group') return `group:${item.id}`;
+  if (item.kind === 'section') return `section:${item.titleKey}`;
+  return `${resolveNavigationPath(item, parentPath)}:${item.titleKey}`;
 }
 
 export function leafPaths(items: Navigation, parentPath = ''): string[] {

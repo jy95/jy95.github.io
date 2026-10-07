@@ -2,11 +2,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 vi.mock('next-intl', () => ({ useTranslations: () => (key: string) => key }));
-const randomMock = vi.fn();
-let randomPending = false;
-vi.mock('@/hooks/useNavigateToRandomGame', () => ({
-    useNavigateToRandomGame: () => ({ navigateToRandomGame: randomMock, isPending: randomPending }),
-}));
 const setModeMock = vi.fn();
 let mockMode: 'light' | 'dark' | 'system' = 'light';
 
@@ -39,23 +34,12 @@ const props: Props = {
 describe('ToolbarActions', () => {
     beforeEach(() => {
         setModeMock.mockReset();
-        randomMock.mockReset();
-        randomPending = false;
         mockMode = 'light';
     });
 
-    it('invokes the global random action and shows pending feedback', () => {
-        const { rerender } = render(<ToolbarActions {...props} />);
-        fireEvent.click(screen.getByRole('button', { name: 'random' }));
-        expect(randomMock).toHaveBeenCalledOnce();
-        randomPending = true;
-        rerender(<ToolbarActions {...props} />);
-        expect(screen.getByRole('button', { name: 'random' })).toBeDisabled();
-        expect(screen.getByRole('progressbar')).toBeInTheDocument();
-        randomPending = false;
-        rerender(<ToolbarActions {...props} />);
-        fireEvent.click(screen.getByRole('button', { name: 'random' }));
-        expect(randomMock).toHaveBeenCalledTimes(2);
+    it('does not render a Random toolbar action', () => {
+        render(<ToolbarActions {...props} />);
+        expect(screen.queryByRole('button', { name: 'random' })).not.toBeInTheDocument();
     });
 
     it('renders the LanguageToggle alongside the theme control', () => {
