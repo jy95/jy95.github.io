@@ -1,4 +1,7 @@
 // Icons
+import CasinoIcon from '@mui/icons-material/Casino';
+import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
+import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import ScienceIcon from '@mui/icons-material/Science';
@@ -8,118 +11,41 @@ import LinkIcon from '@mui/icons-material/Link';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ListIcon from '@mui/icons-material/List';
 import ExtensionIcon from '@mui/icons-material/Extension';
-import CasinoIcon from '@mui/icons-material/Casino';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import BusinessIcon from '@mui/icons-material/Business';
 
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
+import PersonalSelectionBadge from './PersonalSelectionBadge';
+
 // Types
 import type { Navigation } from '@/components/toolpad/types';
 
-/**
- * Builds the navigation tree using translation *keys* (`titleKey`) rather
- * than already-resolved strings. Previously this function took a flat
- * `Props` object of ~11 pre-translated labels computed once by the caller
- * (`AppProviderCustom`), which coupled the whole nav tree to a single
- * `useTranslations` call site, duplicated lookups for labels reused across
- * nodes (e.g. "games" appears under both `/games` and `/tier/games`), and
- * made this tree impossible to build/test without wiring up every label by
- * hand. `NavigationGroup` now resolves `titleKey` via `useTranslations` at
- * render time, so this function is a pure, translation-agnostic tree
- * definition.
- */
 export default function NavigationMenu(): Navigation {
-
-    // Icons for top-level entries are reused in nested entries to avoid
-    // unnecessary duplication of icon components.
-    const gamesIcon = <SportsEsportsIcon />;
-    const backlogIcon = <HourglassEmptyIcon />;
-    const testsIcon = <ScienceIcon />;
-
     return [
-        {
-            icon: gamesIcon,
-            titleKey: "gamesKey",
-            segment: "games",
-            children: [
-                {
-                    icon: <GridViewIcon />,
-                    titleKey: "gamesTabs.grid"
-                },
-                {
-                    segment: "series",
-                    icon: <ListIcon />,
-                    titleKey: "gamesTabs.list"
-                },
-                {
-                    segment: "dlcs",
-                    icon: <ExtensionIcon />,
-                    titleKey: "gamesTabs.dlc"
-                },
-                {
-                    segment: "random",
-                    icon: <CasinoIcon />,
-                    titleKey: "gamesTabs.random"
-                }
-            ]
-        },
-        {
-            segment: "selection",
-            icon: <BookmarkBorderIcon />,
-            titleKey: "selection"
-        },
-        {
-            segment: "companies",
-            icon: <BusinessIcon />,
-            titleKey: "gamesTabs.companies"
-        },
-        {
-            icon: <ScheduleIcon />,
-            titleKey: "planningKey",
-            segment: "planning"
-        },
-        {
-            icon: backlogIcon,
-            titleKey: "backlog",
-            segment: "backlog"
-        },
-        {
-            icon: <LeaderboardIcon />,
-            titleKey: "tierTabs",
-            segment: "tier",
-            children: [
-                {
-                    segment: "games",
-                    icon: gamesIcon,
-                    titleKey: "gamesTabs.grid"
-                },
-                {
-                    segment: "backlog",
-                    icon: backlogIcon,
-                    titleKey: "backlog"
-                },
-                {
-                    icon: testsIcon,
-                    titleKey: "testsKey",
-                    segment: "tests"
-                }
-            ]
-        },
-        {
-            icon: testsIcon,
-            titleKey: "testsKey",
-            segment: "tests"
-        },
-        {
-            icon: <QueryStatsIcon />,
-            titleKey: "stats",
-            segment: "stats"
-        },
-        {
-            icon: <LinkIcon />,
-            titleKey: "links",
-            segment: "links"
-        },
-    ]
+        { kind: "group", id: "browse", titleKey: "sections.browse", icon: <SportsEsportsIcon />, children: [
+            { path: "/games", icon: <SportsEsportsIcon />, titleKey: "gamesKey", hintKey: "hints.games" },
+            { path: "/games/series", icon: <ListIcon />, titleKey: "gamesTabs.list", hintKey: "hints.series" },
+            { path: "/games/dlcs", icon: <ExtensionIcon />, titleKey: "gamesTabs.dlc", hintKey: "hints.dlc" },
+            { path: "/companies", icon: <BusinessIcon />, titleKey: "gamesTabs.companies", hintKey: "hints.companies" },
+            { path: "/games/random", icon: <CasinoIcon />, titleKey: "gamesTabs.random", hintKey: "hints.random" },
+            { path: "/tests", icon: <ScienceIcon />, titleKey: "testsKey", hintKey: "hints.tests" },
+        ] },
+        { kind: "group", id: "coming-up", titleKey: "sections.comingUp", icon: <ScheduleIcon />, children: [
+            { path: "/planning", icon: <ScheduleIcon />, titleKey: "planningKey", hintKey: "hints.planning" },
+            { path: "/backlog", icon: <HourglassEmptyIcon />, titleKey: "backlog", hintKey: "hints.backlog" },
+        ] },
+        { kind: "group", id: "saved", titleKey: "sections.saved", icon: <ManageHistoryIcon />, children: [
+            { path: "/selection", icon: <BookmarkBorderIcon />, titleKey: "selection", hintKey: "hints.selection", badge: PersonalSelectionBadge },
+        ] },
+        { kind: "group", id: "opinions", titleKey: "tierTabs", icon: <LeaderboardIcon />, children: [
+            { path: "/tier/games", icon: <GridViewIcon />, titleKey: "tierChildren.games", hintKey: "hints.tierGames" },
+            { path: "/tier/backlog", icon: <HourglassEmptyIcon />, titleKey: "tierChildren.backlog", hintKey: "hints.tierBacklog" },
+            { path: "/tier/tests", icon: <ScienceIcon />, titleKey: "tierChildren.tests", hintKey: "hints.tierTests" },
+        ] },
+        { kind: "group", id: "more", titleKey: "sections.more", icon: <ReadMoreIcon />, children: [
+            { path: "/stats", icon: <QueryStatsIcon />, titleKey: "stats", hintKey: "hints.stats" },
+            { path: "/links", icon: <LinkIcon />, titleKey: "links", hintKey: "hints.links" },
+        ] },
+    ];
 }

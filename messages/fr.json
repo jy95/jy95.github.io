@@ -40,7 +40,7 @@
     "dashboard": {
         "menuEntries": {
             "gamesKey": "Jeux",
-            "planningKey": "Planning",
+            "planningKey": "Calendrier",
             "testsKey": "Tests",
             "latestVideosKey": "Dernières vidéos",
             "stats": "Statistiques",
@@ -49,12 +49,42 @@
             "gamesTabs": {
                 "grid": "Jeux",
                 "list": "Séries",
-                "dlc": "DLCS",
+                "dlc": "DLC",
                 "companies": "Entreprises",
                 "random": "Au hasard"
             },
-            "tierTabs": "Tops",
-            "selection": "Ma sélection"
+            "tierTabs": "Classements",
+            "selection": "Ma sélection",
+            "sections": {
+                "browse": "Explorer",
+                "opinions": "Avis",
+                "comingUp": "À venir",
+                "more": "En savoir plus",
+                "saved": "Activité"
+            },
+            "tierChildren": {
+                "games": "Jeux publiés",
+                "backlog": "En attente",
+                "tests": "Classement des tests"
+            },
+            "selectionCount": "{count, plural, one {# élément enregistré} other {# éléments enregistrés}}",
+            "hints": {
+                "games": "Parcourez le catalogue de jeux.",
+                "series": "Explorez les jeux par série.",
+                "dlc": "Découvrez les contenus additionnels.",
+                "companies": "Découvrez les développeurs et éditeurs.",
+                "random": "Découvrez un jeu choisi au hasard.",
+                "tests": "Consultez les tests de jeux.",
+                "tierGames": "Consultez les classements des jeux publiés.",
+                "tierBacklog": "Consultez les classements des jeux en attente.",
+                "tierTests": "Comparez les classements des tests.",
+                "planning": "Consultez les jeux et vidéos à venir.",
+                "backlog": "Votez pour les prochains jeux.",
+                "selection": "Retrouvez les éléments enregistrés dans ce navigateur.",
+                "stats": "Explorez les statistiques du catalogue.",
+                "links": "Retrouvez des liens utiles."
+            },
+            "navigationLabel": "Navigation principale"
         },
         "toolbar": {
             "settings": "Paramètres",
@@ -68,7 +98,9 @@
                 "title": "Langue",
                 "en": "Anglais",
                 "fr": "Français"
-            }
+            },
+            "expandNavigation": "Déplier le menu de navigation",
+            "collapseNavigation": "Replier le menu de navigation"
         }
     },
     "common": {
@@ -329,7 +361,7 @@
         "categories": {
             "all": "Tous",
             "games": "Jeux",
-            "backlog": "À jouer",
+            "backlog": "En attente",
             "dlcs": "DLCs",
             "planning": "Jeux prévus"
         },

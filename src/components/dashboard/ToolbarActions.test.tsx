@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
+vi.mock('next-intl', () => ({ useTranslations: () => (key: string) => key }));
 const setModeMock = vi.fn();
 let mockMode: 'light' | 'dark' | 'system' = 'light';
 
@@ -34,6 +35,11 @@ describe('ToolbarActions', () => {
     beforeEach(() => {
         setModeMock.mockReset();
         mockMode = 'light';
+    });
+
+    it('does not render a Random toolbar action', () => {
+        render(<ToolbarActions {...props} />);
+        expect(screen.queryByRole('button', { name: 'random' })).not.toBeInTheDocument();
     });
 
     it('renders the LanguageToggle alongside the theme control', () => {

@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useId } from "react";
+
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import Grow from "@mui/material/Grow";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -10,11 +10,15 @@ import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 import { Link } from "@/i18n/routing";
 import { useAppContext } from "../provider/useAppContext";
 import { MINI_DRAWER_WIDTH } from "../drawerConstants";
 
+import useNavigationPopup from "./useNavigationPopup";
+
 import { navigationListItemButtonSx } from "./navigationStyles";
+
 import type { Theme } from "@mui/material/styles";
 import type { ReactNode } from "react";
 import type { Href } from "@/i18n/routing";
@@ -63,7 +67,12 @@ const MINI_CHEVRON_SX = {
 
 export type NavItemProps = {
   title: string;
+  mini?: boolean;
+  controlsId?: string;
+  badgeDescriptionId?: string;
   icon?: ReactNode;
+  badge?: ReactNode;
+  hint?: string;
   href?: string;
   selected: boolean;
   onClick?: () => void;
@@ -74,7 +83,12 @@ export type NavItemProps = {
 
 export default function NavigationItem({
   title,
+  mini,
+  controlsId,
+  badgeDescriptionId,
   icon,
+  badge,
+  hint,
   href,
   selected,
   onClick,
@@ -83,10 +97,11 @@ export default function NavigationItem({
   miniPopoverContent,
 }: NavItemProps) {
   const { drawerOpen = true } = useAppContext();
-  const isMini = !drawerOpen;
+  const isMini = mini ?? !drawerOpen;
+  const hintId = useId();
 
-  const [hovered, setHovered] = useState(false);
-  const listItemRef = useRef<HTMLLIElement>(null);
+  const showPopover = isMini && hasChildren && Boolean(miniPopoverContent);
+  const popup = useNavigationPopup(showPopover);
 
   const initials = title
     .split(" ")
@@ -118,9 +133,19 @@ export default function NavigationItem({
   const buttonSx = {
     ...itemButtonSx,
     px: 1.4,
-    height: isMini ? 60 : 48,
+    minHeight: isMini ? 60 : 48,
+    py: 1,
+    width: "100%",
+    "&.Mui-focusVisible": { outline: "2px solid", outlineColor: "primary.main", outlineOffset: 2 },
     position: "relative",
   } as const;
+
+  const describedBy = [!isMini && hint ? hintId : undefined, badgeDescriptionId].filter(Boolean).join(" ") || undefined;
+  const commonButtonProps = {
+    "aria-label": title,
+    selected,
+    sx: buttonSx,
+  };
 
   // Shared by the link and plain variants below.
   const content = (
@@ -130,7 +155,8 @@ export default function NavigationItem({
           <ListItemIcon
             sx={{ display: "flex", alignItems: "center", justifyContent: "center", minWidth: LIST_ITEM_ICON_SIZE }}
           >
-            {iconNode}
+            <Box component="span" aria-hidden="true">{iconNode}</Box>
+            {isMini && badge && <Box sx={{ position: "absolute", top: -5, right: -8 }}>{badge}</Box>}
           </ListItemIcon>
           {isMini && (
             <Typography variant="caption" sx={MINI_CAPTION_SX}>
@@ -139,19 +165,19 @@ export default function NavigationItem({
           )}
         </Box>
       )}
-      {!isMini && <ListItemText primary={title} sx={{ ml: 1.2, whiteSpace: "nowrap", zIndex: 1 }} />}
-      {hasChildren && <ExpandMoreIcon sx={chevronSx} />}
+      {!isMini && (
+        <ListItemText primary={title} secondary={hint}
+          slotProps={{ secondary: { id: hintId, sx: { whiteSpace: "normal", fontSize: 12 } } }}
+          sx={{ ml: 1.2, minWidth: 0, whiteSpace: "normal", zIndex: 1 }} />
+      )}
+      {!isMini && badge}
+      {hasChildren && <ExpandMoreIcon aria-hidden="true" sx={chevronSx} />}
     </>
   );
 
-  const showPopover = isMini && hasChildren && Boolean(miniPopoverContent);
-
   return (
     <ListItem
-      ref={listItemRef}
-      sx={{ py: 0, px: 1, overflowX: "hidden" }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      sx={{ py: 0, px: 1, overflow: "visible" }}
     >
       {href ? (
         <ListItemButton
@@ -159,33 +185,30 @@ export default function NavigationItem({
           // Built from route segments at runtime (see NavigationGroup.tsx), so it
           // can't be checked statically against `routing.pathnames`.
           href={href as Href}
-          selected={selected}
-          sx={buttonSx}
+          {...commonButtonProps}
+          aria-current={selected ? "page" : undefined}
+          aria-describedby={describedBy}
         >
           {content}
         </ListItemButton>
       ) : (
-        <ListItemButton component="div" selected={selected} onClick={onClick} sx={buttonSx}>
+        <ListItemButton component="button" type="button" ref={popup.triggerRef} {...commonButtonProps}
+          aria-expanded={hasChildren ? (isMini ? popup.open : expanded) : undefined}
+          aria-controls={hasChildren ? controlsId : undefined}
+          {...(showPopover ? popup.interactionProps : {})}
+          onClick={showPopover ? event => popup.activate(event.detail === 0) : onClick}>
           {content}
         </ListItemButton>
       )}
 
-      {/* Popper portals into document.body, so the drawer's overflow:hidden can't clip it. */}
       {showPopover && (
-        <Popper
-          open={hovered}
-          anchorEl={listItemRef.current}
-          placement="right-start"
-          transition
-          sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
-        >
-          {({ TransitionProps }) => (
-            <Grow {...TransitionProps} style={{ transformOrigin: "left top" }}>
-              <Paper elevation={1} sx={{ py: 0.5, ml: "6px" }}>
-                {miniPopoverContent}
-              </Paper>
-            </Grow>
-          )}
+        <Popper keepMounted open={popup.open} anchorEl={() => popup.triggerRef.current as HTMLElement}
+          placement="right-start" sx={{ zIndex: theme => theme.zIndex.drawer + 2 }}>
+          <Paper component="nav" ref={popup.contentRef} aria-label={title} elevation={1}
+            {...popup.interactionProps}
+            sx={{ py: 0.5, ml: 0.75, maxHeight: "80vh", overflowY: "auto" }} onClick={event => {
+              if (event.target instanceof Element && event.target.closest("a")) popup.close(true);
+            }}>{miniPopoverContent}</Paper>
         </Popper>
       )}
     </ListItem>

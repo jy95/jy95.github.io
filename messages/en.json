@@ -49,12 +49,42 @@
             "gamesTabs": {
                 "grid": "Games",
                 "list": "Series",
-                "dlc": "DLCS",
+                "dlc": "DLC",
                 "companies": "Companies",
                 "random": "Random"
             },
-            "tierTabs": "Tier Lists",
-            "selection": "My selection"
+            "tierTabs": "Tier lists",
+            "selection": "My selection",
+            "sections": {
+                "browse": "Browse",
+                "opinions": "Opinions",
+                "comingUp": "Coming up",
+                "more": "Learn more",
+                "saved": "Activity"
+            },
+            "tierChildren": {
+                "games": "Published games",
+                "backlog": "Backlog",
+                "tests": "Test rankings"
+            },
+            "selectionCount": "{count, plural, one {# saved entry} other {# saved entries}}",
+            "hints": {
+                "games": "Browse the game catalogue.",
+                "series": "Explore games by series.",
+                "dlc": "Find additional game content.",
+                "companies": "Browse developers and publishers.",
+                "random": "Discover a randomly selected game.",
+                "tests": "Read game reviews.",
+                "tierGames": "See rankings of published games.",
+                "tierBacklog": "See rankings of backlog games.",
+                "tierTests": "Compare game review rankings.",
+                "planning": "See upcoming games and videos.",
+                "backlog": "Vote for upcoming games.",
+                "selection": "Find items saved in this browser.",
+                "stats": "Explore catalogue statistics.",
+                "links": "Find useful links."
+            },
+            "navigationLabel": "Main navigation"
         },
         "toolbar": {
             "settings": "Settings",
@@ -68,7 +98,9 @@
                 "title": "Language",
                 "en": "English",
                 "fr": "French"
-            }
+            },
+            "expandNavigation": "Expand navigation menu",
+            "collapseNavigation": "Collapse navigation menu"
         }
     },
     "common": {

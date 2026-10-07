@@ -54,7 +54,7 @@ describe('useNavigateToRandomGame', () => {
         }));
     });
 
-    it('keeps isPending true after a successful request while navigation takes over', async () => {
+    it('clears pending after success so the persistent control can be reused', async () => {
         let resolveFetch: (v: Response) => void = () => {};
         vi.stubGlobal('fetch', vi.fn().mockImplementation(
             () => new Promise((resolve) => { resolveFetch = resolve; })
@@ -80,7 +80,18 @@ describe('useNavigateToRandomGame', () => {
             pathname: '/video/[id]',
             params: { id: 'X' },
         });
-        expect(result.current.isPending).toBe(true);
+        expect(result.current.isPending).toBe(false);
+    });
+
+    it('can request another game after successful navigation', async () => {
+        const fetchMock = vi.fn(() => jsonResponse({ identifier: 'X', type: 'VIDEO' }));
+        vi.stubGlobal('fetch', fetchMock);
+        const { result } = renderHook(() => useNavigateToRandomGame());
+        await act(async () => { await result.current.navigateToRandomGame(); });
+        await act(async () => { await result.current.navigateToRandomGame(); });
+        expect(fetchMock).toHaveBeenCalledTimes(2);
+        expect(pushMock).toHaveBeenCalledTimes(2);
+        expect(result.current.isPending).toBe(false);
     });
 
     it('ignores a second call while one is already pending', async () => {
@@ -169,6 +180,6 @@ describe('useNavigateToRandomGame', () => {
             pathname: '/video/[id]',
             params: { id: 'retry' },
         });
-        expect(result.current.isPending).toBe(true);
+        expect(result.current.isPending).toBe(false);
     });
 });

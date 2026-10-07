@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { act, render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 import type { ComponentProps } from 'react';
 
@@ -22,6 +22,42 @@ import NavigationItem from './NavigationItem';
 describe('NavigationItem', () => {
     beforeEach(() => {
         mockDrawerOpen = true;
+    });
+
+    it.each([true, false])('renders an accessible badge with drawerOpen=%s', (drawerOpen) => {
+        mockDrawerOpen = drawerOpen;
+        render(<NavigationItem title="Selection" selected={false} href="/selection"
+            badgeDescriptionId="selection-count"
+            badge={<span aria-label="4 saved entries">4<span id="selection-count" hidden>4 saved entries</span></span>} />);
+        expect(screen.getByLabelText('4 saved entries')).toBeInTheDocument();
+        expect(screen.getByRole('link')).toContainElement(screen.getByLabelText('4 saved entries'));
+        expect(screen.getByRole('link')).toHaveAccessibleName('Selection');
+        expect(screen.getByRole('link')).toHaveAccessibleDescription('4 saved entries');
+        expect(screen.getByRole('listitem')).toHaveStyle({ overflow: 'visible' });
+    });
+
+    it.each([false, true])('preserves link descriptions and explicit mini=%s', (mini) => {
+        mockDrawerOpen = mini;
+        render(<NavigationItem title="Selection" href="/selection" selected mini={mini} hint="Saved here"
+            badgeDescriptionId="count" badge={<span id="count">4 saved entries</span>} />);
+        const link = screen.getByRole('link');
+        expect(link.tagName).toBe('A');
+        expect(link).toHaveAttribute('aria-current', 'page');
+        expect(link).not.toHaveAttribute('aria-expanded');
+        expect(link).not.toHaveAttribute('aria-controls');
+        expect(link).toHaveAccessibleDescription(mini ? '4 saved entries' : 'Saved here 4 saved entries');
+        expect(link).toHaveStyle({ minHeight: mini ? '60px' : '48px' });
+    });
+
+    it('keeps disclosure attributes on the button branch', () => {
+        render(<NavigationItem title="Browse" selected hasChildren expanded controlsId="children" />);
+        const button = screen.getByRole('button');
+        expect(button.tagName).toBe('BUTTON');
+        expect(button).toHaveAttribute('type', 'button');
+        expect(button).toHaveAttribute('aria-expanded', 'true');
+        expect(button).toHaveAttribute('aria-controls', 'children');
+        expect(button).not.toHaveAttribute('aria-current');
+        expect(button).not.toHaveAttribute('href');
     });
 
     it('renders the title text when the drawer is expanded', () => {
@@ -151,7 +187,7 @@ describe.each([
             render(<NavigationItem title="Games" href={href} selected={false} />);
 
             const button = screen.getByRole(href ? 'link' : 'button');
-            expect(button).toHaveStyle({ height });
+            expect(button).toHaveStyle({ minHeight: height });
             expect(screen.queryByTestId('ExpandMoreIcon')).not.toBeInTheDocument();
         });
 
@@ -188,84 +224,138 @@ describe.each([
 describe('NavigationItem mini popover', () => {
     beforeEach(() => {
         mockDrawerOpen = false;
+        vi.stubGlobal('PointerEvent', MouseEvent);
+        vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: true })));
     });
 
-    function prepareAnchor() {
-        const listItem = screen.getByRole('listitem');
-        // Popper needs a non-empty anchor rectangle; jsdom has no layout.
-        vi.spyOn(listItem, 'getBoundingClientRect').mockReturnValue({
-            x: 0, y: 0, top: 0, left: 0, right: 80, bottom: 60,
-            width: 80, height: 60, toJSON: () => ({}),
-        });
-        return listItem;
+    afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); });
+
+    function fixture() {
+        const rendered = render(<NavigationItem title="Browse" selected={false} mini hasChildren controlsId="children"
+            miniPopoverContent={<div id="children"><a href="/games">Games</a></div>} />);
+        const button = screen.getByRole('button', { name: 'Browse' });
+        vi.spyOn(button, 'getBoundingClientRect').mockReturnValue({ x: 0, y: 0, top: 0, left: 0, right: 80, bottom: 60, width: 80, height: 60, toJSON: () => ({}) });
+        return { ...rendered, button };
+    }
+    function pointerEnter(element: HTMLElement, pointerType = 'mouse') {
+        const event = new MouseEvent('pointerover', { bubbles: true });
+        Object.defineProperty(event, 'pointerType', { value: pointerType });
+        fireEvent(element, event);
     }
 
-    it('shows portaled content on mouse enter and removes it after mouse leave', async () => {
-        const { container } = render(<NavigationItem title="Games" selected={false} hasChildren
-            miniPopoverContent={<div>Child navigation</div>} />);
-        const listItem = prepareAnchor();
-        expect(screen.queryByText('Child navigation')).not.toBeInTheDocument();
-
-        fireEvent.mouseEnter(listItem);
-        const content = await screen.findByText('Child navigation');
-        await waitFor(() => expect(content).toBeVisible());
-        expect(document.body).toContainElement(content);
-        expect(container).not.toContainElement(content);
-
-        fireEvent.mouseLeave(listItem);
-        await waitFor(() => expect(screen.queryByText('Child navigation')).not.toBeInTheDocument());
+    it('opens on fine-pointer hover without moving focus and delays dismissal across the portal gap', () => {
+        vi.useFakeTimers();
+        const { button, container, unmount } = fixture();
+        pointerEnter(button);
+        const link = screen.getByRole('link');
+        expect(container).not.toContainElement(link);
+        expect(link).not.toHaveFocus();
+        fireEvent.pointerLeave(button);
+        act(() => { vi.advanceTimersByTime(100); });
+        expect(link).toBeVisible();
+        pointerEnter(screen.getByRole('navigation'));
+        act(() => { vi.advanceTimersByTime(200); });
+        expect(link).toBeVisible();
+        fireEvent.pointerLeave(screen.getByRole('navigation'));
+        act(() => { vi.advanceTimersByTime(150); });
+        expect(screen.queryByRole('link')).not.toBeInTheDocument();
+        pointerEnter(button);
+        fireEvent.pointerLeave(button);
+        unmount();
+        expect(vi.getTimerCount()).toBe(0);
     });
 
-    it.each([
-        { condition: 'expanded drawer', drawerOpen: true, hasChildren: true, content: <div>Child navigation</div> },
-        { condition: 'no children', drawerOpen: false, hasChildren: false, content: <div>Child navigation</div> },
-        { condition: 'absent content', drawerOpen: false, hasChildren: true, content: undefined },
-    ])('does not open a popover with $condition', async ({ drawerOpen, hasChildren, content }) => {
-        mockDrawerOpen = drawerOpen;
-        render(<NavigationItem title="Games" selected={false} hasChildren={hasChildren}
-            miniPopoverContent={content} />);
-
-        fireEvent.mouseEnter(prepareAnchor());
-        await waitFor(() => {
-            expect(screen.queryByText('Child navigation')).not.toBeInTheDocument();
-            expect(document.body.querySelector('[role="tooltip"]')).not.toBeInTheDocument();
-        });
+    it('retains focused content and suppresses hover reopening after Escape', () => {
+        vi.useFakeTimers();
+        const { button } = fixture();
+        pointerEnter(button);
+        const link = screen.getByRole('link');
+        act(() => { link.focus(); });
+        fireEvent.pointerLeave(button);
+        act(() => { vi.advanceTimersByTime(200); });
+        expect(link).toBeVisible();
+        fireEvent.keyDown(link, { key: 'Escape' });
+        expect(button).toHaveFocus();
+        pointerEnter(button);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
     });
 
-    it('tracks expanded-drawer hover across drawer mode changes', async () => {
-        mockDrawerOpen = true;
-        const item = <NavigationItem title="Games" selected={false} hasChildren
-            miniPopoverContent={<div>Child navigation</div>} />;
-        const { rerender } = render(item);
-        const listItem = prepareAnchor();
-
-        fireEvent.mouseEnter(listItem);
-        expect(screen.queryByText('Child navigation')).not.toBeInTheDocument();
-        mockDrawerOpen = false;
-        rerender(<NavigationItem title="Games" selected={false} hasChildren
-            miniPopoverContent={<div>Child navigation</div>} />);
-        await waitFor(() => expect(screen.getByText('Child navigation')).toBeVisible());
-
-        mockDrawerOpen = true;
-        rerender(<NavigationItem title="Games" selected={false} hasChildren
-            miniPopoverContent={<div>Child navigation</div>} />);
-        await waitFor(() => expect(screen.queryByText('Child navigation')).not.toBeInTheDocument());
-        fireEvent.mouseLeave(listItem);
-        mockDrawerOpen = false;
-        rerender(<NavigationItem title="Games" selected={false} hasChildren
-            miniPopoverContent={<div>Child navigation</div>} />);
-        expect(screen.queryByText('Child navigation')).not.toBeInTheDocument();
-
-        fireEvent.mouseEnter(listItem);
-        await waitFor(() => expect(screen.getByText('Child navigation')).toBeVisible());
-        fireEvent.mouseLeave(listItem);
-        await waitFor(() => expect(screen.queryByText('Child navigation')).not.toBeInTheDocument());
+    it('dismisses hover with Escape while focus remains elsewhere', () => {
+        const { button } = fixture();
+        pointerEnter(button);
+        expect(screen.getByRole('link')).toBeVisible();
+        fireEvent.keyDown(document.body, { key: 'Escape' });
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        expect(button).not.toHaveFocus();
+        pointerEnter(button);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
     });
 
-    it('defaults to expanded mode when drawerOpen is undefined', () => {
-        mockDrawerOpen = undefined;
-        render(<NavigationItem title="Games" selected={false} />);
-        expect(screen.getByRole('button')).toHaveStyle({ height: '48px' });
-        expect(screen.queryByText('G')).not.toBeInTheDocument();
+    it('dismisses on an outside pointer activation', () => {
+        const { button } = fixture();
+        fireEvent.click(button, { detail: 1 });
+        fireEvent.pointerDown(document.body);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    it.each(['touch', 'pen'])('does not hover open for %s', pointerType => {
+        const { button } = fixture();
+        pointerEnter(button, pointerType);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        fireEvent.click(button, { detail: 1 });
+        expect(screen.getByRole('link')).toBeVisible();
+    });
+
+    it('does not hover open for a coarse pointer', () => {
+        vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: false })));
+        const { button } = fixture();
+        pointerEnter(button);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    it('enters content on keyboard activation and dismisses destination clicks', () => {
+        vi.useFakeTimers();
+        const { button } = fixture();
+        fireEvent.click(button, { detail: 0 });
+        act(() => { vi.advanceTimersByTime(0); });
+        const link = screen.getByRole('link');
+        expect(link).toHaveFocus();
+        fireEvent.click(link);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        expect(document.getElementById('children')).toContainElement(link);
+    });
+
+    it.each([false, true])('cancels pending popup work on mode changes (keyboard=%s)', keyboard => {
+        vi.useFakeTimers();
+        const { button, rerender } = fixture();
+        fireEvent.click(button, { detail: keyboard ? 0 : 1 });
+        if (!keyboard) fireEvent.pointerLeave(button);
+        rerender(<NavigationItem title="Browse" selected={false} mini={false} hasChildren
+            miniPopoverContent={<a href="/games">Games</a>} />);
+        expect(vi.getTimerCount()).toBe(0);
+        act(() => { vi.runAllTimers(); });
+        rerender(<NavigationItem title="Browse" selected={false} mini hasChildren
+            miniPopoverContent={<a href="/games">Games</a>} />);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        expect(button).not.toHaveFocus();
+    });
+
+    it('opens by activation, remains open across pointer transitions, and restores focus on Escape', async () => {
+        const { container } = render(<NavigationItem title="Browse" selected={false} hasChildren controlsId="browse-children"
+            miniPopoverContent={<div id="browse-children"><a href="/games">Games</a></div>} />);
+        const button = screen.getByRole('button', { name: 'Browse' });
+        vi.spyOn(button, 'getBoundingClientRect').mockReturnValue({ x: 0, y: 0, top: 0, left: 0, right: 80, bottom: 60, width: 80, height: 60, toJSON: () => ({}) });
+        button.focus();
+        fireEvent.click(button);
+        const link = await screen.findByRole('link', { name: 'Games' });
+        expect(button).toHaveAttribute('aria-expanded', 'true');
+        expect(button).toHaveAttribute('aria-controls', link.parentElement?.id);
+        expect(container).not.toContainElement(link);
+        fireEvent.mouseLeave(button);
+        link.focus();
+        expect(link).toBeVisible();
+        fireEvent.keyDown(link, { key: 'Escape' });
+        await waitFor(() => expect(screen.queryByRole('link')).not.toBeInTheDocument());
+        await waitFor(() => expect(button).toHaveFocus());
     });
 });
