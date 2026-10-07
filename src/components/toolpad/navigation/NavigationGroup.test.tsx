@@ -36,6 +36,22 @@ vi.mock('../provider/useAppContext', () => ({ useAppContext: () => ({ drawerOpen
 describe('NavigationGroup', () => {
     beforeEach(() => { pathname = '/unrelated'; });
 
+    it('keeps nested disclosure state mounted after mini popup dismissal', () => {
+        render(<NavigationGroup item={nestedFixture()} mini />);
+        const parent = screen.getByRole('button', { name: 'dashboard.menuEntries.sections.browse' });
+        fireEvent.click(parent);
+        const nested = screen.getByRole('button', { name: 'dashboard.menuEntries.tierTabs' });
+        fireEvent.click(nested);
+        const games = screen.getByRole('link', { name: 'dashboard.menuEntries.tierChildren.games' });
+        fireEvent.keyDown(games, { key: 'Escape' });
+        expect(parent).toHaveFocus();
+        expect(parent).toHaveAttribute('aria-expanded', 'false');
+        fireEvent.click(parent);
+        expect(screen.getByRole('button', { name: 'dashboard.menuEntries.tierTabs' })).toBe(nested);
+        expect(nested).toHaveAttribute('aria-expanded', 'true');
+        expect(screen.getByRole('link', { name: 'dashboard.menuEntries.tierChildren.games' })).toBe(games);
+    });
+
     it('preserves manual collapse until the active destination changes', () => {
         pathname = '/tier/games';
         const item = rankingsGroup();

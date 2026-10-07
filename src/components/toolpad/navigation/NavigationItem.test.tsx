@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { act, render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 import type { ComponentProps } from 'react';
 
@@ -224,6 +224,105 @@ describe.each([
 describe('NavigationItem mini popover', () => {
     beforeEach(() => {
         mockDrawerOpen = false;
+        vi.stubGlobal('PointerEvent', MouseEvent);
+        vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: true })));
+    });
+
+    afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); });
+
+    function fixture() {
+        const rendered = render(<NavigationItem title="Browse" selected={false} mini hasChildren controlsId="children"
+            miniPopoverContent={<div id="children"><a href="/games">Games</a></div>} />);
+        const button = screen.getByRole('button', { name: 'Browse' });
+        vi.spyOn(button, 'getBoundingClientRect').mockReturnValue({ x: 0, y: 0, top: 0, left: 0, right: 80, bottom: 60, width: 80, height: 60, toJSON: () => ({}) });
+        return { ...rendered, button };
+    }
+    function pointerEnter(element: HTMLElement, pointerType = 'mouse') {
+        const event = new MouseEvent('pointerover', { bubbles: true });
+        Object.defineProperty(event, 'pointerType', { value: pointerType });
+        fireEvent(element, event);
+    }
+
+    it('opens on fine-pointer hover without moving focus and delays dismissal across the portal gap', () => {
+        vi.useFakeTimers();
+        const { button, container, unmount } = fixture();
+        pointerEnter(button);
+        const link = screen.getByRole('link');
+        expect(container).not.toContainElement(link);
+        expect(link).not.toHaveFocus();
+        fireEvent.pointerLeave(button);
+        act(() => { vi.advanceTimersByTime(100); });
+        expect(link).toBeVisible();
+        pointerEnter(screen.getByRole('navigation'));
+        act(() => { vi.advanceTimersByTime(200); });
+        expect(link).toBeVisible();
+        fireEvent.pointerLeave(screen.getByRole('navigation'));
+        act(() => { vi.advanceTimersByTime(150); });
+        expect(screen.queryByRole('link')).not.toBeInTheDocument();
+        pointerEnter(button);
+        fireEvent.pointerLeave(button);
+        unmount();
+        expect(vi.getTimerCount()).toBe(0);
+    });
+
+    it('retains focused content and suppresses hover reopening after Escape', () => {
+        vi.useFakeTimers();
+        const { button } = fixture();
+        pointerEnter(button);
+        const link = screen.getByRole('link');
+        act(() => { link.focus(); });
+        fireEvent.pointerLeave(button);
+        act(() => { vi.advanceTimersByTime(200); });
+        expect(link).toBeVisible();
+        fireEvent.keyDown(link, { key: 'Escape' });
+        expect(button).toHaveFocus();
+        pointerEnter(button);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    it('dismisses hover with Escape while focus remains elsewhere', () => {
+        const { button } = fixture();
+        pointerEnter(button);
+        expect(screen.getByRole('link')).toBeVisible();
+        fireEvent.keyDown(document.body, { key: 'Escape' });
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        expect(button).not.toHaveFocus();
+        pointerEnter(button);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    it('dismisses on an outside pointer activation', () => {
+        const { button } = fixture();
+        fireEvent.click(button, { detail: 1 });
+        fireEvent.pointerDown(document.body);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    it.each(['touch', 'pen'])('does not hover open for %s', pointerType => {
+        const { button } = fixture();
+        pointerEnter(button, pointerType);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        fireEvent.click(button, { detail: 1 });
+        expect(screen.getByRole('link')).toBeVisible();
+    });
+
+    it('does not hover open for a coarse pointer', () => {
+        vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: false })));
+        const { button } = fixture();
+        pointerEnter(button);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    it('enters content on keyboard activation and dismisses destination clicks', () => {
+        vi.useFakeTimers();
+        const { button } = fixture();
+        fireEvent.click(button, { detail: 0 });
+        act(() => { vi.advanceTimersByTime(0); });
+        const link = screen.getByRole('link');
+        expect(link).toHaveFocus();
+        fireEvent.click(link);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        expect(document.getElementById('children')).toContainElement(link);
     });
 
     it('opens by activation, remains open across pointer transitions, and restores focus on Escape', async () => {
