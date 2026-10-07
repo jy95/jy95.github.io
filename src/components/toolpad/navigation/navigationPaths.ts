@@ -25,25 +25,23 @@ export function leafPaths(items: Navigation, parentPath = ''): string[] {
   });
 }
 
-export function selectedNavigationPath(items: Navigation, pathname: string, parentPath = ''): string | undefined {
-  const target = ROUTE_ALIASES.find(alias => alias.pattern.test(pathname))?.path ?? pathname;
-  let selectedPath: string | undefined;
-  for (const path of leafPaths(items, parentPath)) {
-    const hasPath = Boolean(path);
-    if (!hasPath) continue;
-    const matchesTarget = [
-      () => target === path,
-      () => target.startsWith(`${path}/`),
-    ].some(predicate => predicate());
-    if (!matchesTarget) continue;
-    const isLongerCandidate = [
-      () => selectedPath === undefined,
-      () => selectedPath !== undefined ? path.length > selectedPath.length : false,
-    ].some(predicate => predicate());
-    const shouldSelect = [hasPath, matchesTarget, isLongerCandidate].every(Boolean);
-    if (shouldSelect) {
-      selectedPath = path;
-    }
-  }
-  return selectedPath;
+const resolveRouteAlias = (pathname: string): string =>
+  ROUTE_ALIASES.find(alias => alias.pattern.test(pathname))?.path ?? pathname;
+
+const matchesTarget = (path: string, target: string): boolean =>
+  target === path || target.startsWith(`${path}/`);
+
+export function selectedNavigationPath(
+  items: Navigation,
+  pathname: string,
+  parentPath = '',
+): string | undefined {
+  const target = resolveRouteAlias(pathname);
+
+  return leafPaths(items, parentPath)
+    .filter(path => path !== '' && matchesTarget(path, target))
+    .reduce<string | undefined>(
+      (best, path) => best === undefined || path.length > best.length ? path : best,
+      undefined,
+    );
 }
