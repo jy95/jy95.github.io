@@ -49,12 +49,26 @@
             "gamesTabs": {
                 "grid": "Games",
                 "list": "Series",
-                "dlc": "DLCS",
+                "dlc": "DLC",
                 "companies": "Companies",
                 "random": "Random"
             },
-            "tierTabs": "Tier Lists",
-            "selection": "My selection"
+            "tierTabs": "Tier lists",
+            "selection": "My selection",
+            "sections": {
+                "browse": "Browse",
+                "opinions": "Opinions",
+                "comingUp": "Coming up",
+                "mine": "Mine",
+                "more": "More"
+            },
+            "tierChildren": {
+                "games": "Published games",
+                "backlog": "Backlog",
+                "tests": "Test rankings"
+            },
+            "backlogHint": "Vote for upcoming games",
+            "selectionCount": "{count, plural, one {# saved entry} other {# saved entries}}"
         },
         "toolbar": {
             "settings": "Settings",
@@ -68,7 +82,8 @@
                 "title": "Language",
                 "en": "English",
                 "fr": "French"
-            }
+            },
+            "random": "Random"
         }
     },
     "common": {

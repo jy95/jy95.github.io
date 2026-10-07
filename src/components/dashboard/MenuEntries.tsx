@@ -8,118 +8,40 @@ import LinkIcon from '@mui/icons-material/Link';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ListIcon from '@mui/icons-material/List';
 import ExtensionIcon from '@mui/icons-material/Extension';
-import CasinoIcon from '@mui/icons-material/Casino';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import BusinessIcon from '@mui/icons-material/Business';
 
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
+import PersonalSelectionBadge from './PersonalSelectionBadge';
+
 // Types
 import type { Navigation } from '@/components/toolpad/types';
 
-/**
- * Builds the navigation tree using translation *keys* (`titleKey`) rather
- * than already-resolved strings. Previously this function took a flat
- * `Props` object of ~11 pre-translated labels computed once by the caller
- * (`AppProviderCustom`), which coupled the whole nav tree to a single
- * `useTranslations` call site, duplicated lookups for labels reused across
- * nodes (e.g. "games" appears under both `/games` and `/tier/games`), and
- * made this tree impossible to build/test without wiring up every label by
- * hand. `NavigationGroup` now resolves `titleKey` via `useTranslations` at
- * render time, so this function is a pure, translation-agnostic tree
- * definition.
- */
 export default function NavigationMenu(): Navigation {
-
-    // Icons for top-level entries are reused in nested entries to avoid
-    // unnecessary duplication of icon components.
-    const gamesIcon = <SportsEsportsIcon />;
-    const backlogIcon = <HourglassEmptyIcon />;
-    const testsIcon = <ScienceIcon />;
-
     return [
+        { kind: "section", titleKey: "sections.browse" },
+        { segment: "games", icon: <SportsEsportsIcon />, titleKey: "gamesKey" },
+        { path: "/games/series", icon: <ListIcon />, titleKey: "gamesTabs.list" },
+        { path: "/games/dlcs", icon: <ExtensionIcon />, titleKey: "gamesTabs.dlc" },
+        { segment: "companies", icon: <BusinessIcon />, titleKey: "gamesTabs.companies" },
+        { kind: "section", titleKey: "sections.opinions" },
+        { segment: "tests", icon: <ScienceIcon />, titleKey: "testsKey" },
         {
-            icon: gamesIcon,
-            titleKey: "gamesKey",
-            segment: "games",
+            segment: "tier", icon: <LeaderboardIcon />, titleKey: "tierTabs",
             children: [
-                {
-                    icon: <GridViewIcon />,
-                    titleKey: "gamesTabs.grid"
-                },
-                {
-                    segment: "series",
-                    icon: <ListIcon />,
-                    titleKey: "gamesTabs.list"
-                },
-                {
-                    segment: "dlcs",
-                    icon: <ExtensionIcon />,
-                    titleKey: "gamesTabs.dlc"
-                },
-                {
-                    segment: "random",
-                    icon: <CasinoIcon />,
-                    titleKey: "gamesTabs.random"
-                }
-            ]
+                { segment: "games", icon: <GridViewIcon />, titleKey: "tierChildren.games" },
+                { segment: "backlog", icon: <HourglassEmptyIcon />, titleKey: "tierChildren.backlog" },
+                { segment: "tests", icon: <ScienceIcon />, titleKey: "tierChildren.tests" },
+            ],
         },
-        {
-            segment: "selection",
-            icon: <BookmarkBorderIcon />,
-            titleKey: "selection"
-        },
-        {
-            segment: "companies",
-            icon: <BusinessIcon />,
-            titleKey: "gamesTabs.companies"
-        },
-        {
-            icon: <ScheduleIcon />,
-            titleKey: "planningKey",
-            segment: "planning"
-        },
-        {
-            icon: backlogIcon,
-            titleKey: "backlog",
-            segment: "backlog"
-        },
-        {
-            icon: <LeaderboardIcon />,
-            titleKey: "tierTabs",
-            segment: "tier",
-            children: [
-                {
-                    segment: "games",
-                    icon: gamesIcon,
-                    titleKey: "gamesTabs.grid"
-                },
-                {
-                    segment: "backlog",
-                    icon: backlogIcon,
-                    titleKey: "backlog"
-                },
-                {
-                    icon: testsIcon,
-                    titleKey: "testsKey",
-                    segment: "tests"
-                }
-            ]
-        },
-        {
-            icon: testsIcon,
-            titleKey: "testsKey",
-            segment: "tests"
-        },
-        {
-            icon: <QueryStatsIcon />,
-            titleKey: "stats",
-            segment: "stats"
-        },
-        {
-            icon: <LinkIcon />,
-            titleKey: "links",
-            segment: "links"
-        },
-    ]
+        { kind: "section", titleKey: "sections.comingUp" },
+        { segment: "planning", icon: <ScheduleIcon />, titleKey: "planningKey" },
+        { segment: "backlog", icon: <HourglassEmptyIcon />, titleKey: "backlog", hintKey: "backlogHint" },
+        { kind: "section", titleKey: "sections.mine" },
+        { segment: "selection", icon: <BookmarkBorderIcon />, titleKey: "selection", badge: PersonalSelectionBadge },
+        { kind: "section", titleKey: "sections.more" },
+        { segment: "stats", icon: <QueryStatsIcon />, titleKey: "stats" },
+        { segment: "links", icon: <LinkIcon />, titleKey: "links" },
+    ];
 }

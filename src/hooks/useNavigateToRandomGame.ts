@@ -1,17 +1,19 @@
 "use client";
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from '@/i18n/routing';
 import { buildWatchRoute } from '@/domain/games/youtube';
 import type { RandomAnswer } from '@/app/api/random/route';
 
 export function useNavigateToRandomGame() {
     const router = useRouter();
+    const pendingRef = useRef(false);
     const [isPending, setIsPending] = useState(false);
 
     const navigateToRandomGame = async () => {
         // Prevent multiple random-game requests from being triggered at once.
-        if (isPending) return;
+        if (pendingRef.current) return;
+        pendingRef.current = true;
 
         setIsPending(true);
 
@@ -30,6 +32,8 @@ export function useNavigateToRandomGame() {
         } catch (error) {
             // Allow the user to try again if the request or navigation fails.
             console.error('Failed to navigate to a random game:', error);
+        } finally {
+            pendingRef.current = false;
             setIsPending(false);
         }
     };

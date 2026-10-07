@@ -40,7 +40,7 @@
     "dashboard": {
         "menuEntries": {
             "gamesKey": "Jeux",
-            "planningKey": "Planning",
+            "planningKey": "Calendrier",
             "testsKey": "Tests",
             "latestVideosKey": "Dernières vidéos",
             "stats": "Statistiques",
@@ -49,12 +49,26 @@
             "gamesTabs": {
                 "grid": "Jeux",
                 "list": "Séries",
-                "dlc": "DLCS",
+                "dlc": "DLC",
                 "companies": "Entreprises",
                 "random": "Au hasard"
             },
-            "tierTabs": "Tops",
-            "selection": "Ma sélection"
+            "tierTabs": "Classements",
+            "selection": "Ma sélection",
+            "sections": {
+                "browse": "Explorer",
+                "opinions": "Avis",
+                "comingUp": "À venir",
+                "mine": "Personnel",
+                "more": "Plus"
+            },
+            "tierChildren": {
+                "games": "Jeux publiés",
+                "backlog": "En attente",
+                "tests": "Classement des tests"
+            },
+            "backlogHint": "Votez pour les prochains jeux",
+            "selectionCount": "{count, plural, one {# élément enregistré} other {# éléments enregistrés}}"
         },
         "toolbar": {
             "settings": "Paramètres",
@@ -68,7 +82,8 @@
                 "title": "Langue",
                 "en": "Anglais",
                 "fr": "Français"
-            }
+            },
+            "random": "Au hasard"
         }
     },
     "common": {
@@ -329,7 +344,7 @@
         "categories": {
             "all": "Tous",
             "games": "Jeux",
-            "backlog": "À jouer",
+            "backlog": "En attente",
             "dlcs": "DLCs",
             "planning": "Jeux prévus"
         },

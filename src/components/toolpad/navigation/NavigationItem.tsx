@@ -67,6 +67,8 @@ const MINI_CHEVRON_SX = {
 export type NavItemProps = {
   title: string;
   icon?: ReactNode;
+  badge?: ReactNode;
+  hint?: string;
   href?: string;
   selected: boolean;
   onClick?: () => void;
@@ -78,6 +80,8 @@ export type NavItemProps = {
 export default function NavigationItem({
   title,
   icon,
+  badge,
+  hint,
   href,
   selected,
   onClick,
@@ -89,6 +93,7 @@ export default function NavigationItem({
   const isMini = !drawerOpen;
 
   const [hovered, setHovered] = useState(false);
+  const popoverRef = useRef<HTMLDivElement>(null);
   const listItemRef = useRef<HTMLLIElement>(null);
 
   const initials = title
@@ -134,6 +139,7 @@ export default function NavigationItem({
             sx={{ display: "flex", alignItems: "center", justifyContent: "center", minWidth: LIST_ITEM_ICON_SIZE }}
           >
             {iconNode}
+            {isMini && badge && <Box sx={{ position: "absolute", top: -5, right: -8 }}>{badge}</Box>}
           </ListItemIcon>
           {isMini && (
             <Typography variant="caption" sx={MINI_CAPTION_SX}>
@@ -142,7 +148,8 @@ export default function NavigationItem({
           )}
         </Box>
       )}
-      {!isMini && <ListItemText primary={title} sx={{ ml: 1.2, whiteSpace: "nowrap", zIndex: 1 }} />}
+      {!isMini && <ListItemText primary={title} secondary={hint} slotProps={{ secondary: { sx: { whiteSpace: "normal", fontSize: 11 } } }} sx={{ ml: 1.2, whiteSpace: "nowrap", zIndex: 1 }} />}
+      {!isMini && badge}
       {hasChildren && <ExpandMoreIcon sx={chevronSx} />}
     </>
   );
@@ -152,9 +159,11 @@ export default function NavigationItem({
   return (
     <ListItem
       ref={listItemRef}
-      sx={{ py: 0, px: 1, overflowX: "hidden" }}
+      sx={{ py: 0, px: 1, overflow: "visible" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onFocus={() => setHovered(true)}
+      onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget) && !popoverRef.current?.contains(event.relatedTarget)) setHovered(false); }}
     >
       {href ? (
         <ListItemButton
@@ -168,7 +177,7 @@ export default function NavigationItem({
           {content}
         </ListItemButton>
       ) : (
-        <ListItemButton component="div" selected={selected} onClick={onClick} sx={buttonSx}>
+        <ListItemButton component="button" type="button" aria-expanded={hasChildren ? expanded : undefined} selected={selected} onClick={onClick} sx={buttonSx}>
           {content}
         </ListItemButton>
       )}
@@ -176,8 +185,13 @@ export default function NavigationItem({
       {/* Popper portals into document.body, so the drawer's overflow:hidden can't clip it. */}
       {showPopover && (
         <Popper
+          ref={popoverRef}
+          onFocus={() => setHovered(true)}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget) && !listItemRef.current?.contains(event.relatedTarget)) setHovered(false);
+          }}
           open={hovered}
-          anchorEl={listItemRef.current}
+          anchorEl={() => listItemRef.current}
           placement="right-start"
           transition
           sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
