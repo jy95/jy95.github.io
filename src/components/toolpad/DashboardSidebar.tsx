@@ -30,13 +30,20 @@ export default function DashboardSidebar() {
   // When sidebar is closed → mini mode
   const isMini = !drawerOpen;
 
-  const getDrawerContent = (mini: boolean) => (
+  const closeMobileDrawer = () => { if (drawerOpen) toggleDrawer?.(); };
+
+  const getDrawerContent = (mini: boolean, temporary: boolean) => (
     <>
       {/* Spacer that matches AppBar height so nav starts below it */}
       <Toolbar />
       <Box
         component="nav"
         aria-label={t("navigationLabel")}
+        onClick={temporary ? event => {
+          if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
+          if (link && (!link.getAttribute("target") || link.getAttribute("target") === "_self") && !link.hasAttribute("download")) closeMobileDrawer();
+        } : undefined}
         sx={{
           height: "100%",
           minHeight: 0,
@@ -83,14 +90,14 @@ export default function DashboardSidebar() {
           key={key}
           variant={variant}
           open={variant === 'temporary' ? drawerOpen : undefined}
-          onClose={variant === 'temporary' ? toggleDrawer : undefined}
+          onClose={variant === 'temporary' ? closeMobileDrawer : undefined}
           ModalProps={variant === 'temporary' ? { keepMounted: true } : undefined}
           sx={{
             display,
             ...getDrawerSx(mini && isMini, variant === 'temporary'),
           }}
         >
-          {getDrawerContent(mini && isMini)}
+          {getDrawerContent(mini && isMini, variant === 'temporary')}
         </Drawer>
       ))}
     </>

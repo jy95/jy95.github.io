@@ -1,6 +1,7 @@
 // Icons
 import CasinoIcon from '@mui/icons-material/Casino';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
+import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import ScienceIcon from '@mui/icons-material/Science';
@@ -34,7 +35,7 @@ export default function NavigationMenu(): Navigation {
             { path: "/planning", icon: <ScheduleIcon />, titleKey: "planningKey", hintKey: "hints.planning" },
             { path: "/backlog", icon: <HourglassEmptyIcon />, titleKey: "backlog", hintKey: "hints.backlog" },
         ] },
-        { kind: "group", id: "saved", titleKey: "sections.saved", icon: <BookmarkBorderIcon />, children: [
+        { kind: "group", id: "saved", titleKey: "sections.saved", icon: <ManageHistoryIcon />, children: [
             { path: "/selection", icon: <BookmarkBorderIcon />, titleKey: "selection", hintKey: "hints.selection", badge: PersonalSelectionBadge },
         ] },
         { kind: "group", id: "opinions", titleKey: "tierTabs", icon: <LeaderboardIcon />, children: [
@@ -42,7 +43,7 @@ export default function NavigationMenu(): Navigation {
             { path: "/tier/backlog", icon: <HourglassEmptyIcon />, titleKey: "tierChildren.backlog", hintKey: "hints.tierBacklog" },
             { path: "/tier/tests", icon: <ScienceIcon />, titleKey: "tierChildren.tests", hintKey: "hints.tierTests" },
         ] },
-        { kind: "group", id: "more", titleKey: "sections.more", icon: <MoreHorizIcon />, children: [
+        { kind: "group", id: "more", titleKey: "sections.more", icon: <ReadMoreIcon />, children: [
             { path: "/stats", icon: <QueryStatsIcon />, titleKey: "stats", hintKey: "hints.stats" },
             { path: "/links", icon: <LinkIcon />, titleKey: "links", hintKey: "hints.links" },
         ] },

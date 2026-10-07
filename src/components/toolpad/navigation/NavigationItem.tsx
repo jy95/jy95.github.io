@@ -1,4 +1,4 @@
-import { useId, useRef, useState } from "react";
+import { useId } from "react";
 
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
@@ -7,13 +7,15 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
-import Popover from "@mui/material/Popover";
+import Popper from "@mui/material/Popper";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { Link } from "@/i18n/routing";
 import { useAppContext } from "../provider/useAppContext";
 import { MINI_DRAWER_WIDTH } from "../drawerConstants";
+
+import useNavigationPopup from "./useNavigationPopup";
 
 import { navigationListItemButtonSx } from "./navigationStyles";
 
@@ -98,8 +100,8 @@ export default function NavigationItem({
   const isMini = mini ?? !drawerOpen;
   const hintId = useId();
 
-  const [popoverOpen, setPopoverOpen] = useState(false);
-  const controlRef = useRef<HTMLButtonElement>(null);
+  const showPopover = isMini && hasChildren && Boolean(miniPopoverContent);
+  const popup = useNavigationPopup(showPopover);
 
   const initials = title
     .split(" ")
@@ -173,8 +175,6 @@ export default function NavigationItem({
     </>
   );
 
-  const showPopover = isMini && hasChildren && Boolean(miniPopoverContent);
-
   return (
     <ListItem
       sx={{ py: 0, px: 1, overflow: "visible" }}
@@ -192,23 +192,24 @@ export default function NavigationItem({
           {content}
         </ListItemButton>
       ) : (
-        <ListItemButton component="button" type="button" ref={controlRef} {...commonButtonProps}
-          aria-expanded={hasChildren ? (isMini ? popoverOpen : expanded) : undefined}
+        <ListItemButton component="button" type="button" ref={popup.triggerRef} {...commonButtonProps}
+          aria-expanded={hasChildren ? (isMini ? popup.open : expanded) : undefined}
           aria-controls={hasChildren ? controlsId : undefined}
-          onClick={isMini && hasChildren ? () => setPopoverOpen(value => !value) : onClick}>
+          {...(showPopover ? popup.interactionProps : {})}
+          onClick={showPopover ? event => popup.activate(event.detail === 0) : onClick}>
           {content}
         </ListItemButton>
       )}
 
       {showPopover && (
-        <Popover keepMounted open={popoverOpen} anchorEl={controlRef.current} onClose={() => setPopoverOpen(false)}
-          anchorOrigin={{ vertical: "top", horizontal: "right" }}
-          transformOrigin={{ vertical: "top", horizontal: "left" }}
-          slotProps={{ paper: { sx: { ml: 0.75, maxHeight: "80vh" } } }}>
-          <Paper component="nav" aria-label={title} elevation={0} sx={{ py: 0.5 }} onClick={event => {
-            if (event.target instanceof Element && event.target.closest("a")) setPopoverOpen(false);
-          }}>{miniPopoverContent}</Paper>
-        </Popover>
+        <Popper keepMounted open={popup.open} anchorEl={popup.triggerRef.current}
+          placement="right-start" sx={{ zIndex: theme => theme.zIndex.drawer + 2 }}>
+          <Paper component="nav" ref={popup.contentRef} aria-label={title} elevation={1}
+            {...popup.interactionProps}
+            sx={{ py: 0.5, ml: 0.75, maxHeight: "80vh", overflowY: "auto" }} onClick={event => {
+              if (event.target instanceof Element && event.target.closest("a")) popup.close(true);
+            }}>{miniPopoverContent}</Paper>
+        </Popper>
       )}
     </ListItem>
   );

@@ -1,5 +1,7 @@
 import { isValidElement } from 'react';
 import { describe, expect, it } from 'vitest';
+import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
+import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import { leafPaths } from '@/components/toolpad/navigation/navigationPaths';
 import type { Navigation } from '@/components/toolpad/types';
@@ -45,6 +47,10 @@ describe('NavigationMenu', () => {
         const rankings = navigation.find(item => item.kind === 'group' && item.id === 'opinions');
         expect(rankings?.titleKey).toBe('tierTabs');
         expect(isValidElement(rankings?.icon) && rankings.icon.type).toBe(LeaderboardIcon);
+        for (const [id, icon] of [['saved', ManageHistoryIcon], ['more', ReadMoreIcon]] as const) {
+            const group = navigation.find(item => item.kind === 'group' && item.id === id);
+            expect(isValidElement(group?.icon) && group.icon.type).toBe(icon);
+        }
         expect(leafPaths(navigation)).toEqual(paths);
         expect(new Set(leafPaths(navigation)).size).toBe(14);
     });
@@ -66,10 +72,10 @@ describe('NavigationMenu', () => {
             }
         }
         verify(NavigationMenu());
-        expect(en.dashboard.menuEntries.sections.saved).toBe('My space');
-        expect(fr.dashboard.menuEntries.sections.saved).toBe('Mon espace');
-        expect(en.dashboard.menuEntries.sections.more).toBe('Resources');
-        expect(fr.dashboard.menuEntries.sections.more).toBe('Ressources');
+        expect(en.dashboard.menuEntries.sections.saved).toBe('Activity');
+        expect(fr.dashboard.menuEntries.sections.saved).toBe('Activité');
+        expect(en.dashboard.menuEntries.sections.more).toBe('Learn more');
+        expect(fr.dashboard.menuEntries.sections.more).toBe('En savoir plus');
         expect(en.dashboard.menuEntries.tierTabs).toBe('Tier lists');
         expect(fr.dashboard.menuEntries.tierTabs).toBe('Classements');
         expect(en.dashboard.menuEntries.selection).toBe('My selection');

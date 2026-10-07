@@ -1,18 +1,62 @@
-import { render, screen, within } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { fireEvent, render, screen, within } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createTheme } from '@mui/material/styles';
 import type { DrawerProps } from '@mui/material/Drawer';
 import DashboardSidebar from './DashboardSidebar';
 
 let drawerOpen = false;
-vi.mock('./provider/useAppContext', () => ({ useAppContext: () => ({ drawerOpen }) }));
+const toggleDrawer = vi.fn();
+vi.mock('./provider/useAppContext', () => ({ useAppContext: () => ({ drawerOpen, toggleDrawer }) }));
 vi.mock('next-intl', () => ({ useTranslations: () => (key: string) => key }));
 vi.mock('@mui/material/Drawer', () => ({ default: ({ children, variant, open, ModalProps, sx }: DrawerProps) => (
     <div data-testid={variant} data-open={open} data-keep-mounted={ModalProps?.keepMounted} data-sx={JSON.stringify(sx, (_key, value) => typeof value === 'function' ? value(createTheme()) : value)}>{children}</div>
 ) }));
-vi.mock('./DashboardNavigation', () => ({ default: ({ mini }: { mini: boolean }) => <div data-testid="navigation" data-mini={mini} /> }));
+vi.mock('./DashboardNavigation', () => ({ default: ({ mini }: { mini: boolean }) => <div data-testid="navigation" data-mini={mini}>
+    <button>Browse</button><a href="/games" aria-current="page">Games</a>
+    <a href="/games/random">Random</a><a href="/links" target="_blank">New tab</a>
+  </div> }));
 
 describe('DashboardSidebar', () => {
+    beforeEach(() => { toggleDrawer.mockClear(); });
+
+    it.each(['Games', 'Random'])('closes the open temporary drawer for %s', name => {
+        drawerOpen = true;
+        render(<DashboardSidebar />);
+        fireEvent.click(within(screen.getByTestId('temporary')).getByRole('link', { name }));
+        expect(toggleDrawer).toHaveBeenCalledTimes(1);
+    });
+
+    it('closes after client Link navigation prevents the browser default', () => {
+        drawerOpen = true;
+        render(<DashboardSidebar />);
+        const link = within(screen.getByTestId('temporary')).getByRole('link', { name: 'Games' });
+        link.addEventListener('click', event => event.preventDefault());
+        fireEvent.click(link);
+        expect(toggleDrawer).toHaveBeenCalledTimes(1);
+    });
+
+    it('keeps disclosures, permanent drawers, and a closed mobile drawer unchanged', () => {
+        drawerOpen = true;
+        const { rerender } = render(<DashboardSidebar />);
+        fireEvent.click(within(screen.getByTestId('temporary')).getByRole('button'));
+        for (const drawer of screen.getAllByTestId('permanent')) {
+            fireEvent.click(within(drawer).getByRole('link', { name: 'Games' }));
+        }
+        drawerOpen = false;
+        rerender(<DashboardSidebar />);
+        fireEvent.click(within(screen.getByTestId('temporary')).getByRole('link', { name: 'Games' }));
+        expect(toggleDrawer).not.toHaveBeenCalled();
+    });
+
+    it.each([{ ctrlKey: true }, { metaKey: true }, { shiftKey: true }, { altKey: true }, { button: 1 }])('preserves modified clicks %s', modifiers => {
+        drawerOpen = true;
+        render(<DashboardSidebar />);
+        const mobile = within(screen.getByTestId('temporary'));
+        fireEvent.click(mobile.getByRole('link', { name: 'Games' }), modifiers);
+        fireEvent.click(mobile.getByRole('link', { name: 'New tab' }));
+        expect(toggleDrawer).not.toHaveBeenCalled();
+    });
+
     it.each([false, true])('preserves all responsive drawer configurations when open=%s', (open) => {
         drawerOpen = open;
         render(<DashboardSidebar />);
