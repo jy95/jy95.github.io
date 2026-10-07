@@ -325,6 +325,21 @@ describe('NavigationItem mini popover', () => {
         expect(document.getElementById('children')).toContainElement(link);
     });
 
+    it.each([false, true])('cancels pending popup work on mode changes (keyboard=%s)', keyboard => {
+        vi.useFakeTimers();
+        const { button, rerender } = fixture();
+        fireEvent.click(button, { detail: keyboard ? 0 : 1 });
+        if (!keyboard) fireEvent.pointerLeave(button);
+        rerender(<NavigationItem title="Browse" selected={false} mini={false} hasChildren
+            miniPopoverContent={<a href="/games">Games</a>} />);
+        expect(vi.getTimerCount()).toBe(0);
+        act(() => { vi.runAllTimers(); });
+        rerender(<NavigationItem title="Browse" selected={false} mini hasChildren
+            miniPopoverContent={<a href="/games">Games</a>} />);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        expect(button).not.toHaveFocus();
+    });
+
     it('opens by activation, remains open across pointer transitions, and restores focus on Escape', async () => {
         const { container } = render(<NavigationItem title="Browse" selected={false} hasChildren controlsId="browse-children"
             miniPopoverContent={<div id="browse-children"><a href="/games">Games</a></div>} />);

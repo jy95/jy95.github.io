@@ -26,6 +26,16 @@ describe('navigation paths', () => {
     expect(selectedNavigationPath([], '/games')).toBeUndefined();
   });
 
+  it('retains the longest destination regardless of traversal order', () => {
+    const navigation = [
+      { titleKey: 'gamesKey', path: '/tier' },
+      { titleKey: 'gamesKey', path: '/tier/games' },
+      { titleKey: 'gamesKey', path: '' },
+    ] as const;
+    expect(selectedNavigationPath([...navigation], '/tier/games/details')).toBe('/tier/games');
+    expect(selectedNavigationPath([...navigation].reverse(), '/tier/games/details')).toBe('/tier/games');
+  });
+
   it('does not broaden aliases to deeper routes', () => {
     const navigation = [{ titleKey: 'gamesKey', path: '/games/detail' }] as const;
     expect(selectedNavigationPath([...navigation], '/games/detail/abc')).toBeUndefined();

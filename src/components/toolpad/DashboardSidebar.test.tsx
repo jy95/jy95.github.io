@@ -12,7 +12,8 @@ vi.mock('@mui/material/Drawer', () => ({ default: ({ children, variant, open, Mo
     <div data-testid={variant} data-open={open} data-keep-mounted={ModalProps?.keepMounted} data-sx={JSON.stringify(sx, (_key, value) => typeof value === 'function' ? value(createTheme()) : value)}>{children}</div>
 ) }));
 vi.mock('./DashboardNavigation', () => ({ default: ({ mini }: { mini: boolean }) => <div data-testid="navigation" data-mini={mini}>
-    <button>Browse</button><a href="/games" aria-current="page">Games</a>
+    <button>Browse</button><a href="/games" aria-current="page"><span>Games</span></a>
+    <a href="/links" download>Download</a><a href="/links" target="_self">Same tab</a>
     <a href="/games/random">Random</a><a href="/links" target="_blank">New tab</a>
   </div> }));
 
@@ -24,6 +25,22 @@ describe('DashboardSidebar', () => {
         render(<DashboardSidebar />);
         fireEvent.click(within(screen.getByTestId('temporary')).getByRole('link', { name }));
         expect(toggleDrawer).toHaveBeenCalledTimes(1);
+    });
+
+    it('closes for nested destination targets and explicit same-tab links', () => {
+        drawerOpen = true;
+        render(<DashboardSidebar />);
+        const mobile = within(screen.getByTestId('temporary'));
+        fireEvent.click(mobile.getByText('Games'));
+        fireEvent.click(mobile.getByRole('link', { name: 'Same tab' }));
+        expect(toggleDrawer).toHaveBeenCalledTimes(2);
+    });
+
+    it('leaves download links unchanged', () => {
+        drawerOpen = true;
+        render(<DashboardSidebar />);
+        fireEvent.click(within(screen.getByTestId('temporary')).getByRole('link', { name: 'Download' }));
+        expect(toggleDrawer).not.toHaveBeenCalled();
     });
 
     it('closes after client Link navigation prevents the browser default', () => {
