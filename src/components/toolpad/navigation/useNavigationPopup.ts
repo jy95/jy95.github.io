@@ -10,7 +10,7 @@ const DISMISS_DELAY_MS = 150;
 const HOVER_QUERY = "(hover: hover) and (pointer: fine)";
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex="0"]';
 
-const supportsHover = (event: PointerEvent<HTMLElement>) =>
+const supportsHover = (event: PointerEvent<HTMLElement>): boolean =>
   event.pointerType === "mouse" &&
   window.matchMedia(HOVER_QUERY).matches;
 
@@ -32,6 +32,7 @@ function useDocumentDismissal(
 
     const onEscape = (event: globalThis.KeyboardEvent) => {
       if (event.key !== "Escape" || event.defaultPrevented) return;
+
       close(contentRef.current?.contains(document.activeElement) ?? false);
     };
 
@@ -45,16 +46,11 @@ function useDocumentDismissal(
   }, [active, contains, close, contentRef]);
 }
 
+// A non-modal disclosure keeps native Tab navigation and never traps focus.
 export default function useNavigationPopup(enabled: boolean) {
   const [open, setOpen] = useState(false);
-  const [previousEnabled, setPreviousEnabled] = useState(enabled);
-
-  if (previousEnabled !== enabled) {
-    setPreviousEnabled(enabled);
-    setOpen(false);
-  }
-
   const effectiveOpen = enabled && open;
+
   const triggerRef = useRef<HTMLButtonElement>(null);
   const contentRef = useRef<HTMLElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout>>();
@@ -69,9 +65,10 @@ export default function useNavigationPopup(enabled: boolean) {
   const contains = useCallback(
     (node: EventTarget | null) =>
       node instanceof Node &&
-      (triggerRef.current?.contains(node) ||
-        contentRef.current?.contains(node) ||
-        false),
+      Boolean(
+        triggerRef.current?.contains(node) ||
+          contentRef.current?.contains(node),
+      ),
     [],
   );
 
@@ -80,6 +77,7 @@ export default function useNavigationPopup(enabled: boolean) {
       cancelDismissal();
       suppressed.current = true;
       setOpen(false);
+
       if (restoreFocus) triggerRef.current?.focus();
     },
     [cancelDismissal],
@@ -147,7 +145,10 @@ export default function useNavigationPopup(enabled: boolean) {
   useDocumentDismissal(effectiveOpen, contains, close, contentRef);
 
   useEffect(() => {
-    if (!enabled) cancelDismissal();
+    if (!enabled) {
+      cancelDismissal();
+      setOpen(false);
+    }
   }, [enabled, cancelDismissal]);
 
   useEffect(() => cancelDismissal, [cancelDismissal]);
