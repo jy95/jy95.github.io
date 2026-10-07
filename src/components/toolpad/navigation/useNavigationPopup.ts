@@ -10,13 +10,13 @@ const DISMISS_DELAY_MS = 150;
 const HOVER_QUERY = "(hover: hover) and (pointer: fine)";
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex="0"]';
 
-const supportsHover = (event: PointerEvent<HTMLElement>): boolean =>
-  event.pointerType === "mouse" && window.matchMedia(HOVER_QUERY).matches;
+const supportsHover = (event: PointerEvent<HTMLElement>) =>
+  event.pointerType === "mouse" &&
+  window.matchMedia(HOVER_QUERY).matches;
 
 const focusFirstItem = (content: HTMLElement | null) =>
   content?.querySelector<HTMLElement>(FOCUSABLE)?.focus();
 
-/** Closes on outside pointer-down and Escape while the popup is open. */
 function useDocumentDismissal(
   active: boolean,
   contains: (node: EventTarget | null) => boolean,
@@ -32,9 +32,7 @@ function useDocumentDismissal(
 
     const onEscape = (event: globalThis.KeyboardEvent) => {
       if (event.key !== "Escape" || event.defaultPrevented) return;
-
-      // Hover leaves focus untouched, including when dismissed from elsewhere.
-      close(Boolean(contentRef.current?.contains(document.activeElement)));
+      close(contentRef.current?.contains(document.activeElement) ?? false);
     };
 
     document.addEventListener("pointerdown", onOutsidePointer);
@@ -47,7 +45,6 @@ function useDocumentDismissal(
   }, [active, contains, close, contentRef]);
 }
 
-// A non-modal disclosure keeps native Tab navigation and never traps focus.
 export default function useNavigationPopup(enabled: boolean) {
   const [open, setOpen] = useState(false);
   const [previousEnabled, setPreviousEnabled] = useState(enabled);
@@ -60,7 +57,7 @@ export default function useNavigationPopup(enabled: boolean) {
   const effectiveOpen = enabled && open;
   const triggerRef = useRef<HTMLButtonElement>(null);
   const contentRef = useRef<HTMLElement>(null);
-  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const timer = useRef<ReturnType<typeof setTimeout>>();
   const pointerInside = useRef(false);
   const suppressed = useRef(false);
 
@@ -70,12 +67,11 @@ export default function useNavigationPopup(enabled: boolean) {
   }, []);
 
   const contains = useCallback(
-    (node: EventTarget | null): boolean =>
+    (node: EventTarget | null) =>
       node instanceof Node &&
-      Boolean(
-        triggerRef.current?.contains(node) ||
-          contentRef.current?.contains(node),
-      ),
+      (triggerRef.current?.contains(node) ||
+        contentRef.current?.contains(node) ||
+        false),
     [],
   );
 
@@ -140,7 +136,6 @@ export default function useNavigationPopup(enabled: boolean) {
     suppressed.current = false;
     setOpen(true);
 
-    // Popper's kept-mounted content is available before the next render.
     if (keyboard) {
       timer.current = setTimeout(
         () => focusFirstItem(contentRef.current),
@@ -151,7 +146,6 @@ export default function useNavigationPopup(enabled: boolean) {
 
   useDocumentDismissal(effectiveOpen, contains, close, contentRef);
 
-  // Disabling the popup cancels dismissal and keyboard focus-entry work.
   useEffect(() => {
     if (!enabled) cancelDismissal();
   }, [enabled, cancelDismissal]);
