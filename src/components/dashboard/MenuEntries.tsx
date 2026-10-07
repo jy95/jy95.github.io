@@ -28,14 +28,7 @@ export default function NavigationMenu(): Navigation {
             { path: "/games/dlcs", icon: <ExtensionIcon />, titleKey: "gamesTabs.dlc", hintKey: "hints.dlc" },
             { path: "/companies", icon: <BusinessIcon />, titleKey: "gamesTabs.companies", hintKey: "hints.companies" },
             { path: "/games/random", icon: <CasinoIcon />, titleKey: "gamesTabs.random", hintKey: "hints.random" },
-        ] },
-        { kind: "group", id: "opinions", titleKey: "sections.opinions", icon: <ScienceIcon />, children: [
             { path: "/tests", icon: <ScienceIcon />, titleKey: "testsKey", hintKey: "hints.tests" },
-            { kind: "group", id: "tier", titleKey: "tierTabs", icon: <LeaderboardIcon />, children: [
-                { path: "/tier/games", icon: <GridViewIcon />, titleKey: "tierChildren.games", hintKey: "hints.tierGames" },
-                { path: "/tier/backlog", icon: <HourglassEmptyIcon />, titleKey: "tierChildren.backlog", hintKey: "hints.tierBacklog" },
-                { path: "/tier/tests", icon: <ScienceIcon />, titleKey: "tierChildren.tests", hintKey: "hints.tierTests" },
-            ] },
         ] },
         { kind: "group", id: "coming-up", titleKey: "sections.comingUp", icon: <ScheduleIcon />, children: [
             { path: "/planning", icon: <ScheduleIcon />, titleKey: "planningKey", hintKey: "hints.planning" },
@@ -43,6 +36,11 @@ export default function NavigationMenu(): Navigation {
         ] },
         { kind: "group", id: "saved", titleKey: "sections.saved", icon: <BookmarkBorderIcon />, children: [
             { path: "/selection", icon: <BookmarkBorderIcon />, titleKey: "selection", hintKey: "hints.selection", badge: PersonalSelectionBadge },
+        ] },
+        { kind: "group", id: "opinions", titleKey: "tierTabs", icon: <LeaderboardIcon />, children: [
+            { path: "/tier/games", icon: <GridViewIcon />, titleKey: "tierChildren.games", hintKey: "hints.tierGames" },
+            { path: "/tier/backlog", icon: <HourglassEmptyIcon />, titleKey: "tierChildren.backlog", hintKey: "hints.tierBacklog" },
+            { path: "/tier/tests", icon: <ScienceIcon />, titleKey: "tierChildren.tests", hintKey: "hints.tierTests" },
         ] },
         { kind: "group", id: "more", titleKey: "sections.more", icon: <MoreHorizIcon />, children: [
             { path: "/stats", icon: <QueryStatsIcon />, titleKey: "stats", hintKey: "hints.stats" },

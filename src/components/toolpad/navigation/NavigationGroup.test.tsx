@@ -1,8 +1,26 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import type { ComponentProps } from 'react';
 import NavigationMenu from '@/components/dashboard/MenuEntries';
 import NavigationGroup from './NavigationGroup';
+import type { NavigationPresentationGroup } from '../types';
+
+function rankingsGroup() {
+    const item = NavigationMenu().find(item => item.kind === 'group' && item.id === 'opinions');
+    if (!item || item.kind !== 'group') throw new Error('Expected rankings group');
+    return item;
+}
+
+function nestedFixture(): NavigationPresentationGroup {
+    return { kind: 'group', id: 'fixture', titleKey: 'sections.browse', icon: <span />, children: [
+        { path: '/tests', titleKey: 'testsKey' },
+        { kind: 'group', id: 'nested', titleKey: 'tierTabs', icon: <span />, children: [
+            { path: '/tier/games', titleKey: 'tierChildren.games', hintKey: 'hints.tierGames' },
+            { path: '/tier/backlog', titleKey: 'tierChildren.backlog', hintKey: 'hints.tierBacklog' },
+            { path: '/tier/tests', titleKey: 'tierChildren.tests', hintKey: 'hints.tierTests' },
+        ] },
+    ] };
+}
 
 let pathname = '/unrelated';
 vi.mock('@/i18n/routing', () => ({
@@ -20,7 +38,7 @@ describe('NavigationGroup', () => {
 
     it('preserves manual collapse until the active destination changes', () => {
         pathname = '/tier/games';
-        const item = NavigationMenu()[1];
+        const item = rankingsGroup();
         const { rerender } = render(<NavigationGroup item={item} />);
         const tier = screen.getByRole('button', { name: 'dashboard.menuEntries.tierTabs' });
         const childrenId = tier.getAttribute('aria-controls');
@@ -49,9 +67,9 @@ describe('NavigationGroup', () => {
     });
 
     it.each([false, true])('supports nested Tier lists with mini=%s without group links', async (mini) => {
-        render(<NavigationGroup item={NavigationMenu()[1]} mini={mini} />);
-        const opinions = screen.getByRole('button', { name: 'dashboard.menuEntries.sections.opinions' });
-        fireEvent.click(opinions);
+        render(<NavigationGroup item={nestedFixture()} mini={mini} />);
+        const parent = screen.getByRole('button', { name: 'dashboard.menuEntries.sections.browse' });
+        fireEvent.click(parent);
         const tier = await screen.findByRole('button', { name: 'dashboard.menuEntries.tierTabs' });
         expect(tier).toHaveAttribute('aria-expanded', 'false');
         fireEvent.click(tier);
@@ -65,7 +83,7 @@ describe('NavigationGroup', () => {
 
     it('opens and highlights active ancestors but assigns aria-current only to the destination', () => {
         pathname = '/tier/games/details';
-        render(<NavigationGroup item={NavigationMenu()[1]} mini={false} />);
+        render(<NavigationGroup item={rankingsGroup()} mini={false} />);
         for (const button of screen.getAllByRole('button')) {
             expect(button).toHaveClass('Mui-selected');
             expect(button).toHaveAttribute('aria-expanded', 'true');
@@ -74,11 +92,34 @@ describe('NavigationGroup', () => {
         expect(screen.getByRole('link', { name: 'dashboard.menuEntries.tierChildren.games' })).toHaveAttribute('aria-current', 'page');
         expect(document.querySelectorAll('[aria-current="page"]')).toHaveLength(1);
     });
-    it('keeps nested disclosure state when children reorder', () => {
-        const item = NavigationMenu()[1];
-        if (item.kind !== "group") throw new Error("Expected Opinions group");
+    it.each([false, true])('renders flat rankings with mini=%s', async (mini) => {
+        render(<NavigationGroup item={rankingsGroup()} mini={mini} />);
+        const tier = screen.getByRole('button', { name: 'dashboard.menuEntries.tierTabs' });
+        fireEvent.click(tier);
+        await screen.findByRole('link', { name: 'dashboard.menuEntries.tierChildren.games' });
+        expect(screen.getAllByRole('link').map(link => link.getAttribute('href'))).toEqual(['/tier/games', '/tier/backlog', '/tier/tests']);
+        const children = document.getElementById(tier.getAttribute('aria-controls') ?? '');
+        if (!children) throw new Error('Expected rankings child list');
+        expect(within(children).queryAllByRole('button')).toHaveLength(0);
+    });
+
+    it('preserves rankings disclosure and mounted links when destinations reorder', () => {
+        const item = rankingsGroup();
         const { rerender } = render(<NavigationGroup item={item} mini={false} />);
-        fireEvent.click(screen.getByRole('button', { name: 'dashboard.menuEntries.sections.opinions' }));
+        const tier = screen.getByRole('button', { name: 'dashboard.menuEntries.tierTabs' });
+        fireEvent.click(tier);
+        const games = screen.getByRole('link', { name: 'dashboard.menuEntries.tierChildren.games' });
+        const childrenId = tier.getAttribute('aria-controls');
+        rerender(<NavigationGroup item={{ ...item, children: [...item.children].reverse() }} mini={false} />);
+        expect(tier).toHaveAttribute('aria-expanded', 'true');
+        expect(tier).toHaveAttribute('aria-controls', childrenId);
+        expect(screen.getByRole('link', { name: 'dashboard.menuEntries.tierChildren.games' })).toBe(games);
+    });
+
+    it('keeps nested disclosure state when children reorder', () => {
+        const item = nestedFixture();
+        const { rerender } = render(<NavigationGroup item={item} mini={false} />);
+        fireEvent.click(screen.getByRole('button', { name: 'dashboard.menuEntries.sections.browse' }));
         const tier = screen.getByRole('button', { name: 'dashboard.menuEntries.tierTabs' });
         fireEvent.click(tier);
         const childrenId = tier.getAttribute('aria-controls');
