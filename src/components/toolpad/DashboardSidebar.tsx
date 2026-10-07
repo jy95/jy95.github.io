@@ -1,5 +1,6 @@
 "use client";
 
+import type { MouseEvent } from "react";
 import { useTranslations } from "next-intl";
 
 import Box from "@mui/material/Box";
@@ -32,6 +33,21 @@ export default function DashboardSidebar() {
 
   const closeMobileDrawer = () => { if (drawerOpen) toggleDrawer?.(); };
 
+  const handleDestinationClick = (event: MouseEvent<HTMLElement>) => {
+    const isModifiedOrNonPrimary = [
+      event.button !== 0, event.metaKey, event.ctrlKey, event.shiftKey, event.altKey,
+    ].some(Boolean);
+    if (isModifiedOrNonPrimary) return;
+    if (!(event.target instanceof Element)) return;
+    const link = event.target.closest("a[href]");
+    if (!link) return;
+    const target = link.getAttribute("target");
+    const isSameContext = [!target, target === "_self"].some(Boolean);
+    const isNonDownload = !link.hasAttribute("download");
+    const shouldClose = [drawerOpen, isSameContext, isNonDownload].every(Boolean);
+    if (shouldClose) closeMobileDrawer();
+  };
+
   const getDrawerContent = (mini: boolean, temporary: boolean) => (
     <>
       {/* Spacer that matches AppBar height so nav starts below it */}
@@ -39,11 +55,7 @@ export default function DashboardSidebar() {
       <Box
         component="nav"
         aria-label={t("navigationLabel")}
-        onClick={temporary ? event => {
-          if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-          const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
-          if (link && (!link.getAttribute("target") || link.getAttribute("target") === "_self") && !link.hasAttribute("download")) closeMobileDrawer();
-        } : undefined}
+        onClick={temporary ? handleDestinationClick : undefined}
         sx={{
           height: "100%",
           minHeight: 0,
@@ -85,21 +97,25 @@ export default function DashboardSidebar() {
 
   return (
     <>
-      {DRAWER_VARIANTS.map(({ key, display, variant, mini }) => (
-        <Drawer
-          key={key}
-          variant={variant}
-          open={variant === 'temporary' ? drawerOpen : undefined}
-          onClose={variant === 'temporary' ? closeMobileDrawer : undefined}
-          ModalProps={variant === 'temporary' ? { keepMounted: true } : undefined}
-          sx={{
-            display,
-            ...getDrawerSx(mini && isMini, variant === 'temporary'),
-          }}
-        >
-          {getDrawerContent(mini && isMini, variant === 'temporary')}
-        </Drawer>
-      ))}
+      {DRAWER_VARIANTS.map(({ key, display, variant, mini }) => {
+        const isTemporary = variant === "temporary";
+        const effectiveMini = [mini, isMini].every(Boolean);
+        return (
+          <Drawer
+            key={key}
+            variant={variant}
+            open={isTemporary ? drawerOpen : undefined}
+            onClose={isTemporary ? closeMobileDrawer : undefined}
+            ModalProps={isTemporary ? { keepMounted: true } : undefined}
+            sx={{
+              display,
+              ...getDrawerSx(effectiveMini, isTemporary),
+            }}
+          >
+            {getDrawerContent(effectiveMini, isTemporary)}
+          </Drawer>
+        );
+      })}
     </>
   );
 }

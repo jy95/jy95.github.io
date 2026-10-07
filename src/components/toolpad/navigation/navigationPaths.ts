@@ -29,8 +29,19 @@ export function selectedNavigationPath(items: Navigation, pathname: string, pare
   const target = ROUTE_ALIASES.find(alias => alias.pattern.test(pathname))?.path ?? pathname;
   let selectedPath: string | undefined;
   for (const path of leafPaths(items, parentPath)) {
-    if (path && (target === path || target.startsWith(`${path}/`)) &&
-        (selectedPath === undefined || path.length > selectedPath.length)) {
+    const hasPath = Boolean(path);
+    if (!hasPath) continue;
+    const matchesTarget = [
+      () => target === path,
+      () => target.startsWith(`${path}/`),
+    ].some(predicate => predicate());
+    if (!matchesTarget) continue;
+    const isLongerCandidate = [
+      () => selectedPath === undefined,
+      () => selectedPath !== undefined ? path.length > selectedPath.length : false,
+    ].some(predicate => predicate());
+    const shouldSelect = [hasPath, matchesTarget, isLongerCandidate].every(Boolean);
+    if (shouldSelect) {
       selectedPath = path;
     }
   }
