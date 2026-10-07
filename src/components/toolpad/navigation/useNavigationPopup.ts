@@ -1,15 +1,63 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { FocusEvent, KeyboardEvent, PointerEvent } from "react";
+import type {
+  FocusEvent,
+  KeyboardEvent,
+  PointerEvent,
+  RefObject,
+} from "react";
+
+const DISMISS_DELAY_MS = 150;
+const HOVER_QUERY = "(hover: hover) and (pointer: fine)";
+const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex="0"]';
+
+const supportsHover = (event: PointerEvent<HTMLElement>): boolean =>
+  event.pointerType === "mouse" && window.matchMedia(HOVER_QUERY).matches;
+
+const focusFirstItem = (content: HTMLElement | null) =>
+  content?.querySelector<HTMLElement>(FOCUSABLE)?.focus();
+
+/** Closes on outside pointer-down and Escape while the popup is open. */
+function useDocumentDismissal(
+  active: boolean,
+  contains: (node: EventTarget | null) => boolean,
+  close: (restoreFocus?: boolean) => void,
+  contentRef: RefObject<HTMLElement | null>,
+) {
+  useEffect(() => {
+    if (!active) return;
+
+    const onOutsidePointer = (event: globalThis.PointerEvent) => {
+      if (!contains(event.target)) close();
+    };
+
+    const onEscape = (event: globalThis.KeyboardEvent) => {
+      if (event.key !== "Escape" || event.defaultPrevented) return;
+
+      // Hover leaves focus untouched, including when dismissed from elsewhere.
+      close(Boolean(contentRef.current?.contains(document.activeElement)));
+    };
+
+    document.addEventListener("pointerdown", onOutsidePointer);
+    document.addEventListener("keydown", onEscape);
+
+    return () => {
+      document.removeEventListener("pointerdown", onOutsidePointer);
+      document.removeEventListener("keydown", onEscape);
+    };
+  }, [active, contains, close, contentRef]);
+}
 
 // A non-modal disclosure keeps native Tab navigation and never traps focus.
 export default function useNavigationPopup(enabled: boolean) {
   const [open, setOpen] = useState(false);
   const [previousEnabled, setPreviousEnabled] = useState(enabled);
+
   if (previousEnabled !== enabled) {
     setPreviousEnabled(enabled);
     setOpen(false);
   }
-  const effectiveOpen = [enabled, open].every(Boolean);
+
+  const effectiveOpen = enabled && open;
   const triggerRef = useRef<HTMLButtonElement>(null);
   const contentRef = useRef<HTMLElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -20,102 +68,108 @@ export default function useNavigationPopup(enabled: boolean) {
     clearTimeout(timer.current);
     timer.current = undefined;
   }, []);
-  const contains = useCallback((node: EventTarget | null) => {
-    if (!(node instanceof Node)) return false;
-    const isContained = [
-      () => Boolean(triggerRef.current?.contains(node)),
-      () => Boolean(contentRef.current?.contains(node)),
-    ].some(predicate => predicate());
-    return isContained;
-  }, []);
-  const close = useCallback((restoreFocus = false) => {
-    cancelDismissal();
-    suppressed.current = true;
-    setOpen(false);
-    if (restoreFocus) triggerRef.current?.focus();
-  }, [cancelDismissal]);
+
+  const contains = useCallback(
+    (node: EventTarget | null): boolean =>
+      node instanceof Node &&
+      Boolean(
+        triggerRef.current?.contains(node) ||
+          contentRef.current?.contains(node),
+      ),
+    [],
+  );
+
+  const close = useCallback(
+    (restoreFocus = false) => {
+      cancelDismissal();
+      suppressed.current = true;
+      setOpen(false);
+      if (restoreFocus) triggerRef.current?.focus();
+    },
+    [cancelDismissal],
+  );
+
   const scheduleDismissal = () => {
     cancelDismissal();
     timer.current = setTimeout(() => {
-      const shouldDismiss = [
-        () => !pointerInside.current,
-        () => !contains(document.activeElement),
-      ].every(predicate => predicate());
-      if (shouldDismiss) setOpen(false);
-    }, 150);
+      if (!pointerInside.current && !contains(document.activeElement)) {
+        setOpen(false);
+      }
+    }, DISMISS_DELAY_MS);
   };
+
   const onPointerEnter = (event: PointerEvent<HTMLElement>) => {
-    if (!enabled) return;
-    const supportsHover = [
-      () => event.pointerType === "mouse",
-      () => window.matchMedia("(hover: hover) and (pointer: fine)").matches,
-    ].every(predicate => predicate());
-    if (!supportsHover) return;
+    if (!enabled || !supportsHover(event)) return;
+
     pointerInside.current = true;
     cancelDismissal();
-    const shouldOpen = [enabled, !suppressed.current].every(Boolean);
-    if (shouldOpen) setOpen(true);
+
+    if (!suppressed.current) setOpen(true);
   };
+
   const onPointerLeave = () => {
     if (!enabled) return;
+
     pointerInside.current = false;
     suppressed.current = false;
     scheduleDismissal();
   };
+
   const onBlur = (event: FocusEvent<HTMLElement>) => {
-    const shouldDismiss = [() => enabled, () => !contains(event.relatedTarget)].every(predicate => predicate());
-    if (shouldDismiss) scheduleDismissal();
+    if (enabled && !contains(event.relatedTarget)) scheduleDismissal();
   };
+
   const onKeyDown = (event: KeyboardEvent<HTMLElement>) => {
-    const shouldClose = [event.key === "Escape", effectiveOpen].every(Boolean);
-    if (shouldClose) {
-      event.preventDefault();
-      event.stopPropagation();
-      close(true);
-    }
+    if (event.key !== "Escape" || !effectiveOpen) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    close(true);
   };
+
   const activate = (keyboard: boolean) => {
     if (!enabled) return;
+
     cancelDismissal();
-    const shouldToggleClosed = [effectiveOpen, !keyboard].every(Boolean);
-    if (shouldToggleClosed) close();
-    else {
-      suppressed.current = false;
-      setOpen(true);
-      if (keyboard) {
-        // Popper's kept-mounted content is available before the next render.
-        timer.current = setTimeout(() => {
-          contentRef.current?.querySelector<HTMLElement>('a[href], button:not([disabled]), [tabindex="0"]')?.focus();
-        }, 0);
-      }
+
+    if (effectiveOpen && !keyboard) {
+      close();
+      return;
+    }
+
+    suppressed.current = false;
+    setOpen(true);
+
+    // Popper's kept-mounted content is available before the next render.
+    if (keyboard) {
+      timer.current = setTimeout(
+        () => focusFirstItem(contentRef.current),
+        0,
+      );
     }
   };
 
-  useEffect(() => {
-    if (!effectiveOpen) return;
-    const onOutsidePointer = (event: globalThis.PointerEvent) => {
-      if (!contains(event.target)) close();
-    };
-    const onEscape = (event: globalThis.KeyboardEvent) => {
-      const shouldIgnore = [event.key !== "Escape", event.defaultPrevented].some(Boolean);
-      if (shouldIgnore) return;
-      // Hover leaves focus untouched, including when dismissed from elsewhere.
-      const restoreFocus = Boolean(contentRef.current?.contains(document.activeElement));
-      close(restoreFocus);
-    };
-    document.addEventListener("pointerdown", onOutsidePointer);
-    document.addEventListener("keydown", onEscape);
-    return () => {
-      document.removeEventListener("pointerdown", onOutsidePointer);
-      document.removeEventListener("keydown", onEscape);
-    };
-  }, [effectiveOpen, contains, close]);
+  useDocumentDismissal(effectiveOpen, contains, close, contentRef);
+
   // Disabling the popup cancels dismissal and keyboard focus-entry work.
   useEffect(() => {
     if (!enabled) cancelDismissal();
   }, [enabled, cancelDismissal]);
-  useEffect(() => () => cancelDismissal(), [cancelDismissal]);
 
-  return { open: effectiveOpen, triggerRef, contentRef, activate, close,
-    interactionProps: { onPointerEnter, onPointerLeave, onFocus: cancelDismissal, onBlur, onKeyDown } };
+  useEffect(() => cancelDismissal, [cancelDismissal]);
+
+  return {
+    open: effectiveOpen,
+    triggerRef,
+    contentRef,
+    activate,
+    close,
+    interactionProps: {
+      onPointerEnter,
+      onPointerLeave,
+      onFocus: cancelDismissal,
+      onBlur,
+      onKeyDown,
+    },
+  };
 }
