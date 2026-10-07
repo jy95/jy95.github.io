@@ -4,9 +4,11 @@ import {
 } from "node:fs";
 
 import type {
+    AmbiguousCandidateGroup,
     CompanyDuplicateAnalysisReport,
-    CompanyRecord,
     CompanyGroup,
+    CompanyRecord,
+    SimilarityCandidate,
 } from "./types";
 
 const OUTPUT_PATH =
@@ -29,219 +31,129 @@ function formatInlineCode(value: string): string {
     const name = singleLine(value);
     const longestRun = Math.max(
         0,
-        ...[...name.matchAll(/`+/g)].map(
-            match => match[0].length
-        )
+        ...[...name.matchAll(/`+/g)].map(match => match[0].length)
     );
     const delimiter = "`".repeat(longestRun + 1);
-    const padding = name.startsWith("`") || name.endsWith("`")
-        ? " "
-        : "";
+    const padding = name.startsWith("`") || name.endsWith("`") ? " " : "";
 
     return `${delimiter}${padding}${name}${padding}${delimiter}`;
 }
 
-function formatCompany(
-    company: CompanyRecord
-): string {
+const percent = (score: number): string => `${(score * 100).toFixed(1)}%`;
+
+function formatCompany(company: CompanyRecord): string {
     const total = company.totalGames;
+    const plural = total === 1 ? "" : "s";
 
     return (
         `ID ${company.id} — ${formatInlineCode(company.name)} — ` +
-        `${total} game${total === 1 ? "" : "s"} — ` +
+        `${total} game${plural} — ` +
         `${company.developerGames} developer — ` +
         `${company.publisherGames} publisher`
     );
 }
 
-function formatGroup(
-    group: CompanyGroup
-): string {
-    return group.companies
-        .map(company => `- ${formatCompany(company)}`)
-        .join("\n");
+function formatGroup(group: CompanyGroup): string {
+    return group.companies.map(company => `- ${formatCompany(company)}`).join("\n");
 }
 
-function appendDuplicateSection<T extends { companies: CompanyRecord[] }>(
-    lines: string[],
+/** A titled section: one block of lines per item, or "None." when empty. */
+function section<T>(
     title: string,
-    groups: T[],
-    formatHeading: (group: T) => string
-): void {
-    lines.push(title);
-    lines.push("");
+    items: readonly T[],
+    renderItem: (item: T, position: number) => string[]
+): string[] {
+    if (items.length === 0) return [title, "", "None.", ""];
 
-    if (!groups.length) {
-        lines.push("None.");
-        lines.push("");
-        return;
-    }
-
-    groups.forEach((group, index) => {
-        lines.push(`### ${index + 1}. ${formatHeading(group)}`);
-        lines.push("");
-
-        for (const company of group.companies) {
-            lines.push(`- ${formatCompany(company)}`);
-        }
-
-        lines.push("");
-    });
+    return [title, "", ...items.flatMap((item, index) => renderItem(item, index + 1))];
 }
 
-export function formatMarkdown(
-    report: CompanyDuplicateAnalysisReport
-): string {
-    const lines: string[] = [];
+const duplicateItem =
+    <T extends { companies: CompanyRecord[] }>(heading: (group: T) => string) =>
+    (group: T, position: number): string[] => [
+        `### ${position}. ${heading(group)}`,
+        "",
+        ...group.companies.map(company => `- ${formatCompany(company)}`),
+        "",
+    ];
 
-    lines.push("# Company Duplicate Analysis");
-    lines.push("");
-    lines.push(
-        `_Generated: ${report.generatedAt}_`
-    );
-    lines.push("");
-    lines.push(
-        "Read-only analysis. No database changes were made."
-    );
-    lines.push("");
+const aliasItem = (candidate: SimilarityCandidate, position: number): string[] => [
+    `### ${position}. ${percent(candidate.score)}`,
+    "",
+    "**Left:**",
+    formatGroup(candidate.left),
+    "",
+    "**Right:**",
+    formatGroup(candidate.right),
+    "",
+    `**Signals:** ${candidate.signals.join(", ")}`,
+    "",
+];
 
-    lines.push("## Summary");
-    lines.push("");
-    lines.push("| Category | Count |");
-    lines.push("|---|---:|");
-    lines.push(
-        `| Exact duplicates | ${report.summary.exactDuplicateGroups} |`
-    );
-    lines.push(
-        `| Normalized duplicates | ${report.summary.normalizedDuplicateGroups} |`
-    );
-    lines.push(
-        `| Alias / name-variant candidates | ${report.summary.aliasCandidates} |`
-    );
-    lines.push(
-        `| Ambiguous candidate groups | ${report.summary.ambiguousGroups} |`
-    );
-    lines.push("");
+const ambiguousItem = (group: AmbiguousCandidateGroup, position: number): string[] => [
+    `### ${position}. Review required`,
+    "",
+    ...group.companies.flatMap(company => [formatGroup(company), ""]),
+    "Similarity links:",
+    "",
+    ...group.pairs.map(pair =>
+        `- ${escapeMarkdownText(pair.left.normalizedName)} ↔ ` +
+        `${escapeMarkdownText(pair.right.normalizedName)} — ${percent(pair.score)}`
+    ),
+    "",
+];
 
-    appendDuplicateSection(
-        lines,
-        "## Exact duplicates",
-        report.exactDuplicates,
-        group => escapeMarkdownText(group.name)
-    );
+export function formatMarkdown(report: CompanyDuplicateAnalysisReport): string {
+    const { summary } = report;
+    const summaryRows: [string, number][] = [
+        ["Exact duplicates", summary.exactDuplicateGroups],
+        ["Normalized duplicates", summary.normalizedDuplicateGroups],
+        ["Alias / name-variant candidates", summary.aliasCandidates],
+        ["Ambiguous candidate groups", summary.ambiguousGroups],
+    ];
 
-    appendDuplicateSection(
-        lines,
-        "## Normalized duplicates",
-        report.normalizedDuplicates,
-        group => formatInlineCode(group.normalizedName)
-    );
-
-    lines.push(
-        "## Alias / name-variant candidates"
-    );
-    lines.push("");
-
-    if (!report.aliasCandidates.length) {
-        lines.push("None.");
-        lines.push("");
-    } else {
-        report.aliasCandidates.forEach(
-            (candidate, index) => {
-                lines.push(
-                    `### ${index + 1}. ` +
-                    `${(candidate.score * 100).toFixed(1)}%`
-                );
-                lines.push("");
-
-                lines.push("**Left:**");
-                lines.push(
-                    formatGroup(candidate.left)
-                );
-                lines.push("");
-
-                lines.push("**Right:**");
-                lines.push(
-                    formatGroup(candidate.right)
-                );
-                lines.push("");
-
-                lines.push(
-                    `**Signals:** ${candidate.signals.join(", ")}`
-                );
-                lines.push("");
-            }
-        );
-    }
-
-    lines.push(
-        "## Ambiguous candidate groups"
-    );
-    lines.push("");
-
-    if (!report.ambiguousCandidates.length) {
-        lines.push("None.");
-        lines.push("");
-    } else {
-        report.ambiguousCandidates.forEach(
-            (group, index) => {
-                lines.push(
-                    `### ${index + 1}. Review required`
-                );
-                lines.push("");
-
-                for (const company of group.companies) {
-                    lines.push(
-                        formatGroup(company)
-                    );
-                    lines.push("");
-                }
-
-                lines.push("Similarity links:");
-                lines.push("");
-
-                for (const pair of group.pairs) {
-                    lines.push(
-                        `- ${escapeMarkdownText(pair.left.normalizedName)} ↔ ` +
-                        `${escapeMarkdownText(pair.right.normalizedName)} — ` +
-                        `${(pair.score * 100).toFixed(1)}%`
-                    );
-                }
-
-                lines.push("");
-            }
-        );
-    }
+    const lines = [
+        "# Company Duplicate Analysis",
+        "",
+        `_Generated: ${report.generatedAt}_`,
+        "",
+        "Read-only analysis. No database changes were made.",
+        "",
+        "## Summary",
+        "",
+        "| Category | Count |",
+        "|---|---:|",
+        ...summaryRows.map(([label, count]) => `| ${label} | ${count} |`),
+        "",
+        ...section(
+            "## Exact duplicates",
+            report.exactDuplicates,
+            duplicateItem(group => escapeMarkdownText(group.name))
+        ),
+        ...section(
+            "## Normalized duplicates",
+            report.normalizedDuplicates,
+            duplicateItem(group => formatInlineCode(group.normalizedName))
+        ),
+        ...section("## Alias / name-variant candidates", report.aliasCandidates, aliasItem),
+        ...section("## Ambiguous candidate groups", report.ambiguousCandidates, ambiguousItem),
+    ];
 
     return `${lines.join("\n")}\n`;
 }
 
-export function writeReport(
-    report: CompanyDuplicateAnalysisReport
-): void {
-    const markdown =
-        formatMarkdown(report);
+export function writeReport(report: CompanyDuplicateAnalysisReport): void {
+    const markdown = formatMarkdown(report);
 
-    writeFileSync(
-        OUTPUT_PATH,
-        `${JSON.stringify(report, null, 2)}\n`,
-        "utf8"
-    );
+    writeFileSync(OUTPUT_PATH, `${JSON.stringify(report, null, 2)}\n`, "utf8");
 
     console.log(markdown);
 
-    const summaryPath =
-        process.env.GITHUB_STEP_SUMMARY;
+    const summaryPath = process.env.GITHUB_STEP_SUMMARY;
 
     if (summaryPath) {
-        appendFileSync(
-            summaryPath,
-            markdown,
-            "utf8"
-        );
+        appendFileSync(summaryPath, markdown, "utf8");
     }
 
-    console.log(
-        `JSON report written to ${OUTPUT_PATH}`
-    );
+    console.log(`JSON report written to ${OUTPUT_PATH}`);
 }
