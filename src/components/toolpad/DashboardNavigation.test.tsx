@@ -26,10 +26,12 @@ describe('DashboardNavigation', () => {
 
   it('preserves entry state when top-level entries reorder', () => {
     const navigation = NavigationMenu();
+    const rankings = navigation.find(item => item.kind === 'group' && item.id === 'opinions');
+    if (!rankings) throw new Error('Expected rankings group');
     const { rerender } = render(<AppContext.Provider value={{ navigation, drawerOpen: true }}><DashboardNavigation /></AppContext.Provider>);
-    fireEvent.click(screen.getByText('sections.opinions'));
+    fireEvent.click(screen.getByText(rankings.titleKey));
     rerender(<AppContext.Provider value={{ navigation: [...navigation].reverse(), drawerOpen: true }}><DashboardNavigation /></AppContext.Provider>);
-    expect(screen.getByText('sections.opinions')).toHaveAttribute('data-open', 'true');
+    expect(screen.getByText(rankings.titleKey)).toHaveAttribute('data-open', 'true');
     expect(screen.getByText('sections.browse')).toHaveAttribute('data-open', 'false');
   });
 });

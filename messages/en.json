@@ -59,8 +59,8 @@
                 "browse": "Browse",
                 "opinions": "Opinions",
                 "comingUp": "Coming up",
-                "more": "More",
-                "saved": "Saved"
+                "more": "Resources",
+                "saved": "My space"
             },
             "tierChildren": {
                 "games": "Published games",
