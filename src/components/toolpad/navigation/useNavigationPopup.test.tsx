@@ -2,18 +2,68 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import useNavigationPopup from './useNavigationPopup';
 
-function Fixture({ enabled }: { enabled: boolean }) {
+function Fixture({ enabled, preventEscape = false }: { enabled: boolean; preventEscape?: boolean }) {
   const popup = useNavigationPopup(enabled);
   return <>
     <button ref={popup.triggerRef} {...popup.interactionProps}
       aria-expanded={popup.open} onClick={() => popup.activate(true)}>Browse</button>
-    <nav ref={popup.contentRef} {...popup.interactionProps}><a href="/games">Games</a></nav>
+    <nav ref={popup.contentRef} {...popup.interactionProps}>
+      <a href="/games" onKeyDown={event => {
+        if (preventEscape && event.key === 'Escape') event.preventDefault();
+      }}>Games</a>
+    </nav>
   </>;
 }
 
 describe('useNavigationPopup lifecycle', () => {
   beforeEach(() => { vi.useFakeTimers(); });
   afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); });
+
+  it('honors prevented Escape from content and stops handled Escape propagation', () => {
+    const onDocumentKeyDown = vi.fn();
+    document.addEventListener('keydown', onDocumentKeyDown);
+    const { rerender } = render(<Fixture enabled preventEscape />);
+    const button = screen.getByRole('button');
+    const link = screen.getByRole('link');
+    fireEvent.click(button);
+    act(() => { vi.advanceTimersByTime(0); });
+    expect(link).toHaveFocus();
+    fireEvent.keyDown(link, { key: 'Escape' });
+    expect(button).toHaveAttribute('aria-expanded', 'true');
+    expect(link).toHaveFocus();
+    expect(onDocumentKeyDown).toHaveBeenCalledTimes(1);
+    onDocumentKeyDown.mockClear();
+    rerender(<Fixture enabled />);
+    fireEvent.keyDown(link, { key: 'Enter' });
+    expect(button).toHaveAttribute('aria-expanded', 'true');
+    onDocumentKeyDown.mockClear();
+    fireEvent.keyDown(link, { key: 'Escape' });
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+    expect(button).toHaveFocus();
+    expect(onDocumentKeyDown).not.toHaveBeenCalled();
+    document.removeEventListener('keydown', onDocumentKeyDown);
+  });
+
+  it('keeps internal focus and pointer activation inside the disclosure', () => {
+    render(<Fixture enabled />);
+    const button = screen.getByRole('button');
+    const link = screen.getByRole('link');
+    fireEvent.click(button);
+    act(() => { vi.advanceTimersByTime(0); });
+    const schedule = vi.spyOn(globalThis, 'setTimeout');
+    fireEvent.blur(link, { relatedTarget: button });
+    expect(schedule).not.toHaveBeenCalled();
+    fireEvent.pointerDown(link);
+    fireEvent.pointerDown(button);
+    expect(button).toHaveAttribute('aria-expanded', 'true');
+    fireEvent.blur(link, { relatedTarget: document.body });
+    act(() => { vi.advanceTimersByTime(150); });
+    expect(button).toHaveAttribute('aria-expanded', 'true');
+    act(() => { button.focus(); });
+    fireEvent.blur(button, { relatedTarget: document.body });
+    act(() => { button.blur(); vi.advanceTimersByTime(150); });
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+  });
 
   it('ignores activation and blur while disabled', () => {
     render(<Fixture enabled={false} />);

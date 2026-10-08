@@ -24,10 +24,6 @@ export function focusFirstInteractiveElement(content: HTMLElement | null) {
   content?.querySelector<HTMLElement>(NAVIGATION_POPUP_INTERACTIVE_SELECTOR)?.focus();
 }
 
-export function shouldDismiss(pointerInside: boolean, activeElementIsInside: boolean) {
-  return !pointerInside && !activeElementIsInside;
-}
-
-export function shouldIgnoreEscape(event: KeyboardEvent) {
+export function shouldIgnoreEscape(event: Pick<KeyboardEvent, "key" | "defaultPrevented">) {
   return event.key !== "Escape" || event.defaultPrevented;
 }

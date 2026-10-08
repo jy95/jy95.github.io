@@ -54,7 +54,7 @@ export default function useNavigationGroup({
     if (isChildActive) {
       setOpen(true);
     }
-  }, [isChildActive, activePath]);
+  }, [isChildActive]);
 
   return {
     isMini,

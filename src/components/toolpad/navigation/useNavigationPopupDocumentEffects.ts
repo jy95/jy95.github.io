@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import type { RefObject } from "react";
 
+import { shouldIgnoreEscape } from "./navigationPopupUtils";
+
 interface Params {
   open: boolean;
   contains: (target: EventTarget | null) => boolean;
@@ -22,7 +24,7 @@ export function useNavigationPopupDocumentEffects({
     };
 
     const onEscape = (event: globalThis.KeyboardEvent) => {
-      if (event.key !== "Escape" || event.defaultPrevented) return;
+      if (shouldIgnoreEscape(event)) return;
 
       const restoreFocus = Boolean(
         contentRef.current?.contains(document.activeElement),
