@@ -65,10 +65,8 @@ function NavigationGroupNode({
   ) : null;
 
   return (
-    <NavigationGroupItem
-      item={item}
-      group={group}
-      children={childList}
-    />
+    <NavigationGroupItem item={item} group={group}>
+      {childList}
+    </NavigationGroupItem>
   );
 }

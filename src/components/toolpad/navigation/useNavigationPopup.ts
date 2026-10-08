@@ -10,18 +10,12 @@ export default function useNavigationPopup(enabled: boolean) {
 
   const triggerRef = useRef<HTMLButtonElement>(null);
   const contentRef = useRef<HTMLElement>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const pointerInsideRef = useRef(false);
-  const suppressedRef = useRef(false);
 
   const handlers = useNavigationPopupHandlers({
     enabled,
     open: effectiveOpen,
     triggerRef,
     contentRef,
-    timerRef,
-    pointerInsideRef,
-    suppressedRef,
     setOpen,
   });
 
@@ -33,16 +27,8 @@ export default function useNavigationPopup(enabled: boolean) {
   });
 
   useEffect(() => {
-    if (!enabled) {
-      handlers.cancelDismissal();
-      setOpen(false);
-    }
-  }, [enabled, handlers.cancelDismissal]);
-
-  useEffect(
-    () => () => handlers.cancelDismissal(),
-    [handlers.cancelDismissal],
-  );
+    if (!enabled) setOpen(false);
+  }, [enabled]);
 
   return {
     open: effectiveOpen,

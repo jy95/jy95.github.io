@@ -52,7 +52,7 @@ describe('NavigationGroup', () => {
         expect(screen.getByRole('link', { name: 'dashboard.menuEntries.tierChildren.games' })).toBe(games);
     });
 
-    it('preserves manual collapse until the active destination changes', () => {
+    it('preserves manual collapse between descendants and reopens on re-entry', () => {
         pathname = '/tier/games';
         const item = rankingsGroup();
         const { rerender } = render(<NavigationGroup item={item} />);
@@ -63,6 +63,15 @@ describe('NavigationGroup', () => {
         expect(document.getElementById(childrenId ?? '')).toBeInTheDocument();
         rerender(<NavigationGroup item={item} />);
         expect(tier).toHaveAttribute('aria-expanded', 'false');
+        pathname = '/tier/backlog';
+        rerender(<NavigationGroup item={item} />);
+        expect(tier).toHaveAttribute('aria-expanded', 'false');
+        expect(tier).toHaveClass('Mui-selected');
+        expect(screen.getByRole('link', { name: 'dashboard.menuEntries.tierChildren.backlog', hidden: true })).toHaveAttribute('aria-current', 'page');
+        pathname = '/unrelated';
+        rerender(<NavigationGroup item={item} />);
+        expect(tier).toHaveAttribute('aria-expanded', 'false');
+        expect(tier).not.toHaveClass('Mui-selected');
         pathname = '/tier/backlog';
         rerender(<NavigationGroup item={item} />);
         expect(tier).toHaveAttribute('aria-expanded', 'true');

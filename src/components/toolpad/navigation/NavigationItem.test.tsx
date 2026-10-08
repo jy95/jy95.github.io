@@ -291,6 +291,21 @@ describe('NavigationItem mini popover', () => {
         expect(button).toHaveAttribute('aria-expanded', 'false');
     });
 
+    it('toggles on pointer activation and resumes hover after leaving the trigger', () => {
+        vi.useFakeTimers();
+        const { button } = fixture();
+        fireEvent.click(button, { detail: 1 });
+        expect(button).toHaveAttribute('aria-expanded', 'true');
+        fireEvent.click(button, { detail: 1 });
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        pointerEnter(button);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        fireEvent.pointerLeave(button);
+        pointerEnter(button);
+        act(() => { vi.advanceTimersByTime(150); });
+        expect(button).toHaveAttribute('aria-expanded', 'true');
+    });
+
     it('dismisses on an outside pointer activation', () => {
         const { button } = fixture();
         fireEvent.click(button, { detail: 1 });
