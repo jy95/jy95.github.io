@@ -39,7 +39,7 @@ function NavigationGroupNode({
   parentPath,
   selectedPath,
   mini,
-}: Required<Omit<Props, "mini">> & { mini: boolean }) {
+}: Omit<Props, "parentPath" | "mini"> & { parentPath: string; mini: boolean }) {
   const group = useNavigationGroup({
     item,
     parentPath,
