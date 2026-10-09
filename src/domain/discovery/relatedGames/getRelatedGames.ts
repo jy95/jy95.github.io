@@ -4,74 +4,76 @@ import { titleBigrams } from "./titleSimilarity";
 import { buildCandidateIndex } from "./candidateIndex";  
 import { DEFAULT_WEIGHTS } from "./weights";  
 import { compareRelatedGames } from "./compareRelatedGames";
-  
+
 import type { CardGame } from "@/domain/games";  
 import type { CandidateIndex } from "./candidateIndex";  
 import type { RelatedGameResult, RelatedGamesOptions, RelatedGamesWeights } from "./types";  
 import type { ScoringContext } from "./scorers/types";  
-  
+
+// Helper: Merge weights with defaults
+function mergeWeights(options: RelatedGamesOptions): RelatedGamesWeights {
+  return {
+    ...DEFAULT_WEIGHTS,
+    ...options.weights,
+    tier: { ...DEFAULT_WEIGHTS.tier, ...options.weights?.tier },
+  };
+}
+
+// Helper: Build scoring context
 function buildScoringContext(  
-    target: CardGame,  
-    options: RelatedGamesOptions,  
-    candidateBigrams: ReadonlyMap<string, string[]>  
+  target: CardGame,  
+  options: RelatedGamesOptions,  
+  candidateBigrams: ReadonlyMap<string, string[]>  
 ): ScoringContext {  
-    const { seriesMap = {}, tierMap = {} } = options;  
-    const weights: RelatedGamesWeights = {  
-        ...DEFAULT_WEIGHTS,  
-        ...options.weights,  
-        tier: { ...DEFAULT_WEIGHTS.tier, ...options.weights?.tier },  
-    };  
+  const { seriesMap = {}, tierMap = {} } = options;
   
-    return {  
-        target,  
-        targetSeries: seriesMap[target.id],  
-        targetGenres: new Set(target.genres ?? []),  
-        targetDurationSeconds: target.duration ? timeToSeconds(target.duration) : undefined,  
-        targetTitleBigrams: titleBigrams(target.title),  
-        seriesMap,  
-        tierMap,  
-        weights,  
-        candidateBigrams,  
-    };  
+  return {  
+    target,  
+    targetSeries: seriesMap[target.id],  
+    targetGenres: new Set(target.genres ?? []),  
+    targetDurationSeconds: target.duration ? timeToSeconds(target.duration) : undefined,  
+    targetTitleBigrams: titleBigrams(target.title),  
+    seriesMap,  
+    tierMap,  
+    weights: mergeWeights(options),
+    candidateBigrams,  
+  };  
 }  
-  
+
+// Helper: Score and deduplicate candidates
 function rankCandidates(  
-    target: CardGame,  
-    candidates: CardGame[],  
-    context: ScoringContext,  
-    limit: number  
+  target: CardGame,  
+  candidates: CardGame[],  
+  context: ScoringContext,  
+  limit: number  
 ): RelatedGameResult[] {  
-    const normalizedLimit = Number.isNaN(limit) ? 0 : Math.max(0, Math.trunc(limit));
-    const byId = new Map<string, RelatedGameResult>();
-    for (const candidate of candidates) {  
-        if (candidate.id === target.id) continue;  
-        const result = scoreCandidate(candidate, context);  
-        if (!result) continue;
-        const existing = byId.get(candidate.id);
-        if (!existing || compareRelatedGames(result, existing) < 0) {
-            byId.set(candidate.id, result);
+  const results = candidates
+    .filter(c => c.id !== target.id)
+    .reduce((map, candidate) => {
+      const score = scoreCandidate(candidate, context);
+      if (score) {
+        const existing = map.get(candidate.id);
+        if (!existing || compareRelatedGames(score, existing) < 0) {
+          map.set(candidate.id, score);
         }
-    }  
-    return [...byId.values()].sort(compareRelatedGames).slice(0, normalizedLimit);
+      }
+      return map;
+    }, new Map<string, RelatedGameResult>());
+
+  const normalizedLimit = Math.max(0, Math.trunc(limit) || 0);
+  return [...results.values()].sort(compareRelatedGames).slice(0, normalizedLimit);
 }  
-  
-/**  
- * Returns deterministic related-game results.  
- *  
- * `candidates` accepts either a plain array — bigrams are then computed  
- * once, internally, for this single call — or a pre-built `CandidateIndex`  
- * (see candidateIndex.ts), whose bigrams are computed once up front and  
- * reused. Callers scoring many targets against the same candidate pool  
- * (e.g. the build-time extractor) should always pass a pre-built index.  
- *  
- * Scores are internal ranking data. Callers must not expose them to users.  
- */  
+
 export function getRelatedGames(  
-    target: CardGame,  
-    candidates: CardGame[] | CandidateIndex,  
-    options: RelatedGamesOptions = {}  
+  target: CardGame,  
+  candidates: CardGame[] | CandidateIndex,  
+  options: RelatedGamesOptions = {}  
 ): RelatedGameResult[] {  
-    const index = Array.isArray(candidates) ? buildCandidateIndex(candidates) : candidates;  
-    const context = buildScoringContext(target, options, index.bigramsById);  
-    return rankCandidates(target, index.candidates, context, options.limit ?? 3);  
+  const index = Array.isArray(candidates) ? buildCandidateIndex(candidates) : candidates;  
+  return rankCandidates(
+    target,
+    index.candidates,
+    buildScoringContext(target, options, index.bigramsById),
+    options.limit ?? 3
+  );
 }
