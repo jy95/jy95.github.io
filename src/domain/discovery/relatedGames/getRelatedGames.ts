@@ -10,23 +10,18 @@ import type { CandidateIndex } from "./candidateIndex";
 import type { RelatedGameResult, RelatedGamesOptions, RelatedGamesWeights } from "./types";  
 import type { ScoringContext } from "./scorers/types";  
 
-// Helper: Merge weights with defaults
-function mergeWeights(options: RelatedGamesOptions): RelatedGamesWeights {
-  return {
-    ...DEFAULT_WEIGHTS,
-    ...options.weights,
-    tier: { ...DEFAULT_WEIGHTS.tier, ...options.weights?.tier },
-  };
-}
-
-// Helper: Build scoring context
 function buildScoringContext(  
   target: CardGame,  
   options: RelatedGamesOptions,  
   candidateBigrams: ReadonlyMap<string, string[]>  
 ): ScoringContext {  
   const { seriesMap = {}, tierMap = {} } = options;
-  
+  const weights: RelatedGamesWeights = {  
+    ...DEFAULT_WEIGHTS,  
+    ...options.weights,  
+    tier: { ...DEFAULT_WEIGHTS.tier, ...options.weights?.tier },  
+  };  
+
   return {  
     target,  
     targetSeries: seriesMap[target.id],  
@@ -35,33 +30,36 @@ function buildScoringContext(
     targetTitleBigrams: titleBigrams(target.title),  
     seriesMap,  
     tierMap,  
-    weights: mergeWeights(options),
+    weights,  
     candidateBigrams,  
   };  
 }  
 
-// Helper: Score and deduplicate candidates
+function keepBestScorePerGame(scores: RelatedGameResult[]): RelatedGameResult[] {
+  const byId = new Map<string, RelatedGameResult>();
+  for (const score of scores) {
+    const existing = byId.get(score.id);
+    if (!existing || compareRelatedGames(score, existing) < 0) {
+      byId.set(score.id, score);
+    }
+  }
+  return [...byId.values()];
+}
+
 function rankCandidates(  
   target: CardGame,  
   candidates: CardGame[],  
   context: ScoringContext,  
   limit: number  
 ): RelatedGameResult[] {  
-  const results = candidates
+  const scores = candidates
     .filter(c => c.id !== target.id)
-    .reduce((map, candidate) => {
-      const score = scoreCandidate(candidate, context);
-      if (score) {
-        const existing = map.get(candidate.id);
-        if (!existing || compareRelatedGames(score, existing) < 0) {
-          map.set(candidate.id, score);
-        }
-      }
-      return map;
-    }, new Map<string, RelatedGameResult>());
+    .map(c => scoreCandidate(c, context))
+    .filter((s): s is RelatedGameResult => s !== null);
 
-  const normalizedLimit = Math.max(0, Math.trunc(limit) || 0);
-  return [...results.values()].sort(compareRelatedGames).slice(0, normalizedLimit);
+  return keepBestScorePerGame(scores)
+    .sort(compareRelatedGames)
+    .slice(0, Math.max(0, Math.trunc(limit) || 0));
 }  
 
 export function getRelatedGames(  
@@ -70,10 +68,6 @@ export function getRelatedGames(
   options: RelatedGamesOptions = {}  
 ): RelatedGameResult[] {  
   const index = Array.isArray(candidates) ? buildCandidateIndex(candidates) : candidates;  
-  return rankCandidates(
-    target,
-    index.candidates,
-    buildScoringContext(target, options, index.bigramsById),
-    options.limit ?? 3
-  );
+  const context = buildScoringContext(target, options, index.bigramsById);
+  return rankCandidates(target, index.candidates, context, options.limit ?? 3);  
 }
