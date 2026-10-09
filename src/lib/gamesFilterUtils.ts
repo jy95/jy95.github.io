@@ -1,81 +1,56 @@
-import { GAME_SORT_OPTIONS } from '@/types/gamesFilters';
-import type { GameFilters, GameSort } from '@/types/gamesFilters';
+// Types
+export interface GameFilters {
+  title?: string;
+  platform?: number;
+  genres?: number[];
+  sort?: string;
+  releaseDateFrom?: number;
+  releaseDateTo?: number;
+}
 
-/** Query-string keys owned by the game filters; any other key belongs to the page. */
-export const GAME_FILTER_KEYS = ['title', 'platform', 'genres', 'sort', 'releaseDateFrom', 'releaseDateTo'] as const satisfies readonly (keyof GameFilters)[];
+export type SearchParams = Record<string, string>;
 
-// Earliest release in api/games/games.json (1996-10-04). A catalogue regression
-// test keeps this small client-side bound in sync without bundling the catalogue.
+// Constants
+export const GAME_FILTER_KEYS: (keyof GameFilters)[] = ['title', 'platform', 'genres', 'sort', 'releaseDateFrom', 'releaseDateTo'];
+export const GAME_SORT_OPTIONS = ['title', 'rating', 'releaseDate'] as const;
 export const MIN_RELEASE_YEAR = 1996;
 
-export const getMaxReleaseYear = () => new Date().getFullYear();
+// Utilities
+const isValidId = (v: any): v is number => Number.isInteger(v) && v >= 0;
+const parseId = (s: string): number | null => {
+  const n = +s;
+  return Number.isInteger(n) && n >= 0 ? n : null;
+};
+const releaseYear = (d: string): number | null => {
+  return /^\d{4}-\d{2}-\d{2}$/.test(d) ? new Date(d).getUTCFullYear() : null;
+};
 
-export function getReleaseYearRange(filters: GameFilters): [number, number] {
-    return [filters.releaseDateFrom ?? MIN_RELEASE_YEAR, filters.releaseDateTo ?? getMaxReleaseYear()];
-}
+// Normalization rules
+const normalize = new Map<keyof GameFilters, (v: any, max: number) => any>([
+  ['title', v => v?.trim() || null],
+  ['platform', v => isValidId(v) ? v : null],
+  ['genres', v => v?.length ? [...new Set(v.filter(isValidId))].sort((a, b) => a - b) : null],
+  ['sort', v => GAME_SORT_OPTIONS.includes(v) ? v : null],
+  ['releaseDateFrom', (v, max) => (y => y && y > MIN_RELEASE_YEAR ? y : null)(releaseYear(v))],
+  ['releaseDateTo', (v, max) => (y => y && y < max ? y : null)(releaseYear(v))],
+]);
 
-/** The catalogue stores ISO calendar dates. Reject invalid/overflow dates. */
-export function releaseYear(date: string | undefined): number | undefined {
-    if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return undefined;
-    const parsed = new Date(date);
-    if (!Number.isFinite(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== date) return undefined;
-    return parsed.getUTCFullYear();
-}
+// Core functions
+export const normalizeGameFilters = (filters: Partial<GameFilters>): GameFilters => {
+  const max = new Date().getFullYear();
+  return Object.fromEntries(
+    GAME_FILTER_KEYS.map(k => [k, normalize.get(k)?.(filters[k], max)]).filter(([, v]) => v !== null)
+  ) as GameFilters;
+};
 
-const isId = (value: unknown): value is number =>
-    typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
+export const filtersToSearchParams = (filters: GameFilters): SearchParams =>
+  Object.fromEntries(
+    Object.entries(filters).map(([k, v]) => [k, k === 'genres' ? v.join(',') : String(v)])
+  ) as SearchParams;
 
-const isSort = (value: unknown): value is GameSort =>
-    GAME_SORT_OPTIONS.some(sort => sort === value);
-
-/** Drops invalid ids, removes duplicates and sorts ascending, without mutating the input. */
-export const canonicalizeGenres = (genres: readonly number[]): number[] =>
-    [...new Set(genres.filter(isId))].sort((a, b) => a - b);
-
-/**
- * Canonical, sparse filters: every empty or invalid field is left out.
- * No `sort` means "keep the API's natural order". The title is kept as typed (spaces included).
- */
-export function normalizeGameFilters({ title, platform, genres, sort, releaseDateFrom, releaseDateTo }: GameFilters): GameFilters {
-    const cleanGenres = canonicalizeGenres(genres ?? []);
-    const maxYear = getMaxReleaseYear();
-    const clampYear = (value: unknown, fallback: number) =>
-        isId(value) && value > 0 ? Math.max(MIN_RELEASE_YEAR, Math.min(maxYear, value)) : fallback;
-    const from = clampYear(releaseDateFrom, MIN_RELEASE_YEAR);
-    const to = clampYear(releaseDateTo, maxYear);
-    const [start, end] = [Math.min(from, to), Math.max(from, to)];
-    return {
-        ...(title ? { title } : {}),
-        ...(isId(platform) ? { platform } : {}),
-        ...(cleanGenres.length ? { genres: cleanGenres } : {}),
-        ...(isSort(sort) ? { sort } : {}),
-        ...(start > MIN_RELEASE_YEAR ? { releaseDateFrom: start } : {}),
-        ...(end < maxYear ? { releaseDateTo: end } : {}),
-    };
-}
-
-/** Scalars become one param each; genres become one repeated `genres` param per id. */
-export function filtersToSearchParams(filters: GameFilters): URLSearchParams {
-    const { genres = [], ...scalars } = normalizeGameFilters(filters);
-    const params = new URLSearchParams(
-        Object.entries(scalars).map(([key, value]) => [key, String(value)])
-    );
-    genres.forEach(genre => {
-        params.append('genres', String(genre));
-    });
-    return params;
-}
-
-/** Only plain non-negative integers are accepted; anything else becomes NaN and is dropped by normalize. */
-const parseId = (value: string | null) => (/^\d+$/.test(value ?? '') ? Number(value) : NaN);
-
-/** Unknown keys and invalid values are ignored; for duplicated scalar keys the first value wins. */
-export const searchParamsToFilters = (params: URLSearchParams): GameFilters =>
-    normalizeGameFilters({
-        title: params.get('title') ?? undefined,
-        platform: parseId(params.get('platform')),
-        genres: params.getAll('genres').map(parseId),
-        sort: (params.get('sort') ?? undefined) as GameSort | undefined,
-        releaseDateFrom: parseId(params.get('releaseDateFrom')),
-        releaseDateTo: parseId(params.get('releaseDateTo')),
-    });
+export const searchParamsToFilters = (params: SearchParams): GameFilters =>
+  Object.fromEntries(
+    Object.entries(params)
+      .map(([k, v]) => [k, k === 'genres' ? v.split(',').map(parseId).filter(Boolean) : parseId(v)])
+      .filter(([k, v]) => k === 'genres' ? v.length : v !== null)
+  ) as GameFilters;
