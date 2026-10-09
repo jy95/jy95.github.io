@@ -9,80 +9,71 @@ const SIGNAL_RULES: ReadonlyArray<readonly [string, (metrics: SimilarityMetrics)
     ["partial token overlap", ({ containment }) => containment >= 0.5 && containment < 1],
 ];
 
-function commonPrefixLength(left: string, right: string, limit = Infinity): number {
-    const max = Math.min(left.length, right.length, limit);
-    let length = 0;
-    while (length < max && left[length] === right[length]) {
-        length += 1;
+function commonPrefixLength(a: string, b: string, limit = Infinity): number {
+    const max = Math.min(a.length, b.length, limit);
+    for (let i = 0; i < max; i++) {
+        if (a[i] !== b[i]) return i;
     }
-    return length;
+    return max;
 }
 
-/** First unmatched occurrence of `char` in text[start, end), or -1. */
-function findUnmatched(text: string, char: string, start: number, end: number, used: boolean[]): number {
-    for (let index = start; index < end; index += 1) {
-        if (!used[index] && text.charAt(index) === char) return index;
-    }
-    return -1;
-}
+function jaroSimilarity(a: string, b: string): number {
+    const maxDist = Math.max(Math.floor(Math.max(a.length, b.length) / 2) - 1, 0);
+    const bMatches = new Array(b.length).fill(false);
+    const matches = [];
 
-function jaroSimilarity(left: string, right: string): number {
-    const maxDistance = Math.max(Math.floor(Math.max(left.length, right.length) / 2) - 1, 0);
-    const rightUsed = new Array<boolean>(right.length).fill(false);
-    const leftMatched: string[] = [];
+    for (let i = 0; i < a.length; i++) {
+        const start = Math.max(0, i - maxDist);
+        const end = Math.min(i + maxDist + 1, b.length);
 
-    for (let i = 0; i < left.length; i += 1) {
-        const char = left.charAt(i);
-        const start = Math.max(0, i - maxDistance);
-        const end = Math.min(i + maxDistance + 1, right.length);
-        const match = findUnmatched(right, char, start, end, rightUsed);
-        if (match === -1) continue;
-
-        rightUsed[match] = true;
-        leftMatched.push(char);
+        for (let j = start; j < end; j++) {
+            if (!bMatches[j] && a[i] === b[j]) {
+                bMatches[j] = true;
+                matches.push({ a: i, b: j });
+                break;
+            }
+        }
     }
 
-    const matches = leftMatched.length;
-    if (matches === 0) return 0;
+    if (matches.length === 0) return 0;
 
-    const rightMatched = right.split("").filter((_, index) => rightUsed[index]);
-    const transpositions = leftMatched.filter((char, index) => char !== rightMatched[index]).length;
+    const transpositions = matches.filter(({ a: ai, b: bi }) => a[ai] !== b[bi]).length;
+    const matchRatio = matches.length / a.length + matches.length / b.length;
+    const transpositionRatio = (matches.length - transpositions / 2) / matches.length;
 
-    return (
-        matches / left.length +
-        matches / right.length +
-        (matches - transpositions / 2) / matches
-    ) / 3;
+    return (matchRatio + transpositionRatio) / 3;
 }
 
-export function jaroWinkler(left: string, right: string): number {
-    if (left === right) return 1;
+export function jaroWinkler(a: string, b: string): number {
+    if (a === b) return 1;
 
-    const jaro = jaroSimilarity(left, right);
-    const prefix = commonPrefixLength(left, right, 4);
+    const jaro = jaroSimilarity(a, b);
+    const prefix = commonPrefixLength(a, b, 4);
     return jaro + prefix * 0.1 * (1 - jaro);
 }
 
-function tokens(value: string): Set<string> {
-    return new Set(value.split(" ").filter(Boolean));
+function tokenSet(value: string): Set<string> {
+    return new Set(value.split(/\s+/).filter(Boolean));
 }
 
-/** Share of the smaller token set that also appears in the other one. */
-function tokenContainment(left: string, right: string): number {
-    const leftTokens = tokens(left);
-    const rightTokens = tokens(right);
-    const smallest = Math.min(leftTokens.size, rightTokens.size);
+function tokenContainment(a: string, b: string): number {
+    const aTokens = tokenSet(a);
+    const bTokens = tokenSet(b);
+    const smallest = Math.min(aTokens.size, bTokens.size);
+
     if (smallest === 0) return 0;
 
-    const shared = [...leftTokens].filter(token => rightTokens.has(token)).length;
+    let shared = 0;
+    for (const token of aTokens) {
+        if (bTokens.has(token)) shared++;
+    }
+
     return shared / smallest;
 }
 
-function prefixRatio(left: string, right: string): number {
-    const shortest = Math.min(left.length, right.length);
-    if (shortest === 0) return 0;
-
-    return commonPrefixLength(left, right) / shortest;
+function prefixRatio(a: string, b: string): number {
+    const shortest = Math.min(a.length, b.length);
+    return shortest === 0 ? 0 : commonPrefixLength(a, b) / shortest;
 }
 
 export function calculateSimilarity(leftName: string, rightName: string): {
@@ -96,16 +87,16 @@ export function calculateSimilarity(leftName: string, rightName: string): {
         return { score: 1, signals: ["normalized names are identical"] };
     }
 
-    const metrics: SimilarityMetrics = {
+    const metrics = {
         jaro: jaroWinkler(left, right),
         containment: tokenContainment(left, right),
         prefix: prefixRatio(left, right),
     };
 
-    return {
-        score: metrics.jaro * 0.65 + metrics.containment * 0.25 + metrics.prefix * 0.1,
-        signals: SIGNAL_RULES
-            .filter(([, applies]) => applies(metrics))
-            .map(([label]) => label),
-    };
+    const score = metrics.jaro * 0.65 + metrics.containment * 0.25 + metrics.prefix * 0.1;
+    const signals = SIGNAL_RULES
+        .filter(([, applies]) => applies(metrics))
+        .map(([label]) => label);
+
+    return { score, signals };
 }
