@@ -1,6 +1,6 @@
 import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { createClient } from "@/lib/supabase/client";
-import { api } from "./api"
+import { api } from "./api";
 
 const supabase = createClient();
 
@@ -9,45 +9,53 @@ const supabaseError = (message: string): FetchBaseQueryError => ({
   error: message,
 });
 
+/**
+ * Helper to standardize Supabase responses into RTK Query format.
+ * Reduces cyclomatic complexity by removing repeated error branching.
+ */
+async function handleRequest<T>(promise: Promise<{ data: T | null; error: any }>) {
+  const { data, error } = await promise;
+  return error ? { error: supabaseError(error.message) } : { data };
+}
+
 export const votesAPI = api.injectEndpoints({
   endpoints: (builder) => ({
     getGlobalStats: builder.query<Record<string, number>, void>({
-      queryFn: async () => {
-        const { data, error } = await supabase
-          .from('games_stats')
-          .select('game_slug, likes_count');
-        if (error) return { error: supabaseError(error.message) };
-
-        return { data: Object.fromEntries(data.map(row => [row.game_slug, row.likes_count])) };
+      async queryFn() {
+        const { data } = await handleRequest(
+          supabase.from('games_stats').select('game_slug, likes_count')
+        );
+        
+        const stats = Object.fromEntries(data?.map(row => [row.game_slug, row.likes_count]) ?? []);
+        return { data: stats };
       },
       providesTags: ['Stats'],
     }),
 
     getMyVotes: builder.query<string[], string | undefined>({
-      queryFn: async (userId) => {
+      async queryFn(userId) {
         if (!userId) return { data: [] };
 
-        const { data, error } = await supabase
-          .from('games_likes')
-          .select('game_slug')
-          .eq('user_id', userId);
-        if (error) return { error: supabaseError(error.message) };
+        const { data } = await handleRequest(
+          supabase.from('games_likes').select('game_slug').eq('user_id', userId)
+        );
 
-        return { data: data.map(vote => vote.game_slug) };
+        return { data: data?.map(vote => vote.game_slug) ?? [] };
       },
       providesTags: ['MyVotes'],
     }),
 
     toggleVote: builder.mutation<void, { slug: string; userId: string; hasVoted: boolean }>({
-      queryFn: async ({ slug, userId, hasVoted }) => {
-        const likes = supabase.from('games_likes');
+      async queryFn({ slug, userId, hasVoted }) {
         const row = { game_slug: slug, user_id: userId };
+        const operation = hasVoted 
+          ? supabase.from('games_likes').delete().match(row) 
+          : supabase.from('games_likes').insert(row);
 
-        const { error } = await (hasVoted ? likes.delete().match(row) : likes.insert(row));
-        return error ? { error: supabaseError(error.message) } : { data: undefined };
+        const { error } = await handleRequest(operation);
+        return error ? { error } : { data: undefined };
       },
 
-      // Optimistic update of both caches, rolled back if the write fails.
       async onQueryStarted({ slug, hasVoted, userId }, { dispatch, queryFulfilled }) {
         const delta = hasVoted ? -1 : 1;
 
@@ -56,10 +64,13 @@ export const votesAPI = api.injectEndpoints({
             draft[slug] = Math.max(0, (draft[slug] ?? 0) + delta);
           })
         );
+
         const patchUser = dispatch(
-          votesAPI.util.updateQueryData('getMyVotes', userId, (draft) =>
-            hasVoted ? draft.filter(votedSlug => votedSlug !== slug) : [...draft, slug]
-          )
+          votesAPI.util.updateQueryData('getMyVotes', userId, (draft) => {
+            return hasVoted 
+              ? draft.filter(s => s !== slug) 
+              : [...draft, slug];
+          })
         );
 
         try {
