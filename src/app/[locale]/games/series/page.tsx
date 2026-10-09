@@ -20,34 +20,47 @@ import type { SeriesSort } from "@/domain/series/types";
 
 import LoadingButton from "../_client/LoadingButton";
 
+const PAGE_SIZE = 12;
+
 export default function SeriesGallery() {
     const [filter, setFilter] = useState("");
     const [sort, setSort] = useState<SeriesSort>("nameAsc");
     const t = useTranslations("series");
     const common = useTranslations("common");
     const dispatch = useAppDispatch();
-    const { currentData, isFetching, isError, refetch, hasNextPage, fetchNextPage } = useGetSeriesInfiniteQuery({ filter, sort, pageSize: 12 });
+    const queryArgs = { filter, sort, pageSize: PAGE_SIZE };
+    const { currentData, isFetching, isError, refetch, hasNextPage, fetchNextPage } = useGetSeriesInfiniteQuery(queryArgs);
+    const showResults = !isError || Boolean(currentData);
+    const seriesItems = currentData?.pages.flatMap(page => page.items);
+
+    const changeFilter = (next: string) => {
+        dispatch(resetPages({ ...queryArgs, filter: next }));
+        setFilter(next);
+    };
+    const changeSort = (next: SeriesSort) => {
+        dispatch(resetPages({ ...queryArgs, sort: next }));
+        setSort(next);
+    };
+
     return <>
         <Box data-testid="series-toolbar" sx={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: { xs: 1, sm: 2 }, minWidth: 0 }}>
             <Box data-testid="series-search" sx={{ flex: { xs: "1 1 100%", md: "1 1 300px" }, maxWidth: { md: 560 }, minWidth: 0 }}>
-                <TitleFilter value={filter} label={t("filter.label")} placeholder={t("filter.placeholder")} onChange={next => {
-                    dispatch(resetPages({ filter: next, sort, pageSize: 12 })); setFilter(next);
-                }} />
+                <TitleFilter value={filter} label={t("filter.label")} placeholder={t("filter.placeholder")} onChange={changeFilter} />
             </Box>
             <Box data-testid="series-sort" sx={{ ml: "auto", flex: { xs: "1 1 160px", md: "0 0 280px" }, maxWidth: { xs: 240, md: 280 }, minWidth: 0 }}>
-                <SeriesSortSelect value={sort} onChange={next => {
-                    dispatch(resetPages({ filter, sort: next, pageSize: 12 })); setSort(next);
-                }} />
+                <SeriesSortSelect value={sort} onChange={changeSort} />
             </Box>
         </Box>
-        {isError && !currentData ? <QueryErrorState onRetry={refetch} /> : <>
+        {showResults && <>
             <Grid container spacing={1} rowSpacing={1}>
-                {currentData?.pages.flatMap(page => page.items).map(series => <Grid key={series.id} size={{ xs: 6, md: 4, lg: 2 }}><SeriesCard series={series} /></Grid>)}
+                {seriesItems?.map(series => <Grid key={series.id} size={{ xs: 6, md: 4, lg: 2 }}><SeriesCard series={series} /></Grid>)}
             </Grid>
             {currentData?.pages[0]?.total_items === 0 && <Typography>{t("empty")}</Typography>}
-            {isError && currentData && <QueryErrorState onRetry={refetch} />}
+        </>}
+        {isError && <QueryErrorState onRetry={refetch} />}
+        {showResults &&
             <Grid container sx={{ justifyContent: "center" }}><LoadingButton loading={isFetching} disabled={!hasNextPage}
                 onClick={() => { void fetchNextPage(); }} label={common("loadMore")} /></Grid>
-        </>}
+        }
     </>;
 }
