@@ -90,6 +90,8 @@ describe('SeriesGallery', () => {
         expect(screen.getByText('series.empty')).toBeInTheDocument();
         query.mockReturnValueOnce({ isError: true, refetch });
         view.rerender(<SeriesGallery />);
+        expect(screen.queryByRole('button', { name: 'common.loadMore' })).not.toBeInTheDocument();
+        expect(screen.getAllByRole('button', { name: 'common.errors.retry' })).toHaveLength(1);
         fireEvent.click(screen.getByText('common.errors.retry'));
         expect(refetch).toHaveBeenCalledOnce();
     });
@@ -168,6 +170,18 @@ describe('SeriesGallery', () => {
         expect(refetch).toHaveBeenCalledOnce();
         fireEvent.click(screen.getByRole('button', { name: 'common.loadMore' }));
         expect(fetchNextPage).toHaveBeenCalledOnce();
+    });
+    it('keeps the empty state and disabled pagination alongside a retryable error', () => {
+        query.mockReturnValue({
+            currentData: { pages: [{ items: [], total_items: 0 }] },
+            isError: true, hasNextPage: false, fetchNextPage, refetch,
+        });
+        render(<SeriesGallery />);
+        expect(screen.getByText('series.empty')).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: 'common.loadMore' })).toBeDisabled();
+        expect(screen.getAllByRole('button', { name: 'common.errors.retry' })).toHaveLength(1);
+        fireEvent.click(screen.getByRole('button', { name: 'common.errors.retry' }));
+        expect(refetch).toHaveBeenCalledOnce();
     });
     it('provides matching locale keys and plural counts', () => {
         expect(Object.keys(en.series)).toEqual(Object.keys(fr.series));
