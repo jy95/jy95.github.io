@@ -1,77 +1,134 @@
+
 import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import { createClient } from "@/lib/supabase/client";
-import { api } from "./api"
+import { createClient } from '@/lib/supabase/client';
+import { api } from './api';
 
 const supabase = createClient();
 
-const supabaseError = (message: string): FetchBaseQueryError => ({
+type Vote = {
+  slug: string;
+  userId: string;
+  hasVoted: boolean;
+};
+
+type UndoablePatch = { undo: () => void };
+
+const toApiError = (message: string): FetchBaseQueryError => ({
   status: 'CUSTOM_ERROR',
   error: message,
 });
 
+const apiError = (error: { message: string } | null) =>
+  error ? { error: toApiError(error.message) } : undefined;
+
+async function fetchGlobalStats() {
+  const { data, error } = await supabase
+    .from('games_stats')
+    .select('game_slug, likes_count');
+
+  const failure = apiError(error);
+  if (failure) return failure;
+
+  return {
+    data: Object.fromEntries(
+      data.map(({ game_slug, likes_count }) => [game_slug, likes_count]),
+    ),
+  };
+}
+
+async function fetchMyVotes(userId: string | undefined) {
+  if (!userId) return { data: [] as string[] };
+
+  const { data, error } = await supabase
+    .from('games_likes')
+    .select('game_slug')
+    .eq('user_id', userId);
+
+  const failure = apiError(error);
+  if (failure) return failure;
+
+  return { data: data.map(({ game_slug }) => game_slug) };
+}
+
+async function persistVote({ slug, userId, hasVoted }: Vote) {
+  const likes = supabase.from('games_likes');
+  const row = { game_slug: slug, user_id: userId };
+
+  const { error } = await (
+    hasVoted
+      ? likes.delete().match(row)
+      : likes.insert(row)
+  );
+
+  const failure = apiError(error);
+  return failure ?? { data: undefined };
+}
+
+async function rollbackOnFailure(
+  request: Promise<unknown>,
+  patches: UndoablePatch[],
+) {
+  try {
+    await request;
+  } catch {
+    patches.forEach(({ undo }) => undo());
+  }
+}
+
 export const votesAPI = api.injectEndpoints({
+  overrideExisting: false,
+
   endpoints: (builder) => ({
     getGlobalStats: builder.query<Record<string, number>, void>({
-      queryFn: async () => {
-        const { data, error } = await supabase
-          .from('games_stats')
-          .select('game_slug, likes_count');
-        if (error) return { error: supabaseError(error.message) };
-
-        return { data: Object.fromEntries(data.map(row => [row.game_slug, row.likes_count])) };
-      },
+      queryFn: fetchGlobalStats,
       providesTags: ['Stats'],
     }),
 
     getMyVotes: builder.query<string[], string | undefined>({
-      queryFn: async (userId) => {
-        if (!userId) return { data: [] };
-
-        const { data, error } = await supabase
-          .from('games_likes')
-          .select('game_slug')
-          .eq('user_id', userId);
-        if (error) return { error: supabaseError(error.message) };
-
-        return { data: data.map(vote => vote.game_slug) };
-      },
+      queryFn: fetchMyVotes,
       providesTags: ['MyVotes'],
     }),
 
-    toggleVote: builder.mutation<void, { slug: string; userId: string; hasVoted: boolean }>({
-      queryFn: async ({ slug, userId, hasVoted }) => {
-        const likes = supabase.from('games_likes');
-        const row = { game_slug: slug, user_id: userId };
+    toggleVote: builder.mutation<void, Vote>({
+      queryFn: persistVote,
 
-        const { error } = await (hasVoted ? likes.delete().match(row) : likes.insert(row));
-        return error ? { error: supabaseError(error.message) } : { data: undefined };
-      },
-
-      // Optimistic update of both caches, rolled back if the write fails.
-      async onQueryStarted({ slug, hasVoted, userId }, { dispatch, queryFulfilled }) {
+      async onQueryStarted(
+        { slug, userId, hasVoted },
+        { dispatch, queryFulfilled },
+      ) {
         const delta = hasVoted ? -1 : 1;
 
-        const patchStats = dispatch(
-          votesAPI.util.updateQueryData('getGlobalStats', undefined, (draft) => {
-            draft[slug] = Math.max(0, (draft[slug] ?? 0) + delta);
-          })
-        );
-        const patchUser = dispatch(
-          votesAPI.util.updateQueryData('getMyVotes', userId, (draft) =>
-            hasVoted ? draft.filter(votedSlug => votedSlug !== slug) : [...draft, slug]
-          )
-        );
+        const patches = [
+          dispatch(
+            votesAPI.util.updateQueryData(
+              'getGlobalStats',
+              undefined,
+              (stats) => {
+                stats[slug] = Math.max(0, (stats[slug] ?? 0) + delta);
+              },
+            ),
+          ),
 
-        try {
-          await queryFulfilled;
-        } catch {
-          patchStats.undo();
-          patchUser.undo();
-        }
+          dispatch(
+            votesAPI.util.updateQueryData(
+              'getMyVotes',
+              userId,
+              (votes) =>
+                hasVoted
+                  ? votes.filter((vote) => vote !== slug)
+                  : [...votes, slug],
+            ),
+          ),
+        ];
+
+        await rollbackOnFailure(queryFulfilled, patches);
       },
     }),
   }),
-  overrideExisting: false,
 });
 
-export const { useGetGlobalStatsQuery, useGetMyVotesQuery, useToggleVoteMutation } = votesAPI;
+export const {
+  useGetGlobalStatsQuery,
+  useGetMyVotesQuery,
+  useToggleVoteMutation,
+} = votesAPI;
