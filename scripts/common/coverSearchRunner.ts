@@ -97,7 +97,7 @@ export async function syncCoversBySearch(
 async function processCoverSearch(
     item: CoverSearchItem,
     itemDir: string,
-    searchEngines: string[],
+    searchEngines: NonNullable<CoverSearchOptions['searchEngines']>,
     resultsPerSearch: number
 ): Promise<void> {
     try {
