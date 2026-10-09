@@ -2,16 +2,22 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+
 import { useGetSeriesInfiniteQuery, resetPages } from "@/redux/services/seriesAPI";
 import { useAppDispatch } from "@/redux/hooks";
+
 import QueryErrorState from "@/components/common/QueryErrorState";
+
 import SeriesCard from "@/features/series/SeriesCard";
 import TitleFilter from "@/features/games/components/TitleFilter";
 import SeriesSortSelect from "@/features/series/SeriesSortSelect";
+
 import type { SeriesSort } from "@/domain/series/types";
+
 import LoadingButton from "../_client/LoadingButton";
 
 export default function SeriesGallery() {
