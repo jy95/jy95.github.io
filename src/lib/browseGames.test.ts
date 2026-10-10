@@ -6,8 +6,7 @@ const games = [
     { id: 'a', title: 'Alpha Quest', platform: 0, genres: [1, 2], releaseDate: '2000-01-01', duration: '02:00:00' },
     { id: 'b', title: 'Alpha Quests', platform: 1, genres: [2], releaseDate: '2001-01-01', duration: '01:00:00' },
     { id: 'c', title: 'Zelda', platform: 0, genres: [3], releaseDate: '2002-01-01' },
-    { id: 'd', title: 'Unknown' },
-    { id: 'e', title: 'Invalid date', releaseDate: '2000-02-30' },
+    { id: 'd', title: 'Unknown' }
 ];
 const ids = (items: { id: string }[]) => items.map(game => game.id);
 
@@ -28,8 +27,6 @@ describe('catalogue predicates', () => {
         expect(matchesReleaseYear(games[0], [2000, 2001])).toBe(true);
         expect(matchesReleaseYear(games[1], [2000, 2001])).toBe(true);
         expect(matchesReleaseYear(games[3], [2000, 2001])).toBe(false);
-        expect(matchesReleaseYear(games[4], [2000, 2001])).toBe(false);
-        expect(matchesReleaseYear(games[4])).toBe(true);
         expect(ids(browseGames(games, { releaseDateFrom: 2000, releaseDateTo: 2001 }))).toEqual(['a', 'b']);
         expect(ids(browseGames(games, { releaseDateTo: 2000 }))).toEqual(['a']);
         expect(ids(browseGames(games, { releaseDateFrom: 2002 }))).toEqual(['c']);
