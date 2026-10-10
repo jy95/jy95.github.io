@@ -22,10 +22,16 @@ export function matchesGenres(game: BrowsableGame, genres?: number[]): boolean {
     return genres.some(id => game.genres?.includes(id));
 }
 
+function inRange(val: number | undefined, [min, max]: [number, number]) {
+    if (!val) return false;
+    return val >= min && val <= max;
+}
+
 export function matchesReleaseYear(game: BrowsableGame, range?: ReleaseYearRange): boolean {
+    // If no range, criteria is true regardless of the game release
     if (!range) return true;
     const year = releaseYear(game.releaseDate);
-    return year !== undefined && year >= range[0] && year <= range[1];
+    return inRange(year, range);
 }
 
 export function searchGameTitles<T extends BrowsableGame>(games: T[], title?: string): T[] {

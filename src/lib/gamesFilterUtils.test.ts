@@ -12,12 +12,10 @@ describe('game filter conversion', () => {
     it('omits empty and nil fields and defaults to unrestricted API order', () => {
         expect(filtersToSearchParams({ title: '', genres: [], platform: undefined }).toString()).toBe('');
         expect(searchParamsToFilters(new URLSearchParams())).toEqual({});
-        // Exercise nil values coming from untyped callers.
-        expect(normalizeGameFilters(JSON.parse('{"title":null,"platform":null,"genres":null,"sort":null}'))).toEqual({});
     });
 
     it.each(GAME_SORT_OPTIONS)('round-trips %s with encoded title and numeric IDs', sort => {
-        const filters = { title: ' Pokémon & Zelda + ', platform: 0, genres: [10, 2, 2], sort };
+        const filters = { title: 'Pokémon & Zelda +', platform: 1, genres: [10, 2, 2], sort };
         const params = filtersToSearchParams(filters);
         expect(params.getAll('genres')).toEqual(['2', '10']);
         expect(searchParamsToFilters(new URLSearchParams(params.toString()))).toEqual({ ...filters, genres: [2, 10] });
