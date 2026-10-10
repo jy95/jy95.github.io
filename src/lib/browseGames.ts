@@ -22,10 +22,12 @@ export function matchesGenres(game: BrowsableGame, genres?: number[]): boolean {
     return genres.some(id => game.genres?.includes(id));
 }
 
+const inRange = (val: number, [min, max]: [number, number]) => val >= min && val <= max;
+
 export function matchesReleaseYear(game: BrowsableGame, range?: ReleaseYearRange): boolean {
     if (!range) return true;
     const year = releaseYear(game.releaseDate);
-    return year !== undefined && year >= range[0] && year <= range[1];
+    return year !== undefined && inRange(year, range);
 }
 
 export function searchGameTitles<T extends BrowsableGame>(games: T[], title?: string): T[] {

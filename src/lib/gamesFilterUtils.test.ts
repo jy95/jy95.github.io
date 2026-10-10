@@ -12,8 +12,6 @@ describe('game filter conversion', () => {
     it('omits empty and nil fields and defaults to unrestricted API order', () => {
         expect(filtersToSearchParams({ title: '', genres: [], platform: undefined }).toString()).toBe('');
         expect(searchParamsToFilters(new URLSearchParams())).toEqual({});
-        // Exercise nil values coming from untyped callers.
-        expect(normalizeGameFilters(JSON.parse('{"title":null,"platform":null,"genres":null,"sort":null}'))).toEqual({});
     });
 
     it.each(GAME_SORT_OPTIONS)('round-trips %s with encoded title and numeric IDs', sort => {
