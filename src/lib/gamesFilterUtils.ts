@@ -50,6 +50,10 @@ export function normalizeGameFilters({
     const cleanGenres = canonicalizeGenres(genres);
     const maxYear = getMaxReleaseYear();
 
+    // To prevent input issues when someone tries to be naughty
+    const [start, end] = [releaseDateFrom, releaseDateTo].sort();
+
+    // Prepare cleaned payload
     const query: Partial<GameFilters> = {};
 
     const addIf = <K extends keyof GameFilters>(
@@ -67,8 +71,8 @@ export function normalizeGameFilters({
     addIf("platform", platform, isId(platform));
     addIf("genres", cleanGenres, cleanGenres.length > 0);
     addIf("sort", sort, isSort(sort));
-    addIf("releaseDateFrom", releaseDateFrom, releaseDateFrom > MIN_RELEASE_YEAR);
-    addIf("releaseDateTo", releaseDateTo, releaseDateTo < maxYear);
+    addIf("releaseDateFrom", start, start > MIN_RELEASE_YEAR);
+    addIf("releaseDateTo", end, end < maxYear);
 
     return query;
 }
