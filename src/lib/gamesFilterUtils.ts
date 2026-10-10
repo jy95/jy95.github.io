@@ -24,7 +24,7 @@ export function releaseYear(date: string | undefined): number | undefined {
 }
 
 const isId = (value: unknown): value is number =>
-    typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
+    typeof value === 'number' && Number.isSafeInteger(value) && value > 0;
 
 const isSort = (value: unknown): value is GameSort =>
     GAME_SORT_OPTIONS.some(sort => sort === value);
@@ -39,7 +39,7 @@ export const canonicalizeGenres = (genres: readonly number[]): number[] =>
  * No `sort` means "keep the API's natural order". The title is kept as typed (spaces included).
  */
 export function normalizeGameFilters({ 
-    title, 
+    title = '', 
     platform, 
     genres = [], 
     sort, 
@@ -63,7 +63,7 @@ export function normalizeGameFilters({
     };
 
     // Add fields if relevant
-    addIf("title", title, typeof title === "string");
+    addIf("title", title, title.length > 0);
     addIf("platform", platform, isId(platform));
     addIf("genres", cleanGenres, cleanGenres.length > 0);
     addIf("sort", sort, isSort(sort));
