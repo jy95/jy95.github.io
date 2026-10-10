@@ -39,17 +39,22 @@ describe('NavigationGroup', () => {
     it('keeps nested disclosure state mounted after mini popup dismissal', () => {
         render(<NavigationGroup item={nestedFixture()} mini />);
         const parent = screen.getByRole('button', { name: 'dashboard.menuEntries.sections.browse' });
+        vi.spyOn(parent, 'getBoundingClientRect').mockReturnValue({ x: 0, y: 0, top: 0, left: 0,
+            right: 80, bottom: 60, width: 80, height: 60, toJSON: () => ({}) });
         fireEvent.click(parent);
         const nested = screen.getByRole('button', { name: 'dashboard.menuEntries.tierTabs' });
         fireEvent.click(nested);
         const games = screen.getByRole('link', { name: 'dashboard.menuEntries.tierChildren.games' });
+        expect(games).toBeVisible();
         fireEvent.keyDown(games, { key: 'Escape' });
-        expect(parent).toHaveFocus();
+        expect(games).toBeInTheDocument();
+        expect(games).not.toBeVisible();
         expect(parent).toHaveAttribute('aria-expanded', 'false');
         fireEvent.click(parent);
         expect(screen.getByRole('button', { name: 'dashboard.menuEntries.tierTabs' })).toBe(nested);
         expect(nested).toHaveAttribute('aria-expanded', 'true');
         expect(screen.getByRole('link', { name: 'dashboard.menuEntries.tierChildren.games' })).toBe(games);
+        expect(games).toBeVisible();
     });
 
     it('preserves manual collapse until the active destination changes', () => {

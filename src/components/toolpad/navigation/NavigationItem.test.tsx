@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { act, render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 import type { ComponentProps } from 'react';
 
@@ -101,23 +101,10 @@ describe('NavigationItem', () => {
         expect(container.querySelector('[data-testid="ExpandMoreIcon"]')).toBeFalsy();
     });
 
-    it('renders an Avatar with initials derived from the title when collapsed (mini mode) with no icon', () => {
-        mockDrawerOpen = false;
-        render(<NavigationItem title="Games Library" selected={false} />);
-        expect(screen.getByText('GL')).toBeInTheDocument();
-    });
-
-    it('derives initials from only the first two words of the title', () => {
-        mockDrawerOpen = false;
-        render(<NavigationItem title="A Very Long Title" selected={false} />);
-        expect(screen.getByText('AV')).toBeInTheDocument();
-    });
-
-    it('still renders the provided icon in mini mode instead of the fallback avatar', () => {
+    it('renders the provided icon in mini mode', () => {
         mockDrawerOpen = false;
         render(<NavigationItem title="Games" selected={false} icon={<span data-testid="custom-icon" />} />);
         expect(screen.getByTestId('custom-icon')).toBeInTheDocument();
-        expect(screen.queryByText('G')).not.toBeInTheDocument();
     });
 
     it('shows the title as a caption below the icon in mini mode', () => {
@@ -160,24 +147,23 @@ describe.each([
             mockDrawerOpen = drawerOpen;
         });
 
-        it('renders a custom icon and title without fallback initials', () => {
+        it('renders a custom icon and title', () => {
             render(<NavigationItem title="Games Library" href={href} selected={false}
                 icon={<span data-testid="custom-icon" />} />);
 
             expect(screen.getByTestId('custom-icon')).toBeInTheDocument();
             expect(screen.getByText('Games Library')).toBeInTheDocument();
-            expect(screen.queryByText('GL')).not.toBeInTheDocument();
         });
 
-        it('renders the title with fallback initials only in mini mode', () => {
+        it('retains the icon container, title and accessible name without an icon', () => {
             render(<NavigationItem title="games library collection" href={href} selected={false} />);
 
             const title = screen.getByText('games library collection');
             expect(title).toBeInTheDocument();
-            if (drawerOpen) {
-                expect(screen.queryByText('GL')).not.toBeInTheDocument();
-            } else {
-                expect(screen.getByText('GL')).toHaveClass('MuiAvatar-root');
+            const button = screen.getByRole(href ? 'link' : 'button');
+            expect(button).toHaveAccessibleName('games library collection');
+            expect(button.querySelector('.MuiListItemIcon-root')).toBeInTheDocument();
+            if (!drawerOpen) {
                 expect(title).toHaveStyle({ position: 'absolute', fontSize: '10px',
                     transform: 'translateX(-50%)', bottom: '-18px' });
             }
@@ -211,12 +197,11 @@ describe.each([
                 <NavigationItem title="Games" href={href} selected={false} hasChildren expanded={false} />
             );
             const chevron = screen.getByTestId('ExpandMoreIcon');
-            expect(chevron).toHaveStyle({ transform: drawerOpen
-                ? 'rotate(-90deg)' : 'translateY(-50%) rotate(-90deg)' });
+            expect(chevron).toHaveStyle({ transform: 'rotate(-90deg)' });
 
             rerender(<NavigationItem title="Games" href={href} selected={false} hasChildren expanded />);
             expect(chevron).toHaveStyle({ transform: drawerOpen
-                ? 'rotate(0deg)' : 'translateY(-50%) rotate(-90deg)' });
+                ? 'rotate(0deg)' : 'rotate(-90deg)' });
         });
     });
 });
@@ -224,138 +209,114 @@ describe.each([
 describe('NavigationItem mini popover', () => {
     beforeEach(() => {
         mockDrawerOpen = false;
-        vi.stubGlobal('PointerEvent', MouseEvent);
-        vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: true })));
     });
 
-    afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); });
-
-    function fixture() {
-        const rendered = render(<NavigationItem title="Browse" selected={false} mini hasChildren controlsId="children"
-            miniPopoverContent={<div id="children"><a href="/games">Games</a></div>} />);
+    function fixture(overrides: Partial<ComponentProps<typeof NavigationItem>> = {}) {
+        const props = {
+            title: 'Browse', selected: false, mini: true, hasChildren: true, controlsId: 'children',
+            miniPopoverContent: <div id="children">
+                <a href="#games">Games <span>catalog</span></a>
+                <button type="button">Other action</button>
+            </div>,
+            ...overrides,
+        };
+        const rendered = render(<NavigationItem {...props} />);
         const button = screen.getByRole('button', { name: 'Browse' });
-        vi.spyOn(button, 'getBoundingClientRect').mockReturnValue({ x: 0, y: 0, top: 0, left: 0, right: 80, bottom: 60, width: 80, height: 60, toJSON: () => ({}) });
-        return { ...rendered, button };
-    }
-    function pointerEnter(element: HTMLElement, pointerType = 'mouse') {
-        const event = new MouseEvent('pointerover', { bubbles: true });
-        Object.defineProperty(event, 'pointerType', { value: pointerType });
-        fireEvent(element, event);
+        vi.spyOn(button, 'getBoundingClientRect').mockReturnValue({ x: 0, y: 0, top: 0, left: 0,
+            right: 80, bottom: 60, width: 80, height: 60, toJSON: () => ({}) });
+        return { ...rendered, button, props };
     }
 
-    it('opens on fine-pointer hover without moving focus and delays dismissal across the portal gap', () => {
-        vi.useFakeTimers();
-        const { button, container, unmount } = fixture();
-        pointerEnter(button);
-        const link = screen.getByRole('link');
-        expect(container).not.toContainElement(link);
-        expect(link).not.toHaveFocus();
-        fireEvent.pointerLeave(button);
-        act(() => { vi.advanceTimersByTime(100); });
-        expect(link).toBeVisible();
-        pointerEnter(screen.getByRole('navigation'));
-        act(() => { vi.advanceTimersByTime(200); });
-        expect(link).toBeVisible();
-        fireEvent.pointerLeave(screen.getByRole('navigation'));
-        act(() => { vi.advanceTimersByTime(150); });
-        expect(screen.queryByRole('link')).not.toBeInTheDocument();
-        pointerEnter(button);
-        fireEvent.pointerLeave(button);
-        unmount();
-        expect(vi.getTimerCount()).toBe(0);
-    });
-
-    it('retains focused content and suppresses hover reopening after Escape', () => {
-        vi.useFakeTimers();
-        const { button } = fixture();
-        pointerEnter(button);
-        const link = screen.getByRole('link');
-        act(() => { link.focus(); });
-        fireEvent.pointerLeave(button);
-        act(() => { vi.advanceTimersByTime(200); });
-        expect(link).toBeVisible();
-        fireEvent.keyDown(link, { key: 'Escape' });
-        expect(button).toHaveFocus();
-        pointerEnter(button);
-        expect(button).toHaveAttribute('aria-expanded', 'false');
-    });
-
-    it('dismisses hover with Escape while focus remains elsewhere', () => {
-        const { button } = fixture();
-        pointerEnter(button);
-        expect(screen.getByRole('link')).toBeVisible();
-        fireEvent.keyDown(document.body, { key: 'Escape' });
-        expect(button).toHaveAttribute('aria-expanded', 'false');
-        expect(button).not.toHaveFocus();
-        pointerEnter(button);
-        expect(button).toHaveAttribute('aria-expanded', 'false');
-    });
-
-    it('dismisses on an outside pointer activation', () => {
-        const { button } = fixture();
-        fireEvent.click(button, { detail: 1 });
-        fireEvent.pointerDown(document.body);
-        expect(button).toHaveAttribute('aria-expanded', 'false');
-    });
-
-    it.each(['touch', 'pen'])('does not hover open for %s', pointerType => {
-        const { button } = fixture();
-        pointerEnter(button, pointerType);
-        expect(button).toHaveAttribute('aria-expanded', 'false');
-        fireEvent.click(button, { detail: 1 });
-        expect(screen.getByRole('link')).toBeVisible();
-    });
-
-    it('does not hover open for a coarse pointer', () => {
-        vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: false })));
-        const { button } = fixture();
-        pointerEnter(button);
-        expect(button).toHaveAttribute('aria-expanded', 'false');
-    });
-
-    it('enters content on keyboard activation and dismisses destination clicks', () => {
-        vi.useFakeTimers();
-        const { button } = fixture();
-        fireEvent.click(button, { detail: 0 });
-        act(() => { vi.advanceTimersByTime(0); });
-        const link = screen.getByRole('link');
-        expect(link).toHaveFocus();
-        fireEvent.click(link);
-        expect(button).toHaveAttribute('aria-expanded', 'false');
-        expect(document.getElementById('children')).toContainElement(link);
-    });
-
-    it.each([false, true])('cancels pending popup work on mode changes (keyboard=%s)', keyboard => {
-        vi.useFakeTimers();
-        const { button, rerender } = fixture();
-        fireEvent.click(button, { detail: keyboard ? 0 : 1 });
-        if (!keyboard) fireEvent.pointerLeave(button);
-        rerender(<NavigationItem title="Browse" selected={false} mini={false} hasChildren
-            miniPopoverContent={<a href="/games">Games</a>} />);
-        expect(vi.getTimerCount()).toBe(0);
-        act(() => { vi.runAllTimers(); });
-        rerender(<NavigationItem title="Browse" selected={false} mini hasChildren
-            miniPopoverContent={<a href="/games">Games</a>} />);
-        expect(button).toHaveAttribute('aria-expanded', 'false');
-        expect(button).not.toHaveFocus();
-    });
-
-    it('opens by activation, remains open across pointer transitions, and restores focus on Escape', async () => {
-        const { container } = render(<NavigationItem title="Browse" selected={false} hasChildren controlsId="browse-children"
-            miniPopoverContent={<div id="browse-children"><a href="/games">Games</a></div>} />);
-        const button = screen.getByRole('button', { name: 'Browse' });
-        vi.spyOn(button, 'getBoundingClientRect').mockReturnValue({ x: 0, y: 0, top: 0, left: 0, right: 80, bottom: 60, width: 80, height: 60, toJSON: () => ({}) });
-        button.focus();
+    it.each([
+        { condition: 'expanded mode', mini: false },
+        { condition: 'no children', hasChildren: false },
+        { condition: 'no popover content', miniPopoverContent: undefined },
+    ])('does not open in $condition and retains the disclosure callback', (overrides) => {
+        const onClick = vi.fn();
+        const { button } = fixture({ ...overrides, onClick });
+        fireEvent.mouseEnter(button);
+        expect(screen.queryByRole('navigation', { hidden: true })).not.toBeInTheDocument();
         fireEvent.click(button);
-        const link = await screen.findByRole('link', { name: 'Games' });
+        expect(onClick).toHaveBeenCalledTimes(1);
+        expect(screen.queryByRole('navigation', { hidden: true })).not.toBeInTheDocument();
+    });
+
+    it.each(['hover', 'click'])('opens on %s without invoking the disclosure callback', (interaction) => {
+        const onClick = vi.fn();
+        const { button, container } = fixture({ onClick });
+        const link = screen.getByRole('link', { hidden: true });
+        expect(link).toBeInTheDocument();
+        expect(link).not.toBeVisible();
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        if (interaction === 'hover') fireEvent.mouseEnter(button);
+        else fireEvent.click(button);
+        expect(link).toBeVisible();
         expect(button).toHaveAttribute('aria-expanded', 'true');
         expect(button).toHaveAttribute('aria-controls', link.parentElement?.id);
         expect(container).not.toContainElement(link);
+        expect(onClick).not.toHaveBeenCalled();
+    });
+
+    it('closes immediately on mouse leave and keeps hidden content mounted', () => {
+        const { button } = fixture();
+        fireEvent.mouseEnter(button);
+        const link = screen.getByRole('link');
         fireEvent.mouseLeave(button);
-        link.focus();
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        expect(link).not.toBeVisible();
+        expect(screen.getByRole('link', { hidden: true })).toBe(link);
+    });
+
+    it.each(['trigger', 'popup'])('closes on Escape from the %s', (target) => {
+        const { button } = fixture();
+        fireEvent.click(button);
+        const link = screen.getByRole('link');
+        fireEvent.keyDown(target === 'trigger' ? button : link, { key: 'Escape' });
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        expect(link).not.toBeVisible();
+    });
+
+    it('closes on an outside click after ClickAwayListener activates', async () => {
+        const { button } = fixture();
+        // MUI defers listener activation to avoid handling the opening event.
+        await new Promise(resolve => setTimeout(resolve, 0));
+        fireEvent.click(button);
+        const link = screen.getByRole('link');
         expect(link).toBeVisible();
-        fireEvent.keyDown(link, { key: 'Escape' });
-        await waitFor(() => expect(screen.queryByRole('link')).not.toBeInTheDocument());
-        await waitFor(() => expect(button).toHaveFocus());
+        fireEvent.click(document.body);
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        expect(link).not.toBeVisible();
+    });
+
+    it.each(['link', 'descendant'])('closes when clicking a popup %s', (target) => {
+        const { button } = fixture();
+        fireEvent.click(button);
+        const link = screen.getByRole('link');
+        fireEvent.click(target === 'link' ? link : screen.getByText('catalog'));
+        expect(button).toHaveAttribute('aria-expanded', 'false');
+        expect(link).not.toBeVisible();
+        expect(link).toBeInTheDocument();
+    });
+
+    it('keeps the popup open when clicking non-link content', async () => {
+        const { button } = fixture();
+        await new Promise(resolve => setTimeout(resolve, 0));
+        fireEvent.click(button);
+        fireEvent.click(screen.getByRole('button', { name: 'Other action' }));
+        expect(button).toHaveAttribute('aria-expanded', 'true');
+        expect(screen.getByRole('navigation')).toBeVisible();
+    });
+
+    it.each([
+        { condition: 'mini mode', mini: false },
+        { condition: 'children', hasChildren: false },
+        { condition: 'popover content', miniPopoverContent: undefined },
+    ])('hides an open popup when removing $condition', (overrides) => {
+        const { button, props, rerender } = fixture();
+        fireEvent.click(button);
+        expect(screen.getByRole('navigation')).toBeVisible();
+        rerender(<NavigationItem {...props} {...overrides} />);
+        expect(screen.queryByRole('navigation', { hidden: true })).not.toBeInTheDocument();
+        expect(button).not.toHaveAttribute('aria-expanded', 'true');
     });
 });
