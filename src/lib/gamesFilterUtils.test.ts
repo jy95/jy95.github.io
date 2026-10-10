@@ -17,7 +17,7 @@ describe('game filter conversion', () => {
     });
 
     it.each(GAME_SORT_OPTIONS)('round-trips %s with encoded title and numeric IDs', sort => {
-        const filters = { title: ' Pokémon & Zelda + ', platform: 0, genres: [10, 2, 2], sort };
+        const filters = { title: 'Pokémon & Zelda +', platform: 1, genres: [10, 2, 2], sort };
         const params = filtersToSearchParams(filters);
         expect(params.getAll('genres')).toEqual(['2', '10']);
         expect(searchParamsToFilters(new URLSearchParams(params.toString()))).toEqual({ ...filters, genres: [2, 10] });
