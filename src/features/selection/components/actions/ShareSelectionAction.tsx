@@ -13,6 +13,7 @@ import LoadingButton from '@/app/[locale]/games/_client/LoadingButton';
 import { getPathname } from '@/i18n/routing';
 import { encodeSelection } from "@/features/selection/sharing/sharing";
 
+// Type
 import type { SelectionDocument } from '@/domain/selection/types';
 
 type ShareState = { kind: 'idle' | 'busy' | 'error' } | { kind: 'ready'; url: string };
