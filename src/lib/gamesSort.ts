@@ -41,5 +41,7 @@ export function sortGames<T extends SortableGame>(games: readonly T[], sort?: Ga
     if (!sort) return [...games];
 
     const compare = COMPARATORS[sort];
+    if (typeof compare !== 'function') return [...games];
+
     return [...games].sort((a, b) => compare(a, b) || text(a.title, b.title));
 }
