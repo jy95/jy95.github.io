@@ -1,4 +1,16 @@
 {
+    "dlcs": {
+        "filter": {
+            "label": "Nom du jeu principal",
+            "placeholder": "Rechercher des jeux avec des DLCs"
+        },
+        "sortDlcs": {
+            "label": "Trier les groupes de DLCs"
+        },
+        "back": "Retour aux DLCs",
+        "dlcsCount": "{count, plural, one {# DLC} other {# DLCs}}",
+        "empty": "Aucun DLC trouvé."
+    },
     "series": {
         "filter": {
             "label": "Nom de la série",
@@ -12,6 +24,10 @@
         "empty": "Aucune série trouvée."
     },
     "pageMetadata": {
+        "dlcs": {
+            "title": "DLCs | GamesPassionFR",
+            "description": "Parcourez les contenus téléchargeables regroupés par jeu principal."
+        },
         "series": {
             "title": "Séries | GamesPassionFR",
             "description": "Découvrez les séries et leurs jeux."

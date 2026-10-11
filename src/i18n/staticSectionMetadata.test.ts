@@ -5,7 +5,10 @@ import { generateMetadata as testsMetadata } from '@/app/[locale]/tests/layout';
 import { generateMetadata as statsMetadata } from '@/app/[locale]/stats/layout';
 import { generateMetadata as seriesMetadata } from '@/app/[locale]/games/series/layout';
 
+import { generateMetadata as dlcsMetadata } from '@/app/[locale]/games/dlcs/layout';
+
 const sections = [
+    { generate: dlcsMetadata, en: 'DLCs', fr: 'DLCs' },
     { generate: seriesMetadata, en: 'Series', fr: 'Séries' },
     { generate: gamesMetadata, en: 'Games', fr: 'Jeux' },
     { generate: planningMetadata, en: 'Calendar', fr: 'Planning' },

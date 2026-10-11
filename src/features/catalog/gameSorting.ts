@@ -5,6 +5,7 @@ import type { CardGame } from "@/domain/games";
 export type TieredCardGame = CardGame & { tierCategory?: string | null };
 
 export const SORT_OPTIONS = ["titleAsc", "titleDesc", "durationAsc", "durationDesc", "tierAsc", "tierDesc"] as const;
+export const UNRANKED_SORT_OPTIONS = ["titleAsc", "titleDesc", "durationAsc", "durationDesc"] as const;
 export type GameSort = typeof SORT_OPTIONS[number];
 
 const tierOrder = new Map(categories.map(category => [category.slug, category.display_order]));

@@ -14,7 +14,6 @@ export const routing = defineRouting({
     '/games': '/games',
     '/selection': '/selection',
     '/games/series': '/games/series',
-    '/games/series/[id]': '/games/series/[id]',
     '/games/dlcs': '/games/dlcs',
     '/games/random': '/games/random',
     '/companies': '/companies',
@@ -31,7 +30,9 @@ export const routing = defineRouting({
     '/playlist/[id]': '/playlist/[id]',
     '/video/[id]': '/video/[id]',
     '/companies/[id]': '/companies/[id]',
-    '/games/detail/[id]': '/games/detail/[id]'
+    '/games/detail/[id]': '/games/detail/[id]',
+    '/games/series/[id]': '/games/series/[id]',
+    '/games/dlcs/[id]': '/games/dlcs/[id]',
   }
 });
  
