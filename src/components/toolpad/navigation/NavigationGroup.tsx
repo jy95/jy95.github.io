@@ -59,7 +59,8 @@ export default function NavigationGroup({ item, parentPath = "", selectedPath, m
   }
 
   const childList = (
-    <List id={childrenId} sx={{ p: 0, mb: 0.5, pl: isMini ? 0 : 2, width: isMini ? 300 : undefined, maxWidth: "85vw" }}>
+    <List id={childrenId} sx={{ p: 0, mb: 0.5, pl: isMini ? 0 : 2,
+      width: "100%", maxWidth: "100%", boxSizing: "border-box" }}>
       {children.map(child => (
         <NavigationGroup key={navigationKey(child, itemPath)} mini={false} selectedPath={activePath ?? null}
           item={child} parentPath={itemPath} />
