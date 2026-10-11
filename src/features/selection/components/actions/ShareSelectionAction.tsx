@@ -28,10 +28,10 @@ export function ShareSelectionAction({ document }: ShareSelectionActionProps) {
     let url = selectionUrl.toString();
 
     // Set up result in clipboard
-    await navigator.clipboard.writeText(url);
+    await navigator.clipboard?.writeText(url);
 
     // Use device sharing feature
-    await navigator.share({ title: t('title'), url });
+    await navigator?.share({ title: t('title'), url });
   }
 
   return <Button onClick={share}>{t('share')}</Button>;
