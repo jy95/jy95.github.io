@@ -32,7 +32,7 @@ vi.mock('../../backlog/backlog.json', () => ({ default: [
 
 import { GET } from './route';
 import { GET as getGames } from '../route';
-import { GET as getDlcs } from '../../dlcs/route';
+import { GET as getDlcs } from '../../dlcs/[id]/route';
 import { GET as getPlanning } from '../../planning/route';
 import { GET as getBacklog } from '../../backlog/route';
 import * as gamesData from '@/lib/gamesData';
@@ -84,8 +84,8 @@ describe('GET /api/games/[id]', () => {
             imagePath: '/covers/XGEgNG67oXA/cover.webp', duration: '01:12:35', platform: 1,
             releaseDate: '2012-05-29', developers: [{ id: 1, name: 'Developer' }],
         } });
-        const catalogue = await (await getDlcs()).json();
-        expect(data.game).toEqual(catalogue[0].items[0]);
+        const catalogue = await (await getDlcs(new Request('http://localhost/api/dlcs'), { params: Promise.resolve({ id: 'dlc-parent' }) })).json();
+        expect(data.game).toEqual(catalogue.items[0]);
     });
 
     it('resolves playlist DLCs in later groups with the same conversion as the DLC catalogue', async () => {
@@ -96,8 +96,8 @@ describe('GET /api/games/[id]', () => {
             imagePath: '/covers/dlc-playlist/dlc.webp', coverFile: 'dlc.webp', duration: '02:00:00',
             platform: 2, publishers: [{ id: 2, name: 'Publisher' }],
         } });
-        const catalogue = await (await getDlcs()).json();
-        expect(data.game).toEqual(catalogue[1].items[0]);
+        const catalogue = await (await getDlcs(new Request('http://localhost/api/dlcs'), { params: Promise.resolve({ id: 'second-parent' }) })).json();
+        expect(data.game).toEqual(catalogue.items[0]);
     });
 
     it.each([

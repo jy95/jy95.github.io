@@ -1,24 +1,14 @@
 import { cachedJson } from "@/lib/http/cachedJson";
-import { loadDlcGroups, toPublishedGame } from "@/lib/gamesData";
-import type { StoredDlcGroup } from "@/lib/gamesData";
-import type { CardGame } from "@/domain/games";
+import { paginate, parsePageParams } from "@/lib/http/pagination";
+import { compareDlcs, DLC_SORT_OPTIONS } from "@/domain/dlcs/sorting";
+import { loadDlcGroups, toDlcSummary } from "./data";
 
-export type RawPayload = StoredDlcGroup[];
-
-export type dlcType = {
-    id: string,
-    name: string,
-    items: CardGame[]
-};
-
-export async function GET() {
-    const dlcsData = await loadDlcGroups();
-
-    const dlcs: dlcType[] = dlcsData.map((dlc) => ({
-        id: dlc.id,
-        name: dlc.game_title,
-        items: dlc.dlcs.map(toPublishedGame)
-    }));
-
-    return cachedJson(dlcs);
+export async function GET(request: Request) {
+    const params = new URL(request.url).searchParams;
+    const filter = (params.get("filter") ?? "").trim().toLocaleLowerCase();
+    const sort = DLC_SORT_OPTIONS.find(option => option === params.get("sort")) ?? "nameAsc";
+    const summaries = (await loadDlcGroups()).map(toDlcSummary)
+        .filter(group => group.name.toLocaleLowerCase().includes(filter))
+        .sort((first, second) => compareDlcs(first, second, sort));
+    return cachedJson(paginate(summaries, parsePageParams(params)));
 }

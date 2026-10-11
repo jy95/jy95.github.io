@@ -1,4 +1,16 @@
 {
+    "dlcs": {
+        "filter": {
+            "label": "Parent game name",
+            "placeholder": "Search games with DLCs"
+        },
+        "sortDlcs": {
+            "label": "Sort DLC groups"
+        },
+        "back": "Back to DLCs",
+        "dlcsCount": "{count, plural, one {# DLC} other {# DLCs}}",
+        "empty": "No DLCs found."
+    },
     "series": {
         "filter": {
             "label": "Series name",
@@ -12,6 +24,10 @@
         "empty": "No series found."
     },
     "pageMetadata": {
+        "dlcs": {
+            "title": "DLCs | GamesPassionFR",
+            "description": "Browse downloadable content grouped by parent game."
+        },
         "series": {
             "title": "Series | GamesPassionFR",
             "description": "Browse series and their games."
