@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import messages from '../../../../messages/en.json';
 import SelectionPage from './SelectionPage';
 import SelectionButton from './SelectionButton';
+import * as clipboard from '@/hooks/clipboard';
 import * as sharing from '../sharing/sharing';
 import { emptySelection } from '@/domain/selection/operations';
 import { SELECTION_STORAGE_KEY, getSelectionSnapshot } from '../storage/store';
@@ -98,6 +99,7 @@ it('filters, sorts and paginates without changing storage and shares missing and
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Zephyr' } });
     await waitFor(() => expect(screen.getAllByRole('img', { name: /^Item/ })).toHaveLength(1));
     expect(getSelectionSnapshot().document).toEqual(document); expect(write).not.toHaveBeenCalled();
+    vi.spyOn(clipboard, 'copyToClipboard').mockResolvedValue(false);
     fireEvent.click(screen.getByRole('button', { name: messages.selection.share }));
     const url = new URL((await screen.findByRole('textbox', { name: messages.selection.shareLink }) as HTMLInputElement).value);
     expect(await sharing.decodeSelection(url.searchParams.get('entries')!)).toEqual(document);
@@ -113,12 +115,13 @@ it('removes missing identifiers explicitly and reports a failed removal', async 
     fail.mockRestore(); fireEvent.click(remove);
     expect(getSelectionSnapshot().document.games).toEqual([]);
 });
-it('keeps the clear dialog open when writing fails', async () => {
+it('reports clear storage failure without removing the selection', async () => {
     localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['same'] }));
-    mount(); fireEvent.click(screen.getByRole('button', { name: messages.selection.clear }));
+    mount();
     vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('blocked'); });
-    fireEvent.click(within(screen.getByRole('dialog')).getByRole('button', { name: messages.selection.clear }));
-    expect(within(screen.getByRole('dialog')).getByText(messages.selection.storageUnavailable)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: messages.selection.clear }));
+    expect(screen.getAllByText(messages.selection.storageUnavailable)).not.toHaveLength(0);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     expect(getSelectionSnapshot().document.games).toEqual(['same']);
 });
 it('reports failed import without claiming it succeeded', async () => {
@@ -138,7 +141,8 @@ it('offers explicit recovery for invalid personal storage without silently overw
     expect(write).not.toHaveBeenCalled();
     expect(localStorage.getItem(SELECTION_STORAGE_KEY)).toBe('{}');
     fireEvent.click(screen.getByRole('button', { name: messages.selection.clear }));
-    fireEvent.click(within(screen.getByRole('dialog')).getByRole('button', { name: messages.selection.clear }));
+    expect(screen.getByText(messages.selection.cleared).closest('[role="status"]')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: messages.selection.clear })).not.toBeInTheDocument();
     expect(getSelectionSnapshot().invalid).toBe(false);
     expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual(emptySelection());
 });
