@@ -28,7 +28,7 @@ function mount(entries = catalogue) {
     return render(<NextIntlClientProvider locale="en" messages={messages}><SelectionPage catalogue={entries} /></NextIntlClientProvider>);
 }
 beforeEach(() => { navigation.query = ''; localStorage.clear(); vi.clearAllMocks(); });
-afterEach(() => { cleanup(); vi.restoreAllMocks(); localStorage.clear(); });
+afterEach(() => { cleanup(); vi.restoreAllMocks(); localStorage.clear(); Reflect.deleteProperty(navigator, 'share'); });
 function choose(label: string, option: string) {
     fireEvent.mouseDown(screen.getByRole('combobox', { name: label }));
     fireEvent.click(screen.getByRole('option', { name: option }));
@@ -98,9 +98,12 @@ it('filters, sorts and paginates without changing storage and shares missing and
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Zephyr' } });
     await waitFor(() => expect(screen.getAllByRole('img', { name: /^Item/ })).toHaveLength(1));
     expect(getSelectionSnapshot().document).toEqual(document); expect(write).not.toHaveBeenCalled();
+    const share = vi.fn<(data: ShareData) => Promise<void>>().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'share', { configurable: true, value: share });
     fireEvent.click(screen.getByRole('button', { name: messages.selection.share }));
-    const url = new URL((await screen.findByRole('textbox', { name: messages.selection.shareLink }) as HTMLInputElement).value);
-    expect(await sharing.decodeSelection(url.searchParams.get('entries')!)).toEqual(document);
+    await waitFor(() => expect(share).toHaveBeenCalledOnce());
+    const url = new URL(share.mock.calls[0][0].url ?? '');
+    expect(await sharing.decodeSelection(url.searchParams.get('entries') ?? '')).toEqual(document);
 }, 15000);
 it('removes missing identifiers explicitly and reports a failed removal', async () => {
     localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['ghost'] }));

@@ -6,7 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 
 // MUI
 import Alert from '@mui/material/Alert';
-import { ShareSelectionDialog } from './ShareSelectionDialog';
+import Snackbar from '@mui/material/Snackbar';
 
 // Custom
 import LoadingButton from '@/app/[locale]/games/_client/LoadingButton';
@@ -16,7 +16,7 @@ import { encodeSelection } from "@/features/selection/sharing/sharing";
 // Type
 import type { SelectionDocument } from '@/domain/selection/types';
 
-type ShareState = { kind: 'idle' | 'busy' | 'error' } | { kind: 'ready'; url: string };
+type ShareState = 'idle' | 'busy' | 'error';
 
 type ShareSelectionActionProps = {
   document: SelectionDocument;
@@ -25,26 +25,40 @@ type ShareSelectionActionProps = {
 export function ShareSelectionAction({ document }: ShareSelectionActionProps) {
   const t = useTranslations('selection');
   const locale = useLocale();
-  const [state, setState] = useState<ShareState>({ kind: 'idle' });
+  const [state, setState] = useState<ShareState>('idle');
+
+  const [copied, setCopied] = useState(false);
 
   async function share() {
-    setState({ kind: 'busy' });
+    setState('busy');
+    let url: string;
     try {
-      const url = new URL(getPathname({ locale, href: '/selection' }), window.location.origin);
-      url.search = new URLSearchParams({ entries: await encodeSelection(document) }).toString();
-      setState({ kind: 'ready', url: url.toString() });
+      const selectionUrl = new URL(getPathname({ locale, href: '/selection' }), window.location.origin);
+      selectionUrl.search = new URLSearchParams({ entries: await encodeSelection(document) }).toString();
+      url = selectionUrl.toString();
     } catch {
-      setState({ kind: 'error' });
+      setState('error');
+      return;
+    }
+    setState('idle');
+
+    try {
+      if (typeof navigator.share === 'function') {
+        await navigator.share({ title: t('title'), url });
+      } else {
+        await navigator.clipboard.writeText(url);
+        setCopied(true);
+      }
+    } catch {
+      // Sharing cancellation and browser API failures need no feedback.
     }
   }
 
   return (
     <>
-      <LoadingButton loading={state.kind === 'busy'} onClick={share} label={t('share')} />
-      {state.kind === 'error' && <Alert severity="error">{t('compressionUnavailable')}</Alert>}
-      {state.kind === 'ready' && (
-        <ShareSelectionDialog url={state.url} onClose={() => setState({ kind: 'idle' })} />
-      )}
+      <LoadingButton loading={state === 'busy'} onClick={share} label={t('share')} />
+      {state === 'error' && <Alert severity="error">{t('compressionUnavailable')}</Alert>}
+      <Snackbar open={copied} autoHideDuration={3000} onClose={() => setCopied(false)} message={t('copied')} />
     </>
   );
 }
