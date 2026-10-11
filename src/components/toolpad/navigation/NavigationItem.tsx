@@ -39,6 +39,9 @@ const buttonSx = {
   ...navigationListItemButtonSx,
   position: "relative",
   width: "100%",
+  maxWidth: "100%",
+  minWidth: 0,
+  boxSizing: "border-box",
   px: 1.4,
   py: 1,
 } as const;
@@ -65,7 +68,7 @@ export default function NavigationItem(props: NavItemProps) {
 
   const content = (
     <>
-      <Box sx={isMini ? miniIconSx : undefined}>
+      <Box sx={isMini ? miniIconSx : { flexShrink: 0 }}>
         <ListItemIcon sx={{ justifyContent: "center", minWidth: 34 }}>
           <Box component="span" aria-hidden="true">{icon}</Box>
           {isMini && badge && <Box sx={{ position: "absolute", top: -5, right: -8 }}>{badge}</Box>}
@@ -75,12 +78,16 @@ export default function NavigationItem(props: NavItemProps) {
       {!isMini && (
         <>
           <ListItemText primary={title} secondary={hint} sx={{ ml: 1.2, minWidth: 0 }}
-            slotProps={{ secondary: { id: hintId, sx: { whiteSpace: "normal", fontSize: 12 } } }} />
-          {badge}
+            slotProps={{
+              primary: { sx: { whiteSpace: "normal", overflowWrap: "anywhere" } },
+              secondary: { id: hintId, sx: { whiteSpace: "normal", overflowWrap: "anywhere", fontSize: 12 } },
+            }} />
+          {badge && <Box component="span" sx={{ display: "inline-flex", flexShrink: 0 }}>{badge}</Box>}
         </>
       )}
       {hasChildren && (
         <ExpandMoreIcon aria-hidden="true" sx={{
+          flexShrink: 0,
           transform: `rotate(${expanded && !isMini ? 0 : -90}deg)`,
           ...(isMini ? { position: "absolute", top: 14, right: 2, fontSize: 18 } : { ml: 0.5 }),
         }} />
@@ -98,7 +105,7 @@ export default function NavigationItem(props: NavItemProps) {
   return (
     <ClickAwayListener onClickAway={() => setOpen(false)}>
       <ListItem
-        sx={{ py: 0, px: 1, overflow: "visible" }}
+        sx={{ py: 0, px: 1, width: "100%", maxWidth: "100%", boxSizing: "border-box", overflow: "visible" }}
         onMouseEnter={() => hasPopup && setOpen(true)}
         onMouseLeave={() => setOpen(false)}
         onKeyDown={event => event.key === "Escape" && setOpen(false)}
@@ -125,7 +132,8 @@ export default function NavigationItem(props: NavItemProps) {
           <Popper keepMounted open={popupOpen} anchorEl={anchor} placement="right-start"
             sx={{ zIndex: theme => theme.zIndex.drawer + 2, pl: 0.75 }}>
             <Paper component="nav" aria-label={title} elevation={1}
-              sx={{ py: 0.5, maxHeight: "80vh", overflowY: "auto" }}
+              sx={{ py: 0.5, width: 300, maxWidth: "85vw", boxSizing: "border-box",
+                maxHeight: "80vh", overflowX: "hidden", overflowY: "auto" }}
               onClick={event => event.target instanceof Element && event.target.closest("a") && setOpen(false)}>
               {props.miniPopoverContent}
             </Paper>
