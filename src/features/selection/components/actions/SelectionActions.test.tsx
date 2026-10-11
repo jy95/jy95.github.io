@@ -10,6 +10,7 @@ vi.mock('@/i18n/routing', () => ({ getPathname: () => '/en/selection', Link: ({ 
 const document = { ...emptySelection(), games: ['visible', 'missing'], backlog: ['hidden'] };
 const clipboard = Object.getOwnPropertyDescriptor(navigator, 'clipboard');
 const nativeShare = Object.getOwnPropertyDescriptor(navigator, 'share');
+const canShare = Object.getOwnPropertyDescriptor(navigator, 'canShare');
 afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
@@ -17,11 +18,14 @@ afterEach(() => {
   else Reflect.deleteProperty(navigator, 'clipboard');
   if (nativeShare) Object.defineProperty(navigator, 'share', nativeShare);
   else Reflect.deleteProperty(navigator, 'share');
+  if (canShare) Object.defineProperty(navigator, 'canShare', canShare);
+  else Reflect.deleteProperty(navigator, 'canShare');
 });
 function mount() {
   render(<NextIntlClientProvider locale="en" messages={messages}><SelectionActions shared={false} document={document} personal={document} /></NextIntlClientProvider>);
 }
-it('shares the localized encoded URL natively without copying or opening a modal', async () => {
+it.each([false, true])('shares the localized encoded URL natively without copying or opening a modal (canShare available=%s)', async canShareAvailable => {
+  Object.defineProperty(navigator, 'canShare', { configurable: true, value: canShareAvailable ? vi.fn().mockReturnValue(true) : undefined });
   const encode = vi.spyOn(sharing, 'encodeSelection').mockResolvedValue('encoded');
   const share = vi.fn().mockResolvedValue(undefined);
   const writeText = vi.fn();

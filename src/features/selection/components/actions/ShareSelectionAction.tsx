@@ -43,14 +43,14 @@ export function ShareSelectionAction({ document }: ShareSelectionActionProps) {
     setState('idle');
 
     try {
-      if (!navigator.canShare) {
+      if (typeof navigator.share === 'function') {
         await navigator.share({ title: t('title'), url });
       } else {
         await navigator.clipboard.writeText(url);
         setCopied(true);
       }
     } catch {
-      setState('error');
+      // Cancellation or denied clipboard access does not indicate an encoding failure.
     }
   }
 
