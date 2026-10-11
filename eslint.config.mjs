@@ -5,7 +5,7 @@ const eslintConfig = [...nextCoreWebVitals, ...nextTypescript, {
   files: [
     'src/domain/selection/**/*.{ts,tsx}',
     'src/features/selection/**/*.{ts,tsx}',
-    'src/features/games/components/{CardEntry,CardGrid,GroupedGamesAccordion}.tsx',
+    'src/features/games/components/{CardEntry,CardGrid}.tsx',
     'src/features/games/detail/{GameToolbar,GameDetailView}.tsx',
     'src/app/api/selection/route.ts',
     'src/app/[[]locale]/selection/page.tsx',
