@@ -36,6 +36,29 @@ vi.mock('../provider/useAppContext', () => ({ useAppContext: () => ({ drawerOpen
 describe('NavigationGroup', () => {
     beforeEach(() => { pathname = '/unrelated'; });
 
+    it('sizes popup and nested lists to their parent without adding scroll containers', () => {
+        render(<NavigationGroup item={nestedFixture()} mini />);
+        const parent = screen.getByRole('button', { name: 'dashboard.menuEntries.sections.browse' });
+        vi.spyOn(parent, 'getBoundingClientRect').mockReturnValue({ x: 0, y: 0, top: 0, left: 0,
+            right: 80, bottom: 60, width: 80, height: 60, toJSON: () => ({}) });
+        fireEvent.click(parent);
+        const paper = screen.getByRole('navigation');
+        fireEvent.click(within(paper).getByRole('button', { name: 'dashboard.menuEntries.tierTabs' }));
+        const lists = within(paper).getAllByRole('list');
+        expect(lists).toHaveLength(2);
+        for (const list of lists) {
+            expect(list).toHaveStyle({ width: '100%', maxWidth: '100%', boxSizing: 'border-box' });
+            const style = getComputedStyle(list);
+            expect([style.overflow, style.overflowX, style.overflowY]).not.toContain('auto');
+            expect([style.overflow, style.overflowX, style.overflowY]).not.toContain('scroll');
+        }
+        expect(lists[0]).toHaveStyle({ paddingLeft: '0px' });
+        expect(lists[1]).toHaveStyle({ paddingLeft: '16px' });
+        for (const row of within(paper).getAllByRole('listitem').filter(row => row.classList.contains('MuiListItem-root'))) {
+            expect(row).toHaveStyle({ overflow: 'visible', boxSizing: 'border-box', maxWidth: '100%' });
+        }
+    });
+
     it('keeps nested disclosure state mounted after mini popup dismissal', () => {
         render(<NavigationGroup item={nestedFixture()} mini />);
         const parent = screen.getByRole('button', { name: 'dashboard.menuEntries.sections.browse' });

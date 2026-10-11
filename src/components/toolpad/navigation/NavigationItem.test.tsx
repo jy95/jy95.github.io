@@ -139,6 +139,27 @@ describe.each([
         expect(getComputedStyle(screen.getByText('Games Library')).maxWidth).toBe('56px');
     });
 
+    it('wraps long expanded labels and hints while preserving badge and icon space', () => {
+        const title = 'Ma sélection' + 'LongLabel'.repeat(20);
+        const hint = 'LongHint'.repeat(30);
+        render(<NavigationItem title={title} hint={hint} href={href} selected={false} hasChildren
+            icon={<span data-testid="icon" />} badgeDescriptionId="count"
+            badge={<span aria-label="4 saved entries" id="count">4 saved entries</span>} />);
+
+        const button = screen.getByRole(href ? 'link' : 'button');
+        expect(button).toHaveStyle({ width: '100%', maxWidth: '100%', minWidth: '0', boxSizing: 'border-box' });
+        expect(screen.getByRole('listitem')).toHaveStyle({ width: '100%', maxWidth: '100%', boxSizing: 'border-box', overflow: 'visible' });
+        for (const text of [screen.getByText(title), screen.getByText(hint)]) {
+            expect(text).toHaveStyle({ whiteSpace: 'normal', overflowWrap: 'anywhere' });
+        }
+        expect(screen.getByText(title).closest('.MuiListItemText-root')).toHaveStyle({ minWidth: '0' });
+        expect(screen.getByLabelText('4 saved entries').parentElement).toHaveStyle({ flexShrink: '0' });
+        expect(screen.getByTestId('icon').closest('.MuiListItemIcon-root')?.parentElement).toHaveStyle({ flexShrink: '0' });
+        expect(screen.getByTestId('ExpandMoreIcon')).toHaveStyle({ flexShrink: '0' });
+        expect(button).toHaveAccessibleName(title);
+        expect(button).toHaveAccessibleDescription(`${hint} 4 saved entries`);
+    });
+
     describe.each([
         { mode: 'expanded', drawerOpen: true, height: '48px' },
         { mode: 'mini', drawerOpen: false, height: '60px' },
@@ -226,6 +247,24 @@ describe('NavigationItem mini popover', () => {
             right: 80, bottom: 60, width: 80, height: 60, toJSON: () => ({}) });
         return { ...rendered, button, props };
     }
+
+    it('limits the Paper width and makes it the vertical scroll container', () => {
+        const { button } = fixture();
+        fireEvent.click(button);
+        const paper = screen.getByRole('navigation');
+        // Inspect emitted CSS: jsdom does not reliably compute styles on this Popper portal.
+        const rule = Array.from(document.styleSheets)
+            .flatMap(sheet => Array.from(sheet.cssRules))
+            .find(rule => rule instanceof CSSStyleRule && rule.style.getPropertyValue('overflow-x') === 'hidden'
+                && paper.matches(rule.selectorText));
+        if (!(rule instanceof CSSStyleRule)) throw new Error('Expected Paper layout styles');
+        for (const [property, value] of Object.entries({
+            width: '300px', 'max-width': '85vw', 'box-sizing': 'border-box',
+            'max-height': '80vh', 'overflow-x': 'hidden', 'overflow-y': 'auto',
+        })) {
+            expect(rule.style.getPropertyValue(property)).toBe(value);
+        }
+    });
 
     it.each([
         { condition: 'expanded mode', mini: false },
