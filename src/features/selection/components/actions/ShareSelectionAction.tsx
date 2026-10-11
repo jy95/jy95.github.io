@@ -43,14 +43,14 @@ export function ShareSelectionAction({ document }: ShareSelectionActionProps) {
     setState('idle');
 
     try {
-      if (typeof navigator.share === 'function') {
+      if (!navigator.canShare) {
         await navigator.share({ title: t('title'), url });
       } else {
         await navigator.clipboard.writeText(url);
         setCopied(true);
       }
     } catch {
-      // Sharing cancellation and browser API failures need no feedback.
+      setState('error');
     }
   }
 
@@ -58,7 +58,7 @@ export function ShareSelectionAction({ document }: ShareSelectionActionProps) {
     <>
       <LoadingButton loading={state === 'busy'} onClick={share} label={t('share')} />
       {state === 'error' && <Alert severity="error">{t('compressionUnavailable')}</Alert>}
-      <Snackbar open={copied} autoHideDuration={3000} onClose={() => setCopied(false)} message={t('copied')} />
+      <Snackbar open={copied} autoHideDuration={500} onClose={() => setCopied(false)} message={t('copied')} />
     </>
   );
 }
