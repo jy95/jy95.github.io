@@ -22,28 +22,16 @@ export function ShareSelectionAction({ document }: ShareSelectionActionProps) {
   const locale = useLocale();
 
   async function share() {
-    let url: string;
-    try {
-      const selectionUrl = new URL(getPathname({ locale, href: '/selection' }), window.location.origin);
-      selectionUrl.search = new URLSearchParams({ entries: await encodeSelection(document) }).toString();
-      url = selectionUrl.toString();
-    } catch {
-      return;
-    }
 
-    try {
-      await navigator.clipboard.writeText(url);
-    } catch {
-      // Unavailable or denied clipboard access must not prevent native sharing.
-    }
+    const selectionUrl = new URL(getPathname({ locale, href: '/selection' }), window.location.origin);
+    selectionUrl.search = new URLSearchParams({ entries: await encodeSelection(document) }).toString();
+    let url = selectionUrl.toString();
 
-    if (typeof navigator.share === 'function') {
-      try {
-        await navigator.share({ title: t('title'), url });
-      } catch {
-        // Ignore native share failures and cancellation.
-      }
-    }
+    // Set up result in clipboard
+    await navigator.clipboard.writeText(url);
+
+    // Use device sharing feature
+    await navigator.share({ title: t('title'), url });
   }
 
   return <Button onClick={share}>{t('share')}</Button>;
