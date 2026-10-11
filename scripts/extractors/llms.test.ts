@@ -9,7 +9,7 @@ import {buildLlmContext, extractAndSaveLlmContext, type LlmContextData} from "./
 
 const temporaryDirectories: string[] = [];
 const publicPaths = [
-    "/", "/games", "/games/series", "/games/dlcs", "/games/random", "/planning", "/backlog",
+    "/", "/games", "/games/series", "/games/series/:id", "/games/dlcs", "/games/dlcs/:id", "/games/random", "/planning", "/backlog",
     "/tests", "/stats", "/tier", "/tier/games", "/tier/backlog", "/tier/tests", "/links",
     "/video/:id", "/playlist/:id",
 ];
@@ -54,6 +54,9 @@ describe("LLM context extractor", () => {
         const output = buildLlmContext(data());
 
         for (const path of publicPaths) expect(output).toContain(`- ${path}:`);
+        expect(output).not.toContain(": undefined");
+        expect(output).toContain("/games/series/:id: View games associated with a specific series.");
+        expect(output).toContain("/games/dlcs/:id: View downloadable-content walkthroughs associated with a specific parent game.");
         const headings = ["## Site pages", "## Feeds", "## Guidance for assistants", "## Current catalog", "## Published games"];
         for (let index = 1; index < headings.length; index++) {
             expect(output.indexOf(headings[index - 1])).toBeLessThan(output.indexOf(headings[index]));
@@ -154,5 +157,8 @@ describe("LLM context extractor", () => {
         expect(output).toContain("Planned items: 2");
         expect(output).toContain("- [Alpha](https://www.youtube.com/playlist?list=playlist-a)");
         for (const path of publicPaths) expect(output).toContain(`- ${path}:`);
+        expect(output).not.toContain(": undefined");
+        expect(output).toContain("/games/series/:id: View games associated with a specific series.");
+        expect(output).toContain("/games/dlcs/:id: View downloadable-content walkthroughs associated with a specific parent game.");
     });
 });

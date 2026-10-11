@@ -9,7 +9,7 @@ vi.mock('next-intl', () => echoTranslations());
 vi.mock('@/i18n/routing', () => ({ useRouter: () => ({ back }) }));
 
 describe('useEntityGamesDetail', () => {
-    it.each(['companies', 'series'] as const)('uses %s labels and locale-aware back navigation', namespace => {
+    it.each(['companies', 'series', 'dlcs'] as const)('uses %s labels and locale-aware back navigation', namespace => {
         function Consumer() {
             const { labels, onBack } = useEntityGamesDetail(namespace);
             return <><button onClick={onBack}>{labels.back}</button><div>{labels.sort}</div>

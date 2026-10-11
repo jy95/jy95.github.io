@@ -40,6 +40,9 @@ describe('navigation paths', () => {
     const navigation = [{ titleKey: 'gamesKey', path: '/games/detail' }] as const;
     expect(selectedNavigationPath([...navigation], '/games/detail/abc')).toBeUndefined();
     expect(selectedNavigationPath([...navigation], '/games/detail/abc/extra')).toBe('/games/detail');
+    const dlcs = [{ titleKey: 'gamesKey', path: '/games/dlcs/abc' }] as const;
+    expect(selectedNavigationPath([...dlcs], '/games/dlcs/abc')).toBeUndefined();
+    expect(selectedNavigationPath([...dlcs], '/games/dlcs/abc/extra')).toBe('/games/dlcs/abc');
   });
 
   it('prefers absolute paths and joins relative segments', () => {
@@ -47,6 +50,9 @@ describe('navigation paths', () => {
     expect(resolveNavigationPath({ titleKey: 'gamesKey', segment: 'games' }, '/tier')).toBe('/tier/games');
   });
   it.each([
+    ['/games/dlcs', '/games/dlcs'], ['/games/dlcs/abc', '/games/dlcs'],
+    ['/games/dlcs/[id]', '/games/dlcs'], ['/games/dlcs/abc/', '/games/dlcs'],
+    ['/games/dlcsextra', '/games'],
     ['/games/series', '/games/series'], ['/gamesbacklog', undefined],
     ['/games/detail/abc', '/games'], ['/games/detail/[id]', '/games'],
     ['/video/abc', '/games'], ['/video/[id]', '/games'],

@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import type { EntityGamesDetailLabels } from "./entityGamesDetailLabels";
 
-export function useEntityGamesDetail(namespace: "companies" | "series") {
+export function useEntityGamesDetail(namespace: "companies" | "series" | "dlcs") {
     const t = useTranslations(namespace);
     const common = useTranslations("common");
     const gameSort = useTranslations("common.gameSort");

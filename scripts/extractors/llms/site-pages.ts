@@ -22,7 +22,8 @@ const PAGE_PURPOSES: Readonly<Record<string, string>> = {
     "/playlist/:id": "Watch the YouTube walkthrough playlist identified by id.",
     "/companies/:id": "View details & games associated with a specific company",
     "/games/detail/:id": "View information associated to a game",
-    "games/series/:id": "View games associated to a specific serie"
+    "/games/series/:id": "View games associated with a specific series.",
+    "/games/dlcs/:id": "View downloadable-content walkthroughs associated with a specific parent game."
 };
 
 export function buildStaticPaths(): string[] {

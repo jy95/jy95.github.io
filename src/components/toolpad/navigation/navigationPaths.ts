@@ -1,6 +1,7 @@
 import type { Navigation, NavigationItem } from '../types';
 
 const ROUTE_ALIASES = [
+  { pattern: /^\/games\/dlcs\/[^/]+\/?$/, path: '/games/dlcs' },
   { pattern: /^\/games\/detail\/[^/]+\/?$/, path: '/games' },
   { pattern: /^\/(video|playlist)\/[^/]+\/?$/, path: '/games' },
   { pattern: /^\/companies\/[^/]+\/?$/, path: '/companies' },

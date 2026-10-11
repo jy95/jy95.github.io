@@ -50,8 +50,9 @@ describe('injected RTK Query endpoints', () => {
         expect(calledUrl(fetchMock).pathname).toBe('/api/series');
     });
 
-    it('dlcsAPI.getDLCs hits /api/dlcs', async () => {
-        await makeStore(dlcsAPI).dispatch(dlcsAPI.endpoints.getDLCs.initiate());
+    it('dlcsAPI.getDlcs hits /api/dlcs', async () => {
+        fetchMock.mockImplementation(async () => jsonResponse({ items: [], total_items: 0, total_pages: 0, pageSize: 12, page: 1 }));
+        await makeStore(dlcsAPI).dispatch(dlcsAPI.endpoints.getDlcs.initiate({ filter: "", sort: "nameAsc", pageSize: 12 }));
         expect(calledUrl(fetchMock).pathname).toBe('/api/dlcs');
     });
 

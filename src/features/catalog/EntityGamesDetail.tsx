@@ -11,16 +11,17 @@ import { CardMediaImage } from "@/components/common/CardMediaImage";
 import { CardGrid } from "@/features/games/components/CardGrid";
 import { usePagedSlice } from "@/hooks/usePagedSlice";
 import LoadingButton from "@/app/[locale]/games/_client/LoadingButton";
+import type { SelectionCategory } from "@/domain/selection/types";
 import { compareGames, SORT_OPTIONS } from "./gameSorting";
 import type { EntityGamesDetailLabels } from "./entityGamesDetailLabels";
 import type { GameSort, TieredCardGame } from "./gameSorting";
 
 type Props = {
     name: string; games: TieredCardGame[]; imagePath?: string; countLabel?: string; onBack: () => void;
-    labels: EntityGamesDetailLabels;
+    labels: EntityGamesDetailLabels; category?: SelectionCategory; sortOptions?: readonly GameSort[];
 };
 
-export default function EntityGamesDetail({ name, games, imagePath, countLabel, onBack, labels }: Props) {
+export default function EntityGamesDetail({ name, games, imagePath, countLabel, onBack, labels, category = "games", sortOptions = SORT_OPTIONS }: Props) {
     const [sort, setSort] = useState<GameSort>("titleAsc");
     const sorted = useMemo(() => [...games].sort((a, b) => compareGames(a, b, sort)), [games, sort]);
     const { visible, hasMore, loadMore } = usePagedSlice(sorted, 12);
@@ -33,11 +34,11 @@ export default function EntityGamesDetail({ name, games, imagePath, countLabel, 
         </Box>
         <Box data-testid="entity-sort-controls" sx={{ display: "flex", justifyContent: "flex-end", flexWrap: "wrap", gap: 1 }}>
             <TextField select slotProps={{ select: { native: true } }} label={labels.sort} value={sort}
-                onChange={event => { const option = SORT_OPTIONS.find(option => option === event.target.value); if (option) setSort(option); }}>
-                {SORT_OPTIONS.map(option => <option key={option} value={option}>{labels.options[option]}</option>)}
+                onChange={event => { const option = sortOptions.find(option => option === event.target.value); if (option) setSort(option); }}>
+                {sortOptions.map(option => <option key={option} value={option}>{labels.options[option]}</option>)}
             </TextField>
         </Box>
-        <CardGrid items={visible} size={{ xs: 6, md: 4, lg: 2 }} />
+        <CardGrid category={category} items={visible} size={{ xs: 6, md: 4, lg: 2 }} />
         {hasMore && <Grid container sx={{ justifyContent: "center" }}><LoadingButton onClick={loadMore} label={labels.loadMore} /></Grid>}
     </>;
 }
