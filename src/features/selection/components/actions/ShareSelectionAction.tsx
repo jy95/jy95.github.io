@@ -1,22 +1,17 @@
 'use client';
 
 // Hooks
-import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 
 // MUI
-import Alert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
+import Button from '@mui/material/Button';
 
 // Custom
-import LoadingButton from '@/app/[locale]/games/_client/LoadingButton';
 import { getPathname } from '@/i18n/routing';
 import { encodeSelection } from "@/features/selection/sharing/sharing";
 
 // Type
 import type { SelectionDocument } from '@/domain/selection/types';
-
-type ShareState = 'idle' | 'busy' | 'error';
 
 type ShareSelectionActionProps = {
   document: SelectionDocument;
@@ -25,40 +20,31 @@ type ShareSelectionActionProps = {
 export function ShareSelectionAction({ document }: ShareSelectionActionProps) {
   const t = useTranslations('selection');
   const locale = useLocale();
-  const [state, setState] = useState<ShareState>('idle');
-
-  const [copied, setCopied] = useState(false);
 
   async function share() {
-    setState('busy');
     let url: string;
     try {
       const selectionUrl = new URL(getPathname({ locale, href: '/selection' }), window.location.origin);
       selectionUrl.search = new URLSearchParams({ entries: await encodeSelection(document) }).toString();
       url = selectionUrl.toString();
     } catch {
-      setState('error');
       return;
     }
-    setState('idle');
 
     try {
-      if (typeof navigator.share === 'function') {
-        await navigator.share({ title: t('title'), url });
-      } else {
-        await navigator.clipboard.writeText(url);
-        setCopied(true);
-      }
+      await navigator.clipboard.writeText(url);
     } catch {
-      // Cancellation or denied clipboard access does not indicate an encoding failure.
+      // Unavailable or denied clipboard access must not prevent native sharing.
+    }
+
+    if (typeof navigator.share === 'function') {
+      try {
+        await navigator.share({ title: t('title'), url });
+      } catch {
+        // Ignore native share failures and cancellation.
+      }
     }
   }
 
-  return (
-    <>
-      <LoadingButton loading={state === 'busy'} onClick={share} label={t('share')} />
-      {state === 'error' && <Alert severity="error">{t('compressionUnavailable')}</Alert>}
-      <Snackbar open={copied} autoHideDuration={500} onClose={() => setCopied(false)} message={t('copied')} />
-    </>
-  );
+  return <Button onClick={share}>{t('share')}</Button>;
 }
