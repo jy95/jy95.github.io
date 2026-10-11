@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from 'next-intl';
 
 // MUI
 import Button from '@mui/material/Button';
+import ShareIcon from '@mui/icons-material/Share';
 
 // Custom
 import { getPathname } from '@/i18n/routing';
@@ -34,5 +35,5 @@ export function ShareSelectionAction({ document }: ShareSelectionActionProps) {
     await navigator?.share({ title: t('title'), url });
   }
 
-  return <Button onClick={share}>{t('share')}</Button>;
+  return <Button onClick={share} startIcon={<ShareIcon />}>{t('share')}</Button>;
 }
