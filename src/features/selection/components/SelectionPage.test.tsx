@@ -27,8 +27,16 @@ const shared = { games: ['same', 'ghost'], dlcs: ['same'], planning: ['same'], b
 function mount(entries = catalogue) {
     return render(<NextIntlClientProvider locale="en" messages={messages}><SelectionPage catalogue={entries} /></NextIntlClientProvider>);
 }
+const clipboard = Object.getOwnPropertyDescriptor(navigator, 'clipboard');
+const nativeShare = Object.getOwnPropertyDescriptor(navigator, 'share');
 beforeEach(() => { navigation.query = ''; localStorage.clear(); vi.clearAllMocks(); });
-afterEach(() => { cleanup(); vi.restoreAllMocks(); localStorage.clear(); });
+afterEach(() => {
+    cleanup(); vi.restoreAllMocks(); localStorage.clear();
+    if (clipboard) Object.defineProperty(navigator, 'clipboard', clipboard);
+    else Reflect.deleteProperty(navigator, 'clipboard');
+    if (nativeShare) Object.defineProperty(navigator, 'share', nativeShare);
+    else Reflect.deleteProperty(navigator, 'share');
+});
 function choose(label: string, option: string) {
     fireEvent.mouseDown(screen.getByRole('combobox', { name: label }));
     fireEvent.click(screen.getByRole('option', { name: option }));
@@ -98,9 +106,16 @@ it('filters, sorts and paginates without changing storage and shares missing and
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Zephyr' } });
     await waitFor(() => expect(screen.getAllByRole('img', { name: /^Item/ })).toHaveLength(1));
     expect(getSelectionSnapshot().document).toEqual(document); expect(write).not.toHaveBeenCalled();
+    const share = vi.fn<(data: ShareData) => Promise<void>>().mockResolvedValue(undefined);
+    const writeText = vi.fn<(text: string) => Promise<void>>().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
+    Object.defineProperty(navigator, 'share', { configurable: true, value: share });
     fireEvent.click(screen.getByRole('button', { name: messages.selection.share }));
-    const url = new URL((await screen.findByRole('textbox', { name: messages.selection.shareLink }) as HTMLInputElement).value);
-    expect(await sharing.decodeSelection(url.searchParams.get('entries')!)).toEqual(document);
+    await waitFor(() => expect(share).toHaveBeenCalledOnce());
+    expect(writeText).toHaveBeenCalledExactlyOnceWith(share.mock.calls[0][0].url);
+    const url = new URL(share.mock.calls[0][0].url ?? '');
+    expect(await sharing.decodeSelection(url.searchParams.get('entries') ?? '')).toEqual(document);
+    expect(getSelectionSnapshot().document).toEqual(document); expect(write).not.toHaveBeenCalled();
 }, 15000);
 it('removes missing identifiers explicitly and reports a failed removal', async () => {
     localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['ghost'] }));

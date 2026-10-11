@@ -1,21 +1,18 @@
 'use client';
 
 // Hooks
-import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 
 // MUI
-import Alert from '@mui/material/Alert';
-import { ShareSelectionDialog } from './ShareSelectionDialog';
+import Button from '@mui/material/Button';
+import ShareIcon from '@mui/icons-material/Share';
 
 // Custom
-import LoadingButton from '@/app/[locale]/games/_client/LoadingButton';
 import { getPathname } from '@/i18n/routing';
 import { encodeSelection } from "@/features/selection/sharing/sharing";
 
+// Type
 import type { SelectionDocument } from '@/domain/selection/types';
-
-type ShareState = { kind: 'idle' | 'busy' | 'error' } | { kind: 'ready'; url: string };
 
 type ShareSelectionActionProps = {
   document: SelectionDocument;
@@ -24,26 +21,19 @@ type ShareSelectionActionProps = {
 export function ShareSelectionAction({ document }: ShareSelectionActionProps) {
   const t = useTranslations('selection');
   const locale = useLocale();
-  const [state, setState] = useState<ShareState>({ kind: 'idle' });
 
   async function share() {
-    setState({ kind: 'busy' });
-    try {
-      const url = new URL(getPathname({ locale, href: '/selection' }), window.location.origin);
-      url.search = new URLSearchParams({ entries: await encodeSelection(document) }).toString();
-      setState({ kind: 'ready', url: url.toString() });
-    } catch {
-      setState({ kind: 'error' });
-    }
+
+    const selectionUrl = new URL(getPathname({ locale, href: '/selection' }), window.location.origin);
+    selectionUrl.search = new URLSearchParams({ entries: await encodeSelection(document) }).toString();
+    const url = selectionUrl.toString();
+
+    // Set up result in clipboard
+    await navigator.clipboard?.writeText(url);
+
+    // Use device sharing feature
+    await navigator?.share({ title: t('title'), url });
   }
 
-  return (
-    <>
-      <LoadingButton loading={state.kind === 'busy'} onClick={share} label={t('share')} />
-      {state.kind === 'error' && <Alert severity="error">{t('compressionUnavailable')}</Alert>}
-      {state.kind === 'ready' && (
-        <ShareSelectionDialog url={state.url} onClose={() => setState({ kind: 'idle' })} />
-      )}
-    </>
-  );
+  return <Button onClick={share} startIcon={<ShareIcon />}>{t('share')}</Button>;
 }
