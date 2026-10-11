@@ -25,7 +25,7 @@ export function ShareSelectionAction({ document }: ShareSelectionActionProps) {
 
     const selectionUrl = new URL(getPathname({ locale, href: '/selection' }), window.location.origin);
     selectionUrl.search = new URLSearchParams({ entries: await encodeSelection(document) }).toString();
-    let url = selectionUrl.toString();
+    const url = selectionUrl.toString();
 
     // Set up result in clipboard
     await navigator.clipboard?.writeText(url);
