@@ -25,6 +25,7 @@ interface Props {
   mini?: boolean;
 }
 
+
 export default function NavigationGroup({ item, parentPath = "", selectedPath, mini }: Props) {
   const pathname = usePathname();
   const { drawerOpen = true, navigation } = useAppContext();
