@@ -24,81 +24,102 @@ afterEach(() => {
 function mount() {
   render(<NextIntlClientProvider locale="en" messages={messages}><SelectionActions shared={false} document={document} personal={document} /></NextIntlClientProvider>);
 }
-it.each([false, true])('shares the localized encoded URL natively without copying or opening a modal (canShare available=%s)', async canShareAvailable => {
-  Object.defineProperty(navigator, 'canShare', { configurable: true, value: canShareAvailable ? vi.fn().mockReturnValue(true) : undefined });
+function expectNoShareFeedback() {
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.queryByText(messages.selection.copied)).not.toBeInTheDocument();
+  expect(screen.queryByText(messages.selection.compressionUnavailable)).not.toBeInTheDocument();
+}
+it.each(['unavailable', 'false', 'true'])('copies before native sharing regardless of canShare=%s', async availability => {
+  const capability = vi.fn().mockReturnValue(availability === 'true');
+  Object.defineProperty(navigator, 'canShare', { configurable: true, value: availability === 'unavailable' ? undefined : capability });
   const encode = vi.spyOn(sharing, 'encodeSelection').mockResolvedValue('encoded');
+  let finishCopy: () => void = () => { throw new Error('Clipboard has not started'); };
+  const copying = new Promise<void>(resolve => { finishCopy = resolve; });
   const share = vi.fn().mockResolvedValue(undefined);
-  const writeText = vi.fn();
+  const writeText = vi.fn().mockReturnValue(copying);
   Object.defineProperty(navigator, 'share', { configurable: true, value: share });
   Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
   mount();
-  fireEvent.click(screen.getByRole('button', { name: messages.selection.share }));
-  await waitFor(() => expect(share).toHaveBeenCalledWith({
-    title: messages.selection.title,
-    url: new URL('/en/selection?entries=encoded', window.location.origin).toString(),
-  }));
+  const button = screen.getByRole('button', { name: messages.selection.share });
+  fireEvent.click(button);
+  const url = new URL('/en/selection?entries=encoded', window.location.origin).toString();
+  await waitFor(() => expect(writeText).toHaveBeenCalledExactlyOnceWith(url));
   expect(encode).toHaveBeenCalledWith(document);
-  expect(writeText).not.toHaveBeenCalled();
-  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-  expect(screen.queryByText(messages.selection.copied)).not.toBeInTheDocument();
+  expect(share).not.toHaveBeenCalled();
+  expect(button).toBeEnabled();
+  expect(button).toHaveTextContent(messages.selection.share);
+  expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+  await act(async () => { finishCopy(); await copying; });
+  expect(share).toHaveBeenCalledExactlyOnceWith({ title: messages.selection.title, url });
+  expect(capability).not.toHaveBeenCalled();
+  expectNoShareFeedback();
 });
-it('copies the localized encoded URL and confirms success when native sharing is unavailable', async () => {
+it('copies without feedback when native sharing is unavailable', async () => {
   vi.spyOn(sharing, 'encodeSelection').mockResolvedValue('encoded');
   const writeText = vi.fn().mockResolvedValue(undefined);
   Object.defineProperty(navigator, 'share', { configurable: true, value: undefined });
   Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
   mount();
-  fireEvent.click(screen.getByRole('button', { name: messages.selection.share }));
-  expect(await screen.findByText(messages.selection.copied)).toBeInTheDocument();
-  expect(writeText).toHaveBeenCalledWith(new URL('/en/selection?entries=encoded', window.location.origin).toString());
-  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  await act(async () => { fireEvent.click(screen.getByRole('button', { name: messages.selection.share })); });
+  expect(writeText).toHaveBeenCalledExactlyOnceWith(new URL('/en/selection?entries=encoded', window.location.origin).toString());
+  expectNoShareFeedback();
 });
-it('ignores native share cancellation without copying', async () => {
+it('silently ignores native share cancellation after copying', async () => {
   vi.spyOn(sharing, 'encodeSelection').mockResolvedValue('encoded');
   const share = vi.fn().mockRejectedValue(new DOMException('cancelled', 'AbortError'));
-  const writeText = vi.fn();
+  const writeText = vi.fn().mockResolvedValue(undefined);
   Object.defineProperty(navigator, 'share', { configurable: true, value: share });
   Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
   mount();
-  fireEvent.click(screen.getByRole('button', { name: messages.selection.share }));
-  await waitFor(() => expect(share).toHaveBeenCalledOnce());
-  await act(async () => { await share.mock.results[0].value.catch(() => undefined); });
-  expect(writeText).not.toHaveBeenCalled();
-  expect(screen.queryByRole('alert')).not.toBeInTheDocument();
-  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-  expect(screen.queryByText(messages.selection.copied)).not.toBeInTheDocument();
+  await act(async () => { fireEvent.click(screen.getByRole('button', { name: messages.selection.share })); });
+  expect(writeText).toHaveBeenCalledOnce();
+  expect(share).toHaveBeenCalledExactlyOnceWith({ title: messages.selection.title, url: writeText.mock.calls[0][0] });
+  expectNoShareFeedback();
 });
-it('ignores clipboard rejection', async () => {
+it.each(['rejected', 'unavailable'])('attempts native sharing after clipboard is %s', async availability => {
+  vi.spyOn(sharing, 'encodeSelection').mockResolvedValue('encoded');
+  const writeText = vi.fn().mockRejectedValue(new Error('denied'));
+  const share = vi.fn().mockResolvedValue(undefined);
+  Object.defineProperty(navigator, 'share', { configurable: true, value: share });
+  Object.defineProperty(navigator, 'clipboard', { configurable: true, value: availability === 'unavailable' ? undefined : { writeText } });
+  mount();
+  await act(async () => { fireEvent.click(screen.getByRole('button', { name: messages.selection.share })); });
+  expect(writeText).toHaveBeenCalledTimes(availability === 'unavailable' ? 0 : 1);
+  expect(share).toHaveBeenCalledExactlyOnceWith({
+    title: messages.selection.title,
+    url: new URL('/en/selection?entries=encoded', window.location.origin).toString(),
+  });
+  expectNoShareFeedback();
+});
+it('silently ignores clipboard rejection when native sharing is unavailable', async () => {
   vi.spyOn(sharing, 'encodeSelection').mockResolvedValue('encoded');
   const writeText = vi.fn().mockRejectedValue(new Error('denied'));
   Object.defineProperty(navigator, 'share', { configurable: true, value: undefined });
   Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
   mount();
-  fireEvent.click(screen.getByRole('button', { name: messages.selection.share }));
-  await waitFor(() => expect(writeText).toHaveBeenCalledOnce());
-  await act(async () => { await writeText.mock.results[0].value.catch(() => undefined); });
-  expect(screen.queryByRole('alert')).not.toBeInTheDocument();
-  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-  expect(screen.queryByText(messages.selection.copied)).not.toBeInTheDocument();
+  await act(async () => { fireEvent.click(screen.getByRole('button', { name: messages.selection.share })); });
+  expect(writeText).toHaveBeenCalledOnce();
+  expectNoShareFeedback();
 });
-it('reports generation failure without sharing and recovers on retry', async () => {
+it('silently ignores generation failure without browser API calls and recovers on retry', async () => {
   const encode = vi.spyOn(sharing, 'encodeSelection').mockRejectedValueOnce(new Error('failed')).mockResolvedValueOnce('new');
   const share = vi.fn().mockResolvedValue(undefined);
-  const writeText = vi.fn();
+  const writeText = vi.fn().mockResolvedValue(undefined);
   Object.defineProperty(navigator, 'share', { configurable: true, value: share });
   Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
   mount();
-  fireEvent.click(screen.getByRole('button', { name: messages.selection.share }));
-  expect(await screen.findByText(messages.selection.compressionUnavailable)).toBeInTheDocument();
+  await act(async () => { fireEvent.click(screen.getByRole('button', { name: messages.selection.share })); });
+  expect(encode).toHaveBeenCalledOnce();
   expect(share).not.toHaveBeenCalled();
   expect(writeText).not.toHaveBeenCalled();
-  fireEvent.click(screen.getByRole('button', { name: messages.selection.share }));
-  await waitFor(() => expect(share).toHaveBeenCalledWith({
-    title: messages.selection.title,
-    url: new URL('/en/selection?entries=new', window.location.origin).toString(),
-  }));
-  expect(screen.queryByText(messages.selection.compressionUnavailable)).not.toBeInTheDocument();
+  expectNoShareFeedback();
+  await act(async () => { fireEvent.click(screen.getByRole('button', { name: messages.selection.share })); });
+  const url = new URL('/en/selection?entries=new', window.location.origin).toString();
+  expect(writeText).toHaveBeenCalledExactlyOnceWith(url);
+  expect(share).toHaveBeenCalledExactlyOnceWith({ title: messages.selection.title, url });
   expect(encode).toHaveBeenCalledWith(document);
+  expectNoShareFeedback();
 });
 it('requires clear confirmation and resets failed feedback on reopening', async () => {
   const clear = vi.spyOn(store, 'clearSelection').mockReturnValue(false);
