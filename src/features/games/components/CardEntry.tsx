@@ -20,8 +20,21 @@ import type { ReactNode } from "react";
 import type { CardGame } from "@/domain/games";
 import type { SelectionCategory } from '@/domain/selection/types';
 
+type CardProps = {
+    game: CardGame; 
+    selectable?: boolean; 
+    badge?: ReactNode; 
+    category?: SelectionCategory;
+    showDetails?: boolean
+}
 
-function CardEntry({ game, selectable = true, badge, category = "games" }: { game: CardGame; selectable?: boolean; badge?: ReactNode; category?: SelectionCategory }) {
+function CardEntry({ 
+    game, 
+    selectable = true,
+    showDetails = true,
+    badge, 
+    category = "games" 
+}: CardProps) {
 
     // hooks
     const router = useRouter();
