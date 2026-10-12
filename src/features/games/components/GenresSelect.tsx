@@ -10,6 +10,7 @@ import { renderAutocompleteInput } from "./renderAutocompleteInput";
 import { useGetGenresQuery } from "@/redux/services/genresAPI"
 
 // Generate list of values for game genre
+import type { ChipTypeMap } from "@mui/material/Chip";
 import type { Genre } from "@/app/api/genres/route"
 import type { GameGenreId } from "@/types/genres";
 
@@ -33,8 +34,9 @@ function GenresSelect({ value: selectedGenres, onChange }: Props) {
         );
 
     return (
-        <Autocomplete<Genre, true, true>
+        <Autocomplete<Genre, true, true, false, ChipTypeMap['defaultComponent'], number>
             multiple
+            disableClearable
             openOnFocus
             filterSelectedOptions
             id="select-game-genre"
@@ -42,11 +44,11 @@ function GenresSelect({ value: selectedGenres, onChange }: Props) {
             loading={isFetching}
             options={options}
             getOptionLabel={(option) => option.name}
-            isOptionEqualToValue={(option, value) => value.id === option.id}
-            value={selectedGenres.map(toOption)}
+            getOptionValue={(option) => option.id}
+            value={selectedGenres.filter(id => options.some(option => option.id === id))}
             renderInput={renderAutocompleteInput(t("filtersLabels.genres"))}
             onChange={(_event, value) => {
-                onChange(value.map(v => v.id));
+                onChange(value);
             }}
         />
     );

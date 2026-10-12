@@ -59,6 +59,12 @@ describe('GenresSelect', () => {
         expect(screen.getByLabelText('gamesLibrary.filtersLabels.genres')).toBeInTheDocument();
     });
 
+    it('ignores selected ids that are not in the fetched genres', () => {
+        render(<GenresSelect value={[999]} onChange={onChange} />);
+        expect(screen.queryByText('gamesLibrary.gamesGenres.999')).not.toBeInTheDocument();
+        expect(onChange).not.toHaveBeenCalled();
+    });
+
     it('does not call onChange on initial render', () => {
         render(<GenresSelect value={mockSelectedGenres} onChange={onChange} />);
         expect(onChange).not.toHaveBeenCalled();
