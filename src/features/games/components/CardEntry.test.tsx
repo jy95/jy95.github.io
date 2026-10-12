@@ -70,8 +70,28 @@ describe('CardEntry', () => {
         expect(button).toHaveAttribute('aria-pressed', 'true');
         expect(getSelectionSnapshot().document.dlcs).toEqual(['abc123']);
         expect(getSelectionSnapshot().document.games).toEqual([]);
+        fireEvent.click(button);
+        expect(button).toHaveAttribute('aria-pressed', 'false');
+        expect(getSelectionSnapshot().document.dlcs).toEqual([]);
         expect(pushMock).not.toHaveBeenCalled();
         expect(parentClick).not.toHaveBeenCalled();
+    });
+
+    it('shows details by default when selection is disabled', () => {
+        render(<CardEntry game={baseGame} selectable={false} />);
+        expect(screen.getByRole('link', { name: 'View details for Some Game' })).toHaveAttribute('href', '/en/games/detail/abc123');
+        expect(screen.queryByRole('button', { name: /my selection/ })).not.toBeInTheDocument();
+    });
+
+    it('preserves badges, the overlay, and playlist navigation when both actions are disabled', () => {
+        const playlistGame: CardGame = { ...baseGame, id: 'PL123', url_type: 'PLAYLIST' };
+        render(<CardEntry game={playlistGame} selectable={false} showDetails={false} badge={<span>Featured</span>} />);
+        expect(screen.getByText('Featured')).toBeInTheDocument();
+        expect(screen.getByText('Some Game')).toBeInTheDocument();
+        expect(screen.queryByRole('link')).not.toBeInTheDocument();
+        expect(screen.getAllByRole('button')).toHaveLength(1);
+        fireEvent.click(screen.getByRole('button', { name: 'Some Game Featured Some Game' }));
+        expect(pushMock).toHaveBeenCalledWith({ pathname: '/playlist/[id]', params: { id: 'PL123' } });
     });
 
     it.each(['en', 'fr'] as const)('offers an accessible detail link in %s without activating the main card', (locale) => {
