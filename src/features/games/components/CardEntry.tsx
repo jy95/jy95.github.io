@@ -42,12 +42,12 @@ function CardEntry({
             item={game}
             badgesSlot={badge ? () => badge : undefined}
             onClick={(item) => router.push(buildWatchRoute(item.url_type, item.id))}
-            actionsSlot={(item) => (
+            actionsSlot={selectable || showDetails ? (item) => (
                 <>
                     {selectable && <SelectionButton id={item.id} category={category} title={item.title} />}
                     {showDetails && <GameDetailsButton id={item.id} title={item.title} />}
                 </>
-            )}
+            ) : undefined}
             overlaySlot={(item) => <GameCardOverlay game={item} />}
         />
     );
