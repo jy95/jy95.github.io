@@ -26,8 +26,14 @@ vi.mock('@mui/material/Grid', () => ({
 }));
 
 vi.mock('./CardEntry', () => ({
-  default: ({ game }: ComponentProps<typeof CardEntry>) => (
-    <div data-testid="card-entry" data-game-id={game.id}>
+  default: ({ game, selectable, showDetails, category }: ComponentProps<typeof CardEntry>) => (
+    <div
+      data-testid="card-entry"
+      data-game-id={game.id}
+      data-selectable={String(selectable)}
+      data-show-details={String(showDetails)}
+      data-category={category}
+    >
       {game.title}
     </div>
   ),
@@ -51,6 +57,38 @@ const mockGames: CardGame[] = [
 ];
 
 describe('CardGrid', () => {
+  it('defaults to selectable cards with details in the games category', () => {
+    render(<CardGrid items={mockGames} size={{ xs: 12 }} />);
+
+    for (const card of screen.getAllByTestId('card-entry')) {
+      expect(card).toHaveAttribute('data-selectable', 'true');
+      expect(card).toHaveAttribute('data-show-details', 'true');
+      expect(card).toHaveAttribute('data-category', 'games');
+    }
+  });
+
+  it.each([
+    { selectable: true, showDetails: true },
+    { selectable: true, showDetails: false },
+    { selectable: false, showDetails: true },
+    { selectable: false, showDetails: false },
+  ])('forwards selectable=$selectable and showDetails=$showDetails to every card', ({ selectable, showDetails }) => {
+    render(<CardGrid items={mockGames} size={{ xs: 12 }} selectable={selectable} showDetails={showDetails} />);
+
+    for (const card of screen.getAllByTestId('card-entry')) {
+      expect(card).toHaveAttribute('data-selectable', String(selectable));
+      expect(card).toHaveAttribute('data-show-details', String(showDetails));
+    }
+  });
+
+  it('forwards an explicit category to every card', () => {
+    render(<CardGrid items={mockGames} size={{ xs: 12 }} category="dlcs" />);
+
+    for (const card of screen.getAllByTestId('card-entry')) {
+      expect(card).toHaveAttribute('data-category', 'dlcs');
+    }
+  });
+
   it('renders one CardEntry for each item', () => {
     render(<CardGrid items={mockGames} size={{ xs: 12, md: 4 }} />);
 

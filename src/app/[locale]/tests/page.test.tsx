@@ -34,6 +34,7 @@ function render(ui: ReactNode) {
 
 beforeEach(() => {
     pushMock.mockReset();
+    useGetTestsQueryMock.mockReset();
     window.localStorage.clear();
 });
 
@@ -48,11 +49,11 @@ describe('TestsPage', () => {
         useGetTestsQueryMock.mockReturnValue({ data: { items: games }, error: undefined, isLoading: false, refetch: vi.fn() });
         render(<TestsPage />);
         expect(useGetTestsQueryMock).toHaveBeenCalledWith({});
-        expect(screen.queryByRole('link')).not.toBeInTheDocument();
-        expect(screen.queryByRole('button', { name: /my selection/ })).not.toBeInTheDocument();
         expect(screen.getAllByRole('button')).toHaveLength(games.length);
         for (const game of games) {
             expect(screen.getByText(game.title)).toBeInTheDocument();
+            expect(screen.queryByRole('link', { name: `View details for ${game.title}` })).not.toBeInTheDocument();
+            expect(screen.queryByRole('button', { name: `Add ${game.title} to my selection` })).not.toBeInTheDocument();
             fireEvent.click(screen.getByRole('button', { name: `${game.title} ${game.title}` }));
             expect(pushMock).toHaveBeenLastCalledWith({
                 pathname: game.url_type === 'VIDEO' ? '/video/[id]' : '/playlist/[id]',

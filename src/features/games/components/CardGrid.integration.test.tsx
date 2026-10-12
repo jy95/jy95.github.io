@@ -38,6 +38,29 @@ beforeEach(() => {
 });
 
 describe('CardGrid with real cards', () => {
+    it.each([
+        { selectable: true, showDetails: true },
+        { selectable: true, showDetails: false },
+        { selectable: false, showDetails: true },
+        { selectable: false, showDetails: false },
+    ])('controls actions on every card with selectable=$selectable and showDetails=$showDetails', ({ selectable, showDetails }) => {
+        render(<CardGrid items={games} size={{ xs: 12 }} selectable={selectable} showDetails={showDetails} />);
+        for (const game of games) {
+            const selectionButton = screen.queryByRole('button', { name: `Add ${game.title} to my selection` });
+            const detailsLink = screen.queryByRole('link', { name: `View details for ${game.title}` });
+            if (selectable) {
+                expect(selectionButton).toBeInTheDocument();
+            } else {
+                expect(selectionButton).not.toBeInTheDocument();
+            }
+            if (showDetails) {
+                expect(detailsLink).toHaveAttribute('href', `/en/games/detail/${game.id}`);
+            } else {
+                expect(detailsLink).not.toBeInTheDocument();
+            }
+        }
+    });
+
     it('shows the details link for every card by default', () => {
         render(<CardGrid items={games} size={{ xs: 12 }} selectable={false} />);
         for (const game of games) {
