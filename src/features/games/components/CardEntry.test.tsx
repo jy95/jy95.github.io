@@ -21,6 +21,7 @@ vi.mock('next/image', () => ({
 
 import CardEntry from './CardEntry';
 import StoreProvider from '@/providers/StoreProvider';
+import { getSelectionSnapshot } from '@/features/selection/storage/store';
 import type { CardGame } from '@/domain/games';
 
 const baseGame: CardGame = {
@@ -38,6 +39,39 @@ function render(ui: React.ReactNode, locale: 'en' | 'fr' = 'en') {
 describe('CardEntry', () => {
     beforeEach(() => {
         pushMock.mockReset();
+        window.localStorage.clear();
+    });
+
+    it.each([
+        { selectable: true, showDetails: true },
+        { selectable: true, showDetails: false },
+        { selectable: false, showDetails: true },
+        { selectable: false, showDetails: false },
+    ])('controls actions independently with selectable=$selectable and showDetails=$showDetails', ({ selectable, showDetails }) => {
+        render(<CardEntry game={baseGame} selectable={selectable} showDetails={showDetails} />);
+        expect(Boolean(screen.queryByRole('button', { name: /my selection/ }))).toBe(selectable);
+        expect(Boolean(screen.queryByRole('link', { name: 'View details for Some Game' }))).toBe(showDetails);
+
+        if (!selectable && !showDetails) {
+            const cardButton = screen.getByRole('button', { name: 'Some Game Some Game' });
+            expect(cardButton.parentElement?.children).toHaveLength(1);
+        }
+
+        fireEvent.click(screen.getByRole('button', { name: 'Some Game Some Game' }));
+        expect(pushMock).toHaveBeenCalledWith({ pathname: '/video/[id]', params: { id: 'abc123' } });
+    });
+
+    it('toggles selection in the supplied category without activating the main card', () => {
+        const parentClick = vi.fn();
+        render(<div onClick={parentClick}><CardEntry game={baseGame} category="dlcs" showDetails={false} /></div>);
+        const button = screen.getByRole('button', { name: /my selection/ });
+        expect(button).toHaveAttribute('aria-pressed', 'false');
+        fireEvent.click(button);
+        expect(button).toHaveAttribute('aria-pressed', 'true');
+        expect(getSelectionSnapshot().document.dlcs).toEqual(['abc123']);
+        expect(getSelectionSnapshot().document.games).toEqual([]);
+        expect(pushMock).not.toHaveBeenCalled();
+        expect(parentClick).not.toHaveBeenCalled();
     });
 
     it.each(['en', 'fr'] as const)('offers an accessible detail link in %s without activating the main card', (locale) => {
