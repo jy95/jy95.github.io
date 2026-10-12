@@ -16,6 +16,7 @@ import type { GameGenreId } from "@/types/genres";
 // Genres filter of GamesGallery
 type Props = { value: number[]; onChange: (genres: number[]) => void };
 
+
 function GenresSelect({ value: selectedGenres, onChange }: Props) {
 
     const { data, isFetching } = useGetGenresQuery();
