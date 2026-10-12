@@ -61,6 +61,13 @@ describe('CardEntry', () => {
         expect(pushMock).toHaveBeenCalledWith({ pathname: '/video/[id]', params: { id: 'abc123' } });
     });
 
+    it('shows selection before details by default', () => {
+        render(<CardEntry game={baseGame} />);
+        const selectionButton = screen.getByRole('button', { name: /my selection/ });
+        const detailsLink = screen.getByRole('link', { name: 'View details for Some Game' });
+        expect(selectionButton.compareDocumentPosition(detailsLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    });
+
     it('toggles selection in the supplied category without activating the main card', () => {
         const parentClick = vi.fn();
         render(<div onClick={parentClick}><CardEntry game={baseGame} category="dlcs" showDetails={false} /></div>);
