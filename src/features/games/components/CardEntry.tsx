@@ -1,18 +1,16 @@
 "use client";
 
 // Hooks
-import { useLocale, useTranslations } from "next-intl";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { Link, useRouter } from '@/i18n/routing';
+import { useRouter } from '@/i18n/routing';
 
 // Reusable functions
 import { buildWatchRoute } from "@/domain/games/youtube";
 
 // UI
 import SelectionButton from "@/features/selection/components/SelectionButton";
+
 import BaseCard from "./BaseCard";
+import GameDetailsButton from "./GameDetailsButton";
 import GameCardOverlay from "./GameCardOverlay";
 
 // Types
@@ -20,36 +18,36 @@ import type { ReactNode } from "react";
 import type { CardGame } from "@/domain/games";
 import type { SelectionCategory } from '@/domain/selection/types';
 
+type CardProps = {
+    game: CardGame; 
+    selectable?: boolean; 
+    badge?: ReactNode; 
+    category?: SelectionCategory;
+    showDetails?: boolean
+}
 
-function CardEntry({ game, selectable = true, badge, category = "games" }: { game: CardGame; selectable?: boolean; badge?: ReactNode; category?: SelectionCategory }) {
+function CardEntry({ 
+    game, 
+    selectable = true,
+    showDetails = true,
+    badge, 
+    category = "games" 
+}: CardProps) {
 
     // hooks
     const router = useRouter();
-    const locale = useLocale();
-    const t = useTranslations("gameDetail");
 
     return (
         <BaseCard 
             item={game}
             badgesSlot={badge ? () => badge : undefined}
             onClick={(item) => router.push(buildWatchRoute(item.url_type, item.id))}
-            actionsSlot={(item) => (
+            actionsSlot={selectable || showDetails ? (item) => (
                 <>
                     {selectable && <SelectionButton id={item.id} category={category} title={item.title} />}
-                    <Tooltip title={t("details", { title: item.title })}>
-                        <IconButton
-                            component={Link}
-                            locale={locale}
-                            href={{ pathname: "/games/detail/[id]", params: { id: item.id } }}
-                            aria-label={t("details", { title: item.title })}
-                            onClick={(event) => event.stopPropagation()}
-                            sx={{ bgcolor: 'background.paper', color: 'text.primary', '&:hover': { bgcolor: 'background.paper', color: 'primary.main' } }}
-                        >
-                            <InfoOutlinedIcon />
-                        </IconButton>
-                    </Tooltip>
+                    {showDetails && <GameDetailsButton id={item.id} title={item.title} />}
                 </>
-            )}
+            ) : undefined}
             overlaySlot={(item) => <GameCardOverlay game={item} />}
         />
     );

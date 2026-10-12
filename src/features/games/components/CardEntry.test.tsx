@@ -21,6 +21,7 @@ vi.mock('next/image', () => ({
 
 import CardEntry from './CardEntry';
 import StoreProvider from '@/providers/StoreProvider';
+import { getSelectionSnapshot } from '@/features/selection/storage/store';
 import type { CardGame } from '@/domain/games';
 
 const baseGame: CardGame = {
@@ -38,6 +39,66 @@ function render(ui: React.ReactNode, locale: 'en' | 'fr' = 'en') {
 describe('CardEntry', () => {
     beforeEach(() => {
         pushMock.mockReset();
+        window.localStorage.clear();
+    });
+
+    it.each([
+        { selectable: true, showDetails: true },
+        { selectable: true, showDetails: false },
+        { selectable: false, showDetails: true },
+        { selectable: false, showDetails: false },
+    ])('controls actions independently with selectable=$selectable and showDetails=$showDetails', ({ selectable, showDetails }) => {
+        render(<CardEntry game={baseGame} selectable={selectable} showDetails={showDetails} />);
+        expect(Boolean(screen.queryByRole('button', { name: /my selection/ }))).toBe(selectable);
+        expect(Boolean(screen.queryByRole('link', { name: 'View details for Some Game' }))).toBe(showDetails);
+
+        if (!selectable && !showDetails) {
+            const cardButton = screen.getByRole('button', { name: 'Some Game Some Game' });
+            expect(cardButton.parentElement?.children).toHaveLength(1);
+        }
+
+        fireEvent.click(screen.getByRole('button', { name: 'Some Game Some Game' }));
+        expect(pushMock).toHaveBeenCalledWith({ pathname: '/video/[id]', params: { id: 'abc123' } });
+    });
+
+    it('shows selection before details by default', () => {
+        render(<CardEntry game={baseGame} />);
+        const selectionButton = screen.getByRole('button', { name: /my selection/ });
+        const detailsLink = screen.getByRole('link', { name: 'View details for Some Game' });
+        expect(selectionButton.compareDocumentPosition(detailsLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    });
+
+    it('toggles selection in the supplied category without activating the main card', () => {
+        const parentClick = vi.fn();
+        render(<div onClick={parentClick}><CardEntry game={baseGame} category="dlcs" showDetails={false} /></div>);
+        const button = screen.getByRole('button', { name: /my selection/ });
+        expect(button).toHaveAttribute('aria-pressed', 'false');
+        fireEvent.click(button);
+        expect(button).toHaveAttribute('aria-pressed', 'true');
+        expect(getSelectionSnapshot().document.dlcs).toEqual(['abc123']);
+        expect(getSelectionSnapshot().document.games).toEqual([]);
+        fireEvent.click(button);
+        expect(button).toHaveAttribute('aria-pressed', 'false');
+        expect(getSelectionSnapshot().document.dlcs).toEqual([]);
+        expect(pushMock).not.toHaveBeenCalled();
+        expect(parentClick).not.toHaveBeenCalled();
+    });
+
+    it('shows details by default when selection is disabled', () => {
+        render(<CardEntry game={baseGame} selectable={false} />);
+        expect(screen.getByRole('link', { name: 'View details for Some Game' })).toHaveAttribute('href', '/en/games/detail/abc123');
+        expect(screen.queryByRole('button', { name: /my selection/ })).not.toBeInTheDocument();
+    });
+
+    it('preserves badges, the overlay, and playlist navigation when both actions are disabled', () => {
+        const playlistGame: CardGame = { ...baseGame, id: 'PL123', url_type: 'PLAYLIST' };
+        render(<CardEntry game={playlistGame} selectable={false} showDetails={false} badge={<span>Featured</span>} />);
+        expect(screen.getByText('Featured')).toBeInTheDocument();
+        expect(screen.getByText('Some Game')).toBeInTheDocument();
+        expect(screen.queryByRole('link')).not.toBeInTheDocument();
+        expect(screen.getAllByRole('button')).toHaveLength(1);
+        fireEvent.click(screen.getByRole('button', { name: 'Some Game Featured Some Game' }));
+        expect(pushMock).toHaveBeenCalledWith({ pathname: '/playlist/[id]', params: { id: 'PL123' } });
     });
 
     it.each(['en', 'fr'] as const)('offers an accessible detail link in %s without activating the main card', (locale) => {
