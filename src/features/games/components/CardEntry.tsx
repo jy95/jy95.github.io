@@ -7,8 +7,10 @@ import { useRouter } from '@/i18n/routing';
 import { buildWatchRoute } from "@/domain/games/youtube";
 
 // UI
+import SelectionButton from "@/features/selection/components/SelectionButton";
+
 import BaseCard from "./BaseCard";
-import CardEntryActions from "./CardEntryActions";
+import GameDetailsButton from "./GameDetailsButton";
 import GameCardOverlay from "./GameCardOverlay";
 
 // Types
@@ -41,7 +43,10 @@ function CardEntry({
             badgesSlot={badge ? () => badge : undefined}
             onClick={(item) => router.push(buildWatchRoute(item.url_type, item.id))}
             actionsSlot={selectable || showDetails ? (item) => (
-                <CardEntryActions game={item} selectable={selectable} showDetails={showDetails} category={category} />
+                <>
+                    {selectable && <SelectionButton id={item.id} category={category} title={item.title} />}
+                    {showDetails && <GameDetailsButton id={item.id} title={item.title} />}
+                </>
             ) : undefined}
             overlaySlot={(item) => <GameCardOverlay game={item} />}
         />
