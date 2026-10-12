@@ -1,4 +1,5 @@
 // Hooks
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useGetPlatformsQuery } from "@/redux/services/platformsAPI";
 
@@ -16,6 +17,12 @@ function PlatformSelect({ value: selectedPlatform, onChange }: Props) {
 
     const t = useTranslations("gamesLibrary.filtersLabels")
     const { data, isFetching } = useGetPlatformsQuery();
+
+    useEffect(() => {
+        if (data !== undefined && selectedPlatform !== undefined && !data.some(platform => platform.id === selectedPlatform)) {
+            onChange(undefined);
+        }
+    }, [data, selectedPlatform, onChange]);
 
     return (
         <Autocomplete<Platform_Entry, false, false, false, ChipTypeMap['defaultComponent'], number>

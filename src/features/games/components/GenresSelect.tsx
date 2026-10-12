@@ -1,4 +1,5 @@
 // Hooks
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 
 // React Material UI
@@ -23,6 +24,15 @@ function GenresSelect({ value: selectedGenres, onChange }: Props) {
     const { data, isFetching } = useGetGenresQuery();
     const t = useTranslations("gamesLibrary")
 
+    useEffect(() => {
+        if (data === undefined) return;
+
+        const validGenres = selectedGenres.filter(id => data.some(genre => genre.id === id));
+        if (validGenres.length !== selectedGenres.length) {
+            onChange(validGenres);
+        }
+    }, [data, selectedGenres, onChange]);
+
     function toOption(id: number): Genre {
         return { id, name: t(`gamesGenres.${id.toString() as GameGenreId}`) };
     }
@@ -34,9 +44,8 @@ function GenresSelect({ value: selectedGenres, onChange }: Props) {
         );
 
     return (
-        <Autocomplete<Genre, true, true, false, ChipTypeMap['defaultComponent'], number>
+        <Autocomplete<Genre, true, false, false, ChipTypeMap['defaultComponent'], number>
             multiple
-            disableClearable
             openOnFocus
             filterSelectedOptions
             id="select-game-genre"

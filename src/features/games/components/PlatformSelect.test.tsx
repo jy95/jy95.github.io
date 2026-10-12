@@ -55,6 +55,7 @@ describe('PlatformSelect', () => {
         mockSelectedPlatform = 999;
         render(<PlatformSelect value={mockSelectedPlatform} onChange={onChange} />);
         expect(screen.getByLabelText('gamesLibrary.filtersLabels.platform')).toHaveValue('');
+        expect(onChange).toHaveBeenCalledExactlyOnceWith(undefined);
     });
 
     it('falls back to an empty name when the platforms list has not loaded yet', () => {
@@ -62,6 +63,35 @@ describe('PlatformSelect', () => {
         getPlatformsQueryMock.mockReturnValue({ data: undefined, isFetching: true });
         render(<PlatformSelect value={mockSelectedPlatform} onChange={onChange} />);
         expect(screen.getByLabelText('gamesLibrary.filtersLabels.platform')).toHaveValue('');
+        expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it('clears an unavailable platform from parent state when platforms load', () => {
+        getPlatformsQueryMock.mockReturnValue({ data: undefined, isFetching: true });
+        const { rerender } = render(<PlatformSelect value={999} onChange={onChange} />);
+        expect(onChange).not.toHaveBeenCalled();
+
+        getPlatformsQueryMock.mockReturnValue({ data: [{ id: 1, name: 'PC' }], isFetching: false });
+        rerender(<PlatformSelect value={999} onChange={onChange} />);
+        expect(onChange).toHaveBeenCalledExactlyOnceWith(undefined);
+
+        rerender(<PlatformSelect value={undefined} onChange={onChange} />);
+        expect(onChange).toHaveBeenCalledTimes(1);
+    });
+
+    it('preserves a valid platform when platforms load', () => {
+        getPlatformsQueryMock.mockReturnValue({ data: undefined, isFetching: true });
+        const { rerender } = render(<PlatformSelect value={1} onChange={onChange} />);
+
+        getPlatformsQueryMock.mockReturnValue({ data: [{ id: 1, name: 'PC' }], isFetching: false });
+        rerender(<PlatformSelect value={1} onChange={onChange} />);
+        expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it('clears a selected platform when the loaded platforms are empty', () => {
+        getPlatformsQueryMock.mockReturnValue({ data: [], isFetching: false });
+        render(<PlatformSelect value={1} onChange={onChange} />);
+        expect(onChange).toHaveBeenCalledExactlyOnceWith(undefined);
     });
 
     it('does not call onChange on initial render', () => {
