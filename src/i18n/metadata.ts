@@ -21,5 +21,10 @@ export function alternatesFor(
     return {
         canonical: pathnameFor(locale),
         languages: Object.fromEntries(routing.locales.map((l) => [l, pathnameFor(l)])),
+        // Next.js replaces the layout's alternates object rather than merging it.
+        types: {
+            'application/rss+xml': '/rss.xml',
+            'application/feed+json': '/feed.json',
+        },
     };
 }

@@ -23,11 +23,15 @@ describe('gameDetailMetadata', () => {
         expect(metadata.openGraph?.images).toEqual([{ url: '/covers/PL1/cover.webp', alt: 'Some Game' }]);
     });
 
-    it('always prefixes canonical and hreflang URLs with the locale', async () => {
+    it.each(['fr', 'en'])('preserves feed links alongside canonical and hreflang URLs (%s)', async (locale) => {
         resolveGameDetails.mockResolvedValue({ source: 'published', game });
-        const { alternates } = await gameDetailMetadata('fr', 'PL1');
-        expect(alternates?.canonical).toBe('/fr/games/detail/PL1');
+        const { alternates } = await gameDetailMetadata(locale, 'PL1');
+        expect(alternates?.canonical).toBe(`/${locale}/games/detail/PL1`);
         expect(alternates?.languages).toEqual({ fr: '/fr/games/detail/PL1', en: '/en/games/detail/PL1' });
+        expect(alternates?.types).toEqual({
+            'application/rss+xml': '/rss.xml',
+            'application/feed+json': '/feed.json',
+        });
     });
 
     it.each([undefined, 'throws'])('noindexes unknown or failing lookups (%s)', async (mode) => {
