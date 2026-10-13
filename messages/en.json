@@ -24,6 +24,34 @@
         "empty": "No series found."
     },
     "pageMetadata": {
+        "backlog": {
+            "title": "Backlog | GamesPassionFR",
+            "description": "Vote for the games you want to see next among the GamesPassionFR backlog candidates."
+        },
+        "companies": {
+            "title": "Companies | GamesPassionFR",
+            "description": "Browse the developers and publishers behind the games covered by GamesPassionFR."
+        },
+        "links": {
+            "title": "Links | GamesPassionFR",
+            "description": "Find the YouTube channel, Discord and social links of GamesPassionFR."
+        },
+        "tier": {
+            "title": "Tier lists | GamesPassionFR",
+            "description": "Explore the GamesPassionFR tier lists: published games, backlog candidates and game tests."
+        },
+        "tierGames": {
+            "title": "Published Games Tier List | GamesPassionFR",
+            "description": "The games completed on GamesPassionFR, ranked from masterpiece to bad."
+        },
+        "tierBacklog": {
+            "title": "Backlog Tier List | GamesPassionFR",
+            "description": "The backlog candidates of GamesPassionFR, ranked by tier."
+        },
+        "tierTests": {
+            "title": "Game Tests Tier List | GamesPassionFR",
+            "description": "The games tested on GamesPassionFR, ranked by tier."
+        },
         "dlcs": {
             "title": "DLCs | GamesPassionFR",
             "description": "Browse downloadable content grouped by parent game."
@@ -269,10 +297,10 @@
         }
     },
     "gameDetail": {
-    "back": "Back",
-    "close": "Close",
-    "watch": "Watch the game",
-    "details": "View details for {title}",
+        "back": "Back",
+        "close": "Close",
+        "watch": "Watch the game",
+        "details": "View details for {title}",
         "developers": "{count, plural, one {Developer} other {Developers}}",
         "publishers": "{count, plural, one {Publisher} other {Publishers}}",
         "genres": "{count, plural, one {Genre} other {Genres}}",
@@ -377,5 +405,15 @@
             "planning": "Planned games"
         },
         "kinds": "Content kinds"
+    },
+    "detailMetadata": {
+        "game": {
+            "published": "Watch the full walkthrough of {title} on GamesPassionFR and discover its platform, genres, developers and release date.",
+            "planning": "{title} is scheduled for a GamesPassionFR walkthrough. Check its details and release date.",
+            "backlog": "{title} is a backlog candidate on GamesPassionFR. Check its estimated duration and vote to see it covered."
+        },
+        "company": "{name} on GamesPassionFR: {count, plural, one {# game} other {# games}} developed or published.",
+        "series": "{name} series on GamesPassionFR: {count, plural, one {# game} other {# games}}.",
+        "dlc": "DLCs for {name} on GamesPassionFR: {count, plural, one {# DLC} other {# DLCs}}."
     }
 }

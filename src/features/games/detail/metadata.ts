@@ -35,7 +35,6 @@ export async function gameDetailMetadata(rawLocale: string, id: string): Promise
             title: game.title,
             description,
             images: [{ url: game.imagePath, alt: game.title }],
-        },
-        twitter: { card: 'summary', title: game.title, description, images: [game.imagePath] },
+        }
     };
 }
