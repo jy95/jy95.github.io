@@ -7,7 +7,22 @@ import { generateMetadata as seriesMetadata } from '@/app/[locale]/games/series/
 
 import { generateMetadata as dlcsMetadata } from '@/app/[locale]/games/dlcs/layout';
 
+import { generateMetadata as backlogMetadata } from '@/app/[locale]/backlog/layout';
+import { generateMetadata as companiesMetadata } from '@/app/[locale]/companies/layout';
+import { generateMetadata as linksMetadata } from '@/app/[locale]/links/layout';
+import { generateMetadata as tierMetadata } from '@/app/[locale]/tier/layout';
+import { generateMetadata as tierGamesMetadata } from '@/app/[locale]/tier/games/layout';
+import { generateMetadata as tierBacklogMetadata } from '@/app/[locale]/tier/backlog/layout';
+import { generateMetadata as tierTestsMetadata } from '@/app/[locale]/tier/tests/layout';
+
 const sections = [
+    { generate: backlogMetadata, en: 'Backlog', fr: 'En attente' },
+    { generate: companiesMetadata, en: 'Companies', fr: 'Entreprises' },
+    { generate: linksMetadata, en: 'Links', fr: 'Liens' },
+    { generate: tierMetadata, en: 'Tier lists', fr: 'Classements' },
+    { generate: tierGamesMetadata, en: 'Published Games Tier List', fr: 'Classement des jeux publiés' },
+    { generate: tierBacklogMetadata, en: 'Backlog Tier List', fr: 'Classement des jeux en attente' },
+    { generate: tierTestsMetadata, en: 'Game Tests Tier List', fr: 'Classement des tests' },
     { generate: dlcsMetadata, en: 'DLCs', fr: 'DLCs' },
     { generate: seriesMetadata, en: 'Series', fr: 'Séries' },
     { generate: gamesMetadata, en: 'Games', fr: 'Jeux' },
