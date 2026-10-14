@@ -32,7 +32,6 @@ export async function entityDetailMetadata(args: {
             title: name, 
             description, 
             images: [{ url: imagePath, alt: name }] 
-        },
-        twitter: { card: 'summary', title: name, description, images: [imagePath] },
+        }
     };
 }
