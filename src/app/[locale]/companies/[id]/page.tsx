@@ -5,7 +5,7 @@ import type { DetailPageProps } from '@/features/catalog/metadata';
 export { default } from './PageClient';
 
 export async function generateStaticParams() {
-    return [...new Set((await loadCompanies()).map(entry => String(entry.id)))].map(id => ({ id }));
+    return (await loadCompanies()).map(entry => ({ id: String(entry.id) }));
 }
 
 export function generateMetadata(props: DetailPageProps) {

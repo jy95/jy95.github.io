@@ -46,12 +46,12 @@ import GameClient from './games/detail/[id]/PageClient';
 
 beforeEach(() => {
     vi.clearAllMocks();
-    data.companies.mockResolvedValue([{ id: 1, name: 'Example', developerItems: [{ id: 2 }], publisherItems: [{ id: 2 }] }, { id: 1 }]);
-    data.series.mockResolvedValue([{ id: 1, name: 'Example', items: [{}] }, { id: 1 }]);
-    data.dlcs.mockResolvedValue([{ id: '1', game_title: 'Example', dlcs: [{ playlistId: 'DLC' }] }, { id: '1', dlcs: [] }]);
+    data.companies.mockResolvedValue([{ id: 1, name: 'Example', developerItems: [{ id: 2 }], publisherItems: [{ id: 2 }] }, { id: 2, name: 'Another company', developerItems: [], publisherItems: [] }]);
+    data.series.mockResolvedValue([{ id: 1, name: 'Example', items: [{}] }, { id: 2, name: 'Another series', items: [] }]);
+    data.dlcs.mockResolvedValue([{ id: '1', game_title: 'Example', dlcs: [{ playlistId: 'DLC' }] }, { id: '2', game_title: 'Another game', dlcs: [] }]);
     data.published.mockResolvedValue([{ playlistId: 'Published' }, { videoId: 'Video' }]);
-    data.planning.mockResolvedValue([{ playlistId: 'Planned' }, { playlistId: 'Published' }]);
-    data.backlog.mockResolvedValue([{ id: 12 }, { id: 12 }]);
+    data.planning.mockResolvedValue([{ playlistId: 'Planned' }, { videoId: 'PlannedVideo' }]);
+    data.backlog.mockResolvedValue([{ id: 12 }, { id: 13 }]);
     data.resolve.mockResolvedValue({ source: 'published', game: { title: 'Example', imagePath: '/covers/1/cover.webp' } });
 });
 
@@ -62,8 +62,8 @@ const entities = [
 ] as const;
 
 describe('catalog server route exports', () => {
-    it.each(entities)('enumerates unique string IDs for $path without repeating parent locales', async ({ route }) => {
-        expect(await route.generateStaticParams()).toEqual([{ id: '1' }]);
+    it.each(entities)('enumerates string IDs in source order for $path without repeating parent locales', async ({ route }) => {
+        expect(await route.generateStaticParams()).toEqual([{ id: '1' }, { id: '2' }]);
     });
     for (const { entity, route, path, image, english } of entities) {
         it.each(['fr', 'en', 'de'])(`integrates lookup, summary and metadata for ${path} (%s)`, async locale => {
@@ -95,9 +95,9 @@ describe('catalog server route exports', () => {
             expect(client).toHaveBeenCalledWith({ params });
         }
     });
-    it('enumerates every runtime game source with shared IDs emitted once', async () => {
+    it('enumerates every runtime game source in source order', async () => {
         expect(await game.generateStaticParams()).toEqual([
-            { id: 'Published' }, { id: 'Video' }, { id: 'DLC' }, { id: 'Planned' }, { id: '12' },
+            { id: 'Published' }, { id: 'Video' }, { id: 'DLC' }, { id: 'Planned' }, { id: 'PlannedVideo' }, { id: '12' }, { id: '13' },
         ]);
     });
     it.each(['fr', 'en', 'de'])('preserves forced locale prefixes for game metadata (%s)', async locale => {
@@ -116,5 +116,22 @@ describe('catalog server route exports', () => {
     it('propagates static-generation loader failures rather than silently dropping IDs', async () => {
         data.backlog.mockRejectedValue(new Error('catalog unavailable'));
         await expect(game.generateStaticParams()).rejects.toThrow('catalog unavailable');
+    });
+    it('returns no game parameters when all sources are empty', async () => {
+        for (const loader of [data.published, data.dlcs, data.planning, data.backlog]) loader.mockResolvedValue([]);
+        expect(await game.generateStaticParams()).toEqual([]);
+    });
+    it.each(entities)('handles empty entity sources for $path', async ({ entity, route }) => {
+        const loader = entity === 'company' ? data.companies : entity === 'series' ? data.series : data.dlcs;
+        loader.mockResolvedValue([]);
+        expect(await route.generateStaticParams()).toEqual([]);
+        loader.mockRejectedValue(new Error('entity unavailable'));
+        await expect(route.generateStaticParams()).rejects.toThrow('entity unavailable');
+        await expect(route.generateMetadata({ params: Promise.resolve({ locale: 'en', id: '1' }) }))
+            .rejects.toThrow('entity unavailable');
+    });
+    it.each(['published', 'dlcs', 'planning', 'backlog'] as const)('propagates %s loader failures', async source => {
+        data[source].mockRejectedValue(new Error('source unavailable'));
+        await expect(game.generateStaticParams()).rejects.toThrow('source unavailable');
     });
 });

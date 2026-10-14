@@ -60,12 +60,16 @@ describe('useNavigateToRandomGame', () => {
             () => new Promise((resolve) => { resolveFetch = resolve; })
         ));
 
-        const { result } = renderHook(() => useNavigateToRandomGame());
+        const { result, rerender } = renderHook(() => useNavigateToRandomGame());
+        const navigate = result.current.navigateToRandomGame;
         expect(result.current.isPending).toBe(false);
 
         // Start the request without returning its unresolved promise to act.
         act(() => { void result.current.navigateToRandomGame(); });
         expect(result.current.isPending).toBe(true);
+        expect(result.current.navigateToRandomGame).toBe(navigate);
+        rerender();
+        expect(result.current.navigateToRandomGame).toBe(navigate);
 
         await act(async () => {
             resolveFetch(
@@ -81,6 +85,7 @@ describe('useNavigateToRandomGame', () => {
             params: { id: 'X' },
         });
         expect(result.current.isPending).toBe(false);
+        expect(result.current.navigateToRandomGame).toBe(navigate);
     });
 
     it('can request another game after successful navigation', async () => {
