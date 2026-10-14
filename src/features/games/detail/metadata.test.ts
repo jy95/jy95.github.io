@@ -13,7 +13,9 @@ import { gameDetailMetadata } from './metadata';
 const game = { id: 'PL1', title: 'Some Game', imagePath: '/covers/PL1/cover.webp' };
 
 describe('gameDetailMetadata', () => {
-    beforeEach(() => resolveGameDetails.mockReset());
+    beforeEach(() => {
+        resolveGameDetails.mockReset();
+    });
 
     it.each(['published', 'planning', 'backlog'])('uses the %s description template', async (source) => {
         resolveGameDetails.mockResolvedValue({ source, game });
