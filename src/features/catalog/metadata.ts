@@ -9,6 +9,7 @@ type Entity = 'company' | 'series' | 'dlc';
 
 export type EntityFound = { name: string; count: number; imagePath: string };
 
+
 export async function entityDetailMetadata(args: {
     locale: string;
     entity: Entity;
