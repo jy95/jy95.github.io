@@ -21,3 +21,16 @@ export async function resolveGameDetails(id: string): Promise<GameDetailsRespons
 
     return undefined;
 }
+
+/** Enumerate the same sources and identities used by the runtime resolver. */
+export async function gameDetailStaticParams(): Promise<{ id: string }[]> {
+    const [published, groups, planning, backlog] = await Promise.all([
+        loadPublishedGames(), loadDlcGroups(), loadPlanningGames(), loadBacklogGames(),
+    ]);
+    const ids = [
+        ...[...published, ...groups.flatMap(group => group.dlcs), ...planning]
+            .map(game => extractGameCardProps(game).id),
+        ...backlog.map(game => String(game.id)),
+    ];
+    return [...new Set(ids)].map(id => ({ id }));
+}

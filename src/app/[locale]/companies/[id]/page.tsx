@@ -1,24 +1,18 @@
-import { getPathname } from '@/i18n/routing';
-import { entityDetailMetadata } from '@/features/catalog/metadata';
-import { companyImagePath, loadCompanies, toCompanySummary } from '@/app/api/companies/data';
-import PageClient from './PageClient';
+import { loadCompanies, toCompanySummary } from '@/app/api/companies/data';
+import { entityRouteMetadata } from '@/features/catalog/metadata';
+import type { DetailPageProps } from '@/features/catalog/metadata';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }) {
-    const { locale, id } = await params;
-    const company = (await loadCompanies()).find((entry) => String(entry.id) === id);
+export { default } from './PageClient';
 
-    return entityDetailMetadata({
-        locale,
-        entity: 'company',
-        found: company && {
-            name: company.name,
-            count: toCompanySummary(company, 'all').gamesCount,
-            imagePath: companyImagePath(company.id),
-        },
-        pathnameFor: (l) => getPathname({ locale: l, href: { pathname: '/companies/[id]', params: { id } } }),
-    });
+export async function generateStaticParams() {
+    return [...new Set((await loadCompanies()).map(entry => String(entry.id)))].map(id => ({ id }));
 }
 
-export default function Page({ params }: { params: Promise<{ locale: string; id: string }> }) {
-    return <PageClient params={params} />;
+export function generateMetadata(props: DetailPageProps) {
+    return entityRouteMetadata(props, 'company', async (id) => {
+        const entry = (await loadCompanies()).find(entry => String(entry.id) === id);
+        if (!entry) return undefined;
+        const summary = toCompanySummary(entry, 'all');
+        return { name: summary.name, count: summary.gamesCount, imagePath: summary.imagePath };
+    });
 }

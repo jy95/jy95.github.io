@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
+import { getPathname } from '@/i18n/routing';
 import { alternatesFor, detailOpenGraph, resolveLocale, withBrand } from '@/i18n/metadata';
 
 import type { Metadata } from 'next';
@@ -28,4 +29,21 @@ export async function entityDetailMetadata(args: {
         alternates: alternatesFor(locale, args.pathnameFor),
         openGraph: detailOpenGraph(name, description, imagePath),
     };
+}
+
+export type DetailPageProps = { params: Promise<{ locale: string; id: string }> };
+
+/** Catalog entity URLs follow the configured as-needed locale prefix. */
+export async function entityRouteMetadata(
+    { params }: DetailPageProps,
+    entity: Entity,
+    find: (id: string) => Promise<EntityFound | undefined>,
+): Promise<Metadata> {
+    const { locale, id } = await params;
+    const pathname = entity === 'company' ? '/companies/[id]'
+        : entity === 'series' ? '/games/series/[id]' : '/games/dlcs/[id]';
+    return entityDetailMetadata({
+        locale, entity, found: await find(id),
+        pathnameFor: (language) => getPathname({ locale: language, href: { pathname, params: { id } } }),
+    });
 }

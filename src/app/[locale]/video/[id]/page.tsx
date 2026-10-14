@@ -11,11 +11,8 @@ type Props = {
 
 export async function generateStaticParams() {
     const identifiers = (await import("@/app/api/random/identifiers.json")).default;
-    const videos = identifiers.filter(i => i.videoId !== undefined);
-
-    return videos.map((vid) => ({
-        id: vid.videoId,
-    }));
+    const ids = identifiers.flatMap(entry => entry.videoId === undefined ? [] : [String(entry.videoId)]);
+    return [...new Set(ids)].map(id => ({ id }));
 }
 
 export default async function PlaylistPage({ params } : Props) {

@@ -11,11 +11,8 @@ type Props = {
 
 export async function generateStaticParams() {
     const identifiers = (await import("@/app/api/random/identifiers.json")).default;
-    const playlists = identifiers.filter(i => i.playlistId !== undefined);
-
-    return playlists.map((pl) => ({
-        id: pl.playlistId,
-    }));
+    const ids = identifiers.flatMap(entry => entry.playlistId === undefined ? [] : [String(entry.playlistId)]);
+    return [...new Set(ids)].map(id => ({ id }));
 }
 
 export default async function PlaylistPage({ params } : Props) {
