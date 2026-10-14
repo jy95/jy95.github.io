@@ -26,7 +26,13 @@ export async function entityDetailMetadata(args: {
         title: withBrand(name),
         description,
         alternates: alternatesFor(locale, args.pathnameFor),
-        openGraph: { type: 'website', title: name, description, images: [{ url: imagePath, alt: name }] },
+        openGraph: { 
+            type: 'website',
+            siteName: "GamesPassionFR",
+            title: name, 
+            description, 
+            images: [{ url: imagePath, alt: name }] 
+        },
         twitter: { card: 'summary', title: name, description, images: [imagePath] },
     };
 }
