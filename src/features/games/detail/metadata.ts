@@ -32,6 +32,7 @@ export async function gameDetailMetadata(rawLocale: string, id: string): Promise
         alternates: alternatesFor(locale, (l) => `/${l}/games/detail/${encodeURIComponent(id)}`),
         openGraph: {
             type: 'website',
+            siteName: "GamesPassionFR",
             title: game.title,
             description,
             images: [{ url: game.imagePath, alt: game.title }],
