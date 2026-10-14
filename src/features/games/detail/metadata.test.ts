@@ -22,7 +22,9 @@ describe('gameDetailMetadata', () => {
         const metadata = await gameDetailMetadata('en', 'PL1');
         expect(metadata.title).toBe('Some Game | GamesPassionFR');
         expect(metadata.description).toBe(`detailMetadata.game.${source}:{"title":"Some Game"}`);
-        expect(metadata.openGraph?.images).toEqual([{ url: '/covers/PL1/cover.webp', alt: 'Some Game' }]);
+        expect(metadata.openGraph?.images).toEqual([expect.objectContaining({ width: 1200, height: 630, alt: 'Some Game' })]);
+        expect(metadata.twitter).toMatchObject({ card: 'summary_large_image' });
+        expect(metadata.openGraph).toMatchObject({ locale: 'en_US', alternateLocale: ['fr_FR'] });
     });
 
     it.each(['fr', 'en'])('preserves feed links alongside canonical and hreflang URLs (%s)', async (locale) => {
@@ -34,6 +36,13 @@ describe('gameDetailMetadata', () => {
             'application/rss+xml': '/rss.xml',
             'application/feed+json': '/feed.json',
         });
+    });
+
+    it('keeps a social fallback when artwork is missing', async () => {
+        resolveGameDetails.mockResolvedValue({ source: 'published', game: { id: 'PL1', title: 'Étoile' } });
+        const metadata = await gameDetailMetadata('fr', 'PL1');
+        expect(JSON.stringify(metadata.openGraph?.images)).not.toContain('artwork=');
+        expect(metadata.openGraph?.images).toEqual([expect.objectContaining({ alt: 'Étoile', width: 1200, height: 630 })]);
     });
 
     it.each([undefined, 'throws'])('noindexes unknown or failing lookups (%s)', async (mode) => {

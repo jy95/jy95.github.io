@@ -6,7 +6,8 @@ export { default } from "@/components/common/LocaleLayout";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }) {
     const { locale, id } = await params;
-    const company = (await loadCompanies()).find((entry) => String(entry.id) === id);
+    // Failed metadata lookups must not prevent the route from rendering its own error state.
+    const company = (await loadCompanies().catch(() => [])).find((entry) => String(entry.id) === id);
 
     return entityDetailMetadata({
         locale,

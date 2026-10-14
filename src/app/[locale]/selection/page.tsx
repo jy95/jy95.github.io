@@ -1,9 +1,12 @@
 import SelectionPageLoader from '@/features/selection/components/SelectionPageLoader';
 import { SuspenseBoundary } from '@/components/common/SuspenseBoundary';
-import { staticSectionMetadata } from '@/i18n/staticSectionMetadata';
+import { selectionMetadata } from '@/features/selection/metadata';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-    return staticSectionMetadata((await params).locale, 'selection');
+export async function generateMetadata({ params, searchParams }: {
+    params: Promise<{ locale: string }>;
+    searchParams: Promise<{ entries?: string | string[] }>;
+}) {
+    return selectionMetadata((await params).locale, (await searchParams).entries);
 }
 
 export default function Page() {
