@@ -24,6 +24,34 @@
         "empty": "Aucune série trouvée."
     },
     "pageMetadata": {
+        "backlog": {
+            "title": "En attente | GamesPassionFR",
+            "description": "Votez pour les jeux que vous voulez voir ensuite parmi les candidats en attente de GamesPassionFR."
+        },
+        "companies": {
+            "title": "Entreprises | GamesPassionFR",
+            "description": "Parcourez les développeurs et éditeurs des jeux présentés par GamesPassionFR."
+        },
+        "links": {
+            "title": "Liens | GamesPassionFR",
+            "description": "Retrouvez la chaîne YouTube, le Discord et les réseaux de GamesPassionFR."
+        },
+        "tier": {
+            "title": "Classements | GamesPassionFR",
+            "description": "Explorez les classements GamesPassionFR : jeux publiés, jeux en attente et tests de jeux."
+        },
+        "tierGames": {
+            "title": "Classement des jeux publiés | GamesPassionFR",
+            "description": "Les jeux terminés sur GamesPassionFR, du chef-d'œuvre au mauvais."
+        },
+        "tierBacklog": {
+            "title": "Classement des jeux en attente | GamesPassionFR",
+            "description": "Les candidats en attente de GamesPassionFR, classés par catégorie."
+        },
+        "tierTests": {
+            "title": "Classement des tests | GamesPassionFR",
+            "description": "Les jeux testés sur GamesPassionFR, classés par catégorie."
+        },
         "dlcs": {
             "title": "DLCs | GamesPassionFR",
             "description": "Parcourez les contenus téléchargeables regroupés par jeu principal."
@@ -269,10 +297,10 @@
         }
     },
     "gameDetail": {
-    "back": "Retour",
-    "close": "Fermer",
-    "watch": "Voir le jeu",
-    "details": "Voir les détails de {title}",
+        "back": "Retour",
+        "close": "Fermer",
+        "watch": "Voir le jeu",
+        "details": "Voir les détails de {title}",
         "developers": "{count, plural, one {Développeur} other {Développeurs}}",
         "publishers": "{count, plural, one {Éditeur} other {Éditeurs}}",
         "genres": "{count, plural, one {Genre} other {Genres}}",
@@ -377,5 +405,15 @@
             "planning": "Jeux prévus"
         },
         "kinds": "Types de contenu"
+    },
+    "detailMetadata": {
+        "game": {
+            "published": "Regardez la solution complète de {title} sur GamesPassionFR et découvrez sa plateforme, ses genres, ses développeurs et sa date de sortie.",
+            "planning": "{title} est prévu au planning de GamesPassionFR. Consultez ses détails et sa date de sortie.",
+            "backlog": "{title} fait partie des jeux en attente sur GamesPassionFR. Consultez sa durée estimée et votez pour le voir en vidéo."
+        },
+        "company": "{name} sur GamesPassionFR : {count, plural, one {# jeu} other {# jeux}} développés ou édités.",
+        "series": "Série {name} sur GamesPassionFR : {count, plural, one {# jeu} other {# jeux}}.",
+        "dlc": "DLCs de {name} sur GamesPassionFR : {count, plural, one {# DLC} other {# DLCs}}."
     }
 }

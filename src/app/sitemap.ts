@@ -1,4 +1,5 @@
 import {routing, getPathname} from '@/i18n/routing';
+import { getSiteUrl } from '@/lib/siteUrl';
 
 import type {Href} from '@/i18n/routing';
 import type { MetadataRoute } from 'next';
@@ -7,25 +8,12 @@ type pathnames = typeof routing.pathnames;
 type AvailableRoutes = keyof pathnames;
 type StaticRoute = Exclude<AvailableRoutes, `${string}[${string}]`>;
 
-// Adapt this as necessary
-// https://vercel.com/docs/environment-variables/system-environment-variables
-const getHost = () => {
-  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
-    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
-  }
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-  // fallback Github pages
-  return 'https://jy95.github.io';
-};
-
 // Routes to exclude, SEO doesn't like redirects
 const EXCLUDED_ROUTES: AvailableRoutes[] = [
   '/'
 ];
 
-const host = getHost();
+const host = getSiteUrl();
 
 function isStaticPath(path: AvailableRoutes): path is Exclude<AvailableRoutes, `${string}[${string}]`> {
   // 1. Check if route isn't dynamic (ex: [id])
