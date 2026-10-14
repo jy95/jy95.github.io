@@ -1,21 +1,18 @@
-import { getPathname } from '@/i18n/routing';
-import { entityDetailMetadata } from '@/features/catalog/metadata';
 import { loadSeries, toSeriesSummary } from '@/app/api/series/data';
-import PageClient from './PageClient';
+import { entityRouteMetadata } from '@/features/catalog/metadata';
+import type { DetailPageProps } from '@/features/catalog/metadata';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }) {
-    const { locale, id } = await params;
-    const series = (await loadSeries()).find((entry) => String(entry.id) === id);
-    const summary = series && toSeriesSummary(series);
+export { default } from './PageClient';
 
-    return entityDetailMetadata({
-        locale,
-        entity: 'series',
-        found: summary && { name: summary.name, count: summary.gamesCount, imagePath: summary.imagePath },
-        pathnameFor: (l) => getPathname({ locale: l, href: { pathname: '/games/series/[id]', params: { id } } }),
-    });
+export async function generateStaticParams() {
+    return [...new Set((await loadSeries()).map(entry => String(entry.id)))].map(id => ({ id }));
 }
 
-export default function Page({ params }: { params: Promise<{ locale: string; id: string }> }) {
-    return <PageClient params={params} />;
+export function generateMetadata(props: DetailPageProps) {
+    return entityRouteMetadata(props, 'series', async (id) => {
+        const entry = (await loadSeries()).find(entry => String(entry.id) === id);
+        if (!entry) return undefined;
+        const summary = toSeriesSummary(entry);
+        return { name: summary.name, count: summary.gamesCount, imagePath: summary.imagePath };
+    });
 }

@@ -1,21 +1,18 @@
-import { getPathname } from '@/i18n/routing';
-import { entityDetailMetadata } from '@/features/catalog/metadata';
 import { loadDlcGroups, toDlcSummary } from '@/app/api/dlcs/data';
-import PageClient from './PageClient';
+import { entityRouteMetadata } from '@/features/catalog/metadata';
+import type { DetailPageProps } from '@/features/catalog/metadata';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }) {
-    const { locale, id } = await params;
-    const group = (await loadDlcGroups()).find((entry) => entry.id === id);
-    const summary = group && toDlcSummary(group);
+export { default } from './PageClient';
 
-    return entityDetailMetadata({
-        locale,
-        entity: 'dlc',
-        found: summary && { name: summary.name, count: summary.dlcsCount, imagePath: summary.imagePath },
-        pathnameFor: (l) => getPathname({ locale: l, href: { pathname: '/games/dlcs/[id]', params: { id } } }),
-    });
+export async function generateStaticParams() {
+    return [...new Set((await loadDlcGroups()).map(entry => String(entry.id)))].map(id => ({ id }));
 }
 
-export default function Page({ params }: { params: Promise<{ locale: string; id: string }> }) {
-    return <PageClient params={params} />;
+export function generateMetadata(props: DetailPageProps) {
+    return entityRouteMetadata(props, 'dlc', async (id) => {
+        const entry = (await loadDlcGroups()).find(entry => String(entry.id) === id);
+        if (!entry) return undefined;
+        const summary = toDlcSummary(entry);
+        return { name: summary.name, count: summary.dlcsCount, imagePath: summary.imagePath };
+    });
 }

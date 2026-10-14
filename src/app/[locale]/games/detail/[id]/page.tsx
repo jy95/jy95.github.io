@@ -1,11 +1,3 @@
-import { gameDetailMetadata } from '@/features/games/detail/metadata';
-import PageClient from './PageClient';
-
-export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }) {
-    const { locale, id } = await params;
-    return gameDetailMetadata(locale, id);
-}
-
-export default function Page({ params }: { params: Promise<{ locale: string; id: string }> }) {
-    return <PageClient params={params} />;
-}
+export { gameDetailRouteMetadata as generateMetadata } from '@/features/games/detail/metadata';
+export { gameDetailStaticParams as generateStaticParams } from '@/lib/gameDetails';
+export { default } from './PageClient';
