@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, expect, it, vi } from 'vitest';
-import GamesGalleryGrid from './page';
+import GamesGalleryGrid from './PageClient';
 import type { GameFilters } from '@/types/gamesFilters';
 
 const navigation = vi.hoisted(() => ({ href: '/games', push: vi.fn(), replace: vi.fn() }));

@@ -11,7 +11,7 @@ const { query, reset, dispatch } = vi.hoisted(() => ({ query: vi.fn(), reset: vi
 vi.mock('@/redux/hooks', () => ({ useAppDispatch: () => dispatch }));
 vi.mock('@/redux/services/seriesAPI', () => ({ useGetSeriesInfiniteQuery: query, resetPages: reset }));
 vi.mock('@/features/series/SeriesCard', () => ({ default: ({ series }: { series: { name: string } }) => <div>{series.name}</div> }));
-import SeriesGallery from './page';
+import SeriesGallery from './PageClient';
 
 describe('SeriesGallery', () => {
     const fetchNextPage = vi.fn();

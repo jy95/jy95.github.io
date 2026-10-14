@@ -23,6 +23,10 @@
         "gamesCount": "{count, plural, one {# game} other {# games}}",
         "empty": "No series found."
     },
+    "siteMetadata": {
+        "title": "GamesPassionFR",
+        "description": "GamesPassionFR game catalog"
+    },
     "pageMetadata": {
         "backlog": {
             "title": "Backlog | GamesPassionFR",

@@ -1,5 +1,7 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+
+vi.mock('@/i18n/staticSectionMetadata', () => ({ staticSectionMetadata: vi.fn() }));
 
 import LinksViewer from './page';
 

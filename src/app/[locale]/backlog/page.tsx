@@ -1,7 +1,12 @@
 // Hooks
 import { getTranslations} from 'next-intl/server';
 
+import { staticSectionMetadata } from '@/i18n/staticSectionMetadata';
 import BacklogViewerClient from '@/components/backlog/BacklogViewerClient';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    return staticSectionMetadata((await params).locale, 'backlog');
+}
 
 export default async function BacklogViewer() {
 

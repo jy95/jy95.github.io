@@ -1,3 +1,5 @@
+import { getTranslations } from 'next-intl/server';
+import { resolveLocale } from '@/i18n/metadata';
 // Providers
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import StoreProvider from "@/providers/StoreProvider";
@@ -22,16 +24,20 @@ import type {Locale} from 'next-intl';
 import type { Metadata } from 'next/types';
 import type { ReactNode } from "react";
 
-export const metadata: Metadata = {
-  title: 'GamesPassionFR',
-  metadataBase: new URL(getSiteUrl()),
-  description: 'Catalogue des jeux de GamesPassionFR',
-  alternates: {
-    types: {
-      'application/rss+xml': '/rss.xml',
-      'application/feed+json': '/feed.json'
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const resolvedLocale = resolveLocale((await params).locale);
+  const t = await getTranslations({ locale: resolvedLocale, namespace: 'siteMetadata' });
+  return {
+    title: t('title'),
+    metadataBase: new URL(getSiteUrl()),
+    description: t('description'),
+    alternates: {
+      types: {
+        'application/rss+xml': '/rss.xml',
+        'application/feed+json': '/feed.json',
+      },
     },
-  },
+  };
 }
 
 type Props = {

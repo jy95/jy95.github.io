@@ -13,7 +13,7 @@ vi.mock('@/features/games/components/CardGrid', () => ({
         <div data-testid="card-grid" data-ids={items.map((item) => item.id).join(',')}>{items.map((item) => item.title).join(',')}</div>,
 }));
 
-import SeriesDetailPage from './page';
+import SeriesDetailPage from './PageClient';
 
 const game = (id: string, title: string, duration: string | undefined, tierCategory: string) => ({ id, title, duration, tierCategory });
 const company = {

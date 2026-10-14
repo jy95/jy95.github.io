@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import { alternatesFor, resolveLocale, withBrand } from '@/i18n/metadata';
+import { alternatesFor, detailOpenGraph, resolveLocale, withBrand } from '@/i18n/metadata';
 
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
@@ -26,12 +26,6 @@ export async function entityDetailMetadata(args: {
         title: withBrand(name),
         description,
         alternates: alternatesFor(locale, args.pathnameFor),
-        openGraph: { 
-            type: 'website',
-            siteName: "GamesPassionFR",
-            title: name, 
-            description, 
-            images: [{ url: imagePath, alt: name }] 
-        }
+        openGraph: detailOpenGraph(name, description, imagePath),
     };
 }

@@ -1,29 +1,21 @@
-"use client";
+import { getPathname } from '@/i18n/routing';
+import { entityDetailMetadata } from '@/features/catalog/metadata';
+import { loadSeries, toSeriesSummary } from '@/app/api/series/data';
+import PageClient from './PageClient';
 
-import { useTranslations } from "next-intl";
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }) {
+    const { locale, id } = await params;
+    const series = (await loadSeries()).find((entry) => String(entry.id) === id);
+    const summary = series && toSeriesSummary(series);
 
-import { useGetSeriesQuery } from "@/redux/services/seriesAPI";
-import { DetailQueryBoundary } from "@/components/common/DetailQueryBoundary";
-import { useDetailRouteId } from "@/hooks/useDetailRouteId";
-import { useEntityGamesDetail } from "@/features/catalog/useEntityGamesDetail";
-import EntityGamesDetail from "@/features/catalog/EntityGamesDetail";
-import type { SeriesDetail } from "@/domain/series/types";
-
-export default function SeriesDetailPage({ params }: { params: Promise<{ id: string }> }) {
-    const id = useDetailRouteId(params);
-    const { data, error, isLoading, refetch } = useGetSeriesQuery(id);
-
-    return (
-        <DetailQueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch}>
-            {(series) => <SeriesGames series={series} />}
-        </DetailQueryBoundary>
-    );
+    return entityDetailMetadata({
+        locale,
+        entity: 'series',
+        found: summary && { name: summary.name, count: summary.gamesCount, imagePath: summary.imagePath },
+        pathnameFor: (l) => getPathname({ locale: l, href: { pathname: '/games/series/[id]', params: { id } } }),
+    });
 }
 
-function SeriesGames({ series }: { series: SeriesDetail }) {
-    const t = useTranslations("series");
-    const { labels, onBack } = useEntityGamesDetail("series");
-    const games = series.items;
-    return <EntityGamesDetail name={series.name} games={games} countLabel={t("gamesCount", { count: series.gamesCount })} onBack={onBack}
-        labels={labels} />;
+export default function Page({ params }: { params: Promise<{ locale: string; id: string }> }) {
+    return <PageClient params={params} />;
 }

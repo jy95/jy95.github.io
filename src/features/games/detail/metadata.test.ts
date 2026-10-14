@@ -1,11 +1,16 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { createTranslator } from 'next-intl';
+
+import enMessages from '../../../../messages/en.json';
+import frMessages from '../../../../messages/fr.json';
 
 const resolveGameDetails = vi.hoisted(() => vi.fn());
 vi.mock('@/lib/gameDetails', () => ({ resolveGameDetails }));
 vi.mock('@/i18n/routing', () => ({ routing: { locales: ['fr', 'en'], defaultLocale: 'fr' } }));
 vi.mock('next-intl/server', () => ({
-    getTranslations: async ({ namespace }: { namespace: string }) =>
-        (key: string, values: Record<string, unknown>) => `${namespace}.${key}:${JSON.stringify(values)}`,
+    getTranslations: async ({ locale }: { locale: 'fr' | 'en' }) => createTranslator({
+        locale, messages: locale === 'en' ? enMessages : frMessages, namespace: 'detailMetadata.game',
+    }),
 }));
 
 import { gameDetailMetadata } from './metadata';
@@ -17,11 +22,11 @@ describe('gameDetailMetadata', () => {
         resolveGameDetails.mockReset();
     });
 
-    it.each(['published', 'planning', 'backlog'])('uses the %s description template', async (source) => {
+    it.each(['published', 'planning', 'backlog'] as const)('uses the %s description template', async (source) => {
         resolveGameDetails.mockResolvedValue({ source, game });
         const metadata = await gameDetailMetadata('en', 'PL1');
         expect(metadata.title).toBe('Some Game | GamesPassionFR');
-        expect(metadata.description).toBe(`detailMetadata.game.${source}:{"title":"Some Game"}`);
+        expect(metadata.description).toBe(enMessages.detailMetadata.game[source].replace('{title}', game.title));
         expect(metadata.openGraph?.images).toEqual([{ url: '/covers/PL1/cover.webp', alt: 'Some Game' }]);
     });
 
@@ -34,6 +39,18 @@ describe('gameDetailMetadata', () => {
             'application/rss+xml': '/rss.xml',
             'application/feed+json': '/feed.json',
         });
+    });
+
+    it('uses French descriptions', async () => {
+        resolveGameDetails.mockResolvedValue({ source: 'published', game });
+        const metadata = await gameDetailMetadata('fr', 'PL1');
+        expect(metadata.description).toBe(frMessages.detailMetadata.game.published.replace('{title}', game.title));
+    });
+
+    it('falls back to French for an unsupported locale and encodes identifiers', async () => {
+        resolveGameDetails.mockResolvedValue({ source: 'published', game });
+        const metadata = await gameDetailMetadata('de', 'a/b');
+        expect(metadata.alternates?.canonical).toBe('/fr/games/detail/a%2Fb');
     });
 
     it.each([undefined, 'throws'])('noindexes unknown or failing lookups (%s)', async (mode) => {

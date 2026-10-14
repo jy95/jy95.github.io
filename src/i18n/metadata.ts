@@ -13,7 +13,6 @@ export function resolveLocale(raw: string): Locale {
     return hasLocale(routing.locales, raw) ? raw : routing.defaultLocale;
 }
 
-
 /** Canonical URL for the current locale + hreflang entries for every locale. */
 export function alternatesFor(
     locale: Locale,
@@ -27,5 +26,16 @@ export function alternatesFor(
             'application/rss+xml': '/rss.xml',
             'application/feed+json': '/feed.json',
         },
+    };
+}
+
+/** The same image and site fields apply to game and catalog detail pages. */
+export function detailOpenGraph(title: string, description: string, imagePath: string): Metadata['openGraph'] {
+    return {
+        type: 'website',
+        siteName: BRAND,
+        title,
+        description,
+        images: [{ url: imagePath, alt: title }],
     };
 }

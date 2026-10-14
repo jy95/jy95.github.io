@@ -20,7 +20,7 @@ vi.mock('@/features/companies/CompanyCard', () => ({
         <div data-testid="company-card">{company.title}:{company.gamesCount}</div>,
 }));
 
-import CompaniesGallery from './page';
+import CompaniesGallery from './PageClient';
 
 const pages = [
     { items: [{ id: 1, name: 'Both', imagePath: '/companies/1/cover.webp', gamesCount: 2 }] },

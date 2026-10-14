@@ -14,7 +14,7 @@ vi.mock('@/features/games/components/CardGrid', () => ({
         </div>,
 }));
 
-import DlcDetailPage from './page';
+import DlcDetailPage from './PageClient';
 
 const group = {
     id: 'parent', name: 'Parent game', imagePath: '/covers/parent/cover.webp', dlcsCount: 3,

@@ -20,7 +20,7 @@ vi.mock('@/features/games/components/RelatedGames', () => ({ default: ({ gameId 
 
 const fetchMock = stubRtkFetch();
 const { api } = await import('@/redux/services/api');
-const { default: GameDetailPage } = await import('./page');
+const { default: GameDetailPage } = await import('./PageClient');
 const game: CardGame = {
     id: 'PL123', title: 'Published game', imagePath: '/covers/PL123/cover.webp',
     url: 'https://www.youtube.com/playlist?list=PL123', url_type: 'PLAYLIST',
