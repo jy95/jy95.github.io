@@ -8,9 +8,11 @@ vi.mock('@/i18n/routing', () => ({
     getPathname: ({ locale, href }: { locale: string; href: string }) => `${locale === 'en' ? '/en' : ''}${href}`,
 }));
 vi.mock('next-intl/server', () => ({
-    getTranslations: async ({ locale }: { locale: 'fr' | 'en' }) => createTranslator({
-        locale, messages: locale === 'en' ? en : fr, namespace: 'siteMetadata',
-    }),
+    getTranslations: async (options: 'backlog' | { locale: 'fr' | 'en' }) => {
+        const locale = typeof options === 'string' ? 'en' : options.locale;
+        const namespace = typeof options === 'string' ? options : 'siteMetadata';
+        return createTranslator({ locale, messages: locale === 'en' ? en : fr, namespace });
+    },
 }));
 vi.mock('next/root-params', () => ({ locale: async () => 'fr' }));
 vi.mock('@/providers/ThemeProvider', () => ({ ThemeProvider: vi.fn() }));
@@ -86,5 +88,29 @@ describe('static server metadata integration', () => {
             const page = await load();
             expect(page.default().type).toBeTypeOf('function');
         }
+    });
+    it('renders the backlog with translated column labels', async () => {
+        const { default: BacklogViewer } = await import('./backlog/page');
+        const { default: BacklogClient } = await import('@/components/backlog/BacklogViewerClient');
+        const page = await BacklogViewer();
+        expect(page.props.children.type).toBe(BacklogClient);
+        expect(page.props.children.props).toEqual({
+            titleLabel: en.backlog.columns.title,
+            platformLabel: en.backlog.columns.platform,
+            notesLabel: en.backlog.columns.notes,
+            hltbLabel: en.backlog.columns.hltb_main,
+            votesLabel: en.backlog.columns.votes,
+        });
+    });
+    it('renders selection inside its suspense boundary', async () => {
+        const { default: Selection } = await import('./selection/page');
+        const { default: SelectionLoader } = await import('@/features/selection/components/SelectionPageLoader');
+        expect(Selection().props.children.type).toBe(SelectionLoader);
+    });
+    it('redirects the tier index through the localized helper', async () => {
+        const { default: Tier } = await import('./tier/page');
+        const { redirectToLocalizedPath } = await import('@/i18n/localizedRedirect');
+        await Tier();
+        expect(redirectToLocalizedPath).toHaveBeenCalledWith('/tier/games');
     });
 });

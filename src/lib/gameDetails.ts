@@ -32,5 +32,5 @@ export async function gameDetailStaticParams(): Promise<{ id: string }[]> {
             .map(game => extractGameCardProps(game).id),
         ...backlog.map(game => String(game.id)),
     ];
-    return [...new Set(ids)].map(id => ({ id }));
+    return ids.map(id => ({ id }));
 }
