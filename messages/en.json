@@ -42,15 +42,15 @@
         },
         "tierGames": {
             "title": "Published Games Tier List | GamesPassionFR",
-            "description": "The games completed on GamesPassionFR, ranked from masterpiece to bad."
+            "description": "Explore GamesPassionFR’s personal ranking of games completed on the channel, from masterpiece to bad."
         },
         "tierBacklog": {
             "title": "Backlog Tier List | GamesPassionFR",
-            "description": "The backlog candidates of GamesPassionFR, ranked by tier."
+            "description": "Explore GamesPassionFR’s personal tier list of backlog candidates."
         },
         "tierTests": {
             "title": "Game Tests Tier List | GamesPassionFR",
-            "description": "The games tested on GamesPassionFR, ranked by tier."
+            "description": "Explore GamesPassionFR’s personal ranking of reviewed games."
         },
         "dlcs": {
             "title": "DLCs | GamesPassionFR",
@@ -415,5 +415,20 @@
         "company": "{name} on GamesPassionFR: {count, plural, one {# game} other {# games}} developed or published.",
         "series": "{name} series on GamesPassionFR: {count, plural, one {# game} other {# games}}.",
         "dlc": "DLCs for {name} on GamesPassionFR: {count, plural, one {# DLC} other {# DLCs}}."
+    },
+    "siteMetadata": {
+        "description": "GamesPassionFR gaming catalog: walkthroughs, reviews and upcoming videos.",
+        "imageTitle": "Gaming catalog",
+        "imageSubtitle": "Walkthroughs · Reviews · Discoveries"
+    },
+    "mediaMetadata": {
+        "playlistTitle": "{title} — Playlist",
+        "videoTitle": "{title} — Video",
+        "playlistDescription": "Watch the GamesPassionFR playlist for {title}.",
+        "videoDescription": "Watch the GamesPassionFR video about {title}.",
+        "playlistFallbackTitle": "Gaming playlist",
+        "videoFallbackTitle": "Gaming video",
+        "playlistFallbackDescription": "Watch this playlist in the GamesPassionFR player.",
+        "videoFallbackDescription": "Watch this video in the GamesPassionFR player."
     }
 }

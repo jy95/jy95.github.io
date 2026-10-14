@@ -9,7 +9,7 @@ import { Analytics } from '@vercel/analytics/react';
 // Localization
 import {routing} from '@/i18n/routing';
 import {locale} from 'next/root-params';
-import { getSiteUrl } from '@/lib/siteUrl';
+import { defaultMetadata } from '@/i18n/defaultMetadata';
 
 // components
 import { Suspense } from 'react';
@@ -22,16 +22,8 @@ import type {Locale} from 'next-intl';
 import type { Metadata } from 'next/types';
 import type { ReactNode } from "react";
 
-export const metadata: Metadata = {
-  title: 'GamesPassionFR',
-  metadataBase: new URL(getSiteUrl()),
-  description: 'Catalogue des jeux de GamesPassionFR',
-  alternates: {
-    types: {
-      'application/rss+xml': '/rss.xml',
-      'application/feed+json': '/feed.json'
-    },
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  return defaultMetadata((await params).locale);
 }
 
 type Props = {

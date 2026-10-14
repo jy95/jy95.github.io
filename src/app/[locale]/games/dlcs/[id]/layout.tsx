@@ -6,7 +6,8 @@ export { default } from "@/components/common/LocaleLayout";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }) {
     const { locale, id } = await params;
-    const group = (await loadDlcGroups()).find((entry) => entry.id === id);
+    // Failed metadata lookups must not prevent the route from rendering its own error state.
+    const group = (await loadDlcGroups().catch(() => [])).find((entry) => entry.id === id);
     const summary = group && toDlcSummary(group);
 
     return entityDetailMetadata({

@@ -42,15 +42,15 @@
         },
         "tierGames": {
             "title": "Classement des jeux publiés | GamesPassionFR",
-            "description": "Les jeux terminés sur GamesPassionFR, du chef-d'œuvre au mauvais."
+            "description": "Découvrez le classement personnel des jeux terminés sur GamesPassionFR, du chef-d’œuvre au mauvais."
         },
         "tierBacklog": {
             "title": "Classement des jeux en attente | GamesPassionFR",
-            "description": "Les candidats en attente de GamesPassionFR, classés par catégorie."
+            "description": "Découvrez le classement personnel des candidats en attente de GamesPassionFR."
         },
         "tierTests": {
             "title": "Classement des tests | GamesPassionFR",
-            "description": "Les jeux testés sur GamesPassionFR, classés par catégorie."
+            "description": "Découvrez le classement personnel des jeux testés sur GamesPassionFR."
         },
         "dlcs": {
             "title": "DLCs | GamesPassionFR",
@@ -415,5 +415,20 @@
         "company": "{name} sur GamesPassionFR : {count, plural, one {# jeu} other {# jeux}} développés ou édités.",
         "series": "Série {name} sur GamesPassionFR : {count, plural, one {# jeu} other {# jeux}}.",
         "dlc": "DLCs de {name} sur GamesPassionFR : {count, plural, one {# DLC} other {# DLCs}}."
+    },
+    "siteMetadata": {
+        "description": "Catalogue GamesPassionFR : solutions complètes, tests et vidéos à venir.",
+        "imageTitle": "Catalogue de jeux",
+        "imageSubtitle": "Solutions · Tests · Découvertes"
+    },
+    "mediaMetadata": {
+        "playlistTitle": "{title} — Playlist",
+        "videoTitle": "{title} — Vidéo",
+        "playlistDescription": "Regardez la playlist GamesPassionFR de {title}.",
+        "videoDescription": "Regardez la vidéo GamesPassionFR sur {title}.",
+        "playlistFallbackTitle": "Playlist de jeux",
+        "videoFallbackTitle": "Vidéo de jeux",
+        "playlistFallbackDescription": "Regardez cette playlist dans le lecteur GamesPassionFR.",
+        "videoFallbackDescription": "Regardez cette vidéo dans le lecteur GamesPassionFR."
     }
 }

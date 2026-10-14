@@ -1,4 +1,5 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+vi.mock('next-intl/navigation', () => import('@/test/mocks/metadataNavigation'));
 import { generateMetadata as gamesMetadata } from '@/app/[locale]/games/layout';
 import { generateMetadata as planningMetadata } from '@/app/[locale]/planning/layout';
 import { generateMetadata as testsMetadata } from '@/app/[locale]/tests/layout';
@@ -42,6 +43,12 @@ describe('static section metadata', () => {
             expect(english.description).toBeTruthy();
             expect(french.description).toBeTruthy();
             expect(english.description).not.toBe(french.description);
+            expect(english.openGraph).toMatchObject({ locale: 'en_US', alternateLocale: ['fr_FR'], siteName: 'GamesPassionFR' });
+            expect(french.openGraph).toMatchObject({ locale: 'fr_FR', alternateLocale: ['en_US'] });
+            expect(english.twitter).toMatchObject({ card: 'summary_large_image', description: english.description });
+            expect(english.alternates?.canonical).toMatch(/^\/en\//);
+            expect(french.alternates?.canonical).not.toMatch(/^\/fr\//);
+            expect(english.alternates?.types).toHaveProperty('application/rss+xml', '/rss.xml');
         });
     }
 

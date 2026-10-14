@@ -1,12 +1,18 @@
 import {getTranslations} from 'next-intl/server';
 import YTPlayer from "@/components/YTPlayer/Player";
 import RandomButton from '@/features/games/components/RandomButton';
+import { mediaMetadata } from '@/features/media/metadata';
 
 import type {Locale} from 'next-intl';
 
 // https://nextjs.org/docs/app/api-reference/file-conventions/page#props
 type Props = {
     params: Promise<{ id: string, locale: Locale }>
+}
+
+export async function generateMetadata({ params }: Props) {
+    const { locale, id } = await params;
+    return mediaMetadata(locale, 'playlist', id);
 }
 
 export async function generateStaticParams() {

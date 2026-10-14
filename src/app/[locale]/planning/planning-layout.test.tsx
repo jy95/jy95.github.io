@@ -1,6 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
+vi.mock('next-intl/navigation', () => import('@/test/mocks/metadataNavigation'));
+
 vi.mock('next-intl', () => ({
     NextIntlClientProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));
