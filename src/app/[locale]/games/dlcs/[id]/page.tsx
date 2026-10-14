@@ -1,30 +1,21 @@
-"use client";
+import { getPathname } from '@/i18n/routing';
+import { entityDetailMetadata } from '@/features/catalog/metadata';
+import { loadDlcGroups, toDlcSummary } from '@/app/api/dlcs/data';
+import PageClient from './PageClient';
 
-import { useTranslations } from "next-intl";
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }) {
+    const { locale, id } = await params;
+    const group = (await loadDlcGroups()).find((entry) => entry.id === id);
+    const summary = group && toDlcSummary(group);
 
-import { useGetDlcQuery } from "@/redux/services/dlcsAPI";
-import { DetailQueryBoundary } from "@/components/common/DetailQueryBoundary";
-import { useDetailRouteId } from "@/hooks/useDetailRouteId";
-import { useEntityGamesDetail } from "@/features/catalog/useEntityGamesDetail";
-import { UNRANKED_SORT_OPTIONS } from "@/features/catalog/gameSorting";
-import EntityGamesDetail from "@/features/catalog/EntityGamesDetail";
-import type { DlcDetail } from "@/domain/dlcs/types";
-
-export default function DlcDetailPage({ params }: { params: Promise<{ id: string }> }) {
-    const id = useDetailRouteId(params);
-    const { data, error, isLoading, refetch } = useGetDlcQuery(id);
-
-    return (
-        <DetailQueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch}>
-            {(group) => <DlcGames group={group} />}
-        </DetailQueryBoundary>
-    );
+    return entityDetailMetadata({
+        locale,
+        entity: 'dlc',
+        found: summary && { name: summary.name, count: summary.dlcsCount, imagePath: summary.imagePath },
+        pathnameFor: (l) => getPathname({ locale: l, href: { pathname: '/games/dlcs/[id]', params: { id } } }),
+    });
 }
 
-function DlcGames({ group }: { group: DlcDetail }) {
-    const t = useTranslations("dlcs");
-    const { labels, onBack } = useEntityGamesDetail("dlcs");
-    const games = group.items;
-    return <EntityGamesDetail name={group.name} games={games} countLabel={t("dlcsCount", { count: group.dlcsCount })} onBack={onBack}
-        labels={labels} category="dlcs" sortOptions={UNRANKED_SORT_OPTIONS} />;
+export default function Page({ params }: { params: Promise<{ locale: string; id: string }> }) {
+    return <PageClient params={params} />;
 }

@@ -23,6 +23,10 @@
         "gamesCount": "{count, plural, one {# jeu} other {# jeux}}",
         "empty": "Aucune série trouvée."
     },
+    "siteMetadata": {
+        "title": "GamesPassionFR",
+        "description": "Catalogue des jeux de GamesPassionFR"
+    },
     "pageMetadata": {
         "backlog": {
             "title": "En attente | GamesPassionFR",

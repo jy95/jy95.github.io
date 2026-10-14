@@ -19,7 +19,7 @@ vi.mock('@/features/games/components/CardEntry', () => ({
     default: () => <div>card</div>,
 }));
 
-import GamesTierList from './page';
+import GamesTierList from './PageClient';
 
 describe('GamesTierList (tier/games page)', () => {
     it('forwards the loading state to TierLists', () => {

@@ -1,18 +1,10 @@
-"use client";
+import { staticSectionMetadata } from '@/i18n/staticSectionMetadata';
+import PageClient from './PageClient';
 
-// Hooks
-import { useEffect } from 'react'
-import { useNavigateToRandomGame } from '@/hooks/useNavigateToRandomGame';
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    return staticSectionMetadata((await params).locale, 'games', '/games/random');
+}
 
-export default function Random() {
-    const { navigateToRandomGame } = useNavigateToRandomGame();
-
-    useEffect(() => {
-        navigateToRandomGame();
-    },
-        // eslint-disable-next-line react-hooks/exhaustive-deps 
-        []
-    );
-
-    return (<></>);
+export default function Page() {
+    return <PageClient />;
 }

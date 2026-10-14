@@ -1,28 +1,24 @@
-"use client";
+import { getPathname } from '@/i18n/routing';
+import { entityDetailMetadata } from '@/features/catalog/metadata';
+import { companyImagePath, loadCompanies, toCompanySummary } from '@/app/api/companies/data';
+import PageClient from './PageClient';
 
-import { useMemo } from "react";
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }) {
+    const { locale, id } = await params;
+    const company = (await loadCompanies()).find((entry) => String(entry.id) === id);
 
-import { useGetCompanyQuery } from "@/redux/services/companiesAPI";
-import { DetailQueryBoundary } from "@/components/common/DetailQueryBoundary";
-import { useDetailRouteId } from "@/hooks/useDetailRouteId";
-import { useEntityGamesDetail } from "@/features/catalog/useEntityGamesDetail";
-import EntityGamesDetail from "@/features/catalog/EntityGamesDetail";
-import type { CompanyType } from "@/app/api/companies/route";
-
-export default function CompanyDetail({ params }: { params: Promise<{ id: string }> }) {
-    const id = useDetailRouteId(params);
-    const { data, error, isLoading, refetch } = useGetCompanyQuery(id);
-
-    return (
-        <DetailQueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch}>
-            {(company) => <CompanyGames company={company} />}
-        </DetailQueryBoundary>
-    );
+    return entityDetailMetadata({
+        locale,
+        entity: 'company',
+        found: company && {
+            name: company.name,
+            count: toCompanySummary(company, 'all').gamesCount,
+            imagePath: companyImagePath(company.id),
+        },
+        pathnameFor: (l) => getPathname({ locale: l, href: { pathname: '/companies/[id]', params: { id } } }),
+    });
 }
 
-function CompanyGames({ company }: { company: CompanyType }) {
-    const { labels, onBack } = useEntityGamesDetail("companies");
-    const games = useMemo(() => [...new Map([...company.developerGames, ...company.publisherGames].map(game => [game.id, game])).values()], [company]);
-    return <EntityGamesDetail name={company.name} games={games} onBack={onBack}
-        labels={labels} />;
+export default function Page({ params }: { params: Promise<{ locale: string; id: string }> }) {
+    return <PageClient params={params} />;
 }
