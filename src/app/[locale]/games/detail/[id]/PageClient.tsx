@@ -24,10 +24,13 @@ export default function GameDetailPage({ params }: { params: Promise<{ id: strin
 
     return (
         <QueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch} loadingFallback={<CircularProgress />}>
-            {({ game, source, ...details }) => <>
-                <GameToolbar category={source === "published" ? ("category" in details ? details.category : undefined) ?? "games" : source} game={game} onClose={goBack} presentation="page" isPublished={source === "published"} />
-                <GameDetailContent game={game} {...detailSections(source)} />
-            </>}
+            {(details) => {
+                const { game, source } = details;
+                return <>
+                    <GameToolbar category={source === "published" ? details.category ?? "games" : source} game={game} onClose={goBack} presentation="page" isPublished={source === "published"} />
+                    <GameDetailContent game={game} {...detailSections(source)} />
+                </>;
+            }}
         </QueryBoundary>
     );
 }

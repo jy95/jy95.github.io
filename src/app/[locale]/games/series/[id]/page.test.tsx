@@ -124,3 +124,12 @@ describe('SeriesDetailPage', () => {
     });
 
 });
+
+it('preserves a zero game count and back navigation for an empty series', async () => {
+    await renderDetail({ ...company, gamesCount: 0, developerGames: [], publisherGames: [] });
+    expect(screen.getByText('series.gamesCount:{"count":0}')).toBeInTheDocument();
+    expect(screen.getByTestId('card-grid')).toHaveAttribute('data-ids', '');
+    expect(screen.queryByText('common.loadMore')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'series.back' }));
+    expect(backMock).toHaveBeenCalled();
+});

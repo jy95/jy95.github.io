@@ -24,7 +24,6 @@ export default function DlcDetailPage({ params }: { params: Promise<{ id: string
 function DlcGames({ group }: { group: DlcDetail }) {
     const t = useTranslations("dlcs");
     const { labels, onBack } = useEntityGamesDetail("dlcs");
-    const games = group.items;
-    return <EntityGamesDetail name={group.name} games={games} countLabel={t("dlcsCount", { count: group.dlcsCount })} onBack={onBack}
+    return <EntityGamesDetail name={group.name} games={group.items} countLabel={t("dlcsCount", { count: group.dlcsCount })} onBack={onBack}
         labels={labels} category="dlcs" sortOptions={UNRANKED_SORT_OPTIONS} />;
 }

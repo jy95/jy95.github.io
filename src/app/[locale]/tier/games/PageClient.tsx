@@ -17,27 +17,11 @@ export default function GamesTierList() {
 
     const { data, isLoading, error, refetch } = useGetGamesTierListQuery();
 
+    const tierLists = <TierLists data={data} isLoadingData={isLoading} GameRender={GameCardRenderer} />;
+
     return (
-        <QueryBoundary
-            error={error}
-            isLoading={isLoading}
-            data={data}
-            onRetry={refetch}
-            loadingFallback={(
-                <TierLists
-                    data={data}
-                    isLoadingData={isLoading}
-                    GameRender={GameCardRenderer}
-                />
-            )}
-        >
-            {(data) => (
-                <TierLists 
-                    data={data}
-                    isLoadingData={isLoading}
-                    GameRender={GameCardRenderer}
-                />
-            )}
+        <QueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch} loadingFallback={tierLists}>
+            {() => tierLists}
         </QueryBoundary>
     );
 }
