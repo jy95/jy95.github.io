@@ -27,10 +27,10 @@ export async function gameDetailStaticParams(): Promise<{ id: string }[]> {
     const [published, groups, planning, backlog] = await Promise.all([
         loadPublishedGames(), loadDlcGroups(), loadPlanningGames(), loadBacklogGames(),
     ]);
-    const ids = [
-        ...[...published, ...groups.flatMap(group => group.dlcs), ...planning]
-            .map(game => extractGameCardProps(game).id),
-        ...backlog.map(game => String(game.id)),
+    return [
+        ...published.map(game => ({ id: extractGameCardProps(game).id })),
+        ...groups.flatMap(group => group.dlcs.map(game => ({ id: extractGameCardProps(game).id }))),
+        ...planning.map(game => ({ id: extractGameCardProps(game).id })),
+        ...backlog.map(game => ({ id: String(game.id) })),
     ];
-    return ids.map(id => ({ id }));
 }

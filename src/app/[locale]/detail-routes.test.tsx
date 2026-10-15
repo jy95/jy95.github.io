@@ -100,6 +100,14 @@ describe('catalog server route exports', () => {
             { id: 'Published' }, { id: 'Video' }, { id: 'DLC' }, { id: 'Planned' }, { id: 'PlannedVideo' }, { id: '12' }, { id: '13' },
         ]);
     });
+    it('uses playlist identity when a source record also contains a video identifier', async () => {
+        data.published.mockResolvedValue([{ playlistId: 'Published', videoId: 'PublishedVideo' }]);
+        data.dlcs.mockResolvedValue([{ id: 'parent', dlcs: [{ playlistId: 'DLC', videoId: 'DlcVideo' }] }]);
+        data.planning.mockResolvedValue([{ playlistId: 'Planned', videoId: 'PlannedVideo' }]);
+        expect(await game.generateStaticParams()).toEqual([
+            { id: 'Published' }, { id: 'DLC' }, { id: 'Planned' }, { id: '12' }, { id: '13' },
+        ]);
+    });
     it.each(['fr', 'en', 'de'])('preserves forced locale prefixes for game metadata (%s)', async locale => {
         const metadata = await game.generateMetadata({ params: Promise.resolve({ locale, id: 'a/b' }) });
         expect(data.resolve).toHaveBeenCalledWith('a/b');
