@@ -1,3 +1,4 @@
+
 // https://vercel.com/docs/environment-variables/system-environment-variables
 export function getSiteUrl(): string {
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
