@@ -28,56 +28,60 @@
         "description": "GamesPassionFR game catalog"
     },
     "pageMetadata": {
+        "random": {
+            "title": "Random game",
+            "description": "Discover a randomly selected game from the GamesPassionFR catalog."
+        },
         "backlog": {
-            "title": "Backlog | GamesPassionFR",
+            "title": "Backlog",
             "description": "Vote for the games you want to see next among the GamesPassionFR backlog candidates."
         },
         "companies": {
-            "title": "Companies | GamesPassionFR",
+            "title": "Companies",
             "description": "Browse the developers and publishers behind the games covered by GamesPassionFR."
         },
         "links": {
-            "title": "Links | GamesPassionFR",
+            "title": "Links",
             "description": "Find the YouTube channel, Discord and social links of GamesPassionFR."
         },
         "tier": {
-            "title": "Tier lists | GamesPassionFR",
+            "title": "Tier lists",
             "description": "Explore the GamesPassionFR tier lists: published games, backlog candidates and game tests."
         },
         "tierGames": {
-            "title": "Published Games Tier List | GamesPassionFR",
+            "title": "Published Games Tier List",
             "description": "The games completed on GamesPassionFR, ranked from masterpiece to bad."
         },
         "tierBacklog": {
-            "title": "Backlog Tier List | GamesPassionFR",
+            "title": "Backlog Tier List",
             "description": "The backlog candidates of GamesPassionFR, ranked by tier."
         },
         "tierTests": {
-            "title": "Game Tests Tier List | GamesPassionFR",
+            "title": "Game Tests Tier List",
             "description": "The games tested on GamesPassionFR, ranked by tier."
         },
         "dlcs": {
-            "title": "DLCs | GamesPassionFR",
+            "title": "DLCs",
             "description": "Browse downloadable content grouped by parent game."
         },
         "series": {
-            "title": "Series | GamesPassionFR",
+            "title": "Series",
             "description": "Browse series and their games."
         },
         "games": {
-            "title": "Games | GamesPassionFR",
+            "title": "Games",
             "description": "Browse the GamesPassionFR game collection and find videos for your favorite games."
         },
         "planning": {
-            "title": "Calendar | GamesPassionFR",
+            "title": "Calendar",
             "description": "See the upcoming games and videos on the GamesPassionFR calendar."
         },
         "tests": {
-            "title": "Game Reviews | GamesPassionFR",
+            "title": "Game Reviews",
             "description": "Explore game reviews and tests from GamesPassionFR."
         },
         "stats": {
-            "title": "Statistics | GamesPassionFR",
+            "title": "Statistics",
             "description": "Explore statistics about the GamesPassionFR game collection."
         },
         "selection": {
@@ -411,6 +415,16 @@
         "kinds": "Content kinds"
     },
     "detailMetadata": {
+        "watch": {
+            "video": "Watch the video for {title} on GamesPassionFR.",
+            "playlist": "Watch the video playlist for {title} on GamesPassionFR."
+        },
+        "images": {
+            "game": "Game cover for {name}",
+            "company": "Company artwork for {name}",
+            "series": "Series artwork for {name}",
+            "dlc": "Game cover for {name}"
+        },
         "game": {
             "published": "Watch the full walkthrough of {title} on GamesPassionFR and discover its platform, genres, developers and release date.",
             "planning": "{title} is scheduled for a GamesPassionFR walkthrough. Check its details and release date.",

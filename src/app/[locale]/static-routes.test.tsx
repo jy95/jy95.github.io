@@ -35,7 +35,6 @@ vi.mock('./tier/tests/PageClient', () => ({ default: vi.fn() }));
 vi.mock('@/features/selection/components/SelectionPageLoader', () => ({ default: vi.fn() }));
 
 import { generateStaticParams, generateMetadata } from './layout';
-import { staticSectionMetadata } from '@/i18n/staticSectionMetadata';
 import { getSiteUrl } from '@/lib/siteUrl';
 
 const routes = [
@@ -61,23 +60,35 @@ describe('static server metadata integration', () => {
     });
     it.each(['fr', 'en', 'de'])('localizes the root metadata and keeps feeds (%s)', async locale => {
         const messages = locale === 'en' ? en : fr;
-        expect(await generateMetadata({ params: Promise.resolve({ locale }) })).toEqual({
-            ...messages.siteMetadata, metadataBase: new URL(getSiteUrl()),
+        expect(await generateMetadata({ params: Promise.resolve({ locale }) })).toMatchObject({
+            ...messages.siteMetadata, title: { default: messages.siteMetadata.title, template: '%s | GamesPassionFR' }, metadataBase: new URL(getSiteUrl()),
             alternates: { types: { 'application/rss+xml': '/rss.xml', 'application/feed+json': '/feed.json' } },
         });
     });
     for (const [section, load] of routes) {
         it.each(['fr', 'en', 'de'])(`exports localized metadata from the ${section} page (%s)`, async locale => {
             const page = await load();
-            expect(await page.generateMetadata({ params: Promise.resolve({ locale }) }))
-                .toEqual(staticSectionMetadata(locale, section));
+            const metadata = await page.generateMetadata({ params: Promise.resolve({ locale }) });
+            const messages = locale === 'en' ? en : fr;
+            expect(metadata.title).toEqual(section === 'selection'
+                ? { absolute: messages.pageMetadata.selection.title } : messages.pageMetadata[section].title);
+            expect(metadata.description).toBe(messages.pageMetadata[section].description);
+            if (section !== 'tier') {
+                expect(metadata.openGraph).toMatchObject({ type: 'website', siteName: 'GamesPassionFR',
+                    title: section === 'selection' ? messages.pageMetadata.selection.title : `${messages.pageMetadata[section].title} | GamesPassionFR`,
+                    description: messages.pageMetadata[section].description,
+                    locale: locale === 'en' ? 'en_US' : 'fr_FR',
+                });
+                expect(metadata.twitter).toMatchObject({ card: 'summary' });
+            }
             expect(page).not.toHaveProperty('generateStaticParams');
         });
     }
     it('gives the random page its own canonical URL', async () => {
         const page = await import('./games/random/page');
         expect(await page.generateMetadata({ params: Promise.resolve({ locale: 'en' }) }))
-            .toEqual(staticSectionMetadata('en', 'games', '/games/random'));
+            .toMatchObject({ title: 'Random game', robots: { index: false, follow: true },
+                alternates: { canonical: '/en/games/random' }, openGraph: { url: '/en/games/random' } });
     });
     it('renders the server wrappers with their corresponding client components', async () => {
         for (const load of [() => import('./companies/page'), () => import('./games/page'),

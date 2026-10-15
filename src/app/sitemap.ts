@@ -10,7 +10,7 @@ type StaticRoute = Exclude<AvailableRoutes, `${string}[${string}]`>;
 
 // Routes to exclude, SEO doesn't like redirects
 const EXCLUDED_ROUTES: AvailableRoutes[] = [
-  '/'
+  '/', '/tier', '/games/random'
 ];
 
 const host = getSiteUrl();

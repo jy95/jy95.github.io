@@ -8,6 +8,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
     test: {
         environment: 'jsdom',
+        // Exercise real next-intl paths while resolving Next.js imports through Vite.
+        server: { deps: { inline: ['next-intl'] } },
         globals: true,
         setupFiles: ['./src/test/setup.ts'],
         include: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'scripts/**/*.test.ts'],

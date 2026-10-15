@@ -31,14 +31,17 @@ const pathnameFor = (locale: 'fr' | 'en') => getPathname({
 describe('entityDetailMetadata', () => {
     it.each(['fr', 'en', 'de'])('localizes dynamic details and preserves URLs, images and feeds (%s)', async (locale) => {
         const metadata = await entityDetailMetadata({ locale, entity: 'company', found, pathnameFor });
-        expect(metadata.title).toBe('Example | GamesPassionFR');
+        expect(metadata.title).toBe('Example');
         expect(metadata.description).toBe(locale === 'en'
             ? 'Example on GamesPassionFR: 2 games developed or published.'
             : 'Example sur GamesPassionFR : 2 jeux développés ou édités.');
         expect(metadata.openGraph).toEqual({
-            type: 'website', siteName: 'GamesPassionFR', title: 'Example',
+            type: 'website', siteName: 'GamesPassionFR', title: 'Example | GamesPassionFR',
+            url: locale === 'en' ? '/en/companies/1' : '/companies/1',
+            locale: locale === 'en' ? 'en_US' : 'fr_FR',
+            alternateLocale: [locale === 'en' ? 'fr_FR' : 'en_US'],
             description: metadata.description,
-            images: [{ url: found.imagePath, alt: found.name }],
+            images: [{ url: found.imagePath, alt: locale === 'en' ? 'Company artwork for Example' : 'Visuel de l’entreprise Example' }],
         });
         expect(metadata.alternates).toEqual({
             canonical: locale === 'en' ? '/en/companies/1' : '/companies/1',
@@ -58,4 +61,12 @@ describe('entityDetailMetadata', () => {
             ? 'Example series on GamesPassionFR: 1 game.'
             : 'DLCs for Example on GamesPassionFR: 1 DLC.');
     });
+});
+
+it.each([
+    [0, '0 jeux développés ou édités'], [1, '1 jeu développé ou édité'], [2, '2 jeux développés ou édités'],
+])('uses French company agreement for %s games', async (count, wording) => {
+    const metadata = await entityDetailMetadata({ locale: 'fr', entity: 'company',
+        found: { ...found, count: Number(count) }, pathnameFor });
+    expect(metadata.description).toBe(`Example sur GamesPassionFR : ${wording}.`);
 });

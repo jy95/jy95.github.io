@@ -32,8 +32,8 @@ describe('static section metadata', () => {
             const english = staticSectionMetadata('en', section);
             const french = staticSectionMetadata('fr', section);
 
-            expect(english.title).toBe(`${en} | GamesPassionFR`);
-            expect(french.title).toBe(`${fr} | GamesPassionFR`);
+            expect(english.title).toBe(en);
+            expect(french.title).toBe(fr);
             expect(english.description).toBeTruthy();
             expect(french.description).toBeTruthy();
             expect(english.description).not.toBe(french.description);
@@ -49,12 +49,13 @@ describe('static section metadata', () => {
     });
 
     it('uses the selection title without adding a brand suffix', () => {
-        expect(staticSectionMetadata('en', 'selection').title).toBe('My GamesPassionFR Selection');
+        expect(staticSectionMetadata('en', 'selection').title).toEqual({ absolute: 'My GamesPassionFR Selection' });
     });
 
-    it('preserves games metadata on the random route with its own canonical URL', () => {
-        const metadata = staticSectionMetadata('fr', 'games', '/games/random');
-        expect(metadata.title).toBe('Jeux | GamesPassionFR');
+    it('noindexes the localized random route with its own canonical URL', () => {
+        const metadata = staticSectionMetadata('fr', 'random');
+        expect(metadata.title).toBe('Jeu au hasard');
+        expect(metadata.robots).toEqual({ index: false, follow: true });
         expect(metadata.alternates?.canonical).toBe('/games/random');
     });
 
