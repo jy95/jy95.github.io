@@ -9,6 +9,8 @@ vi.mock('@/i18n/routing', () => ({
         pathnames: {
             '/': '/',
             '/games': '/games',
+            '/tier': '/tier',
+            '/games/random': '/games/random',
             '/backlog': '/backlog',
             '/video/[id]': '/video/[id]',
             '/playlist/[id]': '/playlist/[id]',
@@ -86,11 +88,11 @@ describe('sitemap', () => {
         expect(sitemap()[0].url).toBe('https://production.example.com/en/games');
     });
 
-    it('uses VERCEL_URL when VERCEL_PROJECT_PRODUCTION_URL is unavailable', async () => {
+    it('ignores preview VERCEL_URL when the production origin is unavailable', async () => {
         vi.stubEnv('VERCEL_URL', 'preview.example.com');
 
         const sitemap = await loadSitemap();
 
-        expect(sitemap()[0].url).toBe('https://preview.example.com/en/games');
+        expect(sitemap()[0].url).toBe('https://jy95.github.io/en/games');
     });
 });

@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import { alternatesFor, detailOpenGraph, resolveLocale, withBrand } from '@/i18n/metadata';
+import { pageMetadata, resolveLocale } from '@/i18n/metadata';
 import { resolveGameDetails } from '@/lib/gameDetails';
 
 import type { DetailPageProps } from '@/features/catalog/metadata';
@@ -10,7 +10,7 @@ async function safeResolve(id: string) {
     try {
         return await resolveGameDetails(id);
     } catch {
-        // Metadata must never take the page down; fall back to the layout defaults.
+        // Metadata must never take the page down; keep failed lookups out of the index.
         return undefined;
     }
 }
@@ -26,13 +26,13 @@ export async function gameDetailMetadata(rawLocale: string, id: string): Promise
     const { game, source } = details;
     const description = t(source, { title: game.title });
 
-    return {
-        title: withBrand(game.title),
-        description,
-        // proxy.ts forces the locale prefix on game detail URLs, even for the default locale.
-        alternates: alternatesFor(locale, (l) => `/${l}/games/detail/${encodeURIComponent(id)}`),
-        openGraph: detailOpenGraph(game.title, description, game.imagePath),
-    };
+    const images = await getTranslations({ locale, namespace: 'detailMetadata.images' });
+    return pageMetadata({
+        locale, title: game.title, description,
+        // The game-detail middleware requires explicit prefixes in both languages.
+        pathnameFor: (language) => `/${language}/games/detail/${encodeURIComponent(id)}`,
+        image: { url: game.imagePath, alt: images('game', { name: game.title }) },
+    });
 }
 
 export async function gameDetailRouteMetadata({ params }: DetailPageProps): Promise<Metadata> {

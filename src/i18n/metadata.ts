@@ -29,13 +29,30 @@ export function alternatesFor(
     };
 }
 
-/** The same image and site fields apply to game and catalog detail pages. */
-export function detailOpenGraph(title: string, description: string, imagePath: string): Metadata['openGraph'] {
+/** Child social objects are complete because Next.js merges metadata shallowly. */
+export function pageMetadata({ locale, title, description, pathnameFor, image, absoluteTitle = false }: {
+    locale: Locale;
+    title: string;
+    description: string;
+    pathnameFor: (locale: Locale) => string;
+    image?: { url: string; alt: string };
+    absoluteTitle?: boolean;
+}): Metadata {
+    const socialTitle = absoluteTitle ? title : withBrand(title);
     return {
-        type: 'website',
-        siteName: BRAND,
-        title,
+        title: absoluteTitle ? { absolute: title } : title,
         description,
-        images: [{ url: imagePath, alt: title }],
+        alternates: alternatesFor(locale, pathnameFor),
+        openGraph: {
+            type: 'website', siteName: BRAND, title: socialTitle, description,
+            url: pathnameFor(locale),
+            locale: locale === 'fr' ? 'fr_FR' : 'en_US',
+            alternateLocale: [locale === 'fr' ? 'en_US' : 'fr_FR'],
+            ...(image ? { images: [image] } : {}),
+        },
+        twitter: {
+            card: 'summary', title: socialTitle, description,
+            ...(image ? { images: [image] } : {}),
+        },
     };
 }

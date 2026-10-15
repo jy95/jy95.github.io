@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import { getPathname } from '@/i18n/routing';
-import { alternatesFor, detailOpenGraph, resolveLocale, withBrand } from '@/i18n/metadata';
+import { pageMetadata, resolveLocale } from '@/i18n/metadata';
 
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
@@ -23,12 +23,10 @@ export async function entityDetailMetadata(args: {
     const t = await getTranslations({ locale, namespace: 'detailMetadata' });
     const description = t(args.entity, { name, count });
 
-    return {
-        title: withBrand(name),
-        description,
-        alternates: alternatesFor(locale, args.pathnameFor),
-        openGraph: detailOpenGraph(name, description, imagePath),
-    };
+    return pageMetadata({
+        locale, title: name, description, pathnameFor: args.pathnameFor,
+        image: { url: imagePath, alt: t(`images.${args.entity}`, { name }) },
+    });
 }
 
 export type DetailPageProps = { params: Promise<{ locale: string; id: string }> };
@@ -54,6 +52,6 @@ export async function entityRouteMetadata<
     return entityDetailMetadata({
         locale, entity,
         found: summary && { name: summary.name, imagePath: summary.imagePath, count: source.count(summary) },
-        pathnameFor: (language) => getPathname({ locale: language, href: { pathname, params: { id } } }),
+        pathnameFor: (language) => getPathname({ locale: language, href: { pathname, params: { id: encodeURIComponent(id) } } }),
     });
 }
