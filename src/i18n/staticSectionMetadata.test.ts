@@ -1,41 +1,36 @@
-import { describe, expect, it } from 'vitest';
-import { generateMetadata as gamesMetadata } from '@/app/[locale]/games/layout';
-import { generateMetadata as planningMetadata } from '@/app/[locale]/planning/layout';
-import { generateMetadata as testsMetadata } from '@/app/[locale]/tests/layout';
-import { generateMetadata as statsMetadata } from '@/app/[locale]/stats/layout';
-import { generateMetadata as seriesMetadata } from '@/app/[locale]/games/series/layout';
+import { describe, expect, it, vi } from 'vitest';
+import { staticSectionMetadata } from './staticSectionMetadata';
 
-import { generateMetadata as dlcsMetadata } from '@/app/[locale]/games/dlcs/layout';
-
-import { generateMetadata as backlogMetadata } from '@/app/[locale]/backlog/layout';
-import { generateMetadata as companiesMetadata } from '@/app/[locale]/companies/layout';
-import { generateMetadata as linksMetadata } from '@/app/[locale]/links/layout';
-import { generateMetadata as tierMetadata } from '@/app/[locale]/tier/layout';
-import { generateMetadata as tierGamesMetadata } from '@/app/[locale]/tier/games/layout';
-import { generateMetadata as tierBacklogMetadata } from '@/app/[locale]/tier/backlog/layout';
-import { generateMetadata as tierTestsMetadata } from '@/app/[locale]/tier/tests/layout';
+// Keep Next.js navigation outside jsdom; metadata only needs pathname generation.
+vi.mock('@/i18n/routing', () => ({
+    routing: { locales: ['fr', 'en'], defaultLocale: 'fr' },
+    getPathname: ({ locale, href }: { locale: string; href: string | { pathname: string; params: { id: string } } }) => {
+        const pathname = typeof href === 'string' ? href : href.pathname.replace('[id]', href.params.id);
+        return locale === 'fr' ? pathname : `/en${pathname}`;
+    },
+}));
 
 const sections = [
-    { generate: backlogMetadata, en: 'Backlog', fr: 'En attente' },
-    { generate: companiesMetadata, en: 'Companies', fr: 'Entreprises' },
-    { generate: linksMetadata, en: 'Links', fr: 'Liens' },
-    { generate: tierMetadata, en: 'Tier lists', fr: 'Classements' },
-    { generate: tierGamesMetadata, en: 'Published Games Tier List', fr: 'Classement des jeux publiés' },
-    { generate: tierBacklogMetadata, en: 'Backlog Tier List', fr: 'Classement des jeux en attente' },
-    { generate: tierTestsMetadata, en: 'Game Tests Tier List', fr: 'Classement des tests' },
-    { generate: dlcsMetadata, en: 'DLCs', fr: 'DLCs' },
-    { generate: seriesMetadata, en: 'Series', fr: 'Séries' },
-    { generate: gamesMetadata, en: 'Games', fr: 'Jeux' },
-    { generate: planningMetadata, en: 'Calendar', fr: 'Planning' },
-    { generate: testsMetadata, en: 'Game Reviews', fr: 'Tests de jeux' },
-    { generate: statsMetadata, en: 'Statistics', fr: 'Statistiques' },
-];
+    { section: 'backlog', en: 'Backlog', fr: 'En attente' },
+    { section: 'companies', en: 'Companies', fr: 'Entreprises' },
+    { section: 'links', en: 'Links', fr: 'Liens' },
+    { section: 'tier', en: 'Tier lists', fr: 'Classements' },
+    { section: 'tierGames', en: 'Published Games Tier List', fr: 'Classement des jeux publiés' },
+    { section: 'tierBacklog', en: 'Backlog Tier List', fr: 'Classement des jeux en attente' },
+    { section: 'tierTests', en: 'Game Tests Tier List', fr: 'Classement des tests' },
+    { section: 'dlcs', en: 'DLCs', fr: 'DLCs' },
+    { section: 'series', en: 'Series', fr: 'Séries' },
+    { section: 'games', en: 'Games', fr: 'Jeux' },
+    { section: 'planning', en: 'Calendar', fr: 'Planning' },
+    { section: 'tests', en: 'Game Reviews', fr: 'Tests de jeux' },
+    { section: 'stats', en: 'Statistics', fr: 'Statistiques' },
+] as const;
 
 describe('static section metadata', () => {
-    for (const { generate, en, fr } of sections) {
+    for (const { section, en, fr } of sections) {
         it(`uses localized metadata for ${en}`, async () => {
-            const english = await generate({ params: Promise.resolve({ locale: 'en' }) });
-            const french = await generate({ params: Promise.resolve({ locale: 'fr' }) });
+            const english = staticSectionMetadata('en', section);
+            const french = staticSectionMetadata('fr', section);
 
             expect(english.title).toBe(`${en} | GamesPassionFR`);
             expect(french.title).toBe(`${fr} | GamesPassionFR`);
@@ -45,9 +40,27 @@ describe('static section metadata', () => {
         });
     }
 
+    it.each(['fr', 'en'])('includes canonical, languages and feeds (%s)', (locale) => {
+        expect(staticSectionMetadata(locale, 'games').alternates).toEqual({
+            canonical: locale === 'fr' ? '/games' : '/en/games',
+            languages: { fr: '/games', en: '/en/games' },
+            types: { 'application/rss+xml': '/rss.xml', 'application/feed+json': '/feed.json' },
+        });
+    });
+
+    it('uses the selection title without adding a brand suffix', () => {
+        expect(staticSectionMetadata('en', 'selection').title).toBe('My GamesPassionFR Selection');
+    });
+
+    it('preserves games metadata on the random route with its own canonical URL', () => {
+        const metadata = staticSectionMetadata('fr', 'games', '/games/random');
+        expect(metadata.title).toBe('Jeux | GamesPassionFR');
+        expect(metadata.alternates?.canonical).toBe('/games/random');
+    });
+
     it('uses French metadata for an unsupported locale', async () => {
-        const unknown = await gamesMetadata({ params: Promise.resolve({ locale: 'de' }) });
-        const french = await gamesMetadata({ params: Promise.resolve({ locale: 'fr' }) });
+        const unknown = staticSectionMetadata('de', 'games');
+        const french = staticSectionMetadata('fr', 'games');
 
         expect(unknown).toEqual(french);
     });

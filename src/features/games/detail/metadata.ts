@@ -1,8 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 
-import { alternatesFor, resolveLocale, withBrand } from '@/i18n/metadata';
+import { alternatesFor, detailOpenGraph, resolveLocale, withBrand } from '@/i18n/metadata';
 import { resolveGameDetails } from '@/lib/gameDetails';
 
+import type { DetailPageProps } from '@/features/catalog/metadata';
 import type { Metadata } from 'next';
 
 async function safeResolve(id: string) {
@@ -30,12 +31,11 @@ export async function gameDetailMetadata(rawLocale: string, id: string): Promise
         description,
         // proxy.ts forces the locale prefix on game detail URLs, even for the default locale.
         alternates: alternatesFor(locale, (l) => `/${l}/games/detail/${encodeURIComponent(id)}`),
-        openGraph: {
-            type: 'website',
-            siteName: "GamesPassionFR",
-            title: game.title,
-            description,
-            images: [{ url: game.imagePath, alt: game.title }],
-        }
+        openGraph: detailOpenGraph(game.title, description, game.imagePath),
     };
+}
+
+export async function gameDetailRouteMetadata({ params }: DetailPageProps): Promise<Metadata> {
+    const { locale, id } = await params;
+    return gameDetailMetadata(locale, id);
 }

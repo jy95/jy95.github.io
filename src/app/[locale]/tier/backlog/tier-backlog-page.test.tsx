@@ -19,7 +19,7 @@ vi.mock('@/components/GamesView/BaseCard', () => ({
     default: () => <div>card</div>,
 }));
 
-import BacklogTierList from './page';
+import BacklogTierList from './PageClient';
 
 describe('BacklogTierList (tier/backlog page)', () => {
     it('forwards the loading state to TierLists', () => {

@@ -11,7 +11,7 @@ const { query, reset, dispatch } = vi.hoisted(() => ({ query: vi.fn(), reset: vi
 vi.mock('@/redux/hooks', () => ({ useAppDispatch: () => dispatch }));
 vi.mock('@/redux/services/dlcsAPI', () => ({ useGetDlcsInfiniteQuery: query, resetDlcPages: reset }));
 vi.mock('@/features/dlcs/DlcCard', () => ({ default: ({ group }: { group: { name: string } }) => <div>{group.name}</div> }));
-import DlcGallery from './page';
+import DlcGallery from './PageClient';
 
 describe('DlcGallery', () => {
     const fetchNextPage = vi.fn();

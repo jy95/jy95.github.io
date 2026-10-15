@@ -6,6 +6,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { stubRtkFetch, calledUrl } from '@/test/mocks/rtkFetch';
 import en from '../../../../../../messages/en.json';
 import fr from '../../../../../../messages/fr.json';
+import { getSelectionSnapshot } from '@/features/selection/storage/store';
 import type { CardGame } from '@/domain/games';
 import type { BacklogEntry, GameDetailsResponse, PlanningEntry } from '@/domain/games/details';
 
@@ -20,7 +21,7 @@ vi.mock('@/features/games/components/RelatedGames', () => ({ default: ({ gameId 
 
 const fetchMock = stubRtkFetch();
 const { api } = await import('@/redux/services/api');
-const { default: GameDetailPage } = await import('./page');
+const { default: GameDetailPage } = await import('./PageClient');
 const game: CardGame = {
     id: 'PL123', title: 'Published game', imagePath: '/covers/PL123/cover.webp',
     url: 'https://www.youtube.com/playlist?list=PL123', url_type: 'PLAYLIST',
@@ -129,6 +130,18 @@ describe('canonical game detail page', () => {
         expect(screen.queryByRole('button', { name: 'Watch the game' })).not.toBeInTheDocument();
         expect(fetchMock).toHaveBeenCalledTimes(1);
         expect(calledUrl(fetchMock).pathname).toBe(`/api/games/${backlog.id}`);
+    });
+
+    it.each([
+        [game.id, game.title, 'games'],
+        [dlcs[0].id, dlcs[0].title, 'dlcs'],
+        [planned.id, planned.title, 'planning'],
+        [backlog.id, backlog.title, 'backlog'],
+    ] as const)('selects %s (%s) in its resolved %s category', async (id, title, category) => {
+        window.localStorage.clear();
+        await show(id);
+        fireEvent.click(await screen.findByRole('button', { name: `Add ${title} to my selection` }));
+        expect(getSelectionSnapshot().document[category]).toContain(id);
     });
 
     it('encodes string IDs in the single detail request', async () => {

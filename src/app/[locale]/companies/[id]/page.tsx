@@ -1,28 +1,17 @@
-"use client";
+import { loadCompanies, toCompanySummary } from '@/app/api/companies/data';
+import { entityRouteMetadata } from '@/features/catalog/metadata';
+import type { DetailPageProps } from '@/features/catalog/metadata';
 
-import { useMemo } from "react";
+export { default } from './PageClient';
 
-import { useGetCompanyQuery } from "@/redux/services/companiesAPI";
-import { DetailQueryBoundary } from "@/components/common/DetailQueryBoundary";
-import { useDetailRouteId } from "@/hooks/useDetailRouteId";
-import { useEntityGamesDetail } from "@/features/catalog/useEntityGamesDetail";
-import EntityGamesDetail from "@/features/catalog/EntityGamesDetail";
-import type { CompanyType } from "@/app/api/companies/route";
-
-export default function CompanyDetail({ params }: { params: Promise<{ id: string }> }) {
-    const id = useDetailRouteId(params);
-    const { data, error, isLoading, refetch } = useGetCompanyQuery(id);
-
-    return (
-        <DetailQueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch}>
-            {(company) => <CompanyGames company={company} />}
-        </DetailQueryBoundary>
-    );
+export async function generateStaticParams() {
+    return (await loadCompanies()).map(entry => ({ id: String(entry.id) }));
 }
 
-function CompanyGames({ company }: { company: CompanyType }) {
-    const { labels, onBack } = useEntityGamesDetail("companies");
-    const games = useMemo(() => [...new Map([...company.developerGames, ...company.publisherGames].map(game => [game.id, game])).values()], [company]);
-    return <EntityGamesDetail name={company.name} games={games} onBack={onBack}
-        labels={labels} />;
+export function generateMetadata(props: DetailPageProps) {
+    return entityRouteMetadata(props, 'company', {
+        load: loadCompanies,
+        summarize: entry => toCompanySummary(entry, 'all'),
+        count: summary => summary.gamesCount,
+    });
 }

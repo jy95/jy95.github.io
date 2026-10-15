@@ -1,37 +1,10 @@
-import {getTranslations} from 'next-intl/server';
-import YTPlayer from "@/components/YTPlayer/Player";
-import RandomButton from '@/features/games/components/RandomButton';
+import { renderWatchPage, watchStaticParams } from '@/components/YTPlayer/WatchPage';
+import type { WatchPageProps } from '@/components/YTPlayer/WatchPage';
 
-import type {Locale} from 'next-intl';
-
-// https://nextjs.org/docs/app/api-reference/file-conventions/page#props
-type Props = {
-    params: Promise<{ id: string, locale: Locale }>
+export function generateStaticParams() {
+    return watchStaticParams('PLAYLIST');
 }
 
-export async function generateStaticParams() {
-    const identifiers = (await import("@/app/api/random/identifiers.json")).default;
-    const playlists = identifiers.filter(i => i.playlistId !== undefined);
-
-    return playlists.map((pl) => ({
-        id: pl.playlistId,
-    }));
-}
-
-export default async function PlaylistPage({ params } : Props) {
-
-    const parameters = await params;
-    const { id } = parameters
-    const identifier = id as string;
-
-    // Retrieve translation
-    const t = await getTranslations("gamesLibrary");
-    const randomButtonLabel = t("randomButtonLabel");
-
-    return (
-        <>
-            <YTPlayer type="PLAYLIST" identifier={identifier}/>
-            <RandomButton label={randomButtonLabel} />
-        </>
-    )
+export default function PlaylistPage(props: WatchPageProps) {
+    return renderWatchPage(props, 'PLAYLIST');
 }

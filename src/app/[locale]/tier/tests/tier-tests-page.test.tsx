@@ -42,7 +42,7 @@ vi.mock('@/features/games/components/CardEntry', () => ({
     ),
 }));
 
-import GamesTierList from './page';
+import GamesTierList from './PageClient';
 
 describe('GamesTierList (tier/tests page)', () => {
     it('disables selection and details on review cards', () => {

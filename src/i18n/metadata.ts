@@ -28,3 +28,14 @@ export function alternatesFor(
         },
     };
 }
+
+/** The same image and site fields apply to game and catalog detail pages. */
+export function detailOpenGraph(title: string, description: string, imagePath: string): Metadata['openGraph'] {
+    return {
+        type: 'website',
+        siteName: BRAND,
+        title,
+        description,
+        images: [{ url: imagePath, alt: title }],
+    };
+}

@@ -15,7 +15,7 @@ vi.mock('@/components/common/GameDataGrid', () => ({
 }));
 vi.mock('@/components/planning/tableColumns', () => ({ default: () => [] }));
 
-import PlanningViewer from './page';
+import PlanningViewer from './PageClient';
 
 describe('PlanningViewer', () => {
     it('enables related games for planning details', () => {

@@ -1,29 +1,17 @@
-"use client";
+import { loadSeries, toSeriesSummary } from '@/app/api/series/data';
+import { entityRouteMetadata } from '@/features/catalog/metadata';
+import type { DetailPageProps } from '@/features/catalog/metadata';
 
-import { useTranslations } from "next-intl";
+export { default } from './PageClient';
 
-import { useGetSeriesQuery } from "@/redux/services/seriesAPI";
-import { DetailQueryBoundary } from "@/components/common/DetailQueryBoundary";
-import { useDetailRouteId } from "@/hooks/useDetailRouteId";
-import { useEntityGamesDetail } from "@/features/catalog/useEntityGamesDetail";
-import EntityGamesDetail from "@/features/catalog/EntityGamesDetail";
-import type { SeriesDetail } from "@/domain/series/types";
-
-export default function SeriesDetailPage({ params }: { params: Promise<{ id: string }> }) {
-    const id = useDetailRouteId(params);
-    const { data, error, isLoading, refetch } = useGetSeriesQuery(id);
-
-    return (
-        <DetailQueryBoundary error={error} isLoading={isLoading} data={data} onRetry={refetch}>
-            {(series) => <SeriesGames series={series} />}
-        </DetailQueryBoundary>
-    );
+export async function generateStaticParams() {
+    return (await loadSeries()).map(entry => ({ id: String(entry.id) }));
 }
 
-function SeriesGames({ series }: { series: SeriesDetail }) {
-    const t = useTranslations("series");
-    const { labels, onBack } = useEntityGamesDetail("series");
-    const games = series.items;
-    return <EntityGamesDetail name={series.name} games={games} countLabel={t("gamesCount", { count: series.gamesCount })} onBack={onBack}
-        labels={labels} />;
+export function generateMetadata(props: DetailPageProps) {
+    return entityRouteMetadata(props, 'series', {
+        load: loadSeries,
+        summarize: toSeriesSummary,
+        count: summary => summary.gamesCount,
+    });
 }

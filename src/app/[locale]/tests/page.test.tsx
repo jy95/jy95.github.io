@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import StoreProvider from '@/providers/StoreProvider';
 import en from '../../../../messages/en.json';
-import TestsPage from './page';
+import TestsPage from './PageClient';
 
 import type { ComponentProps, ReactNode } from 'react';
 import type { CardGame } from '@/domain/games';

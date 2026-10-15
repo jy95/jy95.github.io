@@ -10,6 +10,8 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
+import { staticSectionMetadata } from '@/i18n/staticSectionMetadata';
+
 // Types
 import type { JSX } from 'react'
 
@@ -46,6 +48,10 @@ const LINKS : {
 // Channel props
 const CHANNEL_NAME = "GamesPassionFR";
 const CHANNEL_ICON_URL = "https://yt3.googleusercontent.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s160-c-k-c0x00ffffff-no-rj";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    return staticSectionMetadata((await params).locale, 'links');
+}
 
 export default function LinksViewer() {
     return (

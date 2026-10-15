@@ -13,7 +13,7 @@ vi.mock('@/features/games/components/CardGrid', () => ({
         <div data-testid="card-grid" data-ids={items.map((item) => item.id).join(',')}>{items.map((item) => item.title).join(',')}</div>,
 }));
 
-import SeriesDetailPage from './page';
+import SeriesDetailPage from './PageClient';
 
 const game = (id: string, title: string, duration: string | undefined, tierCategory: string) => ({ id, title, duration, tierCategory });
 const company = {
@@ -123,4 +123,13 @@ describe('SeriesDetailPage', () => {
         expect(screen.getByTestId('card-grid').textContent?.split(',')).toHaveLength(12);
     });
 
+});
+
+it('preserves a zero game count and back navigation for an empty series', async () => {
+    await renderDetail({ ...company, gamesCount: 0, developerGames: [], publisherGames: [] });
+    expect(screen.getByText('series.gamesCount:{"count":0}')).toBeInTheDocument();
+    expect(screen.getByTestId('card-grid')).toHaveAttribute('data-ids', '');
+    expect(screen.queryByText('common.loadMore')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'series.back' }));
+    expect(backMock).toHaveBeenCalled();
 });

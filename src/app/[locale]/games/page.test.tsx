@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, expect, it, vi } from 'vitest';
-import GamesGalleryGrid from './page';
+import GamesGalleryGrid from './PageClient';
 import type { GameFilters } from '@/types/gamesFilters';
 
 const navigation = vi.hoisted(() => ({ href: '/games', push: vi.fn(), replace: vi.fn() }));
@@ -49,4 +49,29 @@ it('queries URL filters and loads the next page for the current result', async (
     expect(query).toHaveBeenLastCalledWith({ filters: { title: 'Mario', platform: 1 }, pageSize: 12 });
     expect(screen.getByText('Mario')).toBeInTheDocument();
     expect(screen.queryByText('Zelda')).not.toBeInTheDocument();
+});
+
+it('uses currentData while retained data from previous filters is still available', () => {
+    query.mockReturnValue({ data: { pages: [{ items: [{ title: 'Previous game' }] }] }, currentData: undefined, isFetching: true });
+    render(<GamesGalleryGrid />);
+    expect(screen.queryByText('Previous game')).not.toBeInTheDocument();
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
+});
+
+it('keeps pagination visible and retries initial errors', () => {
+    const refetch = vi.fn();
+    query.mockReturnValue({ isError: true, refetch, hasNextPage: false });
+    render(<GamesGalleryGrid />);
+    expect(screen.getByRole('button', { name: 'loadMore' })).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: 'retry' }));
+    expect(refetch).toHaveBeenCalledOnce();
+});
+
+it('retains current pages without error feedback after a pagination failure', () => {
+    query.mockReturnValue({ currentData: { pages: [{ items: [{ title: 'Current game' }] }] }, isError: true, hasNextPage: true, fetchNextPage });
+    render(<GamesGalleryGrid />);
+    expect(screen.getByText('Current game')).toBeInTheDocument();
+    expect(screen.queryByText('generic')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'loadMore' }));
+    expect(fetchNextPage).toHaveBeenCalledOnce();
 });
