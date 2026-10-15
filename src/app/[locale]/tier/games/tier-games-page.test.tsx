@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 const useGetGamesTierListQueryMock = vi.fn();
 
@@ -18,6 +18,8 @@ vi.mock('@/components/tierList', () => ({
 vi.mock('@/features/games/components/CardEntry', () => ({
     default: () => <div>card</div>,
 }));
+
+vi.mock('@/components/common/QueryErrorState', () => ({ default: ({ onRetry }: { onRetry: () => void }) => <button onClick={onRetry}>Retry</button> }));
 
 import GamesTierList from './PageClient';
 
@@ -44,4 +46,13 @@ describe('GamesTierList (tier/games page)', () => {
         render(<GamesTierList />);
         expect(screen.queryByTestId('tier-lists')).not.toBeInTheDocument();
     });
+});
+
+it('prioritizes errors over retained loading data and retries the query', () => {
+    const refetch = vi.fn();
+    useGetGamesTierListQueryMock.mockReturnValue({ data: { tier_good: [] }, isLoading: true, error: { status: 500 }, refetch });
+    render(<GamesTierList />);
+    expect(screen.queryByTestId('tier-lists')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    expect(refetch).toHaveBeenCalledOnce();
 });

@@ -23,7 +23,6 @@ export default function SeriesDetailPage({ params }: { params: Promise<{ id: str
 function SeriesGames({ series }: { series: SeriesDetail }) {
     const t = useTranslations("series");
     const { labels, onBack } = useEntityGamesDetail("series");
-    const games = series.items;
-    return <EntityGamesDetail name={series.name} games={games} countLabel={t("gamesCount", { count: series.gamesCount })} onBack={onBack}
+    return <EntityGamesDetail name={series.name} games={series.items} countLabel={t("gamesCount", { count: series.gamesCount })} onBack={onBack}
         labels={labels} />;
 }

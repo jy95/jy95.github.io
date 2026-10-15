@@ -84,3 +84,13 @@ describe('DlcDetailPage', () => {
         expect(notFound).not.toHaveBeenCalled();
     });
 });
+
+it('preserves a zero DLC count and back navigation for an empty group', async () => {
+    query.mockReturnValue({ data: { ...group, dlcsCount: 0, items: [] }, isLoading: false });
+    await renderDetail();
+    expect(screen.getByText('dlcs.dlcsCount:{"count":0}')).toBeInTheDocument();
+    expect(screen.getByTestId('card-grid')).toHaveAttribute('data-ids', '');
+    expect(screen.queryByText('common.loadMore')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'dlcs.back' }));
+    expect(back).toHaveBeenCalled();
+});

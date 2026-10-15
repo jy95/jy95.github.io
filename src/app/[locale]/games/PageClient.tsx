@@ -23,40 +23,20 @@ function GamesGalleryGridInner() {
     const { filters, updateFilters } = useGamesFilters();
     const t = useTranslations('common');
 
-    const LIMIT_PAGE = 12;
-
-    const {
-        hasNextPage,
-        fetchNextPage,
-        currentData: data,
-        isFetching,
-        isError,
-        refetch
-    } = useGetGamesInfiniteQuery(
-        {
-            filters,
-            pageSize : LIMIT_PAGE
-        }
-    );
-    const allGames = data?.pages.flatMap(result => result.items) ?? [];
+    const { currentData, hasNextPage, fetchNextPage, isFetching, isError, refetch } =
+        useGetGamesInfiniteQuery({ filters, pageSize: 12 });
+    const allGames = currentData?.pages.flatMap(result => result.items) ?? [];
 
     return (
         <>
             <GamesFilters filters={filters} onChange={updateFilters} />
-            {isError && !data
+            {isError && !currentData
                 ? <QueryErrorState onRetry={refetch} />
                 : <CardGrid items={allGames} size={{ xs: 6, md: 4, lg: 2 }} />}
 
-            <Grid
-                container
-                sx={{ justifyContent: 'center' }}
-            >
-                <LoadingButton
-                    loading={isFetching}
-                    disabled={!hasNextPage}
-                    onClick={() => fetchNextPage()}
-                    label={t('loadMore')}
-                />
+            <Grid container sx={{ justifyContent: 'center' }}>
+                <LoadingButton loading={isFetching} disabled={!hasNextPage}
+                    onClick={() => fetchNextPage()} label={t('loadMore')} />
             </Grid>
         </>
     );

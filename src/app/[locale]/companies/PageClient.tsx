@@ -2,32 +2,35 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import type { CompanySort } from "@/app/api/companies/route";
 
 import { companiesAPI, useGetCompaniesInfiniteQuery } from "@/redux/services/companiesAPI";
 import { useAppDispatch } from "@/redux/hooks";
-import QueryErrorState from "@/components/common/QueryErrorState";
+import CatalogGalleryResults from "@/features/catalog/CatalogGalleryResults";
 import CompanyCard from "@/features/companies/CompanyCard";
-import LoadingButton from "../games/_client/LoadingButton";
 import RoleToggle, { type RoleFilter } from "./_client/RoleToggle";
 
+import type { CompanySort } from "@/app/api/companies/route";
+
+const companySorts = ["nameAsc", "nameDesc", "countDesc", "countAsc"] as const;
+
 export default function CompaniesGallery() {
-    const [role, setRole] = useState<RoleFilter>("all");
-    const [sort, setSort] = useState<CompanySort>("nameAsc");
+    const [args, setArgs] = useState<{ role: RoleFilter; sort: CompanySort; pageSize: number }>({ role: "all", sort: "nameAsc", pageSize: 12 });
+    const { role, sort } = args;
     const t = useTranslations("companies");
     const common = useTranslations("common");
     const dispatch = useAppDispatch();
     const { data, isFetching, isError, refetch, hasNextPage, fetchNextPage } =
-        useGetCompaniesInfiniteQuery({ role, sort, pageSize: 12 });
+        useGetCompaniesInfiniteQuery(args);
 
-    const resetPages = (nextRole: RoleFilter, nextSort: CompanySort) => {
-        dispatch(companiesAPI.util.updateQueryData("getCompanies", { role: nextRole, sort: nextSort, pageSize: 12 }, (cached) => {
+    const updateArgs = (changes: Partial<Pick<typeof args, "role" | "sort">>) => {
+        const nextArgs = { ...args, ...changes };
+        dispatch(companiesAPI.util.updateQueryData("getCompanies", nextArgs, (cached) => {
             cached.pages.splice(1);
             cached.pageParams.splice(1);
         }));
+        setArgs(nextArgs);
     };
 
     return (
@@ -35,10 +38,7 @@ export default function CompaniesGallery() {
             <Box data-testid="companies-controls" sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 1 }}>
                 <RoleToggle
                     value={role}
-                    onChange={(nextRole) => {
-                        resetPages(nextRole, sort);
-                        setRole(nextRole);
-                    }}
+                    onChange={role => updateArgs({ role })}
                     labels={{
                         all: t("roles.all"),
                         developer: t("roles.developer"),
@@ -47,31 +47,20 @@ export default function CompaniesGallery() {
                 />
                 <TextField select slotProps={{ select: { native: true } }} label={t("sortCompanies.label")}
                     value={sort} onChange={(event) => {
-                        const nextSort = event.target.value as CompanySort;
-                        resetPages(role, nextSort);
-                        setSort(nextSort);
+                        const sort = companySorts.find(option => option === event.target.value);
+                        if (sort) updateArgs({ sort });
                     }}>
-                    {(["nameAsc", "nameDesc", "countDesc", "countAsc"] as const).map((option) =>
+                    {companySorts.map((option) =>
                         <option key={option} value={option}>{common(`sort.options.${option}`)}</option>)}
                 </TextField>
             </Box>
-            {isError && !data ? <QueryErrorState onRetry={refetch} /> : (
-                <>
-                    <Grid container spacing={1} rowSpacing={1}>
-                        {data?.pages.flatMap((page) => page.items).map((company) => (
-                            <Grid key={company.id} size={{ xs: 6, md: 4, lg: 2 }}>
-                                <CompanyCard company={{
-                                    id: company.id, title: company.name,
-                                    imagePath: company.imagePath, gamesCount: company.gamesCount,
-                                }} />
-                            </Grid>
-                        ))}
-                    </Grid>
-                    <Grid container sx={{ justifyContent: "center" }}>
-                        <LoadingButton loading={isFetching} disabled={!hasNextPage} onClick={() => { void fetchNextPage(); }} label={common("loadMore")} />
-                    </Grid>
-                </>
-            )}
+            <CatalogGalleryResults currentData={data} isFetching={isFetching} isError={isError}
+                hasNextPage={hasNextPage} onRetry={refetch} onLoadMore={fetchNextPage}
+                showRetainedError={false} loadMoreLabel={common("loadMore")}
+                renderCard={company => <CompanyCard company={{
+                    id: company.id, title: company.name,
+                    imagePath: company.imagePath, gamesCount: company.gamesCount,
+                }} />} />
         </>
     );
 }

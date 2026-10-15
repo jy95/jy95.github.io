@@ -44,3 +44,12 @@ describe('CatalogGalleryResults', () => {
         expect(screen.getByRole('button', { name: 'common.errors.retry' })).toBeEnabled();
     });
 });
+
+it('can retain cards without retry feedback and omit an empty label for company results', () => {
+    const view = render(<CatalogGalleryResults {...props} showRetainedError={false} isError currentData={{ pages }} />);
+    expect(screen.getByLabelText('Batman')).toBeInTheDocument();
+    expect(screen.queryByText('common.errors.generic')).not.toBeInTheDocument();
+    view.rerender(<CatalogGalleryResults {...props} emptyLabel={undefined} currentData={{ pages: [{ items: [], total_items: 0 }] }} />);
+    expect(screen.queryByText('Empty')).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'More' })).toBeDisabled();
+});

@@ -79,6 +79,7 @@ describe('CompaniesGallery', () => {
         expect(updateQueryDataMock).toHaveBeenCalledWith('getCompanies', { role: 'publisher', sort: 'nameAsc', pageSize: 12 }, expect.any(Function));
         expect(screen.getAllByTestId('company-card')).toHaveLength(1);
         expect(screen.getByText('Both:1')).toBeInTheDocument();
+        expect(dispatchMock.mock.invocationCallOrder.at(-1)).toBeLessThan(useCompaniesMock.mock.invocationCallOrder.at(-1) ?? 0);
         const cached = { pages: [...pages], pageParams: [1, 2] };
         updateQueryDataMock.mock.calls[0][2](cached);
         expect(cached).toEqual({ pages: [pages[0]], pageParams: [1] });
@@ -108,4 +109,39 @@ describe('CompaniesGallery', () => {
         updateQueryDataMock.mock.calls[1][2](cached);
         expect(cached).toEqual({ pages: [pages[0]], pageParams: [1] });
     });
+});
+
+it('retries an initial error without showing pagination', () => {
+    const refetch = vi.fn();
+    useCompaniesMock.mockReturnValue({ isError: true, refetch, hasNextPage: true });
+    render(<CompaniesGallery />);
+    expect(screen.queryByText('common.loadMore')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'common.errors.retry' }));
+    expect(refetch).toHaveBeenCalledOnce();
+});
+
+it('uses retained data and keeps pagination without retry feedback on subsequent errors', () => {
+    const fetchNextPage = vi.fn();
+    useCompaniesMock.mockReturnValue({ data: { pages }, currentData: undefined, isError: true, hasNextPage: true, fetchNextPage });
+    render(<CompaniesGallery />);
+    expect(screen.getAllByTestId('company-card')).toHaveLength(2);
+    expect(screen.queryByText('common.errors.generic')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'common.loadMore' }));
+    expect(fetchNextPage).toHaveBeenCalledOnce();
+});
+
+it('keeps empty company results silent and disables exhausted pagination', () => {
+    useCompaniesMock.mockReturnValue({ data: { pages: [{ items: [], total_items: 0 }] }, hasNextPage: false });
+    render(<CompaniesGallery />);
+    expect(screen.queryByTestId('company-card')).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'common.loadMore' })).toBeDisabled();
+});
+
+it('ignores an unsupported sort value without resetting a cache', () => {
+    useCompaniesMock.mockReturnValue({ data: { pages } });
+    updateQueryDataMock.mockClear();
+    render(<CompaniesGallery />);
+    fireEvent.change(screen.getByLabelText('companies.sortCompanies.label'), { target: { value: 'unsupported' } });
+    expect(updateQueryDataMock).not.toHaveBeenCalled();
+    expect(useCompaniesMock).toHaveBeenLastCalledWith({ role: 'all', sort: 'nameAsc', pageSize: 12 });
 });
