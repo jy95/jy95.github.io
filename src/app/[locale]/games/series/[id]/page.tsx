@@ -9,10 +9,9 @@ export async function generateStaticParams() {
 }
 
 export function generateMetadata(props: DetailPageProps) {
-    return entityRouteMetadata(props, 'series', async (id) => {
-        const entry = (await loadSeries()).find(entry => String(entry.id) === id);
-        if (!entry) return undefined;
-        const summary = toSeriesSummary(entry);
-        return { name: summary.name, count: summary.gamesCount, imagePath: summary.imagePath };
+    return entityRouteMetadata(props, 'series', {
+        load: loadSeries,
+        summarize: toSeriesSummary,
+        count: summary => summary.gamesCount,
     });
 }

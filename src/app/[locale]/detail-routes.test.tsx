@@ -82,6 +82,25 @@ describe('catalog server route exports', () => {
                 types: { 'application/rss+xml': '/rss.xml', 'application/feed+json': '/feed.json' },
             });
         });
+        it(`uses the matching record's zero count and image for ${path}`, async () => {
+            const metadata = await route.generateMetadata({ params: Promise.resolve({ locale: 'en', id: '2' }) });
+            const name = entity === 'company' ? 'Another company' : entity === 'series' ? 'Another series' : 'Another game';
+            const t = createTranslator({ locale: 'en', messages: en, namespace: 'detailMetadata' });
+            expect(metadata.title).toBe(`${name} | GamesPassionFR`);
+            expect(metadata.description).toBe(t(entity, { name, count: 0 }));
+            expect(metadata.openGraph?.images).toEqual([{ url: image.replace('/1/', '/2/'), alt: name }]);
+            expect(metadata.alternates?.canonical).toBe(`/en${path.replace('/1', '/2')}`);
+        });
+        it(`uses the summary's multiple-item count for ${path}`, async () => {
+            if (entity === 'company') data.companies.mockResolvedValue([
+                { id: 1, name: 'Example', developerItems: [{ id: 2 }, { id: 3 }], publisherItems: [{ id: 2 }, { id: 4 }] },
+            ]);
+            else if (entity === 'series') data.series.mockResolvedValue([{ id: 1, name: 'Example', items: [{}, {}, {}] }]);
+            else data.dlcs.mockResolvedValue([{ id: '1', game_title: 'Example', dlcs: [{}, {}, {}] }]);
+            const metadata = await route.generateMetadata({ params: Promise.resolve({ locale: 'en', id: '1' }) });
+            const t = createTranslator({ locale: 'en', messages: en, namespace: 'detailMetadata' });
+            expect(metadata.description).toBe(t(entity, { name: 'Example', count: 3 }));
+        });
         it(`noindexes missing records for ${path}`, async () => {
             expect(await route.generateMetadata({ params: Promise.resolve({ locale: 'en', id: 'missing' }) }))
                 .toEqual({ robots: { index: false, follow: false } });
@@ -133,6 +152,8 @@ describe('catalog server route exports', () => {
         const loader = entity === 'company' ? data.companies : entity === 'series' ? data.series : data.dlcs;
         loader.mockResolvedValue([]);
         expect(await route.generateStaticParams()).toEqual([]);
+        expect(await route.generateMetadata({ params: Promise.resolve({ locale: 'en', id: '1' }) }))
+            .toEqual({ robots: { index: false, follow: false } });
         loader.mockRejectedValue(new Error('entity unavailable'));
         await expect(route.generateStaticParams()).rejects.toThrow('entity unavailable');
         await expect(route.generateMetadata({ params: Promise.resolve({ locale: 'en', id: '1' }) }))

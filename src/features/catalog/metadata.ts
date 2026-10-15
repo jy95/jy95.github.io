@@ -34,16 +34,26 @@ export async function entityDetailMetadata(args: {
 export type DetailPageProps = { params: Promise<{ locale: string; id: string }> };
 
 /** Catalog entity URLs follow the configured as-needed locale prefix. */
-export async function entityRouteMetadata(
+export async function entityRouteMetadata<
+    Entry extends { id: string | number },
+    Summary extends { name: string; imagePath: string },
+>(
     { params }: DetailPageProps,
     entity: Entity,
-    find: (id: string) => Promise<EntityFound | undefined>,
+    source: {
+        load: () => Promise<readonly Entry[]>;
+        summarize: (entry: Entry) => Summary;
+        count: (summary: Summary) => number;
+    },
 ): Promise<Metadata> {
     const { locale, id } = await params;
     const pathname = entity === 'company' ? '/companies/[id]'
         : entity === 'series' ? '/games/series/[id]' : '/games/dlcs/[id]';
+    const entry = (await source.load()).find(entry => String(entry.id) === id);
+    const summary = entry === undefined ? undefined : source.summarize(entry);
     return entityDetailMetadata({
-        locale, entity, found: await find(id),
+        locale, entity,
+        found: summary && { name: summary.name, imagePath: summary.imagePath, count: source.count(summary) },
         pathnameFor: (language) => getPathname({ locale: language, href: { pathname, params: { id } } }),
     });
 }
