@@ -9,10 +9,9 @@ export async function generateStaticParams() {
 }
 
 export function generateMetadata(props: DetailPageProps) {
-    return entityRouteMetadata(props, 'dlc', async (id) => {
-        const entry = (await loadDlcGroups()).find(entry => String(entry.id) === id);
-        if (!entry) return undefined;
-        const summary = toDlcSummary(entry);
-        return { name: summary.name, count: summary.dlcsCount, imagePath: summary.imagePath };
+    return entityRouteMetadata(props, 'dlc', {
+        load: loadDlcGroups,
+        summarize: toDlcSummary,
+        count: summary => summary.dlcsCount,
     });
 }
