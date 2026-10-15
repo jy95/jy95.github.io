@@ -45,4 +45,9 @@ for (const [route, type, ids] of [
     it(`propagates rejected ${type} parameters`, async () => {
         await expect(route.default({ params: Promise.reject(new Error('parameters unavailable')) })).rejects.toThrow('parameters unavailable');
     });
+    it(`propagates ${type} translation failures`, async () => {
+        translations.mockRejectedValueOnce(new Error('translations unavailable'));
+        await expect(route.default({ params: Promise.resolve({ id: 'watch', locale: 'fr' }) }))
+            .rejects.toThrow('translations unavailable');
+    });
 }
