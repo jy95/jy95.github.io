@@ -1,10 +1,15 @@
+import { metadataPage } from '@/i18n/metadataPage';
 import { staticSectionMetadata } from '@/i18n/staticSectionMetadata';
 import PageClient from './PageClient';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+async function loadMetadata({ params }: { params: Promise<{ locale: string }> }) {
     return staticSectionMetadata((await params).locale, 'stats');
 }
 
-export default function Page() {
+function PageContent() {
     return <PageClient />;
 }
+
+const route = metadataPage(loadMetadata, PageContent);
+export const generateMetadata = route.generateMetadata;
+export default route.Page;

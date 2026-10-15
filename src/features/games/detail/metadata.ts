@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
+import { metadataImage } from '@/i18n/metadataImage';
 import { pageMetadata, resolveLocale } from '@/i18n/metadata';
 import { resolveGameDetails } from '@/lib/gameDetails';
 
@@ -31,7 +32,7 @@ export async function gameDetailMetadata(rawLocale: string, id: string): Promise
         locale, title: game.title, description,
         // The game-detail middleware requires explicit prefixes in both languages.
         pathnameFor: (language) => `/${language}/games/detail/${encodeURIComponent(id)}`,
-        image: { url: game.imagePath, alt: images('game', { name: game.title }) },
+        image: await metadataImage(game.imagePath, images('game', { name: game.title })),
     });
 }
 

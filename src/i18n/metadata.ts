@@ -35,7 +35,7 @@ export function pageMetadata({ locale, title, description, pathnameFor, image, a
     title: string;
     description: string;
     pathnameFor: (locale: Locale) => string;
-    image?: { url: string; alt: string };
+    image?: { url: string; alt: string; width?: number; height?: number; type?: string };
     absoluteTitle?: boolean;
 }): Metadata {
     const socialTitle = absoluteTitle ? title : withBrand(title);
@@ -48,10 +48,6 @@ export function pageMetadata({ locale, title, description, pathnameFor, image, a
             url: pathnameFor(locale),
             locale: locale === 'fr' ? 'fr_FR' : 'en_US',
             alternateLocale: [locale === 'fr' ? 'en_US' : 'fr_FR'],
-            ...(image ? { images: [image] } : {}),
-        },
-        twitter: {
-            card: 'summary', title: socialTitle, description,
             ...(image ? { images: [image] } : {}),
         },
     };

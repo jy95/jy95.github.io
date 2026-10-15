@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
+import { metadataImage } from '@/i18n/metadataImage';
 import { buildWatchRoute, extractGameCardProps } from '@/domain/games/youtube';
 import { pageMetadata, resolveLocale } from '@/i18n/metadata';
 import { getPathname } from '@/i18n/routing';
@@ -34,7 +35,7 @@ export async function watchMetadata({ params }: DetailPageProps, type: YTUrlType
     // Covers use the catalog identity, which may be a playlist even on a video route.
     const game = toPublishedGame(record);
     const identity = extractGameCardProps(record);
-    const image = identity.id ? { url: game.imagePath, alt: t('images.game', { name: game.title }) } : undefined;
+    const image = identity.id ? await metadataImage(game.imagePath, t('images.game', { name: game.title })) : undefined;
     return pageMetadata({
         locale, title: game.title,
         description: t(type === 'PLAYLIST' ? 'watch.playlist' : 'watch.video', { title: game.title }),

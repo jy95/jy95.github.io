@@ -2,13 +2,14 @@
 import { getTranslations} from 'next-intl/server';
 
 import { staticSectionMetadata } from '@/i18n/staticSectionMetadata';
+import { metadataPage } from '@/i18n/metadataPage';
 import BacklogViewerClient from '@/components/backlog/BacklogViewerClient';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+async function loadMetadata({ params }: { params: Promise<{ locale: string }> }) {
     return staticSectionMetadata((await params).locale, 'backlog');
 }
 
-export default async function BacklogViewer() {
+async function PageContent() {
 
     // Using a query hook automatically fetches data and returns query values
     const t = await getTranslations("backlog");
@@ -28,3 +29,6 @@ export default async function BacklogViewer() {
     )
 
 }
+const route = metadataPage(loadMetadata, PageContent);
+export const generateMetadata = route.generateMetadata;
+export default route.Page;
