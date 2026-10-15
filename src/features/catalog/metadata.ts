@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
+import { metadataImage } from '@/i18n/metadataImage';
 import { getPathname } from '@/i18n/routing';
 import { pageMetadata, resolveLocale } from '@/i18n/metadata';
 
@@ -25,7 +26,7 @@ export async function entityDetailMetadata(args: {
 
     return pageMetadata({
         locale, title: name, description, pathnameFor: args.pathnameFor,
-        image: { url: imagePath, alt: t(`images.${args.entity}`, { name }) },
+        image: await metadataImage(imagePath, t(`images.${args.entity}`, { name })),
     });
 }
 

@@ -29,10 +29,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale: resolvedLocale, namespace: 'siteMetadata' });
   return {
     title: { default: t('title'), template: `%s | ${BRAND}` },
-    openGraph: { type: 'website', siteName: BRAND, title: t('title'), description: t('description'),
-      locale: resolvedLocale === 'fr' ? 'fr_FR' : 'en_US',
-      alternateLocale: [resolvedLocale === 'fr' ? 'en_US' : 'fr_FR'] },
-    twitter: { card: 'summary', title: t('title'), description: t('description') },
     metadataBase: new URL(getSiteUrl()),
     description: t('description'),
     alternates: {

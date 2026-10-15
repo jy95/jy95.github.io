@@ -11,6 +11,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 import { staticSectionMetadata } from '@/i18n/staticSectionMetadata';
+import { metadataPage } from '@/i18n/metadataPage';
 
 // Types
 import type { JSX } from 'react'
@@ -49,11 +50,11 @@ const LINKS : {
 const CHANNEL_NAME = "GamesPassionFR";
 const CHANNEL_ICON_URL = "https://yt3.googleusercontent.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s160-c-k-c0x00ffffff-no-rj";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+async function loadMetadata({ params }: { params: Promise<{ locale: string }> }) {
     return staticSectionMetadata((await params).locale, 'links');
 }
 
-export default function LinksViewer() {
+function PageContent() {
     return (
         <Box
             sx={{
@@ -88,3 +89,7 @@ export default function LinksViewer() {
         </Box>
     );
 }
+
+const route = metadataPage(loadMetadata, PageContent);
+export const generateMetadata = route.generateMetadata;
+export default route.Page;

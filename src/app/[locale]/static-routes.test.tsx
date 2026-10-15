@@ -73,13 +73,18 @@ describe('static server metadata integration', () => {
             expect(metadata.title).toEqual(section === 'selection'
                 ? { absolute: messages.pageMetadata.selection.title } : messages.pageMetadata[section].title);
             expect(metadata.description).toBe(messages.pageMetadata[section].description);
+            expect(metadata.openGraph).toBeUndefined();
+            expect(metadata.twitter).toBeUndefined();
             if (section !== 'tier') {
-                expect(metadata.openGraph).toMatchObject({ type: 'website', siteName: 'GamesPassionFR',
-                    title: section === 'selection' ? messages.pageMetadata.selection.title : `${messages.pageMetadata[section].title} | GamesPassionFR`,
+                const rendered = await page.default({ params: Promise.resolve({ locale }) });
+                if (!rendered) throw new Error('Expected section content');
+                const social = rendered.props.children[0].props.metadata.openGraph;
+                expect(social).toMatchObject({
+                    title: section === 'selection' ? messages.pageMetadata.selection.title
+                        : `${messages.pageMetadata[section].title} | GamesPassionFR`,
                     description: messages.pageMetadata[section].description,
                     locale: locale === 'en' ? 'en_US' : 'fr_FR',
                 });
-                expect(metadata.twitter).toMatchObject({ card: 'summary' });
             }
             expect(page).not.toHaveProperty('generateStaticParams');
         });
@@ -88,7 +93,7 @@ describe('static server metadata integration', () => {
         const page = await import('./games/random/page');
         expect(await page.generateMetadata({ params: Promise.resolve({ locale: 'en' }) }))
             .toMatchObject({ title: 'Random game', robots: { index: false, follow: true },
-                alternates: { canonical: '/en/games/random' }, openGraph: { url: '/en/games/random' } });
+                alternates: { canonical: '/en/games/random' } });
     });
     it('renders the server wrappers with their corresponding client components', async () => {
         for (const load of [() => import('./companies/page'), () => import('./games/page'),
@@ -97,13 +102,15 @@ describe('static server metadata integration', () => {
             () => import('./stats/page'), () => import('./tests/page'),
             () => import('./tier/backlog/page'), () => import('./tier/games/page'), () => import('./tier/tests/page')]) {
             const page = await load();
-            expect(page.default().type).toBeTypeOf('function');
+            const rendered = await page.default({ params: Promise.resolve({ locale: 'en' }) });
+            expect(rendered.props.children[1].type).toBeTypeOf('function');
         }
     });
     it('renders the backlog with translated column labels', async () => {
         const { default: BacklogViewer } = await import('./backlog/page');
         const { default: BacklogClient } = await import('@/components/backlog/BacklogViewerClient');
-        const page = await BacklogViewer();
+        const wrapper = await BacklogViewer({ params: Promise.resolve({ locale: 'en' }) });
+        const page = wrapper.props.children[1];
         expect(page.props.children.type).toBe(BacklogClient);
         expect(page.props.children.props).toEqual({
             titleLabel: en.backlog.columns.title,
@@ -116,7 +123,8 @@ describe('static server metadata integration', () => {
     it('renders selection inside its suspense boundary', async () => {
         const { default: Selection } = await import('./selection/page');
         const { default: SelectionLoader } = await import('@/features/selection/components/SelectionPageLoader');
-        expect(Selection().props.children.type).toBe(SelectionLoader);
+        const wrapper = await Selection({ params: Promise.resolve({ locale: 'en' }) });
+        expect(wrapper.props.children[1].props.children.type).toBe(SelectionLoader);
     });
     it('redirects the tier index through the localized helper', async () => {
         const { default: Tier } = await import('./tier/page');

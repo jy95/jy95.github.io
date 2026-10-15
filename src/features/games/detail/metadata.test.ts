@@ -1,6 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { createTranslator } from 'next-intl';
 
+vi.mock('@/i18n/metadataImage', () => ({ metadataImage: async (url: string, alt: string) => ({ url, alt }) }));
+
 import enMessages from '../../../../messages/en.json';
 import frMessages from '../../../../messages/fr.json';
 

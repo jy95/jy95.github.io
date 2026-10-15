@@ -3,6 +3,8 @@ import { createTranslator } from 'next-intl';
 import en from '../../../../messages/en.json';
 import fr from '../../../../messages/fr.json';
 
+vi.mock('@/i18n/metadataImage', () => ({ metadataImage: async (url: string, alt: string) => ({ url, alt }) }));
+
 const loaders = vi.hoisted(() => ({ published: vi.fn(), dlcs: vi.fn(), planning: vi.fn() }));
 vi.mock('@/lib/gamesData', async original => ({
     ...await original<typeof import('@/lib/gamesData')>(),
@@ -35,7 +37,7 @@ it.each(['fr', 'en'] as const)('resolves both identities on the same catalog rec
         expect(metadata.alternates?.canonical).toBe(path);
         expect(metadata.openGraph).toMatchObject({ type: 'website', url: path, title: 'Example | GamesPassionFR',
             images: [{ url: '/covers/playlist/cover.webp', alt: locale === 'en' ? 'Game cover for Example' : 'Jaquette de Example' }] });
-        expect(metadata.twitter).toMatchObject({ card: 'summary', description: metadata.description });
+        expect(metadata.twitter).toBeUndefined();
     }
 });
 

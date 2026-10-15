@@ -1,18 +1,16 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-
-vi.mock('@/i18n/staticSectionMetadata', () => ({ staticSectionMetadata: vi.fn() }));
 
 import LinksViewer from './page';
 
 describe('LinksViewer', () => {
-    it('renders the channel name', () => {
-        render(<LinksViewer />);
+    it('renders the channel name', async () => {
+        render(await LinksViewer({ params: Promise.resolve({ locale: 'en' }) }));
         expect(screen.getByText('GamesPassionFR')).toBeInTheDocument();
     });
 
-    it('renders a link for every platform with the correct href', () => {
-        render(<LinksViewer />);
+    it('renders a link for every platform with the correct href', async () => {
+        render(await LinksViewer({ params: Promise.resolve({ locale: 'en' }) }));
 
         expect(screen.getByRole('link', { name: /youtube/i })).toHaveAttribute(
             'href',
@@ -32,8 +30,8 @@ describe('LinksViewer', () => {
         );
     });
 
-    it('opens every link in a new, safely-referrer-stripped tab', () => {
-        render(<LinksViewer />);
+    it('opens every link in a new, safely-referrer-stripped tab', async () => {
+        render(await LinksViewer({ params: Promise.resolve({ locale: 'en' }) }));
         const links = screen.getAllByRole('link');
 
         expect(links.length).toBeGreaterThan(0);
@@ -43,8 +41,8 @@ describe('LinksViewer', () => {
         }
     });
 
-    it('renders exactly four links (Youtube, Discord, Bluesky, GitHub)', () => {
-        render(<LinksViewer />);
+    it('renders exactly four links (Youtube, Discord, Bluesky, GitHub)', async () => {
+        render(await LinksViewer({ params: Promise.resolve({ locale: 'en' }) }));
         expect(screen.getAllByRole('link')).toHaveLength(4);
     });
 });

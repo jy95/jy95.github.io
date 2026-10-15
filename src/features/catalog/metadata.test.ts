@@ -1,6 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import { createTranslator } from 'next-intl';
 
+vi.mock('@/i18n/metadataImage', () => ({ metadataImage: async (url: string, alt: string) => ({ url, alt }) }));
+
 // Keep Next.js navigation outside jsdom; metadata only needs pathname generation.
 vi.mock('@/i18n/routing', () => ({
     routing: { locales: ['fr', 'en'], defaultLocale: 'fr' },

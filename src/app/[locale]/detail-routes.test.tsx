@@ -61,16 +61,11 @@ const entities = [
     { entity: 'dlc', route: dlc, path: '/games/dlcs/1', image: '/covers/1/cover.webp', english: 'DLCs for Example on GamesPassionFR: 1 DLC.' },
 ] as const;
 
-const imageLabels = {
-    en: { company: 'Company artwork for', series: 'Series artwork for', dlc: 'Game cover for' },
-    fr: { company: 'Visuel de l’entreprise', series: 'Visuel de la série', dlc: 'Jaquette de' },
-};
-
 describe('catalog server route exports', () => {
     it.each(entities)('enumerates string IDs in source order for $path without repeating parent locales', async ({ route }) => {
         expect(await route.generateStaticParams()).toEqual([{ id: '1' }, { id: '2' }]);
     });
-    for (const { entity, route, path, image, english } of entities) {
+    for (const { entity, route, path, english } of entities) {
         it.each(['fr', 'en', 'de'])(`integrates lookup, summary and metadata for ${path} (%s)`, async locale => {
             const metadata = await route.generateMetadata({ params: Promise.resolve({ locale, id: '1' }) });
             expect(metadata.title).toBe('Example');
@@ -80,7 +75,8 @@ describe('catalog server route exports', () => {
                 expect(metadata.description).toBe(t(entity, { name: 'Example', count: 1 }));
                 expect(metadata).toEqual(await route.generateMetadata({ params: Promise.resolve({ locale: 'fr', id: '1' }) }));
             }
-            expect(metadata.openGraph?.images).toEqual([{ url: image, alt: `${imageLabels[locale === 'en' ? 'en' : 'fr'][entity]} Example` }]);
+            expect(metadata.openGraph).toBeUndefined();
+            expect(metadata.twitter).toBeUndefined();
             expect(metadata.alternates).toEqual({
                 canonical: locale === 'en' ? `/en${path}` : path,
                 languages: { fr: path, en: `/en${path}` },
@@ -93,7 +89,8 @@ describe('catalog server route exports', () => {
             const t = createTranslator({ locale: 'en', messages: en, namespace: 'detailMetadata' });
             expect(metadata.title).toBe(name);
             expect(metadata.description).toBe(t(entity, { name, count: 0 }));
-            expect(metadata.openGraph?.images).toEqual([{ url: image.replace('/1/', '/2/'), alt: `${imageLabels.en[entity]} ${name}` }]);
+            expect(metadata.openGraph).toBeUndefined();
+            expect(metadata.twitter).toBeUndefined();
             expect(metadata.alternates?.canonical).toBe(`/en${path.replace('/1', '/2')}`);
         });
         it(`uses the summary's multiple-item count for ${path}`, async () => {
@@ -111,12 +108,12 @@ describe('catalog server route exports', () => {
                 .toEqual({ robots: { index: false, follow: false } });
         });
     }
-    it('exports the client components directly, preserving promised parameters', () => {
+    it('preserves promised parameters on the client components', async () => {
         const params = Promise.resolve({ locale: 'en', id: '1' });
         for (const [page, client] of [[company.default, CompanyClient], [series.default, SeriesClient], [dlc.default, DlcClient], [game.default, GameClient]]) {
-            expect(page).toBe(client);
-            page({ params });
-            expect(client).toHaveBeenCalledWith({ params });
+            const rendered = await page({ params });
+            expect(rendered.props.children[1].type).toBe(client);
+            expect(rendered.props.children[1].props).toEqual({ params });
         }
     });
     it('enumerates every runtime game source in source order', async () => {
@@ -137,7 +134,7 @@ describe('catalog server route exports', () => {
         expect(data.resolve).toHaveBeenCalledWith('a/b');
         expect(metadata.alternates?.canonical).toBe(`/${locale === 'en' ? 'en' : 'fr'}/games/detail/a%2Fb`);
         expect(metadata.alternates?.languages).toEqual({ fr: '/fr/games/detail/a%2Fb', en: '/en/games/detail/a%2Fb' });
-        expect(metadata.openGraph?.images).toEqual([{ url: '/covers/1/cover.webp', alt: locale === 'en' ? 'Game cover for Example' : 'Jaquette de Example' }]);
+        expect(metadata.openGraph).toBeUndefined();
     });
     it.each(['missing', 'failure'])('noindexes game lookup %s without throwing not-found', async mode => {
         if (mode === 'failure') data.resolve.mockRejectedValue(new Error('lookup failed'));
