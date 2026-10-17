@@ -1,8 +1,25 @@
 import { describe, expect, it, vi } from 'vitest';
 
+import en from '../../messages/en.json';
+import fr from '../../messages/fr.json';
+
 vi.mock('@/i18n/routing', () => ({ routing: { locales: ['fr', 'en'], defaultLocale: 'fr' } }));
 
 import { contentMetadata } from './metadata';
+
+describe('metadata copy', () => {
+    it.each([{ locale: 'en', messages: en }, { locale: 'fr', messages: fr }])(
+        'describes content without media-format wording ($locale)',
+        ({ messages }) => {
+            for (const namespace of ['watchMetadata', 'pageMetadata', 'detailMetadata'] as const) {
+                // Keep the subject terms “video game” and “jeu vidéo”, including plurals.
+                const copy = JSON.stringify(messages[namespace])
+                    .replace(/\bvideo games?\b|\bjeux? vidéo\b/gi, '');
+                expect(copy).not.toMatch(/\b(?:vid[eé]os?|playlists?|gameplay|walkthroughs?|watch(?:ing)?|regardez|coverage|covered)\b/i);
+            }
+        },
+    );
+});
 
 describe('complete content metadata', () => {
     it.each(['fr', 'en'] as const)('keeps canonical and Open Graph URLs together (%s)', locale => {
