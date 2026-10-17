@@ -10,7 +10,7 @@ const data = vi.hoisted(() => ({
 vi.mock('@/i18n/routing', () => ({
     routing: { locales: ['fr', 'en'], defaultLocale: 'fr' },
     getPathname: ({ locale, href }: { locale: string; href: { pathname: string; params: { id: string } } }) =>
-        `${locale === 'en' ? '/en' : ''}${href.pathname.replace('[id]', encodeURIComponent(href.params.id))}`,
+        `${locale === 'en' ? '/en' : ''}${href.pathname.replace('[id]', href.params.id)}`,
 }));
 vi.mock('next-intl/server', () => ({
     getTranslations: async ({ locale, namespace }: { locale: 'fr' | 'en'; namespace: 'detailMetadata' | 'detailMetadata.game' }) =>
@@ -56,9 +56,9 @@ beforeEach(() => {
 });
 
 const entities = [
-    { entity: 'company', route: company, path: '/companies/1', image: '/companies/1/cover.webp', english: 'Example on GamesPassionFR: 1 game developed or published.' },
-    { entity: 'series', route: series, path: '/games/series/1', image: '/seriescovers/1/cover.webp', english: 'Example series on GamesPassionFR: 1 game.' },
-    { entity: 'dlc', route: dlc, path: '/games/dlcs/1', image: '/covers/1/cover.webp', english: 'DLCs for Example on GamesPassionFR: 1 DLC.' },
+    { entity: 'company', route: company, path: '/companies/1', image: '/companies/1/cover.webp', english: 'Example: 1 game developed or published in the GamesPassionFR catalog.' },
+    { entity: 'series', route: series, path: '/games/series/1', image: '/seriescovers/1/cover.webp', english: 'Example: 1 game from this video game series in the GamesPassionFR catalog.' },
+    { entity: 'dlc', route: dlc, path: '/games/dlcs/1', image: '/covers/1/cover.webp', english: 'Example: 1 DLC in the GamesPassionFR catalog.' },
 ] as const;
 
 describe('catalog server route exports', () => {
@@ -68,7 +68,7 @@ describe('catalog server route exports', () => {
     for (const { entity, route, path, image, english } of entities) {
         it.each(['fr', 'en', 'de'])(`integrates lookup, summary and metadata for ${path} (%s)`, async locale => {
             const metadata = await route.generateMetadata({ params: Promise.resolve({ locale, id: '1' }) });
-            expect(metadata.title).toBe('Example | GamesPassionFR');
+            expect(metadata.title).toBe('Example');
             if (locale === 'en') expect(metadata.description).toBe(english);
             else {
                 const t = createTranslator({ locale: 'fr', messages: fr, namespace: 'detailMetadata' });
@@ -86,7 +86,7 @@ describe('catalog server route exports', () => {
             const metadata = await route.generateMetadata({ params: Promise.resolve({ locale: 'en', id: '2' }) });
             const name = entity === 'company' ? 'Another company' : entity === 'series' ? 'Another series' : 'Another game';
             const t = createTranslator({ locale: 'en', messages: en, namespace: 'detailMetadata' });
-            expect(metadata.title).toBe(`${name} | GamesPassionFR`);
+            expect(metadata.title).toBe(name);
             expect(metadata.description).toBe(t(entity, { name, count: 0 }));
             expect(metadata.openGraph?.images).toEqual([{ url: image.replace('/1/', '/2/'), alt: name }]);
             expect(metadata.alternates?.canonical).toBe(`/en${path.replace('/1', '/2')}`);
@@ -106,6 +106,12 @@ describe('catalog server route exports', () => {
                 .toEqual({ robots: { index: false, follow: false } });
         });
     }
+    it('encodes catalog identifiers without changing record lookup', async () => {
+        data.dlcs.mockResolvedValue([{ id: 'a/b?#', game_title: 'Example', dlcs: [] }]);
+        const metadata = await dlc.generateMetadata({ params: Promise.resolve({ locale: 'en', id: 'a/b?#' }) });
+        expect(metadata.alternates?.canonical).toBe('/en/games/dlcs/a%2Fb%3F%23');
+        expect(metadata.openGraph).toMatchObject({ url: metadata.alternates?.canonical, locale: 'en', alternateLocale: ['fr'] });
+    });
     it('exports the client components directly, preserving promised parameters', () => {
         const params = Promise.resolve({ locale: 'en', id: '1' });
         for (const [page, client] of [[company.default, CompanyClient], [series.default, SeriesClient], [dlc.default, DlcClient], [game.default, GameClient]]) {

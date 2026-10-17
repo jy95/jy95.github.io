@@ -29,59 +29,59 @@
     },
     "pageMetadata": {
         "backlog": {
-            "title": "En attente | GamesPassionFR",
-            "description": "Votez pour les jeux que vous voulez voir ensuite parmi les candidats en attente de GamesPassionFR."
+            "title": "Jeux en attente",
+            "description": "Jeux en attente sur GamesPassionFR. Votez pour les jeux que vous aimeriez voir ajoutés."
         },
         "companies": {
-            "title": "Entreprises | GamesPassionFR",
-            "description": "Parcourez les développeurs et éditeurs des jeux présentés par GamesPassionFR."
+            "title": "Développeurs et éditeurs de jeux",
+            "description": "Développeurs et éditeurs des jeux du catalogue GamesPassionFR. Retrouvez chaque entreprise et les jeux qui lui sont associés."
         },
         "links": {
-            "title": "Liens | GamesPassionFR",
-            "description": "Retrouvez la chaîne YouTube, le Discord et les réseaux de GamesPassionFR."
+            "title": "Liens utiles",
+            "description": "Retrouvez les liens utiles et les moyens de suivre GamesPassionFR."
         },
         "tier": {
-            "title": "Classements | GamesPassionFR",
-            "description": "Explorez les classements GamesPassionFR : jeux publiés, jeux en attente et tests de jeux."
+            "title": "Classements de jeux vidéo",
+            "description": "Découvrez les classements personnels de GamesPassionFR : jeux publiés, jeux en attente et jeux testés."
         },
         "tierGames": {
-            "title": "Classement des jeux publiés | GamesPassionFR",
-            "description": "Les jeux terminés sur GamesPassionFR, du chef-d'œuvre au mauvais."
+            "title": "Classement des jeux publiés",
+            "description": "Jeux publiés classés selon les préférences personnelles de GamesPassionFR, du chef-d’œuvre au mauvais."
         },
         "tierBacklog": {
-            "title": "Classement des jeux en attente | GamesPassionFR",
-            "description": "Les candidats en attente de GamesPassionFR, classés par catégorie."
+            "title": "Classement des jeux en attente",
+            "description": "Jeux en attente regroupés dans les catégories du classement personnel de GamesPassionFR."
         },
         "tierTests": {
-            "title": "Classement des tests | GamesPassionFR",
-            "description": "Les jeux testés sur GamesPassionFR, classés par catégorie."
+            "title": "Classement des jeux testés",
+            "description": "Jeux testés classés selon les préférences personnelles de GamesPassionFR."
         },
         "dlcs": {
-            "title": "DLCs | GamesPassionFR",
-            "description": "Parcourez les contenus téléchargeables regroupés par jeu principal."
+            "title": "Catalogue des DLC de jeux",
+            "description": "Découvrez le catalogue des contenus téléchargeables de GamesPassionFR, regroupés par jeu principal."
         },
         "series": {
-            "title": "Séries | GamesPassionFR",
-            "description": "Découvrez les séries et leurs jeux."
+            "title": "Séries de jeux vidéo",
+            "description": "Séries de jeux vidéo du catalogue GamesPassionFR. Retrouvez chaque série et les jeux qui la composent."
         },
         "games": {
-            "title": "Jeux | GamesPassionFR",
-            "description": "Parcourez la collection de jeux GamesPassionFR et retrouvez leurs vidéos."
+            "title": "Catalogue de jeux vidéo",
+            "description": "Découvrez le catalogue de jeux vidéo de GamesPassionFR et la fiche de chaque jeu."
         },
         "planning": {
-            "title": "Planning | GamesPassionFR",
-            "description": "Découvrez les prochains jeux et vidéos dans le planning GamesPassionFR."
+            "title": "Jeux au planning",
+            "description": "Consultez le calendrier des jeux prévus sur GamesPassionFR."
         },
         "tests": {
-            "title": "Tests de jeux | GamesPassionFR",
-            "description": "Découvrez les tests de jeux de GamesPassionFR."
+            "title": "Tests de jeux vidéo",
+            "description": "Découvrez les tests de jeux vidéo de GamesPassionFR."
         },
         "stats": {
-            "title": "Statistiques | GamesPassionFR",
-            "description": "Explorez les statistiques de la collection de jeux GamesPassionFR."
+            "title": "Statistiques du catalogue de jeux",
+            "description": "Statistiques du catalogue de jeux GamesPassionFR. Explorez la collection par genre et par plateforme."
         },
         "selection": {
-            "title": "Ma sélection GamesPassionFR",
+            "title": "Ma sélection",
             "description": "Gardez les éléments qui vous intéressent dans votre sélection sur ce navigateur."
         }
     },
@@ -412,12 +412,15 @@
     },
     "detailMetadata": {
         "game": {
-            "published": "Regardez la solution complète de {title} sur GamesPassionFR et découvrez sa plateforme, ses genres, ses développeurs et sa date de sortie.",
-            "planning": "{title} est prévu au planning de GamesPassionFR. Consultez ses détails et sa date de sortie.",
-            "backlog": "{title} fait partie des jeux en attente sur GamesPassionFR. Consultez sa durée estimée et votez pour le voir en vidéo."
+            "published": "{title} sur GamesPassionFR : découvrez la fiche du jeu.",
+            "planning": "{title} figure au planning de GamesPassionFR. Consultez sa fiche et sa date de sortie.",
+            "backlog": "{title} fait partie des jeux en attente sur GamesPassionFR. Consultez sa durée estimée et votez pour son ajout."
         },
-        "company": "{name} sur GamesPassionFR : {count, plural, one {# jeu} other {# jeux}} développés ou édités.",
-        "series": "Série {name} sur GamesPassionFR : {count, plural, one {# jeu} other {# jeux}}.",
-        "dlc": "DLCs de {name} sur GamesPassionFR : {count, plural, one {# DLC} other {# DLCs}}."
+        "company": "{name} : {count, plural, one {# jeu développé ou édité} other {# jeux développés ou édités}} dans le catalogue GamesPassionFR.",
+        "series": "{name} : {count, plural, one {# jeu} other {# jeux}} de cette série de jeux vidéo dans le catalogue GamesPassionFR.",
+        "dlc": "{name} : {count, plural, one {# DLC} other {# DLCs}} dans le catalogue GamesPassionFR."
+    },
+    "watchMetadata": {
+        "description": "Découvrez {title} sur GamesPassionFR."
     }
 }
