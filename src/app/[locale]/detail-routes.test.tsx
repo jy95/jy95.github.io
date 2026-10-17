@@ -68,7 +68,7 @@ describe('catalog server route exports', () => {
     for (const { entity, route, path, image, english } of entities) {
         it.each(['fr', 'en', 'de'])(`integrates lookup, summary and metadata for ${path} (%s)`, async locale => {
             const metadata = await route.generateMetadata({ params: Promise.resolve({ locale, id: '1' }) });
-            expect(metadata.title).toBe('Example | GamesPassionFR');
+            expect(metadata.title).toBe('Example');
             if (locale === 'en') expect(metadata.description).toBe(english);
             else {
                 const t = createTranslator({ locale: 'fr', messages: fr, namespace: 'detailMetadata' });
@@ -86,7 +86,7 @@ describe('catalog server route exports', () => {
             const metadata = await route.generateMetadata({ params: Promise.resolve({ locale: 'en', id: '2' }) });
             const name = entity === 'company' ? 'Another company' : entity === 'series' ? 'Another series' : 'Another game';
             const t = createTranslator({ locale: 'en', messages: en, namespace: 'detailMetadata' });
-            expect(metadata.title).toBe(`${name} | GamesPassionFR`);
+            expect(metadata.title).toBe(name);
             expect(metadata.description).toBe(t(entity, { name, count: 0 }));
             expect(metadata.openGraph?.images).toEqual([{ url: image.replace('/1/', '/2/'), alt: name }]);
             expect(metadata.alternates?.canonical).toBe(`/en${path.replace('/1', '/2')}`);

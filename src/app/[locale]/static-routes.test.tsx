@@ -61,7 +61,7 @@ describe('static server metadata integration', () => {
     it.each(['fr', 'en', 'de'])('localizes the root metadata and keeps feeds (%s)', async locale => {
         const messages = locale === 'en' ? en : fr;
         expect(await generateMetadata({ params: Promise.resolve({ locale }) })).toEqual({
-            ...messages.siteMetadata, metadataBase: new URL(getSiteUrl()),
+            ...messages.siteMetadata, title: { default: messages.siteMetadata.title, template: '%s | GamesPassionFR' }, metadataBase: new URL(getSiteUrl()),
             alternates: { types: { 'application/rss+xml': '/rss.xml', 'application/feed+json': '/feed.json' } },
         });
     });

@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import { getPathname } from '@/i18n/routing';
-import { contentMetadata, resolveLocale, withBrand } from '@/i18n/metadata';
+import { contentMetadata, resolveLocale } from '@/i18n/metadata';
 
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
@@ -23,10 +23,7 @@ export async function entityDetailMetadata(args: {
     const t = await getTranslations({ locale, namespace: 'detailMetadata' });
     const description = t(args.entity, { name, count });
 
-    return {
-        ...contentMetadata(locale, args.pathnameFor, name, description, imagePath),
-        title: withBrand(name),
-    };
+    return contentMetadata(locale, args.pathnameFor, name, description, imagePath);
 }
 
 export type DetailPageProps = { params: Promise<{ locale: string; id: string }> };

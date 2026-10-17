@@ -6,8 +6,6 @@ import type { Locale } from 'next-intl';
 
 export const BRAND = 'GamesPassionFR';
 
-export const withBrand = (title: string) => `${title} | ${BRAND}`;
-
 /** Same fallback as the root layout: unknown locales behave like the default one. */
 export function resolveLocale(raw: string): Locale {
     return hasLocale(routing.locales, raw) ? raw : routing.defaultLocale;

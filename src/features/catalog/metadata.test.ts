@@ -31,7 +31,7 @@ const pathnameFor = (locale: 'fr' | 'en') => getPathname({
 describe('entityDetailMetadata', () => {
     it.each(['fr', 'en', 'de'])('localizes dynamic details and preserves URLs, images and feeds (%s)', async (locale) => {
         const metadata = await entityDetailMetadata({ locale, entity: 'company', found, pathnameFor });
-        expect(metadata.title).toBe('Example | GamesPassionFR');
+        expect(metadata.title).toBe('Example');
         expect(metadata.description).toBe(locale === 'en'
             ? 'Example: 2 games developed or published in the GamesPassionFR catalog.'
             : 'Example : 2 jeux développés ou édités dans le catalogue GamesPassionFR.');
@@ -57,12 +57,12 @@ describe('entityDetailMetadata', () => {
         for (const entity of ['company', 'series', 'dlc'] as const) {
             for (const count of [0, 1, 2]) {
                 const metadata = await entityDetailMetadata({ locale, entity, found: { ...found, name, count }, pathnameFor });
-                expect(metadata.title).toBe(`${name} | GamesPassionFR`);
+                expect(metadata.title).toBe(name);
                 expect(metadata.description).toBe(t(entity, { name, count }));
                 expect(metadata.description).toContain(name);
                 expect(metadata.description).toContain(String(count));
                 expect(metadata.description).not.toMatch(/[{}]/);
-                expect(String(metadata.title).match(/GamesPassionFR/g)).toHaveLength(1);
+                expect(String(metadata.title)).not.toContain('GamesPassionFR');
                 expect(metadata.openGraph).toMatchObject({ title: name, description: metadata.description, url: metadata.alternates?.canonical });
                 expect(metadata.openGraph?.images).toEqual([{ url: found.imagePath, alt: name }]);
                 expect(metadata).not.toHaveProperty('twitter');

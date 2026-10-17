@@ -38,7 +38,7 @@ describe('watch route metadata', () => {
             url: path, locale, alternateLocale: [locale === 'en' ? 'fr' : 'en'],
             images: [{ url: '/covers/a/b/custom.webp', alt: 'Example' }],
         });
-        expect(metadata.title).toBe('Example | GamesPassionFR');
+        expect(metadata.title).toBe('Example');
         expect(metadata.description).toBe(locale === 'en' ? en.watchMetadata.description.replace('{title}', 'Example') : fr.watchMetadata.description.replace('{title}', 'Example'));
         expect(metadata).not.toHaveProperty('twitter');
     });
@@ -58,18 +58,17 @@ describe('watch route metadata', () => {
         ]);
         const playlist = await playlistMetadata({ params: Promise.resolve({ locale, id: 'playlist' }) });
         const video = await videoMetadata({ params: Promise.resolve({ locale, id: 'video' }) });
-        const messages = locale === 'en' ? en : fr;
         for (const metadata of [playlist, video]) {
             const route = metadata === playlist ? 'playlist' : 'video';
             expect(metadata.alternates?.canonical).toBe(`${locale === 'en' ? '/en' : ''}/${route}/${route}`);
             expect(metadata.alternates?.languages).toEqual({ fr: `/${route}/${route}`, en: `/en/${route}/${route}` });
-            expect(metadata.title).toBe(`${title} | GamesPassionFR`);
+            expect(metadata.title).toBe(title);
             expect(metadata.description).toBe(locale === 'en'
                 ? `Explore ${title} on GamesPassionFR.`
                 : `Découvrez ${title} sur GamesPassionFR.`);
-            expect(String(metadata.title).match(/GamesPassionFR/g)).toHaveLength(1);
+            expect(String(metadata.title)).not.toContain('GamesPassionFR');
             expect(metadata.openGraph).toMatchObject({
-                title: messages.watchMetadata.title.replace('{title}', title),
+                title,
                 description: metadata.description, url: metadata.alternates?.canonical,
                 images: [{ url: metadata === playlist ? '/covers/playlist/cover.webp' : '/covers/video/cover.webp', alt: title }],
             });
@@ -82,7 +81,7 @@ describe('watch route metadata', () => {
     it('prefers published games over duplicate DLC identifiers', async () => {
         loaders.dlcs.mockResolvedValue([{ dlcs: [{ title: 'Duplicate', playlistId: 'a/b', platform: 1 }] }]);
         expect((await playlistMetadata({ params: Promise.resolve({ locale: 'en', id: 'a/b' }) })).title)
-            .toBe('Example | GamesPassionFR');
+            .toBe('Example');
     });
     it.each(['fr', 'en'] as const)('does not index unknown identifiers or a mismatched media type (%s)', async locale => {
         for (const id of ['missing', 'a/b']) {
@@ -91,5 +90,24 @@ describe('watch route metadata', () => {
         }
         expect(await playlistMetadata({ params: Promise.resolve({ locale, id: 'missing' }) }))
             .toEqual({ robots: { index: false, follow: false } });
+    });
+    it.each(['fr', 'en'] as const)('preserves playlist identity precedence when both media identifiers exist (%s)', async locale => {
+        loaders.games.mockResolvedValue([{ title: 'Both', playlistId: 'same', videoId: 'same', platform: 1 }]);
+        loaders.dlcs.mockResolvedValue([]);
+        expect((await playlistMetadata({ params: Promise.resolve({ locale, id: 'same' }) })).title).toBe('Both');
+        expect(await videoMetadata({ params: Promise.resolve({ locale, id: 'same' }) }))
+            .toEqual({ robots: { index: false, follow: false } });
+    });
+
+    it('matches media type before applying published-content precedence', async () => {
+        loaders.games.mockResolvedValue([{ title: 'Playlist', playlistId: 'same', platform: 1 }]);
+        loaders.dlcs.mockResolvedValue([{ dlcs: [{ title: 'Video DLC', videoId: 'same', platform: 1 }] }]);
+        expect((await videoMetadata({ params: Promise.resolve({ locale: 'en', id: 'same' }) })).title).toBe('Video DLC');
+    });
+
+    it.each(['games', 'dlcs'] as const)('propagates %s loader failures', async loader => {
+        const failure = new Error('Catalog unavailable');
+        loaders[loader].mockRejectedValue(failure);
+        await expect(playlistMetadata({ params: Promise.resolve({ locale: 'en', id: 'a/b' }) })).rejects.toBe(failure);
     });
 });
