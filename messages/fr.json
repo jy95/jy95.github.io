@@ -419,5 +419,11 @@
         "company": "{name} sur GamesPassionFR : {count, plural, one {# jeu} other {# jeux}} développés ou édités.",
         "series": "Série {name} sur GamesPassionFR : {count, plural, one {# jeu} other {# jeux}}.",
         "dlc": "DLCs de {name} sur GamesPassionFR : {count, plural, one {# DLC} other {# DLCs}}."
+    },
+    "watchMetadata": {
+        "playlistTitle": "Playlist de découverte de {title}",
+        "playlistDescription": "Regardez la playlist de découverte de {title} sur GamesPassionFR.",
+        "videoTitle": "Vidéo de découverte de {title}",
+        "videoDescription": "Regardez la vidéo de découverte de {title} sur GamesPassionFR."
     }
 }

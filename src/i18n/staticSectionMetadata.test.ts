@@ -34,6 +34,14 @@ describe('static section metadata', () => {
 
             expect(english.title).toBe(`${en} | GamesPassionFR`);
             expect(french.title).toBe(`${fr} | GamesPassionFR`);
+            for (const [metadata, locale, alternate] of [[english, 'en', 'fr'], [french, 'fr', 'en']] as const) {
+                expect(metadata.openGraph).toMatchObject({
+                    type: 'website', siteName: 'GamesPassionFR', title: metadata.title,
+                    description: metadata.description, url: metadata.alternates?.canonical,
+                    locale, alternateLocale: [alternate],
+                });
+                expect(metadata.openGraph).not.toHaveProperty('images');
+            }
             expect(english.description).toBeTruthy();
             expect(french.description).toBeTruthy();
             expect(english.description).not.toBe(french.description);
@@ -46,6 +54,12 @@ describe('static section metadata', () => {
             languages: { fr: '/games', en: '/en/games' },
             types: { 'application/rss+xml': '/rss.xml', 'application/feed+json': '/feed.json' },
         });
+    });
+
+    it('noindexes stateful selection and random navigation utilities', () => {
+        expect(staticSectionMetadata('en', 'selection').robots).toEqual({ index: false, follow: true });
+        expect(staticSectionMetadata('fr', 'games', '/games/random').robots).toEqual({ index: false, follow: true });
+        expect(staticSectionMetadata('fr', 'games').robots).toBeUndefined();
     });
 
     it('uses the selection title without adding a brand suffix', () => {

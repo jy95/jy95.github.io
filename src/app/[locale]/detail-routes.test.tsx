@@ -10,7 +10,7 @@ const data = vi.hoisted(() => ({
 vi.mock('@/i18n/routing', () => ({
     routing: { locales: ['fr', 'en'], defaultLocale: 'fr' },
     getPathname: ({ locale, href }: { locale: string; href: { pathname: string; params: { id: string } } }) =>
-        `${locale === 'en' ? '/en' : ''}${href.pathname.replace('[id]', encodeURIComponent(href.params.id))}`,
+        `${locale === 'en' ? '/en' : ''}${href.pathname.replace('[id]', href.params.id)}`,
 }));
 vi.mock('next-intl/server', () => ({
     getTranslations: async ({ locale, namespace }: { locale: 'fr' | 'en'; namespace: 'detailMetadata' | 'detailMetadata.game' }) =>
@@ -106,6 +106,12 @@ describe('catalog server route exports', () => {
                 .toEqual({ robots: { index: false, follow: false } });
         });
     }
+    it('encodes catalog identifiers without changing record lookup', async () => {
+        data.dlcs.mockResolvedValue([{ id: 'a/b?#', game_title: 'Example', dlcs: [] }]);
+        const metadata = await dlc.generateMetadata({ params: Promise.resolve({ locale: 'en', id: 'a/b?#' }) });
+        expect(metadata.alternates?.canonical).toBe('/en/games/dlcs/a%2Fb%3F%23');
+        expect(metadata.openGraph).toMatchObject({ url: metadata.alternates?.canonical, locale: 'en', alternateLocale: ['fr'] });
+    });
     it('exports the client components directly, preserving promised parameters', () => {
         const params = Promise.resolve({ locale: 'en', id: '1' });
         for (const [page, client] of [[company.default, CompanyClient], [series.default, SeriesClient], [dlc.default, DlcClient], [game.default, GameClient]]) {

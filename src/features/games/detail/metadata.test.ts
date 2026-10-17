@@ -26,6 +26,7 @@ describe('gameDetailMetadata', () => {
         resolveGameDetails.mockResolvedValue({ source, game });
         const metadata = await gameDetailMetadata('en', 'PL1');
         expect(metadata.title).toBe('Some Game | GamesPassionFR');
+        expect(metadata.openGraph).toMatchObject({ url: metadata.alternates?.canonical, locale: 'en', alternateLocale: ['fr'] });
         expect(metadata.description).toBe(enMessages.detailMetadata.game[source].replace('{title}', game.title));
         expect(metadata.openGraph?.images).toEqual([{ url: '/covers/PL1/cover.webp', alt: 'Some Game' }]);
     });

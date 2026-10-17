@@ -6,6 +6,7 @@ const { source, translations } = vi.hoisted(() => ({
     source: { failure: false, entries: [] as { videoId?: string | number; playlistId?: string | number }[] },
     translations: vi.fn(async () => (key: string) => `translated:${key}`),
 }));
+vi.mock('@/components/YTPlayer/metadata', () => ({ watchMetadata: vi.fn() }));
 vi.mock('next-intl/server', () => ({ getTranslations: translations }));
 vi.mock('@/components/YTPlayer/Player', () => ({
     default: ({ type, identifier }: { type: YTUrlType; identifier: string }) => <div>{type}:{identifier}</div>,
