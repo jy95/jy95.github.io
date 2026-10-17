@@ -13,6 +13,7 @@ export function resolveLocale(raw: string): Locale {
     return hasLocale(routing.locales, raw) ? raw : routing.defaultLocale;
 }
 
+
 /** Canonical URL for the current locale + hreflang entries for every locale. */
 export function alternatesFor(
     locale: Locale,
