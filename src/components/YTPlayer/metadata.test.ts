@@ -36,23 +36,48 @@ describe('watch route metadata', () => {
         expect(metadata.alternates?.languages).toEqual({ fr: '/playlist/a%2Fb', en: '/en/playlist/a%2Fb' });
         expect(metadata.openGraph).toMatchObject({
             url: path, locale, alternateLocale: [locale === 'en' ? 'fr' : 'en'],
-            images: [{ url: '/covers/a/b/custom.webp', alt: locale === 'en' ? 'Example walkthrough playlist' : 'Playlist de découverte de Example' }],
+            images: [{ url: '/covers/a/b/custom.webp', alt: 'Example' }],
         });
-        expect(metadata.title).toBe(locale === 'en' ? 'Example walkthrough playlist | GamesPassionFR' : 'Playlist de découverte de Example | GamesPassionFR');
-        expect(metadata.description).toBe(locale === 'en' ? en.watchMetadata.playlistDescription.replace('{title}', 'Example') : fr.watchMetadata.playlistDescription.replace('{title}', 'Example'));
+        expect(metadata.title).toBe(locale === 'en' ? 'Example gameplay | GamesPassionFR' : 'Example : découverte du jeu | GamesPassionFR');
+        expect(metadata.description).toBe(locale === 'en' ? en.watchMetadata.description.replace('{title}', 'Example') : fr.watchMetadata.description.replace('{title}', 'Example'));
         expect(metadata).not.toHaveProperty('twitter');
     });
     it.each(['fr', 'en'] as const)('finds DLC videos using the existing cover convention (%s)', async locale => {
         const metadata = await videoMetadata({ params: Promise.resolve({ locale, id: 'video' }) });
         expect(metadata.openGraph?.images).toEqual([{
-            url: '/covers/video/cover.webp', alt: locale === 'en' ? 'Expansion walkthrough video' : 'Vidéo de découverte de Expansion',
+            url: '/covers/video/cover.webp', alt: 'Expansion',
         }]);
         expect(metadata.openGraph).toMatchObject({ url: metadata.alternates?.canonical, locale });
+    });
+
+    it.each(['fr', 'en'] as const)('shares wording across media types and preserves long names (%s)', async locale => {
+        const title = 'The Adventures of a Hero: A Very Long Game Name & Its Expansion '.repeat(4).trim();
+        loaders.games.mockResolvedValue([
+            { title, playlistId: 'playlist', platform: 1 },
+            { title, videoId: 'video', platform: 1 },
+        ]);
+        const playlist = await playlistMetadata({ params: Promise.resolve({ locale, id: 'playlist' }) });
+        const video = await videoMetadata({ params: Promise.resolve({ locale, id: 'video' }) });
+        const messages = locale === 'en' ? en : fr;
+        for (const metadata of [playlist, video]) {
+            expect(metadata.title).toBe(`${messages.watchMetadata.title.replace('{title}', title)} | GamesPassionFR`);
+            expect(metadata.description).toBe(messages.watchMetadata.description.replace('{title}', title));
+            expect(String(metadata.title).match(/GamesPassionFR/g)).toHaveLength(1);
+            expect(metadata.openGraph).toMatchObject({
+                title: messages.watchMetadata.title.replace('{title}', title),
+                description: metadata.description, url: metadata.alternates?.canonical,
+                images: [{ url: metadata === playlist ? '/covers/playlist/cover.webp' : '/covers/video/cover.webp', alt: title }],
+            });
+            expect(metadata).not.toHaveProperty('twitter');
+        }
+        expect(video.title).toBe(playlist.title);
+        expect(video.description).toBe(playlist.description);
+        expect(video.alternates?.canonical).not.toBe(playlist.alternates?.canonical);
     });
     it('prefers published games over duplicate DLC identifiers', async () => {
         loaders.dlcs.mockResolvedValue([{ dlcs: [{ title: 'Duplicate', playlistId: 'a/b', platform: 1 }] }]);
         expect((await playlistMetadata({ params: Promise.resolve({ locale: 'en', id: 'a/b' }) })).title)
-            .toBe('Example walkthrough playlist | GamesPassionFR');
+            .toBe('Example gameplay | GamesPassionFR');
     });
     it('does not index unknown identifiers or a mismatched media type', async () => {
         for (const id of ['missing', 'a/b']) {

@@ -22,13 +22,15 @@ describe('gameDetailMetadata', () => {
         resolveGameDetails.mockReset();
     });
 
-    it.each(['published', 'planning', 'backlog'] as const)('uses the %s description template', async (source) => {
-        resolveGameDetails.mockResolvedValue({ source, game });
-        const metadata = await gameDetailMetadata('en', 'PL1');
-        expect(metadata.title).toBe('Some Game | GamesPassionFR');
-        expect(metadata.openGraph).toMatchObject({ url: metadata.alternates?.canonical, locale: 'en', alternateLocale: ['fr'] });
-        expect(metadata.description).toBe(enMessages.detailMetadata.game[source].replace('{title}', game.title));
-        expect(metadata.openGraph?.images).toEqual([{ url: '/covers/PL1/cover.webp', alt: 'Some Game' }]);
+    describe.each(['fr', 'en'] as const)('%s descriptions', locale => {
+        it.each(['published', 'planning', 'backlog'] as const)('uses the %s description template', async (source) => {
+            resolveGameDetails.mockResolvedValue({ source, game });
+            const metadata = await gameDetailMetadata(locale, 'PL1');
+            expect(metadata.title).toBe('Some Game | GamesPassionFR');
+            expect(metadata.openGraph).toMatchObject({ url: metadata.alternates?.canonical, locale, alternateLocale: [locale === 'en' ? 'fr' : 'en'] });
+            expect(metadata.description).toBe((locale === 'en' ? enMessages : frMessages).detailMetadata.game[source].replace('{title}', game.title));
+            expect(metadata.openGraph?.images).toEqual([{ url: '/covers/PL1/cover.webp', alt: 'Some Game' }]);
+        });
     });
 
     it.each(['fr', 'en'])('preserves feed links alongside canonical and hreflang URLs (%s)', async (locale) => {
@@ -42,6 +44,17 @@ describe('gameDetailMetadata', () => {
         });
     });
 
+    it.each(['fr', 'en'] as const)('preserves long dynamic game names (%s)', async locale => {
+        const title = 'An Unusually Long Game Name & Its Extended Edition '.repeat(5).trim();
+        resolveGameDetails.mockResolvedValue({ source: 'published', game: { ...game, title } });
+        const metadata = await gameDetailMetadata(locale, 'PL1');
+        expect(metadata.title).toBe(`${title} | GamesPassionFR`);
+        expect(metadata.description).toContain(title);
+        expect(metadata.openGraph).toMatchObject({ title, description: metadata.description, url: metadata.alternates?.canonical });
+        expect(metadata.openGraph?.images).toEqual([{ url: game.imagePath, alt: title }]);
+        expect(String(metadata.title).match(/GamesPassionFR/g)).toHaveLength(1);
+        expect(metadata).not.toHaveProperty('twitter');
+    });
     it('uses French descriptions', async () => {
         resolveGameDetails.mockResolvedValue({ source: 'published', game });
         const metadata = await gameDetailMetadata('fr', 'PL1');
