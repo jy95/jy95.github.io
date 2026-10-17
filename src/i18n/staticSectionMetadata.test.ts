@@ -13,7 +13,7 @@ vi.mock('@/i18n/routing', () => ({
 const sections = [
     { section: 'backlog', en: 'Game backlog candidates', fr: 'Jeux en attente' },
     { section: 'companies', en: 'Game developers and publishers', fr: 'Développeurs et éditeurs de jeux' },
-    { section: 'links', en: 'YouTube, Discord and social links', fr: 'YouTube, Discord et réseaux sociaux' },
+    { section: 'links', en: 'Useful links', fr: 'Liens utiles' },
     { section: 'tier', en: 'Game tier lists', fr: 'Classements de jeux vidéo' },
     { section: 'tierGames', en: 'Published Games Tier List', fr: 'Classement des jeux publiés' },
     { section: 'tierBacklog', en: 'Backlog Tier List', fr: 'Classement des jeux en attente' },
@@ -32,8 +32,8 @@ describe('static section metadata', () => {
             const english = staticSectionMetadata('en', section);
             const french = staticSectionMetadata('fr', section);
 
-            expect(english.title).toBe(`${en} | GamesPassionFR`);
-            expect(french.title).toBe(`${fr} | GamesPassionFR`);
+            expect(english.title).toBe(en);
+            expect(french.title).toBe(fr);
             for (const [metadata, locale, alternate] of [[english, 'en', 'fr'], [french, 'fr', 'en']] as const) {
                 expect(metadata.openGraph).toMatchObject({
                     type: 'website', siteName: 'GamesPassionFR', title: metadata.title,
@@ -41,7 +41,7 @@ describe('static section metadata', () => {
                     locale, alternateLocale: [alternate],
                 });
                 expect(metadata.openGraph).not.toHaveProperty('images');
-                expect(String(metadata.title).match(/GamesPassionFR/g)).toHaveLength(1);
+                expect(String(metadata.title)).not.toContain('GamesPassionFR');
                 expect(metadata).not.toHaveProperty('twitter');
             }
             expect(english.description).toBeTruthy();
@@ -64,13 +64,13 @@ describe('static section metadata', () => {
         expect(staticSectionMetadata('fr', 'games').robots).toBeUndefined();
     });
 
-    it('uses the selection title without adding a brand suffix', () => {
-        expect(staticSectionMetadata('en', 'selection').title).toBe('My GamesPassionFR Selection');
+    it.each([['en', 'My selection'], ['fr', 'Ma sélection']])('uses a plain selection subject (%s)', (locale, title) => {
+        expect(staticSectionMetadata(locale, 'selection').title).toBe(title);
     });
 
     it('preserves games metadata on the random route with its own canonical URL', () => {
         const metadata = staticSectionMetadata('fr', 'games', '/games/random');
-        expect(metadata.title).toBe('Catalogue de jeux vidéo | GamesPassionFR');
+        expect(metadata.title).toBe('Catalogue de jeux vidéo');
         expect(metadata.alternates?.canonical).toBe('/games/random');
     });
 

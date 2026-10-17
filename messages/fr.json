@@ -29,59 +29,59 @@
     },
     "pageMetadata": {
         "backlog": {
-            "title": "Jeux en attente | GamesPassionFR",
+            "title": "Jeux en attente",
             "description": "Jeux en attente sur GamesPassionFR. Votez pour les jeux que vous aimeriez voir ajoutés."
         },
         "companies": {
-            "title": "Développeurs et éditeurs de jeux | GamesPassionFR",
+            "title": "Développeurs et éditeurs de jeux",
             "description": "Développeurs et éditeurs des jeux du catalogue GamesPassionFR. Retrouvez chaque entreprise et les jeux qui lui sont associés."
         },
         "links": {
-            "title": "YouTube, Discord et réseaux sociaux | GamesPassionFR",
-            "description": "Retrouvez la chaîne YouTube, la communauté Discord et les réseaux sociaux de GamesPassionFR."
+            "title": "Liens utiles",
+            "description": "Retrouvez les liens utiles et les moyens de suivre GamesPassionFR."
         },
         "tier": {
-            "title": "Classements de jeux vidéo | GamesPassionFR",
+            "title": "Classements de jeux vidéo",
             "description": "Découvrez les classements personnels de GamesPassionFR : jeux publiés, jeux en attente et jeux testés."
         },
         "tierGames": {
-            "title": "Classement des jeux publiés | GamesPassionFR",
+            "title": "Classement des jeux publiés",
             "description": "Jeux publiés classés selon les préférences personnelles de GamesPassionFR, du chef-d’œuvre au mauvais."
         },
         "tierBacklog": {
-            "title": "Classement des jeux en attente | GamesPassionFR",
+            "title": "Classement des jeux en attente",
             "description": "Jeux en attente regroupés dans les catégories du classement personnel de GamesPassionFR."
         },
         "tierTests": {
-            "title": "Classement des jeux testés | GamesPassionFR",
+            "title": "Classement des jeux testés",
             "description": "Jeux testés classés selon les préférences personnelles de GamesPassionFR."
         },
         "dlcs": {
-            "title": "Catalogue des DLC de jeux | GamesPassionFR",
+            "title": "Catalogue des DLC de jeux",
             "description": "Découvrez le catalogue des contenus téléchargeables de GamesPassionFR, regroupés par jeu principal."
         },
         "series": {
-            "title": "Séries de jeux vidéo | GamesPassionFR",
+            "title": "Séries de jeux vidéo",
             "description": "Séries de jeux vidéo du catalogue GamesPassionFR. Retrouvez chaque série et les jeux qui la composent."
         },
         "games": {
-            "title": "Catalogue de jeux vidéo | GamesPassionFR",
+            "title": "Catalogue de jeux vidéo",
             "description": "Découvrez le catalogue de jeux vidéo de GamesPassionFR et la fiche de chaque jeu."
         },
         "planning": {
-            "title": "Jeux au planning | GamesPassionFR",
+            "title": "Jeux au planning",
             "description": "Consultez le calendrier des jeux prévus sur GamesPassionFR."
         },
         "tests": {
-            "title": "Tests de jeux vidéo | GamesPassionFR",
+            "title": "Tests de jeux vidéo",
             "description": "Découvrez les tests de jeux vidéo de GamesPassionFR."
         },
         "stats": {
-            "title": "Statistiques du catalogue de jeux | GamesPassionFR",
+            "title": "Statistiques du catalogue de jeux",
             "description": "Statistiques du catalogue de jeux GamesPassionFR. Explorez la collection par genre et par plateforme."
         },
         "selection": {
-            "title": "Ma sélection GamesPassionFR",
+            "title": "Ma sélection",
             "description": "Gardez les éléments qui vous intéressent dans votre sélection sur ce navigateur."
         }
     },
@@ -421,7 +421,6 @@
         "dlc": "{name} : {count, plural, one {# DLC} other {# DLCs}} dans le catalogue GamesPassionFR."
     },
     "watchMetadata": {
-        "title": "{title}",
         "description": "Découvrez {title} sur GamesPassionFR."
     }
 }

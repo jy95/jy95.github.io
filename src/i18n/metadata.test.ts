@@ -8,6 +8,9 @@ vi.mock('@/i18n/routing', () => ({ routing: { locales: ['fr', 'en'], defaultLoca
 import { contentMetadata } from './metadata';
 
 describe('metadata copy', () => {
+    it.each([en, fr])('keeps links metadata independent of external platforms', messages => {
+        expect(JSON.stringify(messages.pageMetadata.links)).not.toMatch(/YouTube|Discord|Twitter|Facebook|Twitch/i);
+    });
     it.each([{ locale: 'en', messages: en }, { locale: 'fr', messages: fr }])(
         'describes content without media-format wording ($locale)',
         ({ messages }) => {

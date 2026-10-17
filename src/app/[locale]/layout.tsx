@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { resolveLocale } from '@/i18n/metadata';
+import { BRAND, resolveLocale } from '@/i18n/metadata';
 // Providers
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import StoreProvider from "@/providers/StoreProvider";
@@ -28,7 +28,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const resolvedLocale = resolveLocale((await params).locale);
   const t = await getTranslations({ locale: resolvedLocale, namespace: 'siteMetadata' });
   return {
-    title: t('title'),
+    title: {
+      default: t('title'),
+      template: `%s | ${BRAND}`,
+    },
     metadataBase: new URL(getSiteUrl()),
     description: t('description'),
     alternates: {
