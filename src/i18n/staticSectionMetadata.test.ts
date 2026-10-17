@@ -11,7 +11,7 @@ vi.mock('@/i18n/routing', () => ({
 }));
 
 const sections = [
-    { section: 'backlog', en: 'Game backlog candidates', fr: 'Jeux en attente de vidéos' },
+    { section: 'backlog', en: 'Game backlog candidates', fr: 'Jeux en attente' },
     { section: 'companies', en: 'Game developers and publishers', fr: 'Développeurs et éditeurs de jeux' },
     { section: 'links', en: 'YouTube, Discord and social links', fr: 'YouTube, Discord et réseaux sociaux' },
     { section: 'tier', en: 'Game tier lists', fr: 'Classements de jeux vidéo' },
@@ -21,7 +21,7 @@ const sections = [
     { section: 'dlcs', en: 'Game DLC catalog', fr: 'Catalogue des DLC de jeux' },
     { section: 'series', en: 'Video game series', fr: 'Séries de jeux vidéo' },
     { section: 'games', en: 'Video game catalog', fr: 'Catalogue de jeux vidéo' },
-    { section: 'planning', en: 'Upcoming game coverage', fr: 'Prochaines vidéos de jeux' },
+    { section: 'planning', en: 'Planned games', fr: 'Jeux au planning' },
     { section: 'tests', en: 'Game Reviews', fr: 'Tests de jeux vidéo' },
     { section: 'stats', en: 'Game catalog statistics', fr: 'Statistiques du catalogue de jeux' },
 ] as const;

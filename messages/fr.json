@@ -29,8 +29,8 @@
     },
     "pageMetadata": {
         "backlog": {
-            "title": "Jeux en attente de vidéos | GamesPassionFR",
-            "description": "Jeux en attente sur GamesPassionFR. Votez pour les jeux que vous aimeriez voir dans les prochaines vidéos."
+            "title": "Jeux en attente | GamesPassionFR",
+            "description": "Jeux en attente sur GamesPassionFR. Votez pour les jeux que vous aimeriez voir ajoutés."
         },
         "companies": {
             "title": "Développeurs et éditeurs de jeux | GamesPassionFR",
@@ -66,15 +66,15 @@
         },
         "games": {
             "title": "Catalogue de jeux vidéo | GamesPassionFR",
-            "description": "Jeux vidéo présentés par GamesPassionFR. Parcourez le catalogue et retrouvez les vidéos de chaque jeu."
+            "description": "Découvrez le catalogue de jeux vidéo de GamesPassionFR et la fiche de chaque jeu."
         },
         "planning": {
-            "title": "Prochaines vidéos de jeux | GamesPassionFR",
-            "description": "Prochaines vidéos de jeux sur GamesPassionFR. Consultez le calendrier des jeux et vidéos prévus."
+            "title": "Jeux au planning | GamesPassionFR",
+            "description": "Consultez le calendrier des jeux prévus sur GamesPassionFR."
         },
         "tests": {
             "title": "Tests de jeux vidéo | GamesPassionFR",
-            "description": "Tests de jeux vidéo par GamesPassionFR. Parcourez les jeux et retrouvez leurs tests en vidéo."
+            "description": "Découvrez les tests de jeux vidéo de GamesPassionFR."
         },
         "stats": {
             "title": "Statistiques du catalogue de jeux | GamesPassionFR",
@@ -412,16 +412,16 @@
     },
     "detailMetadata": {
         "game": {
-            "published": "{title} sur GamesPassionFR : fiche du jeu et vidéos de découverte.",
-            "planning": "{title} est prévu pour de prochaines vidéos sur GamesPassionFR. Consultez sa fiche et sa date de sortie.",
-            "backlog": "{title} fait partie des jeux en attente sur GamesPassionFR. Consultez sa durée estimée et votez pour le voir en vidéo."
+            "published": "{title} sur GamesPassionFR : découvrez la fiche du jeu.",
+            "planning": "{title} figure au planning de GamesPassionFR. Consultez sa fiche et sa date de sortie.",
+            "backlog": "{title} fait partie des jeux en attente sur GamesPassionFR. Consultez sa durée estimée et votez pour son ajout."
         },
         "company": "{name} : {count, plural, one {# jeu développé ou édité} other {# jeux développés ou édités}} dans le catalogue GamesPassionFR.",
         "series": "{name} : {count, plural, one {# jeu} other {# jeux}} de cette série de jeux vidéo dans le catalogue GamesPassionFR.",
         "dlc": "{name} : {count, plural, one {# DLC} other {# DLCs}} dans le catalogue GamesPassionFR."
     },
     "watchMetadata": {
-        "title": "{title} : découverte du jeu",
-        "description": "{title} sur GamesPassionFR : découvrez le jeu en vidéo."
+        "title": "{title}",
+        "description": "Découvrez {title} sur GamesPassionFR."
     }
 }
