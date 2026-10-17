@@ -36,6 +36,7 @@ export function contentMetadata(
     title: string,
     description: string,
     imagePath?: string,
+    imageAlt: string = title,
 ): Metadata {
     const pathname = pathnameFor(locale);
     return {
@@ -51,7 +52,7 @@ export function contentMetadata(
             // The application supports languages, with no regional variants defined.
             locale,
             alternateLocale: routing.locales.filter(language => language !== locale),
-            ...(imagePath ? { images: [{ url: imagePath, alt: title }] } : {}),
+            ...(imagePath ? { images: [{ url: imagePath, alt: imageAlt }] } : {}),
         },
     };
 }

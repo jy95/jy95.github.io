@@ -23,14 +23,13 @@ export async function watchMetadata({ params }: WatchPageProps, type: YTUrlType)
 
     const game = toPublishedGame(entry);
     const t = await getTranslations({ locale, namespace: 'watchMetadata' });
-    const key = type === 'PLAYLIST' ? 'playlist' : 'video';
-    const title = t(`${key}Title`, { title: game.title });
-    const description = t(`${key}Description`, { title: game.title });
+    const title = t('title', { title: game.title });
+    const description = t('description', { title: game.title });
     const pathname = type === 'PLAYLIST' ? '/playlist/[id]' : '/video/[id]';
     return {
         ...contentMetadata(locale, language => getPathname({
             locale: language, href: { pathname, params: { id: encodeURIComponent(id) } },
-        }), title, description, game.imagePath),
+        }), title, description, game.imagePath, game.title),
         title: withBrand(title),
     };
 }

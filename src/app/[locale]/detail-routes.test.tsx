@@ -56,9 +56,9 @@ beforeEach(() => {
 });
 
 const entities = [
-    { entity: 'company', route: company, path: '/companies/1', image: '/companies/1/cover.webp', english: 'Example on GamesPassionFR: 1 game developed or published.' },
-    { entity: 'series', route: series, path: '/games/series/1', image: '/seriescovers/1/cover.webp', english: 'Example series on GamesPassionFR: 1 game.' },
-    { entity: 'dlc', route: dlc, path: '/games/dlcs/1', image: '/covers/1/cover.webp', english: 'DLCs for Example on GamesPassionFR: 1 DLC.' },
+    { entity: 'company', route: company, path: '/companies/1', image: '/companies/1/cover.webp', english: 'Example: 1 game developed or published in the GamesPassionFR catalog.' },
+    { entity: 'series', route: series, path: '/games/series/1', image: '/seriescovers/1/cover.webp', english: 'Example: 1 game from this video game series in the GamesPassionFR catalog.' },
+    { entity: 'dlc', route: dlc, path: '/games/dlcs/1', image: '/covers/1/cover.webp', english: 'Example: 1 DLC in the GamesPassionFR catalog.' },
 ] as const;
 
 describe('catalog server route exports', () => {
