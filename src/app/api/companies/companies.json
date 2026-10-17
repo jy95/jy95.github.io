@@ -621,109 +621,6 @@
 		]
 	},
 	{
-		"id": 14,
-		"name": "Atari",
-		"developerItems": [],
-		"publisherItems": [
-			{
-				"id": 17,
-				"title": "Astérix & Obélix XXL",
-				"playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
-				"duration": "06:21:55",
-				"platform": 5,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 70,
-				"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
-				"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
-				"duration": "04:08:28",
-				"platform": 3,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 149,
-				"title": "Astérix aux Jeux olympiques",
-				"playlistId": "PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
-				"duration": "03:23:11",
-				"platform": 5,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 86,
-				"title": "Dragon Ball : Advanced Adventure",
-				"videoId": "5ZHExfdq9F8",
-				"duration": "01:50:53",
-				"platform": 2,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 131,
-				"title": "Dragon Ball Z : Buu's Fury",
-				"playlistId": "PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz",
-				"duration": "04:36:11",
-				"platform": 2,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 171,
-				"title": "Fahrenheit Indigo Prophecy",
-				"playlistId": "PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
-				"duration": "05:38:37",
-				"platform": 5,
-				"tierCategory": "tier_poor"
-			},
-			{
-				"id": 111,
-				"title": "Marc Eckō's Getting Up: Contents Under Pressure",
-				"playlistId": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
-				"duration": "07:26:19",
-				"platform": 5,
-				"tierCategory": "tier_average"
-			},
-			{
-				"id": 100,
-				"title": "Titeuf : Méga-Compet'",
-				"playlistId": "PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
-				"duration": "01:26:00",
-				"platform": 5,
-				"tierCategory": "tier_average"
-			},
-			{
-				"id": 144,
-				"title": "Kya : Dark Lineage",
-				"playlistId": "PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj",
-				"duration": "07:34:50",
-				"platform": 5,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 151,
-				"title": "Lucky Luke : Tous à l'Ouest",
-				"videoId": "kDoc1rzc-Zs",
-				"duration": "01:21:01",
-				"platform": 1,
-				"tierCategory": "tier_average"
-			},
-			{
-				"id": 22,
-				"title": "Pyjama Sam : Héros du Goûter",
-				"videoId": "Qsq_q65MwhU",
-				"duration": "01:07:54",
-				"platform": 7,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 88,
-				"title": "Hot Pixel",
-				"videoId": "6UzzEQjYA9c",
-				"duration": "00:27:38",
-				"platform": 3,
-				"tierCategory": "tier_poor"
-			}
-		]
-	},
-	{
 		"id": 4,
 		"name": "THQ",
 		"developerItems": [],
@@ -822,6 +719,117 @@
 				"playlistId": "PLRfhDHeBTBJ7s00Ze3ZJGt15icxoiUTg4",
 				"duration": "01:38:54",
 				"platform": 6,
+				"tierCategory": "tier_poor"
+			},
+			{
+				"id": 210,
+				"title": "Ratatouille",
+				"playlistId": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
+				"duration": "03:18:45",
+				"platform": 6,
+				"tierCategory": "tier_average"
+			}
+		]
+	},
+	{
+		"id": 14,
+		"name": "Atari",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 17,
+				"title": "Astérix & Obélix XXL",
+				"playlistId": "PLRfhDHeBTBJ7hPe8RxhK3FTXoqdFNL0BG",
+				"duration": "06:21:55",
+				"platform": 5,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 70,
+				"title": "Astérix & Obélix XXL 2 : Mission Ouifix",
+				"playlistId": "PLRfhDHeBTBJ6lDdIcNMFKsCzWtItCEcBq",
+				"duration": "04:08:28",
+				"platform": 3,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 149,
+				"title": "Astérix aux Jeux olympiques",
+				"playlistId": "PLRfhDHeBTBJ5S4PtZF0WBNaPVYvNDUJun",
+				"duration": "03:23:11",
+				"platform": 5,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 86,
+				"title": "Dragon Ball : Advanced Adventure",
+				"videoId": "5ZHExfdq9F8",
+				"duration": "01:50:53",
+				"platform": 2,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 131,
+				"title": "Dragon Ball Z : Buu's Fury",
+				"playlistId": "PLRfhDHeBTBJ6zkB2GAtg_k6_J799AozQz",
+				"duration": "04:36:11",
+				"platform": 2,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 171,
+				"title": "Fahrenheit Indigo Prophecy",
+				"playlistId": "PLRfhDHeBTBJ4Fh7iL-9-0ZEncKHStdgO2",
+				"duration": "05:38:37",
+				"platform": 5,
+				"tierCategory": "tier_poor"
+			},
+			{
+				"id": 111,
+				"title": "Marc Eckō's Getting Up: Contents Under Pressure",
+				"playlistId": "PLRfhDHeBTBJ558YL4-DGi1B8jrQhM3uWa",
+				"duration": "07:26:19",
+				"platform": 5,
+				"tierCategory": "tier_average"
+			},
+			{
+				"id": 100,
+				"title": "Titeuf : Méga-Compet'",
+				"playlistId": "PLRfhDHeBTBJ54gjV7GzpbGumgw64u7LVP",
+				"duration": "01:26:00",
+				"platform": 5,
+				"tierCategory": "tier_average"
+			},
+			{
+				"id": 144,
+				"title": "Kya : Dark Lineage",
+				"playlistId": "PLRfhDHeBTBJ54lUeJrodUPuEOohHUdCJj",
+				"duration": "07:34:50",
+				"platform": 5,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 151,
+				"title": "Lucky Luke : Tous à l'Ouest",
+				"videoId": "kDoc1rzc-Zs",
+				"duration": "01:21:01",
+				"platform": 1,
+				"tierCategory": "tier_average"
+			},
+			{
+				"id": 22,
+				"title": "Pyjama Sam : Héros du Goûter",
+				"videoId": "Qsq_q65MwhU",
+				"duration": "01:07:54",
+				"platform": 7,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 88,
+				"title": "Hot Pixel",
+				"videoId": "6UzzEQjYA9c",
+				"duration": "00:27:38",
+				"platform": 3,
 				"tierCategory": "tier_poor"
 			}
 		]
@@ -2065,6 +2073,37 @@
 		]
 	},
 	{
+		"id": 331,
+		"name": "Heavy Iron Studios",
+		"developerItems": [
+			{
+				"id": 30,
+				"title": "Les indestructibles Le Jeu",
+				"playlistId": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
+				"duration": "03:42:26",
+				"platform": 1,
+				"tierCategory": "tier_average"
+			},
+			{
+				"id": 36,
+				"title": "Les Indestructibles : La Terrible Attaque du Démolisseur",
+				"playlistId": "PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
+				"duration": "02:11:24",
+				"platform": 1,
+				"tierCategory": "tier_average"
+			},
+			{
+				"id": 210,
+				"title": "Ratatouille",
+				"playlistId": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
+				"duration": "03:18:45",
+				"platform": 6,
+				"tierCategory": "tier_average"
+			}
+		],
+		"publisherItems": []
+	},
+	{
 		"id": 200,
 		"name": "High Impact Games",
 		"developerItems": [
@@ -2738,29 +2777,6 @@
 				"tierCategory": "tier_good"
 			}
 		]
-	},
-	{
-		"id": 331,
-		"name": "Heavy Iron Studios",
-		"developerItems": [
-			{
-				"id": 30,
-				"title": "Les indestructibles Le Jeu",
-				"playlistId": "PLRfhDHeBTBJ6kWfGJp4xw769cajM4K9Gi",
-				"duration": "03:42:26",
-				"platform": 1,
-				"tierCategory": "tier_average"
-			},
-			{
-				"id": 36,
-				"title": "Les Indestructibles : La Terrible Attaque du Démolisseur",
-				"playlistId": "PLRfhDHeBTBJ44T1V46UXupwH6GPekErCH",
-				"duration": "02:11:24",
-				"platform": 1,
-				"tierCategory": "tier_average"
-			}
-		],
-		"publisherItems": []
 	},
 	{
 		"id": 53,

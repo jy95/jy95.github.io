@@ -42,8 +42,8 @@ GamesPassionFR is a bilingual French and English catalog for the GamesPassionFR 
 
 ## Current catalog
 
-- Published games: 191
-- Available walkthrough duration: 1013 hours 57 minutes 55 seconds
+- Published games: 192
+- Available walkthrough duration: 1017 hours 16 minutes 40 seconds
 - Total catalog duration: 1122 hours 31 minutes 27 seconds
 - Backlog candidates: 191
 - Planned items: 26
@@ -173,6 +173,7 @@ The complete list below is alphabetical.
 - [Pyjama Sam 2 : Héros Météo](https://www.youtube.com/watch?v=We7-JHU7D7I)
 - [Pyjama Sam : Héros du Goûter](https://www.youtube.com/watch?v=Qsq_q65MwhU)
 - [Quantum Break](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5kA7HOY4M_5Ki0we95CW_f)
+- [Ratatouille](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP)
 - [Ratchet & Clank](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo)
 - [Ratchet & Clank 2](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5R8zWiWBkY-DBMU2AFb9mu)
 - [Ratchet & Clank 3](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7MKXXCaweIjEpKNA-qtQvu)

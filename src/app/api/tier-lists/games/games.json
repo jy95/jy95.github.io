@@ -1877,6 +1877,17 @@
 			"imagePath": "/covers/PLRfhDHeBTBJ47XmS2_upaFjIh_wKhN0XB/cover.webp"
 		},
 		{
+			"playlistId": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
+			"title": "Ratatouille",
+			"releaseDate": "2007-08-10",
+			"duration": "03:18:45",
+			"platform": 6,
+			"id": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP/cover.webp"
+		},
+		{
 			"playlistId": "PLRfhDHeBTBJ56NplVu4F1-uQm5bq7jwvo",
 			"title": "Ratchet & Clank",
 			"releaseDate": "2012-06-27",
