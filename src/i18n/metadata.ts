@@ -13,7 +13,6 @@ export function resolveLocale(raw: string): Locale {
     return hasLocale(routing.locales, raw) ? raw : routing.defaultLocale;
 }
 
-
 /** Canonical URL for the current locale + hreflang entries for every locale. */
 export function alternatesFor(
     locale: Locale,
@@ -30,13 +29,29 @@ export function alternatesFor(
     };
 }
 
-/** The same image and site fields apply to game and catalog detail pages. */
-export function detailOpenGraph(title: string, description: string, imagePath: string): Metadata['openGraph'] {
+/** Complete nested values: Next.js replaces, rather than deep-merges, Open Graph. */
+export function contentMetadata(
+    locale: Locale,
+    pathnameFor: (locale: Locale) => string,
+    title: string,
+    description: string,
+    imagePath?: string,
+): Metadata {
+    const pathname = pathnameFor(locale);
     return {
-        type: 'website',
-        siteName: BRAND,
         title,
         description,
-        images: [{ url: imagePath, alt: title }],
+        alternates: alternatesFor(locale, language => language === locale ? pathname : pathnameFor(language)),
+        openGraph: {
+            type: 'website',
+            siteName: BRAND,
+            title,
+            description,
+            url: pathname,
+            // The application supports languages, with no regional variants defined.
+            locale,
+            alternateLocale: routing.locales.filter(language => language !== locale),
+            ...(imagePath ? { images: [{ url: imagePath, alt: title }] } : {}),
+        },
     };
 }

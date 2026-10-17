@@ -1,4 +1,4 @@
-import { alternatesFor, resolveLocale } from '@/i18n/metadata';
+import { contentMetadata, resolveLocale } from '@/i18n/metadata';
 import { getPathname } from '@/i18n/routing';
 import enMessages from '../../messages/en.json';
 import frMessages from '../../messages/fr.json';
@@ -24,8 +24,8 @@ export function staticSectionMetadata(
     const { title, description } = messages.pageMetadata[section];
 
     return {
-        title,
-        description,
-        alternates: alternatesFor(locale, (locale) => getPathname({ locale, href: pathname })),
+        ...contentMetadata(locale, language => getPathname({ locale: language, href: pathname }), title, description),
+        // Selection depends on local storage/query state; random immediately navigates away.
+        ...(section === 'selection' || pathname === '/games/random' ? { robots: { index: false, follow: true } } : {}),
     };
 }

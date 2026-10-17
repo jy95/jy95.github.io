@@ -26,8 +26,8 @@ afterEach(() => {
 });
 
 async function loadSitemap() {
-    const module = await import('./sitemap');
-    return module.default;
+    const sitemapModule = await import('./sitemap');
+    return sitemapModule.default;
 }
 
 describe('sitemap', () => {
@@ -38,8 +38,8 @@ describe('sitemap', () => {
 
         expect(entries).toHaveLength(2);
         expect(entries.map((entry) => entry.url)).toEqual([
-            'https://jy95.github.io/en/games',
-            'https://jy95.github.io/en/backlog',
+            'https://gpfr-git-master-jy95s-projects.vercel.app/en/games',
+            'https://gpfr-git-master-jy95s-projects.vercel.app/en/backlog',
         ]);
     });
 
@@ -48,21 +48,21 @@ describe('sitemap', () => {
 
         const entries = sitemap();
 
-        expect(entries.map((entry) => entry.url)).not.toContain('https://jy95.github.io/en/video/[id]');
-        expect(entries.map((entry) => entry.url)).not.toContain('https://jy95.github.io/en/playlist/[id]');
+        expect(entries.map((entry) => entry.url)).not.toContain('https://gpfr-git-master-jy95s-projects.vercel.app/en/video/[id]');
+        expect(entries.map((entry) => entry.url)).not.toContain('https://gpfr-git-master-jy95s-projects.vercel.app/en/playlist/[id]');
     });
 
     it('generates an alternate URL for every configured locale', async () => {
         const sitemap = await loadSitemap();
 
         const entries = sitemap();
-        const gamesEntry = entries.find((entry) => entry.url === 'https://jy95.github.io/en/games');
+        const gamesEntry = entries.find((entry) => entry.url === 'https://gpfr-git-master-jy95s-projects.vercel.app/en/games');
 
         expect(gamesEntry).toMatchObject({
             alternates: {
                 languages: {
-                    en: 'https://jy95.github.io/en/games',
-                    fr: 'https://jy95.github.io/fr/games',
+                    en: 'https://gpfr-git-master-jy95s-projects.vercel.app/en/games',
+                    fr: 'https://gpfr-git-master-jy95s-projects.vercel.app/fr/games',
                 },
             },
         });
@@ -86,11 +86,11 @@ describe('sitemap', () => {
         expect(sitemap()[0].url).toBe('https://production.example.com/en/games');
     });
 
-    it('uses VERCEL_URL when VERCEL_PROJECT_PRODUCTION_URL is unavailable', async () => {
+    it('ignores preview URLs when the production domain is unavailable', async () => {
         vi.stubEnv('VERCEL_URL', 'preview.example.com');
 
         const sitemap = await loadSitemap();
 
-        expect(sitemap()[0].url).toBe('https://preview.example.com/en/games');
+        expect(sitemap()[0].url).toBe('https://gpfr-git-master-jy95s-projects.vercel.app/en/games');
     });
 });

@@ -38,6 +38,9 @@ describe('entityDetailMetadata', () => {
         expect(metadata.openGraph).toEqual({
             type: 'website', siteName: 'GamesPassionFR', title: 'Example',
             description: metadata.description,
+            url: locale === 'en' ? '/en/companies/1' : '/companies/1',
+            locale: locale === 'en' ? 'en' : 'fr',
+            alternateLocale: [locale === 'en' ? 'fr' : 'en'],
             images: [{ url: found.imagePath, alt: found.name }],
         });
         expect(metadata.alternates).toEqual({

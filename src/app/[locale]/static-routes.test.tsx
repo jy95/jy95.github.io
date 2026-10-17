@@ -48,7 +48,6 @@ const routes = [
     ['stats', () => import('./stats/page')],
     ['tests', () => import('./tests/page')],
     ['links', () => import('./links/page')],
-    ['tier', () => import('./tier/page')],
     ['tierBacklog', () => import('./tier/backlog/page')],
     ['tierGames', () => import('./tier/games/page')],
     ['tierTests', () => import('./tier/tests/page')],
@@ -110,6 +109,7 @@ describe('static server metadata integration', () => {
     it('redirects the tier index through the localized helper', async () => {
         const { default: Tier } = await import('./tier/page');
         const { redirectToLocalizedPath } = await import('@/i18n/localizedRedirect');
+        expect(await import('./tier/page')).not.toHaveProperty('generateMetadata');
         await Tier();
         expect(redirectToLocalizedPath).toHaveBeenCalledWith('/tier/games');
     });
