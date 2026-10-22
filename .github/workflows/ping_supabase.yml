@@ -1,8 +1,9 @@
 name: Ping Supabase to Prevent Pausing
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: '0 9 * * 1,4' # Runs at 9:00 AM every Monday and Thursday
+    - cron: '0 9 * * 1,4' # Runs at 09:00 UTC every Monday and Thursday
 
 env:
   NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
@@ -16,18 +17,42 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v7
+
       - name: Set up Node.js ✨
         uses: actions/setup-node@v7
         with:
           node-version: "lts/*"
           cache: 'npm'
+
       - name: Install Supabase 🔧
         run: |
           npm install @supabase/supabase-js
+
       - name: Ping Supabase
         run: |
-          node -e "
+          node <<'NODE'
           const { createClient } = require('@supabase/supabase-js');
-          const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
-          supabase.from('games_stats').select('likes_count').limit(1).then(console.log).catch(console.error);
-          "
+
+          async function main() {
+            const supabase = createClient(
+              process.env.NEXT_PUBLIC_SUPABASE_URL,
+              process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+            );
+
+            const { data, error } = await supabase
+              .from('games_stats')
+              .select('likes_count')
+              .limit(1);
+
+            if (error) {
+              throw error;
+            }
+
+            console.log('Supabase ping succeeded:', data);
+          }
+
+          main().catch((error) => {
+            console.error('Supabase ping failed:', error);
+            process.exitCode = 1;
+          });
+          NODE
