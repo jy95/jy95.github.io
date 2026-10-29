@@ -238,17 +238,6 @@
 	],
 	"tier_average": [
 		{
-			"playlistId": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
-			"title": "Ratatouille",
-			"releaseDate": "2007-08-10",
-			"duration": "03:18:45",
-			"platform": 6,
-			"id": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
-			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
-			"url_type": "PLAYLIST",
-			"imagePath": "/covers/PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP/cover.webp"
-		},
-		{
 			"playlistId": "PLQL0wqwr2bao",
 			"title": "Ruff Trigger: The Vanocore Conspiracy",
 			"releaseDate": "2026-08-26",

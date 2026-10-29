@@ -1,30 +1,5 @@
 [
 	{
-		"id": 210,
-		"title": "Ratatouille",
-		"playlistId": "PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
-		"releaseDate": "2007-08-10",
-		"duration": "03:18:45",
-		"platform": 6,
-		"genres": [
-			1
-		],
-		"developers": [
-			{
-				"id": 331,
-				"name": "Heavy Iron Studios"
-			}
-		],
-		"publishers": [
-			{
-				"id": 4,
-				"name": "THQ"
-			}
-		],
-		"availableAt": "2026-10-16",
-		"endAt": "2026-10-28"
-	},
-	{
 		"id": 211,
 		"title": "Binary Domain",
 		"playlistId": "PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
