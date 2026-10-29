@@ -2,12 +2,15 @@ import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testi
 import { NextIntlClientProvider } from 'next-intl';
 import messages from '../../../../messages/en.json';
 import SelectionPage from './SelectionPage';
+import SelectionPageLoader from './SelectionPageLoader';
 import SelectionButton from './SelectionButton';
 import * as sharing from '../sharing/sharing';
 import { emptySelection } from '@/domain/selection/operations';
 import { SELECTION_STORAGE_KEY, getSelectionSnapshot } from '../storage/store';
 import type { SelectionEntry } from '@/domain/selection/types';
 
+const query = vi.hoisted(() => vi.fn());
+vi.mock('@/redux/services/selectionAPI', () => ({ useGetSelectionCatalogueQuery: query }));
 const navigation = vi.hoisted(() => ({ query: '', push: vi.fn(), replace: vi.fn() }));
 vi.mock('next/navigation', () => ({ useSearchParams: () => new URLSearchParams(navigation.query), usePathname: () => '/selection', useRouter: () => navigation }));
 vi.mock('@/i18n/routing', () => ({
@@ -90,12 +93,15 @@ it('ignores stale asynchronous decode results after navigation', async () => {
     expect(screen.queryByText(messages.selection.invalid)).not.toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'Alpha' })).toBeInTheDocument();
 });
-it('filters, sorts and paginates without changing storage and shares missing and hidden identifiers', async () => {
+it('cleans missing identifiers before filtering, sorting, pagination and sharing', async () => {
     const entries: SelectionEntry[] = Array.from({ length: 30 }, (_, index) => ({ source: 'published', category: 'games', selectionId: `item-${index}`, game: { ...card, id: `item-${index}`, title: index === 29 ? 'Item Zephyr' : `Item ${String(index).padStart(2, '0')}` } }));
     const document = { ...emptySelection(), games: entries.map(entry => entry.selectionId).concat('ghost'), backlog: ['same'] };
     localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(document));
     const write = vi.spyOn(Storage.prototype, 'setItem');
+    const cleaned = { ...document, games: entries.map(entry => entry.selectionId) };
     mount([...entries, catalogue[3]]);
+    expect(write).toHaveBeenCalledOnce();
+    write.mockClear();
     expect(screen.getAllByRole('img', { name: /^Item/ })).toHaveLength(12);
     fireEvent.click(screen.getByRole('button', { name: messages.common.loadMore }));
     expect(screen.getAllByRole('img', { name: /^Item/ })).toHaveLength(24);
@@ -105,7 +111,7 @@ it('filters, sorts and paginates without changing storage and shares missing and
     fireEvent.click(screen.getByRole('button', { name: messages.common.sort.direction.desc }));
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Zephyr' } });
     await waitFor(() => expect(screen.getAllByRole('img', { name: /^Item/ })).toHaveLength(1));
-    expect(getSelectionSnapshot().document).toEqual(document); expect(write).not.toHaveBeenCalled();
+    expect(getSelectionSnapshot().document).toEqual(cleaned); expect(write).not.toHaveBeenCalled();
     const share = vi.fn<(data: ShareData) => Promise<void>>().mockResolvedValue(undefined);
     const writeText = vi.fn<(text: string) => Promise<void>>().mockResolvedValue(undefined);
     Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
@@ -114,19 +120,46 @@ it('filters, sorts and paginates without changing storage and shares missing and
     await waitFor(() => expect(share).toHaveBeenCalledOnce());
     expect(writeText).toHaveBeenCalledExactlyOnceWith(share.mock.calls[0][0].url);
     const url = new URL(share.mock.calls[0][0].url ?? '');
-    expect(await sharing.decodeSelection(url.searchParams.get('entries') ?? '')).toEqual(document);
-    expect(getSelectionSnapshot().document).toEqual(document); expect(write).not.toHaveBeenCalled();
+    expect(await sharing.decodeSelection(url.searchParams.get('entries') ?? '')).toEqual(cleaned);
+    expect(getSelectionSnapshot().document).toEqual(cleaned); expect(write).not.toHaveBeenCalled();
 }, 15000);
-it('removes missing identifiers explicitly and reports a failed removal', async () => {
-    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['ghost'] }));
-    mount(); fireEvent.click(screen.getByRole('button', { name: messages.selection.categories.all }));
-    const remove = await screen.findByRole('button', { name: 'Remove ghost from my selection' });
-    const fail = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('blocked'); });
-    fireEvent.click(remove);
-    expect(await screen.findAllByText(messages.selection.storageUnavailable)).not.toHaveLength(0);
-    expect(getSelectionSnapshot().document.games).toEqual(['ghost']);
-    fail.mockRestore(); fireEvent.click(remove);
-    expect(getSelectionSnapshot().document.games).toEqual([]);
+it('silently cleans personal missing identifiers and preserves valid removal controls', () => {
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['same', 'ghost'], dlcs: ['ghost'] }));
+    const write = vi.spyOn(Storage.prototype, 'setItem');
+    mount();
+    expect(getSelectionSnapshot().document).toEqual({ ...emptySelection(), games: ['same'] });
+    expect(write).toHaveBeenCalledOnce();
+    expect(screen.queryByText(/no longer available/)).not.toBeInTheDocument();
+    expect(screen.queryByText('ghost')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Remove ghost from my selection' })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Remove Alpha from my selection' })).toBeInTheDocument();
+    expect(screen.getByRole('status')).toHaveTextContent('1');
+});
+it.each(['getItem', 'setItem'] as const)('reports cleanup %s failures without repeated writes', method => {
+    const document = { ...emptySelection(), games: ['same', 'ghost'] };
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(document));
+    const failure = vi.spyOn(Storage.prototype, method).mockImplementation(() => { throw new Error('blocked'); });
+    const view = mount();
+    expect(screen.getByText(messages.selection.storageUnavailable)).toBeInTheDocument();
+    expect(screen.queryByText(/no longer available/)).not.toBeInTheDocument();
+    const attempts = failure.mock.calls.length;
+    view.rerender(<NextIntlClientProvider locale="en" messages={messages}><SelectionPage catalogue={catalogue} /></NextIntlClientProvider>);
+    expect(failure).toHaveBeenCalledTimes(attempts);
+    if (method === 'setItem') {
+        expect(failure).toHaveBeenCalledOnce();
+        expect(getSelectionSnapshot().document).toEqual(document);
+    }
+});
+it('does not write when all personal identifiers resolve', () => {
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['same'] }));
+    const write = vi.spyOn(Storage.prototype, 'setItem');
+    mount();
+    expect(write).not.toHaveBeenCalled();
+});
+it('cleans only the missing category when identifiers collide', () => {
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['same'], dlcs: ['same'] }));
+    mount([catalogue[0]]);
+    expect(getSelectionSnapshot().document).toEqual({ ...emptySelection(), games: ['same'] });
 });
 it('keeps the clear dialog open when writing fails', async () => {
     localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['same'] }));
@@ -173,8 +206,10 @@ it('restores personal document authority after leaving a shared selection', asyn
     const view = mount();
     await screen.findByRole('img', { name: 'Alpha' });
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(messages.selection.sharedTitle);
-    fireEvent.click(screen.getByRole('button', { name: messages.selection.categories.all }));
-    expect(await screen.findByText('ghost')).toBeInTheDocument();
+    expect(screen.queryByText('ghost')).not.toBeInTheDocument();
+    expect(screen.queryByText(/no longer available/)).not.toBeInTheDocument();
+    expect(getSelectionSnapshot().document).toEqual(personal);
+    expect(write).not.toHaveBeenCalled();
     expect(screen.queryByRole('button', { name: 'Remove ghost from my selection' })).not.toBeInTheDocument();
 
     navigation.query = '';
@@ -182,9 +217,9 @@ it('restores personal document authority after leaving a shared selection', asyn
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(messages.selection.title);
     expect(screen.queryByRole('img', { name: 'Alpha' })).not.toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Remove Waiting from my selection' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Remove missing-personal from my selection' })).toBeInTheDocument();
-    expect(getSelectionSnapshot().document).toEqual(personal);
-    expect(write).not.toHaveBeenCalled();
+    expect(screen.queryByRole('button', { name: 'Remove missing-personal from my selection' })).not.toBeInTheDocument();
+    expect(getSelectionSnapshot().document).toEqual({ ...emptySelection(), backlog: ['same'] });
+    expect(write).toHaveBeenCalledOnce();
 });
 
 it('synchronizes personal cards with catalogue selection controls', () => {
@@ -196,4 +231,17 @@ it('synchronizes personal cards with catalogue selection controls', () => {
     expect(screen.getByRole('button', { name: 'Add Catalogue Alpha to my selection' })).toHaveAttribute('aria-pressed', 'false');
     fireEvent.click(screen.getByRole('button', { name: 'Add Catalogue Alpha to my selection' }));
     expect(screen.getByRole('button', { name: 'Remove Alpha from my selection' })).toHaveAttribute('aria-pressed', 'true');
+});
+
+it.each([
+    { isLoading: true },
+    { isLoading: false, error: { status: 500 }, data: [] },
+])('does not clean personal storage before successful catalogue loading: %j', state => {
+    const document = { ...emptySelection(), games: ['ghost'] };
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(document));
+    const write = vi.spyOn(Storage.prototype, 'setItem');
+    query.mockReturnValue(state);
+    render(<NextIntlClientProvider locale="en" messages={messages}><SelectionPageLoader /></NextIntlClientProvider>);
+    expect(write).not.toHaveBeenCalled();
+    expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual(document);
 });

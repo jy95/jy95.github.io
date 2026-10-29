@@ -1,6 +1,7 @@
 import { isSelectionDocument } from '@/domain/selection/validation';
 import { emptySelection, mergeSelections, toggleId, removeId } from "@/domain/selection/operations";
-import type { SelectionDocument, SelectionCategory } from "@/domain/selection/types";
+import type { SelectionDocument, SelectionCategory, SelectionIdentifier } from "@/domain/selection/types";
+import { SELECTION_CATEGORIES } from '@/domain/selection/categories';
 import { readSelection, writeSelection, SELECTION_STORAGE_KEY } from './persistence';
 
 export { SELECTION_STORAGE_KEY };
@@ -77,6 +78,7 @@ function mutate(update: (doc: SelectionDocument) => SelectionDocument, reset = f
     if (snapshot.invalid && !reset) return false;
 
     const next = update(snapshot.document);
+    if (next === snapshot.document) return true;
     if (writeSelection(next)) {
         publish({ document: next, storageAvailable: true, invalid: false });
         return true;
@@ -98,3 +100,21 @@ export const addSelection = (addition: SelectionDocument) =>
     isSelectionDocument(addition) && mutate(doc => mergeSelections(doc, addition));
 
 export const clearSelection = () => mutate(emptySelection, true);
+
+/** Removes category/identifier pairs in one write against the latest stored document. */
+export const removeSelections = (items: readonly SelectionIdentifier[]) => {
+    if (items.length === 0) return true;
+    return mutate(doc => {
+        const next = { ...doc };
+        let changed = false;
+        for (const category of SELECTION_CATEGORIES) {
+            const ids = new Set(items.filter(item => item.category === category).map(item => item.selectionId));
+            const remaining = doc[category].filter(id => !ids.has(id));
+            if (remaining.length !== doc[category].length) {
+                next[category] = remaining;
+                changed = true;
+            }
+        }
+        return changed ? next : doc;
+    });
+};
