@@ -4,6 +4,7 @@ import { SelectionActions } from '../actions/SelectionActions';
 import { SelectionGrid } from '../grid/SelectionGrid';
 import { SelectionNotices } from './SelectionNotices';
 import { SelectionDetail } from './SelectionDetail';
+import { useMissingSelectionCleanup } from './useMissingSelectionCleanup';
 import type { SelectionDocument, SelectionEntry } from '@/domain/selection/types';
 
 type SelectionContentProps = {
@@ -30,13 +31,14 @@ export function SelectionContent({
         [catalogue, document]
     );
 
+    useMissingSelectionCleanup(resolved.missing, !shared && !invalid && storageAvailable);
+
     return (
         <>
             <SelectionNotices
                 storageAvailable={storageAvailable}
                 invalid={invalid}
                 count={resolved.entries.length}
-                missing={resolved.missing}
                 shared={shared}
             />
 

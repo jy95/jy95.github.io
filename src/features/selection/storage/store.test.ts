@@ -83,3 +83,44 @@ it('synchronizes supported storage events and ignores unrelated storage', () => 
     window.dispatchEvent(new StorageEvent('storage', { key: null, storageArea: localStorage }));
     expect(listener).not.toHaveBeenCalled();
 });
+
+it('batches missing pairs against latest storage while preserving categories and new entries', () => {
+    store.addSelection({ ...emptySelection(), games: ['ghost'], dlcs: ['ghost'] });
+    localStorage.setItem(store.SELECTION_STORAGE_KEY, JSON.stringify({
+        ...emptySelection(), games: ['ghost', 'new'], dlcs: ['ghost'], backlog: ['missing', 'saved'],
+    }));
+    const write = vi.spyOn(Storage.prototype, 'setItem');
+    expect(store.removeSelections([
+        { category: 'games', selectionId: 'ghost' },
+        { category: 'backlog', selectionId: 'missing' },
+    ])).toBe(true);
+    const expected = { ...emptySelection(), games: ['new'], dlcs: ['ghost'], backlog: ['saved'] };
+    expect(store.getSelectionSnapshot().document).toEqual(expected);
+    expect(JSON.parse(localStorage.getItem(store.SELECTION_STORAGE_KEY)!)).toEqual(expected);
+    expect(write).toHaveBeenCalledOnce();
+});
+
+it('skips writes for empty or already removed missing pairs', () => {
+    store.addSelection({ ...emptySelection(), games: ['saved'] });
+    const write = vi.spyOn(Storage.prototype, 'setItem');
+    expect(store.removeSelections([])).toBe(true);
+    expect(store.removeSelections([{ category: 'games', selectionId: 'gone' }])).toBe(true);
+    expect(write).not.toHaveBeenCalled();
+    expect(store.getSelectionSnapshot().document.games).toEqual(['saved']);
+});
+
+it.each(['getItem', 'setItem'] as const)('preserves stored data when batch cleanup %s fails', method => {
+    const document = { ...emptySelection(), games: ['ghost', 'saved'] };
+    store.addSelection(document);
+    vi.spyOn(Storage.prototype, method).mockImplementation(() => { throw new Error('blocked'); });
+    expect(store.removeSelections([{ category: 'games', selectionId: 'ghost' }])).toBe(false);
+    expect(store.getSelectionSnapshot()).toMatchObject({ document, storageAvailable: false });
+});
+
+it('does not overwrite invalid data during batch cleanup', () => {
+    localStorage.setItem(store.SELECTION_STORAGE_KEY, '{}');
+    const write = vi.spyOn(Storage.prototype, 'setItem');
+    expect(store.removeSelections([{ category: 'games', selectionId: 'ghost' }])).toBe(false);
+    expect(write).not.toHaveBeenCalled();
+    expect(localStorage.getItem(store.SELECTION_STORAGE_KEY)).toBe('{}');
+});
