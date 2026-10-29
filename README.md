@@ -190,7 +190,6 @@ There is a [database](GamesPassionFR.db) for managing video games, their genres,
 | `company` | Foreign key referencing the `companies` table. | Required | `1` |
 | `role` | The company's role for the game: `developer` or `publisher`. | Required | `developer` |
 
-
 This project is tested with BrowserStack
 
 [YoutubeChannel]: https://www.youtube.com/channel/UCG0N7IV-C43AM9psxslejCQ
