@@ -17,14 +17,3 @@ export function toggleId(
     [category]: ids.includes(id) ? ids.filter(value => value !== id) : [...ids, id],
   };
 }
-
-export function removeId(
-  document: SelectionDocument,
-  category: SelectionCategory,
-  id: string
-): SelectionDocument {
-  return {
-    ...document,
-    [category]: document[category].filter(value => value !== id),
-  };
-}

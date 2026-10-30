@@ -124,9 +124,9 @@ it('cleans missing identifiers before filtering, sorting, pagination and sharing
     expect(getSelectionSnapshot().document).toEqual(cleaned); expect(write).not.toHaveBeenCalled();
 }, 15000);
 it('silently cleans personal missing identifiers and preserves valid removal controls', () => {
-    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['same', 'ghost'], dlcs: ['ghost'] }));
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['same', 'ghost'], dlcs: ['same', 'ghost'] }));
     const write = vi.spyOn(Storage.prototype, 'setItem');
-    mount();
+    mount([catalogue[0]]);
     expect(getSelectionSnapshot().document).toEqual({ ...emptySelection(), games: ['same'] });
     expect(write).toHaveBeenCalledOnce();
     expect(screen.queryByText(/no longer available/)).not.toBeInTheDocument();
@@ -155,11 +155,6 @@ it('does not write when all personal identifiers resolve', () => {
     const write = vi.spyOn(Storage.prototype, 'setItem');
     mount();
     expect(write).not.toHaveBeenCalled();
-});
-it('cleans only the missing category when identifiers collide', () => {
-    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['same'], dlcs: ['same'] }));
-    mount([catalogue[0]]);
-    expect(getSelectionSnapshot().document).toEqual({ ...emptySelection(), games: ['same'] });
 });
 it('keeps the clear dialog open when writing fails', async () => {
     localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify({ ...emptySelection(), games: ['same'] }));

@@ -29,19 +29,11 @@ it('distinguishes absent storage from invalid data and requires explicit reset',
         localStorage.setItem(store.SELECTION_STORAGE_KEY, raw);
         expect(store.toggleSelection({ category: 'games', id: 'new' })).toBe(false);
         expect(store.addSelection(emptySelection())).toBe(false);
-        expect(store.removeSelection({ category: 'games', id: 'new' })).toBe(false);
         expect(store.getSelectionSnapshot().invalid).toBe(true);
         expect(localStorage.getItem(store.SELECTION_STORAGE_KEY)).toBe(raw);
     }
     expect(store.clearSelection()).toBe(true);
     expect(store.getSelectionSnapshot().invalid).toBe(false);
-});
-
-it('removes idempotently even if a stale control repeats removal', () => {
-    store.addSelection({ ...emptySelection(), games: ['ghost'], backlog: ['ghost'] });
-    expect(store.removeSelection({ category: 'games', id: 'ghost' })).toBe(true);
-    expect(store.removeSelection({ category: 'games', id: 'ghost' })).toBe(true);
-    expect(store.getSelectionSnapshot().document).toEqual({ ...emptySelection(), backlog: ['ghost'] });
 });
 
 it('keeps snapshot references stable across unchanged reads and mutations', () => {
@@ -51,7 +43,6 @@ it('keeps snapshot references stable across unchanged reads and mutations', () =
     unsubscribe = store.subscribeSelection(listener);
     expect(store.getSelectionSnapshot()).toBe(saved);
     expect(store.addSelection({ ...emptySelection(), games: ['missing'] })).toBe(true);
-    expect(store.removeSelection({ category: 'backlog', id: 'absent' })).toBe(true);
     window.dispatchEvent(new StorageEvent('storage', { key: store.SELECTION_STORAGE_KEY, storageArea: localStorage }));
     expect(store.getSelectionSnapshot()).toBe(saved);
     expect(listener).not.toHaveBeenCalled();

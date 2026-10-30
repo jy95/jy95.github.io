@@ -1,4 +1,4 @@
-import { emptySelection, mergeSelections, removeId, toggleId, hasNewIds, isEmpty } from './operations';
+import { emptySelection, mergeSelections, toggleId, hasNewIds, isEmpty } from './operations';
 import { isSelectionDocument } from './validation';
 
 it('adds through merge, deduplicates per category and leaves inputs unchanged', () => {
@@ -11,13 +11,13 @@ it('adds through merge, deduplicates per category and leaves inputs unchanged', 
     expect(isEmpty(emptySelection())).toBe(true);
 });
 
-it('toggles and removes independently, with idempotent removal and immutable input', () => {
+it('toggles categories independently without mutating input', () => {
     const original = { ...emptySelection(), games: ['same'], backlog: ['same'] };
     const before = structuredClone(original);
     expect(toggleId(original, 'games', 'same')).toEqual({ ...original, games: [] });
     const added = toggleId(original, 'games', 'new');
     expect(added.games).toEqual(['same', 'new']);
-    expect(removeId(removeId(added, 'games', 'new'), 'games', 'new')).toEqual(original);
+    expect(toggleId(added, 'games', 'new')).toEqual(original);
     expect(original).toEqual(before);
 });
 
