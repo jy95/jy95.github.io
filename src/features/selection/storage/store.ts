@@ -1,5 +1,5 @@
 import { isSelectionDocument } from '@/domain/selection/validation';
-import { emptySelection, mergeSelections, toggleId, removeId } from "@/domain/selection/operations";
+import { emptySelection, mergeSelections, toggleId, buildSelection } from "@/domain/selection/operations";
 import type { SelectionDocument, SelectionCategory, SelectionIdentifier } from "@/domain/selection/types";
 import { SELECTION_CATEGORIES } from '@/domain/selection/categories';
 import { readSelection, writeSelection, SELECTION_STORAGE_KEY } from './persistence';
@@ -93,9 +93,6 @@ type CategoryItem = { id: string; category: SelectionCategory };
 export const toggleSelection = ({ id, category }: CategoryItem) =>
     mutate(doc => toggleId(doc, category, id));
 
-export const removeSelection = ({ id, category }: CategoryItem) =>
-    mutate(doc => removeId(doc, category, id));
-
 export const addSelection = (addition: SelectionDocument) =>
     isSelectionDocument(addition) && mutate(doc => mergeSelections(doc, addition));
 
@@ -105,16 +102,10 @@ export const clearSelection = () => mutate(emptySelection, true);
 export const removeSelections = (items: readonly SelectionIdentifier[]) => {
     if (items.length === 0) return true;
     return mutate(doc => {
-        const next = { ...doc };
-        let changed = false;
-        for (const category of SELECTION_CATEGORIES) {
+        const next = buildSelection(category => {
             const ids = new Set(items.filter(item => item.category === category).map(item => item.selectionId));
-            const remaining = doc[category].filter(id => !ids.has(id));
-            if (remaining.length !== doc[category].length) {
-                next[category] = remaining;
-                changed = true;
-            }
-        }
-        return changed ? next : doc;
+            return doc[category].filter(id => !ids.has(id));
+        });
+        return SELECTION_CATEGORIES.some(category => next[category].length !== doc[category].length) ? next : doc;
     });
 };

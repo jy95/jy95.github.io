@@ -1,10 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { resolveSelection } from '@/domain/selection/resolution';
+import { removeSelections } from '@/features/selection/storage/store';
 import { SelectionActions } from '../actions/SelectionActions';
 import { SelectionGrid } from '../grid/SelectionGrid';
 import { SelectionNotices } from './SelectionNotices';
 import { SelectionDetail } from './SelectionDetail';
-import { useMissingSelectionCleanup } from './useMissingSelectionCleanup';
 import type { SelectionDocument, SelectionEntry } from '@/domain/selection/types';
 
 type SelectionContentProps = {
@@ -31,7 +31,16 @@ export function SelectionContent({
         [catalogue, document]
     );
 
-    useMissingSelectionCleanup(resolved.missing, !shared && !invalid && storageAvailable);
+    const missing = resolved.missing;
+    const attempted = useRef<typeof missing | null>(null);
+
+    // This component mounts after hydration and successful catalogue loading.
+    useEffect(() => {
+        if (shared || invalid || !storageAvailable || missing.length === 0 || attempted.current === missing) return;
+        // Avoid retrying a failed write on rerenders or repeated effect setup.
+        attempted.current = missing;
+        removeSelections(missing);
+    }, [missing, shared, invalid, storageAvailable]);
 
     return (
         <>
