@@ -1,7 +1,6 @@
 import { isSelectionDocument } from '@/domain/selection/validation';
-import { emptySelection, mergeSelections, toggleId, buildSelection } from "@/domain/selection/operations";
+import { emptySelection, mergeSelections, toggleId } from "@/domain/selection/operations";
 import type { SelectionDocument, SelectionCategory, SelectionIdentifier } from "@/domain/selection/types";
-import { SELECTION_CATEGORIES } from '@/domain/selection/categories';
 import { readSelection, writeSelection, SELECTION_STORAGE_KEY } from './persistence';
 
 export { SELECTION_STORAGE_KEY };
@@ -102,10 +101,12 @@ export const clearSelection = () => mutate(emptySelection, true);
 export const removeSelections = (items: readonly SelectionIdentifier[]) => {
     if (items.length === 0) return true;
     return mutate(doc => {
-        const next = buildSelection(category => {
-            const ids = new Set(items.filter(item => item.category === category).map(item => item.selectionId));
-            return doc[category].filter(id => !ids.has(id));
-        });
-        return SELECTION_CATEGORIES.some(category => next[category].length !== doc[category].length) ? next : doc;
+        let next = doc;
+        for (const { category, selectionId } of items) {
+            if (!next[category].includes(selectionId)) continue;
+            if (next === doc) next = { ...doc };
+            next[category] = next[category].filter(id => id !== selectionId);
+        }
+        return next;
     });
 };
