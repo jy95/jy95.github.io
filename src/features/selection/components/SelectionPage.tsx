@@ -25,7 +25,6 @@ export default function SelectionPage({ catalogue }: { catalogue: SelectionEntry
                     storageAvailable={selection.storageAvailable}
                     invalid
                     count={0}
-                    missing={[]}
                     shared
                 />
             ) : (

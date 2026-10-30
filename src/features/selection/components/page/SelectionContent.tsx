@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { resolveSelection } from '@/domain/selection/resolution';
+import { removeSelections } from '@/features/selection/storage/store';
 import { SelectionActions } from '../actions/SelectionActions';
 import { SelectionGrid } from '../grid/SelectionGrid';
 import { SelectionNotices } from './SelectionNotices';
@@ -30,20 +31,27 @@ export function SelectionContent({
         [catalogue, document]
     );
 
+    const missing = resolved.missing;
+
+    // This component mounts after hydration and successful catalogue loading.
+    useEffect(() => {
+        if (shared) return;
+        removeSelections(missing);
+    }, [missing, shared]);
+
     return (
         <>
             <SelectionNotices
                 storageAvailable={storageAvailable}
                 invalid={invalid}
                 count={resolved.entries.length}
-                missing={resolved.missing}
                 shared={shared}
             />
 
             <SelectionActions
                 invalid={invalid}
                 shared={shared}
-                document={resolved.document}
+                document={document}
                 personal={personal}
             />
 

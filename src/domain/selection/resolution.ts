@@ -3,7 +3,6 @@ import { SELECTION_CATEGORIES } from "./categories";
 import type { SelectionDocument, SelectionEntry, SelectionIdentifier } from "./types";
 
 type ResolvedSelection = {
-    document: SelectionDocument;
     entries: SelectionEntry[];
     missing: SelectionIdentifier[];
 };
@@ -11,7 +10,7 @@ type ResolvedSelection = {
 /**
  * Resolves a SelectionDocument against the catalogue.
  * 
- * - Preserves the original `SelectionDocument` as the source of truth.
+ * - Leaves the input document unchanged, including missing identifiers.
  * - Map-indexes catalogue entries for O(1) lookups.
  * - Visits categories and IDs in document order, preserving resolved and missing order.
  */
@@ -32,5 +31,5 @@ export function resolveSelection(catalogue: readonly SelectionEntry[], document:
         }
     }
 
-    return { document, entries, missing };
+    return { entries, missing };
 }

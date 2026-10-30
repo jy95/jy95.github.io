@@ -1,6 +1,6 @@
 import { isSelectionDocument } from '@/domain/selection/validation';
-import { emptySelection, mergeSelections, toggleId, removeId } from "@/domain/selection/operations";
-import type { SelectionDocument, SelectionCategory } from "@/domain/selection/types";
+import { emptySelection, mergeSelections, toggleId } from "@/domain/selection/operations";
+import type { SelectionDocument, SelectionCategory, SelectionIdentifier } from "@/domain/selection/types";
 import { readSelection, writeSelection, SELECTION_STORAGE_KEY } from './persistence';
 
 export { SELECTION_STORAGE_KEY };
@@ -28,11 +28,15 @@ function isUnchanged(next: SnapshotState): boolean {
     return snapshot.hydrated
         && snapshot.storageAvailable === next.storageAvailable
         && snapshot.invalid === next.invalid
-        && JSON.stringify(snapshot.document) === JSON.stringify(next.document);
+        && snapshot.document === next.document;
 }
 
 /** Keeps the snapshot reference stable unless something really changed. */
 function publish(next: SnapshotState) {
+    // Metadata changes must not replace an otherwise unchanged document.
+    if (JSON.stringify(snapshot.document) === JSON.stringify(next.document)) {
+        next = { ...next, document: snapshot.document };
+    }
     if (isUnchanged(next)) return;
 
     snapshot = { ...next, hydrated: true };
@@ -91,10 +95,18 @@ type CategoryItem = { id: string; category: SelectionCategory };
 export const toggleSelection = ({ id, category }: CategoryItem) =>
     mutate(doc => toggleId(doc, category, id));
 
-export const removeSelection = ({ id, category }: CategoryItem) =>
-    mutate(doc => removeId(doc, category, id));
-
 export const addSelection = (addition: SelectionDocument) =>
     isSelectionDocument(addition) && mutate(doc => mergeSelections(doc, addition));
 
 export const clearSelection = () => mutate(emptySelection, true);
+
+/** Removes category/identifier pairs in one write against the latest stored document. */
+export const removeSelections = (items: readonly SelectionIdentifier[]) => {
+    return mutate(doc => {
+        const next = { ...doc };
+        for (const { category, selectionId } of items) {
+            next[category] = next[category].filter(id => id !== selectionId);
+        }
+        return next;
+    });
+};
