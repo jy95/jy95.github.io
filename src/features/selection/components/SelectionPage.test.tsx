@@ -1,9 +1,11 @@
+import { StrictMode } from 'react';
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { NextIntlClientProvider } from 'next-intl';
 import messages from '../../../../messages/en.json';
 import SelectionPage from './SelectionPage';
 import SelectionPageLoader from './SelectionPageLoader';
 import SelectionButton from './SelectionButton';
+import { SelectionContent } from './page/SelectionContent';
 import * as sharing from '../sharing/sharing';
 import { emptySelection } from '@/domain/selection/operations';
 import { SELECTION_STORAGE_KEY, getSelectionSnapshot } from '../storage/store';
@@ -239,4 +241,19 @@ it.each([
     render(<NextIntlClientProvider locale="en" messages={messages}><SelectionPageLoader /></NextIntlClientProvider>);
     expect(write).not.toHaveBeenCalled();
     expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual(document);
+});
+
+it('does not retry failed cleanup during repeated effect setup', () => {
+    const document = { ...emptySelection(), games: ['ghost'] };
+    localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(document));
+    const write = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('blocked'); });
+    render(
+        <StrictMode>
+            <NextIntlClientProvider locale="en" messages={messages}>
+                <SelectionContent catalogue={catalogue} document={document} personal={document} shared={false} storageAvailable invalid={false} />
+            </NextIntlClientProvider>
+        </StrictMode>
+    );
+    expect(write).toHaveBeenCalledOnce();
+    expect(getSelectionSnapshot().document).toEqual(document);
 });

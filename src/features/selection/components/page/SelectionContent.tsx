@@ -54,7 +54,7 @@ export function SelectionContent({
             <SelectionActions
                 invalid={invalid}
                 shared={shared}
-                document={resolved.document}
+                document={document}
                 personal={personal}
             />
 

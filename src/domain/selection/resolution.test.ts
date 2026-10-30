@@ -19,13 +19,14 @@ describe('resolveSelection', () => {
     planning: [],
   };
 
-  it('preserves missing items during catalog resolution', () => {
+  it('reports missing items without mutating the document', () => {
+    const before = structuredClone(documentWithMissing);
     const resolved = resolveSelection(catalogue, documentWithMissing);
 
     expect(resolved.entries).toHaveLength(1);
     expect(resolved.entries[0].selectionId).toBe('game-1');
     expect(resolved.missing).toEqual([{ category: 'games', selectionId: 'ghost-game' }]);
-    expect(resolved.document.games).toContain('ghost-game');
+    expect(documentWithMissing).toEqual(before);
   });
 });
  it('resolves the same identifier independently in different categories', () => {
@@ -36,17 +37,16 @@ describe('resolveSelection', () => {
     ];
     const document = { games: [], dlcs: [], backlog: ['same'], planning: ['same'] };
     const before = structuredClone(document);
-    expect(resolveSelection(entries, document)).toEqual({ document, entries, missing: [] });
+    expect(resolveSelection(entries, document)).toEqual({ entries, missing: [] });
     expect(document).toEqual(before);
  });
 
-it('preserves document identity and category/identifier order', () => {
+it('preserves category/identifier order', () => {
     const game = { id: 'same', title: 'Same', imagePath: '/cover.webp' };
     const games: SelectionEntry = { source: 'published', category: 'games', selectionId: 'same', game: { ...game, url: 'same', url_type: 'VIDEO' } };
     const backlog: SelectionEntry = { source: 'backlog', category: 'backlog', selectionId: 'same', game };
     const document: SelectionDocument = { games: ['missing-2', 'same', 'missing-1'], dlcs: ['dlc'], backlog: ['same', 'absent'], planning: ['planned'] };
     const resolved = resolveSelection([backlog, games], document);
-    expect(resolved.document).toBe(document);
     expect(resolved.entries).toEqual([games, backlog]);
     expect(resolved.missing).toEqual([
         { category: 'games', selectionId: 'missing-2' },

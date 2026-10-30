@@ -83,12 +83,16 @@ it('batches missing pairs against latest storage while preserving categories and
     const write = vi.spyOn(Storage.prototype, 'setItem');
     expect(store.removeSelections([
         { category: 'games', selectionId: 'ghost' },
+        { category: 'games', selectionId: 'ghost' },
         { category: 'backlog', selectionId: 'missing' },
     ])).toBe(true);
     const expected = { ...emptySelection(), games: ['new'], dlcs: ['ghost'], backlog: ['saved'] };
     expect(store.getSelectionSnapshot().document).toEqual(expected);
     expect(JSON.parse(localStorage.getItem(store.SELECTION_STORAGE_KEY)!)).toEqual(expected);
     expect(write).toHaveBeenCalledOnce();
+    expect(store.removeSelections([{ category: 'games', selectionId: 'ghost' }, { category: 'backlog', selectionId: 'missing' }])).toBe(true);
+    expect(write).toHaveBeenCalledOnce();
+    expect(store.getSelectionSnapshot().document).toEqual(expected);
 });
 
 it('skips writes for empty or already removed missing pairs', () => {
