@@ -77,7 +77,6 @@ function mutate(update: (doc: SelectionDocument) => SelectionDocument, reset = f
     if (snapshot.invalid && !reset) return false;
 
     const next = update(snapshot.document);
-    if (next === snapshot.document) return true;
     if (writeSelection(next)) {
         publish({ document: next, storageAvailable: true, invalid: false });
         return true;
@@ -99,12 +98,9 @@ export const clearSelection = () => mutate(emptySelection, true);
 
 /** Removes category/identifier pairs in one write against the latest stored document. */
 export const removeSelections = (items: readonly SelectionIdentifier[]) => {
-    if (items.length === 0) return true;
     return mutate(doc => {
-        let next = doc;
+        const next = { ...doc };
         for (const { category, selectionId } of items) {
-            if (!next[category].includes(selectionId)) continue;
-            if (next === doc) next = { ...doc };
             next[category] = next[category].filter(id => id !== selectionId);
         }
         return next;

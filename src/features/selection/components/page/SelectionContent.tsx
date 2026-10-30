@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { resolveSelection } from '@/domain/selection/resolution';
 import { removeSelections } from '@/features/selection/storage/store';
 import { SelectionActions } from '../actions/SelectionActions';
@@ -32,15 +32,12 @@ export function SelectionContent({
     );
 
     const missing = resolved.missing;
-    const attempted = useRef<typeof missing | null>(null);
 
     // This component mounts after hydration and successful catalogue loading.
     useEffect(() => {
-        if (shared || invalid || !storageAvailable || missing.length === 0 || attempted.current === missing) return;
-        // Avoid retrying a failed write on rerenders or repeated effect setup.
-        attempted.current = missing;
+        if (shared) return;
         removeSelections(missing);
-    }, [missing, shared, invalid, storageAvailable]);
+    }, [missing, shared]);
 
     return (
         <>
