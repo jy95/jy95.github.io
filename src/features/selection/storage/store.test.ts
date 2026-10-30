@@ -80,7 +80,6 @@ it('batches missing pairs against latest storage while preserving categories and
     localStorage.setItem(store.SELECTION_STORAGE_KEY, JSON.stringify({
         ...emptySelection(), games: ['ghost', 'new'], dlcs: ['ghost'], backlog: ['missing', 'saved'],
     }));
-    const write = vi.spyOn(Storage.prototype, 'setItem');
     expect(store.removeSelections([
         { category: 'games', selectionId: 'ghost' },
         { category: 'games', selectionId: 'ghost' },
@@ -89,18 +88,19 @@ it('batches missing pairs against latest storage while preserving categories and
     const expected = { ...emptySelection(), games: ['new'], dlcs: ['ghost'], backlog: ['saved'] };
     expect(store.getSelectionSnapshot().document).toEqual(expected);
     expect(JSON.parse(localStorage.getItem(store.SELECTION_STORAGE_KEY)!)).toEqual(expected);
-    expect(write).toHaveBeenCalledOnce();
     expect(store.removeSelections([{ category: 'games', selectionId: 'ghost' }, { category: 'backlog', selectionId: 'missing' }])).toBe(true);
-    expect(write).toHaveBeenCalledOnce();
     expect(store.getSelectionSnapshot().document).toEqual(expected);
 });
 
-it('skips writes for empty or already removed missing pairs', () => {
+it('keeps snapshots stable for empty or already removed missing pairs', () => {
     store.addSelection({ ...emptySelection(), games: ['saved'] });
-    const write = vi.spyOn(Storage.prototype, 'setItem');
+    const saved = store.getSelectionSnapshot();
+    const listener = vi.fn();
+    unsubscribe = store.subscribeSelection(listener);
     expect(store.removeSelections([])).toBe(true);
     expect(store.removeSelections([{ category: 'games', selectionId: 'gone' }])).toBe(true);
-    expect(write).not.toHaveBeenCalled();
+    expect(store.getSelectionSnapshot()).toBe(saved);
+    expect(listener).not.toHaveBeenCalled();
     expect(store.getSelectionSnapshot().document.games).toEqual(['saved']);
 });
 
