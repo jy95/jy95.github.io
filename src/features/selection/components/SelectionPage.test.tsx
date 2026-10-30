@@ -137,13 +137,18 @@ it.each(['getItem', 'setItem'] as const)('reports cleanup %s failures without an
     const document = { ...emptySelection(), games: ['same', 'ghost'] };
     localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(document));
     const failure = vi.spyOn(Storage.prototype, method).mockImplementation(() => { throw new Error('blocked'); });
-    const view = mount();
+    const content = <StrictMode><NextIntlClientProvider locale="en" messages={messages}><SelectionPage catalogue={catalogue} /></NextIntlClientProvider></StrictMode>;
+    const view = render(content);
     expect(screen.getByText(messages.selection.storageUnavailable)).toBeInTheDocument();
     expect(screen.queryByText(/no longer available/)).not.toBeInTheDocument();
-    view.rerender(<NextIntlClientProvider locale="en" messages={messages}><SelectionPage catalogue={catalogue} /></NextIntlClientProvider>);
+    view.rerender(<StrictMode><NextIntlClientProvider locale="en" messages={messages}><SelectionPage catalogue={catalogue} /></NextIntlClientProvider></StrictMode>);
+    expect(failure).toHaveBeenCalled();
     expect(failure.mock.calls.length).toBeLessThan(10);
+    expect(screen.getByText(messages.selection.storageUnavailable)).toBeInTheDocument();
     if (method === 'setItem') {
         expect(getSelectionSnapshot().document).toEqual(document);
+        expect(JSON.parse(localStorage.getItem(SELECTION_STORAGE_KEY)!)).toEqual(document);
+        expect(screen.getByRole('button', { name: 'Remove Alpha from my selection' })).toBeInTheDocument();
     }
 });
 it('keeps the clear dialog open when writing fails', async () => {

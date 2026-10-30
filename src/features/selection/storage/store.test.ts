@@ -119,3 +119,52 @@ it('does not overwrite invalid data during batch cleanup', () => {
     expect(write).not.toHaveBeenCalled();
     expect(localStorage.getItem(store.SELECTION_STORAGE_KEY)).toBe('{}');
 });
+
+it('preserves document identity across successful reads and repeated failed writes', () => {
+    const document = { ...emptySelection(), games: ['ghost', 'saved'] };
+    store.addSelection(document);
+    const saved = store.getSelectionSnapshot().document;
+    const listener = vi.fn();
+    unsubscribe = store.subscribeSelection(listener);
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('blocked'); });
+
+    for (let attempt = 0; attempt < 3; attempt++) {
+        expect(store.removeSelections([{ category: 'games', selectionId: 'ghost' }])).toBe(false);
+        expect(store.getSelectionSnapshot().document).toBe(saved);
+        expect(store.getSelectionSnapshot().storageAvailable).toBe(false);
+    }
+    expect(listener).toHaveBeenCalledTimes(5);
+    expect(JSON.parse(localStorage.getItem(store.SELECTION_STORAGE_KEY)!)).toEqual(document);
+});
+
+it('publishes new document references for changed storage and successful mutations', () => {
+    store.addSelection({ ...emptySelection(), games: ['saved'] });
+    const saved = store.getSelectionSnapshot().document;
+    const listener = vi.fn();
+    unsubscribe = store.subscribeSelection(listener);
+    const updated = { ...emptySelection(), games: ['saved', 'new'] };
+    localStorage.setItem(store.SELECTION_STORAGE_KEY, JSON.stringify(updated));
+    window.dispatchEvent(new StorageEvent('storage', { key: store.SELECTION_STORAGE_KEY, storageArea: localStorage }));
+    const loaded = store.getSelectionSnapshot().document;
+    expect(loaded).toEqual(updated);
+    expect(loaded).not.toBe(saved);
+    expect(listener).toHaveBeenCalledTimes(1);
+
+    expect(store.toggleSelection({ category: 'games', id: 'new' })).toBe(true);
+    expect(store.getSelectionSnapshot().document).toEqual(saved);
+    expect(store.getSelectionSnapshot().document).not.toBe(loaded);
+    expect(listener).toHaveBeenCalledTimes(2);
+});
+
+it('preserves empty document identity when invalid metadata changes', () => {
+    unsubscribe = store.subscribeSelection(vi.fn());
+    const document = store.getSelectionSnapshot().document;
+    localStorage.setItem(store.SELECTION_STORAGE_KEY, '{}');
+    window.dispatchEvent(new StorageEvent('storage', { key: store.SELECTION_STORAGE_KEY, storageArea: localStorage }));
+    expect(store.getSelectionSnapshot().invalid).toBe(true);
+    expect(store.getSelectionSnapshot().document).toBe(document);
+    localStorage.removeItem(store.SELECTION_STORAGE_KEY);
+    window.dispatchEvent(new StorageEvent('storage', { key: store.SELECTION_STORAGE_KEY, storageArea: localStorage }));
+    expect(store.getSelectionSnapshot().invalid).toBe(false);
+    expect(store.getSelectionSnapshot().document).toBe(document);
+});
