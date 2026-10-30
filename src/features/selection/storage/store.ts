@@ -28,11 +28,15 @@ function isUnchanged(next: SnapshotState): boolean {
     return snapshot.hydrated
         && snapshot.storageAvailable === next.storageAvailable
         && snapshot.invalid === next.invalid
-        && JSON.stringify(snapshot.document) === JSON.stringify(next.document);
+        && snapshot.document === next.document;
 }
 
 /** Keeps the snapshot reference stable unless something really changed. */
 function publish(next: SnapshotState) {
+    // Metadata changes must not replace an otherwise unchanged document.
+    if (JSON.stringify(snapshot.document) === JSON.stringify(next.document)) {
+        next = { ...next, document: snapshot.document };
+    }
     if (isUnchanged(next)) return;
 
     snapshot = { ...next, hydrated: true };
