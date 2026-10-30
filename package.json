@@ -47,7 +47,7 @@
     "youtube-video-element": "^1.9.1"
   },
   "devDependencies": {
-    "@inquirer/input": "^5.1.8",
+    "@inquirer/input": "^5.1.9",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@types/better-sqlite3": "^9.6.0",
