@@ -1342,6 +1342,15 @@
 			"imagePath": "/backlogcovers/174/cover.webp"
 		},
 		{
+			"id": "211",
+			"title": "Primal",
+			"platform": 5,
+			"hltb_main": "15:35:26",
+			"hltb_extra": "19:24:08",
+			"hltb_completionist": "23:21:05",
+			"imagePath": "/backlogcovers/211/cover.webp"
+		},
+		{
 			"id": "119",
 			"title": "Raw Danger!",
 			"platform": 5,
@@ -1694,15 +1703,6 @@
 			"hltb_extra": "06:06:23",
 			"hltb_completionist": "07:53:38",
 			"imagePath": "/backlogcovers/209/cover.webp"
-		},
-		{
-			"id": "211",
-			"title": "Primal",
-			"platform": 5,
-			"hltb_main": "15:35:26",
-			"hltb_extra": "19:24:08",
-			"hltb_completionist": "23:21:05",
-			"imagePath": "/backlogcovers/211/cover.webp"
 		},
 		{
 			"id": "215",
