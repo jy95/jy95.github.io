@@ -1586,6 +1586,15 @@
 			"imagePath": "/backlogcovers/194/cover.webp"
 		},
 		{
+			"id": "209",
+			"title": "Made Man: Confessions of the Family Blood",
+			"platform": 5,
+			"hltb_main": "05:13:49",
+			"hltb_extra": "06:06:23",
+			"hltb_completionist": "07:53:38",
+			"imagePath": "/backlogcovers/209/cover.webp"
+		},
+		{
 			"id": "173",
 			"title": "Monster Madness : Grave Danger",
 			"platform": 6,
@@ -1694,15 +1703,6 @@
 			"hltb_extra": "19:11:54",
 			"hltb_completionist": "29:00:33",
 			"imagePath": "/backlogcovers/206/cover.webp"
-		},
-		{
-			"id": "209",
-			"title": "Made Man: Confessions of the Family Blood",
-			"platform": 5,
-			"hltb_main": "05:13:49",
-			"hltb_extra": "06:06:23",
-			"hltb_completionist": "07:53:38",
-			"imagePath": "/backlogcovers/209/cover.webp"
 		},
 		{
 			"id": "215",
