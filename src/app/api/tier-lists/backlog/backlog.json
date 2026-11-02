@@ -1544,6 +1544,13 @@
 			"imagePath": "/backlogcovers/191/cover.webp"
 		},
 		{
+			"id": "208",
+			"title": "Kaan: Barbarian's Blade",
+			"platform": 5,
+			"hltb_completionist": "06:34:00",
+			"imagePath": "/backlogcovers/208/cover.webp"
+		},
+		{
 			"id": "148",
 			"title": "Kung Fu Rider",
 			"platform": 6,
@@ -1660,13 +1667,6 @@
 			"hltb_extra": "14:30:11",
 			"hltb_completionist": "16:01:07",
 			"imagePath": "/backlogcovers/213/cover.webp"
-		},
-		{
-			"id": "208",
-			"title": "Kaan: Barbarian's Blade",
-			"platform": 5,
-			"hltb_completionist": "06:34:00",
-			"imagePath": "/backlogcovers/208/cover.webp"
 		},
 		{
 			"id": "206",
