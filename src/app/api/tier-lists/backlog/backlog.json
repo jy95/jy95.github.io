@@ -383,6 +383,15 @@
 	],
 	"tier_good": [
 		{
+			"id": "214",
+			"title": "Akimbot",
+			"platform": 1,
+			"hltb_main": "09:09:59",
+			"hltb_extra": "09:46:36",
+			"hltb_completionist": "11:13:42",
+			"imagePath": "/backlogcovers/214/cover.webp"
+		},
+		{
 			"id": "149",
 			"title": "Alien Rage",
 			"platform": 6,
@@ -1626,15 +1635,6 @@
 	],
 	"tier_bad": [],
 	"tier_not_evaluated": [
-		{
-			"id": "214",
-			"title": "Akimbot",
-			"platform": 1,
-			"hltb_main": "09:09:59",
-			"hltb_extra": "09:46:36",
-			"hltb_completionist": "11:13:42",
-			"imagePath": "/backlogcovers/214/cover.webp"
-		},
 		{
 			"id": "210",
 			"title": "Brothers in Arms: Hell's Highway",
