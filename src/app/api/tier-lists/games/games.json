@@ -588,6 +588,17 @@
 			"imagePath": "/covers/PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz/cover.webp"
 		},
 		{
+			"playlistId": "PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
+			"title": "Binary Domain",
+			"releaseDate": "2024-02-12",
+			"duration": "07:21:57",
+			"platform": 6,
+			"id": "PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
+			"url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
+			"url_type": "PLAYLIST",
+			"imagePath": "/covers/PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O/cover.webp"
+		},
+		{
 			"playlistId": "PLRfhDHeBTBJ4l1G59ZVCUuTuZ-btLpPnm",
 			"title": "Bully : Scholarship Edition",
 			"releaseDate": "2008-10-31",

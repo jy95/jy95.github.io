@@ -14,6 +14,14 @@
     },
     "items": [
         {
+            "id": "yt:PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
+            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
+            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
+            "title": "Binary Domain",
+            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O/cover.webp",
+            "date_modified": "2026-11-02T00:00:00.000Z"
+        },
+        {
             "id": "yt:PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
             "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
             "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP",
@@ -124,14 +132,6 @@
             "title": "Asura's Wrath",
             "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ/cover.webp",
             "date_modified": "2025-12-15T00:00:00.000Z"
-        },
-        {
-            "id": "yt:PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
-            "content_html": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
-            "url": "https://www.youtube.com/playlist?list=PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL",
-            "title": "Sly Cooper : Voleurs à travers le Temps",
-            "image": "https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL/cover.webp",
-            "date_modified": "2025-11-19T00:00:00.000Z"
         }
     ]
 }

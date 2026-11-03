@@ -1469,6 +1469,53 @@
 		"publisherItems": []
 	},
 	{
+		"id": 154,
+		"name": "Sega",
+		"developerItems": [],
+		"publisherItems": [
+			{
+				"id": 183,
+				"title": "Vanquish",
+				"playlistId": "PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
+				"duration": "06:26:37",
+				"platform": 6,
+				"tierCategory": "tier_excellent"
+			},
+			{
+				"id": 34,
+				"title": "Sonic Heroes",
+				"playlistId": "PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx",
+				"duration": "02:55:04",
+				"platform": 5,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 118,
+				"title": "Sonic Adventure DX: Director's Cut",
+				"playlistId": "PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
+				"duration": "06:25:57",
+				"platform": 1,
+				"tierCategory": "tier_average"
+			},
+			{
+				"id": 121,
+				"title": "Sonic Adventure 2",
+				"videoId": "a0mr0A8VM9A",
+				"duration": "03:50:39",
+				"platform": 1,
+				"tierCategory": "tier_good"
+			},
+			{
+				"id": 211,
+				"title": "Binary Domain",
+				"playlistId": "PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
+				"duration": "07:21:57",
+				"platform": 6,
+				"tierCategory": "tier_good"
+			}
+		]
+	},
+	{
 		"id": 44,
 		"name": "Ubisoft Montpellier",
 		"developerItems": [
@@ -1784,45 +1831,6 @@
 				"title": "Guns Gore & Cannoli",
 				"playlistId": "PLRfhDHeBTBJ6oiHK7lfTbOQlMWVHecx2I",
 				"duration": "02:10:05",
-				"platform": 1,
-				"tierCategory": "tier_good"
-			}
-		]
-	},
-	{
-		"id": 154,
-		"name": "Sega",
-		"developerItems": [],
-		"publisherItems": [
-			{
-				"id": 183,
-				"title": "Vanquish",
-				"playlistId": "PLRfhDHeBTBJ7gJk4SVq-JG3rNnnHuNnv3",
-				"duration": "06:26:37",
-				"platform": 6,
-				"tierCategory": "tier_excellent"
-			},
-			{
-				"id": 34,
-				"title": "Sonic Heroes",
-				"playlistId": "PLRfhDHeBTBJ5bAuo9zjPUGnXfzu9Py5Nx",
-				"duration": "02:55:04",
-				"platform": 5,
-				"tierCategory": "tier_good"
-			},
-			{
-				"id": 118,
-				"title": "Sonic Adventure DX: Director's Cut",
-				"playlistId": "PLRfhDHeBTBJ5YBw47XwARehnyP6bhSpuJ",
-				"duration": "06:25:57",
-				"platform": 1,
-				"tierCategory": "tier_average"
-			},
-			{
-				"id": 121,
-				"title": "Sonic Adventure 2",
-				"videoId": "a0mr0A8VM9A",
-				"duration": "03:50:39",
 				"platform": 1,
 				"tierCategory": "tier_good"
 			}
@@ -3943,6 +3951,21 @@
 				"title": "The Warriors",
 				"playlistId": "PLRfhDHeBTBJ4TZAon0Ty7Z4wLnRtb4D3t",
 				"duration": "06:11:20",
+				"platform": 6,
+				"tierCategory": "tier_good"
+			}
+		],
+		"publisherItems": []
+	},
+	{
+		"id": 445,
+		"name": "Ryū ga Gotoku Studio",
+		"developerItems": [
+			{
+				"id": 211,
+				"title": "Binary Domain",
+				"playlistId": "PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O",
+				"duration": "07:21:57",
 				"platform": 6,
 				"tierCategory": "tier_good"
 			}
