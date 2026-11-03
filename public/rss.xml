@@ -4,7 +4,7 @@
         <title>GamesPassionFR - New Games</title>
         <link>https://www.youtube.com/@GPFR1</link>
         <description>Feed for new games featured on the GamesPassionFR YouTube channel</description>
-        <lastBuildDate>Fri, 16 Oct 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 02 Nov 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -13,6 +13,14 @@
             <url>https://yt3.ggpht.com/GucDvaNg4zIpDmSQPj2BkvgrMdHQxrelheCbwmK00G0k1IfHJuWJt5OVa6656uZ9G-G1BFmN=s176-c-k-c0x00ffffff-no-rj</url>
             <link>https://www.youtube.com/@GPFR1</link>
         </image>
+        <item>
+            <title><![CDATA[Binary Domain]]></title>
+            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O</link>
+            <guid isPermaLink="false">yt:PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O</guid>
+            <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O]]></content:encoded>
+            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O/cover.webp" length="0" type="image/webp"/>
+        </item>
         <item>
             <title><![CDATA[Ratatouille]]></title>
             <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ61m6JTpZhGNrrJqw06TcvP</link>
@@ -124,14 +132,6 @@
             <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ]]></content:encoded>
             <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ4VxR6N3cG5Jaasb3ovntPQ/cover.webp" length="0" type="image/webp"/>
-        </item>
-        <item>
-            <title><![CDATA[Sly Cooper : Voleurs à travers le Temps]]></title>
-            <link>https://www.youtube.com/playlist?list=PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL</link>
-            <guid isPermaLink="false">yt:PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL</guid>
-            <pubDate>Wed, 19 Nov 2025 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[https://www.youtube.com/playlist?list=PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL]]></content:encoded>
-            <enclosure url="https://raw.githubusercontent.com/jy95/jy95.github.io/refs/heads/master/public/covers/PLRfhDHeBTBJ55wAzjDq3URVbIluuz7NpL/cover.webp" length="0" type="image/webp"/>
         </item>
         <channelFeed>
             <link>https://www.youtube.com/feeds/videos.xml?channel_id=UCG0N7IV-C43AM9psxslejCQ</link>

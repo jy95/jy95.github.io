@@ -42,8 +42,8 @@ GamesPassionFR is a bilingual French and English catalog for the GamesPassionFR 
 
 ## Current catalog
 
-- Published games: 192
-- Available walkthrough duration: 1017 hours 16 minutes 40 seconds
+- Published games: 193
+- Available walkthrough duration: 1024 hours 38 minutes 37 seconds
 - Total catalog duration: 1122 hours 31 minutes 27 seconds
 - Backlog candidates: 191
 - Planned items: 25
@@ -73,6 +73,7 @@ The complete list below is alphabetical.
 - [Batman: Arkham Origins](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ56EHMyvxX6iBKldqvxJHqz)
 - [Batman: Rise of Sin Tzu](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4BQrJ2mIgTHLpgPVR2XsRb)
 - [Beyond Good & Evil](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7GRN3EnqBEvfki5uAKiw5Z)
+- [Binary Domain](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7Dzm8ffSyRwapDPvqGS2-O)
 - [Bionicle](https://www.youtube.com/watch?v=rGnInmyP2s4)
 - [Bully : Scholarship Edition](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4l1G59ZVCUuTuZ-btLpPnm)
 - [Chicken Invaders 5 - Cluck of the dark side](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ5x3Al4O71diHmivHNIRn2B)
