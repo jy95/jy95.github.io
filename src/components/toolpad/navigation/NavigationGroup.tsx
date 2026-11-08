@@ -1,7 +1,7 @@
 "use client";
 
 // React / Next.js / third-party libraries
-import { useId, useState } from "react";
+import { useId } from "react";
 import { useTranslations } from "next-intl";
 
 import Divider from "@mui/material/Divider";
@@ -9,14 +9,14 @@ import ListSubheader from "@mui/material/ListSubheader";
 import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
 
-// Project utilities and shared modules (@/)
-import { usePathname } from "@/i18n/routing";
-
 // Navigation feature
-import { leafPaths, navigationKey, resolveNavigationPath, selectedNavigationPath } from "./navigationPaths";
+import { navigationKey } from "./navigationPaths";
 import NavigationItem from "./NavigationItem";
-import { useAppContext } from "../provider/useAppContext";
-import type { NavigationItem as Item } from "../types";
+import { useIsMini } from "./useIsMini";
+import { useNavigationGroupState } from "./useNavigationGroupState";
+
+import type { ElementType, ReactNode } from "react";
+import type { NavigationItem as Item, NavigationSection } from "../types";
 
 interface Props {
   item: Item;
@@ -25,72 +25,114 @@ interface Props {
   mini?: boolean;
 }
 
-export default function NavigationGroup({ item, parentPath = "", selectedPath, mini }: Props) {
-  const pathname = usePathname();
-  const { drawerOpen = true, navigation } = useAppContext();
-  // Titles are resolved here, at render time, so `MenuEntries.tsx` stays a static tree.
+type GroupState = ReturnType<typeof useNavigationGroupState>;
+
+function groupIds(instanceId: string, item: Item, parentPath: string) {
+  return {
+    childrenId: `${instanceId}-${navigationKey(item, parentPath)}-children`,
+    badgeDescriptionId: `${instanceId}-count`,
+  };
+}
+
+type GroupIds = ReturnType<typeof groupIds>;
+
+function groupBadgeProps(Badge: ElementType | undefined, descriptionId: string) {
+  return Badge ? { badge: <Badge descriptionId={descriptionId} />, badgeDescriptionId: descriptionId } : {};
+}
+
+function groupLinkProps(state: GroupState, childrenId: string) {
+  return {
+    href: state.hasChildren ? undefined : state.itemPath,
+    controlsId: state.hasChildren ? childrenId : undefined,
+  };
+}
+
+/** Section headers are plain labels (a divider when collapsed). */
+function SectionGroup({ item, mini }: { item: NavigationSection; mini?: boolean }) {
   const t = useTranslations("dashboard.menuEntries");
+  const isMini = useIsMini(mini);
 
-  const isMini = mini ?? !drawerOpen;
-  const instanceId = useId();
-  const childrenId = `${instanceId}-${navigationKey(item, parentPath)}-children`;
-  const badgeDescriptionId = `${instanceId}-count`;
-  const itemPath = resolveNavigationPath(item, parentPath);
-  const children = item.children ?? [];
-  const hasChildren = children.length > 0;
+  return isMini
+    ? <Divider component="li" sx={{ my: 1 }} />
+    : <ListSubheader disableSticky>{t(item.titleKey)}</ListSubheader>;
+}
 
-  const activePath = selectedPath === undefined
-    ? selectedNavigationPath(navigation ?? [item], pathname, navigation ? '' : parentPath)
-    : selectedPath;
-  const isChildActive = hasChildren && leafPaths(children, itemPath).includes(activePath ?? '');
-  const [open, setOpen] = useState(isChildActive);
-  const [previousActivePath, setPreviousActivePath] = useState(activePath);
-  if (previousActivePath !== activePath) {
-    setPreviousActivePath(activePath);
-    if (isChildActive) setOpen(true);
-  }
-  const isToggle = hasChildren && !isMini;
-  const isSelected = hasChildren ? isChildActive : activePath === itemPath;
-  const Badge = item.badge;
+type ChildListProps = {
+  id: string;
+  items: Item[];
+  isMini: boolean;
+  activePath: string | null | undefined;
+  parentPath: string;
+};
 
-  if (item.kind === 'section') {
-    return isMini ? <Divider component="li" sx={{ my: 1 }} /> :
-      <ListSubheader disableSticky>{t(item.titleKey)}</ListSubheader>;
-  }
-
-  const childList = (
-    <List id={childrenId} sx={{ p: 0, mb: 0.5, pl: isMini ? 0 : 2,
+function ChildList({ id, items, isMini, activePath, parentPath }: ChildListProps) {
+  return (
+    <List id={id} sx={{ p: 0, mb: 0.5, pl: isMini ? 0 : 2,
       width: "100%", maxWidth: "100%", boxSizing: "border-box" }}>
-      {children.map(child => (
-        <NavigationGroup key={navigationKey(child, itemPath)} mini={false} selectedPath={activePath ?? null}
-          item={child} parentPath={itemPath} />
+      {items.map(child => (
+        <NavigationGroup key={navigationKey(child, parentPath)} mini={false} selectedPath={activePath ?? null}
+          item={child} parentPath={parentPath} />
       ))}
     </List>
+  );
+}
+
+type GroupEntryProps = {
+  item: Item;
+  isMini: boolean;
+  ids: GroupIds;
+  state: GroupState;
+  isToggle: boolean;
+  childList: ReactNode;
+};
+
+/** The row itself; titles are resolved here so `MenuEntries.tsx` stays a static tree. */
+function GroupEntry({ item, isMini, ids, state, isToggle, childList }: GroupEntryProps) {
+  const t = useTranslations("dashboard.menuEntries");
+
+  return (
+    <NavigationItem
+      title={t(item.titleKey)}
+      icon={item.icon}
+      {...groupBadgeProps(item.badge, ids.badgeDescriptionId)}
+      hint={item.hintKey ? t(item.hintKey) : undefined}
+      {...groupLinkProps(state, ids.childrenId)}
+      selected={state.isSelected}
+      onClick={isToggle ? state.toggle : undefined}
+      expanded={state.open}
+      hasChildren={state.hasChildren}
+      miniPopoverContent={childList}
+      mini={isMini}
+    />
+  );
+}
+
+function DestinationGroup({ item, parentPath = "", selectedPath, mini }: Props) {
+  const isMini = useIsMini(mini);
+  const instanceId = useId();
+  const state = useNavigationGroupState(item, parentPath, selectedPath);
+  const ids = groupIds(instanceId, item, parentPath);
+  const isToggle = state.hasChildren && !isMini;
+  const childList = (
+    <ChildList id={ids.childrenId} items={state.children} isMini={isMini}
+      activePath={state.activePath} parentPath={state.itemPath} />
   );
 
   return (
     <>
-      <NavigationItem
-        title={t(item.titleKey)}
-        icon={item.icon}
-        badge={Badge ? <Badge descriptionId={badgeDescriptionId} /> : undefined}
-        badgeDescriptionId={Badge ? badgeDescriptionId : undefined}
-        hint={item.hintKey ? t(item.hintKey) : undefined}
-        href={hasChildren ? undefined : itemPath}
-        selected={isSelected}
-        onClick={isToggle ? () => setOpen(value => !value) : undefined}
-        expanded={open}
-        hasChildren={hasChildren}
-        miniPopoverContent={childList}
-        mini={isMini}
-        controlsId={hasChildren ? childrenId : undefined}
-      />
+      <GroupEntry item={item} isMini={isMini} ids={ids} state={state} isToggle={isToggle} childList={childList} />
 
       {isToggle && (
-        <Collapse component="li" in={open} timeout="auto" sx={{ listStyle: "none" }}>
+        <Collapse component="li" in={state.open} timeout="auto" sx={{ listStyle: "none" }}>
           {childList}
         </Collapse>
       )}
     </>
   );
+}
+
+export default function NavigationGroup(props: Props) {
+  const { item } = props;
+  if (item.kind === "section") return <SectionGroup item={item} mini={props.mini} />;
+  return <DestinationGroup {...props} />;
 }

@@ -1,143 +1,89 @@
-import { useId, useState } from "react";
+import { useId } from "react";
 
-import Box from "@mui/material/Box";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Paper from "@mui/material/Paper";
-import Popper from "@mui/material/Popper";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import { Link } from "@/i18n/routing";
-import { useAppContext } from "../provider/useAppContext";
-import { MINI_DRAWER_WIDTH } from "../drawerConstants";
-import { navigationListItemButtonSx } from "./navigationStyles";
+import { useIsMini } from "./useIsMini";
+import { listItemSx } from "./navigationItemStyles";
+import { FullItemContent, MiniItemContent } from "./NavigationItemContent";
+import {
+  ActionButton, LinkButton, ariaExpandedState, buttonCommonProps, describedByIds,
+} from "./NavigationItemButton";
+import { MiniPopper, useMiniPopper } from "./MiniPopper";
 
 import type { ReactNode } from "react";
-import type { Href } from "@/i18n/routing";
+import type { MiniPopperState } from "./MiniPopper";
 
 export type NavItemProps = {
   title: string;
-  mini?: boolean;
-  controlsId?: string;
-  badgeDescriptionId?: string;
   icon?: ReactNode;
   badge?: ReactNode;
+  badgeDescriptionId?: string;
   hint?: string;
   href?: string;
   selected: boolean;
   onClick?: () => void;
-  hasChildren?: boolean;
   expanded?: boolean;
+  hasChildren?: boolean;
+  mini?: boolean;
+  controlsId?: string;
   miniPopoverContent?: ReactNode;
 };
 
-const buttonSx = {
-  ...navigationListItemButtonSx,
-  position: "relative",
-  width: "100%",
-  maxWidth: "100%",
-  minWidth: 0,
-  boxSizing: "border-box",
-  px: 1.4,
-  py: 1,
-} as const;
+/** A flyout only exists for a collapsed item that has something to show. */
+const hasMiniPopup = (isMini: boolean, { hasChildren, miniPopoverContent }: NavItemProps) =>
+  isMini && Boolean(hasChildren) && Boolean(miniPopoverContent);
 
-const miniIconSx = { position: "absolute", left: "50%", top: "calc(50% - 6px)", transform: "translate(-50%, -50%)" } as const;
-const miniCaptionSx = {
-  position: "absolute", bottom: -18, left: "50%", transform: "translateX(-50%)",
-  fontSize: 10, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-  maxWidth: MINI_DRAWER_WIDTH - 28,
-} as const;
+type ItemButtonProps = {
+  props: NavItemProps;
+  isMini: boolean;
+  hintId: string;
+  hasPopup: boolean;
+  popper: MiniPopperState;
+};
 
-export default function NavigationItem(props: NavItemProps) {
+/** Link or action button, wrapping the mini/full content. */
+function ItemButton({ props, isMini, hintId, hasPopup, popper }: ItemButtonProps) {
   const { title, icon, badge, hint, href, selected, hasChildren = false, expanded = false } = props;
-  const { drawerOpen = true } = useAppContext();
-  const isMini = props.mini ?? !drawerOpen;
-  const hintId = useId();
-  const [anchor, setAnchor] = useState<HTMLElement | null>(null);
-  const [open, setOpen] = useState(false);
+  const contentProps = { title, icon, badge, hint, hintId, hasChildren, expanded };
+  const content = isMini ? <MiniItemContent {...contentProps} /> : <FullItemContent {...contentProps} />;
+  const describedBy = describedByIds({ isMini, hint, hintId, badgeDescriptionId: props.badgeDescriptionId });
+  const common = buttonCommonProps({ title, selected, isMini, describedBy });
 
-  const hasPopup = isMini && hasChildren && Boolean(props.miniPopoverContent);
-  const popupOpen = hasPopup && open;
-
-  const describedBy = [!isMini && hint ? hintId : undefined, props.badgeDescriptionId].filter(Boolean).join(" ") || undefined;
-
-  const content = (
-    <>
-      <Box sx={isMini ? miniIconSx : { flexShrink: 0 }}>
-        <ListItemIcon sx={{ justifyContent: "center", minWidth: 34 }}>
-          <Box component="span" aria-hidden="true">{icon}</Box>
-          {isMini && badge && <Box sx={{ position: "absolute", top: -5, right: -8 }}>{badge}</Box>}
-        </ListItemIcon>
-        {isMini && <Typography variant="caption" sx={miniCaptionSx}>{title}</Typography>}
-      </Box>
-      {!isMini && (
-        <>
-          <ListItemText primary={title} secondary={hint} sx={{ ml: 1.2, minWidth: 0 }}
-            slotProps={{
-              primary: { sx: { whiteSpace: "normal", overflowWrap: "anywhere" } },
-              secondary: { id: hintId, sx: { whiteSpace: "normal", overflowWrap: "anywhere", fontSize: 12 } },
-            }} />
-          {badge && <Box component="span" sx={{ display: "inline-flex", flexShrink: 0 }}>{badge}</Box>}
-        </>
-      )}
-      {hasChildren && (
-        <ExpandMoreIcon aria-hidden="true" sx={{
-          flexShrink: 0,
-          transform: `rotate(${expanded && !isMini ? 0 : -90}deg)`,
-          ...(isMini ? { position: "absolute", top: 14, right: 2, fontSize: 18 } : { ml: 0.5 }),
-        }} />
-      )}
-    </>
-  );
-
-  const common = {
-    "aria-label": title,
-    "aria-describedby": describedBy,
-    selected,
-    sx: { ...buttonSx, minHeight: isMini ? 60 : 48 },
-  };
+  if (href) return <LinkButton href={href} selected={selected} common={common}>{content}</LinkButton>;
 
   return (
-    <ClickAwayListener onClickAway={() => setOpen(false)}>
-      <ListItem
-        sx={{ py: 0, px: 1, width: "100%", maxWidth: "100%", boxSizing: "border-box", overflow: "visible" }}
-        onMouseEnter={() => hasPopup && setOpen(true)}
-        onMouseLeave={() => setOpen(false)}
-        onKeyDown={event => event.key === "Escape" && setOpen(false)}
-      >
-        {href ? (
-          <ListItemButton component={Link} href={href as Href} aria-current={selected ? "page" : undefined} {...common}>
-            {content}
-          </ListItemButton>
-        ) : (
-          <ListItemButton
-            component="button"
-            type="button"
-            ref={setAnchor}
-            aria-expanded={hasChildren ? (isMini ? popupOpen : expanded) : undefined}
-            aria-controls={hasChildren ? props.controlsId : undefined}
-            onClick={hasPopup ? () => setOpen(true) : props.onClick}
-            {...common}
-          >
-            {content}
-          </ListItemButton>
-        )}
+    <ActionButton
+      common={common}
+      anchorRef={popper.setAnchor}
+      ariaExpanded={ariaExpandedState({ hasChildren, isMini, popupOpen: popper.popupOpen, expanded })}
+      ariaControls={hasChildren ? props.controlsId : undefined}
+      onClick={hasPopup ? popper.open : props.onClick}
+    >
+      {content}
+    </ActionButton>
+  );
+}
 
+export default function NavigationItem(props: NavItemProps) {
+  const isMini = useIsMini(props.mini);
+  const hasPopup = hasMiniPopup(isMini, props);
+  const popper = useMiniPopper(hasPopup);
+  const hintId = useId();
+
+  return (
+    <ClickAwayListener onClickAway={popper.close}>
+      <ListItem
+        sx={listItemSx}
+        onMouseEnter={popper.onMouseEnter}
+        onMouseLeave={popper.close}
+        onKeyDown={popper.onKeyDown}
+      >
+        <ItemButton props={props} isMini={isMini} hintId={hintId} hasPopup={hasPopup} popper={popper} />
         {hasPopup && (
-          <Popper keepMounted open={popupOpen} anchorEl={anchor} placement="right-start"
-            sx={{ zIndex: theme => theme.zIndex.drawer + 2, pl: 0.75 }}>
-            <Paper component="nav" aria-label={title} elevation={1}
-              sx={{ py: 0.5, width: 300, maxWidth: "85vw", boxSizing: "border-box",
-                maxHeight: "80vh", overflowX: "hidden", overflowY: "auto" }}
-              onClick={event => event.target instanceof Element && event.target.closest("a") && setOpen(false)}>
-              {props.miniPopoverContent}
-            </Paper>
-          </Popper>
+          <MiniPopper open={popper.popupOpen} anchor={popper.anchor} title={props.title} onClose={popper.close}>
+            {props.miniPopoverContent}
+          </MiniPopper>
         )}
       </ListItem>
     </ClickAwayListener>
