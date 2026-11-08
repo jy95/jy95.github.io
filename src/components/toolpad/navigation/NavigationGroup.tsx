@@ -27,15 +27,6 @@ interface Props {
 
 type GroupState = ReturnType<typeof useNavigationGroupState>;
 
-function groupIds(instanceId: string, item: Item, parentPath: string) {
-  return {
-    childrenId: `${instanceId}-${navigationKey(item, parentPath)}-children`,
-    badgeDescriptionId: `${instanceId}-count`,
-  };
-}
-
-type GroupIds = ReturnType<typeof groupIds>;
-
 function groupBadgeProps(Badge: ElementType | undefined, descriptionId: string) {
   return Badge ? { badge: <Badge descriptionId={descriptionId} />, badgeDescriptionId: descriptionId } : {};
 }
@@ -57,46 +48,35 @@ function SectionGroup({ item, mini }: { item: NavigationSection; mini?: boolean 
     : <ListSubheader disableSticky>{t(item.titleKey)}</ListSubheader>;
 }
 
-type ChildListProps = {
-  id: string;
-  items: Item[];
-  isMini: boolean;
-  activePath: string | null | undefined;
-  parentPath: string;
-};
-
-function ChildList({ id, items, isMini, activePath, parentPath }: ChildListProps) {
-  return (
-    <List id={id} sx={{ p: 0, mb: 0.5, pl: isMini ? 0 : 2,
-      width: "100%", maxWidth: "100%", boxSizing: "border-box" }}>
-      {items.map(child => (
-        <NavigationGroup key={navigationKey(child, parentPath)} mini={false} selectedPath={activePath ?? null}
-          item={child} parentPath={parentPath} />
-      ))}
-    </List>
-  );
-}
-
 type GroupEntryProps = {
   item: Item;
   isMini: boolean;
-  ids: GroupIds;
+  childrenId: string;
+  badgeDescriptionId: string;
   state: GroupState;
   isToggle: boolean;
   childList: ReactNode;
 };
 
 /** The row itself; titles are resolved here so `MenuEntries.tsx` stays a static tree. */
-function GroupEntry({ item, isMini, ids, state, isToggle, childList }: GroupEntryProps) {
+function GroupEntry({
+  item,
+  isMini,
+  childrenId,
+  badgeDescriptionId,
+  state,
+  isToggle,
+  childList,
+}: GroupEntryProps) {
   const t = useTranslations("dashboard.menuEntries");
 
   return (
     <NavigationItem
       title={t(item.titleKey)}
       icon={item.icon}
-      {...groupBadgeProps(item.badge, ids.badgeDescriptionId)}
+      {...groupBadgeProps(item.badge, badgeDescriptionId)}
       hint={item.hintKey ? t(item.hintKey) : undefined}
-      {...groupLinkProps(state, ids.childrenId)}
+      {...groupLinkProps(state, childrenId)}
       selected={state.isSelected}
       onClick={isToggle ? state.toggle : undefined}
       expanded={state.open}
@@ -111,16 +91,45 @@ function DestinationGroup({ item, parentPath = "", selectedPath, mini }: Props) 
   const isMini = useIsMini(mini);
   const instanceId = useId();
   const state = useNavigationGroupState(item, parentPath, selectedPath);
-  const ids = groupIds(instanceId, item, parentPath);
+  const childrenId = `${instanceId}-${navigationKey(item, parentPath)}-children`;
+  const badgeDescriptionId = `${instanceId}-count`;
   const isToggle = state.hasChildren && !isMini;
+
   const childList = (
-    <ChildList id={ids.childrenId} items={state.children} isMini={isMini}
-      activePath={state.activePath} parentPath={state.itemPath} />
+    <List
+      id={childrenId}
+      sx={{
+        p: 0,
+        mb: 0.5,
+        pl: isMini ? 0 : 2,
+        width: "100%",
+        maxWidth: "100%",
+        boxSizing: "border-box",
+      }}
+    >
+      {state.children.map(child => (
+        <NavigationGroup
+          key={navigationKey(child, state.itemPath)}
+          mini={false}
+          selectedPath={state.activePath ?? null}
+          item={child}
+          parentPath={state.itemPath}
+        />
+      ))}
+    </List>
   );
 
   return (
     <>
-      <GroupEntry item={item} isMini={isMini} ids={ids} state={state} isToggle={isToggle} childList={childList} />
+      <GroupEntry
+        item={item}
+        isMini={isMini}
+        childrenId={childrenId}
+        badgeDescriptionId={badgeDescriptionId}
+        state={state}
+        isToggle={isToggle}
+        childList={childList}
+      />
 
       {isToggle && (
         <Collapse component="li" in={state.open} timeout="auto" sx={{ listStyle: "none" }}>
