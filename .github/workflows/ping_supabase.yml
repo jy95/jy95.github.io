@@ -3,7 +3,8 @@ name: Ping Supabase to Prevent Pausing
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 9 * * 1,4' # Runs at 09:00 UTC every Monday and Thursday
+  # 00:17, 06:17, 12:17 et 18:17 UTC
+    - cron: '17 */6 * * *'
 
 env:
   NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
