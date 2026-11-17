@@ -42,8 +42,8 @@ GamesPassionFR is a bilingual French and English catalog for the GamesPassionFR 
 
 ## Current catalog
 
-- Published games: 193
-- Available walkthrough duration: 1024 hours 38 minutes 37 seconds
+- Published games: 194
+- Available walkthrough duration: 1027 hours 1 minutes 40 seconds
 - Total catalog duration: 1122 hours 31 minutes 27 seconds
 - Backlog candidates: 191
 - Planned items: 24
@@ -230,6 +230,7 @@ The complete list below is alphabetical.
 - [Spy fox : Opération Milkshake](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ42kEksYsYPnAHmS_7V8525)
 - [Stranglehold](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ7dIG6eD6CYJh8xu4j_eXyq)
 - [TMNT 2007 (GBA)](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ511Df7N0KGWuGY0O6nlmNU)
+- [The Club](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ65AQNzKB8-aH88V4MK-73m)
 - [The Legend of Zelda: The Minish Cap](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ41LQiFCR00rhaLAyMNy7cR)
 - [The Punisher](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4ZxkrGCk7a8C-6jXEj4HoT)
 - [The Simpsons Hit & Run](https://www.youtube.com/playlist?list=PLRfhDHeBTBJ4Z99FBhfpJO6T_pe5HymRV)
